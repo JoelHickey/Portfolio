@@ -30,7 +30,7 @@ export default defineConfig([
     },
   },
   {
-    files: ['playwright.config.js'],
+    files: ['vite.config.js', 'playwright.config.js'],
     languageOptions: { globals: { ...globals.browser, ...globals.node } },
   },
   {
