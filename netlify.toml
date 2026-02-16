@@ -2,8 +2,40 @@
   command = "npm run build"
   publish = "dist"
 
-# SPA fallback - serve index.html for all routes
+# Health app (bundled at /health/) - serve static files, no redirect
+# /health and /health/ serve the health app's index.html
 [[redirects]]
-  from = "/*"
+  from = "/health"
+  to = "/health/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/health/"
+  to = "/health/index.html"
+  status = 200
+
+# Portfolio SPA - explicit routes only (so /health/* is NOT caught)
+[[redirects]]
+  from = "/"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/about"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/contact"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/portfolio"
+  to = "/index.html"
+  status = 200
+
+[[redirects]]
+  from = "/portfolio/*"
   to = "/index.html"
   status = 200
