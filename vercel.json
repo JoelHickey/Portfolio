@@ -1,10 +1,11 @@
 {
   "$schema": "https://openapi.vercel.sh/vercel.json",
   "rewrites": [
-    { "source": "/(.*)", "destination": "/index.html" }
+    {
+      "source": "/(.*)",
+      "destination": "/index.html"
+    }
   ],
-  "redirects": [
-    {"source":"/:path*","has":[{"type":"host","value":"joelhickey.com"}],"destination":"https://www.joelhickeydesigns.com/:path*","permanent":true},
-    {"source":"/:path*","has":[{"type":"host","value":"www.joelhickey.com"}],"destination":"https://www.joelhickeydesigns.com/:path*","permanent":true}
-  ]
+  "trailingSlash": false,
+  "cleanUrls": false
 }
