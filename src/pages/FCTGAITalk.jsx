@@ -502,7 +502,7 @@ function FCTGAITalk() {
                 {import.meta.env.VITE_HEALTH_APP_URL ? (
                   <div className="mt-6 overflow-hidden rounded-lg border border-slate-200 bg-slate-50/50 shadow-sm">
                     <iframe
-                      src={`${import.meta.env.VITE_HEALTH_APP_URL.replace(/\/$/, '')}/embed`}
+                      src={`${import.meta.env.VITE_HEALTH_APP_URL.replace(/\/$/, '')}?embed=1`}
                       title="Mental Health Monitor"
                       className="h-[420px] w-full border-0"
                       sandbox="allow-scripts allow-same-origin allow-forms"
