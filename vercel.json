@@ -6,9 +6,9 @@
   "rewrites": [
     {
       "source": "/(.*)",
-      "destination": "/index.html"
+      "destination": "/index"
     }
   ],
   "trailingSlash": false,
-  "cleanUrls": false
+  "cleanUrls": true
 }
