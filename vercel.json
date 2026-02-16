@@ -1,11 +1,14 @@
 {
-  "cleanUrls": false,
-  "trailingSlash": false,
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "installCommand": "npm install",
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
   "redirects": [
     {"source":"/:path*","has":[{"type":"host","value":"joelhickey.com"}],"destination":"https://www.joelhickeydesigns.com/:path*","permanent":true},
     {"source":"/:path*","has":[{"type":"host","value":"www.joelhickey.com"}],"destination":"https://www.joelhickeydesigns.com/:path*","permanent":true}
-  ],
-  "rewrites": [
-    {"source":"/(.*)","destination":"/index.html"}
   ]
 }
