@@ -48,7 +48,7 @@ function Amendments() {
     { big: '100%', subtext: 'core fixes blocked by legacy platform' }
   ]
 
-  const ideationBullets = [
+  const _ideationBullets = [
     'Design studio workshops and Crazy 8s with internal and external stakeholders produced rapid sketches and 50+ reframes to explore breadth.',
     'Competitive reviews and technology exploration benchmarked flows and assessed AI, automation, and real-time integration feasibility.'
   ]

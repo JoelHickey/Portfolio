@@ -1,8 +1,8 @@
 import React from 'react';
 
 const CalendarPicker = ({
-  startDate,
-  endDate,
+  startDate: _startDate,
+  endDate: _endDate,
   onDateClick,
   months = [],
   scale = 1,
@@ -134,7 +134,7 @@ const CalendarPicker = ({
       
       {/* Calendar grid */}
       <div style={{ display: 'flex', gap: scaleValue(4), marginTop: '12px' }}>
-        {liveMonths.map((month, monthIdx) => (
+        {liveMonths.map((month) => (
           <div
             key={month.name}
             style={{

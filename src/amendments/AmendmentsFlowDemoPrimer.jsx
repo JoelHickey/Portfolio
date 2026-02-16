@@ -124,7 +124,7 @@ const AmendmentsFlowDemoPrimer = ({ onBackToCaseStudy, onClose, position, zIndex
     padding: '12px'
   };
   const columnStackSx = { display: 'flex', flexDirection: 'column', gap: 3 };
-  const rowBetweenSx = {
+  const _rowBetweenSx = {
     display: 'flex',
     flexDirection: 'row',
     alignItems: 'center',
@@ -149,11 +149,11 @@ const AmendmentsFlowDemoPrimer = ({ onBackToCaseStudy, onClose, position, zIndex
     gap: 3,
     gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))'
   };
-  const resultsRowSx = { display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 3 };
-  const textRightSx = { textAlign: 'right' };
-  const marginTopSmSx = { mt: 2 };
+  const _resultsRowSx = { display: 'flex', flexDirection: 'row', alignItems: 'center', gap: 3 };
+  const _textRightSx = { textAlign: 'right' };
+  const _marginTopSmSx = { mt: 2 };
   const actionsRowSx = { display: 'flex', alignItems: 'center', gap: 2, flexWrap: 'wrap', mt: 3 };
-  const compactRowSx = {
+  const _compactRowSx = {
     display: 'inline-flex',
     alignItems: 'center',
     gap: 1,
@@ -163,7 +163,7 @@ const AmendmentsFlowDemoPrimer = ({ onBackToCaseStudy, onClose, position, zIndex
     pb: 1,
     alignSelf: 'flex-start'
   };
-  const pillButtonSx = {
+  const _pillButtonSx = {
     borderRadius: 999,
     width: 'fit-content',
     minWidth: 'unset',
@@ -173,7 +173,7 @@ const AmendmentsFlowDemoPrimer = ({ onBackToCaseStudy, onClose, position, zIndex
     whiteSpace: 'nowrap',
     maxWidth: 'max-content'
   };
-  const compactPillStyle = {
+  const _compactPillStyle = {
     appearance: 'none',
     border: '1px solid var(--borderColor-default)',
     background: 'var(--canvas-default)',
@@ -198,7 +198,7 @@ const AmendmentsFlowDemoPrimer = ({ onBackToCaseStudy, onClose, position, zIndex
     bg: 'transparent',
     width: '100%'
   };
-  const sectionHeaderSx = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 3 };
+  const _sectionHeaderSx = { display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 3 };
   const footerSx = {
     display: 'flex',
     alignItems: 'center',
@@ -235,7 +235,7 @@ const AmendmentsFlowDemoPrimer = ({ onBackToCaseStudy, onClose, position, zIndex
     p: 0,
     '& svg': { width: 12, height: 12 }
   };
-  const inlineToastSx = {
+  const _inlineToastSx = {
     backgroundColor: 'success.subtle',
     color: 'fg.default',
     borderRadius: 2,
@@ -276,7 +276,7 @@ const AmendmentsFlowDemoPrimer = ({ onBackToCaseStudy, onClose, position, zIndex
   const [showPaymentPage, setShowPaymentPage] = useState(false);
   const [showNewFlow, setShowNewFlow] = useState(false);
   const [newFlowStep, setNewFlowStep] = useState(1);
-  const [showOtherHotels, setShowOtherHotels] = useState(false);
+  const [, setShowOtherHotels] = useState(false);
   const [showDreamFlow, setShowDreamFlow] = useState(false);
   const [dreamResults, setDreamResults] = useState(false);
   const [dreamDateChange, setDreamDateChange] = useState(false);
@@ -292,7 +292,7 @@ const AmendmentsFlowDemoPrimer = ({ onBackToCaseStudy, onClose, position, zIndex
     total: DREAM_BASE_TOTAL + 410
   });
   const [dreamDateRange, setDreamDateRange] = useState({ start: 15, end: 20, month: 'MAY' });
-  const [dreamRoomType, setDreamRoomType] = useState('standard');
+  const [, setDreamRoomType] = useState('standard');
   const [selectedRoomId, setSelectedRoomId] = useState('standard');
   const [selectedHotelName, setSelectedHotelName] = useState('Royal Hawaiian Resort');
   const [confirmedHotelName, setConfirmedHotelName] = useState('Royal Hawaiian Resort');
@@ -300,7 +300,7 @@ const AmendmentsFlowDemoPrimer = ({ onBackToCaseStudy, onClose, position, zIndex
   const [confirmedDatesSummary, setConfirmedDatesSummary] = useState('May 15–20, 2024');
   const [showAmendmentHistory, setShowAmendmentHistory] = useState(false);
   const [amendmentHistoryEntries, setAmendmentHistoryEntries] = useState([]);
-  const [dreamTravellers, setDreamTravellers] = useState({
+  const [, setDreamTravellers] = useState({
     john: true,
     sarah: true,
     emily: true,
@@ -310,11 +310,11 @@ const AmendmentsFlowDemoPrimer = ({ onBackToCaseStudy, onClose, position, zIndex
   const [aiHasAutoTyped, setAiHasAutoTyped] = useState(false);
   const [aiDraftingPrompt, setAiDraftingPrompt] = useState(false);
   const [aiSearching, setAiSearching] = useState(false);
-  const [aiDraftingIdle, setAiDraftingIdle] = useState(false);
+  const [, setAiDraftingIdle] = useState(false);
   const [aiSuggestionVisible, setAiSuggestionVisible] = useState(false);
   const [dreamTestScenario, setDreamTestScenario] = useState('default');
   const [dreamErrorMessage, setDreamErrorMessage] = useState('');
-  const [isApplyingDates, setIsApplyingDates] = useState(false);
+  const [, setIsApplyingDates] = useState(false);
   const [isConfirmingChange, setIsConfirmingChange] = useState(false);
   const [undoingEntryId, setUndoingEntryId] = useState(null);
   const [reasonForAmendment, setReasonForAmendment] = useState('');
@@ -378,7 +378,7 @@ const AmendmentsFlowDemoPrimer = ({ onBackToCaseStudy, onClose, position, zIndex
       };
   const oldFlowSteps = ['Results', 'Cart', 'Travellers', 'Payment'];
   const newFlowSteps = ['Search', 'Results', 'Review'];
-  const dreamSteps = ['Ask', 'Review', 'Confirm', 'Done'];
+  const _dreamSteps = ['Ask', 'Review', 'Confirm', 'Done'];
   const oldFlowStepIndex = showPaymentPage
     ? 4
     : showTravellersPage
@@ -390,7 +390,7 @@ const AmendmentsFlowDemoPrimer = ({ onBackToCaseStudy, onClose, position, zIndex
           : 1;
   const currentOldFlowStep = Math.max(oldFlowStepIndex, 1);
   const currentNewFlowStep = Math.min(Math.max(newFlowStep, 1), newFlowSteps.length);
-  const dreamStepIndex = dreamConfirmed ? 4 : dreamPayment ? 3 : dreamResults || dreamDateChange || dreamNewDates ? 2 : 1;
+  const _dreamStepIndex = dreamConfirmed ? 4 : dreamPayment ? 3 : dreamResults || dreamDateChange || dreamNewDates ? 2 : 1;
   const showExceedsSummary = effectiveAiSuggestionVisible || (!aiHasAutoTyped && dreamPrompt.trim().length > 0);
   const showDreamConfirmBar =
     dreamNewDates ||
@@ -771,7 +771,7 @@ const AmendmentsFlowDemoPrimer = ({ onBackToCaseStudy, onClose, position, zIndex
     }, 800);
   };
 
-  const startPaymentLoading = () => {
+  const _startPaymentLoading = () => {
     setLoadingMessage('Loading payment form...');
     setTimeout(() => {
       setLoadingMessage('');

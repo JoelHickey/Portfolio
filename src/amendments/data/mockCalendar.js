@@ -3,7 +3,7 @@
  * Generates 3 months of availability data (May–Jul 2024)
  */
 
-export const generateCalendarMonths = (startDate, endDate, activeMonth) => {
+export const generateCalendarMonths = (_startDate, _endDate, _activeMonth) => {
   const months = [
     {
       name: 'MAY',

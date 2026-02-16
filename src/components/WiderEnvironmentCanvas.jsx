@@ -56,7 +56,7 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560 }) {
       ctx.rotate(rotation)
       ctx.translate(-CX, -CY)
       ctx.setLineDash([6, 6])
-      RINGS.forEach((ring, i) => {
+      RINGS.forEach((ring) => {
         ctx.beginPath()
         ctx.arc(CX, CY, ring.r, 0, Math.PI * 2)
         ctx.strokeStyle = ring.stroke

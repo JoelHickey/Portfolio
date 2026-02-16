@@ -201,13 +201,13 @@ function AmendmentsFlowDemoTailwind({ embedded = false, onBackToCaseStudy, onClo
   const [showNewFlow, setShowNewFlow] = useState(false)
   const [newFlowLoadingMessage, setNewFlowLoadingMessage] = useState(null)
   const [newFlowStep, setNewFlowStep] = useState(1)
-  const [changeType, setChangeType] = useState('')
+  const [, setChangeType] = useState('')
   const [newFlowSelectedHotel, setNewFlowSelectedHotel] = useState(null)
   const [newFlowExpandedHotelName, setNewFlowExpandedHotelName] = useState(null)
   const [openKebabId, setOpenKebabId] = useState(null)
 
   const [showOldFlow, setShowOldFlow] = useState(false)
-  const [oldFlowStep, setOldFlowStep] = useState(1)
+  const [, setOldFlowStep] = useState(1)
   const [oldFlowSelectedHotel, setOldFlowSelectedHotel] = useState(null)
   // Old flow: modals then separate pages
   const [oldFlowAmendModalOpen, setOldFlowAmendModalOpen] = useState(false)
@@ -259,7 +259,7 @@ function AmendmentsFlowDemoTailwind({ embedded = false, onBackToCaseStudy, onClo
   const [dreamLastUpdatedMsg, setDreamLastUpdatedMsg] = useState('A few seconds ago')
   const [dreamNotifyMe, setDreamNotifyMe] = useState(false)
   const [dreamHoldFor15Min, setDreamHoldFor15Min] = useState(false)
-  const [dreamSplitStayMode, setDreamSplitStayMode] = useState(false)
+  const [, setDreamSplitStayMode] = useState(false)
   const [dreamSoldOutTab, setDreamSoldOutTab] = useState('ai')
 
   useEffect(() => {

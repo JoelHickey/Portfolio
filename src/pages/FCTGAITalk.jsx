@@ -61,7 +61,7 @@ function playSwipeSound(cardId) {
       osc.start(0)
       osc.stop(duration)
     }
-  } catch (_) {}
+  } catch { /* ignore audio errors */ }
 }
 
 const cardList = [
@@ -72,7 +72,7 @@ const cardList = [
 
 function FCTGAITalk() {
   const [activeCard, setActiveCard] = useState(null)
-  const [dragStart, setDragStart] = useState({ x: 0, y: 0 })
+  const [, setDragStart] = useState({ x: 0, y: 0 })
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
   const [swipedOff, setSwipedOff] = useState({ apple: false, designforpeople: false, windows: false })
   const [exitDirection, setExitDirection] = useState({ apple: null, designforpeople: null, windows: null })

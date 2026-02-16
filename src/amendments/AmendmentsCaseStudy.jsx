@@ -15,14 +15,14 @@ import { ChevronLeftIcon, ChevronRightIcon, XIcon } from '@primer/octicons-react
 import AmendmentsFlowDemo from './AmendmentsFlowDemo';
 
 const AmendmentsCaseStudy = ({
-  onViewOldFlow,
-  onViewNewFlow,
+  onViewOldFlow: _onViewOldFlow,
+  onViewNewFlow: _onViewNewFlow,
   onClose,
   position,
   onDragStart,
   zIndex = 120
 }) => {
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [, setIsScrolled] = useState(false);
   const [lightbox, setLightbox] = useState({ isOpen: false, gallery: null, currentIndex: 0 });
   const [isDemoEnabled, setIsDemoEnabled] = useState(false);
 
@@ -158,7 +158,7 @@ const AmendmentsCaseStudy = ({
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [lightbox.isOpen, lightbox.currentIndex, lightbox.gallery]);
 
-  const fallbackPosition = position || {
+  const _fallbackPosition = position || {
     x: typeof window !== 'undefined' ? Math.max(0, (window.innerWidth - 1000) / 2) : 50,
     y: typeof window !== 'undefined' ? Math.max(0, (window.innerHeight - 700) / 2) : 100
   };
@@ -176,9 +176,9 @@ const AmendmentsCaseStudy = ({
     maxHeight: "none"
   };
 
-  const headerSx = {};
-  const headerTitleSx = { m: 0, fontWeight: 700, lineHeight: 1.2 };
-  const headerTitleStyle = { fontSize: theme.fontSizes?.[3] };
+  const _headerSx = {};
+  const _headerTitleSx = { m: 0, fontWeight: 700, lineHeight: 1.2 };
+  const _headerTitleStyle = { fontSize: theme.fontSizes?.[3] };
 
   const sectionHeadingSx = {
     mb: 2,

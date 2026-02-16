@@ -3,7 +3,7 @@ import React from 'react';
 const Button = ({ 
   children, 
   onClick, 
-  variant = 'primary', 
+  variant: _variant = 'primary', 
   size = 'medium',
   disabled = false,
   loading = false,

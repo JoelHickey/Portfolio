@@ -121,19 +121,19 @@ const STRIP_SCROLL_SPEED = 1
 const STRIP_SCROLL_SPEED_HOVER = 0.08
 
 const CAPABILITY_IMAGES = [
-  { src: capProductStrategy, alt: 'Product Strategy & Design', title: 'Product Strategy & Design', description: 'Roadmaps, vision, and outcomes that align teams.', backText: 'I shape product direction with clear roadmaps, vision documents, and outcome-focused goals so teams and stakeholders stay aligned. From discovery through delivery, I help turn strategy into executable plans.' },
-  { src: capAiWorkflows, alt: 'AI Workflows', title: 'AI Workflows', description: 'Automation and intelligent workflows that scale.', backText: 'I design and improve flows that use AI and automation to reduce friction and scale quality. That includes prompt design, tool integration, and workflows that keep humans in the loop where it matters.' },
-  { src: capDesignSystems, alt: 'Design Systems', title: 'Design Systems', description: 'Components, tokens, and consistent UI at scale.', backText: 'I contribute to design systems with components, tokens, and documentation so teams ship consistent UI at scale. I focus on clarity, reuse, and patterns that work across products and platforms.' },
-  { src: capUsabilityTesting, alt: 'Usability Testing', title: 'Usability Testing', description: 'Testing with real users to find what works.', backText: 'I run usability tests with real users to find what works and what doesn’t. I plan sessions, facilitate, and turn findings into clear recommendations that improve flows and reduce friction.' },
-  { src: capCustomerResearch, alt: 'Customer Research', title: 'Customer Research', description: 'Customer insights that shape the product.', backText: 'I run customer research to uncover needs, jobs, and pain points so product and design decisions are evidence-based. Interviews, surveys, and synthesis feed into strategy and prioritisation.' },
-  { src: capDiscoveryFraming, alt: 'Discovery & Framing', title: 'Discovery & Framing', description: 'Problem framing, opportunity mapping, and jobs-to-be-done.', backText: 'I help frame problems and map opportunities using jobs-to-be-done and discovery methods. Clear framing and opportunity maps set the stage for better solutions and alignment.' },
-  { src: capPrototypingIteration, alt: 'Prototyping & Iteration', title: 'Prototyping & Iteration', description: 'Lo-fi to hi-fi prototypes and concept testing.', backText: 'I prototype from lo-fi to hi-fi to test concepts and flows early. Quick iteration and concept testing reduce risk and help teams learn before building.' }
+  { src: capProductStrategy, alt: 'Product Strategy & Design', title: 'Product Strategy & Design', description: 'Roadmaps, vision, and outcomes that align teams.', details: ['Roadmaps & OKRs', 'Vision & north star', 'Outcome-focused prioritisation', 'Stakeholder alignment'] },
+  { src: capAiWorkflows, alt: 'AI Workflows', title: 'AI Workflows', description: 'Automation and intelligent workflows that scale.', details: ['Prompt design & tuning', 'Tool integration (APIs, agents)', 'Human-in-the-loop flows', 'Automation that scales quality'] },
+  { src: capDesignSystems, alt: 'Design Systems', title: 'Design Systems', description: 'Components, tokens, and consistent UI at scale.', details: ['Components & patterns', 'Design tokens & theming', 'Documentation & usage', 'Cross-product consistency'] },
+  { src: capUsabilityTesting, alt: 'Usability Testing', title: 'Usability Testing', description: 'Testing with real users to find what works.', details: ['Test planning & scripts', 'Moderation & facilitation', 'Findings & recommendations', 'Iteration with evidence'] },
+  { src: capCustomerResearch, alt: 'Customer Research', title: 'Customer Research', description: 'Customer insights that shape the product.', details: ['Interviews & surveys', 'Jobs-to-be-done', 'Synthesis & insight reports', 'Strategy & prioritisation input'] },
+  { src: capDiscoveryFraming, alt: 'Discovery & Framing', title: 'Discovery & Framing', description: 'Problem framing, opportunity mapping, and jobs-to-be-done.', details: ['Problem framing', 'Opportunity mapping', 'JTBD & discovery', 'Alignment workshops'] },
+  { src: capPrototypingIteration, alt: 'Prototyping & Iteration', title: 'Prototyping & Iteration', description: 'Lo-fi to hi-fi prototypes and concept testing.', details: ['Lo-fi to hi-fi prototypes', 'Concept testing', 'Flow validation', 'Learn before build'] }
 ]
 
 function Home() {
-  const [caseStudyPage, setCaseStudyPage] = useState(0)
+  const [caseStudyPage] = useState(0)
   const [capabilitiesInView, setCapabilitiesInView] = useState(false)
-  const [capabilitiesHeadingInView, setCapabilitiesHeadingInView] = useState(false)
+  const [, setCapabilitiesHeadingInView] = useState(false)
   const [capabilitiesCardsInView, setCapabilitiesCardsInView] = useState(false)
   const [hoveredCapabilityCard, setHoveredCapabilityCard] = useState(null)
   const [flippedCapabilityCard, setFlippedCapabilityCard] = useState(null)
@@ -430,25 +430,31 @@ function Home() {
                     left: '50%',
                     bottom: '5rem',
                     transform: isHovered
-                      ? `translateX(-50%) translateY(-2.5rem) rotate(${rotation}deg) scale(1.03)`
-                      : `translateX(-50%) rotate(${rotation}deg)`,
+                      ? `translateX(-50%) translateY(-2.5rem) rotate(${rotation}deg) scale(1.236)`
+                      : `translateX(-50%) rotate(${rotation}deg) scale(1.2)`,
                     width: '38vmin',
                     transformOrigin: '50% 100%',
                     zIndex: isHovered ? 50 : i
                   }}
                 >
-                  <div className="relative w-full h-full" style={{ perspective: '1200px' }}>
+                  <div className="relative w-full h-full" style={{ perspective: '1200px', perspectiveOrigin: '50% 50%' }}>
                     <div
-                      className="relative w-full h-full rounded-2xl overflow-hidden transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
+                      className="relative w-full h-full transition-transform duration-500 ease-[cubic-bezier(0.4,0,0.2,1)]"
                       style={{
                         transformStyle: 'preserve-3d',
+                        WebkitTransformStyle: 'preserve-3d',
                         transform: isFlipped ? 'rotateY(180deg)' : 'rotateY(0deg)'
                       }}
                     >
-                      {/* Front */}
+                      {/* Front - hidden when flipped so we never see "reversed" image */}
                       <div
-                        className="absolute inset-0 rounded-2xl bg-slate-100"
-                        style={{ backfaceVisibility: 'hidden' }}
+                        className="absolute inset-0 rounded-2xl overflow-hidden bg-slate-100 transition-opacity duration-300"
+                        style={{
+                          backfaceVisibility: 'hidden',
+                          WebkitBackfaceVisibility: 'hidden',
+                          opacity: isFlipped ? 0 : 1,
+                          pointerEvents: isFlipped ? 'none' : 'auto'
+                        }}
                       >
                         <img
                           src={cap.src}
@@ -459,21 +465,29 @@ function Home() {
                           draggable={false}
                         />
                       </div>
-                      {/* Back */}
+                      {/* Back - pre-rotated so its front faces the back of the card; visible only when flipped */}
                       <div
-                        className="absolute inset-0 rounded-2xl flex flex-col items-center justify-center p-4 md:p-5 text-center bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 text-white overflow-y-auto"
+                        className="absolute inset-0 rounded-2xl overflow-hidden flex flex-col items-center justify-start p-4 md:p-5 text-center bg-slate-800 text-white overflow-y-auto transition-opacity duration-300"
                         style={{
                           backfaceVisibility: 'hidden',
-                          transform: 'rotateY(180deg)'
+                          WebkitBackfaceVisibility: 'hidden',
+                          transform: 'rotateY(180deg) translateZ(1px)',
+                          opacity: isFlipped ? 1 : 0,
+                          pointerEvents: isFlipped ? 'auto' : 'none'
                         }}
                       >
-                        <h3 className="text-xs font-semibold tracking-tight text-white uppercase mb-2 shrink-0">
+                        <h3 className="text-xs font-semibold tracking-tight text-white uppercase mb-3 shrink-0">
                           {cap.title}
                         </h3>
-                        <p className="text-[10px] md:text-xs leading-relaxed text-slate-200">
-                          {cap.backText}
-                        </p>
-                        <span className="mt-2 shrink-0 text-[9px] md:text-[10px] text-slate-400">
+                        <ul className="text-left w-full space-y-1.5 text-[10px] md:text-xs text-slate-200">
+                          {cap.details.map((item, j) => (
+                            <li key={j} className="flex items-center gap-2">
+                              <span className="text-slate-400 shrink-0">·</span>
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        <span className="mt-auto pt-3 shrink-0 text-[9px] md:text-[10px] text-slate-400">
                           Click to flip back
                         </span>
                       </div>
