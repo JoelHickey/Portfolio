@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build:health": "DIR=$(pwd) && rm -rf /tmp/earth-build && git clone --depth 1 https://github.com/JoelHickey/Earth.git /tmp/earth-build && cd /tmp/earth-build && npm ci && VITE_BASE=/health/ npm run build && rm -rf \"$DIR/public/health\" && mkdir -p \"$DIR/public/health\" && cp -r dist/* \"$DIR/public/health\"",
+    "build": "npm run build:health && vite build",
     "lint": "eslint .",
     "preview": "vite preview",
     "test": "vitest run",

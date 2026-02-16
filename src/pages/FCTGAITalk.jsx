@@ -499,21 +499,14 @@ function FCTGAITalk() {
                 <p className="mt-3 text-slate-600">
                   A Windows 95–style mental health monitor — track sleep, emotions, and environment in a familiar interface.
                 </p>
-                {import.meta.env.VITE_HEALTH_APP_URL ? (
-                  <div className="mt-6 overflow-hidden rounded-lg border border-slate-200 bg-slate-50/50 shadow-sm">
-                    <iframe
-                      src={`${import.meta.env.VITE_HEALTH_APP_URL.replace(/\/$/, '')}?embed=1`}
-                      title="Mental Health Monitor"
-                      className="h-[420px] w-full border-0"
-                      sandbox="allow-scripts allow-same-origin allow-forms"
-                    />
-                  </div>
-                ) : (
-                  <div className="mt-6 rounded-lg border border-dashed border-slate-300 bg-slate-50/80 px-6 py-12 text-center">
-                    <p className="text-slate-600">Deploy the health app from <code className="rounded bg-slate-100 px-1">fresh-project</code> to Netlify, then add to your portfolio <code className="rounded bg-slate-100 px-1">.env</code>:</p>
-                    <p className="mt-2 font-mono text-sm text-slate-700">VITE_HEALTH_APP_URL=https://your-health-app.netlify.app</p>
-                  </div>
-                )}
+                <div className="mt-6 overflow-hidden rounded-lg border border-slate-200 bg-slate-50/50 shadow-sm">
+                  <iframe
+                    src="/health/"
+                    title="Mental Health Monitor"
+                    className="h-[420px] w-full border-0"
+                    sandbox="allow-scripts allow-same-origin allow-forms"
+                  />
+                </div>
               </div>
               <div className="pt-12">
                 <h3 className="text-xl font-semibold text-slate-900">Ideation</h3>
