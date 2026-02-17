@@ -68,6 +68,15 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560 }) {
       ctx.rotate(-rotation)
       ctx.translate(-CX, -CY)
 
+      // Ring labels — placed at bottom of each ring, inside
+      ctx.font = '12px system-ui, sans-serif'
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'top'
+      RINGS.forEach((ring) => {
+        ctx.fillStyle = ring.stroke
+        ctx.fillText(ring.label, CX, CY + ring.r - 24)
+      })
+
       // Venn circles
       ctx.strokeStyle = '#64748b'
       ctx.lineWidth = 1
@@ -75,6 +84,16 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560 }) {
         ctx.beginPath()
         ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2)
         ctx.stroke()
+      })
+
+      // Circle labels — centered in each Venn circle
+      ctx.font = '11px system-ui, sans-serif'
+      ctx.textAlign = 'center'
+      ctx.textBaseline = 'middle'
+      ctx.fillStyle = '#475569'
+      CIRCLES.forEach((c) => {
+        const labelY = c.label === 'Design' ? c.y + 24 : c.y
+        ctx.fillText(c.label, c.x, labelY)
       })
 
       // Center dot (design process) — pulse

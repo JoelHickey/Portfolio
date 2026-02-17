@@ -1,0 +1,60 @@
+/* Windows 95 Health Monitor styles - matches Earth app 100% */
+
+.health-monitor .win95-scope {
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  color: #000000;
+}
+
+.health-monitor .win95-ui button {
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 8pt;
+  font-weight: normal;
+  background: #d4d0c8;
+  border: 1px outset #c0c0c0;
+  cursor: pointer;
+  padding: 2px 6px;
+}
+
+.health-monitor .win95-ui button:hover {
+  background: #e0e0e0;
+}
+
+.health-monitor .win95-ui button:active {
+  border: 1px inset #c0c0c0;
+  background: #c0c0c0;
+}
+
+.health-monitor .win95-ui input {
+  font-family: 'MS Sans Serif', sans-serif;
+  font-size: 9px;
+  background: white;
+  color: #000000;
+  border: 1px inset #c0c0c0;
+  padding: 2px 4px;
+}
+
+.health-monitor .win95-scope ::-webkit-scrollbar {
+  width: 16px;
+  height: 16px;
+}
+
+.health-monitor .win95-scope ::-webkit-scrollbar-track {
+  background: #c0c0c0;
+  border: 1px inset #c0c0c0;
+}
+
+.health-monitor .win95-scope ::-webkit-scrollbar-thumb {
+  background: #d4d0c8;
+  border: 1px outset #c0c0c0;
+}
+
+.health-monitor .win95-scope ::-webkit-scrollbar-thumb:hover {
+  background: #e0e0e0;
+}
+
+.health-monitor .win95-ui button:focus,
+.health-monitor .win95-ui input:focus {
+  outline: 1px dotted #000000;
+}

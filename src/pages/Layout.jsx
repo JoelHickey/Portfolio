@@ -30,7 +30,7 @@ function Layout() {
         </div>
       </header>
 
-      <main className="w-full flex-1 px-2 py-12 overflow-x-hidden">
+      <main className="w-full flex-1 px-2 py-12">
         <Outlet />
       </main>
     </div>

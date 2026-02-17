@@ -1,9 +1,10 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
 import { Link } from 'react-router-dom'
-import { FiZap, FiLayers, FiHome } from 'react-icons/fi'
+import { FiZap, FiLayers, FiHome, FiGlobe } from 'react-icons/fi'
 import MatrixRain from '../components/MatrixRain'
 import WeavingLoom from '../components/WeavingLoom'
 import WiderEnvironmentCanvas from '../components/WiderEnvironmentCanvas'
+import HealthMonitor from '../components/HealthMonitor'
 
 const SWIPE_THRESHOLD = 100
 
@@ -79,10 +80,6 @@ function FCTGAITalk() {
   const [hoveredCard, setHoveredCard] = useState(null)
   const startRef = useRef({ x: 0, y: 0 })
   const dragOffsetRef = useRef({ x: 0, y: 0 })
-
-  useEffect(() => {
-    window.scrollTo(0, 0)
-  }, [])
 
   const handlePointerDown = useCallback((e, id) => {
     if (swipedOff[id]) return
@@ -172,116 +169,125 @@ function FCTGAITalk() {
           </div>
           <div className="relative z-10" style={{ paddingTop: '80px' }}>
             <h1 className="text-7xl font-semibold text-slate-900 md:text-8xl">
-              Invigoration, innovation, and impact
+              Invigoration, innovation and impact
             </h1>
-            <p className="mt-6 max-w-2xl text-base text-slate-600 md:text-lg">
-              Presented to Flight Centre Travel Group&apos;s (FCTG) Global Design Team.
+            <p className="mt-6 mb-16 max-w-2xl text-base text-slate-600 md:text-lg">
+              Presented to Flight Centre Travel Group&apos;s (FCTG) Global Design Team, March 2026
             </p>
           </div>
         </div>
       </div>
 
-      {/* Takeaways / Provocations */}
+      {/* Talk sections */}
       <div className="w-full bg-slate-50">
         <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-            <div>
-              <p className="text-xl font-semibold text-slate-900 md:text-2xl">Weavers, not replaced.</p>
-              <p className="mt-2 text-base text-slate-500">Tools redefine the craft — judgment and taste stay with people.</p>
-            </div>
-            <div>
-              <p className="text-xl font-semibold text-slate-900 md:text-2xl">Trust your gut as the master.</p>
-              <p className="mt-2 text-base text-slate-500">Question the agents; they don’t think through the full impact of tasks.</p>
-            </div>
-            <div>
-              <p className="text-xl font-semibold text-slate-900 md:text-2xl">Invigoration over automation.</p>
-              <p className="mt-2 text-base text-slate-500">AI as a tool for innovation and impact, not just efficiency.</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Talk sections */}
-      <div className="w-full bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
           <div>
-            <h2 className="text-6xl font-semibold text-slate-900">Looking back to look ahead</h2>
+            <h2 className="text-6xl font-semibold pb-3 leading-normal bg-gradient-to-r from-slate-800 via-indigo-700 to-slate-800 bg-clip-text text-transparent">Looking back to look ahead</h2>
             <div className="mt-16 max-w-3xl space-y-10 md:mt-20">
               <div className="mb-[112px]">
-                <h3 className="text-xl font-semibold text-slate-900">The weavers</h3>
-                <p className="mt-3 text-slate-600">
-                  Mechanised looms didn’t replace weavers — they redefined the craft. Weavers moved into overseeing machines and designing patterns. The real shift was productivity and cost. AI is the same story: tools handle the repeatable work, but judgment, taste, and the “quality” that’s hard to automate stay with people. We’re working out what we do ourselves and where we use the tools — not whether we’re replaced.
+                <h3 className="text-2xl font-semibold text-slate-900">The weavers</h3>
+                <p className="mt-6 mb-6 text-slate-700">
+                  What stays with people when tools take over the repeatable work?
                 </p>
-                <div className="mt-6 rounded-xl border border-slate-200 bg-slate-50/80 p-6 flex justify-center">
-                  <WeavingLoom width={280} height={120} className="max-w-[280px]" />
+                <div className="space-y-3 text-slate-600">
+                  <p className="border-l-2 border-slate-300 pl-4">Craft is redefined, not replaced</p>
+                  <p className="border-l-2 border-slate-300 pl-4">Judgment, taste, and quality stay with people</p>
+                </div>
+                <div className="mt-12 px-6 pt-6 pb-[112px] flex justify-start">
+                  <WeavingLoom width={280} height={120} className="min-w-[320px] w-[320px]" />
+                </div>
+                <h3 className="text-2xl font-semibold text-slate-900 mt-12">Replacing the cart</h3>
+                <p className="mt-6 mb-6 text-slate-600">
+                  Not a faster horse — a new way to move. When tools change, the craft redefines itself.
+                </p>
+                <div className="space-y-3 mb-28 text-slate-600">
+                  <p className="border-l-2 border-slate-300 pl-4">The leap matters more than the increment</p>
+                  <p className="border-l-2 border-slate-300 pl-4">New tools create new possibilities, not just faster versions of the old</p>
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-slate-900">The information age</h3>
-                <p className="mt-3 text-slate-600">
-                  When design software and the internet arrived, designers and researchers didn&apos;t vanish — they moved from paper to pixels, from filing cabinets to search. The craft evolved. Tools changed how we worked, not whether humans were in the loop. AI is the same arc: it redefines the craft; it doesn&apos;t replace the craftsperson.
+                <h3 className="text-2xl font-semibold text-slate-900">The digital era</h3>
+                <p className="mt-3 mb-6 text-slate-600">
+                  Paper, pixels, systems — each era redefined the designer.
                 </p>
-                <div className="mt-8 flex justify-center pt-6 pb-12" aria-hidden>
+                <div className="space-y-3 text-slate-600">
+                  <p className="border-l-2 border-slate-300 pl-4">Hands-on craft gave way to screens and software; undo made iteration cheap, new disciplines emerged</p>
+                  <p className="border-l-2 border-slate-300 pl-4">Thinking in components and rules; the designer shapes the system, not just the screen</p>
+                </div>
+                <div className="mt-8 flex justify-start pt-6 pb-12" aria-hidden>
                   <style>{`
                     @keyframes stage-in {
-                      0% { opacity: 0; transform: translateY(4px); }
-                      100% { opacity: 1; transform: translateY(0); }
+                      0% { opacity: 0; transform: translateY(8px) scale(0.96); }
+                      100% { opacity: 1; transform: translateY(0) scale(1); }
                     }
-                    @keyframes arrow-pulse {
-                      0%, 100% { opacity: 0.4; }
-                      50% { opacity: 0.9; }
+                    @keyframes arrow-flow {
+                      0% { stroke-dashoffset: 24; }
+                      100% { stroke-dashoffset: 0; }
                     }
-                    .info-age-stage { animation: stage-in 0.6s ease-out forwards; opacity: 0; }
-                    .info-age-arrow { animation: arrow-pulse 2s ease-in-out infinite; }
+                    @keyframes node-pulse {
+                      0%, 100% { opacity: 0.7; transform: scale(1); }
+                      50% { opacity: 1; transform: scale(1.15); }
+                    }
+                    @keyframes pixel-pop {
+                      0% { opacity: 0; transform: scale(0); }
+                      70% { opacity: 1; transform: scale(1.1); }
+                      100% { opacity: 1; transform: scale(1); }
+                    }
+                    @keyframes paper-lines {
+                      0% { stroke-dasharray: 0 70; }
+                      100% { stroke-dasharray: 64 70; }
+                    }
+                    .info-age-stage { animation: stage-in 0.7s cubic-bezier(0.22, 1, 0.36, 1) forwards; opacity: 0; }
+                    .info-age-flow { stroke-dasharray: 8 16; animation: arrow-flow 2s ease-in-out infinite; }
+                    .info-age-node { animation: node-pulse 2.5s ease-in-out infinite; transform-origin: center; }
+                    .info-age-pixel { animation: pixel-pop 0.4s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; opacity: 0; }
+                    .info-age-paper-line { stroke-dasharray: 0 100; animation: paper-lines 0.8s ease-out 0.3s forwards; }
                   `}</style>
-                  <svg viewBox="0 0 320 100" className="w-full max-w-[360px] text-slate-400" preserveAspectRatio="xMidYMid meet">
+                  <svg viewBox="0 0 320 100" className="w-full max-w-[560px] text-slate-400" preserveAspectRatio="xMidYMid meet">
                     <title>Paper → Pixels → Systems</title>
-                    {/* Paper */}
+                    {/* Paper: 0-80, arrow gap 12, arrow 16, gap 12 */}
                     <g className="info-age-stage" style={{ animationDelay: '0s' }}>
-                      <rect x="8" y="20" width="72" height="56" rx="2" fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.4" />
+                      <rect x="0" y="20" width="80" height="56" rx="2" fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.4" />
                       {[28, 36, 44, 52, 60].map((y, i) => (
-                        <line key={i} x1="16" y1={y} x2="72" y2={y} stroke="currentColor" strokeWidth="0.8" strokeOpacity="0.35" />
+                        <line key={i} x1="8" y1={y} x2="72" y2={y} stroke="currentColor" strokeWidth="0.8" strokeOpacity="0.35" className="info-age-paper-line" style={{ animationDelay: `${0.4 + i * 0.06}s` }} />
                       ))}
-                      <text x="44" y="72" textAnchor="middle" className="fill-slate-500 text-[10px] font-medium" style={{ fontFamily: 'system-ui, sans-serif' }}>Paper</text>
                     </g>
-                    <path d="M 88 48 L 108 48" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.5" strokeLinecap="round" className="info-age-arrow" style={{ animationDelay: '0.2s' }} />
-                    <polygon points="104,44 112,48 104,52" fill="currentColor" fillOpacity="0.5" className="info-age-arrow" style={{ animationDelay: '0.2s' }} />
-                    {/* Pixels */}
-                    <g className="info-age-stage" style={{ animationDelay: '0.25s' }}>
-                      <rect x="116" y="20" width="72" height="56" rx="2" fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.4" />
+                    <path d="M 92 48 L 108 48" stroke="currentColor" strokeWidth="2" strokeOpacity="0.6" strokeLinecap="round" className="info-age-flow" fill="none" style={{ animationDelay: '0.5s' }} />
+                    <polygon points="104,44 112,48 104,52" fill="currentColor" fillOpacity="0.6" />
+                    {/* Pixels: 120-200 */}
+                    <g className="info-age-stage" style={{ animationDelay: '0.2s' }}>
+                      <rect x="120" y="20" width="80" height="56" rx="2" fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.4" />
                       {[0, 1, 2, 3].map((row) =>
                         [0, 1, 2, 3, 4].map((col) => (
-                          <rect key={`${row}-${col}`} x={122 + col * 12} y={26 + row * 10} width={10} height={8} rx={0.5} fill="currentColor" fillOpacity="0.2" />
+                          <rect key={`${row}-${col}`} x={130 + col * 12} y={26 + row * 10} width={10} height={8} rx={0.5} fill="currentColor" fillOpacity="0.2" className="info-age-pixel" style={{ animationDelay: `${0.6 + row * 0.08 + col * 0.03}s` }} />
                         ))
                       )}
-                      <rect x={134} y={34} width={10} height={8} rx={0.5} fill="rgb(99 102 241)" fillOpacity="0.5" />
-                      <rect x={146} y={34} width={10} height={8} rx={0.5} fill="rgb(20 184 166)" fillOpacity="0.4" />
-                      <text x="152" y="72" textAnchor="middle" className="fill-slate-500 text-[10px] font-medium" style={{ fontFamily: 'system-ui, sans-serif' }}>Pixels</text>
+                      <rect x={142} y={34} width={10} height={8} rx={0.5} fill="rgb(99 102 241)" fillOpacity="0.7" className="info-age-pixel info-age-node" style={{ animationDelay: '0.9s' }} />
+                      <rect x={154} y={34} width={10} height={8} rx={0.5} fill="rgb(20 184 166)" fillOpacity="0.7" className="info-age-pixel info-age-node" style={{ animationDelay: '1s' }} />
                     </g>
-                    <path d="M 196 48 L 216 48" stroke="currentColor" strokeWidth="1.5" strokeOpacity="0.5" strokeLinecap="round" className="info-age-arrow" style={{ animationDelay: '0.5s' }} />
-                    <polygon points="212,44 220,48 212,52" fill="currentColor" fillOpacity="0.5" className="info-age-arrow" style={{ animationDelay: '0.5s' }} />
-                    {/* Systems */}
-                    <g className="info-age-stage" style={{ animationDelay: '0.5s' }}>
-                      <rect x="224" y="20" width="88" height="56" rx="2" fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.4" />
-                      <line x1="248" y1="38" x2="268" y2="38" stroke="currentColor" strokeWidth="1" strokeOpacity="0.35" />
-                      <line x1="268" y1="38" x2="288" y2="48" stroke="currentColor" strokeWidth="1" strokeOpacity="0.35" />
-                      <line x1="268" y1="38" x2="288" y2="58" stroke="currentColor" strokeWidth="1" strokeOpacity="0.35" />
-                      <line x1="268" y1="58" x2="248" y2="58" stroke="currentColor" strokeWidth="1" strokeOpacity="0.35" />
-                      <line x1="248" y1="58" x2="248" y2="38" stroke="currentColor" strokeWidth="1" strokeOpacity="0.35" />
-                      <circle cx="248" cy="38" r="4" fill="rgb(99 102 241)" fillOpacity="0.8" />
-                      <circle cx="268" cy="48" r="3" fill="rgb(20 184 166)" fillOpacity="0.8" />
-                      <circle cx="288" cy="48" r="3" fill="rgb(245 158 11)" fillOpacity="0.8" />
-                      <circle cx="288" cy="58" r="3" fill="rgb(244 63 94)" fillOpacity="0.8" />
-                      <circle cx="268" cy="58" r="3" fill="rgb(148 163 184)" fillOpacity="0.8" />
-                      <text x="268" y="72" textAnchor="middle" className="fill-slate-500 text-[10px] font-medium" style={{ fontFamily: 'system-ui, sans-serif' }}>Systems</text>
+                    <path d="M 212 48 L 228 48" stroke="currentColor" strokeWidth="2" strokeOpacity="0.6" strokeLinecap="round" className="info-age-flow" fill="none" style={{ animationDelay: '1.2s' }} />
+                    <polygon points="224,44 232,48 224,52" fill="currentColor" fillOpacity="0.6" />
+                    {/* Systems: 240-320 */}
+                    <g className="info-age-stage" style={{ animationDelay: '0.4s' }}>
+                      <rect x="240" y="20" width="80" height="56" rx="2" fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.4" />
+                      <line x1="260" y1="38" x2="280" y2="38" stroke="currentColor" strokeWidth="1" strokeOpacity="0.35" />
+                      <line x1="280" y1="38" x2="300" y2="48" stroke="currentColor" strokeWidth="1" strokeOpacity="0.35" />
+                      <line x1="280" y1="38" x2="300" y2="58" stroke="currentColor" strokeWidth="1" strokeOpacity="0.35" />
+                      <line x1="280" y1="58" x2="260" y2="58" stroke="currentColor" strokeWidth="1" strokeOpacity="0.35" />
+                      <line x1="260" y1="58" x2="260" y2="38" stroke="currentColor" strokeWidth="1" strokeOpacity="0.35" />
+                      <circle cx="260" cy="38" r="4" fill="rgb(99 102 241)" fillOpacity="0.9" className="info-age-node" style={{ animationDelay: '1.5s' }} />
+                      <circle cx="280" cy="48" r="3" fill="rgb(20 184 166)" fillOpacity="0.9" className="info-age-node" style={{ animationDelay: '1.6s' }} />
+                      <circle cx="300" cy="48" r="3" fill="rgb(245 158 11)" fillOpacity="0.9" className="info-age-node" style={{ animationDelay: '1.7s' }} />
+                      <circle cx="300" cy="58" r="3" fill="rgb(244 63 94)" fillOpacity="0.9" className="info-age-node" style={{ animationDelay: '1.8s' }} />
+                      <circle cx="280" cy="58" r="3" fill="rgb(148 163 184)" fillOpacity="0.9" className="info-age-node" style={{ animationDelay: '1.9s' }} />
                     </g>
                   </svg>
                 </div>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-slate-900">Questioning the fundamentals of designing user interaction</h3>
+                <h3 className="text-2xl font-semibold text-slate-900">Questioning the fundamentals</h3>
                 <p className="mt-3 text-slate-600">
-                  Does the principle of control change? Will the user continue playing an active rather than reactive role?
+                  Do the principles of designing user interaction change — or are new principles added?
                 </p>
                 {/* Stacked cards — hover to lift; drag past threshold to swipe off; section collapses when all swiped */}
                 <style>{`
@@ -324,35 +330,43 @@ function FCTGAITalk() {
                     </div>
                   </div>
                 </div>
-                <h3 className="text-xl font-semibold text-slate-900 transition-[margin-top] duration-500 ease-out" style={{ marginTop: allSwiped ? 0 : 160 }}>What is my process?</h3>
+                <h3 className="text-2xl font-semibold text-slate-900 transition-[margin-top] duration-500 ease-out" style={{ marginTop: allSwiped ? 0 : 160 }}>My process</h3>
                 <p className="mt-3 mb-12 max-w-3xl text-slate-600">
-                  The fundamentals of our process are up for grabs, including how we define and measure productivity. This section isn’t about how to be more productive with AI — it’s about what we mean by productivity and whether it still makes sense within the new world.
+                  Do our definitions of productivity still make sense in the new world?
                 </p>
-        {/* Full-bleed lines — own container, direct child of bg-white for true edge-to-edge */}
-        <style>{`
-          @keyframes prod-flow { from { stroke-dashoffset: 300; } to { stroke-dashoffset: 0; } }
-          .prod-line-track { stroke-dasharray: 1 1; stroke-dashoffset: 0; }
-          .prod-line-flow { stroke-dasharray: 60 240; animation: prod-flow 2s linear infinite; }
-          .prod-line-flow-2 { stroke-dasharray: 60 240; animation: prod-flow 2.4s linear infinite 0.3s; }
-          .prod-line-flow-3 { stroke-dasharray: 60 240; animation: prod-flow 1.8s linear infinite 0.6s; }
-        `}</style>
-        <div
-          className="overflow-hidden pt-4 pb-[180px]"
-          style={{ width: '100vw', marginLeft: 'calc(-50vw + 50%)', marginRight: 'calc(-50vw + 50%)' }}
-        >
-          <svg viewBox="-20 0 1240 120" className="w-full h-auto" preserveAspectRatio="none" aria-hidden>
-            <title>Productivity in flux — flowing lines</title>
-            <path d="M-20 60 Q200 20 400 60 T800 60 T1220 60" stroke="rgb(203 213 225)" strokeWidth="1.5" fill="none" className="prod-line-track" />
-            <path d="M-20 60 Q200 20 400 60 T800 60 T1220 60" stroke="rgb(100 116 139)" strokeWidth="2" fill="none" className="prod-line-flow" />
-            <path d="M-20 80 Q250 40 500 80 T1000 80 T1220 80" stroke="rgb(226 232 240)" strokeWidth="1" fill="none" className="prod-line-track" />
-            <path d="M-20 80 Q250 40 500 80 T1000 80 T1220 80" stroke="rgb(148 163 184)" strokeWidth="1.5" fill="none" className="prod-line-flow-2" />
-            <path d="M-20 100 Q300 60 600 100 T1200 100 T1220 100" stroke="rgb(241 245 249)" strokeWidth="1" fill="none" className="prod-line-track" />
-            <path d="M-20 100 Q300 60 600 100 T1200 100 T1220 100" stroke="rgb(148 163 184)" strokeWidth="1.5" fill="none" className="prod-line-flow-3" />
-          </svg>
-        </div>
-                <h3 className="text-xl font-semibold text-slate-900">The wider environment</h3>
+              </div>
+            </div>
+            {/* Full-bleed prod-flow — outside max-w-3xl so breakout reaches true viewport width */}
+            <style>{`
+              @keyframes prod-flow { from { stroke-dashoffset: 300; } to { stroke-dashoffset: 0; } }
+              .prod-line-track { stroke-dasharray: 1 1; stroke-dashoffset: 0; }
+              .prod-line-flow { stroke-dasharray: 60 240; animation: prod-flow 2s linear infinite; }
+              .prod-line-flow-2 { stroke-dasharray: 60 240; animation: prod-flow 2.4s linear infinite 0.3s; }
+              .prod-line-flow-3 { stroke-dasharray: 60 240; animation: prod-flow 1.8s linear infinite 0.6s; }
+            `}</style>
+            <div
+              className="overflow-hidden pt-4 pb-[180px]"
+              style={{
+                width: '100vw',
+                maxWidth: '100vw',
+                marginLeft: 'calc(50% - 50vw)',
+                marginRight: 'calc(50% - 50vw)',
+              }}
+            >
+              <svg viewBox="-20 0 1260 120" className="block w-full h-auto min-w-full" preserveAspectRatio="none" aria-hidden>
+                  <title>Productivity in flux — flowing lines</title>
+                  <path d="M-20 60 Q200 20 400 60 T800 60 T1240 60" stroke="rgb(203 213 225)" strokeWidth="1.5" fill="none" className="prod-line-track" />
+                  <path d="M-20 60 Q200 20 400 60 T800 60 T1240 60" stroke="rgb(100 116 139)" strokeWidth="2" fill="none" className="prod-line-flow" />
+                  <path d="M-20 80 Q250 40 500 80 T1000 80 T1240 80" stroke="rgb(226 232 240)" strokeWidth="1" fill="none" className="prod-line-track" />
+                  <path d="M-20 80 Q250 40 500 80 T1000 80 T1240 80" stroke="rgb(148 163 184)" strokeWidth="1.5" fill="none" className="prod-line-flow-2" />
+                  <path d="M-20 100 Q300 60 600 100 T1200 100 T1240 100" stroke="rgb(241 245 249)" strokeWidth="1" fill="none" className="prod-line-track" />
+                  <path d="M-20 100 Q300 60 600 100 T1200 100 T1240 100" stroke="rgb(148 163 184)" strokeWidth="1.5" fill="none" className="prod-line-flow-3" />
+                </svg>
+            </div>
+            <div className="mt-10 max-w-3xl">
+              <h3 className="text-2xl font-semibold text-slate-900">The wider environment</h3>
                 <p className="mt-3 mb-12 max-w-3xl text-slate-600">
-                  I see design process as the bridge between product goals and business value: it’s where we decide what “done” looks like and how we’ll know we’ve succeeded. In the new world, that definition is something we keep renegotiating — with stakeholders, with tools, and with the outcomes we’re willing to count.
+                  Where are the bottlenecks and friction now — and who owns them?
                 </p>
                 <div className="mt-10 flex justify-center py-8">
                   <WiderEnvironmentCanvas width={560} height={560} className="w-full max-w-[560px] h-auto" />
@@ -361,32 +375,20 @@ function FCTGAITalk() {
             </div>
           </div>
         </div>
-      </div>
 
-      <div className="w-full bg-slate-50">
+      <div className="w-full bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-28">
           <div>
-            <h2 className="text-6xl font-semibold text-slate-900">Monumental moments</h2>
-            <div className="mt-10 max-w-3xl space-y-10">
-              <div className="py-8">
-                <h3 className="text-xl font-semibold text-slate-900">Strength</h3>
-                <p className="mt-4 max-w-3xl text-slate-600 leading-relaxed">
-                  As a designer, I always return to crafting with my hands — there’s something intrinsically human about it. During a project I asked an AI agent (LLM) what the strongest way to build a steel truss would be, and I was blown away. It walked me through load paths and triangulation, then stepped me through planning and fabrication. The agent became an assistant to my process: a valuable tool in my belt. My productivity was boosted immensely!
+            <h2 className="text-6xl font-semibold bg-gradient-to-r from-slate-800 via-indigo-700 to-slate-800 bg-clip-text text-transparent">Monumental moments</h2>
+            <div className="mt-10 max-w-3xl space-y-0">
+              <div className="pt-12 pb-12">
+                <h3 className="text-2xl font-semibold text-slate-900">Strength</h3>
+                <p className="mt-6 max-w-3xl text-slate-600 leading-relaxed">
+                  AI guided me through structural design — load paths, triangulation, fabrication — amplifying my process.
                 </p>
-                <div className="mt-20 flex flex-nowrap items-center gap-x-8 pb-6">
-                  <p className="whitespace-nowrap bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-4xl font-bold text-transparent">Time</p>
-                  <p className="whitespace-nowrap bg-gradient-to-r from-emerald-500 to-teal-600 bg-clip-text text-4xl font-bold text-transparent">Safety</p>
-                  <p className="whitespace-nowrap bg-gradient-to-r from-blue-500 to-indigo-600 bg-clip-text text-4xl font-bold text-transparent">Confidence</p>
-                  <p className="whitespace-nowrap bg-gradient-to-r from-violet-500 to-purple-600 bg-clip-text text-4xl font-bold text-transparent">Knowledge</p>
-                  <p className="whitespace-nowrap bg-gradient-to-r from-cyan-500 to-sky-600 bg-clip-text text-4xl font-bold text-transparent">Curiosity</p>
-                  <p className="whitespace-nowrap bg-gradient-to-r from-rose-500 to-pink-600 bg-clip-text text-4xl font-bold text-transparent">Less waste</p>
-                </div>
               </div>
             </div>
-            <div
-              className="overflow-hidden py-6"
-              style={{ width: '120vw', marginLeft: 'calc(50% - 60vw)', marginRight: 'calc(50% - 60vw)' }}
-            >
+            <div className="pt-12 max-w-2xl">
               <style>{`
                 @keyframes beam-pan {
                   0% { transform: translateX(6%); }
@@ -396,11 +398,11 @@ function FCTGAITalk() {
                   animation: beam-pan 14s ease-in-out infinite alternate;
                 }
               `}</style>
-              <div className="relative aspect-[24/5] w-full overflow-hidden">
+              <div className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-white shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)]">
                 <img
                   src="/images/AI talk/beam.jpeg"
-                  alt="Galvanized metal beams joined by a weld, with a tape measure — structural fabrication"
-                  className="beam-pan h-full w-full object-cover object-center"
+                  alt="Galvanized metal beams joined by a tape measure — structural fabrication"
+                  className="h-full w-full object-cover object-center"
                 />
                 {/* Dark multiply overlay + vignette */}
                 <div
@@ -412,13 +414,30 @@ function FCTGAITalk() {
                 />
               </div>
             </div>
-            <div className="mt-10 max-w-3xl space-y-10">
-              <div className="pt-12">
-                <h3 className="text-xl font-semibold text-slate-900">Speed</h3>
-                <p className="mt-3 text-slate-600">
-                  I used Replit to build an interface within a few seconds. The speed of going from prompt to working UI was staggering. Within that moment I questioned my whole process.
+            <div className="mt-12 flex flex-wrap items-center gap-x-8 gap-y-4">
+              <p className="whitespace-nowrap bg-gradient-to-r from-amber-500 to-orange-600 bg-clip-text text-4xl font-bold text-transparent">Efficiency</p>
+              <p className="whitespace-nowrap bg-gradient-to-r from-emerald-500 to-teal-600 bg-clip-text text-4xl font-bold text-transparent">Assurance</p>
+              <p className="whitespace-nowrap bg-gradient-to-r from-cyan-500 to-sky-600 bg-clip-text text-4xl font-bold text-transparent">Discovery</p>
+              <p className="whitespace-nowrap bg-gradient-to-r from-violet-500 to-purple-600 bg-clip-text text-4xl font-bold text-transparent">Value</p>
+            </div>
+            <div
+              className="overflow-hidden"
+              style={{
+                width: '100vw',
+                marginLeft: 'calc(50% - 50vw)',
+                marginRight: 'calc(50% - 50vw)',
+                backgroundColor: '#ffffff',
+                paddingTop: '112px',
+                paddingBottom: '112px'
+              }}
+            >
+              <div className="mx-auto max-w-6xl w-full px-6">
+                <div className="max-w-3xl">
+                <h3 className="text-2xl font-semibold text-slate-900">Speed</h3>
+                <p className="mt-6 max-w-3xl text-slate-600 leading-relaxed">
+                  Prompt to working UI in seconds: The productive gain was instantly apparent.
                 </p>
-                <div className="mt-6 flex flex-col items-center justify-center gap-6">
+                <div className="mt-16 flex flex-col items-start gap-6">
                   <style>{`
                     @keyframes speed-ui-build {
                       0% { opacity: 0; transform: translateY(-10px) scale(0.98); }
@@ -494,26 +513,40 @@ function FCTGAITalk() {
                   </div>
                 </div>
               </div>
-              <div className="pt-12">
-                <h3 className="text-xl font-semibold text-slate-900">Health</h3>
-                <p className="mt-3 text-slate-600">
-                  A Windows 95–style mental health monitor — track sleep, emotions, and environment in a familiar interface.
+              </div>
+            </div>
+            <div
+              className="overflow-hidden"
+              style={{
+                width: '100vw',
+                marginLeft: 'calc(50% - 50vw)',
+                marginRight: 'calc(50% - 50vw)',
+                background: "url('/wp2625478-windows-95-desktop-background.jpg')",
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+                paddingTop: '112px',
+                paddingBottom: '112px'
+              }}
+            >
+              <div className="mx-auto max-w-6xl w-full px-6">
+                <div className="max-w-3xl">
+                <h3 className="text-2xl font-semibold text-slate-900">Empowerment</h3>
+                <p className="mt-6 max-w-3xl text-slate-600 leading-relaxed">
+                  Take charge of your wellbeing: inputs for sleep, emotions, and environment
                 </p>
-                <div className="mt-6 overflow-hidden rounded-lg border border-slate-200 bg-slate-50/50 shadow-sm">
-                  <iframe
-                    src="/health/"
-                    title="Mental Health Monitor"
-                    className="h-[420px] w-full border-0"
-                    sandbox="allow-scripts allow-same-origin allow-forms"
-                  />
+                <div className="mt-16">
+                  <HealthMonitor />
+                </div>
                 </div>
               </div>
-              <div className="pt-12">
-                <h3 className="text-xl font-semibold text-slate-900">Ideation</h3>
-                <p className="mt-3 max-w-3xl text-slate-600 leading-relaxed">
-                  AI thrives when we treat it as a partner in the messy middle — sketching, riffing, and throwing out ideas. The best outcomes come from rapid back-and-forth: prompt, review, refine. Don&apos;t wait for perfection; iterate in the open.
+            </div>
+            <div className="mt-10 max-w-3xl space-y-0">
+              <div className="pt-[112px] pb-12">
+                <h3 className="text-2xl font-semibold text-slate-900">Ideation</h3>
+                <p className="mt-6 max-w-3xl text-slate-600 leading-relaxed">
+                  AI thrives as a partner in the messy middle — prompt, review, refine. When AI handles the tedious parts, ideas flow more freely. Trust the process, embrace ambiguity.
                 </p>
-                <div className="mt-8 flex justify-center py-6" aria-hidden>
+                <div className="mt-16 flex justify-center" aria-hidden>
                   <style>{`
                     @keyframes iterate-flow {
                       0% { stroke-dashoffset: 120; }
@@ -566,11 +599,12 @@ function FCTGAITalk() {
                     </g>
                   </svg>
                 </div>
-                <h3 className="mt-8 text-xl font-semibold text-slate-900">Imagination</h3>
-                <p className="mt-3 max-w-3xl text-slate-600 leading-relaxed">
-                  This is our true superpower. I used AI to create vocals for my music — something I never could have dreamed of before. It wasn&apos;t about the end result; it was like jamming with a singer and coming up with ideas together. The outer limits and beyond of our imagination can now be realised. That&apos;s where we shine: AI handles the grunt work — generating options, scaffolding structure, filling in the gaps — so we can focus on the decisions that matter. What to keep, what to push further, what story we&apos;re telling. Our job is to steer, not to sweat the small stuff.
+                <div className="pt-[112px] pb-12">
+                <h3 className="text-2xl font-semibold text-slate-900">Imagination and Joy</h3>
+                <p className="mt-6 max-w-3xl text-slate-600 leading-relaxed">
+                  Imagination is our superpower — AI handles the grunt work so we can focus on steering: what to keep, what to push further, what story we&apos;re telling. I felt like a child creating again — except my imagination was no longer bound by the gates of technology.
                 </p>
-                <div className="mt-8 flex justify-center">
+                <div className="mt-16 flex justify-center">
                   <style>{`
                     @keyframes sound-bar {
                       0%, 100% { transform: scaleY(0.3); }
@@ -598,9 +632,11 @@ function FCTGAITalk() {
                     ))}
                   </svg>
                 </div>
-                <div className="mt-12 pt-10 border-t border-slate-200">
-                  <p className="max-w-3xl text-xl font-medium text-slate-800 leading-relaxed md:text-2xl">
-                    I felt like a child creating again — except my imagination was no longer bound by the gate of technology.
+                </div>
+                <div className="pt-[112px] pb-12">
+                  <h3 className="text-2xl font-semibold text-slate-900">Mystical Code</h3>
+                  <p className="mt-6 max-w-3xl text-slate-600 leading-relaxed">
+                    As a visual designer, code felt mystical and out of reach. AI brings calm: less wrestling with syntax, more scaffolding and refactoring, more time to shape experiences.
                   </p>
                 </div>
               </div>
@@ -609,29 +645,36 @@ function FCTGAITalk() {
         </div>
       </div>
 
-      <div className="w-full bg-white">
+      <div className="w-full bg-slate-50">
         <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <h2 className="text-6xl font-semibold text-slate-900">Building momentum by</h2>
-          <div className="mt-20 grid gap-8 sm:grid-cols-3">
+          <h2 className="text-6xl font-semibold text-slate-900">Building momentum</h2>
+          <div className="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
             <div className="flex flex-col rounded-2xl bg-rose-100 p-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12),0_12px_24px_-8px_rgba(0,0,0,0.08)] transition hover:shadow-[0_32px_64px_-12px_rgba(0,0,0,0.15)] md:p-10">
               <FiZap className="h-8 w-8 text-rose-700" strokeWidth={1.5} aria-hidden />
               <h3 className="mt-4 text-2xl font-semibold text-rose-900 md:text-3xl">Starting simple</h3>
               <p className="mt-5 flex-1 text-rose-800/80 leading-relaxed">
-                Start with a small problem or interest. One clear prompt beats a wall of context — begin with the smallest useful ask, then layer in nuance.
+                One clear prompt beats a wall of context — start small, then layer in nuance.
               </p>
             </div>
             <div className="flex flex-col rounded-2xl bg-teal-100 p-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12),0_12px_24px_-8px_rgba(0,0,0,0.08)] transition hover:shadow-[0_32px_64px_-12px_rgba(0,0,0,0.15)] md:p-10">
               <FiLayers className="h-8 w-8 text-teal-700" strokeWidth={1.5} aria-hidden />
               <h3 className="mt-4 text-2xl font-semibold text-teal-900 md:text-3xl">Being curious</h3>
               <p className="mt-5 flex-1 text-teal-800/80 leading-relaxed">
-                Understand the technology and how it works and what it can do. That curiosity leads to building with strong foundations. Balancing your depth of understanding with productivity is key.
+                Learn what the technology can do — curiosity builds strong foundations.
               </p>
             </div>
             <div className="flex flex-col rounded-2xl bg-amber-100 p-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12),0_12px_24px_-8px_rgba(0,0,0,0.08)] transition hover:shadow-[0_32px_64px_-12px_rgba(0,0,0,0.15)] md:p-10">
               <FiHome className="h-8 w-8 text-amber-700" strokeWidth={1.5} aria-hidden />
               <h3 className="mt-4 text-2xl font-semibold text-amber-900 md:text-3xl">Using analogy</h3>
               <p className="mt-5 flex-1 text-amber-800/80 leading-relaxed">
-                Simple analogies of the physical world often help with connecting the dots.
+                Physical-world analogies help connect the dots.
+              </p>
+            </div>
+            <div className="flex flex-col rounded-2xl bg-violet-100 p-8 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12),0_12px_24px_-8px_rgba(0,0,0,0.08)] transition hover:shadow-[0_32px_64px_-12px_rgba(0,0,0,0.15)] md:p-10">
+              <FiGlobe className="h-8 w-8 text-violet-700" strokeWidth={1.5} aria-hidden />
+              <h3 className="mt-4 text-2xl font-semibold text-violet-900 md:text-3xl">Environment</h3>
+              <p className="mt-5 flex-1 text-violet-800/80 leading-relaxed">
+                Your context shapes what you build — tools, constraints, surroundings.
               </p>
             </div>
           </div>
@@ -640,294 +683,200 @@ function FCTGAITalk() {
 
       <div className="w-full bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <h2 className="text-6xl font-semibold text-slate-900">How this was built</h2>
-          <p className="mt-10 max-w-2xl text-slate-600 leading-relaxed">
-            It all starts with an idea.
-          </p>
-          <img
-            src="/images/flow-blocks-diagram.svg"
-            alt="Macbook, Cloud, Visitor flow: Create, Store, Ship"
-            className="mt-10 w-full max-w-full h-auto"
-          />
-          <div className="mt-10 flex flex-col gap-6">
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-slate-500 justify-start" aria-hidden>
-            <span className="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-medium">Create</span>
-            <span className="shrink-0 text-slate-400 text-xs" aria-hidden>→</span>
-            <span className="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-medium">Store</span>
-            <span className="shrink-0 text-slate-400 text-xs" aria-hidden>→</span>
-            <span className="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1 text-xs font-medium">Ship</span>
-          </div>
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-slate-600 justify-start" aria-hidden>
-            <span className="rounded-md border border-slate-200 bg-slate-100 px-2.5 py-1 text-xs font-medium">Code</span>
-            <span className="shrink-0 text-slate-400 text-xs" aria-hidden>→</span>
-            <span className="rounded-md border border-slate-200 bg-slate-100 px-2.5 py-1 text-xs font-medium">Version</span>
-            <span className="shrink-0 text-slate-400 text-xs" aria-hidden>→</span>
-            <span className="rounded-md border border-slate-200 bg-slate-100 px-2.5 py-1 text-xs font-medium">Deploy</span>
-          </div>
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3 justify-start" aria-hidden>
-            <span className="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-800">Cursor</span>
-            <span className="shrink-0 text-slate-400 text-xs" aria-hidden>→</span>
-            <span className="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-800">GitHub</span>
-            <span className="shrink-0 text-slate-400 text-xs" aria-hidden>→</span>
-            <span className="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-800">Vercel</span>
-          </div>
-          <div className="flex flex-wrap items-center gap-2 sm:gap-3 text-slate-600 justify-start" aria-hidden>
-            <span className="rounded-md border border-slate-200 bg-slate-100 px-2.5 py-1 text-xs font-medium">npm</span>
-            <span className="shrink-0 text-slate-400 text-xs" aria-hidden>→</span>
-            <span className="rounded-md border border-slate-200 bg-slate-100 px-2.5 py-1 text-xs font-medium">git</span>
-            <span className="shrink-0 text-slate-400 text-xs" aria-hidden>→</span>
-            <span className="rounded-md border border-slate-200 bg-slate-100 px-2.5 py-1 text-xs font-medium">vercel</span>
-          </div>
-            </div>
-          </div>
-        </div>
-
-      <div className="w-full bg-slate-50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
           <h2 className="text-6xl font-semibold text-slate-900">Energy</h2>
-          <h3 className="mt-10 text-xl font-semibold text-slate-900">How we spend our energy</h3>
-          <div className="mt-6 max-w-2xl">
-            <style>{`
-              .energy-bar-fill {
-                transform-origin: left center;
-                animation: energy-bar-fill 1s cubic-bezier(0.22, 1, 0.36, 1) forwards;
-              }
-              @keyframes energy-bar-fill {
-                from { transform: scaleX(0); }
-                to { transform: scaleX(1); }
-              }
-            `}</style>
-            <svg viewBox="0 0 520 200" className="w-full text-slate-400" aria-hidden>
-              <title>How we spend our energy — bar chart</title>
+          <p className="mt-6 text-slate-600">
+            Less energy spent sweating the small stuff.
+          </p>
+          <div className="mt-10 max-w-2xl">
+            <svg viewBox="0 0 620 140" className="w-full max-w-2xl text-slate-400 overflow-visible drop-shadow-[0_8px_30px_rgba(0,0,0,0.12)]" preserveAspectRatio="xMidYMid meet" aria-hidden>
+              <title>How we spend our energy — battery</title>
               <defs>
-                <linearGradient id="energy-bar-1" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="rgb(244 63 94)" />
-                  <stop offset="100%" stopColor="rgb(251 113 133)" />
-                </linearGradient>
-                <linearGradient id="energy-bar-2" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="rgb(20 184 166)" />
-                  <stop offset="100%" stopColor="rgb(45 212 191)" />
-                </linearGradient>
-                <linearGradient id="energy-bar-3" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="rgb(99 102 241)" />
-                  <stop offset="100%" stopColor="rgb(129 140 248)" />
-                </linearGradient>
-                <linearGradient id="energy-bar-4" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="rgb(245 158 11)" />
-                  <stop offset="100%" stopColor="rgb(251 191 36)" />
-                </linearGradient>
-                <linearGradient id="energy-bar-5" x1="0%" y1="0%" x2="100%" y2="0%">
-                  <stop offset="0%" stopColor="rgb(100 116 139)" />
-                  <stop offset="100%" stopColor="rgb(148 163 184)" />
-                </linearGradient>
+                <clipPath id="battery-inner">
+                  <rect x="10" y="30" width="560" height="60" rx="8" />
+                </clipPath>
               </defs>
-              <g>
-                <text x="0" y="26" className="fill-slate-700 text-sm font-medium" style={{ fontFamily: 'system-ui, sans-serif' }}>Creative & design</text>
-                <rect x="0" y="32" width="400" height="20" rx="10" fill="rgb(241 245 249)" />
-                <rect x="0" y="32" width="140" height="20" rx="10" fill="url(#energy-bar-1)" className="energy-bar-fill" style={{ animationDelay: '0.1s' }} />
-                <text x="408" y="46" className="fill-slate-500 text-sm tabular-nums" style={{ fontFamily: 'system-ui, sans-serif' }}>35%</text>
+              {/* Battery body */}
+              <rect x="0" y="20" width="580" height="80" rx="12" fill="none" stroke="currentColor" strokeWidth="2" strokeOpacity="0.3" />
+              <rect x="580" y="45" width="24" height="30" rx="4" fill="currentColor" fillOpacity="0.3" />
+              {/* Inner fill — clipped to battery interior */}
+              <g clipPath="url(#battery-inner)">
+                <rect x="10" y="30" width="504" height="60" fill="rgb(139 92 246)" />
+                <rect x="514" y="30" width="11" height="60" fill="rgb(244 63 94)" />
+                <rect x="525" y="30" width="11" height="60" fill="rgb(245 158 11)" />
+                <rect x="536" y="30" width="11" height="60" fill="rgb(20 184 166)" />
+                <rect x="547" y="30" width="11" height="60" fill="rgb(234 88 12)" />
               </g>
-              <g transform="translate(0, 44)">
-                <text x="0" y="26" className="fill-slate-700 text-sm font-medium" style={{ fontFamily: 'system-ui, sans-serif' }}>Collaboration & feedback</text>
-                <rect x="0" y="32" width="400" height="20" rx="10" fill="rgb(241 245 249)" />
-                <rect x="0" y="32" width="100" height="20" rx="10" fill="url(#energy-bar-2)" className="energy-bar-fill" style={{ animationDelay: '0.25s' }} />
-                <text x="408" y="46" className="fill-slate-500 text-sm tabular-nums" style={{ fontFamily: 'system-ui, sans-serif' }}>25%</text>
-              </g>
-              <g transform="translate(0, 88)">
-                <text x="0" y="26" className="fill-slate-700 text-sm font-medium" style={{ fontFamily: 'system-ui, sans-serif' }}>Learning & exploration</text>
-                <rect x="0" y="32" width="400" height="20" rx="10" fill="rgb(241 245 249)" />
-                <rect x="0" y="32" width="80" height="20" rx="10" fill="url(#energy-bar-3)" className="energy-bar-fill" style={{ animationDelay: '0.4s' }} />
-                <text x="408" y="46" className="fill-slate-500 text-sm tabular-nums" style={{ fontFamily: 'system-ui, sans-serif' }}>20%</text>
-              </g>
-              <g transform="translate(0, 132)">
-                <text x="0" y="26" className="fill-slate-700 text-sm font-medium" style={{ fontFamily: 'system-ui, sans-serif' }}>Tools & automation</text>
-                <rect x="0" y="32" width="400" height="20" rx="10" fill="rgb(241 245 249)" />
-                <rect x="0" y="32" width="48" height="20" rx="10" fill="url(#energy-bar-4)" className="energy-bar-fill" style={{ animationDelay: '0.55s' }} />
-                <text x="408" y="46" className="fill-slate-500 text-sm tabular-nums" style={{ fontFamily: 'system-ui, sans-serif' }}>12%</text>
-              </g>
-              <g transform="translate(0, 176)">
-                <text x="0" y="26" className="fill-slate-700 text-sm font-medium" style={{ fontFamily: 'system-ui, sans-serif' }}>Admin & context-switching</text>
-                <rect x="0" y="32" width="400" height="20" rx="10" fill="rgb(241 245 249)" />
-                <rect x="0" y="32" width="32" height="20" rx="10" fill="url(#energy-bar-5)" className="energy-bar-fill" style={{ animationDelay: '0.7s' }} />
-                <text x="408" y="46" className="fill-slate-500 text-sm tabular-nums" style={{ fontFamily: 'system-ui, sans-serif' }}>8%</text>
-              </g>
+              {/* Labels on the fill */}
+              <text x="300" y="65" textAnchor="middle" className="fill-white text-xs font-medium drop-shadow-sm" style={{ fontFamily: 'system-ui, sans-serif' }}>Imagination · Creativity · Knowledge · Productivity · Value</text>
             </svg>
           </div>
         </div>
       </div>
 
-      <div className="w-full bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <div>
-              <h2 className="text-6xl font-semibold text-slate-900">Offering high value in the shortest amount of time</h2>
-              <div className="mt-10 space-y-8">
-                <p className="max-w-3xl text-slate-600">
-                  The goal isn&apos;t to do more in less time — it&apos;s to spend time on the work that actually moves the needle. AI lets us offload the repetitive bits so we can focus on creative and strategic decisions.
-                </p>
-                <h3 className="text-xl font-semibold text-slate-900">How we get there</h3>
-                <p className="max-w-3xl text-slate-600">
-                  Start with clear outcomes. Use AI to draft, prototype, and explore options quickly. Keep humans in the loop for judgment, taste, and user empathy. Measure success by impact, not output.
-                </p>
-                <h3 className="text-xl font-semibold text-slate-900">Using smaller teams</h3>
-                <p className="max-w-3xl text-slate-600">
-                  Smaller teams drive productivity — less coordination overhead, faster decisions, clearer ownership.
-                </p>
-              </div>
-            </div>
-        </div>
-      </div>
-
       <div className="w-full bg-slate-50">
         <div className="mx-auto w-full max-w-6xl px-6 py-28">
           <div>
-            <h2 className="text-6xl font-semibold text-slate-900">Exploration</h2>
-            <div className="mt-8 space-y-4">
-              <p className="max-w-3xl text-slate-600">
-                AI lowers the cost of trying new things. Want to test a wild idea? Spin up a prototype. Unsure about a direction? Generate a few options and compare. The best way to learn what works is to explore without overcommitting — and AI makes that exploration cheap and fast.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <div>
-            <h2 className="text-6xl font-semibold text-slate-900">Pushing envelopes and taking things further</h2>
-            <div className="mt-8 space-y-4">
-              <p className="max-w-3xl text-slate-600">
-                We&apos;re not here to do the same work faster. We&apos;re here to ask what&apos;s possible now that wasn&apos;t before. AI can help us reach for higher-fidelity prototypes, richer research synthesis, and ideas that used to be out of reach. Push the boundaries — the tools will catch up.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <div>
-            <h2 className="text-6xl font-semibold text-slate-900">Reducing designer stress</h2>
-            <div className="mt-8 space-y-4">
-              <p className="max-w-3xl text-slate-600">
-                Repetitive tasks — pixel-pushing, boilerplate, endless tweaks — drain creativity and add friction. When AI handles the tedious parts, we can spend more time in flow: thinking, iterating, and solving real problems. Less burnout, more room for the work that matters.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full bg-slate-50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <div>
-            <h2 className="text-6xl font-semibold text-slate-900">Calmness by code</h2>
-            <div className="mt-8 space-y-4">
-              <p className="max-w-3xl text-slate-600">
-                Code can be a source of calm, not chaos. When AI helps with scaffolding, refactoring, and documentation, we spend less time wrestling with syntax and more time shaping experiences. The result: a calmer, more intentional workflow where the machine handles the noise and we focus on the signal.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <div>
-            <h2 className="text-6xl font-semibold text-slate-900">The agents</h2>
+            <h2 className="text-6xl font-semibold bg-gradient-to-r from-slate-800 via-indigo-700 to-slate-800 bg-clip-text text-transparent pb-6">The agents</h2>
             <div className="mt-8 space-y-8">
               <div>
-                <h3 className="text-xl font-semibold text-slate-900">Depth and prompt clarity</h3>
+                <h3 className="text-2xl font-semibold text-slate-900">Depth and prompt clarity</h3>
                 <p className="mt-3 max-w-3xl text-slate-600">
-                  The clearer your intent, the better the output. Be specific: what format, what tone, what constraints? Include examples when you can. If the result is off, refine the prompt instead of accepting a mediocre draft — the agent improves when you give it more to work with.
+                  Be specific: format, tone, constraints. Include examples. If the result is off, refine the prompt — the agent improves when you give it more to work with.
                 </p>
               </div>
               <div>
-                <h3 className="text-xl font-semibold text-slate-900">Context and continuity</h3>
+                <h3 className="text-2xl font-semibold text-slate-900">Context and continuity</h3>
                 <p className="mt-3 max-w-3xl text-slate-600">
-                  Agents work best when they have context. Point them at files, paste relevant snippets, remind them of decisions you&apos;ve made. They don&apos;t remember between sessions — so bring them up to speed quickly and explicitly.
+                  Give them context: point at files, paste snippets, remind them of your decisions. They don&apos;t remember between sessions — bring them up to speed quickly.
                 </p>
               </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <div>
-            <h2 className="text-6xl font-semibold text-slate-900">Frustrations</h2>
-            <div className="mt-8 space-y-4">
-              <p className="max-w-3xl text-slate-600">
-                Agents aren&apos;t perfect. They hallucinate, overcomplicate, and sometimes take the path of least resistance. They&apos;ll agree with you even when wrong, and they can loop or overwrite work. The key is to treat them as powerful but flawed partners: verify outputs, redirect when they drift, and know when to step in and fix things yourself.
-              </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full bg-slate-50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <div>
-            <h2 className="text-6xl font-semibold text-slate-900">AI lessons</h2>
-            <p className="mt-6 max-w-3xl text-slate-600">
-              Learnings from working with agents in Cursor over the last 10 months, grouped by theme.
-            </p>
-
-            <div className="mt-10 max-w-3xl space-y-10">
               <div>
-                <h3 className="text-xl font-semibold text-slate-900">Trust & verification</h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-600">
-                  <li>Trust your gut as the master — the agent doesn’t think through the full impact of tasks.</li>
-                  <li>Question the agents; they are not always correct.</li>
-                  <li>They often agree with you even when they’ve understood or executed incorrectly.</li>
-                </ul>
+                <h3 className="text-2xl font-semibold text-slate-900">Frustrations</h3>
+                <p className="mt-3 max-w-3xl text-slate-600">
+                  Agents aren&apos;t perfect. They hallucinate, overcomplicate, and sometimes take the path of least resistance. They&apos;ll agree with you even when wrong, and they can loop or overwrite work. The key is to treat them as powerful but flawed partners: verify outputs, redirect when they drift, and know when to step in and fix things yourself.
+                </p>
               </div>
-
               <div>
-                <h3 className="text-xl font-semibold text-slate-900">How agents behave</h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-600">
-                  <li>They can be “lazy”: they sometimes prefer you to carry out tasks, or they won’t complete a task and choose the easiest path and forget the rest.</li>
-                  <li>They make changes without asking.</li>
-                  <li>They move too many steps ahead and need to go back a step; they get stuck in loops solving an error unless you prompt them to stop and relook at the problem — they’ll dig themselves deeper if not stopped.</li>
-                  <li>They overcomplicate things; the simplest tasks can be the ones they don’t get right the first time.</li>
-                  <li>They want to get back to their original task, which can distract from what you need now.</li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold text-slate-900">When to intervene</h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-600">
-                  <li>Be patient — give it a little time sometimes to figure it out; you might be surprised.</li>
-                  <li>When it’s looping, stop it and reframe the problem.</li>
-                  <li>Overwritten work can be restored; push the agents harder to restore — don’t assume it’s lost.</li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold text-slate-900">Human vs agent</h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-600">
-                  <li>Some things are quicker with human mouse-and-click input.</li>
-                  <li>Sometimes it’s quicker to rebuild an interface than to comb through and fix inconsistencies the agent introduced.</li>
-                </ul>
-              </div>
-
-              <div>
-                <h3 className="text-xl font-semibold text-slate-900">Tone & pushback</h3>
-                <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-600">
-                  <li>Sometimes agents take a tone back at you; stay clear on what you want and when to redirect.</li>
-                </ul>
+                <h3 className="text-2xl font-semibold text-slate-900">AI lessons</h3>
+                <p className="mt-3 max-w-3xl text-slate-600">
+                  Learnings from working with agents in Cursor over the last 10 months, grouped by theme.
+                </p>
+                <div className="mt-8 space-y-8">
+                  <div>
+                    <h4 className="text-xl font-semibold text-slate-900">Trust & verification</h4>
+                    <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-600">
+                      <li>Trust your gut as the master — the agent doesn&apos;t think through the full impact of tasks.</li>
+                      <li>Question the agents; they are not always correct.</li>
+                      <li>They often agree with you even when they&apos;ve understood or executed incorrectly.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-slate-900">How agents behave</h4>
+                    <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-600">
+                      <li>They can be &quot;lazy&quot;: they sometimes prefer you to carry out tasks, or they won&apos;t complete a task and choose the easiest path and forget the rest.</li>
+                      <li>They make changes without asking.</li>
+                      <li>They move too many steps ahead and need to go back a step; they get stuck in loops solving an error unless you prompt them to stop and relook at the problem — they&apos;ll dig themselves deeper if not stopped.</li>
+                      <li>They overcomplicate things; the simplest tasks can be the ones they don&apos;t get right the first time.</li>
+                      <li>They want to get back to their original task, which can distract from what you need now.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-slate-900">When to intervene</h4>
+                    <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-600">
+                      <li>Be patient — give it a little time sometimes to figure it out; you might be surprised.</li>
+                      <li>When it&apos;s looping, stop it and reframe the problem.</li>
+                      <li>Overwritten work can be restored; push the agents harder to restore — don&apos;t assume it&apos;s lost.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-slate-900">Human vs agent</h4>
+                    <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-600">
+                      <li>Some things are quicker with human mouse-and-click input.</li>
+                      <li>Sometimes it&apos;s quicker to rebuild an interface than to comb through and fix inconsistencies the agent introduced.</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <h4 className="text-xl font-semibold text-slate-900">Tone & pushback</h4>
+                    <ul className="mt-3 list-disc space-y-2 pl-5 text-slate-600">
+                      <li>Sometimes agents take a tone back at you; stay clear on what you want and when to redirect.</li>
+                    </ul>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div className="w-full bg-white">
-        <div className="mx-auto max-w-6xl px-6 py-28">
-          <p className="text-lg font-medium text-slate-800 sm:text-xl md:text-2xl md:max-w-3xl">
-            Would you take the blue or red pill?
+      <div className="w-full bg-white pb-40">
+        <div className="mx-auto w-full max-w-6xl px-6 pt-28 pb-28">
+          <h2 className="text-6xl font-semibold text-slate-900">How this was built</h2>
+          <p className="mt-10 max-w-2xl text-slate-600 leading-relaxed">
+            It all starts with an idea.
           </p>
-          <p className="mt-6 text-lg font-medium text-slate-800 sm:text-xl md:text-2xl md:max-w-3xl">
-            But when you figure things out together, it&apos;s like magic!
+          <div className="mt-10 flex flex-col gap-6">
+          <div>
+            <h3 className="text-2xl font-semibold text-slate-900 mb-5">AI Flow</h3>
+            <div className="flex flex-wrap items-center gap-2 sm:gap-3 justify-start" aria-hidden>
+            <span className="inline-flex items-center gap-2 rounded-md bg-violet-100 px-2.5 py-1.5 text-xs font-semibold text-violet-800">
+              <img src="/images/cursor-logo.svg" alt="" className="h-4 w-4 text-violet-700" aria-hidden />
+              Select agent model
+            </span>
+            <span className="shrink-0 text-slate-400 text-xs" aria-hidden>→</span>
+            <span className="inline-flex items-center gap-2 rounded-md bg-violet-100 px-2.5 py-1.5 text-xs font-semibold text-violet-800">
+              <img src="/images/cursor-logo.svg" alt="" className="h-4 w-4 text-violet-700" aria-hidden />
+              Prompt in Cursor
+            </span>
+            <span className="shrink-0 text-slate-400 text-xs" aria-hidden>→</span>
+            <span className="inline-flex items-center gap-2 rounded-md bg-slate-800 px-2.5 py-1.5 text-xs font-semibold text-white">
+              <img src="/images/github-logo.svg" alt="" className="h-4 w-4 brightness-0 invert" aria-hidden />
+              Commit to GitHub
+            </span>
+            <span className="shrink-0 text-slate-400 text-xs" aria-hidden>→</span>
+            <span className="inline-flex items-center gap-2 rounded-md bg-teal-600 px-2.5 py-1.5 text-xs font-semibold text-white">
+              <img src="/images/netlify-logo.svg" alt="" className="h-4 w-4 brightness-0 invert" aria-hidden />
+              Deploy to Netlify
+            </span>
+            </div>
+            <p className="mt-4 text-sm text-slate-600">
+              Models: Claude, GPT-4o
+            </p>
+          </div>
+          <div className="mt-12">
+            <h3 className="text-2xl font-semibold text-slate-900 mb-5">Front-end Technology Stack</h3>
+            <div className="flex flex-wrap gap-3">
+              <span className="inline-flex flex-col items-start gap-0.5 rounded-md border border-slate-200 bg-white px-3 py-2">
+                <span className="inline-flex items-center gap-2 text-xs font-medium text-slate-600">
+                  <img src="/images/react-logo.svg" alt="" className="h-4 w-4" aria-hidden />
+                  React
+                </span>
+                <span className="text-[10px] text-slate-500">UI framework</span>
+              </span>
+              <span className="inline-flex flex-col items-start gap-0.5 rounded-md border border-slate-200 bg-white px-3 py-2">
+                <span className="inline-flex items-center gap-2 text-xs font-medium text-slate-600">
+                  <img src="/images/vite-logo.svg" alt="" className="h-4 w-4" aria-hidden />
+                  Vite
+                </span>
+                <span className="text-[10px] text-slate-500">Build tool</span>
+              </span>
+              <span className="inline-flex flex-col items-start gap-0.5 rounded-md border border-slate-200 bg-white px-3 py-2">
+                <span className="inline-flex items-center gap-2 text-xs font-medium text-slate-600">
+                  <img src="/images/tailwind-logo.svg" alt="" className="h-4 w-4" aria-hidden />
+                  Tailwind
+                </span>
+                <span className="text-[10px] text-slate-500">CSS framework</span>
+              </span>
+              <span className="inline-flex flex-col items-start gap-0.5 rounded-md border border-slate-200 bg-white px-3 py-2">
+                <span className="text-xs font-medium text-slate-600">React Router</span>
+                <span className="text-[10px] text-slate-500">Routing</span>
+              </span>
+            </div>
+          </div>
+          <div className="mt-12">
+            <h3 className="text-2xl font-semibold text-slate-900 mb-5">Testing</h3>
+            <div className="flex flex-wrap gap-3">
+              <span className="inline-flex flex-col items-start gap-0.5 rounded-md border border-slate-200 bg-white px-3 py-2">
+                <span className="text-xs font-medium text-slate-600">Vitest</span>
+                <span className="text-[10px] text-slate-500">Unit tests</span>
+              </span>
+              <span className="inline-flex flex-col items-start gap-0.5 rounded-md border border-slate-200 bg-white px-3 py-2">
+                <span className="text-xs font-medium text-slate-600">Playwright</span>
+                <span className="text-[10px] text-slate-500">End-to-end tests</span>
+              </span>
+            </div>
+          </div>
+          <p className="mt-12 max-w-2xl text-slate-600 text-sm leading-relaxed">
+            From idea to deploy in a day — roughly 8 hours. AI handled scaffolding and layouts; I steered structure and visual choices.
+          </p>
+          </div>
+        </div>
+      </div>
+
+      <div className="w-full bg-sky-50">
+        <div className="mx-auto w-full max-w-6xl px-6 py-28">
+          <h2 className="text-6xl font-semibold text-slate-900">Helpful tips</h2>
+          <p className="mt-6 max-w-3xl text-slate-600">
+            Add your tips here.
           </p>
         </div>
       </div>
