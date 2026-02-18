@@ -1,7 +1,9 @@
 import { useEffect, useState, useCallback, useRef } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useSearchParams, useLocation } from 'react-router-dom'
 import { FiZap, FiLayers, FiHome, FiGlobe, FiUser } from 'react-icons/fi'
 import MatrixRain from '../components/MatrixRain'
+import WaterAscii from '../components/WaterAscii'
+import FCTGAITalkSlides from '../components/FCTGAITalkSlides'
 import WeavingLoom from '../components/WeavingLoom'
 import WiderEnvironmentCanvas from '../components/WiderEnvironmentCanvas'
 import HealthMonitor from '../components/HealthMonitor'
@@ -72,6 +74,10 @@ const cardList = [
 ]
 
 function FCTGAITalk() {
+  const [searchParams] = useSearchParams()
+  const { pathname } = useLocation()
+  const layoutV2 = pathname.endsWith('/v2') || searchParams.get('v') === '2' || searchParams.get('layout') === 'new'
+
   const [activeCard, setActiveCard] = useState(null)
   const [, setDragStart] = useState({ x: 0, y: 0 })
   const [dragOffset, setDragOffset] = useState({ x: 0, y: 0 })
@@ -134,13 +140,15 @@ function FCTGAITalk() {
     return `rotate(${baseRotate}deg)${lift}`
   }, [activeCard, dragOffset, swipedOff, exitDirection, hoveredCard])
 
+  if (layoutV2) {
+    return <FCTGAITalkSlides />
+  }
+
   return (
     <section className="flex flex-col">
       {/* Hero */}
-      <div className="flex min-h-[calc(100vh-64px)] w-full items-start justify-center bg-white pb-28 -mt-12">
-        <div className="mx-auto w-full max-w-6xl px-6 text-left">
-          <div className="full-bleed mb-0">
-            <div className="relative w-full h-[600px] overflow-hidden bg-[#030b0f]">
+      <div className="flex min-h-[calc(100vh-64px)] w-full flex-col items-stretch bg-white pb-28 -mt-12">
+        <div className="relative min-h-screen w-screen overflow-hidden bg-[#030b0f] ml-[calc(-50vw+50%)] mr-[calc(-50vw+50%)]">
               <MatrixRain className="absolute inset-0 h-full w-full" opacity={0.85} />
               <div
                 className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/70 via-black/50 to-black/85"
@@ -166,7 +174,7 @@ function FCTGAITalk() {
                 </div>
               </div>
             </div>
-          </div>
+        <div className="mx-auto w-full max-w-6xl px-6 text-left">
           <div className="relative z-10" style={{ paddingTop: '80px' }}>
             <h1 className="text-7xl font-semibold text-slate-900 md:text-8xl">
               Invigoration, innovation and impact
@@ -367,7 +375,7 @@ function FCTGAITalk() {
           </div>
         </div>
 
-      <div className="w-full bg-white">
+      <div className="relative z-10 w-full bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-28">
           <div>
             <h2 className="text-6xl font-semibold pb-3 leading-normal bg-gradient-to-r from-slate-800 via-indigo-700 to-slate-800 bg-clip-text text-transparent">Monumental moments</h2>
@@ -513,7 +521,7 @@ function FCTGAITalk() {
               <div className="pt-[112px] pb-12">
                 <h3 className="text-2xl font-semibold text-slate-900">Ideation</h3>
                 <p className="mt-6 max-w-3xl text-slate-600 leading-relaxed">
-                  When AI handles the tedious parts, ideas flow more freely — trust the process, embrace ambiguity.
+                  Ideas begin to flow more freely — learning to trust the process and embrace ambiguity.
                 </p>
                 <div className="mt-16 flex justify-center" aria-hidden>
                   <style>{`
@@ -709,7 +717,7 @@ function FCTGAITalk() {
           </div>
         </div>
 
-      <div className="w-full bg-slate-50">
+      <div className="relative z-10 w-full bg-slate-50">
         <div className="mx-auto w-full max-w-6xl px-6 py-28">
           <h2 className="text-6xl font-semibold pb-3 leading-normal bg-gradient-to-r from-slate-800 via-indigo-700 to-slate-800 bg-clip-text text-transparent">Building momentum</h2>
           <p className="mt-2 max-w-3xl text-slate-600">
@@ -755,7 +763,7 @@ function FCTGAITalk() {
         </div>
       </div>
 
-      <div className="w-full bg-white">
+      <div className="relative z-10 w-full bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-28">
           <h2 className="text-6xl font-semibold pb-3 leading-normal bg-gradient-to-r from-slate-800 via-indigo-700 to-slate-800 bg-clip-text text-transparent">Energy</h2>
           <p className="mt-2 max-w-3xl text-slate-600">
@@ -787,7 +795,7 @@ function FCTGAITalk() {
         </div>
       </div>
 
-      <div className="w-full bg-slate-50">
+      <div className="relative z-10 w-full bg-slate-50">
         <div className="mx-auto w-full max-w-6xl px-6 py-28">
           <div>
             <h2 className="text-6xl font-semibold pb-3 leading-normal bg-gradient-to-r from-slate-800 via-indigo-700 to-slate-800 bg-clip-text text-transparent">The agents</h2>
@@ -1016,7 +1024,7 @@ function FCTGAITalk() {
         </div>
       </div>
 
-      <div className="w-full bg-white">
+      <div className="relative z-10 w-full bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-28">
           <h2 className="text-6xl font-semibold pb-3 leading-normal bg-gradient-to-r from-slate-800 via-indigo-700 to-slate-800 bg-clip-text text-transparent">Tooling</h2>
           <p className="mt-2 max-w-3xl text-slate-600">
@@ -1152,7 +1160,7 @@ function FCTGAITalk() {
         </div>
       </div>
 
-      <div className="w-full bg-slate-50">
+      <div className="relative z-10 w-full bg-slate-50">
         <div className="mx-auto w-full max-w-6xl px-6 py-28">
           <h2 className="text-6xl font-semibold pb-3 leading-normal bg-gradient-to-r from-slate-800 via-indigo-700 to-slate-800 bg-clip-text text-transparent">Helpful tips</h2>
           <p className="mt-2 max-w-3xl text-slate-600">
@@ -1232,7 +1240,7 @@ function FCTGAITalk() {
         </div>
       </div>
 
-      <div className="w-full bg-white">
+      <div className="relative z-10 w-full bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-28">
           <h2 className="text-6xl font-semibold pb-3 leading-normal bg-gradient-to-r from-slate-800 via-indigo-700 to-slate-800 bg-clip-text text-transparent">Activity or demo</h2>
           <p className="mt-2 max-w-3xl text-slate-600">
@@ -1248,7 +1256,7 @@ function FCTGAITalk() {
         </div>
       </div>
 
-      <div className="w-full bg-slate-50">
+      <div className="relative z-10 w-full bg-slate-50">
         <div className="mx-auto w-full max-w-6xl px-6 py-28">
           <h2 className="text-6xl font-semibold pb-3 leading-normal bg-gradient-to-r from-slate-800 via-indigo-700 to-slate-800 bg-clip-text text-transparent">An opportunity of a lifetime</h2>
           <div className="mt-8 space-y-4">

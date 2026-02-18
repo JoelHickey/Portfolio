@@ -21,6 +21,7 @@ function App() {
         <Route path="stories/insurance" element={<Insurance />} />
         <Route path="stories/insurance/demo" element={<InsuranceDemo />} />
         <Route path="stories/fctg-ai-talk" element={<FCTGAITalk />} />
+        <Route path="stories/fctg-ai-talk/v2" element={<FCTGAITalk />} />
         <Route path="stories/magento-shipping" element={<MagentoShipping />} />
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />

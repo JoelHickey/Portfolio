@@ -544,3 +544,222 @@ header {
   }
 }
 
+/* FCTG AI Talk — alternate layout (?v=2 or ?layout=new) */
+.fctg-layout-v2 {
+  /* Override styles for the new aesthetic — add your layout changes here */
+}
+
+/* FCTG slides — gradient headings */
+.fctg-heading {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  background: linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 0.25rem;
+}
+@media (min-width: 768px) {
+  .fctg-heading { font-size: 2.25rem; }
+}
+
+.fctg-heading-hero {
+  font-size: 3rem;
+  font-weight: 500;
+  letter-spacing: 0.025em;
+  line-height: 1.3;
+  background: linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 0.25rem;
+}
+@media (min-width: 768px) {
+  .fctg-heading-hero { font-size: 3.75rem; }
+}
+
+.fctg-card-title {
+  font-size: 1.25rem;
+  font-weight: 600;
+  letter-spacing: 0.025em;
+  background: linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.fctg-subtitle {
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  letter-spacing: 0.025em;
+  color: rgb(203 213 225);
+}
+
+.fctg-card {
+  border-radius: 0.75rem;
+  border: 1px solid rgba(34, 211, 238, 0.2);
+  background: rgba(6, 78, 99, 0.25);
+  padding: 2rem;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+.fctg-card:hover {
+  border-color: rgba(34, 211, 238, 0.4);
+  box-shadow: 0 0 24px rgba(34, 211, 238, 0.12);
+}
+
+.fctg-card-title + .fctg-card-text,
+.fctg-card .fctg-card-text {
+  margin-top: 0.5rem;
+}
+
+.fctg-card-text {
+  font-size: 1rem;
+  letter-spacing: 0.025em;
+  color: rgb(148 163 184);
+  line-height: 1.6;
+}
+
+.fctg-tag {
+  border-radius: 0.5rem;
+  border: 1px solid rgba(34, 211, 238, 0.35);
+  background: rgba(6, 78, 99, 0.35);
+  padding: 0.5rem 1rem;
+  font-size: 0.875rem;
+  letter-spacing: 0.025em;
+  color: rgb(165 243 252);
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.fctg-tag:hover {
+  box-shadow: 0 0 16px rgba(34, 211, 238, 0.2);
+  border-color: rgba(34, 211, 238, 0.5);
+}
+
+.fctg-book-img {
+  box-shadow: 0 0 50px rgba(34, 211, 238, 0.2);
+  transition: box-shadow 0.3s ease, transform 0.3s ease;
+}
+.fctg-book-img:hover {
+  box-shadow: 0 0 70px rgba(34, 211, 238, 0.35);
+  transform: scale(1.02);
+}
+
+/* FCTG slides — animations */
+@keyframes fctg-prod-flow {
+  from { stroke-dashoffset: 300; }
+  to { stroke-dashoffset: 0; }
+}
+
+@keyframes fctg-text-in {
+  0% { opacity: 0; transform: translate3d(0, 12px, 0); }
+  100% { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+.fctg-text-transition {
+  animation: fctg-text-in 0.6s cubic-bezier(0.33, 1, 0.68, 1) forwards;
+}
+
+@keyframes fctg-speed-ui-build {
+  0% { opacity: 0; transform: translateY(-10px) scale(0.98); }
+  12% { opacity: 1; transform: translateY(0) scale(1); }
+  70% { opacity: 1; transform: translateY(0) scale(1); }
+  100% { opacity: 0; transform: translateY(-10px) scale(0.98); }
+}
+@keyframes fctg-speed-prompt-type {
+  0% { opacity: 0; max-width: 0; }
+  8% { opacity: 1; max-width: 20rem; }
+  68% { opacity: 1; max-width: 20rem; }
+  100% { opacity: 0; max-width: 0; }
+}
+.fctg-speed-ui-piece {
+  animation: fctg-speed-ui-build 6s ease-in-out infinite;
+  opacity: 0;
+}
+.fctg-speed-prompt-text {
+  animation: fctg-speed-prompt-type 6s ease-in-out infinite;
+  white-space: nowrap;
+  overflow: hidden;
+  display: inline-block;
+  vertical-align: bottom;
+}
+
+.fctg-strength-piece {
+  animation: fctg-speed-ui-build 6s ease-in-out infinite;
+  opacity: 0;
+}
+
+/* FCTG slides — pattern backgrounds (blobs, flow-lines, etc.) */
+@keyframes fctg-blob-float {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(3%, -2%) scale(1.02); }
+  66% { transform: translate(-2%, 2%) scale(0.98); }
+}
+@keyframes fctg-blob-float-center {
+  0%, 100% { transform: translate(-50%, -50%) scale(1); }
+  33% { transform: translate(calc(-50% + 3%), calc(-50% - 2%)) scale(1.02); }
+  66% { transform: translate(calc(-50% - 2%), calc(-50% + 2%)) scale(0.98); }
+}
+.fctg-pattern-blobs {
+  position: relative;
+  overflow: hidden;
+  background-image: radial-gradient(circle at 50% 50%, rgba(167, 139, 250, 0.45) 0%, transparent 55%);
+}
+.fctg-pattern-blobs::before,
+.fctg-pattern-blobs::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(50px);
+  animation: fctg-blob-float 14s ease-in-out infinite;
+}
+.fctg-pattern-blobs::before {
+  width: 80vmax;
+  height: 80vmax;
+  left: -25%;
+  top: -30%;
+  background: radial-gradient(circle at center, rgba(34, 211, 238, 0.7) 0%, rgba(34, 211, 238, 0.35) 35%, transparent 65%);
+  animation-delay: 0s;
+}
+.fctg-pattern-blobs::after {
+  width: 70vmax;
+  height: 70vmax;
+  right: -20%;
+  bottom: -25%;
+  background: radial-gradient(circle at center, rgba(129, 140, 248, 0.6) 0%, rgba(129, 140, 248, 0.25) 35%, transparent 65%);
+  animation-delay: -7s;
+}
+
+/* Mystical Code — contour lines */
+@keyframes fctg-contour-flow {
+  0%, 100% { opacity: 0.08; }
+  50% { opacity: 0.18; }
+}
+.fctg-pattern-contour {
+  background-image:
+    repeating-linear-gradient(85deg, transparent, transparent 2px, rgba(34, 211, 238, 0.15) 2px, rgba(34, 211, 238, 0.15) 4px),
+    repeating-linear-gradient(-85deg, transparent, transparent 3px, rgba(129, 140, 248, 0.1) 3px, rgba(129, 140, 248, 0.1) 6px);
+  background-size: 80px 80px, 60px 60px;
+  animation: fctg-contour-flow 8s ease-in-out infinite;
+}
+
+/* Calmness — concentric circles (breathing) */
+@keyframes fctg-concentric-pulse {
+  0%, 100% { opacity: 0.06; transform: scale(0.95); }
+  50% { opacity: 0.14; transform: scale(1.05); }
+}
+.fctg-pattern-concentric {
+  position: relative;
+  overflow: hidden;
+}
+.fctg-pattern-concentric::before {
+  content: '';
+  position: absolute;
+  inset: -20%;
+  background-image:
+    radial-gradient(circle at center, transparent 0%, transparent 15%, rgba(34, 211, 238, 0.12) 15%, transparent 20%),
+    radial-gradient(circle at center, transparent 0%, transparent 25%, rgba(34, 211, 238, 0.1) 25%, transparent 30%),
+    radial-gradient(circle at center, transparent 0%, transparent 35%, rgba(34, 211, 238, 0.08) 35%, transparent 40%),
+    radial-gradient(circle at center, transparent 0%, transparent 45%, rgba(34, 211, 238, 0.06) 45%, transparent 50%);
+  background-size: 100% 100%;
+  animation: fctg-concentric-pulse 6s ease-in-out infinite;
+}
+

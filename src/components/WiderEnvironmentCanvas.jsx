@@ -5,9 +5,9 @@ const CY = 200
 const SIZE = 640
 
 const RINGS = [
-  { r: 304, stroke: '#94a3b8', label: 'Earth', labelColor: '#475569' },
-  { r: 234, stroke: '#64748b', label: 'Society', labelColor: '#475569' },
-  { r: 164, stroke: '#475569', label: 'Mission', labelColor: '#334155' },
+  { r: 304, stroke: 'rgba(34, 211, 238, 0.55)', label: 'Earth', labelColor: 'rgba(203, 213, 225, 0.95)' },
+  { r: 234, stroke: 'rgba(34, 211, 238, 0.5)', label: 'Society', labelColor: 'rgba(203, 213, 225, 0.95)' },
+  { r: 164, stroke: 'rgba(34, 211, 238, 0.45)', label: 'Mission', labelColor: 'rgba(203, 213, 225, 0.95)' },
 ]
 
 const CIRCLES = [
@@ -60,7 +60,7 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560 }) {
         ctx.beginPath()
         ctx.arc(CX, CY, ring.r, 0, Math.PI * 2)
         ctx.strokeStyle = ring.stroke
-        ctx.lineWidth = 1
+        ctx.lineWidth = 1.5
         ctx.stroke()
       })
       ctx.setLineDash([])
@@ -69,7 +69,7 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560 }) {
       ctx.translate(-CX, -CY)
 
       // Ring labels — placed at bottom of each ring, inside
-      ctx.font = '12px system-ui, sans-serif'
+      ctx.font = '14px system-ui, sans-serif'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'top'
       RINGS.forEach((ring) => {
@@ -78,8 +78,8 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560 }) {
       })
 
       // Venn circles
-      ctx.strokeStyle = '#475569'
-      ctx.lineWidth = 1
+      ctx.strokeStyle = 'rgba(34, 211, 238, 0.45)'
+      ctx.lineWidth = 1.5
       CIRCLES.forEach((c) => {
         ctx.beginPath()
         ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2)
@@ -87,10 +87,10 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560 }) {
       })
 
       // Circle labels — centered in each Venn circle
-      ctx.font = '11px system-ui, sans-serif'
+      ctx.font = '13px system-ui, sans-serif'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
-      ctx.fillStyle = '#475569'
+      ctx.fillStyle = 'rgba(203, 213, 225, 0.95)'
       CIRCLES.forEach((c) => {
         const labelY = c.label === 'Design' ? c.y + 24 : c.y
         ctx.fillText(c.label, c.x, labelY)
@@ -100,7 +100,7 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560 }) {
       const r = 12 * pulse
       ctx.beginPath()
       ctx.arc(CX, CY, r, 0, Math.PI * 2)
-      ctx.fillStyle = '#475569'
+      ctx.fillStyle = 'rgba(34, 211, 238, 0.8)'
       ctx.fill()
 
       ctx.restore()
