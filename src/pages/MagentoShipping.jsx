@@ -49,11 +49,11 @@ function MagentoShipping() {
               <div className="absolute left-0 right-0 top-0 pt-12">
                 <div className="mx-auto w-full max-w-6xl px-6">
                   <Link
-                    to="/portfolio"
+                    to="/stories"
                     className="inline-flex items-center gap-1.5 text-sm font-medium text-white/90 transition hover:text-white"
                   >
                     <span aria-hidden>←</span>
-                    Back to Portfolio
+                    Back to Stories
                   </Link>
                 </div>
               </div>
@@ -281,11 +281,11 @@ function MagentoShipping() {
           </p>
           <div className="mt-10">
             <Link
-              to="/portfolio"
+              to="/stories"
               className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
             >
               <span aria-hidden>←</span>
-              Back to Portfolio
+              Back to Stories
             </Link>
           </div>
         </div>

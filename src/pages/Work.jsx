@@ -8,28 +8,28 @@ const caseStudies = [
     summary: 'Embedded insurance quoting directly into the booking journey.',
     tags: ['Travel', 'Insurance', 'Conversion'],
     image: '/portfolio-slideshow/compono.png',
-    path: '/portfolio/insurance'
+    path: '/stories/insurance'
   },
   {
     title: 'Streamlining Amendments',
     summary: 'Slow, error-prone flow → guided workflow.\n70% less handling time, 9 screens to 3.',
     tags: ['Workflow', 'Product', 'Research'],
     image: '/images/amendments/traveltourism-1.jpg',
-    path: '/portfolio/amendments'
+    path: '/stories/amendments'
   },
   {
     title: 'Flight Centre Travel Group (FCTG) AI Talk',
     summary: 'Planning — AI talk for Flight Centre Travel Group.',
     tags: ['AI', 'Travel', 'Talk'],
     image: '/candidpreso.webp',
-    path: '/portfolio/fctg-ai-talk'
+    path: '/stories/fctg-ai-talk'
   },
   {
     title: 'Magento Bulk Shipments',
     summary: 'Rebuilt the bulk update flow to reduce carrier escalations and speed fulfilment.',
     tags: ['Logistics', 'Magento', 'Workflow'],
     image: '/portfolio-slideshow/magento-batch.png',
-    path: '/portfolio/magento-shipping'
+    path: '/stories/magento-shipping'
   }
 ]
 
@@ -78,7 +78,7 @@ function Work() {
           </div>
           <h1 className="mt-20 text-5xl font-medium text-slate-900 md:text-6xl">
             <span className="bg-[linear-gradient(90deg,#5b21b6_0%,#7c3aed_35%,#2dd4bf_65%,#5eead4_100%)] bg-clip-text text-transparent">
-              Portfolio
+              Stories
             </span>
           </h1>
           <p className="mt-4 mb-16 text-base leading-relaxed text-slate-600 md:text-lg">
@@ -89,7 +89,7 @@ function Work() {
               const content = (
                 <>
                   <div className="aspect-video w-full overflow-hidden rounded-t-2xl border-b border-slate-200">
-                    {card.path === '/portfolio/fctg-ai-talk' ? (
+                    {card.path === '/stories/fctg-ai-talk' ? (
                       <div className="relative h-full w-full bg-[#030b0f]">
                         <MatrixRain className="absolute inset-0 h-full w-full" opacity={0.85} />
                         <div

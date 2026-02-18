@@ -15,13 +15,13 @@ function App() {
     <Routes>
       <Route element={<Layout />}>
         <Route index element={<Home />} />
-        <Route path="portfolio" element={<Work />} />
-        <Route path="portfolio/amendments" element={<Amendments />} />
-        <Route path="portfolio/amendments/demo" element={<AmendmentsDemo />} />
-        <Route path="portfolio/insurance" element={<Insurance />} />
-        <Route path="portfolio/insurance/demo" element={<InsuranceDemo />} />
-        <Route path="portfolio/fctg-ai-talk" element={<FCTGAITalk />} />
-        <Route path="portfolio/magento-shipping" element={<MagentoShipping />} />
+        <Route path="stories" element={<Work />} />
+        <Route path="stories/amendments" element={<Amendments />} />
+        <Route path="stories/amendments/demo" element={<AmendmentsDemo />} />
+        <Route path="stories/insurance" element={<Insurance />} />
+        <Route path="stories/insurance/demo" element={<InsuranceDemo />} />
+        <Route path="stories/fctg-ai-talk" element={<FCTGAITalk />} />
+        <Route path="stories/magento-shipping" element={<MagentoShipping />} />
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
       </Route>

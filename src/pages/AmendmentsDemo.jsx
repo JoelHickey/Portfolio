@@ -14,7 +14,7 @@ function AmendmentsDemo() {
       <div className="relative z-10 pb-6 pt-12">
         <div className="mx-auto w-full max-w-6xl px-6">
           <Link
-            to="/portfolio/amendments"
+            to="/stories/amendments"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition hover:text-slate-900"
           >
             <span aria-hidden>←</span>
@@ -25,8 +25,8 @@ function AmendmentsDemo() {
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-16">
         <AmendmentsFlowDemo
           embedded
-          onBackToCaseStudy={() => navigate('/portfolio/amendments')}
-          onClose={() => navigate('/portfolio/amendments')}
+          onBackToCaseStudy={() => navigate('/stories/amendments')}
+          onClose={() => navigate('/stories/amendments')}
         />
       </div>
     </section>

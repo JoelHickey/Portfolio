@@ -14,7 +14,7 @@ function InsuranceDemo() {
       <div className="relative z-10 pb-6 pt-12">
         <div className="mx-auto w-full max-w-6xl px-6">
           <Link
-            to="/portfolio/insurance"
+            to="/stories/insurance"
             className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition hover:text-slate-900"
           >
             <span aria-hidden>←</span>
@@ -25,8 +25,8 @@ function InsuranceDemo() {
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-16">
         <InsuranceFlowDemo
           embedded
-          onBackToCaseStudy={() => navigate('/portfolio/insurance')}
-          onClose={() => navigate('/portfolio/insurance')}
+          onBackToCaseStudy={() => navigate('/stories/insurance')}
+          onClose={() => navigate('/stories/insurance')}
         />
       </div>
     </section>

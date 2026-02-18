@@ -114,7 +114,7 @@ function Toolbar({
           onMouseUp={handleButtonMouseUp}
         >
           {text ? (
-            <span style={{ fontSize: '8pt', fontFamily: "'MS Sans Serif', sans-serif" }}>{text}</span>
+            <span style={{ fontSize: '8pt', fontFamily: "'MS Sans Serif', sans-serif", color: '#000000' }}>{text}</span>
           ) : (
             <img src={icon} alt={alt} style={{ width: '16px', height: '16px' }} />
           )}
@@ -134,7 +134,7 @@ function Toolbar({
           onMouseUp={handleButtonMouseUp}
           aria-pressed={isFlipView}
         >
-          <span style={{ fontSize: '8pt', fontFamily: "'MS Sans Serif', sans-serif" }}>
+          <span style={{ fontSize: '8pt', fontFamily: "'MS Sans Serif', sans-serif", color: '#000000' }}>
             {isFlipView ? 'Front' : 'Back'}
           </span>
         </button>

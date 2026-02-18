@@ -14,9 +14,9 @@ describe('App routing', () => {
     expect(screen.getAllByText(/Streamlining Amendments|AI talk for now/i).length).toBeGreaterThan(0)
   })
 
-  it('renders Work at /portfolio', () => {
+  it('renders Work at /stories', () => {
     render(
-      <MemoryRouter initialEntries={['/portfolio']}>
+      <MemoryRouter initialEntries={['/stories']}>
         <App />
       </MemoryRouter>
     )
@@ -24,9 +24,9 @@ describe('App routing', () => {
     expect(screen.getAllByText(/Streamlining Amendments|Coverage without the extra steps/i).length).toBeGreaterThan(0)
   })
 
-  it('renders Amendments case study at /portfolio/amendments', () => {
+  it('renders Amendments case study at /stories/amendments', () => {
     render(
-      <MemoryRouter initialEntries={['/portfolio/amendments']}>
+      <MemoryRouter initialEntries={['/stories/amendments']}>
         <App />
       </MemoryRouter>
     )
@@ -35,9 +35,9 @@ describe('App routing', () => {
     expect(screen.getByRole('link', { name: /Try interactive demo/i })).toBeInTheDocument()
   })
 
-  it('renders Amendments demo at /portfolio/amendments/demo', () => {
+  it('renders Amendments demo at /stories/amendments/demo', () => {
     render(
-      <MemoryRouter initialEntries={['/portfolio/amendments/demo']}>
+      <MemoryRouter initialEntries={['/stories/amendments/demo']}>
         <App />
       </MemoryRouter>
     )

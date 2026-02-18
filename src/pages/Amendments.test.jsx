@@ -23,16 +23,16 @@ describe('Amendments page', () => {
     )
 
     const demoLink = screen.getByRole('link', { name: /Try interactive demo/i })
-    expect(demoLink).toHaveAttribute('href', '/portfolio/amendments/demo')
+    expect(demoLink).toHaveAttribute('href', '/stories/amendments/demo')
   })
 
-  it('renders Back to Portfolio link', () => {
+  it('renders Back to Stories link', () => {
     render(
       <MemoryRouter>
         <Amendments />
       </MemoryRouter>
     )
 
-    expect(screen.getByRole('link', { name: /Back to Portfolio/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Back to Stories/i })).toBeInTheDocument()
   })
 })

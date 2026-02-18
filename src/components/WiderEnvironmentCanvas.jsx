@@ -5,9 +5,9 @@ const CY = 200
 const SIZE = 640
 
 const RINGS = [
-  { r: 304, stroke: '#cbd5e1', label: 'Earth' },
-  { r: 234, stroke: '#94a3b8', label: 'Society' },
-  { r: 164, stroke: '#64748b', label: 'Mission' },
+  { r: 304, stroke: '#94a3b8', label: 'Earth', labelColor: '#475569' },
+  { r: 234, stroke: '#64748b', label: 'Society', labelColor: '#475569' },
+  { r: 164, stroke: '#475569', label: 'Mission', labelColor: '#334155' },
 ]
 
 const CIRCLES = [
@@ -73,12 +73,12 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560 }) {
       ctx.textAlign = 'center'
       ctx.textBaseline = 'top'
       RINGS.forEach((ring) => {
-        ctx.fillStyle = ring.stroke
+        ctx.fillStyle = ring.labelColor ?? ring.stroke
         ctx.fillText(ring.label, CX, CY + ring.r - 24)
       })
 
       // Venn circles
-      ctx.strokeStyle = '#64748b'
+      ctx.strokeStyle = '#475569'
       ctx.lineWidth = 1
       CIRCLES.forEach((c) => {
         ctx.beginPath()

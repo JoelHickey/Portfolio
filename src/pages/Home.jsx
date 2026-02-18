@@ -28,7 +28,7 @@ const CASE_STUDIES = [
               Speaking with Flight Centre about AI in March.
             </p>
             <Link
-              to="/portfolio/fctg-ai-talk"
+              to="/stories/fctg-ai-talk"
               className="mt-4 inline-block rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-slate-800"
             >
               View case study
@@ -59,7 +59,7 @@ const CASE_STUDIES = [
               Slow, error-prone flow → guided workflow. 70% less handling time, 9 screens to 3.
             </p>
             <Link
-              to="/portfolio/amendments"
+              to="/stories/amendments"
               className="mt-4 inline-block rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
             >
               View case study
@@ -111,9 +111,9 @@ const PAGE_COUNT = CASE_STUDY_PAGES.length
 
 // Strip carousel: other case studies (AI talk omitted — promoted above)
 const CASE_STUDY_STRIP = [
-  { id: 'amendments', title: 'Streamlining Amendments', description: '70% less handling time, 9 screens to 3.', path: '/portfolio/amendments', image: '/images/amendments/traveltourism-1.jpg' },
-  { id: 'insurance', title: 'Coverage without the extra steps', description: 'Embedded insurance quoting into the booking journey.', path: '/portfolio/insurance', image: '/portfolio-slideshow/compono.png' },
-  { id: 'magento', title: 'Magento Bulk Shipments', description: 'Rebuilt the bulk update flow to reduce carrier escalations and speed fulfilment.', path: '/portfolio', image: '/portfolio-slideshow/magento-batch.png' },
+  { id: 'amendments', title: 'Streamlining Amendments', description: '70% less handling time, 9 screens to 3.', path: '/stories/amendments', image: '/images/amendments/traveltourism-1.jpg' },
+  { id: 'insurance', title: 'Coverage without the extra steps', description: 'Embedded insurance quoting into the booking journey.', path: '/stories/insurance', image: '/portfolio-slideshow/compono.png' },
+  { id: 'magento', title: 'Magento Bulk Shipments', description: 'Rebuilt the bulk update flow to reduce carrier escalations and speed fulfilment.', path: '/stories', image: '/portfolio-slideshow/magento-batch.png' },
   { id: 'placeholder-1', title: 'Coming soon', description: 'Case study in the works.', path: null, image: null },
   { id: 'placeholder-2', title: 'Coming soon', description: 'Case study in the works.', path: null, image: null }
 ]
@@ -300,7 +300,7 @@ function Home() {
             </p>
             <div className="hero-line mt-4 flex justify-center" style={{ animationDelay: '200ms' }}>
             <Link
-              to="/portfolio"
+              to="/stories"
               className="inline-block w-fit max-w-full rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-slate-900 transition hover:bg-slate-100 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent whitespace-nowrap"
             >
               See what I've built

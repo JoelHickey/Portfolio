@@ -422,8 +422,6 @@ function HealthMonitor() {
           activeView={activeView}
           setActiveView={setActiveView}
           outputValue={outputValue}
-          isFlipView={isFlipView}
-          onToggleFlip={() => setIsFlipView((p) => !p)}
         />
         <div
           style={{

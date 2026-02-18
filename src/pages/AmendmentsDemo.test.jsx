@@ -23,6 +23,6 @@ describe('AmendmentsDemo page', () => {
     )
 
     const backLink = screen.getByRole('link', { name: /Back to story/i })
-    expect(backLink).toHaveAttribute('href', '/portfolio/amendments')
+    expect(backLink).toHaveAttribute('href', '/stories/amendments')
   })
 })

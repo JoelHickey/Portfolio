@@ -20,8 +20,8 @@ function Layout() {
             <NavLink to="/about" className={navLinkClass}>
               About
             </NavLink>
-            <NavLink to="/portfolio" className={navLinkClass}>
-              Portfolio
+            <NavLink to="/stories" className={navLinkClass}>
+              Stories
             </NavLink>
             <NavLink to="/contact" className={navLinkClass}>
               Contact

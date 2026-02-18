@@ -14,7 +14,7 @@
   to = "/health/index.html"
   status = 200
 
-# Portfolio SPA - explicit routes only (so /health/* is NOT caught)
+# Stories SPA - explicit routes only (so /health/* is NOT caught)
 [[redirects]]
   from = "/"
   to = "/index.html"
@@ -31,11 +31,22 @@
   status = 200
 
 [[redirects]]
-  from = "/portfolio"
+  from = "/stories"
   to = "/index.html"
   status = 200
 
 [[redirects]]
-  from = "/portfolio/*"
+  from = "/stories/*"
   to = "/index.html"
   status = 200
+
+# Redirect old /portfolio URLs to /stories
+[[redirects]]
+  from = "/portfolio"
+  to = "/stories"
+  status = 301
+
+[[redirects]]
+  from = "/portfolio/*"
+  to = "/stories/:splat"
+  status = 301
