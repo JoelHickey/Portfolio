@@ -10,6 +10,7 @@ import Insurance from './pages/Insurance.jsx'
 import InsuranceDemo from './pages/InsuranceDemo.jsx'
 import FCTGAITalk from './pages/FCTGAITalk.jsx'
 import MagentoShipping from './pages/MagentoShipping.jsx'
+import DesignSystem from './pages/DesignSystem.jsx'
 function App() {
   return (
     <Routes>
@@ -23,6 +24,7 @@ function App() {
         <Route path="stories/fctg-ai-talk" element={<FCTGAITalk />} />
         <Route path="stories/fctg-ai-talk/v2" element={<FCTGAITalk />} />
         <Route path="stories/magento-shipping" element={<MagentoShipping />} />
+        <Route path="design-system" element={<DesignSystem />} />
         <Route path="contact" element={<Contact />} />
         <Route path="about" element={<About />} />
       </Route>

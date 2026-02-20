@@ -4,11 +4,26 @@ const CX = 200
 const CY = 200
 const SIZE = 640
 
-const RINGS = [
-  { r: 304, stroke: 'rgba(34, 211, 238, 0.55)', label: 'Earth', labelColor: 'rgba(203, 213, 225, 0.95)' },
-  { r: 234, stroke: 'rgba(34, 211, 238, 0.5)', label: 'Society', labelColor: 'rgba(203, 213, 225, 0.95)' },
-  { r: 164, stroke: 'rgba(34, 211, 238, 0.45)', label: 'Mission', labelColor: 'rgba(203, 213, 225, 0.95)' },
+const RING_CONFIG = [
+  { r: 304, label: 'Earth' },
+  { r: 234, label: 'Society' },
+  { r: 164, label: 'Mission' },
 ]
+
+const COLORS = {
+  black: {
+    ringStroke: (i) => `rgba(0, 0, 0, ${0.55 - i * 0.05})`,
+    label: 'rgba(0, 0, 0, 0.95)',
+    circleStroke: 'rgba(0, 0, 0, 0.45)',
+    centerDot: 'rgba(0, 0, 0, 0.8)',
+  },
+  cyan: {
+    ringStroke: (i) => `rgba(34, 211, 238, ${0.55 - i * 0.05})`,
+    label: 'rgba(203, 213, 225, 0.95)',
+    circleStroke: 'rgba(34, 211, 238, 0.45)',
+    centerDot: 'rgba(34, 211, 238, 0.8)',
+  },
+}
 
 const CIRCLES = [
   { x: 168, y: 184, r: 58, label: 'Product' },
@@ -16,10 +31,11 @@ const CIRCLES = [
   { x: 200, y: 232, r: 58, label: 'Design' },
 ]
 
-function WiderEnvironmentCanvas({ className = '', width = 560, height = 560 }) {
+function WiderEnvironmentCanvas({ className = '', width = 560, height = 560, variant = 'cyan' }) {
   const canvasRef = useRef(null)
   const rafRef = useRef(null)
   const startRef = useRef(null)
+  const colors = COLORS[variant] ?? COLORS.cyan
 
   useEffect(() => {
     const canvas = canvasRef.current
@@ -56,10 +72,10 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560 }) {
       ctx.rotate(rotation)
       ctx.translate(-CX, -CY)
       ctx.setLineDash([6, 6])
-      RINGS.forEach((ring) => {
+      RING_CONFIG.forEach((ring, i) => {
         ctx.beginPath()
         ctx.arc(CX, CY, ring.r, 0, Math.PI * 2)
-        ctx.strokeStyle = ring.stroke
+        ctx.strokeStyle = colors.ringStroke(i)
         ctx.lineWidth = 1.5
         ctx.stroke()
       })
@@ -72,13 +88,13 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560 }) {
       ctx.font = '14px system-ui, sans-serif'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'top'
-      RINGS.forEach((ring) => {
-        ctx.fillStyle = ring.labelColor ?? ring.stroke
+      RING_CONFIG.forEach((ring) => {
+        ctx.fillStyle = colors.label
         ctx.fillText(ring.label, CX, CY + ring.r - 24)
       })
 
       // Venn circles
-      ctx.strokeStyle = 'rgba(34, 211, 238, 0.45)'
+      ctx.strokeStyle = colors.circleStroke
       ctx.lineWidth = 1.5
       CIRCLES.forEach((c) => {
         ctx.beginPath()
@@ -90,7 +106,7 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560 }) {
       ctx.font = '13px system-ui, sans-serif'
       ctx.textAlign = 'center'
       ctx.textBaseline = 'middle'
-      ctx.fillStyle = 'rgba(203, 213, 225, 0.95)'
+      ctx.fillStyle = colors.label
       CIRCLES.forEach((c) => {
         const labelY = c.label === 'Design' ? c.y + 24 : c.y
         ctx.fillText(c.label, c.x, labelY)
@@ -100,7 +116,7 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560 }) {
       const r = 12 * pulse
       ctx.beginPath()
       ctx.arc(CX, CY, r, 0, Math.PI * 2)
-      ctx.fillStyle = 'rgba(34, 211, 238, 0.8)'
+      ctx.fillStyle = colors.centerDot
       ctx.fill()
 
       ctx.restore()
@@ -109,7 +125,7 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560 }) {
 
     rafRef.current = requestAnimationFrame(draw)
     return () => cancelAnimationFrame(rafRef.current)
-  }, [width, height])
+  }, [width, height, variant])
 
   return (
     <canvas

@@ -69,7 +69,7 @@ function WaterAscii({ className = '', background = '#F0EEE6', color = '#0f172a',
 
   const updateAnimation = useCallback((deltaTime) => {
     lastUpdateRef.current += deltaTime
-    if (lastUpdateRef.current > 50) {
+    if (lastUpdateRef.current > 166) {
       setFrame((f) => f + 1)
       lastUpdateRef.current = 0
     }
@@ -85,33 +85,38 @@ function WaterAscii({ className = '', background = '#F0EEE6', color = '#0f172a',
 
   const generateAscii = useCallback(() => {
     const rowsArray = []
-    const t = frame * 0.08
+    const centerPos = { x: 0.5, y: 0.5 }
+    const piTimes2 = Math.PI * 2
+    const frameDiv4 = frame / 6.7
+    const frameDiv5 = frame / 8.3
+    const frameDiv8 = frame / 13.3
 
     for (let y = 0; y < rows; y++) {
-      const yNorm = y / rows
-      const yNorm2 = y / 20
+      const yDivRows = y / rows
+      const yDiv5 = y / 5
+      const yDiv3 = y / 3
       let rowString = ''
       let rowOpacity = 1
 
       for (let x = 0; x < cols; x++) {
-        const xNorm = x / cols
-        const xNorm2 = x / 15
+        const xDivCols = x / cols
+        const xDiv3 = x / 3
+        const xDiv4 = x / 4
 
-        // Multiple overlapping waves traveling in different directions
-        const wave1 = Math.sin(xNorm * 4 + t) * 0.5
-        const wave2 = Math.sin(yNorm * 6 + t * 1.3) * 0.4
-        const wave3 = Math.sin((xNorm + yNorm) * 5 - t * 0.7) * 0.6
-        const wave4 = Math.cos(xNorm * 8 - yNorm * 4 + t * 1.1) * 0.3
-        const wave5 = Math.sin(xNorm2 + yNorm2 + t * 2) * 0.5
+        const dx = xDivCols - centerPos.x
+        const dy = yDivRows - centerPos.y
+        const dist = Math.sqrt(dx * dx + dy * dy)
+        const distTimes10 = dist * 10
+        const distTimes5 = dist * 5
 
-        const wave = wave1 + wave2 + wave3 + wave4 + wave5
+        const wave = Math.sin(xDiv3 + yDiv5 + frameDiv4 + distTimes10) +
+          Math.cos(xDiv4 - yDiv3 - frameDiv5) +
+          Math.sin(frameDiv8 + xDivCols * piTimes2)
 
-        const charValue = (wave + 2) * charLengthDivide4 + wave * 2
+        const charValue = (wave + 2) * charLengthDivide4 + distTimes5
         const charIndex = Math.floor(Math.abs(charValue)) % charactersLength
 
-        // Opacity flows with the waves — crests brighter, troughs dimmer
-        const opacityWave = Math.sin(xNorm * 3 + t * 0.9) + Math.cos(yNorm * 4 + t * 1.2)
-        const opacity = Math.max(0.15, Math.min(0.9, 0.5 + opacityWave * 0.2))
+        const opacity = Math.max(0.2, Math.min(0.8, 1 - dist + Math.sin(wave) / 3))
 
         if (x === 0) rowOpacity = opacity
         else rowOpacity = (rowOpacity + opacity) / 2

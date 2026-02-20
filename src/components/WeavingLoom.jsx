@@ -5,19 +5,24 @@ const FULL_PAGE_DURATION = 72
 
 function WeavingLoom({ className = '', width = 280, height = 120, variant = 'light', fullPage = false }) {
   const isDark = variant === 'dark'
+  const isPurple = variant === 'purple'
   const w = fullPage ? 800 : width
   const h = fullPage ? 450 : height
   const warpCount = fullPage ? 48 : 24
-  const warpColors = isDark
-    ? { top: 'rgb(34 211 238)', mid: 'rgb(34 211 238)', bottom: 'rgb(34 211 238)' }
-    : { top: 'rgb(148 163 184)', mid: 'rgb(100 116 139)', bottom: 'rgb(148 163 184)' }
-  const warpOpacity = isDark ? { top: 0.4, mid: 0.7, bottom: 0.4 } : { top: 0.3, mid: 0.7, bottom: 0.3 }
-  const shuttleColors = isDark
-    ? { start: 'rgb(34 211 238)', end: 'rgb(6 182 212)' }
-    : { start: 'rgb(71 85 105)', end: 'rgb(100 116 139)' }
-  const weftColor = isDark ? 'rgb(34 211 238)' : 'rgb(148 163 184)'
-  const weftOpacity = isDark ? 0.5 : 0.6
-  const strokeWidth = isDark ? 1.2 : 0.6
+  const warpColors = isPurple
+    ? { top: 'rgb(124 58 237)', mid: 'rgb(109 40 217)', bottom: 'rgb(124 58 237)' }
+    : isDark
+      ? { top: 'rgb(34 211 238)', mid: 'rgb(34 211 238)', bottom: 'rgb(34 211 238)' }
+      : { top: 'rgb(148 163 184)', mid: 'rgb(100 116 139)', bottom: 'rgb(148 163 184)' }
+  const warpOpacity = isPurple ? { top: 0.35, mid: 0.65, bottom: 0.35 } : isDark ? { top: 0.4, mid: 0.7, bottom: 0.4 } : { top: 0.3, mid: 0.7, bottom: 0.3 }
+  const shuttleColors = isPurple
+    ? { start: 'rgb(109 40 217)', end: 'rgb(124 58 237)' }
+    : isDark
+      ? { start: 'rgb(34 211 238)', end: 'rgb(6 182 212)' }
+      : { start: 'rgb(71 85 105)', end: 'rgb(100 116 139)' }
+  const weftColor = isPurple ? 'rgb(139 92 246)' : isDark ? 'rgb(34 211 238)' : 'rgb(148 163 184)'
+  const weftOpacity = isPurple ? 0.5 : isDark ? 0.5 : 0.6
+  const strokeWidth = isPurple ? 1 : isDark ? 1.2 : 0.6
 
   const svg = (
     <svg
@@ -60,12 +65,12 @@ function WeavingLoom({ className = '', width = 280, height = 120, variant = 'lig
           })}
         </g>
         {/* Woven weft (built-up horizontal lines) */}
-        <rect x="0" y="0" width={w} height={h} fill="url(#weft-pattern)" opacity={isDark ? 0.45 : 0.4} />
+        <rect x="0" y="0" width={w} height={h} fill="url(#weft-pattern)" opacity={isPurple ? 0.45 : isDark ? 0.45 : 0.4} />
         {/* Shuttle / beater bar */}
         <g
           style={{
             animation: `weaving-shuttle ${fullPage ? FULL_PAGE_DURATION : DURATION}s ease-in-out infinite`,
-            opacity: isDark ? 0.22 : 0.4,
+            opacity: isPurple ? 0.5 : isDark ? 0.22 : 0.4,
           }}
         >
           <rect
@@ -75,15 +80,15 @@ function WeavingLoom({ className = '', width = 280, height = 120, variant = 'lig
             height="12"
             rx="2"
             fill="url(#weaving-shuttle)"
-            stroke={isDark ? 'rgb(34 211 238)' : 'rgb(71 85 105)'}
-            strokeWidth={isDark ? 1 : 0.5}
+            stroke={isPurple ? 'rgb(109 40 217)' : isDark ? 'rgb(34 211 238)' : 'rgb(71 85 105)'}
+            strokeWidth={isPurple ? 1 : isDark ? 1 : 0.5}
           />
           <line
             x1="0"
             y1={h / 2}
             x2="0"
             y2={h - 8}
-            stroke={isDark ? 'rgb(34 211 238)' : 'rgb(100 116 139)'}
+            stroke={isPurple ? 'rgb(109 40 217)' : isDark ? 'rgb(34 211 238)' : 'rgb(100 116 139)'}
             strokeWidth={strokeWidth}
             strokeOpacity={isDark ? 1 : 0.8}
           />
