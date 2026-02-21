@@ -727,6 +727,19 @@ html.fctg-v1-scroll-snap .fctg-v1-snap-section {
   to { stroke-dashoffset: 0; }
 }
 
+@keyframes fctg-pipeline-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(0.98); }
+}
+
+@keyframes fctg-pipeline-arrow {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+
+
+
+
 @keyframes fctg-text-in {
   0% { opacity: 0; transform: translate3d(0, 12px, 0); }
   100% { opacity: 1; transform: translate3d(0, 0, 0); }

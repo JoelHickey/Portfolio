@@ -105,7 +105,7 @@ const cardList = [
 function FCTGAITalk() {
   const [searchParams] = useSearchParams()
   const { pathname } = useLocation()
-  const layoutV2 = pathname.endsWith('/v2') || searchParams.get('v') === '2' || searchParams.get('layout') === 'new'
+  const layoutV2 = pathname.endsWith('/v2') || searchParams.get('v') === '2' || searchParams.has('v2') || searchParams.get('layout') === 'new'
 
   const [activeCard, setActiveCard] = useState(null)
   const [, setDragStart] = useState({ x: 0, y: 0 })
@@ -360,13 +360,13 @@ function FCTGAITalk() {
         <div className="absolute inset-0 overflow-hidden opacity-[0.35]" aria-hidden>
           <div className="absolute inset-0 flex items-center justify-center">
             <WeavingLoom width={1400} height={500} variant="purple" className="scale-125" />
-          </div>
-        </div>
+            </div>
+            </div>
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6 py-16 text-center">
           <div className="w-full max-w-2xl mx-auto">
             <h2 className="text-4xl font-semibold leading-tight md:text-5xl whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #0891b2 0%, #0d9488 25%, #4f46e5 50%, #7c3aed 75%, #c026d3 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Looking back to look ahead</h2>
             <p className="mt-2 text-lg tracking-wide text-slate-600">Craft, tools, and what stays human.</p>
-          </div>
+            </div>
           <div className="mt-10 w-full max-w-6xl mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 min-w-0">
               {[
@@ -380,12 +380,12 @@ function FCTGAITalk() {
                     {item.title}
                   </h3>
                   <p className="mt-2 text-sm text-slate-600 leading-relaxed tracking-wide whitespace-pre-line">{item.text}</p>
-                </div>
-              ))}
-            </div>
           </div>
+              ))}
         </div>
       </div>
+                </div>
+              </div>
 
       {/* Questioning the fundamentals — own page */}
       <div
@@ -458,7 +458,7 @@ function FCTGAITalk() {
             style={{ marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}
           >
             <svg viewBox="0 0 1280 120" className="block w-full min-h-[120px]" preserveAspectRatio="xMidYMid slice" aria-hidden>
-              <title>Productivity in flux — flowing lines</title>
+            <title>Productivity in flux — flowing lines</title>
               <defs>
                 <linearGradient id="fctg-v1-prod-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
                   <stop offset="0%" stopColor="#22d3ee" />
@@ -498,7 +498,7 @@ function FCTGAITalk() {
               <g clipPath="url(#fctg-v1-prod-clip-q2)"><path d="M0 100 Q300 60 600 100 T1200 100 T1280 100" stroke="url(#fctg-v1-prod-gradient)" strokeWidth="1.25" fill="none" strokeDasharray="60 240" style={{ animation: 'fctg-prod-flow 1.8s linear infinite 0.6s' }} /></g>
               <g clipPath="url(#fctg-v1-prod-clip-q3)"><path d="M0 100 Q300 60 600 100 T1200 100 T1280 100" stroke="url(#fctg-v1-prod-gradient)" strokeWidth="1.5" fill="none" strokeDasharray="60 240" style={{ animation: 'fctg-prod-flow 1.8s linear infinite 0.6s' }} /></g>
               <g clipPath="url(#fctg-v1-prod-clip-q4)"><path d="M0 100 Q300 60 600 100 T1200 100 T1280 100" stroke="url(#fctg-v1-prod-gradient)" strokeWidth="1.75" fill="none" strokeDasharray="60 240" style={{ animation: 'fctg-prod-flow 1.8s linear infinite 0.6s' }} /></g>
-            </svg>
+          </svg>
         </div>
                 </div>
               </div>
@@ -516,9 +516,9 @@ function FCTGAITalk() {
           </p>
           <div className="mt-12 flex justify-center py-8">
             <WiderEnvironmentCanvas width={560} height={560} className="w-full max-w-[560px] h-auto" variant="black" />
-          </div>
-        </div>
-      </div>
+                </div>
+              </div>
+            </div>
 
       <div
         id="energy"
@@ -530,7 +530,7 @@ function FCTGAITalk() {
             <div className="max-w-md text-center md:text-left">
               <h2 className="text-4xl font-semibold md:text-5xl inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Energy</h2>
               <p className="mt-2 text-slate-600">What charges your designer battery?</p>
-            </div>
+          </div>
             <div className="flex justify-center md:justify-end" aria-hidden>
               <style>{`
                 @keyframes fctg-battery-shine { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.7; } }
@@ -566,7 +566,7 @@ function FCTGAITalk() {
                     <foreignObject x="44" y="32" width="992" height="186">
                       <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden', borderRadius: 6, pointerEvents: 'none' }}>
                         <BatteryParticleFill width={992} height={186} />
-                      </div>
+        </div>
                     </foreignObject>
                     {[{ x: 160, y: 90, d: 0 }, { x: 330, y: 130, d: 0.4 }, { x: 540, y: 95, d: 0.8 }, { x: 440, y: 165, d: 0.2 }, { x: 710, y: 110, d: 0.5 }, { x: 820, y: 80, d: 0.1 }, { x: 875, y: 145, d: 0.6 }, { x: 935, y: 105, d: 0.3 }, { x: 270, y: 120, d: 0.7 }].map((b, i) => (
                       <circle key={i} cx={b.x} cy={b.y} r="3.5" fill="rgba(255,255,255,0.65)" className="fctg-battery-bubble" style={{ animationDelay: `${b.d}s` }} />
@@ -576,10 +576,10 @@ function FCTGAITalk() {
                     ))}
                   </g>
                 </svg>
+      </div>
+                </div>
               </div>
             </div>
-          </div>
-        </div>
       </div>
 
       {/* Strength */}
@@ -959,7 +959,7 @@ function FCTGAITalk() {
                       <circle cx="60" cy="60" r="35" fill="none" stroke="currentColor" strokeWidth="1" strokeOpacity="0.25" className="breathe-ring" />
                       <circle cx="60" cy="60" r="24" fill="currentColor" fillOpacity="0.25" stroke="currentColor" strokeWidth="1" strokeOpacity="0.4" className="breathe-core" />
                     </svg>
-          </div>
+            </div>
         </div>
       </div>
 
@@ -978,7 +978,7 @@ function FCTGAITalk() {
               <FiZap className="h-8 w-8 text-rose-700" strokeWidth={1.5} aria-hidden />
               <h3 className="mt-3 text-xl font-semibold text-rose-900 md:text-2xl">Start simple</h3>
               <p className="mt-3 flex-1 text-sm text-rose-800/80 leading-relaxed">One clear prompt beats a wall of context.</p>
-          </div>
+            </div>
             <div className="flex flex-col rounded-2xl bg-teal-100 p-6 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12),0_12px_24px_-8px_rgba(0,0,0,0.08)] transition hover:shadow-[0_32px_64px_-12px_rgba(0,0,0,0.15)] md:p-7">
               <FiActivity className="h-8 w-8 text-teal-700" strokeWidth={1.5} aria-hidden />
               <h3 className="mt-3 text-xl font-semibold text-teal-900 md:text-2xl">Experiment freely</h3>
@@ -1020,8 +1020,8 @@ function FCTGAITalk() {
               <p className="mt-3 flex-1 text-sm text-slate-700 leading-relaxed">Notes, test plans. Agent reads them.</p>
             </div>
           </div>
-          </div>
         </div>
+      </div>
 
       {/* Models */}
       <div
@@ -1056,13 +1056,13 @@ function FCTGAITalk() {
                           <svg className="h-4 w-4 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" /></svg>
                         </span>
                         <span className="text-xs font-semibold uppercase tracking-wider text-teal-700">Quick refactor</span>
-                      </div>
+          </div>
                       <p className="mt-3 text-sm text-slate-700">Rename a variable, fix a typo, tweak styles</p>
                       <div className="mt-4 flex items-center gap-2">
                         <svg className="model-arrow h-4 w-4 shrink-0 text-teal-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" /></svg>
                         <span className="rounded-full bg-teal-100 px-2.5 py-1 text-xs font-medium text-teal-800">e.g. Claude Sonnet, GPT-4o-mini</span>
-                      </div>
-                    </div>
+          </div>
+          </div>
                     <div className="model-match-card rounded-xl border border-indigo-200 bg-indigo-50/60 p-5">
                       <div className="flex items-center gap-2">
                         <span className="flex h-8 w-8 items-center justify-center rounded-full bg-indigo-500/20">
@@ -1076,10 +1076,10 @@ function FCTGAITalk() {
                         <span className="rounded-full bg-indigo-100 px-2.5 py-1 text-xs font-medium text-indigo-800">e.g. Claude Opus, GPT-4o</span>
                       </div>
                     </div>
-                  </div>
+          </div>
+            </div>
           </div>
         </div>
-      </div>
 
       {/* Prompt clarity */}
       <div
@@ -1093,7 +1093,7 @@ function FCTGAITalk() {
             Be specific so the agent delivers.
           </p>
           <div className="mt-8 space-y-6">
-                  <style>{`
+            <style>{`
                     @keyframes prompt-old-in {
                       0% { opacity: 0; transform: translateX(-24px); }
                       100% { opacity: 1; transform: translateX(0); }
@@ -1109,7 +1109,7 @@ function FCTGAITalk() {
                     .prompt-old-card { animation: prompt-old-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards; opacity: 0; }
                     .prompt-new-card { animation: prompt-new-in 0.6s cubic-bezier(0.22, 1, 0.36, 1) 0.4s forwards; opacity: 0; }
                     .prompt-arrow { animation: arrow-pulse 2s ease-in-out 1s infinite; }
-                  `}</style>
+            `}</style>
                   {[
                     { old: 'start my project', new: "Open 'x' project directory, start the dev server so I preview my app locally." },
                     { old: 'make a button', new: 'Create a React button with primary and secondary variants, hover state, and disabled state.' },
@@ -1123,7 +1123,7 @@ function FCTGAITalk() {
                       <div className="flex shrink-0 items-center justify-center prompt-arrow" aria-hidden>
                         <svg className="h-8 w-8 text-indigo-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                           <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-                        </svg>
+            </svg>
                       </div>
                       <div className="prompt-new-card flex-1 rounded-xl border-2 border-indigo-200 bg-white p-6 shadow-lg shadow-indigo-100/50 ring-2 ring-indigo-100" style={{ animationDelay: `${i * 0.15 + 0.2}s` }}>
                         <span className="inline-block rounded-full bg-indigo-600 px-2.5 py-0.5 text-xs font-semibold uppercase tracking-wider text-white">Specific</span>
@@ -1131,7 +1131,7 @@ function FCTGAITalk() {
                       </div>
                     </div>
                   ))}
-            </div>
+          </div>
         </div>
       </div>
 
@@ -1156,8 +1156,8 @@ function FCTGAITalk() {
                     <h4 className="text-lg font-semibold text-slate-900">Agentic</h4>
                     <p className="mt-2 text-sm text-slate-600 leading-relaxed">Goal-driven, autonomous. Clear task, agent executes steps. Great for implementation, refactors, and defined outcomes.</p>
                     <p className="mt-3 rounded-lg border border-indigo-300 bg-white px-3 py-2 font-mono text-xs text-indigo-800">&ldquo;Add Playwright tests for the login flow: valid credentials, invalid, empty fields.&rdquo;</p>
+              </div>
             </div>
-          </div>
         </div>
       </div>
 
@@ -1254,7 +1254,7 @@ function FCTGAITalk() {
                 {label}
               </span>
             ))}
-          </div>
+            </div>
           <div className="mt-16 rounded-2xl border-2 border-indigo-200 bg-indigo-50/60 px-8 py-8 shadow-lg shadow-indigo-100/40 overflow-hidden">
               <style>{`
                 @keyframes reframe-in {
@@ -1317,7 +1317,7 @@ function FCTGAITalk() {
                 </div>
               </div>
             </div>
-            <div>
+          <div>
               <h3 className="text-xl font-semibold text-slate-900">Terminal & deploy</h3>
               <p className="mt-2 text-slate-600 leading-relaxed">
                 npm, Git, GitHub, Netlify CLI — the usual suspects. AI helps with commands; the stack stays familiar.
@@ -1381,8 +1381,8 @@ function FCTGAITalk() {
                     </span>
                     <span className="text-[10px] text-slate-500">CSS framework</span>
                   </span>
-                </div>
-              </div>
+            </div>
+          </div>
               <div className="pt-12 pb-12">
                 <h4 className="text-xl font-semibold text-slate-900 mb-4">Testing</h4>
                 <div className="flex flex-wrap gap-3 mb-8">
@@ -1420,8 +1420,8 @@ function FCTGAITalk() {
                 </p>
               </div>
             </div>
-          </div>
         </div>
+      </div>
 
       <div
         id="design-systems"
@@ -1446,15 +1446,15 @@ function FCTGAITalk() {
             </p>
             <p className="text-slate-600 leading-relaxed text-sm">
               <strong className="text-slate-800">Hook into existing systems.</strong> Extend Chakra, Primer, Radix, Mantine, Material UI, Ant Design, Polaris (Shopify) for accessibility and primitives.
-            </p>
-          </div>
+                </p>
+              </div>
           <div className="mt-12 grid gap-6 sm:grid-cols-2">
             <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
               <h3 className="text-xl font-semibold text-slate-900">Tokens & components</h3>
               <p className="mt-3 text-slate-600 leading-relaxed">
                 Spacing, color, typography. Agent outputs stay consistent.
-              </p>
-            </div>
+                </p>
+              </div>
             <div className="rounded-xl border border-slate-200 bg-white p-6 shadow-sm">
               <h3 className="text-xl font-semibold text-slate-900">Specs in docs</h3>
               <p className="mt-3 text-slate-600 leading-relaxed">
@@ -1489,12 +1489,12 @@ function FCTGAITalk() {
               <span className="text-[10px] font-semibold uppercase tracking-wider text-indigo-500">Tools</span>
               <h3 className="mt-1 text-base font-semibold text-slate-900">NPM</h3>
               <p className="mt-1.5 text-sm text-slate-600">Run scripts, install deps — the agent handles commands; you stay in flow.</p>
-              </div>
+            </div>
             <div className="tip-card rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-indigo-200/60" style={{ animationDelay: '0.1s' }}>
               <span className="text-[10px] font-semibold uppercase tracking-wider text-indigo-500">Tools</span>
               <h3 className="mt-1 text-base font-semibold text-slate-900">Instant changes</h3>
               <p className="mt-1.5 text-sm text-slate-600">Live reload — see updates immediately, no constant refresh.</p>
-              </div>
+          </div>
             <div className="tip-card rounded-2xl border border-slate-200 bg-white p-5 shadow-sm hover:border-teal-200/60 lg:col-span-2" style={{ animationDelay: '0.15s' }}>
               <span className="text-[10px] font-semibold uppercase tracking-wider text-teal-600">Workflow</span>
               <h4 className="mt-1 text-base font-semibold text-slate-900">File directory & screen layout</h4>
@@ -1567,9 +1567,9 @@ function FCTGAITalk() {
               <p className="mt-2 text-slate-600">
                 Design the checkout for a trip to Mars: departure dates, cabin selection, add-ons. Everyone works on the same problem — compare how vibe vs agentic approaches it.
               </p>
-            </div>
+              </div>
 
-            <div>
+              <div>
               <h3 className="text-2xl font-semibold text-slate-900 mb-2">Vibe vs agentic showdown</h3>
               <p className="text-slate-600 mb-6">
                 Same problem, two modes. Feel the difference. Pairs pick team names. Best Mars checkout prompt wins bragging rights. Worst output gets an honorable mention.
@@ -1599,7 +1599,7 @@ function FCTGAITalk() {
                   </p>
                 </div>
               </div>
-            </div>
+              </div>
 
             <div className="rounded-2xl border-2 border-slate-300 bg-white p-6 shadow-sm">
               <h4 className="text-lg font-semibold text-slate-900 mb-4">Run sheet (1 hour total)</h4>
@@ -1623,7 +1623,7 @@ function FCTGAITalk() {
                 </table>
               </div>
               <p className="mt-4 text-xs text-slate-500">Tip: Keep time visible. Call out at 5 min left in each round. For remote, use breakout rooms during rounds; bring everyone back for transitions and show & tell.</p>
-            </div>
+              </div>
 
             <div className="rounded-2xl border border-slate-200 bg-slate-50/50 p-6">
               <h4 className="text-lg font-semibold text-slate-900 mb-4">Logistics (in-person + remote)</h4>
@@ -1632,8 +1632,8 @@ function FCTGAITalk() {
                 <li><strong className="text-slate-800">Pairing:</strong> Breakout rooms for remote; in-person pairs; mixed pairs via video. Pick a team name.</li>
                 <li><strong className="text-slate-800">Tools:</strong> Free, no sign-up: <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">ChatGPT</a>, <a href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">DeepSeek</a>, or <a href="https://theturbochat.com" target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">The TurboChat</a> — open in browser and go; shared screen for demos</li>
                 <li><strong className="text-slate-800">Materials:</strong> One-page cheat sheet: Mars checkout vibe vs agentic prompt examples</li>
-              </ul>
-            </div>
+                </ul>
+              </div>
 
             <div className="rounded-2xl border border-slate-200 bg-slate-50/50 p-6">
               <h4 className="text-lg font-semibold text-slate-900 mb-4">Other vibe → agentic activities</h4>
@@ -1651,7 +1651,7 @@ function FCTGAITalk() {
                   <span className="shrink-0 rounded bg-violet-100 px-2 py-0.5 text-[10px] font-semibold uppercase text-violet-700">Mars</span>
                   <span><strong className="text-slate-800">Bad prompt → good prompt</strong> — Start with vague Mars prompts (&quot;design a Mars checkout&quot; or &quot;make it good&quot;). Run them (chaos). Rewrite as agentic (clear steps, outcome-focused). Run again. Before/after comparison.</span>
                 </li>
-              </ul>
+                </ul>
             </div>
           </div>
         </div>
