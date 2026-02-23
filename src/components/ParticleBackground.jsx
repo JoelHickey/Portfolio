@@ -14,6 +14,7 @@ const VARIANTS = {
   calmness: { waveSpeed: 0.08, pulseSpeed: 0.12, burstScale: 0.32, lerpSpeed: 0.04, palette: [{ r: 34, g: 211, b: 238 }, { r: 6, g: 182, b: 212 }, { r: 94, g: 234, b: 212 }], breathing: true },
   momentum: { waveSpeed: 0.8, pulseSpeed: 0.6, burstScale: 0.5, lerpSpeed: 0.12, palette: [{ r: 34, g: 211, b: 238 }, { r: 129, g: 140, b: 248 }, { r: 167, g: 139, b: 250 }, { r: 236, g: 72, b: 153 }], multidirectional: true },
   agents: { waveSpeed: 0.5, pulseSpeed: 0.4, burstScale: 0.45, lerpSpeed: 0.06, palette: [{ r: 34, g: 211, b: 238 }, { r: 129, g: 140, b: 248 }, { r: 167, g: 139, b: 250 }, { r: 232, g: 121, b: 249 }], orbital: true },
+  brain: { waveSpeed: 0.25, pulseSpeed: 0.2, burstScale: 0.28, lerpSpeed: 0.04, palette: [{ r: 129, g: 140, b: 248 }, { r: 167, g: 139, b: 250 }, { r: 34, g: 211, b: 238 }, { r: 236, g: 72, b: 153 }], orbital: true, particleCount: 600, opacityMultiplier: 2 },
 }
 
 function ParticleBackground({ className = '', variant = 'strength' }) {

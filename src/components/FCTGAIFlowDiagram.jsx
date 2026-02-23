@@ -10,14 +10,14 @@ const AGENT_FLOW_STEPS = [
   'Model output returns to the Agent.',
 ]
 
-export function FCTGAIFlowCaption() {
+export function FCTGAIFlowCaption({ compact }) {
   const [step, setStep] = useState(0)
   useEffect(() => {
-    const t = setInterval(() => setStep((s) => (s + 1) % AGENT_FLOW_STEPS.length), (17.5 * 1000) / AGENT_FLOW_STEPS.length)
+    const t = setInterval(() => setStep((s) => (s + 1) % AGENT_FLOW_STEPS.length), (4.5 * 1000) / AGENT_FLOW_STEPS.length)
     return () => clearInterval(t)
   }, [])
   return (
-    <p className="mt-4 text-center text-slate-500 text-sm min-h-10 flex items-center justify-center">
+    <p className={`text-center text-slate-500 flex items-center justify-center ${compact ? 'mt-1 text-[10px] min-h-6' : 'mt-4 text-sm min-h-10'}`}>
       <span key={step} style={{ animation: 'fctg-fade-in 0.5s ease-out' }}>{AGENT_FLOW_STEPS[step]}</span>
     </p>
   )
@@ -25,21 +25,21 @@ export function FCTGAIFlowCaption() {
 
 /**
  * Simple hub-and-spoke: You → Agent → [Model | Tools | Memory]
- * Clean, minimal. Sequence explained in caption.
+ * Top-down layout. Sequence explained in caption.
  */
-const W = 480
-const H = 160
+const W = 200
+const H = 320
 
 const NODES = [
-  { id: 'you', x: 80, y: 80, r: 22, Icon: FiUser, label: 'You', fill: 'bg-slate-600/90', stroke: 'ring-cyan-400/50' },
-  { id: 'agent', x: 240, y: 80, r: 28, Icon: TbRobot, label: 'Agent', fill: 'bg-cyan-500/25', stroke: 'ring-cyan-400/50' },
-  { id: 'memory', x: 400, y: 30, r: 20, Icon: FiDatabase, label: 'Memory', fill: 'bg-emerald-500/20', stroke: 'ring-emerald-400/40' },
-  { id: 'model', x: 400, y: 80, r: 20, Icon: TbBrain, label: 'Model', fill: 'bg-violet-500/25', stroke: 'ring-violet-400/50' },
-  { id: 'tools', x: 400, y: 130, r: 20, Icon: FiTool, label: 'Tools', fill: 'bg-amber-500/20', stroke: 'ring-amber-400/40' },
+  { id: 'you', x: 100, y: 45, r: 22, Icon: FiUser, label: 'You', fill: 'bg-slate-600/90', stroke: 'ring-cyan-400/50' },
+  { id: 'agent', x: 100, y: 160, r: 28, Icon: TbRobot, label: 'Agent', fill: 'bg-cyan-500/25', stroke: 'ring-cyan-400/50' },
+  { id: 'memory', x: 40, y: 280, r: 20, Icon: FiDatabase, label: 'Memory', fill: 'bg-emerald-500/20', stroke: 'ring-emerald-400/40' },
+  { id: 'model', x: 100, y: 280, r: 20, Icon: TbBrain, label: 'Model', fill: 'bg-violet-500/25', stroke: 'ring-violet-400/50' },
+  { id: 'tools', x: 160, y: 280, r: 20, Icon: FiTool, label: 'Tools', fill: 'bg-amber-500/20', stroke: 'ring-amber-400/40' },
 ]
 
-const PATH = 'M 80,80 L 240,80 L 400,30 L 240,80 L 400,80 L 240,80 L 400,130 L 240,80 L 80,80'
-const DURATION = 17.5
+const PATH = 'M 100,45 L 100,160 L 40,280 L 100,160 L 100,280 L 100,160 L 160,280 L 100,160 L 100,45'
+const DURATION = 4.5
 
 function edgePoints(x1, y1, r1, x2, y2, r2) {
   const dx = x2 - x1, dy = y2 - y1
@@ -50,18 +50,18 @@ function edgePoints(x1, y1, r1, x2, y2, r2) {
   ]
 }
 
-export default function FCTGAIFlowDiagram() {
-  const [youAgentA, youAgentB] = edgePoints(80, 80, 22, 240, 80, 28)
-  const [agentYouA, agentYouB] = edgePoints(240, 80, 28, 80, 80, 22)
-  const [agentMemA, agentMemB] = edgePoints(240, 80, 28, 400, 30, 20)
-  const [agentModelA, agentModelB] = edgePoints(240, 80, 28, 400, 80, 20)
-  const [agentToolsA, agentToolsB] = edgePoints(240, 80, 28, 400, 130, 20)
+export default function FCTGAIFlowDiagram({ compact }) {
+  const [youAgentA, youAgentB] = edgePoints(100, 45, 22, 100, 160, 28)
+  const [agentYouA, agentYouB] = edgePoints(100, 160, 28, 100, 45, 22)
+  const [agentMemA, agentMemB] = edgePoints(100, 160, 28, 40, 280, 20)
+  const [agentModelA, agentModelB] = edgePoints(100, 160, 28, 100, 280, 20)
+  const [agentToolsA, agentToolsB] = edgePoints(100, 160, 28, 160, 280, 20)
 
   return (
-    <div className="relative w-full max-w-xl mx-auto py-8" style={{ aspectRatio: `${W}/${H}` }}>
+    <div className={`relative w-full mx-auto ${compact ? 'max-w-[160px] py-2' : 'max-w-xl py-8'}`} style={{ aspectRatio: `${W}/${H}` }}>
       <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 w-full h-full z-0 pointer-events-none" preserveAspectRatio="xMidYMid meet">
         <defs>
-          <linearGradient id="fctg-line" x1="0%" y1="0%" x2="100%" y2="0%">
+          <linearGradient id="fctg-line" x1="0%" y1="0%" x2="0%" y2="100%">
             <stop offset="0%" stopColor="#22d3ee" />
             <stop offset="100%" stopColor="#a78bfa" />
           </linearGradient>
@@ -95,12 +95,12 @@ export default function FCTGAIFlowDiagram() {
               width: `${(r * 2 / W) * 100}%`,
               aspectRatio: '1',
               transform: 'translate(-50%, -50%)',
-              minWidth: 44,
-              minHeight: 44,
+              minWidth: compact ? 28 : 44,
+              minHeight: compact ? 28 : 44,
             }}
           >
-            <Icon className="w-1/2 h-1/2 shrink-0 text-cyan-200" style={{ minWidth: 18, minHeight: 18 }} />
-            <span className="text-[10px] font-medium text-slate-300 mt-1 leading-tight">{label}</span>
+            <Icon className="w-1/2 h-1/2 shrink-0 text-cyan-200" style={{ minWidth: compact ? 12 : 18, minHeight: compact ? 12 : 18 }} />
+            <span className={`font-medium text-slate-300 leading-tight ${compact ? 'text-[8px] mt-0.5' : 'text-[10px] mt-1'}`}>{label}</span>
           </div>
         ))}
       </div>
