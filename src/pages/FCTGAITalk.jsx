@@ -364,7 +364,7 @@ function FCTGAITalk() {
             </div>
         <div className="relative z-10 mx-auto w-full max-w-6xl px-6 py-16 text-center">
           <div className="w-full max-w-2xl mx-auto">
-            <h2 className="text-4xl font-semibold leading-tight md:text-5xl whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #0891b2 0%, #0d9488 25%, #4f46e5 50%, #7c3aed 75%, #c026d3 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Looking back to look ahead</h2>
+            <h2 className="text-4xl font-semibold leading-tight md:text-5xl md:whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #0891b2 0%, #0d9488 25%, #4f46e5 50%, #7c3aed 75%, #c026d3 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Looking back to look ahead</h2>
             <p className="mt-2 text-lg tracking-wide text-slate-600">Craft, tools, and what stays human.</p>
             </div>
           <div className="mt-10 w-full max-w-6xl mx-auto">

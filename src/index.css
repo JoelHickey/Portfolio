@@ -693,8 +693,16 @@ html.fctg-v1-scroll-snap .fctg-v1-snap-section {
   overflow-x: auto;
   text-align: center;
 }
+@media (max-width: 767px) {
+  .fctg-rubin-quote {
+    white-space: normal;
+    overflow-x: visible;
+    text-align: center;
+  }
+}
 .fctg-rubin-quote-attribution {
-  display: inline;
+  display: block;
+  margin-top: 0.5rem;
   font-size: 0.75rem;
   font-style: normal;
   color: rgb(100 116 139);
