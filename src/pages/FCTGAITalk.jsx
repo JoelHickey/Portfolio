@@ -371,7 +371,7 @@ function FCTGAITalk() {
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 min-w-0">
               {[
                 { title: 'The weavers', text: 'Craft redefined, not replaced.', color: '#0891b2' },
-                { title: 'Replacing the cart', text: 'The leap matters more than the increment.', color: '#0d9488' },
+                { title: 'Cart to car', text: 'The leap matters more than the increment.', color: '#0d9488' },
                 { title: 'The digital era', text: 'Systems, not just screens.', color: '#4f46e5' },
                 { title: 'The future', text: 'Amplify human skills,\nnot replace them.', color: '#7c3aed' },
               ].map((item) => (

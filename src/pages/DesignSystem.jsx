@@ -57,7 +57,7 @@ export default function DesignSystem() {
             <SectionCard number={1} title="The weavers">
               Craft redefined, not replaced.
             </SectionCard>
-            <SectionCard number={2} title="Replacing the cart">
+            <SectionCard number={2} title="Cart to car">
               The leap matters more than the increment.
             </SectionCard>
             <SectionCard title="Card without number">

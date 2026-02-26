@@ -88,13 +88,7 @@ const SUB3_MMT = [
   { x: 300, y: 385, label: 'M', bg: 'bg-violet-500/30' },
   { x: 330, y: 385, label: 'T', bg: 'bg-amber-500/30' },
 ]
-// Stagger so multi-agent dots don't start in sync with single-system (single-system cycle ~4.5s)
-const MULTI_BEGIN = '2.25s'
-const MULTI_BEGIN_1 = '3.75s'   // +1.5s
-const MULTI_BEGIN_2 = '5.25s'   // +3s
-const MULTI_BEGIN_3 = '3.25s'   // +1s
-const MULTI_BEGIN_4 = '3.05s'   // +0.8s
-const MULTI_BEGIN_5 = '3.85s'   // +1.6s
+// All dots start at 0s so both diagrams animate in sync when the slide appears
 export default function FCTGMultiAgentDiagram({ compact }) {
   const [youAgentA, youAgentB] = edgePoints(200, 45, 20, 200, 130, 28)
   const [agentMemA, agentMemB] = edgePoints(200, 130, 28, 100, 210, 16)
@@ -216,59 +210,59 @@ export default function FCTGMultiAgentDiagram({ compact }) {
             </feMerge>
           </filter>
         </defs>
-        {/* Dot 1: You↔Agent (cyan) — offset so multi-agent doesn't sync with single-system */}
+        {/* Dot 1: You↔Agent (cyan) */}
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="5" fill="#22d3ee">
-            <animateMotion dur="2.5s" repeatCount="indefinite" path={PATH_YOU_AGENT} begin={MULTI_BEGIN} />
+            <animateMotion dur="2.5s" repeatCount="indefinite" path={PATH_YOU_AGENT} />
           </circle>
         </g>
-        {/* Dots 2–4: Agent→Sub1, Sub2, Sub3 (staggered) */}
+        {/* Dots 2–4: Agent→Sub1, Sub2, Sub3 */}
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="4" fill="#22d3ee">
-            <animateMotion dur="4.5s" repeatCount="indefinite" path={PATH_AGENT_SUB1} begin={MULTI_BEGIN} />
+            <animateMotion dur="4.5s" repeatCount="indefinite" path={PATH_AGENT_SUB1} />
           </circle>
         </g>
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="4" fill="#818cf8">
-            <animateMotion dur="4.5s" repeatCount="indefinite" path={PATH_AGENT_SUB2} begin={MULTI_BEGIN_1} />
+            <animateMotion dur="4.5s" repeatCount="indefinite" path={PATH_AGENT_SUB2} />
           </circle>
         </g>
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="4" fill="#e879f9">
-            <animateMotion dur="4.5s" repeatCount="indefinite" path={PATH_AGENT_SUB3} begin={MULTI_BEGIN_2} />
+            <animateMotion dur="4.5s" repeatCount="indefinite" path={PATH_AGENT_SUB3} />
           </circle>
         </g>
         {/* Dots 5–6: Sub1↔Sub2, Sub2↔Sub3 (pink) */}
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="4" fill="#f472b6">
-            <animateMotion dur="3s" repeatCount="indefinite" path={PATH_SUB1_SUB2} begin={MULTI_BEGIN} />
+            <animateMotion dur="3s" repeatCount="indefinite" path={PATH_SUB1_SUB2} />
           </circle>
         </g>
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="4" fill="#f472b6">
-            <animateMotion dur="3s" repeatCount="indefinite" path={PATH_SUB2_SUB3} begin={MULTI_BEGIN_3} />
+            <animateMotion dur="3s" repeatCount="indefinite" path={PATH_SUB2_SUB3} />
           </circle>
         </g>
         {/* Dot 7: Agent→Memory→Model→Tools (teal) */}
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="4" fill="#2dd4bf">
-            <animateMotion dur="2s" repeatCount="indefinite" path={PATH_AGENT_MMT} begin={MULTI_BEGIN} />
+            <animateMotion dur="2s" repeatCount="indefinite" path={PATH_AGENT_MMT} />
           </circle>
         </g>
-        {/* Dots 8–10: Sub 1, 2, 3 → their M/M/T (teal, staggered) */}
+        {/* Dots 8–10: Sub 1, 2, 3 → their M/M/T (teal) */}
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="3" fill="#2dd4bf">
-            <animateMotion dur="2.5s" repeatCount="indefinite" path={PATH_SUB1_MMT} begin={MULTI_BEGIN} />
-          </circle>
-        </g>
-        <g filter="url(#fctg-multi-glow-dot)">
-          <circle r="3" fill="#2dd4bf">
-            <animateMotion dur="2.5s" repeatCount="indefinite" path={PATH_SUB2_MMT} begin={MULTI_BEGIN_4} />
+            <animateMotion dur="2.5s" repeatCount="indefinite" path={PATH_SUB1_MMT} />
           </circle>
         </g>
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="3" fill="#2dd4bf">
-            <animateMotion dur="2.5s" repeatCount="indefinite" path={PATH_SUB3_MMT} begin={MULTI_BEGIN_5} />
+            <animateMotion dur="2.5s" repeatCount="indefinite" path={PATH_SUB2_MMT} />
+          </circle>
+        </g>
+        <g filter="url(#fctg-multi-glow-dot)">
+          <circle r="3" fill="#2dd4bf">
+            <animateMotion dur="2.5s" repeatCount="indefinite" path={PATH_SUB3_MMT} />
           </circle>
         </g>
       </svg>

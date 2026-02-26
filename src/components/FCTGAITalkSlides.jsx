@@ -380,9 +380,11 @@ function FCTGAITalkSlides() {
           <ParticleBackground variant="imagination" />
         </div>
       )}
-      {/* Slide 12: Empowerment */}
+      {/* Slide 12: Calmness */}
       {slideIndex === 11 && (
-        <div className="fctg-pattern-circuit pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden />
+        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
+          <ParticleBackground variant="calmness" />
+        </div>
       )}
       {/* Slide 13: Mystical Code */}
       {slideIndex === 12 && (
@@ -390,11 +392,9 @@ function FCTGAITalkSlides() {
           <ParticleBackground variant="mystical" />
         </div>
       )}
-      {/* Slide 14: Calmness */}
+      {/* Slide 14: Empowerment */}
       {slideIndex === 13 && (
-        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
-          <ParticleBackground variant="calmness" />
-        </div>
+        <div className="fctg-pattern-circuit pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden />
       )}
       {/* Slide 16: Building momentum */}
       {slideIndex === 14 && (
@@ -534,7 +534,7 @@ function FCTGAITalkSlides() {
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 min-w-0">
                       {[
                         { title: 'The weavers', text: 'Craft redefined, not replaced.', color: '#22d3ee' },
-                        { title: 'Replacing the cart', text: 'The leap matters more than the increment.', color: '#2dd4bf' },
+                        { title: 'Cart to car', text: 'The leap matters more than the increment.', color: '#2dd4bf' },
                         { title: 'The digital era', text: 'Systems, not just screens.', color: '#818cf8' },
                         { title: 'The future', text: 'Amplify human skills,\nnot replace them.', color: '#a78bfa' },
                       ].map((item) => (
@@ -1029,16 +1029,16 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 12: Empowerment */}
+        {/* Slide 12: Calmness */}
         {slideIndex === 11 && (
-        <Slide transparent className="items-center justify-center">
-          <div key={slideIndex} className="fctg-text-transition w-full max-w-6xl grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 md:gap-12 items-center">
-            <div className="max-w-md text-center md:text-left">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Empowerment</h2>
-              <p className="fctg-subtitle mt-1">Build things that add value to your life.</p>
+        <Slide transparent wide className="items-center justify-center">
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl">
+            <div className="max-w-md mx-auto text-center">
+              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Calmness</h2>
+              <p className="fctg-subtitle mt-1">Less friction, more space to think.</p>
             </div>
-            <div className="flex justify-center md:justify-end">
-              <EmpowermentHealthDrawing />
+            <div className="w-full max-w-5xl mt-10 text-center">
+              <SlideQuote slideIndex={13} />
             </div>
           </div>
         </Slide>
@@ -1077,16 +1077,16 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 14: Calmness */}
+        {/* Slide 14: Empowerment */}
         {slideIndex === 13 && (
-        <Slide transparent wide className="items-center justify-center">
-          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl">
-            <div className="max-w-md mx-auto text-center">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Calmness</h2>
-              <p className="fctg-subtitle mt-1">Less friction, more space to think.</p>
+        <Slide transparent className="items-center justify-center">
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-6xl grid grid-cols-1 md:grid-cols-[1fr_auto] gap-10 md:gap-12 items-center">
+            <div className="max-w-md text-center md:text-left">
+              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Empowerment</h2>
+              <p className="fctg-subtitle mt-1">Build things that add value to your life.</p>
             </div>
-            <div className="w-full max-w-5xl mt-10 text-center">
-              <SlideQuote slideIndex={13} />
+            <div className="flex justify-center md:justify-end">
+              <EmpowermentHealthDrawing />
             </div>
           </div>
         </Slide>
@@ -1414,13 +1414,13 @@ function FCTGAITalkSlides() {
         {/* Slide 21: Context and continuity */}
         {slideIndex === 21 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
-          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl">
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-2 md:py-6">
             <div className="max-w-md mx-auto text-center">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] md:whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Context and continuity</h2>
-              <p className="fctg-subtitle mt-1">Sessions break. Context doesn&apos;t have to.</p>
+              <p className="fctg-subtitle mt-1 text-sm md:text-base">Sessions break. Context doesn&apos;t have to.</p>
             </div>
             {/* Diagram: learnings.md bridges sessions — CSS-based, elegant flow */}
-            <div className="mt-4 md:mt-10 w-full max-w-2xl mx-auto" aria-hidden>
+            <div className="mt-3 md:mt-10 w-full max-w-2xl mx-auto min-w-0 overflow-hidden" aria-hidden>
               <style>{`
                 @keyframes fctg-context-shimmer {
                   0% { background-position: 200% 0; }
@@ -1433,29 +1433,29 @@ function FCTGAITalkSlides() {
                   animation: fctg-context-shimmer 8s ease-in-out infinite;
                 }
               `}</style>
-              <div className="flex items-center justify-between gap-4">
+              <div className="flex items-center justify-between gap-2 md:gap-4">
                 <div className="flex flex-col items-center shrink-0">
-                  <div className="w-14 h-14 rounded-full border-2 border-cyan-500/80 flex items-center justify-center bg-cyan-950/40">
-                    <span className="text-xs font-medium text-cyan-200">Session</span>
+                  <div className="w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-cyan-500/80 flex items-center justify-center bg-cyan-950/40">
+                    <span className="text-[10px] md:text-xs font-medium text-cyan-200">Session</span>
                   </div>
-                  <span className="mt-1 text-[10px] text-slate-500">yesterday</span>
+                  <span className="mt-0.5 md:mt-1 text-[9px] md:text-[10px] text-slate-500">yesterday</span>
                 </div>
                 <div className="flex-1 min-w-0 fctg-context-line" />
-                <div className="flex flex-col items-center shrink-0 px-4 py-3 rounded-xl border border-cyan-500/50 bg-cyan-950/30">
-                  <span className="font-mono text-sm font-semibold text-cyan-50">learnings.md</span>
-                  <span className="text-[10px] text-slate-400">your continuity</span>
+                <div className="flex flex-col items-center shrink-0 px-2 py-2 md:px-4 md:py-3 rounded-lg md:rounded-xl border border-cyan-500/50 bg-cyan-950/30">
+                  <span className="font-mono text-xs md:text-sm font-semibold text-cyan-50">learnings.md</span>
+                  <span className="text-[9px] md:text-[10px] text-slate-400">continuity</span>
                 </div>
                 <div className="flex-1 min-w-0 fctg-context-line" />
                 <div className="flex flex-col items-center shrink-0">
-                  <div className="w-14 h-14 rounded-full border-2 border-violet-500/80 flex items-center justify-center bg-violet-950/30">
-                    <span className="text-xs font-medium text-violet-200">New</span>
+                  <div className="w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-violet-500/80 flex items-center justify-center bg-violet-950/30">
+                    <span className="text-[10px] md:text-xs font-medium text-violet-200">New</span>
                   </div>
-                  <span className="mt-1 text-[10px] text-slate-500">session</span>
+                  <span className="mt-0.5 md:mt-1 text-[9px] md:text-[10px] text-slate-500">session</span>
                 </div>
               </div>
             </div>
-            <p className="mt-4 md:mt-6 text-center text-sm text-slate-400">Point at files · Paste snippets · Reference learnings</p>
-            <div className="mt-4 md:mt-10 text-center">
+            <p className="mt-2 md:mt-6 text-center text-xs md:text-sm text-slate-400">Point at files · Paste snippets · Reference learnings</p>
+            <div className="mt-2 md:mt-10 text-center">
               <SlideQuote slideIndex={21} />
             </div>
           </div>
