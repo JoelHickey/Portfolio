@@ -7,8 +7,10 @@
     "dev": "vite",
     "build:health": "DIR=$(pwd) && rm -rf /tmp/earth-build && git clone --depth 1 https://github.com/JoelHickey/Earth.git /tmp/earth-build && cd /tmp/earth-build && npm ci && VITE_BASE=/health/ npm run build && rm -rf \"$DIR/public/health\" && mkdir -p \"$DIR/public/health\" && cp -r dist/* \"$DIR/public/health\"",
     "build": "vite build",
+    "build:ai-preso": "vite build --config vite.ai-preso.config.js",
     "lint": "eslint .",
     "preview": "vite preview",
+    "preview:ai-preso": "vite preview --config vite.ai-preso.config.js --port 4174",
     "test": "vitest run",
     "test:watch": "vitest",
     "e2e": "playwright test",
@@ -16,7 +18,6 @@
     "export-pdf": "node scripts/export-fctg-ai-talk-pdf.js"
   },
   "dependencies": {
-    "@vercel/functions": "^3.4.2",
     "canvas-confetti": "^1.9.4",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",

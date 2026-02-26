@@ -1,0 +1,12 @@
+# Netlify config for the standalone AI preso site (2097.io)
+# Use Base directory: ai-preso in Netlify Build settings
+
+[build]
+  command = "cd .. && npm ci && npm run build:ai-preso"
+  publish = "../dist-ai-preso"
+
+# SPA fallback for client-side routing
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
