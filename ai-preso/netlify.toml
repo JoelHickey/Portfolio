@@ -3,7 +3,7 @@
 
 [build]
   command = "cd .. && npm ci && npm run build:ai-preso"
-  publish = "../dist-ai-preso"
+  publish = "dist"
 
 # SPA fallback for client-side routing
 [[redirects]]

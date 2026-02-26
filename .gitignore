@@ -10,6 +10,7 @@ lerna-debug.log*
 node_modules
 dist
 dist-ai-preso
+ai-preso/dist
 public/health
 dist-ssr
 *.local

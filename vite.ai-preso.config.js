@@ -3,7 +3,7 @@ import react from '@vitejs/plugin-react'
 import { copyFileSync } from 'node:fs'
 import { join } from 'node:path'
 
-const outDir = 'dist-ai-preso'
+const outDir = 'ai-preso/dist'
 
 // https://vite.dev/config/
 export default defineConfig({
