@@ -6,19 +6,24 @@ import { useState, useEffect, useRef, useMemo, useCallback } from 'react'
 const useAnimationFrame = (callback, isRunning = true) => {
   const requestRef = useRef(null)
   const previousTimeRef = useRef(null)
+  const callbackRef = useRef(callback)
+  const animateRef = useRef(null)
 
-  const animate = useCallback((time) => {
-    if (previousTimeRef.current !== null) {
-      const deltaTime = time - previousTimeRef.current
-      callback(deltaTime)
+  useEffect(() => {
+    callbackRef.current = callback
+    animateRef.current = (time) => {
+      if (previousTimeRef.current !== null) {
+        const deltaTime = time - previousTimeRef.current
+        callbackRef.current(deltaTime)
+      }
+      previousTimeRef.current = time
+      requestRef.current = requestAnimationFrame(animateRef.current)
     }
-    previousTimeRef.current = time
-    requestRef.current = requestAnimationFrame(animate)
-  }, [callback])
+  })
 
   useEffect(() => {
     if (isRunning) {
-      requestRef.current = requestAnimationFrame(animate)
+      requestRef.current = requestAnimationFrame(animateRef.current)
     }
 
     return () => {
@@ -28,7 +33,7 @@ const useAnimationFrame = (callback, isRunning = true) => {
       }
       previousTimeRef.current = null
     }
-  }, [animate, isRunning])
+  }, [isRunning])
 }
 
 function WaterAscii({ className = '', background = '#F0EEE6', color = '#0f172a', fullViewport = false }) {

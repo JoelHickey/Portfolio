@@ -1,7 +1,7 @@
 import { useCallback } from 'react';
 
 export function useSliderDrag() {
-  return useCallback((e, setter, currentValue) => {
+  return useCallback((e, setter, _currentValue) => {
     e.preventDefault();
     const track = e.currentTarget.parentElement;
     const rect = track.getBoundingClientRect();

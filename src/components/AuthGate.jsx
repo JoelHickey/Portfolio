@@ -1,14 +1,37 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useAuth } from '../contexts/AuthContext.jsx'
 import { supabase } from '../lib/supabase.js'
 import { FiLogIn, FiLogOut, FiMail } from 'react-icons/fi'
 import ParticleBackground from './ParticleBackground.jsx'
+
+function getAuthErrorFromHash() {
+  const hash = window.location.hash?.replace(/^#/, '') || ''
+  const params = Object.fromEntries(new URLSearchParams(hash))
+  const code = params.error_code
+  const desc = params.error_description
+  if (code === 'otp_expired' || (params.error === 'access_denied' && desc?.toLowerCase().includes('expired'))) {
+    return 'This sign-in link has expired. Please request a new one.'
+  }
+  if (params.error && desc) return decodeURIComponent(desc.replace(/\+/g, ' '))
+  if (params.error) return 'Sign-in failed. Please try again.'
+  return null
+}
 
 export default function AuthGate({ children }) {
   const { user, loading, signOut } = useAuth()
   const [email, setEmail] = useState('')
   const [sent, setSent] = useState(false)
   const [error, setError] = useState(null)
+
+  // Show friendly message when Supabase redirects with error in hash (e.g. expired magic link)
+  useEffect(() => {
+    const msg = getAuthErrorFromHash()
+    if (msg) {
+      setError(msg)
+      setSent(false)
+      window.history.replaceState(null, '', window.location.pathname + window.location.search)
+    }
+  }, [])
 
   // No Supabase config: show preso without auth (and a small debug hint)
   if (!supabase) {

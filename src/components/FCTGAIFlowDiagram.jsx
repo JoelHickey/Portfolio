@@ -85,22 +85,22 @@ export default function FCTGAIFlowDiagram({ compact }) {
         </g>
       </svg>
       <div className="absolute inset-0 pointer-events-none z-10">
-        {NODES.map(({ x, y, r, Icon, label, fill, stroke }) => (
+        {NODES.map((node) => (
           <div
-            key={label}
-            className={`absolute rounded-full ${fill} ring-2 ${stroke} flex flex-col items-center justify-center`}
+            key={node.label}
+            className={`absolute rounded-full ${node.fill} ring-2 ${node.stroke} flex flex-col items-center justify-center`}
             style={{
-              left: `${(x / W) * 100}%`,
-              top: `${(y / H) * 100}%`,
-              width: `${(r * 2 / W) * 100}%`,
+              left: `${(node.x / W) * 100}%`,
+              top: `${(node.y / H) * 100}%`,
+              width: `${(node.r * 2 / W) * 100}%`,
               aspectRatio: '1',
               transform: 'translate(-50%, -50%)',
               minWidth: compact ? 28 : 44,
               minHeight: compact ? 28 : 44,
             }}
           >
-            <Icon className="w-1/2 h-1/2 shrink-0 text-cyan-200" style={{ minWidth: compact ? 12 : 18, minHeight: compact ? 12 : 18 }} />
-            <span className={`font-medium text-slate-300 leading-tight ${compact ? 'text-[8px] mt-0.5' : 'text-[10px] mt-1'}`}>{label}</span>
+            <node.Icon className="w-1/2 h-1/2 shrink-0 text-cyan-200" style={{ minWidth: compact ? 12 : 18, minHeight: compact ? 12 : 18 }} />
+            <span className={`font-medium text-slate-300 leading-tight ${compact ? 'text-[8px] mt-0.5' : 'text-[10px] mt-1'}`}>{node.label}</span>
           </div>
         ))}
       </div>

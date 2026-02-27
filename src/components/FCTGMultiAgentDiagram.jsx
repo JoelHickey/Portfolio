@@ -6,9 +6,13 @@ import { TbBrain, TbRobot } from 'react-icons/tb'
  * Agentic multi-agent: You → Agent → [Memory, Model, Tools] and Sub 1, 2, 3.
  * Top-down layout. Agent plans, coordinates with M/M/T, delegates; sub-agents can hand off.
  */
-const W = 400
-const H = 420
+const W = 500
+const H = 500
+const CENTER = 250
+const SUB2_X = 280 // offset right so Agent→Sub2 line doesn't pass through Model
 const DURATION = 4.5
+// Dot speed (units/sec) — duration = pathLength / DOT_SPEED for consistent speed
+const DOT_SPEED = 100
 
 const MULTI_AGENT_STEPS = [
   'You send the prompt.',
@@ -61,60 +65,78 @@ function edgePoints(x1, y1, r1, x2, y2, r2) {
   ]
 }
 
+function getPathLength(d) {
+  if (typeof document === 'undefined') return 0
+  const path = document.createElementNS('http://www.w3.org/2000/svg', 'path')
+  path.setAttribute('d', d)
+  return path.getTotalLength()
+}
+
 const NODES = [
-  { id: 'you', x: 200, y: 45, r: 20, Icon: FiUser, label: 'You', fill: 'bg-slate-600/90', stroke: 'ring-cyan-400/50' },
-  { id: 'agent', x: 200, y: 130, r: 28, Icon: TbRobot, label: 'Agent', fill: 'bg-cyan-500/25', stroke: 'ring-cyan-400/50' },
-  { id: 'memory', x: 100, y: 210, r: 16, Icon: FiDatabase, label: 'Memory', fill: 'bg-emerald-500/20', stroke: 'ring-emerald-400/40' },
-  { id: 'model', x: 200, y: 210, r: 16, Icon: TbBrain, label: 'Model', fill: 'bg-violet-500/25', stroke: 'ring-violet-400/50' },
-  { id: 'tools', x: 300, y: 210, r: 16, Icon: FiTool, label: 'Tools', fill: 'bg-amber-500/20', stroke: 'ring-amber-400/40' },
-  { id: 'sub1', x: 100, y: 310, r: 18, Icon: TbRobot, label: 'Sub 1', fill: 'bg-violet-500/20', stroke: 'ring-violet-400/50' },
-  { id: 'sub2', x: 200, y: 310, r: 18, Icon: TbRobot, label: 'Sub 2', fill: 'bg-violet-500/20', stroke: 'ring-violet-400/50' },
-  { id: 'sub3', x: 300, y: 310, r: 18, Icon: TbRobot, label: 'Sub 3', fill: 'bg-violet-500/20', stroke: 'ring-violet-400/50' },
+  { id: 'you', x: CENTER, y: 50, r: 20, Icon: FiUser, label: 'You', fill: 'bg-slate-600/90', stroke: 'ring-cyan-400/50' },
+  { id: 'agent', x: CENTER, y: 140, r: 28, Icon: TbRobot, label: 'Agent', fill: 'bg-cyan-500/25', stroke: 'ring-cyan-400/50' },
+  { id: 'memory', x: 80, y: 230, r: 16, Icon: FiDatabase, label: 'Memory', fill: 'bg-emerald-500/20', stroke: 'ring-emerald-400/40' },
+  { id: 'model', x: 230, y: 230, r: 16, Icon: TbBrain, label: 'Model', fill: 'bg-violet-500/25', stroke: 'ring-violet-400/50' },
+  { id: 'tools', x: 420, y: 230, r: 16, Icon: FiTool, label: 'Tools', fill: 'bg-amber-500/20', stroke: 'ring-amber-400/40' },
+  { id: 'sub1', x: 80, y: 360, r: 18, Icon: TbRobot, label: 'Sub 1', fill: 'bg-violet-500/20', stroke: 'ring-violet-400/50' },
+  { id: 'sub2', x: SUB2_X, y: 360, r: 18, Icon: TbRobot, label: 'Sub 2', fill: 'bg-violet-500/20', stroke: 'ring-violet-400/50' },
+  { id: 'sub3', x: 420, y: 360, r: 18, Icon: TbRobot, label: 'Sub 3', fill: 'bg-violet-500/20', stroke: 'ring-violet-400/50' },
 ]
 
-// Sub-agent M/M/T (small, dashed) — each sub has its own
+// Sub-agent M/M/T (small, dashed) — each sub has its own, spaced to avoid overlap
 const SUB1_MMT = [
-  { x: 70, y: 385, label: 'M', bg: 'bg-emerald-500/30' },
-  { x: 100, y: 385, label: 'M', bg: 'bg-violet-500/30' },
-  { x: 130, y: 385, label: 'T', bg: 'bg-amber-500/30' },
+  { x: 50, y: 435, label: 'M', bg: 'bg-emerald-500/30' },
+  { x: 80, y: 435, label: 'M', bg: 'bg-violet-500/30' },
+  { x: 110, y: 435, label: 'T', bg: 'bg-amber-500/30' },
 ]
 const SUB2_MMT = [
-  { x: 170, y: 385, label: 'M', bg: 'bg-emerald-500/30' },
-  { x: 200, y: 385, label: 'M', bg: 'bg-violet-500/30' },
-  { x: 230, y: 385, label: 'T', bg: 'bg-amber-500/30' },
+  { x: 250, y: 435, label: 'M', bg: 'bg-emerald-500/30' },
+  { x: 280, y: 435, label: 'M', bg: 'bg-violet-500/30' },
+  { x: 310, y: 435, label: 'T', bg: 'bg-amber-500/30' },
 ]
 const SUB3_MMT = [
-  { x: 270, y: 385, label: 'M', bg: 'bg-emerald-500/30' },
-  { x: 300, y: 385, label: 'M', bg: 'bg-violet-500/30' },
-  { x: 330, y: 385, label: 'T', bg: 'bg-amber-500/30' },
+  { x: 390, y: 435, label: 'M', bg: 'bg-emerald-500/30' },
+  { x: 420, y: 435, label: 'M', bg: 'bg-violet-500/30' },
+  { x: 450, y: 435, label: 'T', bg: 'bg-amber-500/30' },
 ]
 // All dots start at 0s so both diagrams animate in sync when the slide appears
 export default function FCTGMultiAgentDiagram({ compact }) {
-  const [youAgentA, youAgentB] = edgePoints(200, 45, 20, 200, 130, 28)
-  const [agentMemA, agentMemB] = edgePoints(200, 130, 28, 100, 210, 16)
-  const [agentModelA, agentModelB] = edgePoints(200, 130, 28, 200, 210, 16)
-  const [agentToolsA, agentToolsB] = edgePoints(200, 130, 28, 300, 210, 16)
-  const [agentSub1A, agentSub1B] = edgePoints(200, 130, 28, 100, 310, 18)
-  const [agentSub2A, agentSub2B] = edgePoints(200, 130, 28, 200, 310, 18)
-  const [agentSub3A, agentSub3B] = edgePoints(200, 130, 28, 300, 310, 18)
-  const [sub1Sub2A, sub1Sub2B] = edgePoints(100, 310, 18, 200, 310, 18)
-  const [sub2Sub3A, sub2Sub3B] = edgePoints(200, 310, 18, 300, 310, 18)
-  const [sub3AgentA, sub3AgentB] = edgePoints(300, 310, 18, 200, 130, 28)
+  const [youAgentA, youAgentB] = edgePoints(CENTER, 50, 20, CENTER, 140, 28)
+  const [agentMemA, agentMemB] = edgePoints(CENTER, 140, 28, 80, 230, 16)
+  const [agentModelA, agentModelB] = edgePoints(CENTER, 140, 28, 230, 230, 16)
+  const [agentToolsA, agentToolsB] = edgePoints(CENTER, 140, 28, 420, 230, 16)
+  const [agentSub1A, agentSub1B] = edgePoints(CENTER, 140, 28, 80, 360, 18)
+  const [agentSub2A, agentSub2B] = edgePoints(CENTER, 140, 28, SUB2_X, 360, 18)
+  const [agentSub3A, agentSub3B] = edgePoints(CENTER, 140, 28, 420, 360, 18)
+  const [sub1Sub2A, sub1Sub2B] = edgePoints(80, 360, 18, SUB2_X, 360, 18)
+  const [sub2Sub3A, sub2Sub3B] = edgePoints(SUB2_X, 360, 18, 420, 360, 18)
+  const [sub3AgentA, sub3AgentB] = edgePoints(420, 360, 18, CENTER, 140, 28)
 
-  // Multiple dot paths (top-down layout)
-  const PATH_YOU_AGENT = 'M 200,45 L 200,130 L 200,45' // 10s
-  const PATH_AGENT_SUB1 = 'M 200,130 L 100,310 L 200,130' // 18s
-  const PATH_AGENT_SUB2 = 'M 200,130 L 200,310 L 200,130' // 18s
-  const PATH_AGENT_SUB3 = 'M 200,130 L 300,310 L 200,130' // 18s
-  const PATH_SUB1_SUB2 = 'M 100,310 L 200,310 L 100,310' // 12s
-  const PATH_SUB2_SUB3 = 'M 200,310 L 300,310 L 200,310' // 12s
-  const PATH_AGENT_MMT = 'M 200,130 L 100,210 L 200,130 L 200,210 L 200,130 L 300,210 L 200,130' // 8s
-  const PATH_SUB1_MMT = 'M 100,310 L 70,385 L 100,310 L 100,385 L 100,310 L 130,385 L 100,310' // 10s
-  const PATH_SUB2_MMT = 'M 200,310 L 170,385 L 200,310 L 200,385 L 200,310 L 230,385 L 200,310' // 10s
-  const PATH_SUB3_MMT = 'M 300,310 L 270,385 L 300,310 L 300,385 L 300,310 L 330,385 L 300,310' // 10s
+  // Multiple dot paths (top-down layout) — durations scaled by path length for same speed
+  const PATH_YOU_AGENT = `M ${CENTER},50 L ${CENTER},140 L ${CENTER},50`
+  const PATH_AGENT_SUB1 = `M ${CENTER},140 L 80,360 L ${CENTER},140`
+  const PATH_AGENT_SUB2 = `M ${CENTER},168 L ${SUB2_X},342 L ${CENTER},168`
+  const PATH_AGENT_SUB3 = `M ${CENTER},140 L 420,360 L ${CENTER},140`
+  const PATH_SUB1_SUB2 = `M 80,360 L ${SUB2_X},360 L 80,360`
+  const PATH_SUB2_SUB3 = `M ${SUB2_X},360 L 420,360 L ${SUB2_X},360`
+  const PATH_AGENT_MMT = `M ${CENTER},140 L 80,230 L ${CENTER},140 L 230,230 L ${CENTER},140 L 420,230 L ${CENTER},140`
+  const PATH_SUB1_MMT = 'M 80,378 L 50,435 L 80,378 L 80,435 L 80,378 L 110,435 L 80,378'
+  const PATH_SUB2_MMT = `M ${SUB2_X},378 L 250,435 L ${SUB2_X},378 L ${SUB2_X},435 L ${SUB2_X},378 L 310,435 L ${SUB2_X},378`
+  const PATH_SUB3_MMT = 'M 420,378 L 390,435 L 420,378 L 420,435 L 420,378 L 450,435 L 420,378'
+  // Use getTotalLength() for exact path lengths — duration = length / DOT_SPEED for same speed
+  const DUR_YOU_AGENT = getPathLength(PATH_YOU_AGENT) / DOT_SPEED
+  const DUR_AGENT_SUB1 = getPathLength(PATH_AGENT_SUB1) / DOT_SPEED
+  const DUR_AGENT_SUB2 = getPathLength(PATH_AGENT_SUB2) / DOT_SPEED
+  const DUR_AGENT_SUB3 = getPathLength(PATH_AGENT_SUB3) / DOT_SPEED
+  const DUR_SUB1_SUB2 = getPathLength(PATH_SUB1_SUB2) / DOT_SPEED
+  const DUR_SUB2_SUB3 = getPathLength(PATH_SUB2_SUB3) / DOT_SPEED
+  const DUR_AGENT_MMT = getPathLength(PATH_AGENT_MMT) / DOT_SPEED
+  const DUR_SUB1_MMT = getPathLength(PATH_SUB1_MMT) / DOT_SPEED
+  const DUR_SUB2_MMT = getPathLength(PATH_SUB2_MMT) / DOT_SPEED
+  const DUR_SUB3_MMT = getPathLength(PATH_SUB3_MMT) / DOT_SPEED
 
   return (
-    <div className={`relative w-full mx-auto ${compact ? 'max-w-[280px] py-2 min-h-0' : 'max-w-2xl py-6 min-h-[320px]'}`} style={{ aspectRatio: `${W}/${H}` }}>
+    <div className={`relative w-full mx-auto ${compact ? 'max-w-[360px] py-2 min-h-0' : 'max-w-2xl py-6 min-h-[380px]'}`} style={{ aspectRatio: `${W}/${H}` }}>
       <svg viewBox={`0 0 ${W} ${H}`} className="absolute inset-0 w-full h-full z-0 pointer-events-none" preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id="fctg-multi-line" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -145,35 +167,35 @@ export default function FCTGMultiAgentDiagram({ compact }) {
         {/* Sub3 → Agent */}
         <line x1={sub3AgentA[0]} y1={sub3AgentA[1]} x2={sub3AgentB[0]} y2={sub3AgentB[1]} stroke="url(#fctg-multi-line)" strokeWidth="2" strokeLinecap="round" strokeOpacity="0.9" />
         {/* Sub 1 → M/M/T (dashed) */}
-        <line x1={100} y1={328} x2={70} y2={385} stroke="#2dd4bf" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
-        <line x1={100} y1={328} x2={100} y2={385} stroke="#a78bfa" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
-        <line x1={100} y1={328} x2={130} y2={385} stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
+        <line x1={80} y1={378} x2={50} y2={435} stroke="#2dd4bf" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
+        <line x1={80} y1={378} x2={80} y2={435} stroke="#a78bfa" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
+        <line x1={80} y1={378} x2={110} y2={435} stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
         {/* Sub 2 → M/M/T (dashed) */}
-        <line x1={200} y1={328} x2={170} y2={385} stroke="#2dd4bf" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
-        <line x1={200} y1={328} x2={200} y2={385} stroke="#a78bfa" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
-        <line x1={200} y1={328} x2={230} y2={385} stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
+        <line x1={SUB2_X} y1={378} x2={250} y2={435} stroke="#2dd4bf" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
+        <line x1={SUB2_X} y1={378} x2={280} y2={435} stroke="#a78bfa" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
+        <line x1={SUB2_X} y1={378} x2={310} y2={435} stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
         {/* Sub 3 → M/M/T (dashed) */}
-        <line x1={300} y1={328} x2={270} y2={385} stroke="#2dd4bf" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
-        <line x1={300} y1={328} x2={300} y2={385} stroke="#a78bfa" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
-        <line x1={300} y1={328} x2={330} y2={385} stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
+        <line x1={420} y1={378} x2={390} y2={435} stroke="#2dd4bf" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
+        <line x1={420} y1={378} x2={420} y2={435} stroke="#a78bfa" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
+        <line x1={420} y1={378} x2={450} y2={435} stroke="#f59e0b" strokeWidth="1.5" strokeDasharray="4 3" strokeLinecap="round" strokeOpacity="0.7" />
       </svg>
       <div className="absolute inset-0 pointer-events-none z-10">
-        {NODES.map(({ x, y, r, Icon, label, fill, stroke }) => (
+        {NODES.map((node) => (
           <div
-            key={label}
-            className={`absolute rounded-full ${fill} ring-2 ${stroke} flex flex-col items-center justify-center`}
+            key={node.label}
+            className={`absolute rounded-full ${node.fill} ring-2 ${node.stroke} flex flex-col items-center justify-center`}
             style={{
-              left: `${(x / W) * 100}%`,
-              top: `${(y / H) * 100}%`,
-              width: `${(r * 2 / W) * 100}%`,
+              left: `${(node.x / W) * 100}%`,
+              top: `${(node.y / H) * 100}%`,
+              width: `${(node.r * 2 / W) * 100}%`,
               aspectRatio: '1',
               transform: 'translate(-50%, -50%)',
               minWidth: compact ? 24 : 36,
               minHeight: compact ? 24 : 36,
             }}
           >
-            <Icon className="w-1/2 h-1/2 shrink-0 text-cyan-200" style={{ minWidth: compact ? 8 : 12, minHeight: compact ? 8 : 12 }} />
-            <span className={`font-medium text-slate-300 leading-tight ${compact ? 'text-[6px] mt-0' : 'text-[8px] mt-0.5'}`}>{label}</span>
+            <node.Icon className="w-1/2 h-1/2 shrink-0 text-cyan-200" style={{ minWidth: compact ? 8 : 12, minHeight: compact ? 8 : 12 }} />
+            <span className={`font-medium text-slate-300 leading-tight ${compact ? 'text-[6px] mt-0' : 'text-[8px] mt-0.5'}`}>{node.label}</span>
           </div>
         ))}
         {/* Sub 1, 2, 3 M/M/T mini nodes */}
@@ -213,56 +235,56 @@ export default function FCTGMultiAgentDiagram({ compact }) {
         {/* Dot 1: You↔Agent (cyan) */}
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="5" fill="#22d3ee">
-            <animateMotion dur="2.5s" repeatCount="indefinite" path={PATH_YOU_AGENT} />
+            <animateMotion dur={`${DUR_YOU_AGENT}s`} repeatCount="indefinite" path={PATH_YOU_AGENT} />
           </circle>
         </g>
         {/* Dots 2–4: Agent→Sub1, Sub2, Sub3 */}
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="4" fill="#22d3ee">
-            <animateMotion dur="4.5s" repeatCount="indefinite" path={PATH_AGENT_SUB1} />
+            <animateMotion dur={`${DUR_AGENT_SUB1}s`} repeatCount="indefinite" path={PATH_AGENT_SUB1} />
           </circle>
         </g>
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="4" fill="#818cf8">
-            <animateMotion dur="4.5s" repeatCount="indefinite" path={PATH_AGENT_SUB2} />
+            <animateMotion dur={`${DUR_AGENT_SUB2}s`} repeatCount="indefinite" path={PATH_AGENT_SUB2} />
           </circle>
         </g>
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="4" fill="#e879f9">
-            <animateMotion dur="4.5s" repeatCount="indefinite" path={PATH_AGENT_SUB3} />
+            <animateMotion dur={`${DUR_AGENT_SUB3}s`} repeatCount="indefinite" path={PATH_AGENT_SUB3} />
           </circle>
         </g>
         {/* Dots 5–6: Sub1↔Sub2, Sub2↔Sub3 (pink) */}
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="4" fill="#f472b6">
-            <animateMotion dur="3s" repeatCount="indefinite" path={PATH_SUB1_SUB2} />
+            <animateMotion dur={`${DUR_SUB1_SUB2}s`} repeatCount="indefinite" path={PATH_SUB1_SUB2} />
           </circle>
         </g>
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="4" fill="#f472b6">
-            <animateMotion dur="3s" repeatCount="indefinite" path={PATH_SUB2_SUB3} />
+            <animateMotion dur={`${DUR_SUB2_SUB3}s`} repeatCount="indefinite" path={PATH_SUB2_SUB3} />
           </circle>
         </g>
         {/* Dot 7: Agent→Memory→Model→Tools (teal) */}
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="4" fill="#2dd4bf">
-            <animateMotion dur="2s" repeatCount="indefinite" path={PATH_AGENT_MMT} />
+            <animateMotion dur={`${DUR_AGENT_MMT}s`} repeatCount="indefinite" path={PATH_AGENT_MMT} />
           </circle>
         </g>
         {/* Dots 8–10: Sub 1, 2, 3 → their M/M/T (teal) */}
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="3" fill="#2dd4bf">
-            <animateMotion dur="2.5s" repeatCount="indefinite" path={PATH_SUB1_MMT} />
+            <animateMotion dur={`${DUR_SUB1_MMT}s`} repeatCount="indefinite" path={PATH_SUB1_MMT} />
           </circle>
         </g>
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="3" fill="#2dd4bf">
-            <animateMotion dur="2.5s" repeatCount="indefinite" path={PATH_SUB2_MMT} />
+            <animateMotion dur={`${DUR_SUB2_MMT}s`} repeatCount="indefinite" path={PATH_SUB2_MMT} />
           </circle>
         </g>
         <g filter="url(#fctg-multi-glow-dot)">
           <circle r="3" fill="#2dd4bf">
-            <animateMotion dur="2.5s" repeatCount="indefinite" path={PATH_SUB3_MMT} />
+            <animateMotion dur={`${DUR_SUB3_MMT}s`} repeatCount="indefinite" path={PATH_SUB3_MMT} />
           </circle>
         </g>
       </svg>

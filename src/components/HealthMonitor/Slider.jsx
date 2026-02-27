@@ -3,13 +3,13 @@ function Slider({
   onChange,
   onMouseDown,
   label,
-  width = '72px',
+  width: _width = '72px',
   gap = '2px',
   caffeineMg = null,
   waterMl = null,
   unit = null,
   multiplier = 1,
-  style = {}
+  style: _style = {}
 }) {
   const styles = {
     container: {

@@ -14,7 +14,22 @@ const VARIANTS = {
   calmness: { waveSpeed: 0.08, pulseSpeed: 0.12, burstScale: 0.32, lerpSpeed: 0.04, palette: [{ r: 34, g: 211, b: 238 }, { r: 6, g: 182, b: 212 }, { r: 94, g: 234, b: 212 }], breathing: true },
   momentum: { waveSpeed: 0.8, pulseSpeed: 0.6, burstScale: 0.5, lerpSpeed: 0.12, palette: [{ r: 34, g: 211, b: 238 }, { r: 129, g: 140, b: 248 }, { r: 167, g: 139, b: 250 }, { r: 236, g: 72, b: 153 }], multidirectional: true },
   agents: { waveSpeed: 0.5, pulseSpeed: 0.4, burstScale: 0.45, lerpSpeed: 0.06, palette: [{ r: 34, g: 211, b: 238 }, { r: 129, g: 140, b: 248 }, { r: 167, g: 139, b: 250 }, { r: 232, g: 121, b: 249 }], orbital: true },
-  brain: { waveSpeed: 0.25, pulseSpeed: 0.2, burstScale: 0.28, lerpSpeed: 0.04, palette: [{ r: 129, g: 140, b: 248 }, { r: 167, g: 139, b: 250 }, { r: 34, g: 211, b: 238 }, { r: 236, g: 72, b: 153 }], orbital: true, particleCount: 600, opacityMultiplier: 2 },
+  brain: {
+    waveSpeed: 0.25,
+    pulseSpeed: 0.2,
+    burstScale: 0.28,
+    lerpSpeed: 0.04,
+    palette: [
+      { r: 129, g: 140, b: 248 },
+      { r: 167, g: 139, b: 250 },
+      { r: 34, g: 211, b: 238 },
+      { r: 236, g: 72, b: 153 },
+    ],
+    orbital: true,
+    particleCount: 600,
+    opacityMultiplier: 2,
+    brainShape: true,
+  },
 }
 
 function ParticleBackground({ className = '', variant = 'strength' }) {
@@ -96,13 +111,27 @@ function ParticleBackground({ className = '', variant = 'strength' }) {
     }
 
     let time = 0
-    const { waveSpeed, pulseSpeed, burstScale, lerpSpeed, breathing, multidirectional, orbital } = config
+    const { waveSpeed, pulseSpeed, burstScale, lerpSpeed, breathing, multidirectional, orbital, brainShape } = config
 
     function getTarget(p) {
       if (orbital) {
-        const orbitRadius = 80 + p.radius * Math.min(width, height) * 0.35
         const orbitSpeed = 0.02 + p.seed * 0.015
         const orbitAngle = p.seed * Math.PI * 2 + time * orbitSpeed * (p.seed > 0.5 ? 1 : -1)
+
+        // Brain-shaped orbital path: squashed ellipse with slight lobes and depth
+        if (brainShape) {
+          const baseR = 70 + p.radius * Math.min(width, height) * 0.3
+          const lobe = Math.cos(orbitAngle * 2) * 12
+          const depth = 0.4 + 0.6 * (0.5 + 0.5 * Math.sin(orbitAngle)) // front vs back
+          const wobble = Math.sin(time * 0.3 + p.seed2 * 10) * 6
+          return {
+            x: centerX + Math.cos(orbitAngle) * (baseR + lobe),
+            y: centerY + Math.sin(orbitAngle) * (baseR * 0.6 + wobble),
+            depth,
+          }
+        }
+
+        const orbitRadius = 80 + p.radius * Math.min(width, height) * 0.35
         const wobble = Math.sin(time * 0.3 + p.seed2 * 10) * 15
         return {
           x: centerX + Math.cos(orbitAngle) * (orbitRadius + wobble),
@@ -186,9 +215,12 @@ function ParticleBackground({ className = '', variant = 'strength' }) {
         }
 
         const opacityMult = config.opacityMultiplier ?? 1
-        const alpha = Math.min(1, p.baseOpacity * breathOpacity * opacityMult)
+        // For brainShape, dim "back" particles slightly if depth is provided
+        const depth = target.depth ?? 1
+        const alpha = Math.min(1, p.baseOpacity * breathOpacity * opacityMult * depth)
         const sizeMult = config.sizeMultiplier ?? 1
-        const size = (multidirectional ? (0.6 + p.radius * 1) : orbital ? (0.5 + p.radius * 0.8) : (0.4 + p.radius * 0.5) * 1.2) * sizeMult
+        const sizeBase = multidirectional ? (0.6 + p.radius * 1) : orbital ? (0.5 + p.radius * 0.8) : (0.4 + p.radius * 0.5) * 1.2
+        const size = sizeBase * sizeMult * (brainShape ? depth : 1)
         if (alpha < 0.01) continue
 
         const { r, g, b } = p.baseColor
@@ -220,7 +252,7 @@ function ParticleBackground({ className = '', variant = 'strength' }) {
   return (
     <canvas
       ref={canvasRef}
-      className={`pointer-events-none absolute inset-0 h-full w-full ${className}`}
+      className={`pointer-events-none fixed inset-0 w-screen h-screen ${className}`}
       aria-hidden
     />
   )

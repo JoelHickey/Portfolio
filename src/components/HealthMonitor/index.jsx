@@ -45,7 +45,7 @@ const initialEnvironmentCheckboxes = {
 
 function HealthMonitor() {
   const [activeView, setActiveView] = useState('inputs');
-  const [isFlipView, setIsFlipView] = useState(false);
+  const [isFlipView, _setIsFlipView] = useState(false);
   const [sliderValues, setSliderValues] = useState(initialSliderValues);
   const [environmentCheckboxes, setEnvironmentCheckboxes] = useState(initialEnvironmentCheckboxes);
   const [timelineEvents, setTimelineEvents] = useState([]);

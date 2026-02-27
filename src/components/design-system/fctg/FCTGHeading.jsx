@@ -3,7 +3,7 @@
  * @param {'v1'|'v2'|'v2-hero'} variant - v1: light theme (slate/indigo), v2: dark slides (cyan→purple), v2-hero: larger
  * @param {string} size - Optional size override (e.g. '!text-[2.25rem] md:!text-[2.75rem]')
  */
-export default function FCTGHeading({ children, variant = 'v1', size, className = '', as: Component = 'h2', ...rest }) {
+export default function FCTGHeading({ children, variant = 'v1', size, className = '', as: _Component = 'h2', ...rest }) {
   const base = 'font-semibold leading-tight tracking-tight'
   const variants = {
     v1: 'text-6xl pb-3 leading-normal bg-gradient-to-r from-slate-800 via-indigo-700 to-slate-800 bg-clip-text text-transparent',
@@ -12,6 +12,7 @@ export default function FCTGHeading({ children, variant = 'v1', size, className 
   }
   const v = variants[variant] ?? variants.v1
   const sizeClass = size ?? ''
+  const Component = _Component
   return (
     <Component
       className={`${base} ${v} ${sizeClass} ${className}`.trim()}
