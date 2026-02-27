@@ -75,6 +75,14 @@ function SlideQuote({ slideIndex }) {
   )
 }
 
+function ChapterLabel({ children }) {
+  return (
+    <div className="pointer-events-none fixed left-0 right-0 top-4 z-30 text-center text-[10px] font-semibold tracking-[0.18em] uppercase text-slate-500/80">
+      {children}
+    </div>
+  )
+}
+
 const FLICKER_CHARS = '{}<>()[];:=/\\*&|!?'
 function MysticalFlickerHeading() {
   const target = 'Mystical Code'
@@ -521,6 +529,9 @@ function FCTGAITalkSlides() {
       )}
       {/* Slide content */}
       <div className="relative z-20 h-full overflow-x-hidden overflow-y-hidden">
+        {/* Chapter label — same position at very top for all chapter slides */}
+        {slideIndex >= 2 && slideIndex <= 6 && <ChapterLabel>Concepts</ChapterLabel>}
+        {slideIndex >= 7 && slideIndex <= 13 && <ChapterLabel>Monumental moments</ChapterLabel>}
         {/* Slide 1: Title */}
         {slideIndex === 0 && (
         <Slide
@@ -561,10 +572,10 @@ function FCTGAITalkSlides() {
               <WeavingLoom fullPage variant="dark" />
               <div key={slideIndex} className="fctg-text-transition relative z-10 flex min-h-screen flex-col items-center justify-center bg-gradient-to-t from-black/95 via-black/60 to-transparent pt-16 px-8 pb-16">
                 <div className="mx-auto w-full max-w-5xl">
-                <div className="w-full max-w-2xl mx-auto text-center px-2">
-                  <h2 className="fctg-heading md:whitespace-nowrap !text-[2.25rem] md:text-[2rem] lg:text-[2.5rem] xl:text-[3rem]" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Looking back to look ahead</h2>
-                  <p className="fctg-subtitle mt-1 text-lg tracking-wide text-slate-300">Craft, tools, and what stays human.</p>
-                </div>
+                  <div className="w-full max-w-2xl mx-auto text-center px-2">
+                    <h2 className="fctg-heading md:whitespace-nowrap !text-[2.25rem] md:text-[2rem] lg:text-[2.5rem] xl:text-[3rem]" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Looking back to look ahead</h2>
+                    <p className="fctg-subtitle mt-1 text-lg tracking-wide text-slate-300">Craft, tools, and what stays human.</p>
+                  </div>
                 <div className="mt-4 md:mt-10 w-full max-w-6xl text-center">
                   <div className="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 min-w-0">
                       {[
