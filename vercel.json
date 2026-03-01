@@ -1,0 +1,15 @@
+{
+  "buildCommand": "npm run build",
+  "outputDirectory": "dist",
+  "framework": null,
+  "redirects": [
+    { "source": "/portfolio", "destination": "/stories", "permanent": true },
+    { "source": "/portfolio/:path*", "destination": "/stories/:path*", "permanent": true }
+  ],
+  "rewrites": [
+    { "source": "/health", "destination": "/health/index.html" },
+    { "source": "/health/", "destination": "/health/index.html" },
+    { "source": "/health/:path*", "destination": "/health/index.html" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
