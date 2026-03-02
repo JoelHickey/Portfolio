@@ -1320,7 +1320,7 @@ function FCTGAITalk() {
           <div>
               <h3 className="text-xl font-semibold text-slate-900">Terminal & deploy</h3>
               <p className="mt-2 text-slate-600 leading-relaxed">
-                npm, Git, GitHub, Netlify CLI — the usual suspects. AI helps with commands; the stack stays familiar.
+                npm, Git, GitHub, Vercel CLI — the usual suspects. AI helps with commands; the stack stays familiar.
               </p>
             </div>
             <div>
@@ -1337,8 +1337,8 @@ function FCTGAITalk() {
                 </span>
                 <span className="shrink-0 text-slate-400 text-xs" aria-hidden>→</span>
                 <span className="inline-flex items-center gap-2 rounded-md bg-teal-600 px-2.5 py-1.5 text-xs font-semibold text-white">
-                  <img src="/images/netlify-logo.svg" alt="" className="h-4 w-4 brightness-0 invert" aria-hidden />
-                  Deploy to Netlify
+                  <img src="/images/vercel-logo.svg" alt="" className="h-4 w-4 brightness-0 invert" aria-hidden />
+                  Deploy to Vercel
                 </span>
               </div>
             </div>

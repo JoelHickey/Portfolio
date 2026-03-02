@@ -1,0 +1,8 @@
+{
+  "buildCommand": "cd .. && npm ci && npm run build:ai-preso",
+  "outputDirectory": "dist",
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
