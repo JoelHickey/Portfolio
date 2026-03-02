@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build:health": "DIR=$(pwd) && rm -rf /tmp/earth-build && git clone --depth 1 https://github.com/JoelHickey/Earth.git /tmp/earth-build && cd /tmp/earth-build && npm ci && VITE_BASE=/health/ npm run build && rm -rf \"$DIR/public/health\" && mkdir -p \"$DIR/public/health\" && cp -r dist/* \"$DIR/public/health\"",
-    "build": "vite build",
+    "build": "node scripts/vercel-build.js",
     "build:ai-preso": "vite build --config vite.ai-preso.config.js",
     "dev:ai-preso": "vite --config vite.ai-preso.config.js --port 4174",
     "lint": "eslint .",
