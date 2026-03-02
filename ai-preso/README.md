@@ -4,17 +4,15 @@ Standalone AI preso site. Use a **separate** Vercel project so 2097.io serves on
 
 ## Vercel (recommended)
 
-The repo’s `npm run build` runs the **preso** build when the env var **`BUILD_PRESO=true`** is set (so set it only on this project).
+Use **Root Directory** so this project builds only the preso (no env var needed).
 
 1. In Vercel: **Add New… → Project**, import the same repo.
-2. **Root Directory:** leave empty.
-3. **Build Command:** leave default (`npm run build`).
-4. **Output Directory:** turn **Override** on and set **`ai-preso/dist`** (Build and Development → Framework Settings, above Root Directory).
-5. **Settings → Domains:** add `2097.io` and `www.2097.io`.
-6. **Environment variables** (Settings → Environment Variables): add  
-   **`BUILD_PRESO`** = **`true`** (so this project builds the preso), plus  
-   **`VITE_SUPABASE_URL`** and **`VITE_SUPABASE_ANON_KEY`**.
-7. Redeploy so the new build runs with these settings.
+2. **Settings → Build and Development:**
+   - **Root Directory:** set to **`ai-preso`** (required).
+   - Build Command / Output Directory: leave default; `ai-preso/vercel.json` and `ai-preso/package.json` define the build and output.
+3. **Settings → Domains:** add `2097.io` and `www.2097.io`.
+4. **Environment variables:** add **`VITE_SUPABASE_URL`** and **`VITE_SUPABASE_ANON_KEY`** (no BUILD_PRESO needed).
+5. **Redeploy** after changing Root Directory.
 
 ## Netlify (legacy)
 

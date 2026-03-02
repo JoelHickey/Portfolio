@@ -1,0 +1,7 @@
+{
+  "name": "ai-preso",
+  "private": true,
+  "scripts": {
+    "build": "cd .. && npm ci && npm run build:ai-preso"
+  }
+}
