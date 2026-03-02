@@ -25,7 +25,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 **Title:** What we'll cover
 
-**Subtitle:** Concepts, monumental moments, building momentum, technology — and a hands-on activity.
+**Subtitle:** Concepts, monumental moments, building momentum, technology — and a hands on activity.
 
 ---
 
@@ -36,10 +36,10 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 **Subtitle:** Craft, tools, and what stays human.
 
 **Body:**
-- **The weavers** — Craft redefined, not replaced.
-- **Cart to car** — The leap matters more than the increment.
-- **The digital era** — Systems, not just screens.
-- **The future** — Amplify human skills, not replace them.
+- **The weavers** — Craft is redefined, not replaced. Tools change; skill endures.
+- **Cart to car** — The leap matters more than the step. The focus is on the shift.
+- **The digital era** — Systems, not just screens. Flows and platforms matter.
+- **The future** — Human skills are amplified, not replaced.
 
 ---
 
@@ -209,11 +209,11 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 **Title:** Model or agent?
 
-**Subtitle:** Use both, in combination. Model = fast thinking. Agent = thinking + doing.
+**Subtitle:** Use both, in combination — to get ideas and get things done.
 
 **Body:**
-- **Use the model when** — You want ideas (naming, options, outlines). You'll paste and edit (output stays with you). It's one question (scoped, no tools).
-- **Use an agent when** — You want it to do things (edit files, run commands). It's multi-step (you review as it goes). You're delegating (hand off, don't paste and edit).
+- **Model = fast thinking** — You want ideas (naming, options, outlines). You'll paste and edit (output stays with you). It's one question (scoped, no tools).
+- **Agent = thinking + doing** — You want it to do things (edit files, run commands). It's multi-step (you review as it goes). You're delegating (hand off, don't paste and edit).
 
 ---
 
@@ -237,7 +237,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 **Subtitle:** Plan → Act → Observe (inspect results) → Iterate.
 
-**Body:** You need the agent wrapper — tools, loop, and often memory. The model is the brain; the rest of the system is what makes it agentic.
+**Body:** The model is the brain. The agent adds the wrapper — tools, a loop, and often memory — and that's what makes it agentic.
 
 ---
 
@@ -299,9 +299,9 @@ Same agent, either style. Choose to fit the task.
 
 **Subtitle:** Verify outputs, redirect when they drift, reframe when looping.
 
-**Body:** Don't expect perfection in the agents. Work with the agent to solve the problem together.
-
 **Labels:** Hallucinate, Overcomplicate, Loop, Overwrite, Lazy, Fixate, Ignore, Drift, Tone, Pushback
+
+**Body:** Don't expect perfection in the agents. Work with the agent to solve the problem together.
 
 ---
 
@@ -428,7 +428,7 @@ This deck: 75 tests — unit, integration, E2E. Full coverage uncovers gaps; tho
 
 **Title:** Helpful tips
 
-**Subtitle:** Workflow pointers.
+**Subtitle:** Small practices that add up.
 
 **Body:** Split view · Specs in MD · Watch & debug · Pace yourself · NPM · File directory · Inspect & console · Queuing prompts · Watch productivity · Patience
 
@@ -441,10 +441,11 @@ This deck: 75 tests — unit, integration, E2E. Full coverage uncovers gaps; tho
 **Subtitle:** Vibe vs directive showdown. Same problem, two modes. Pairs pick team names.
 
 **Body:**
-- **Problem** — How might we design a booking flow for a Moon trip? Show & tell: we vote on the clearest, most usable flow. Bragging rights to the winners.
-- **What we're practising** — Choosing vibe vs directive, writing clear prompts, steering when it drifts — and taking one workflow into real work.
-- **What you'll leave with** — Prompts, agent responses, generated UI/copy
-- **Logistics** — Miro, ChatGPT/DeepSeek/TurboChat
+- **Problem** — How might we design a booking flow for a Moon trip?
+- **Format** — Show & tell: we vote on the clearest, most usable flow. Bragging rights for the winners.
+- **What we're practising** — Choosing vibe vs directive, writing clear prompts, steering when it drifts — and taking this workflow into real work.
+- **Outputs** — Prompts, agent responses, and generated UI/copy
+- **Logistics** — Miro for collaboration; ChatGPT, DeepSeek, or TurboChat for the agent
 
 ---
 
