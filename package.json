@@ -9,7 +9,7 @@
     "build": "node scripts/vercel-build.js",
     "build:ai-preso": "vite build --config vite.ai-preso.config.js",
     "dev:ai-preso": "vite --config vite.ai-preso.config.js --port 4174",
-    "lint": "eslint .",
+    "lint": "eslint . --max-warnings 999",
     "preview": "vite preview",
     "preview:ai-preso": "vite preview --config vite.ai-preso.config.js --port 4174",
     "test": "vitest run",
