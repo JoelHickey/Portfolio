@@ -8,4 +8,5 @@ const isAipreso =
   process.env.BUILD_PRESO === 'true' ||
   process.env.VERCEL_PROJECT_NAME === 'aipreso';
 const command = isAipreso ? 'npm run build:ai-preso' : 'npx vite build';
+console.log('[vercel-build] Building:', isAipreso ? 'PRESO (ai-preso)' : 'PORTFOLIO');
 execSync(command, { stdio: 'inherit' });
