@@ -482,7 +482,7 @@ Productivity that serves quality — fewer revision loops, clearer briefs, and t
 
 **Body:** Designers who work with AI will have an edge. Embrace the tools, question the outputs, keep the human at the centre.
 
-**Tags:** AI is in its infancy, Creating value, Maximize creativity, Move fast, Pause and reflect
+**Tags:** AI is in its infancy, Massive value, Maximize creativity, Move fast, Pause and reflect
 
 **Quote:** "Empty, yet inexhaustible, fathomless and eternal. Source is the ancestor of elegant patterns." — Rick Rubin, The Way of Code
 

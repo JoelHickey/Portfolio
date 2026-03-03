@@ -2103,7 +2103,7 @@ function FCTGAITalkSlides() {
             Designers who work with AI will have an edge. Embrace the tools, question the outputs, keep the human at the centre.
           </p>
             <div className="mt-4 md:mt-10 flex flex-wrap justify-center gap-2 md:gap-3">
-            {['AI is in its infancy', 'Creating value', 'Maximize creativity', 'Move fast', 'Pause and reflect'].map((tag) => (
+            {['AI is in its infancy', 'Massive value', 'Maximize creativity', 'Move fast', 'Pause and reflect'].map((tag) => (
               <span key={tag} className="fctg-tag">
                 {tag}
               </span>
