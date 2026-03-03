@@ -1329,9 +1329,9 @@ function FCTGAITalkSlides() {
             <div className="max-w-md text-center md:text-left">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Empowerment</h2>
               <p className="fctg-subtitle mt-1">Build things that add value to your life.</p>
-              <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm">
-                <a href="#" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">Mental health app</a>
-                <a href="#" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">Drafting studio</a>
+              <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-cyan-400">
+                <span>Mental health app</span>
+                <span>Drafting studio</span>
               </p>
             </div>
             <div className="flex justify-center md:justify-end">
@@ -1705,27 +1705,27 @@ function FCTGAITalkSlides() {
               <p className="fctg-subtitle mt-1 text-slate-400 text-sm">Same phases — you steer, the agent executes.</p>
             </div>
             <div className="rounded-xl border border-slate-600/50 bg-slate-900/40 p-3 md:p-4">
-              {/* Bar chart: one row per phase; Then and Now bars stacked vertically */}
-              <div className="space-y-2 md:space-y-3">
+              {/* Bar chart: vertical layout — phase name on top, then bars and caption below */}
+              <div className="space-y-3 md:space-y-4">
                 {[
                   { phase: 'Discover', phaseColor: 'text-cyan-400/90', nowPct: 45, thenLabel: 'Manual synthesis, heavy alignment; feasibility often late', nowLabel: 'AI synthesises and maps flows; you validate; agent checks feasibility in minutes. Pull hours of research into designs—no more stuck in decks. Competitive and benchmark review in minutes. Stakeholder alignment: previews + AI summaries, fewer decks and meetings' },
                   { phase: 'Define', phaseColor: 'text-teal-400/90', nowPct: 40, thenLabel: 'Flowcharts and annotated specs for handoff; prototypes and specs go stale', nowLabel: 'AI generates flows; you set direction. PRDs, specs, ADRs in sync—single source of truth. Edge cases and acceptance criteria surfaced early. Copy from tone and guidelines; you edit and approve' },
                   { phase: 'Develop', phaseColor: 'text-indigo-400/90', nowPct: 30, thenLabel: 'Hours on prototypes and specs; handoff, long cycles, 12hr feedback, context lost; designs and build misaligned → issues', nowLabel: 'Prototypes in minutes; design system on cue; identify alignment gaps—hone in; design QA & consistency automated; continuous testing; scenario and edge case testing; a11y in flow; responsive from one source; designer playground; no design–dev handoff—one artifact; review, refine (e.g. 9→3 screens)' },
                   { phase: 'Deliver', phaseColor: 'text-violet-400/90', nowPct: 40, thenLabel: 'Build and deploy, long cycles for fixes', nowLabel: 'Ship faster; iterate on feedback. Previews for sign-off; release docs generated. Training and UAT scenarios generated' },
                 ].map(({ phase, phaseColor, nowPct, thenLabel, nowLabel }) => (
-                  <div key={phase} className="grid grid-cols-[minmax(0,0.85fr)_minmax(0,2.2fr)] gap-2 md:gap-4 items-start">
-                    <div className={`text-xs font-semibold uppercase tracking-wider ${phaseColor} shrink-0 pt-1`}>{phase}</div>
-                    <div className="min-w-0 flex flex-col gap-1">
+                  <div key={phase} className="flex flex-col gap-1.5">
+                    <div className={`text-xs font-semibold uppercase tracking-wider ${phaseColor}`}>{phase}</div>
+                    <div className="flex flex-col gap-1">
                       <div className="flex items-center gap-2">
                         <span className="text-[9px] text-slate-300 w-7 shrink-0">Then</span>
-                        <div className="w-full max-w-[180px] md:max-w-[220px] flex h-2.5 items-center">
-                          <div className="h-2.5 flex-1 rounded bg-slate-500/80 min-w-0" title={thenLabel} />
+                        <div className="flex-1 min-w-0 flex h-2.5 items-center">
+                          <div className="h-2.5 flex-1 rounded bg-slate-500/80 min-w-0 max-w-full" title={thenLabel} />
                         </div>
                       </div>
                       <div className="flex items-center gap-2">
                         <span className="text-[9px] text-cyan-200 w-7 shrink-0">Now</span>
-                        <div className="w-full max-w-[180px] md:max-w-[220px] flex h-2.5 items-center">
-                          <div className="h-2.5 rounded bg-cyan-400/90 flex-shrink-0" style={{ width: `${nowPct}%` }} title={nowLabel} />
+                        <div className="flex-1 min-w-0 flex h-2.5 items-center">
+                          <div className="h-2.5 rounded bg-cyan-400/90 flex-shrink-0 max-w-full" style={{ width: `${nowPct}%` }} title={nowLabel} />
                         </div>
                       </div>
                       <p className="text-[8px] md:text-[9px] text-slate-400 mt-0">
