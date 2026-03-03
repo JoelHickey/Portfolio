@@ -716,7 +716,7 @@ function FCTGAITalkSlides() {
         <Slide transparent>
           <div key={slideIndex} className="fctg-text-transition flex flex-col items-center justify-center text-center px-8">
             <p className="text-xl font-medium tracking-wide text-cyan-300/90 sm:text-2xl max-w-2xl">In the future, the wealthy will pay for human empathy.</p>
-            <p className="mt-4 text-sm tracking-wide text-cyan-400/70">— Attribution</p>
+            <p className="mt-4 text-sm tracking-wide text-cyan-400/70">— Often cited in design and futures discourse</p>
           </div>
         </Slide>
         )}
@@ -2245,7 +2245,7 @@ function FCTGAITalkSlides() {
             Embrace the tools, question the outputs, keep the human at the centre.
           </p>
             <div className="mt-4 md:mt-10 w-full max-w-2xl mx-auto flex flex-wrap justify-center gap-2 md:gap-3">
-            {['AI is in its infancy', 'Massive value', 'Maximize creativity', 'Move fast', 'Pause and reflect'].map((tag) => (
+            {['AI is in its infancy', 'Massive value', 'Maximise creativity', 'Move fast', 'Pause and reflect'].map((tag) => (
               <span key={tag} className="fctg-tag whitespace-nowrap shrink-0">
                 {tag}
               </span>

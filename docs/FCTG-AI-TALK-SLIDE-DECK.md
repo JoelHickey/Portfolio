@@ -19,7 +19,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 **Body:** In the future, the wealthy will pay for human empathy.
 
-— Attribution
+— Often cited in design and futures discourse
 
 ---
 
@@ -526,7 +526,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 **Body:** Designers who work with AI will have an edge. Embrace the tools, question the outputs, keep the human at the centre.
 
-**Tags:** AI is in its infancy, Massive value, Maximize creativity, Move fast, Pause and reflect
+**Tags:** AI is in its infancy, Massive value, Maximise creativity, Move fast, Pause and reflect
 
 **Quote:** "Empty, yet inexhaustible, fathomless and eternal. Source is the ancestor of elegant patterns." — Rick Rubin, The Way of Code
 
