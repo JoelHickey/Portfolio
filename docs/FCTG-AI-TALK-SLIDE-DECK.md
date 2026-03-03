@@ -1,7 +1,7 @@
 # FCTG AI Talk — Slide Deck Copy
 
 Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx`.  
-44 slides (Slide 1 = index 0 … Slide 44 = index 43). Titles, subtitles, and body copy only.
+43 slides (Slide 1 = index 0 … Slide 43 = index 42). Titles, subtitles, and body copy only.
 
 ---
 
@@ -251,7 +251,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 - **Vibe:** Intuitive, creative, fast. You prompt AI for quick results; you're the editor and reviewer. Best for: ideation, rapid prototyping, creative exploration.
 - **Agentic:** Agents plan, execute, and test. You're the manager/supervisor. Proactive, long-running processes. Best for: complex systems, refactoring, CI/CD, production-level work.
 
-Combine both: vibe for brainstorming and prototypes; agentic for reliable execution and maintenance.
+Same tool, two styles. Combine both: vibe for brainstorming and prototypes; agentic for reliable execution and maintenance.
 
 ---
 
@@ -397,6 +397,8 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 **Subtitle:** What to measure when design system + agent work together.
 
+**Measure:** Revision count, handoff rounds, time to production-ready.
+
 **Body:**
 - Fewer revision cycles — Less back-and-forth to get on-brand UI
 - Fewer design–dev handoff rounds — "Use our Button" once, not every sprint
@@ -408,6 +410,8 @@ Across the design process — discover, define, develop, deliver — the agent h
 - **Specs in docs** — Figma, Markdown, Storybook. Agent reads and applies.
 - **Or use a library** — Chakra, Radix, Mantine, Polaris. Agent uses primitives.
 
+Works best when the design system is documented and in code.
+
 ---
 
 ## Slide 37
@@ -416,11 +420,11 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 **Subtitle:** Fast feedback. Real browsers. Ship with confidence.
 
-**Body:** Vitest (Unit tests), React Testing Library (Component testing), Playwright (End-to-end tests). CI runs on push (GitHub Actions).
+**Body:** Vitest (Unit tests), React Testing Library (Component testing), Playwright (End-to-end tests). CI on push (GitHub Actions).
 - **Vibe** — Single-shot, iterative. "Add a unit test for this function." You review inline, tweak, repeat.
 - **Directive** — Multi-step, autonomous. "Add test coverage for the checkout flow — unit tests and an E2E with Playwright."
 
-This deck: 75 tests — unit, integration, E2E. Full coverage uncovers gaps; thorough testing keeps changes from breaking what works.
+This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set coverage. Coverage finds gaps; tests protect what works.
 
 ---
 
@@ -436,79 +440,55 @@ This deck: 75 tests — unit, integration, E2E. Full coverage uncovers gaps; tho
 
 ## Slide 39
 
-**Title:** Activity
-
-**Subtitle:** Vibe vs directive showdown. Same problem, two modes. Pairs pick team names.
+**Title:** Level up to agentic
 
 **Body:**
-- **Problem** — How might we design a booking flow for a Moon trip?
-- **Format** — Show & tell: we vote on the clearest, most usable flow. Bragging rights for the winners.
-- **What we're practising** — Choosing vibe vs directive, writing clear prompts, steering when it drifts — and taking this workflow into real work.
-- **Outputs** — Prompts, agent responses, and generated UI/copy
-- **Logistics** — Miro for collaboration; ChatGPT, DeepSeek, or TurboChat for the agent
+- **Problem** — How might we create a Moon trip booking flow that's easy and enjoyable for customers to use?
+- **Setup** — Work in pairs. Miro for collaboration; Claude Code for the agent
+- **Process** — Start with vibe (aim to iterate 2–3 times), then level up to agentic. Write clear prompts. Redirect the agent when it drifts.
+- **Outputs** — Reusable prompts, agent responses, and generated UI/copy
+- **Outcomes** — Improved prompting skills, comfort with quick iteration, ability to delegate to the agent with confidence
 
 ---
 
 ## Slide 40
 
-**Title:** Activity: Rounds
+**Title:** Rounds
 
 **Body:**
-- **Round 1 · ~15 min — Start with vibe:** Explore flows and tone. Try: "How would you approach designing a booking flow for a Moon trip?" Chat, iterate, go wild. Single-shot, iterative. Exploratory.
-- **Round 2 · ~25 min — Level up to directive:** Give AI a clear mission. Try: "Create a 3-step booking flow for a Moon trip: step 1 — departure date picker; step 2 — cabin selection (economy, business, first); step 3 — add-ons and terms. Include copy and layout." Multi-step, defined outcome. Goal-driven.
-- **Round 3 · ~15 min — Show & tell:** Share the best Moon booking outputs — vibe vs directive. Vote on MVP prompt. Quick poll, then wrap. Debrief: How could this apply to our Earth bookings?
+- **Round 1 · ~15 min · Warm-up — Start with vibe:** Explore flows and tone. Try: "How would you approach designing a booking flow for a Moon trip?" Chat, iterate, go wild. Quick iterations. Exploratory.
+- **Round 2 · ~25 min · Main focus — Level up to agentic:** Give the agent a clear mission. Try: "Create a 3-step Moon booking flow: date picker, cabin selection (economy, business, first), add-ons and terms. Include copy and layout." Agentic: multi-step, delegated. Goal-driven.
+- **Round 3 · ~15 min — Show & tell:** Share the clearest Moon booking outputs. Vote on which flow we'd ship. Quick poll, then wrap. Debrief: How could this apply to our Earth bookings?
 
 ---
 
 ## Slide 41
-
-**Title:** Activity: Run sheet
-
-**Subtitle:** 1 hour total
-
-**Body (run sheet):**
-| Time | Duration | Step |
-|------|----------|------|
-| 0:00 | 2 min | Intro: Problem = Moon booking flow. Explain vibe vs directive. Pair up, pick team names. |
-| 0:02 | 15 min | Round 1 — Vibe: Explore flows and tone. Chat, iterate. |
-| 0:17 | 2 min | Transition: Explain directive. |
-| 0:19 | 25 min | Round 2 — Directive: Create 3-step booking flow. One prompt, full outcome. |
-| 0:44 | 15 min | Round 3 — Show & tell: Share outputs. Vote on MVP prompt. Debrief: How could this apply to our Earth bookings? Wrap. |
-| 0:59 | 1 min | Buffer / wrap. |
-
-Tip: Keep time visible. Call out at 5 min left in each round. For remote, use breakout rooms during rounds.
-
----
-
-## Slide 42
 
 **Title:** What we hope you take away
 
 **Subtitle:** Agentic outcomes
 
 **Body:**
-- **Higher-level:** Designers who work with AI will have an edge — amplify empathy, judgment, creativity; keep the human at the centre. Stay in the driver's seat: steer agents; don't just accept outputs. Choose the right mode for the job — explore (vibe) or specify (directive). Treat agents as outcome-drivers, not just output-generators. Like in mixing: reduce the noise so you can focus on the signal.
+- **Higher-level:** Designers who work with AI will have an edge — amplify empathy, judgment, creativity; keep the human at the centre. Push further than traditional engineering and dev teams — AI lets designers take on more. Spend the time to get comfortable — the payoff is empowerment, not replacement. Stay in the driver's seat: steer agents; don't just accept outputs. Choose the right mode for the job — explore (vibe) or specify (directive). Treat agents as outcome-drivers, not just output-generators. Like in mixing: reduce the noise so you can focus on the signal.
 - **In practice:** Vibe vs directive — Use each intentionally when prompting agents. Clear prompts — What, where, rules; fewer revision loops. Point at design system — Tokens, docs, or a library. Intervene when it drifts — Don't expect perfection; steer when it loops. Try one this week — Small agentic task in Cursor.
 
 Productivity that serves quality — fewer revision loops, clearer briefs, and time to focus on judgment and creativity.
 
 ---
 
-## Slide 43
+## Slide 42
 
 **Title:** An opportunity of a lifetime
 
-**Body:** AI won't replace designers — but designers who work with AI will have an edge. Amplify empathy, judgment, creativity. Embrace the tools, question the outputs, keep the human at the centre.
+**Body:** Designers who work with AI will have an edge. Embrace the tools, question the outputs, keep the human at the centre.
 
-**Subtitle:** Pushing further than traditional engineering and dev teams.
-
-**Tags:** AI is in its infancy, Creating massive value, Move fast, Understand where needed, Pause and reflect — The speed of thinking and questioning itself is incredible
+**Tags:** AI is in its infancy, Creating value, Maximize creativity, Move fast, Pause and reflect
 
 **Quote:** "Empty, yet inexhaustible, fathomless and eternal. Source is the ancestor of elegant patterns." — Rick Rubin, The Way of Code
 
 ---
 
-## Slide 44
+## Slide 43
 
 **Title:** Thank you
 

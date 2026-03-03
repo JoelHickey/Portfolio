@@ -1595,7 +1595,7 @@ function FCTGAITalk() {
                   <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-600">Round 3 · ~15 min</span>
                   <h4 className="mt-2 text-lg font-semibold text-slate-900">Show & tell</h4>
                   <p className="mt-2 text-sm text-slate-600">
-                    Share the best Mars checkout outputs — vibe vs agentic. Vote on MVP prompt. When would you use vibe vs agentic for this problem? Quick poll, then wrap.
+                    Share the best Mars checkout outputs — vibe vs agentic. Vote on which flow we'd ship. When would you use vibe vs agentic for this problem? Quick poll, then wrap.
                   </p>
                 </div>
               </div>
@@ -1617,7 +1617,7 @@ function FCTGAITalk() {
                     <tr className="border-b border-slate-100"><td className="py-2.5 pr-4 font-mono text-slate-500">0:02</td><td className="py-2.5 pr-4">15 min</td><td className="py-2.5"><strong>Round 1 — Vibe:</strong> Explore flows and tone. E.g. &quot;How would you approach designing a checkout for a Mars trip? What should we consider?&quot; Chat, iterate, go wild.</td></tr>
                     <tr className="border-b border-slate-100"><td className="py-2.5 pr-4 font-mono text-slate-500">0:17</td><td className="py-2.5 pr-4">2 min</td><td className="py-2.5">Transition: Explain agentic. &quot;Now give AI a clear mission and let it run.&quot;</td></tr>
                     <tr className="border-b border-slate-100"><td className="py-2.5 pr-4 font-mono text-slate-500">0:19</td><td className="py-2.5 pr-4">25 min</td><td className="py-2.5"><strong>Round 2 — Agentic:</strong> E.g. &quot;Create a 3-step checkout for a Mars trip: step 1 — date picker; step 2 — cabin selection (economy, business, first); step 3 — add-ons and terms. Include copy and layout.&quot; One prompt, full outcome.</td></tr>
-                    <tr className="border-b border-slate-100"><td className="py-2.5 pr-4 font-mono text-slate-500">0:44</td><td className="py-2.5 pr-4">15 min</td><td className="py-2.5"><strong>Round 3 — Show & tell:</strong> Pairs share best Mars checkout outputs (vibe vs agentic). Vote on MVP prompt. Quick poll: vibe or agentic for this problem? Wrap.</td></tr>
+                    <tr className="border-b border-slate-100"><td className="py-2.5 pr-4 font-mono text-slate-500">0:44</td><td className="py-2.5 pr-4">15 min</td><td className="py-2.5"><strong>Round 3 — Show & tell:</strong> Pairs share best Mars checkout outputs (vibe vs agentic). Vote on which flow we'd ship. Quick poll: vibe or agentic for this problem? Wrap.</td></tr>
                     <tr className="border-b border-slate-100"><td className="py-2.5 pr-4 font-mono text-slate-500">0:59</td><td className="py-2.5 pr-4">1 min</td><td className="py-2.5">Buffer / wrap.</td></tr>
                   </tbody>
                 </table>

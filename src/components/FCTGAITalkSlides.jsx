@@ -13,7 +13,7 @@ import FCTGAIFlowDiagram, { FCTGAIFlowCaption } from './FCTGAIFlowDiagram'
 import FCTGMultiAgentDiagram, { FCTGMultiAgentCaption } from './FCTGMultiAgentDiagram'
 import FCTGBodyAnalogyDiagram from './FCTGBodyAnalogyDiagram'
 
-const SLIDE_COUNT = 44
+const SLIDE_COUNT = 43
 
 /* Slide quotes — Rick Rubin from The Way of Code; Henry Dreyfuss for Looking back */
 const FCTG_SLIDE_QUOTES = {
@@ -58,10 +58,8 @@ const FCTG_SLIDE_QUOTES = {
   38: null,
   39: null,
   40: null,
-  41: null,
-  42: { quote: 'Empty, yet inexhaustible, fathomless and eternal. Source is the ancestor of elegant patterns.', attribution: '— Rick Rubin, The Way of Code' },
-  43: null,
-  44: null,
+  41: { quote: 'Empty, yet inexhaustible, fathomless and eternal. Source is the ancestor of elegant patterns.', attribution: '— Rick Rubin, The Way of Code' },
+  42: null,
 }
 
 function SlideQuote({ slideIndex }) {
@@ -614,29 +612,22 @@ function FCTGAITalkSlides() {
           <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
         </div>
       )}
-      {/* Slide 40: Activity run sheet */}
+      {/* Slide 40: What we hope you take away */}
       {slideIndex === 40 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
         </div>
       )}
-      {/* Slide 41: What we hope you take away */}
+      {/* Slide 41: Opportunity */}
       {slideIndex === 41 && (
-        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
-          <ParticleBackground variant="agents" />
-          <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
-        </div>
-      )}
-      {/* Slide 42: Opportunity */}
-      {slideIndex === 42 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-mesh" aria-hidden />
         </div>
       )}
-      {/* Slide 43: Thank you */}
-      {slideIndex === 43 && (
+      {/* Slide 42: Thank you */}
+      {slideIndex === 42 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
@@ -649,7 +640,7 @@ function FCTGAITalkSlides() {
         {slideIndex >= 8 && slideIndex <= 14 && <ChapterLabel>Monumental moments</ChapterLabel>}
         {slideIndex >= 15 && slideIndex <= 26 && <ChapterLabel>Building momentum</ChapterLabel>}
         {slideIndex >= 27 && slideIndex <= 37 && <ChapterLabel>Technology</ChapterLabel>}
-        {slideIndex >= 38 && slideIndex <= 40 && <ChapterLabel>Activity</ChapterLabel>}
+        {slideIndex >= 38 && slideIndex <= 39 && <ChapterLabel>Activity</ChapterLabel>}
         {/* Slide 1: Title */}
         {slideIndex === 0 && (
         <Slide
@@ -1551,7 +1542,7 @@ function FCTGAITalkSlides() {
                 <p className="text-[11px] md:text-xs text-slate-400">Best for: complex systems, refactoring, CI/CD, production-level work.</p>
               </div>
             </div>
-            <p className="mt-8 md:mt-10 text-center text-slate-400 text-sm md:text-base max-w-2xl mx-auto">Combine both: vibe for brainstorming and prototypes; agentic for reliable execution and maintenance.</p>
+            <p className="mt-8 md:mt-10 text-center text-slate-400 text-sm md:text-base max-w-2xl mx-auto">Same tool, two styles. Combine both: vibe for brainstorming and prototypes; agentic for reliable execution and maintenance.</p>
           </div>
         </Slide>
         )}
@@ -1899,6 +1890,7 @@ function FCTGAITalkSlides() {
             <div className="text-center mb-4 md:mb-5">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Productivity in this area</h2>
               <p className="fctg-subtitle mt-1">What to measure when design system + agent work together.</p>
+              <p className="mt-1.5 text-xs text-slate-500">Measure: revision count, handoff rounds, time to production-ready.</p>
             </div>
             <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 p-4 md:p-5 mb-5 md:mb-6">
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
@@ -1908,7 +1900,7 @@ function FCTGAITalkSlides() {
                   { label: 'Faster to production-ready UI', desc: 'Agent applies tokens and components' },
                   { label: 'More time on research, flows, craft', desc: 'You focus where judgment matters' },
                 ].map(({ label, desc }) => (
-                  <div key={label} className="flex flex-col gap-0.5 rounded-lg border border-cyan-500/20 bg-cyan-950/30 px-3 py-2.5">
+                  <div key={label} className="flex flex-col gap-0.5 rounded-lg border border-cyan-500/20 bg-cyan-950/30 px-3 py-2.5 text-center">
                     <span className="text-sm font-semibold text-cyan-200">{label}</span>
                     <span className="text-xs text-cyan-300/80">{desc}</span>
                   </div>
@@ -1922,12 +1914,13 @@ function FCTGAITalkSlides() {
                 { title: 'Specs in docs', text: 'Figma, Markdown, Storybook. Agent reads and applies.' },
                 { title: 'Or use a library', text: 'Chakra, Radix, Mantine, Polaris. Agent uses primitives.' },
               ].map(({ title, text }) => (
-                <div key={title} className="fctg-card fctg-card-compact fctg-tips-card py-1.5 px-2 md:py-2 md:px-2.5">
+                <div key={title} className="fctg-card fctg-card-compact fctg-tips-card py-1.5 px-2 md:py-2 md:px-2.5 text-center">
                   <h3 className="fctg-card-title font-semibold">{title}</h3>
                   <p className="fctg-card-text mt-0.5">{text}</p>
                 </div>
               ))}
             </div>
+            <p className="mt-4 text-center text-xs text-slate-500">Works best when the design system is documented and in code.</p>
           </div>
         </Slide>
         )}
@@ -1953,7 +1946,7 @@ function FCTGAITalkSlides() {
                   </span>
                 ))}
               </div>
-              <p className="text-xs text-cyan-400/80 text-center">CI runs on push (GitHub Actions).</p>
+              <p className="text-xs text-cyan-400/80 text-center">CI on push (GitHub Actions).</p>
               <div className="grid gap-2 md:gap-3 sm:grid-cols-2">
                 <div className="fctg-card fctg-card-compact fctg-vibe-directive-card">
                   <h5 className="text-[10px] md:text-[11px] font-semibold uppercase tracking-wider text-violet-400 mb-1">Vibe</h5>
@@ -1964,7 +1957,7 @@ function FCTGAITalkSlides() {
                   <p className="fctg-card-text mt-0">Multi-step, autonomous. &quot;Add test coverage for the checkout flow — unit tests and an E2E with Playwright.&quot;</p>
                 </div>
               </div>
-              <p className="text-xs text-cyan-400/80 text-center">This deck: 75 tests — unit, integration, E2E. Full coverage uncovers gaps; thorough testing keeps changes from breaking what works.</p>
+              <p className="text-xs text-cyan-400/80 text-center">This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set coverage. Coverage finds gaps; tests protect what works.</p>
             </div>
           </div>
         </Slide>
@@ -2001,34 +1994,33 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 36: Activity — Vibe vs directive showdown */}
+        {/* Slide 36: Activity — Level up to agentic */}
         {slideIndex === 38 && (
         <Slide transparent className="items-center justify-center">
-          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 md:px-6 py-4 md:py-6">
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-7xl px-4 md:px-6 py-4 md:py-6">
             <div className="text-center mb-4 md:mb-5">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Vibe vs directive showdown</h2>
-              <p className="text-sm text-cyan-200/90 mt-2">Same problem, two modes. Pairs pick team names.</p>
+              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Level up to agentic</h2>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
-              <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 p-3 md:p-4">
-                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-cyan-400 mb-1">Problem</h4>
-                <p className="text-xs md:text-sm text-cyan-200/90">How might we design a booking flow for a Moon trip?</p>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-4 max-w-7xl mx-auto">
+              <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 p-3 md:p-4 text-center">
+                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-cyan-400 mb-1.5">Problem</h4>
+                <p className="text-[11px] md:text-xs text-cyan-200/90">How might we create a Moon trip booking flow that&apos;s easy and enjoyable for customers to use?</p>
               </div>
-              <div className="rounded-xl border border-violet-500/25 bg-violet-950/20 p-3 md:p-4">
-                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-violet-400 mb-1">Format</h4>
-                <p className="text-xs md:text-sm text-cyan-200/90">Show & tell: we vote on the clearest, most usable flow. Bragging rights for the winners.</p>
+              <div className="rounded-xl border border-violet-500/25 bg-violet-950/20 p-3 md:p-4 text-center">
+                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-violet-400 mb-1.5">Setup</h4>
+                <p className="text-[11px] md:text-xs text-cyan-200/90">Work in pairs. <a href="https://miro.com/app/board/uXjVG-nWxPQ=/" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">Miro</a> for collaboration; <a href="https://claude.ai" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">Claude Code</a> for the agent.</p>
               </div>
-              <div className="rounded-xl border border-emerald-500/25 bg-emerald-950/20 p-3 md:p-4">
-                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-1">What we&apos;re practising</h4>
-                <p className="text-xs md:text-sm text-cyan-200/90">Choosing vibe vs directive, writing clear prompts, steering when it drifts — and taking this workflow into real work.</p>
+              <div className="rounded-xl border border-emerald-500/25 bg-emerald-950/20 p-3 md:p-4 text-center">
+                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-1.5">Process</h4>
+                <p className="text-[11px] md:text-xs text-cyan-200/90">Start with vibe (aim to iterate 2–3 times), then level up to agentic. Write clear prompts. Redirect the agent when it drifts.</p>
               </div>
-              <div className="rounded-xl border border-amber-500/25 bg-amber-950/20 p-3 md:p-4">
-                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-amber-400 mb-1">Outputs</h4>
-                <p className="text-xs md:text-sm text-cyan-200/90">Prompts, agent responses, and generated UI/copy</p>
+              <div className="rounded-xl border border-amber-500/25 bg-amber-950/20 p-3 md:p-4 text-center">
+                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-amber-400 mb-1.5">Outputs</h4>
+                <p className="text-[11px] md:text-xs text-cyan-200/90">Reusable prompts, agent responses, and generated UI/copy</p>
               </div>
-              <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 p-3 md:p-4">
-                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-slate-300 mb-1">Logistics</h4>
-                <p className="text-xs md:text-sm text-cyan-200/90"><a href="https://miro.com/app/board/uXjVG-nWxPQ=/" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">Miro</a> for collaboration; <a href="https://chat.openai.com" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">ChatGPT</a>, <a href="https://chat.deepseek.com" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">DeepSeek</a>, or <a href="https://theturbochat.com" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">TurboChat</a> for the agent.</p>
+              <div className="rounded-xl border border-teal-500/25 bg-teal-950/20 p-3 md:p-4 text-center">
+                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-teal-400 mb-1.5">Outcomes</h4>
+                <p className="text-[11px] md:text-xs text-cyan-200/90">Improved prompting skills, comfort with quick iteration, ability to delegate to the agent with confidence</p>
               </div>
             </div>
           </div>
@@ -2040,66 +2032,34 @@ function FCTGAITalkSlides() {
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 md:px-6 py-4 md:py-10">
             <div className="text-center mb-4 md:mb-6">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Activity: Rounds</h2>
+              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Rounds</h2>
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6">
               <div className="rounded-xl border border-violet-500/30 bg-violet-950/20 p-4">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-violet-400">Round 1 · ~15 min</span>
-                <h4 className="mt-2 text-base font-semibold text-cyan-100">Start with vibe</h4>
-                <p className="mt-2 text-sm text-cyan-200/80">Explore flows and tone. Try: &quot;How would you approach designing a booking flow for a Moon trip?&quot; Chat, iterate, go wild.</p>
-                <p className="mt-2 text-xs text-cyan-400/70">Single-shot, iterative. Exploratory.</p>
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-violet-400">Round 1 · ~15 min · Warm-up</span>
+                <h4 className="mt-2 text-sm font-semibold text-cyan-100">Start with vibe</h4>
+                <p className="mt-2 text-xs text-cyan-200/80">Explore flows and tone. Try: &quot;How would you approach designing a booking flow for a Moon trip?&quot; Chat, iterate, go wild.</p>
+                <p className="mt-2 text-[11px] text-cyan-400/70">Quick iterations. Exploratory.</p>
               </div>
               <div className="rounded-xl border border-indigo-500/30 bg-indigo-950/20 p-4">
-                <span className="text-[10px] font-semibold uppercase tracking-wider text-indigo-400">Round 2 · ~25 min</span>
-                <h4 className="mt-2 text-base font-semibold text-cyan-100">Level up to directive</h4>
-                <p className="mt-2 text-sm text-cyan-200/80">Give AI a clear mission. Try: &quot;Create a 3-step booking flow for a Moon trip: step 1 — departure date picker; step 2 — cabin selection (economy, business, first); step 3 — add-ons and terms. Include copy and layout.&quot;</p>
-                <p className="mt-2 text-xs text-cyan-400/70">Multi-step, defined outcome. Goal-driven.</p>
+                <span className="text-[10px] font-semibold uppercase tracking-wider text-indigo-400">Round 2 · ~25 min · Main focus</span>
+                <h4 className="mt-2 text-sm font-semibold text-cyan-100">Level up to agentic</h4>
+                <p className="mt-2 text-xs text-cyan-200/80">Give the agent a clear mission. Try: &quot;Create a 3-step Moon booking flow: date picker, cabin selection (economy, business, first), add-ons and terms. Include copy and layout.&quot;</p>
+                <p className="mt-2 text-[11px] text-cyan-400/70">Agentic: multi-step, delegated. Goal-driven.</p>
               </div>
               <div className="rounded-xl border border-amber-500/30 bg-amber-950/20 p-4">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-400">Round 3 · ~15 min</span>
-                <h4 className="mt-2 text-base font-semibold text-cyan-100">Show & tell</h4>
-                <p className="mt-2 text-sm text-cyan-200/80">Share the best Moon booking outputs — vibe vs directive. Vote on MVP prompt. Quick poll, then wrap.</p>
-                <p className="mt-2 text-sm text-cyan-300/90 italic">Debrief: How could this apply to our Earth bookings?</p>
+                <h4 className="mt-2 text-sm font-semibold text-cyan-100">Show & tell</h4>
+                <p className="mt-2 text-xs text-cyan-200/80">Share the clearest Moon booking outputs. Vote on which flow we'd ship. Quick poll, then wrap.</p>
+                <p className="mt-2 text-xs text-cyan-300/90 italic">Debrief: How could this apply to our Earth bookings?</p>
               </div>
             </div>
           </div>
         </Slide>
         )}
 
-        {/* Slide 38: Activity — run sheet */}
-        {slideIndex === 40 && (
-        <Slide transparent className="items-center justify-center">
-          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 md:px-6 py-4 md:py-10">
-            <div className="text-center mb-4 md:mb-6">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Activity: Run sheet</h2>
-              <p className="fctg-subtitle mt-1">1 hour total</p>
-            </div>
-            <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 overflow-x-auto px-4 md:px-6 py-4">
-              <table className="w-full text-sm md:text-base text-left">
-                <thead>
-                  <tr className="border-b border-cyan-500/30">
-                    <th className="py-2 pr-4 font-semibold text-cyan-200">Time</th>
-                    <th className="py-2 pr-4 font-semibold text-cyan-200">Duration</th>
-                    <th className="py-2 font-semibold text-cyan-200">Step</th>
-                  </tr>
-                </thead>
-                <tbody className="text-cyan-200/90">
-                  <tr className="border-b border-cyan-500/20"><td className="py-2 pr-4 font-mono text-cyan-400">0:00</td><td className="py-2 pr-4">2 min</td><td className="py-2">Intro: Problem = Moon booking flow. Explain vibe vs directive. Pair up, pick team names.</td></tr>
-                  <tr className="border-b border-cyan-500/20"><td className="py-2 pr-4 font-mono text-cyan-400">0:02</td><td className="py-2 pr-4">15 min</td><td className="py-2"><strong>Round 1 — Vibe:</strong> Explore flows and tone. Chat, iterate.</td></tr>
-                  <tr className="border-b border-cyan-500/20"><td className="py-2 pr-4 font-mono text-cyan-400">0:17</td><td className="py-2 pr-4">2 min</td><td className="py-2">Transition: Explain directive.</td></tr>
-                  <tr className="border-b border-cyan-500/20"><td className="py-2 pr-4 font-mono text-cyan-400">0:19</td><td className="py-2 pr-4">25 min</td><td className="py-2"><strong>Round 2 — Directive:</strong> Create 3-step booking flow. One prompt, full outcome.</td></tr>
-                  <tr className="border-b border-cyan-500/20"><td className="py-2 pr-4 font-mono text-cyan-400">0:44</td><td className="py-2 pr-4">15 min</td><td className="py-2"><strong>Round 3 — Show & tell:</strong> Share outputs. Vote on MVP prompt. Debrief: How could this apply to our Earth bookings? Wrap.</td></tr>
-                  <tr className="border-b border-cyan-500/20"><td className="py-2 pr-4 font-mono text-cyan-400">0:59</td><td className="py-2 pr-4">1 min</td><td className="py-2">Buffer / wrap.</td></tr>
-                </tbody>
-              </table>
-            </div>
-            <p className="mt-4 text-sm text-cyan-400/70">Tip: Keep time visible. Call out at 5 min left in each round. For remote, use breakout rooms during rounds.</p>
-          </div>
-        </Slide>
-        )}
-
-      {/* Slide 41: What we hope you take away */}
-      {slideIndex === 41 && (
+      {/* Slide 40: What we hope you take away */}
+      {slideIndex === 40 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:px-8 md:py-6">
             <div className="text-center mb-4 md:mb-6">
@@ -2110,6 +2070,8 @@ function FCTGAITalkSlides() {
               <p className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-slate-400 mb-2">Higher-level</p>
               <ul className="text-left text-xs md:text-sm text-slate-300 space-y-1.5 list-disc list-inside mb-4">
                 <li>Designers who work with AI will have an edge — amplify empathy, judgment, creativity; keep the human at the centre.</li>
+                <li>Push further than traditional engineering and dev teams — AI lets designers take on more.</li>
+                <li>Spend the time to get comfortable — the payoff is empowerment, not replacement.</li>
                 <li>Stay in the driver&apos;s seat: steer agents; don&apos;t just accept outputs.</li>
                 <li>Choose the right mode for the job — explore (vibe) or specify (directive).</li>
                 <li>Treat agents as outcome-drivers, not just output-generators.</li>
@@ -2129,33 +2091,34 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-      {/* Slide 42: Opportunity */}
-      {slideIndex === 42 && (
+      {/* Slide 41: Opportunity */}
+      {slideIndex === 41 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl">
             <div className="max-w-md mx-auto text-center">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>An opportunity of a lifetime</h2>
+              <div className="flex justify-center w-full">
+                <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>An opportunity of a lifetime</h2>
+              </div>
               <p className="fctg-subtitle text-base md:text-xl leading-relaxed mt-2 md:mt-4">
-            AI won&apos;t replace designers — but designers who work with AI will have an edge. Amplify empathy, judgment, creativity. Embrace the tools, question the outputs, keep the human at the centre.
+            Designers who work with AI will have an edge. Embrace the tools, question the outputs, keep the human at the centre.
           </p>
-              <p className="mt-3 text-sm md:text-base text-slate-400">Pushing further than traditional engineering and dev teams.</p>
             <div className="mt-4 md:mt-10 flex flex-wrap justify-center gap-2 md:gap-3">
-            {['AI is in its infancy', 'Creating massive value', 'Move fast', 'Understand where needed', 'Pause and reflect — The speed of thinking and questioning itself is incredible'].map((tag) => (
+            {['AI is in its infancy', 'Creating value', 'Maximize creativity', 'Move fast', 'Pause and reflect'].map((tag) => (
               <span key={tag} className="fctg-tag">
                 {tag}
               </span>
             ))}
             </div>
             <div className="mt-4 md:mt-10 text-center">
-              <SlideQuote slideIndex={42} />
+              <SlideQuote slideIndex={41} />
             </div>
             </div>
           </div>
         </Slide>
         )}
 
-      {/* Slide 43: Thank you */}
-      {slideIndex === 43 && (
+      {/* Slide 42: Thank you */}
+      {slideIndex === 42 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition flex flex-col items-center justify-center text-center px-8 min-h-[60vh]">
             <h2 className="fctg-heading !text-[2.5rem] md:!text-[3rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Thank you</h2>

@@ -51,7 +51,7 @@ Create **frames** (or sections) for each area. Suggested layout: left-to-right o
 
 **Title:** Show & tell — Best outputs
 
-**Instructions:** Pairs share their best Mars checkout outputs. Vote on MVP prompt (add voting dots or reactions).
+**Instructions:** Pairs share their best Mars checkout outputs. Vote on which flow we'd ship (add voting dots or reactions).
 
 ---
 
