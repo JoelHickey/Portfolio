@@ -515,7 +515,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 **Body:**
 - **Agentic** — Better prompting, quick iteration, confident delegation. Stay in the driver's seat — steer when it drifts. Choose the right mode: vibe vs directive. Treat agents as outcome-drivers; clear prompts.
-- **Broader (AI / design)** — Push further than eng and dev teams. Point at your design system. Reduce the noise — focus on judgment and creativity.
+- **Broader (AI / design)** — Push further than eng and dev teams. Point at your design system. Small, high-performing teams will generate more and better ideas with AI in the loop. Reduce the noise — focus on judgment and creativity.
 - **Philosophical** — Craft and what lasts; keep questioning the fundamentals.
 
 ---
@@ -524,7 +524,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 **Title:** An opportunity of a lifetime
 
-**Body:** Designers who work with AI will have an edge. Embrace the tools, question the outputs, keep the human at the centre.
+**Body:** Designers who work with AI will have an edge. Embrace the tools, question the outputs, keep the human at the centre. Small, high-performing teams generating and refining ideas with AI will lead the way.
 
 **Tags:** AI is in its infancy, Massive value, Maximise creativity, Move fast, Pause and reflect
 

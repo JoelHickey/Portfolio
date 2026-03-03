@@ -970,14 +970,14 @@ function FCTGAITalkSlides() {
             <div className="max-w-md mx-auto md:mx-0 text-center md:text-left">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] md:whitespace-nowrap inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Strength</h2>
               <p className="fctg-subtitle mt-1">AI guided me through a structural design problem</p>
-              <div className="mt-6 flex flex-col gap-4 min-w-0 overflow-hidden" aria-hidden>
+              <div className="mt-6 flex flex-col gap-4 min-w-0 overflow-visible" aria-hidden>
                 <style>{`
                   @keyframes fctg-strength-prompt-type { from { width: 0; } to { width: 30ch; } }
-                  @keyframes fctg-strength-agent-type { from { width: 0; } to { width: 75ch; } }
+                  @keyframes fctg-strength-agent-type { from { width: 0; } to { width: 85ch; } }
                   @keyframes fctg-strength-agent-type-mobile { from { width: 0; } to { width: 100%; } }
                   @keyframes fctg-strength-cursor { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
                   .fctg-strength-prompt-type { display: inline-block; overflow: hidden; white-space: nowrap; width: 0; animation: fctg-strength-prompt-type 1.5s steps(30) 0s forwards; }
-                  .fctg-strength-agent-type { display: inline-block; overflow: hidden; white-space: nowrap; width: 0; animation: fctg-strength-agent-type 2.5s steps(75) 2s forwards; }
+                  .fctg-strength-agent-type { display: inline-block; overflow: hidden; white-space: nowrap; width: 0; animation: fctg-strength-agent-type 2.5s steps(85) 2s forwards; }
                   .fctg-strength-prompt-type::after, .fctg-strength-agent-type::after { content: '|'; animation: fctg-strength-cursor 0.7s step-end infinite; margin-left: 1px; color: #22d3ee; }
                   @media (max-width: 767px) {
                     .fctg-strength-agent-type { white-space: normal; animation: fctg-strength-agent-type-mobile 2.5s steps(75) 2s forwards; }
@@ -2223,6 +2223,7 @@ function FCTGAITalkSlides() {
               <ul className="text-slate-300 text-xs md:text-sm space-y-1.5 list-none pl-0 mb-4">
                 <li>Push further than eng and dev teams.</li>
                 <li>Point at your design system.</li>
+                <li>Small, high-performing teams will generate more and better ideas with AI in the loop.</li>
                 <li>Reduce the noise — focus on judgment and creativity.</li>
               </ul>
               <p className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-teal-400/90 mb-2">Philosophical</p>
@@ -2242,9 +2243,10 @@ function FCTGAITalkSlides() {
               </div>
               <p className="fctg-subtitle text-base md:text-xl leading-relaxed mt-2 md:mt-4">
             Designers who work with AI will have an edge.<br />
-            Embrace the tools, question the outputs, keep the human at the centre.
+            Embrace the tools, question the outputs, keep the human at the centre.<br />
+            <span className="text-cyan-200/90">Small, high-performing teams generating and refining ideas with AI will lead the way.</span>
           </p>
-            <div className="mt-4 md:mt-10 w-full max-w-2xl mx-auto flex flex-wrap justify-center gap-2 md:gap-3">
+            <div className="mt-4 md:mt-10 w-full max-w-2xl mx-auto flex flex-nowrap justify-center gap-2 md:gap-3 overflow-x-auto">
             {['AI is in its infancy', 'Massive value', 'Maximise creativity', 'Move fast', 'Pause and reflect'].map((tag) => (
               <span key={tag} className="fctg-tag whitespace-nowrap shrink-0">
                 {tag}
