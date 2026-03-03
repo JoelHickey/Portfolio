@@ -1,4 +1,4 @@
-# Miro Board Setup: Mars Booking Flow Activity
+# Miro Board Setup: Moon Booking Flow Activity
 
 Use this guide to set up a Miro board for the vibe → agentic workshop. Copy the structure below into a new Miro board.
 
@@ -12,10 +12,10 @@ Create **frames** (or sections) for each area. Suggested layout: left-to-right o
 
 ### Frame 1: Problem & links
 
-**Title:** Mars booking flow — Problem to solve
+**Title:** Moon booking flow — Problem to solve
 
 **Content:**
-- **Problem:** Design the checkout for a trip to Mars: departure dates, cabin selection, add-ons.
+- **Problem:** Design the checkout for a trip to Moon: departure dates, cabin selection, add-ons.
 - **Links (stickies or text):**
   - [ChatGPT](https://chat.openai.com)
   - [DeepSeek](https://chat.deepseek.com)
@@ -28,9 +28,9 @@ Create **frames** (or sections) for each area. Suggested layout: left-to-right o
 **Title:** Round 1 — Vibe (exploratory)
 
 **Stickies / text to add:**
-- "How would you approach designing a checkout for a Mars trip? What should we consider?"
+- "How would you approach designing a checkout for a Moon trip? What should we consider?"
 - "What tone should a space-travel booking flow have?"
-- "What's the most important thing to get right in a Mars checkout?"
+- "What's the most important thing to get right in a Moon checkout?"
 
 **Instructions:** Pairs paste their vibe prompts and AI outputs here.
 
@@ -41,7 +41,7 @@ Create **frames** (or sections) for each area. Suggested layout: left-to-right o
 **Title:** Round 2 — Agentic (goal-driven)
 
 **Stickies / text to add:**
-- "Create a 3-step checkout for a Mars trip: step 1 — departure date picker; step 2 — cabin selection (economy, business, first); step 3 — add-ons and terms. Include copy and layout."
+- "Create a 3-step checkout for a Moon trip: step 1 — departure date picker; step 2 — cabin selection (economy, business, first); step 3 — add-ons and terms. Include copy and layout."
 
 **Instructions:** Pairs paste their agentic prompts and AI outputs here.
 
@@ -51,7 +51,7 @@ Create **frames** (or sections) for each area. Suggested layout: left-to-right o
 
 **Title:** Show & tell — Best outputs
 
-**Instructions:** Pairs share their best Mars checkout outputs. Vote on which flow we'd ship (add voting dots or reactions).
+**Instructions:** Pairs share their best Moon checkout outputs. Vote on which flow we'd ship (add voting dots or reactions).
 
 ---
 
@@ -74,7 +74,8 @@ Create **frames** (or sections) for each area. Suggested layout: left-to-right o
 2. Add 5 frames (or use one board with 5 clearly labeled areas).
 3. Copy the content above into each frame.
 4. Share the board link with participants before the workshop.
-5. During the workshop: pairs add their prompts and outputs as stickies or screenshots.
+5. **Before Round 3:** Enable voting (e.g. Voting or dot voting in Miro) in the Show & tell frame so everyone can vote on which flow to ship.
+6. During the workshop: pairs add their prompts and outputs as stickies or screenshots.
 
 ---
 

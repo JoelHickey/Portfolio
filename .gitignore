@@ -29,6 +29,11 @@ dist-ssr
 *.sln
 *.sw?
 
+# Agent Lineage (local only — do not commit)
+docs/LINEAGE.md
+docs/HANDOVER-PROMPT.md
+docs/AGENT-LINEAGE-SUMMARY.md
+
 # Playwright
 /test-results/
 /playwright-report/

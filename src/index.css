@@ -708,6 +708,7 @@ html.fctg-v1-scroll-snap .fctg-v1-snap-section {
   letter-spacing: 0.025em;
   color: rgb(165 243 252);
   transition: box-shadow 0.2s ease, border-color 0.2s ease;
+  white-space: nowrap;
 }
 .fctg-tag:hover {
   box-shadow: 0 0 16px rgba(34, 211, 238, 0.2);

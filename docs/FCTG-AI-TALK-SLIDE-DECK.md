@@ -1,7 +1,7 @@
 # FCTG AI Talk — Slide Deck Copy
 
 Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx`.  
-43 slides (Slide 1 = index 0 … Slide 43 = index 42). Titles, subtitles, and body copy only.
+45 slides (Slide 1 = index 0 … Slide 45 = index 44). Titles, subtitles, and body copy only. *Three pillars (Invigoration, innovation, impact) moved to near the end, just before What we hope you take away.*
 
 ---
 
@@ -9,7 +9,9 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 **Title:** Invigoration, innovation and impact
 
-**Subtitle:** Presented to Flight Centre Travel Group's (FCTG) Global Design Team, March 2026
+**Subtitle:** How AI is changing design — and how we'll get there.
+
+**Footer:** Presented to Flight Centre Travel Group's (FCTG) Global Design Team, March 2026
 
 ---
 
@@ -25,11 +27,23 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 **Title:** What we'll cover
 
-**Subtitle:** Concepts, monumental moments, building momentum, technology — and a hands on activity.
+**Subtitle:** Concepts, monumental moments, building momentum, technology.
 
 ---
 
 ## Slide 4
+
+**Title:** State of Design 2026
+
+**Body:**
+- Only 31% of designers use AI for core creative work — vs 59% of developers.
+- You're the early majority who get to shape AI for travel design at FCTG.
+
+**Source:** [Figma's 2025 AI report](https://www.figma.com/reports/ai-2025)
+
+---
+
+## Slide 5
 
 **Title:** Looking back to look ahead
 
@@ -43,7 +57,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 5
+## Slide 6
 
 **Title:** Questioning the fundamentals
 
@@ -53,15 +67,17 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 6
+## Slide 8
 
-**Title:** The designer process
+**Title:** The design process
 
 **Subtitle:** Does productivity still mean the same thing?
 
+**Phases (below flow graphic):** Discover → Define → Develop → Deliver
+
 ---
 
-## Slide 7
+## Slide 9
 
 **Title:** The wider environment
 
@@ -69,7 +85,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 8
+## Slide 10
 
 **Title:** Energy
 
@@ -79,7 +95,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 9
+## Slide 11
 
 **Title:** Strength
 
@@ -91,7 +107,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 10
+## Slide 12
 
 **Title:** Speed
 
@@ -103,7 +119,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 11
+## Slide 13
 
 **Title:** Iteration
 
@@ -111,7 +127,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 12
+## Slide 14
 
 **Title:** Imagination
 
@@ -119,7 +135,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 13
+## Slide 15
 
 **Title:** Calmness
 
@@ -129,7 +145,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 14
+## Slide 16
 
 **Title:** Mystical Code
 
@@ -137,7 +153,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 15
+## Slide 17
 
 **Title:** Empowerment
 
@@ -147,7 +163,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 16
+## Slide 18
 
 **Title:** Get started and stay grounded
 
@@ -166,7 +182,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 17
+## Slide 19
 
 **Title:** What is an AI model?
 
@@ -179,7 +195,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 18
+## Slide 20
 
 **Title:** Inside the model
 
@@ -191,7 +207,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 19
+## Slide 21
 
 **Title:** What is an AI agent?
 
@@ -205,7 +221,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 20
+## Slide 21
 
 **Title:** Model or agent?
 
@@ -217,7 +233,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 21
+## Slide 23
 
 **Title:** Agent architectures
 
@@ -231,7 +247,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 22
+## Slide 24
 
 **Title:** What makes behaviour agentic?
 
@@ -241,7 +257,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 23
+## Slide 25
 
 **Title:** Vibe coding and Agentic coding
 
@@ -255,7 +271,7 @@ Same tool, two styles. Combine both: vibe for brainstorming and prototypes; agen
 
 ---
 
-## Slide 24
+## Slide 26
 
 **Title:** Prompting styles
 
@@ -271,7 +287,7 @@ Same agent, either style. Choose to fit the task.
 
 ---
 
-## Slide 25
+## Slide 27
 
 **Title:** Prompt clarity
 
@@ -283,7 +299,7 @@ Same agent, either style. Choose to fit the task.
 
 ---
 
-## Slide 26
+## Slide 28
 
 **Title:** Context and continuity
 
@@ -293,7 +309,7 @@ Same agent, either style. Choose to fit the task.
 
 ---
 
-## Slide 27
+## Slide 29
 
 **Title:** Intervention
 
@@ -305,7 +321,7 @@ Same agent, either style. Choose to fit the task.
 
 ---
 
-## Slide 28
+## Slide 30
 
 **Title:** Agentic & designer productivity
 
@@ -321,7 +337,23 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 29
+## Slide 31
+
+**Title:** Then vs Now
+
+**Subtitle:** Across discover, define, develop, deliver — Codegen vs how I'd work now. Bar = relative manual/spec effort.
+
+**Layout:** Bar chart / diagram. One row per phase (Discover, Define, Develop, Deliver); each row has Then bar (full = 100%) and Now bar (reduced %, same scale). Legend: Then (Codegen) | Now (review & refine). Short captions under each row.
+
+**Body (by phase):**
+- **Discover** — Then: Workshops, problem discovery, matrix analysis; manual synthesis; heavy alignment across time zones. Now: Same discovery; AI can synthesise and map flows from findings so you spend less time manually mapping.
+- **Define** — Then: Flowcharts and annotated prototypes to define direction for Codegen; intent lived in docs. Now: AI generates flows and structure; you set direction, review and refine. No spec treadmill.
+- **Develop** — Then: Handoff to Codegen with flowcharts and specs; 3‑month cycles, 12hr feedback; translation gaps, context lost in docs. Now: Use actual tech (Cursor, Claude, design system) to generate real prototypes → review, refine and test; agent keeps context. UI: e.g. 9 screens → 3.
+- **Deliver** — Then: Codegen delivered in HELiO; UAT, pilots, training across time zones; long cycles for fixes. Now: Faster iteration; fewer gaps from shared context; ship and learn with less delay. Productivity gains carry through.
+
+---
+
+## Slide 32
 
 **Title:** Tech stack
 
@@ -333,7 +365,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 30
+## Slide 33
 
 **Title:** Pipeline
 
@@ -343,7 +375,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 31
+## Slide 33
 
 **Title:** Cursor
 
@@ -353,7 +385,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 32
+## Slide 34
 
 **Title:** When you prompt
 
@@ -363,7 +395,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 33
+## Slide 34
 
 **Title:** GitHub
 
@@ -371,7 +403,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 34
+## Slide 36
 
 **Title:** Vercel
 
@@ -381,7 +413,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 35
+## Slide 37
 
 **Title:** Design systems
 
@@ -391,7 +423,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 36
+## Slide 38
 
 **Title:** Design system in practice
 
@@ -414,7 +446,7 @@ Works best when the design system is documented and in code.
 
 ---
 
-## Slide 37
+## Slide 39
 
 **Title:** Testing
 
@@ -428,7 +460,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 38
+## Slide 40
 
 **Title:** Helpful tips
 
@@ -438,7 +470,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 39
+## Slide 41
 
 **Title:** Level up to agentic
 
@@ -451,7 +483,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 40
+## Slide 43
 
 **Title:** Rounds
 
@@ -462,21 +494,33 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 41
+## Slide 43 (Three pillars — moved to near end)
 
-**Title:** What we hope you take away
+**Title:** Invigoration, innovation, impact
 
-**Subtitle:** Agentic outcomes
+**Subtitle:** In travel design terms
 
 **Body:**
-- **Higher-level:** Designers who work with AI will have an edge — amplify empathy, judgment, creativity; keep the human at the centre. Push further than traditional engineering and dev teams — AI lets designers take on more. Spend the time to get comfortable — the payoff is empowerment, not replacement. Stay in the driver's seat: steer agents; don't just accept outputs. Choose the right mode for the job — explore (vibe) or specify (directive). Treat agents as outcome-drivers, not just output-generators. Like in mixing: reduce the noise so you can focus on the signal.
-- **In practice:** Vibe vs directive — Use each intentionally when prompting agents. Clear prompts — What, where, rules; fewer revision loops. Point at design system — Tokens, docs, or a library. Intervene when it drifts — Don't expect perfection; steer when it loops. Try one this week — Small agentic task in Cursor.
-
-Productivity that serves quality — fewer revision loops, clearer briefs, and time to focus on judgment and creativity.
+- **Invigoration** — *Re-energising creativity* — Beat creative block in <60 seconds. Reclaim 4–6 hours/week for flows and usability.
+- **Innovation** — *New tools & processes* — Style-consistent UI, auto-responsive layouts, and design-system–friendly components; user flows and itinerary visuals at scale.
+- **Impact** — *Measurable outcomes* — 2–3× faster from concept to shipped UI; higher A/B test winners; direct lifts in booking conversion from better UX.
 
 ---
 
-## Slide 42
+## Slide 44
+
+**Title:** What we hope you take away
+
+**Subtitle:** Outcomes
+
+**Body:**
+- **Agentic** — Better prompting, quick iteration, confident delegation. Stay in the driver's seat — steer when it drifts. Choose the right mode: vibe vs directive. Treat agents as outcome-drivers; clear prompts.
+- **Broader (AI / design)** — Push further than eng and dev teams. Point at your design system. Reduce the noise — focus on judgment and creativity.
+- **Philosophical** — Craft and what lasts; keep questioning the fundamentals.
+
+---
+
+## Slide 45
 
 **Title:** An opportunity of a lifetime
 
@@ -488,7 +532,7 @@ Productivity that serves quality — fewer revision loops, clearer briefs, and t
 
 ---
 
-## Slide 43
+## Slide 46
 
 **Title:** Thank you
 

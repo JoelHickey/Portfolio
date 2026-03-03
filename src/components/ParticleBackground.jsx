@@ -10,6 +10,7 @@ const VARIANTS = {
   iteration: { waveSpeed: 0.35, pulseSpeed: 0.25, burstScale: 0.38, lerpSpeed: 0.06, palette: [{ r: 34, g: 211, b: 238 }, { r: 94, g: 234, b: 212 }, { r: 129, g: 140, b: 248 }] },
   imagination: { waveSpeed: 0.55, pulseSpeed: 0.45, burstScale: 0.32, lerpSpeed: 0.09, palette: [{ r: 167, g: 139, b: 250 }, { r: 34, g: 211, b: 238 }, { r: 236, g: 72, b: 153 }] },
   empowerment: { waveSpeed: 0.3, pulseSpeed: 0.2, burstScale: 0.42, lerpSpeed: 0.07, palette: [{ r: 34, g: 211, b: 238 }, { r: 45, g: 212, b: 191 }, { r: 129, g: 140, b: 248 }, { r: 167, g: 139, b: 250 }, { r: 232, g: 121, b: 249 }, { r: 236, g: 72, b: 153 }], orbital: true, trailAlpha: 0.2, opacityMultiplier: 3, sizeMultiplier: 1.5, particleCount: 900 },
+  title: { waveSpeed: 0.4, pulseSpeed: 0.25, burstScale: 0.42, lerpSpeed: 0.06, palette: [{ r: 34, g: 211, b: 238 }, { r: 45, g: 212, b: 191 }, { r: 129, g: 140, b: 248 }, { r: 167, g: 139, b: 250 }, { r: 232, g: 121, b: 249 }, { r: 236, g: 72, b: 153 }], orbital: true, trailAlpha: 0.2, opacityMultiplier: 3, sizeMultiplier: 1.5, particleCount: 900, wavy: true, waveAmplitude: 48, waveAmplitude2: 32 },
   mystical: { waveSpeed: 0.5, pulseSpeed: 0.4, burstScale: 0.36, lerpSpeed: 0.085, palette: [{ r: 129, g: 140, b: 248 }, { r: 167, g: 139, b: 250 }, { r: 34, g: 211, b: 238 }] },
   calmness: { waveSpeed: 0.08, pulseSpeed: 0.12, burstScale: 0.32, lerpSpeed: 0.04, palette: [{ r: 34, g: 211, b: 238 }, { r: 6, g: 182, b: 212 }, { r: 94, g: 234, b: 212 }], breathing: true },
   momentum: { waveSpeed: 0.8, pulseSpeed: 0.6, burstScale: 0.5, lerpSpeed: 0.12, palette: [{ r: 34, g: 211, b: 238 }, { r: 129, g: 140, b: 248 }, { r: 167, g: 139, b: 250 }, { r: 236, g: 72, b: 153 }], multidirectional: true },
@@ -111,7 +112,7 @@ function ParticleBackground({ className = '', variant = 'strength' }) {
     }
 
     let time = 0
-    const { waveSpeed, pulseSpeed, burstScale, lerpSpeed, breathing, multidirectional, orbital, brainShape } = config
+    const { waveSpeed, pulseSpeed, burstScale, lerpSpeed, breathing, multidirectional, orbital, brainShape, wavy, waveAmplitude = 40, waveAmplitude2 = 24 } = config
 
     function getTarget(p) {
       if (orbital) {
@@ -132,6 +133,16 @@ function ParticleBackground({ className = '', variant = 'strength' }) {
         }
 
         const orbitRadius = 80 + p.radius * Math.min(width, height) * 0.35
+        if (wavy) {
+          const wobble1 = Math.sin(time * 0.4 + p.seed2 * 10) * waveAmplitude
+          const wobble2 = Math.sin(time * 0.7 + p.seed * 15) * waveAmplitude2
+          const wobbleY = Math.sin(time * 0.5 + p.seed * 12) * waveAmplitude2 * 0.8
+          const r = orbitRadius + wobble1 + wobble2
+          return {
+            x: centerX + Math.cos(orbitAngle) * r,
+            y: centerY + Math.sin(orbitAngle) * (orbitRadius * 0.7 + wobbleY + wobble2 * 0.6),
+          }
+        }
         const wobble = Math.sin(time * 0.3 + p.seed2 * 10) * 15
         return {
           x: centerX + Math.cos(orbitAngle) * (orbitRadius + wobble),

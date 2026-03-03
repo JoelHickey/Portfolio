@@ -11,7 +11,7 @@ export default defineConfig(({ mode }) => {
   return {
   base: '/',
   server: {
-    open: '/index-ai-preso.html',
+    open: '/',
     port: 4174,
   },
   define: {
@@ -27,6 +27,17 @@ export default defineConfig(({ mode }) => {
   },
   plugins: [
     react(),
+    {
+      name: 'ai-preso-root',
+      configureServer(server) {
+        server.middlewares.use((req, res, next) => {
+          if (req.url === '/' || req.url === '/index.html') {
+            req.url = '/index-ai-preso.html'
+          }
+          next()
+        })
+      },
+    },
     {
       name: 'copy-html',
       closeBundle() {
