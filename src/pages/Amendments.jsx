@@ -59,7 +59,7 @@ function Amendments() {
     { name: 'Three-page guided workflow', description: 'Step-by-step validation with dependency checking.', outcome: 'Selected approach', selected: true },
     { name: 'Inline flow', description: 'Changes made directly within the booking view.', outcome: 'Cluttered interface, unclear validation states', selected: false },
     { name: 'Modal flow', description: 'All changes available in one modal per amendment.', outcome: 'Disrupted context, frustrated users', selected: false },
-    { name: 'Codegen-led solutions', description: 'Technical and financial impacts assessed.', outcome: 'Not used — UX unsatisfactory', selected: false }
+    { name: 'Tool-led solutions', description: 'Technical and financial impacts assessed.', outcome: 'Not used — UX unsatisfactory', selected: false }
   ]
 
   const usabilityMethods = [
@@ -77,7 +77,7 @@ function Amendments() {
   ]
 
   const developmentBullets = [
-    'Design handoff — detailed specs for Codegen with flowcharts and annotated prototypes to reduce ambiguity.',
+    'Design handoff — detailed specs for build with flowcharts and annotated prototypes to reduce ambiguity.',
     'Delivery cycles — 3-month cycles with planned checkpoints across the 5.5-hour time gap.',
     'Real-time collaboration — continuous UI/UX alignment and fast adjustments during build.'
   ]
@@ -91,7 +91,7 @@ function Amendments() {
   ]
 
   const deliveryBullets = [
-    'Global partnership — Codegen delivered within HELiO.',
+    'Global partnership — build delivered within platform.',
     'Cross-functional delivery — engineering, design, ops, and training across time zones.',
     'Pilots first — validate with select markets before global rollout.',
     'Training — materials and sessions for 60+ consultants.',
@@ -398,7 +398,7 @@ function Amendments() {
             <div>
               <h2 className="text-6xl font-semibold text-slate-900 pb-16">Development</h2>
               <p className="max-w-2xl text-lg text-slate-600 leading-relaxed -mt-10 mb-10">
-                Handoff, build, and delivery with Codegen across time zones.
+                Handoff, build, and delivery across time zones.
               </p>
               <div className="space-y-4">
             <ul className="space-y-2 text-sm text-slate-600">

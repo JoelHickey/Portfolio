@@ -1696,45 +1696,42 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 29: Then vs Now — bar chart / diagram by phase (Codegen vs now) */}
+        {/* Slide 29: Then vs Now — bar chart by phase (past projects) — all on one slide */}
         {slideIndex === 28 && (
-        <Slide transparent className="items-center justify-center">
-          <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl px-4 py-4 md:py-8 mx-auto">
-            <div className="text-center mb-4 md:mb-5">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Then vs Now</h2>
-              <p className="fctg-subtitle mt-2 text-slate-400">Across discover, define, develop, deliver — Codegen vs how I&apos;d work now. Bar = relative manual/spec effort.</p>
+        <Slide transparent className="items-center justify-center overflow-y-auto">
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl px-4 py-2 md:py-4 mx-auto">
+            <div className="text-center mb-2 md:mb-3">
+              <h2 className="fctg-heading !text-[2rem] md:!text-[2.5rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Then vs Now</h2>
+              <p className="fctg-subtitle mt-1 text-slate-400 text-sm">Same phases — you steer, the agent executes.</p>
             </div>
-            <div className="rounded-xl border border-slate-600/50 bg-slate-900/40 p-4 md:p-6">
-              {/* Legend */}
-              <div className="flex flex-wrap items-center justify-center gap-4 md:gap-6 mb-4 text-[10px] md:text-xs">
-                <span className="flex items-center gap-2"><span className="h-2 w-8 rounded bg-slate-500" aria-hidden /> Then (Codegen)</span>
-                <span className="flex items-center gap-2"><span className="h-2 w-8 rounded bg-cyan-400/90" aria-hidden /> Now (review & refine)</span>
-              </div>
-              {/* Bar chart: one row per phase; shared scale so Then (full) vs Now (reduced) comparable */}
-              <div className="space-y-4 md:space-y-5">
+            <div className="rounded-xl border border-slate-600/50 bg-slate-900/40 p-3 md:p-4">
+              {/* Bar chart: one row per phase; Then and Now bars stacked vertically */}
+              <div className="space-y-2 md:space-y-3">
                 {[
-                  { phase: 'Discover', phaseColor: 'text-cyan-400/90', nowPct: 45, thenLabel: 'Workshops, manual synthesis, heavy alignment', nowLabel: 'AI synthesises & maps flows' },
-                  { phase: 'Define', phaseColor: 'text-teal-400/90', nowPct: 40, thenLabel: 'Flowcharts, annotated specs for Codegen', nowLabel: 'AI generates flows; you set direction' },
-                  { phase: 'Develop', phaseColor: 'text-indigo-400/90', nowPct: 30, thenLabel: 'Handoff, 3‑mo cycles, 12hr feedback, gaps', nowLabel: 'Real prototypes, review & test, 9→3 screens' },
-                  { phase: 'Deliver', phaseColor: 'text-violet-400/90', nowPct: 40, thenLabel: 'Codegen in HELiO, long cycles for fixes', nowLabel: 'Faster iteration, productivity gains' },
+                  { phase: 'Discover', phaseColor: 'text-cyan-400/90', nowPct: 45, thenLabel: 'Manual synthesis, heavy alignment; feasibility often late', nowLabel: 'AI synthesises and maps flows; you validate; agent checks feasibility in minutes. Pull hours of research into designs—no more stuck in decks. Competitive and benchmark review in minutes. Stakeholder alignment: previews + AI summaries, fewer decks and meetings' },
+                  { phase: 'Define', phaseColor: 'text-teal-400/90', nowPct: 40, thenLabel: 'Flowcharts and annotated specs for handoff; prototypes and specs go stale', nowLabel: 'AI generates flows; you set direction. PRDs, specs, ADRs in sync—single source of truth. Edge cases and acceptance criteria surfaced early. Copy from tone and guidelines; you edit and approve' },
+                  { phase: 'Develop', phaseColor: 'text-indigo-400/90', nowPct: 30, thenLabel: 'Hours on prototypes and specs; handoff, long cycles, 12hr feedback, context lost; designs and build misaligned → issues', nowLabel: 'Prototypes in minutes; design system on cue; identify alignment gaps—hone in; design QA & consistency automated; continuous testing; scenario and edge case testing; a11y in flow; responsive from one source; designer playground; no design–dev handoff—one artifact; review, refine (e.g. 9→3 screens)' },
+                  { phase: 'Deliver', phaseColor: 'text-violet-400/90', nowPct: 40, thenLabel: 'Build and deploy, long cycles for fixes', nowLabel: 'Ship faster; iterate on feedback. Previews for sign-off; release docs generated. Training and UAT scenarios generated' },
                 ].map(({ phase, phaseColor, nowPct, thenLabel, nowLabel }) => (
-                  <div key={phase} className="grid grid-cols-[minmax(0,0.85fr)_minmax(0,2.2fr)] gap-2 md:gap-4 items-center">
-                    <div className={`text-xs font-semibold uppercase tracking-wider ${phaseColor} shrink-0`}>{phase}</div>
+                  <div key={phase} className="grid grid-cols-[minmax(0,0.85fr)_minmax(0,2.2fr)] gap-2 md:gap-4 items-start">
+                    <div className={`text-xs font-semibold uppercase tracking-wider ${phaseColor} shrink-0 pt-1`}>{phase}</div>
                     <div className="min-w-0 flex flex-col gap-1">
-                      <div className="flex items-center gap-4 md:gap-6">
-                        <div className="flex items-center gap-2 w-[100px] md:w-[120px]">
-                          <div className="h-6 flex-1 rounded bg-slate-500/80 min-w-0" style={{ width: '100%' }} title={thenLabel} />
-                          <span className="text-[10px] text-slate-400 shrink-0">Then</span>
-                        </div>
-                        <div className="flex items-center gap-2 w-[100px] md:w-[120px]">
-                          <div className="h-6 rounded bg-cyan-400/90" style={{ width: `${nowPct}%` }} title={nowLabel} />
-                          <span className="text-[10px] text-cyan-300/90 shrink-0">Now</span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[9px] text-slate-300 w-7 shrink-0">Then</span>
+                        <div className="w-full max-w-[180px] md:max-w-[220px] flex h-2.5 items-center">
+                          <div className="h-2.5 flex-1 rounded bg-slate-500/80 min-w-0" title={thenLabel} />
                         </div>
                       </div>
-                      <p className="text-[9px] md:text-[10px] text-slate-500">
-                        <span className="text-slate-400">{thenLabel}</span>
-                        <span className="text-slate-600 mx-1">→</span>
-                        <span className="text-cyan-400/80">{nowLabel}</span>
+                      <div className="flex items-center gap-2">
+                        <span className="text-[9px] text-cyan-200 w-7 shrink-0">Now</span>
+                        <div className="w-full max-w-[180px] md:max-w-[220px] flex h-2.5 items-center">
+                          <div className="h-2.5 rounded bg-cyan-400/90 flex-shrink-0" style={{ width: `${nowPct}%` }} title={nowLabel} />
+                        </div>
+                      </div>
+                      <p className="text-[8px] md:text-[9px] text-slate-400 mt-0">
+                        <span className="text-slate-300">{thenLabel}</span>
+                        <span className="text-slate-500 mx-1">→</span>
+                        <span className="text-cyan-300/90">{nowLabel}</span>
                       </p>
                     </div>
                   </div>

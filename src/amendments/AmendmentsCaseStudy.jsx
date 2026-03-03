@@ -449,7 +449,7 @@ const AmendmentsCaseStudy = ({
                   <li style={listItemStyle}><Text as="span" sx={{ fontWeight: 700 }}>Three-page guided workflow</Text> - Step-by-step validation with dependency checking (selected approach)</li>
                   <li style={listItemStyle}><Text as="span" sx={{ fontWeight: 700 }}>Inline flow</Text> - Changes made directly within the booking view (cluttered interface, unclear validation states)</li>
                   <li style={listItemStyle}><Text as="span" sx={{ fontWeight: 700 }}>Modal flow</Text> - Pop-up dialogs for each amendment (disrupted context, frustrated users)</li>
-                  <li style={listItemStyle}><Text as="span" sx={{ fontWeight: 700 }}>Codegen-led solutions (not used)</Text> - Technical and financial impacts and risks assessed; UX unsatisfactory.</li>
+                  <li style={listItemStyle}><Text as="span" sx={{ fontWeight: 700 }}>Tool-led solutions (not used)</Text> - Technical and financial impacts and risks assessed; UX unsatisfactory.</li>
                 </ul>
                 <Stack sx={{ background: "#d4edda", borderRadius: 2, p: 3 }}>
                   <Text as="p" sx={{ m: 0, color: "#155724" }}>
@@ -580,7 +580,7 @@ const AmendmentsCaseStudy = ({
               <Heading as="h2" sx={sectionHeadingSx}>Development</Heading>
               <Stack sx={bodySx} gap="normal">
                 <ul style={listStyle}>
-                  <li style={listItemStyle}><Text as="span" sx={{ fontWeight: 700 }}>Design handoff</Text> - Detailed specs for Codegen with flowcharts and annotated prototypes to reduce ambiguity.</li>
+                  <li style={listItemStyle}><Text as="span" sx={{ fontWeight: 700 }}>Design handoff</Text> - Detailed specs for build with flowcharts and annotated prototypes to reduce ambiguity.</li>
                   <li style={listItemStyle}><Text as="span" sx={{ fontWeight: 700 }}>Delivery cycles</Text> - 3-month cycles with planned checkpoints across the 5.5-hour time gap.</li>
                   <li style={listItemStyle}><Text as="span" sx={{ fontWeight: 700 }}>Real-time collaboration</Text> - Continuous UI/UX alignment and fast adjustments during build.</li>
                 </ul>
@@ -609,7 +609,7 @@ const AmendmentsCaseStudy = ({
                   <Stack sx={{ background: "var(--canvas-subtle)", borderRadius: 3, p: 3 }} gap="normal">
                     <Heading as="h4" sx={{ m: 0, fontWeight: 700 }}>Delivery Approach</Heading>
                     <ul style={listStyle}>
-                      <li style={listItemStyle}><Text as="span" sx={{ fontWeight: 700 }}>Global partnership</Text> - Codegen delivered within HELiO.</li>
+                      <li style={listItemStyle}><Text as="span" sx={{ fontWeight: 700 }}>Global partnership</Text> - Build delivered within platform.</li>
                       <li style={listItemStyle}><Text as="span" sx={{ fontWeight: 700 }}>Cross-functional delivery</Text> - Engineering, design, ops, and training across time zones.</li>
                       <li style={listItemStyle}><Text as="span" sx={{ fontWeight: 700 }}>Pilots first</Text> - Validate with select markets before global rollout.</li>
                       <li style={listItemStyle}><Text as="span" sx={{ fontWeight: 700 }}>Training</Text> - Materials and sessions for 60+ consultants.</li>
@@ -720,7 +720,7 @@ const AmendmentsCaseStudy = ({
               <Stack sx={bodySx} gap="normal">
                 <Heading as="h3" sx={subsectionHeadingSx}>Challenges & Learnings</Heading>
                 <Text as="p" sx={{ m: 0 }}>
-                  Working with Codegen across 7+ hour time zones created coordination challenges:
+                  Working with the build partner across 7+ hour time zones created coordination challenges:
                 </Text>
 
                 <Stack sx={{ background: "#fff3cd", borderRadius: 3, border: "1px solid #ffc107", p: 3 }} gap="condensed">

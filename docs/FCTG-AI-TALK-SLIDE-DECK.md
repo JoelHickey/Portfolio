@@ -341,15 +341,15 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 **Title:** Then vs Now
 
-**Subtitle:** Across discover, define, develop, deliver — Codegen vs how I'd work now. Bar = relative manual/spec effort.
+**Subtitle:** Same phases — you steer, the agent executes.
 
-**Layout:** Bar chart / diagram. One row per phase (Discover, Define, Develop, Deliver); each row has Then bar (full = 100%) and Now bar (reduced %, same scale). Legend: Then (Codegen) | Now (review & refine). Short captions under each row.
+**Layout:** Bar chart. One row per phase (Discover, Define, Develop, Deliver); each row has Then bar (full = 100%) and Now bar (reduced %, same scale). Short captions under each row.
 
 **Body (by phase):**
-- **Discover** — Then: Workshops, problem discovery, matrix analysis; manual synthesis; heavy alignment across time zones. Now: Same discovery; AI can synthesise and map flows from findings so you spend less time manually mapping.
-- **Define** — Then: Flowcharts and annotated prototypes to define direction for Codegen; intent lived in docs. Now: AI generates flows and structure; you set direction, review and refine. No spec treadmill.
-- **Develop** — Then: Handoff to Codegen with flowcharts and specs; 3‑month cycles, 12hr feedback; translation gaps, context lost in docs. Now: Use actual tech (Cursor, Claude, design system) to generate real prototypes → review, refine and test; agent keeps context. UI: e.g. 9 screens → 3.
-- **Deliver** — Then: Codegen delivered in HELiO; UAT, pilots, training across time zones; long cycles for fixes. Now: Faster iteration; fewer gaps from shared context; ship and learn with less delay. Productivity gains carry through.
+- **Discover** — Then: Manual synthesis, heavy alignment; feasibility often late. Now: AI synthesises and maps flows; you validate; agent checks feasibility in minutes. Pull hours of research into designs—no more stuck in decks. Competitive and benchmark review in minutes. Stakeholder alignment: previews + AI summaries, fewer decks and meetings.
+- **Define** — Then: Flowcharts and annotated specs for handoff; prototypes and specs go stale. Now: AI generates flows; you set direction. PRDs, specs, ADRs in sync—single source of truth. Edge cases and acceptance criteria surfaced early. Copy from tone and guidelines; you edit and approve.
+- **Develop** — Then: Hours on prototypes and specs; handoff, long cycles, 12hr feedback, context lost; designs and build misaligned → issues. Now: Prototypes in minutes; design system on cue; identify alignment gaps—hone in; design QA & consistency automated; continuous testing; scenario and edge case testing; a11y in flow; responsive from one source; designer playground; no design–dev handoff—one artifact; review, refine (e.g. 9→3 screens).
+- **Deliver** — Then: Build and deploy, long cycles for fixes. Now: Ship faster; iterate on feedback. Previews for sign-off; release docs generated. Training and UAT scenarios generated.
 
 ---
 

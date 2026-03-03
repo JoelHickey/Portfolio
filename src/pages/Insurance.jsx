@@ -24,7 +24,7 @@ function Insurance() {
     },
     {
       title: 'Quote task',
-      description: 'Task-based testing for adding an insurance quote directly into HELiO bookings.',
+      description: 'Task-based testing for adding an insurance quote directly into platform bookings.',
       artifact: { src: '/images/insurance/image4.png', alt: 'Quote task artifact' }
     },
     {
@@ -276,7 +276,7 @@ function Insurance() {
           </p>
           <ul className="space-y-2 text-sm text-slate-600 mb-6">
             <li className="flex gap-3"><span className="font-semibold text-slate-800 min-w-40 shrink-0">Methodology</span> <span>Remote moderated usability testing</span></li>
-            <li className="flex gap-3"><span className="font-semibold text-slate-800 min-w-40 shrink-0">Key tasks</span> <span>Add insurance quote to HELiO booking, convert quote to policy</span></li>
+            <li className="flex gap-3"><span className="font-semibold text-slate-800 min-w-40 shrink-0">Key tasks</span> <span>Add insurance quote to platform booking, convert quote to policy</span></li>
             <li className="flex gap-3"><span className="font-semibold text-slate-800 min-w-40 shrink-0">Participants</span> <span>3 AU travel consultants + 2 AU travel advisors</span></li>
           </ul>
           <div className="grid gap-4 sm:grid-cols-2 mb-6">
