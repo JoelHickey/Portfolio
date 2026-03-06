@@ -1281,34 +1281,47 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 17: Get started and stay grounded (Building momentum chapter) */}
+        {/* Slide 17: Get started and stay grounded — two clear groups */}
         {slideIndex === 14 && (
         <Slide transparent className="!p-0 overflow-hidden" wide>
           <div key={slideIndex} className="absolute inset-0 flex flex-col items-center justify-center px-4 py-6">
-            <div className="fctg-text-transition w-full max-w-5xl flex flex-col items-center min-w-0">
-            <div className="w-full max-w-2xl text-center mx-auto px-2 min-w-0">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] leading-tight" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Get started and stay grounded</h2>
-              <p className="fctg-subtitle mt-1">Practices that help.</p>
-            </div>
-            <div className="mt-10 mx-auto max-w-3xl grid grid-cols-3 gap-4">
-            {[
-              { icon: FiZap, label: 'Start simple' },
-              { icon: FiActivity, label: 'Experiment freely' },
-              { icon: FiLayers, label: 'Stay curious' },
-              { icon: FiHome, label: 'Use analogies' },
-              { icon: FiUser, label: 'Stay human' },
-              { icon: FiGlobe, label: 'Your environment' },
-              { icon: FiCornerUpRight, label: 'Redirect, Don\'t Fight' },
-              { icon: FiRefreshCw, label: 'Reset When Stuck' },
-              { icon: FiFileText, label: 'Document As You Go' },
-            // eslint-disable-next-line no-unused-vars -- Icon is used as JSX element
-            ].map(({ icon: Icon, label }) => (
-              <div key={label} className="fctg-card fctg-card-compact fctg-momentum-card">
-                <Icon className="h-5 w-5 shrink-0 text-cyan-400" strokeWidth={1.5} />
-                <h3 className="fctg-card-title fctg-card-title-compact">{label}</h3>
+            <div className="fctg-text-transition w-full max-w-4xl flex flex-col items-center min-w-0">
+              <div className="w-full max-w-2xl text-center mx-auto px-2 min-w-0">
+                <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] leading-tight" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Get started and stay grounded</h2>
+                <p className="fctg-subtitle mt-1">Practices that help.</p>
               </div>
-            ))}
-          </div>
+              <div className="mt-10 w-full space-y-6 md:space-y-8">
+                <section className="text-center">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">Mindset</h3>
+                  <div className="grid grid-cols-3 gap-3 md:gap-4">
+                    {[
+                      { icon: FiZap, label: 'Start simple' },
+                      { icon: FiLayers, label: 'Stay curious' },
+                      { icon: FiUser, label: 'Stay human' },
+                    ].map(({ icon: Icon, label }) => (
+                      <div key={label} className="fctg-card fctg-card-compact fctg-momentum-card">
+                        <Icon className="h-5 w-5 shrink-0 text-cyan-400" strokeWidth={1.5} />
+                        <h3 className="fctg-card-title fctg-card-title-compact">{label}</h3>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+                <section className="text-center">
+                  <h3 className="text-xs font-semibold uppercase tracking-wider text-slate-500 mb-3">When you&apos;re stuck</h3>
+                  <div className="grid grid-cols-3 gap-3 md:gap-4">
+                    {[
+                      { icon: FiCornerUpRight, label: 'Redirect, don\'t fight' },
+                      { icon: FiRefreshCw, label: 'Reset when stuck' },
+                      { icon: FiFileText, label: 'Document as you go' },
+                    ].map(({ icon: Icon, label }) => (
+                      <div key={label} className="fctg-card fctg-card-compact fctg-momentum-card">
+                        <Icon className="h-5 w-5 shrink-0 text-cyan-400" strokeWidth={1.5} />
+                        <h3 className="fctg-card-title fctg-card-title-compact">{label}</h3>
+                      </div>
+                    ))}
+                  </div>
+                </section>
+              </div>
             </div>
           </div>
         </Slide>
@@ -1325,7 +1338,7 @@ function FCTGAITalkSlides() {
             <div className="max-w-2xl mx-auto space-y-4 md:space-y-5 text-center">
               <div className="rounded-lg md:rounded-xl border border-cyan-500/25 bg-gradient-to-b from-cyan-950/40 to-cyan-950/20 py-2.5 px-3 md:py-4 md:px-5 shadow-lg shadow-cyan-950/30 ring-1 ring-cyan-400/10">
                 <h3 className="text-xs md:text-sm font-semibold text-cyan-300 mb-0.5 md:mb-1.5 tracking-tight">Large language models (LLMs)</h3>
-                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">Reads, reasons, and generates — trained on lots of text and code.</p>
+                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">Reads, reasons, and generates.</p>
                 <p className="text-[10px] md:text-[11px] text-slate-400 mt-2 md:mt-2.5 pt-2 md:pt-2.5 border-t border-cyan-500/20">
                   <span className="font-medium text-cyan-300/90">Products:</span> ChatGPT, Claude, Gemini (model-only).
                 </p>
@@ -1339,7 +1352,7 @@ function FCTGAITalkSlides() {
               </div>
               <div className="rounded-lg md:rounded-xl border border-amber-500/25 bg-gradient-to-b from-amber-950/40 to-amber-950/20 py-2.5 px-3 md:py-4 md:px-5 shadow-lg shadow-amber-950/30 ring-1 ring-amber-400/10">
                 <h3 className="text-xs md:text-sm font-semibold text-amber-300 mb-0.5 md:mb-1.5 tracking-tight">Key point</h3>
-                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">Outputs only — no tools, no actions. Models respond; they don&apos;t act.</p>
+                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">Output only — they respond; they don&apos;t act.</p>
               </div>
             </div>
           </div>
@@ -1377,8 +1390,8 @@ function FCTGAITalkSlides() {
             <div className="mt-4 md:mt-6 max-w-2xl mx-auto">
               <FCTGBodyAnalogyDiagram />
             </div>
-            <p className="mt-3 md:mt-4 text-slate-500 text-[10px] md:text-xs italic">Brain thinks. Memory remembers. Hands act.</p>
-            <p className="mt-1 text-slate-500/80 text-[9px] md:text-[10px] max-w-xl mx-auto">Memory is separate from the model — the model is stateless; memory lives outside and the agent injects it into the context the model sees.</p>
+            <p className="mt-3 md:mt-4 text-slate-500 text-[10px] md:text-xs italic">Model thinks. Memory remembers. Hands act.</p>
+            <p className="mt-1 text-slate-500/80 text-[9px] md:text-[10px] max-w-xl mx-auto">Context is the input the model sees each turn. Memory lives outside the model; the agent injects it into that context.</p>
           </div>
         </Slide>
         )}

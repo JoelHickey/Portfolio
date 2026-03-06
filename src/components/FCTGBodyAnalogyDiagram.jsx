@@ -1,13 +1,13 @@
 /**
- * Human body analogy for AI agents: Brain = Model, Memory = Context, Hands = Tools.
- * Polished SVG illustration with label pills and stacked memory cards.
+ * Human body analogy for AI agents: Brain = Model, Memory (injected into Context), Hands = Tools.
+ * Shows flow: Memory → Context (input each turn) → Brain.
  */
 export default function FCTGBodyAnalogyDiagram() {
   return (
     <div className="mx-auto flex flex-col items-center justify-center">
       <svg
         viewBox="0 0 280 320"
-        className="w-full max-w-[280px] h-auto"
+        className="w-full max-w-[340px] md:max-w-[400px] h-auto"
         aria-hidden
       >
         <defs>
@@ -17,8 +17,8 @@ export default function FCTGBodyAnalogyDiagram() {
             <stop offset="100%" stopColor="#a78bfa" stopOpacity="0.4" />
           </linearGradient>
           <linearGradient id="fctg-brain-fill" x1="0%" y1="0%" x2="100%" y2="100%">
-            <stop offset="0%" stopColor="#a78bfa" stopOpacity="0.8" />
-            <stop offset="100%" stopColor="#6366f1" stopOpacity="0.6" />
+            <stop offset="0%" stopColor="#fbcfe8" stopOpacity="0.95" />
+            <stop offset="100%" stopColor="#ec4899" stopOpacity="0.85" />
           </linearGradient>
           <filter id="fctg-body-shadow" x="-10%" y="-5%" width="120%" height="115%">
             <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#0f172a" floodOpacity="0.3" />
@@ -55,7 +55,8 @@ export default function FCTGBodyAnalogyDiagram() {
         <ellipse cx="130" cy="52" rx="34" ry="38" fill="#1e293b" stroke="#475569" strokeWidth="1.5" />
         {/* Brain - single circle, visible through head */}
         <g transform="translate(130, 52)">
-          <circle cx="0" cy="0" r="14" fill="url(#fctg-brain-fill)" stroke="#a78bfa" strokeWidth="1.5" opacity="0.98" />
+          <circle cx="0" cy="0" r="20" fill="url(#fctg-brain-fill)" stroke="#e879f9" strokeWidth="1.5" opacity="0.98" />
+          <text x="0" y="4" textAnchor="middle" fontSize="10" fill="#831843" fontWeight="600" fontFamily="system-ui, sans-serif">Model</text>
         </g>
         {/* Left hand + gear icon */}
         <g transform="translate(45, 172)">
@@ -69,7 +70,7 @@ export default function FCTGBodyAnalogyDiagram() {
           <circle cx="2" cy="-2" r="4" fill="none" stroke="#fbbf24" strokeWidth="1.5" />
           <path d="M 4 0 L 7 3" stroke="#fbbf24" strokeWidth="1.5" strokeLinecap="round" />
         </g>
-        {/* Memory / Context - stacked cards */}
+        {/* Memory - stacked cards (lives outside; injects into context) */}
         <g transform="translate(218, 40)">
           <rect x="0" y="0" width="30" height="38" rx="4" fill="#0f766e" fillOpacity="0.6" stroke="#2dd4bf" strokeWidth="1.5" />
           <rect x="3" y="5" width="30" height="38" rx="4" fill="#134e4a" fillOpacity="0.7" stroke="#2dd4bf" strokeWidth="1.2" />
@@ -77,16 +78,16 @@ export default function FCTGBodyAnalogyDiagram() {
           <line x1="12" y1="22" x2="24" y2="22" stroke="#2dd4bf" strokeWidth="1.2" opacity="0.9" />
           <line x1="12" y1="30" x2="26" y2="30" stroke="#2dd4bf" strokeWidth="1" opacity="0.7" />
         </g>
+        {/* Memory injects into model (context is the input each turn — see caption) */}
+        <g stroke="#2dd4bf" strokeWidth="1.5" fill="none" opacity="0.85">
+          <path d="M 182 52 L 162 52" strokeLinecap="round" />
+          <path d="M 159 49 L 162 52 L 159 55" fill="none" strokeWidth="1.2" strokeLinejoin="round" strokeLinecap="round" />
+        </g>
+        <text x="172" y="45" textAnchor="middle" fontSize="9" fill="#5eead4" fontFamily="system-ui, sans-serif">inject</text>
         {/* Labels */}
         <g fontFamily="system-ui, sans-serif">
-          <rect x="4" y="22" width="68" height="34" rx="17" fill="#a78bfa" fillOpacity="0.25" stroke="#a78bfa" strokeWidth="1" strokeOpacity="0.6" />
-          <text x="38" y="36" textAnchor="middle" fontSize="12" fill="#c4b5fd" fontWeight="600">Brain</text>
-          <text x="38" y="49" textAnchor="middle" fontSize="10" fill="#94a3b8">Model</text>
-        </g>
-        <g fontFamily="system-ui, sans-serif">
-          <rect x="187" y="0" width="78" height="34" rx="17" fill="#2dd4bf" fillOpacity="0.25" stroke="#2dd4bf" strokeWidth="1" strokeOpacity="0.6" />
-          <text x="226" y="14" textAnchor="middle" fontSize="12" fill="#5eead4" fontWeight="600">Memory</text>
-          <text x="226" y="27" textAnchor="middle" fontSize="10" fill="#94a3b8">Context</text>
+          <rect x="187" y="0" width="78" height="28" rx="14" fill="#2dd4bf" fillOpacity="0.25" stroke="#2dd4bf" strokeWidth="1" strokeOpacity="0.6" />
+          <text x="226" y="18" textAnchor="middle" fontSize="12" fill="#5eead4" fontWeight="600">Memory</text>
         </g>
         <g fontFamily="system-ui, sans-serif">
           <rect x="181" y="188" width="68" height="34" rx="17" fill="#f59e0b" fillOpacity="0.25" stroke="#f59e0b" strokeWidth="1" strokeOpacity="0.6" />
