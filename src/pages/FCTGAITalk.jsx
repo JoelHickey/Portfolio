@@ -370,9 +370,9 @@ function FCTGAITalk() {
           <div className="mt-10 w-full max-w-6xl mx-auto">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 min-w-0">
               {[
-                { title: 'The weavers', text: 'Craft redefined, not replaced.', color: '#0891b2' },
+                { title: 'Weavers', text: 'Craft redefined, not replaced.', color: '#0891b2' },
                 { title: 'Cart to car', text: 'The leap matters more than the increment.', color: '#0d9488' },
-                { title: 'The digital era', text: 'Systems, not just screens.', color: '#4f46e5' },
+                { title: 'Digital', text: 'Systems, not just screens.', color: '#4f46e5' },
                 { title: 'The future', text: 'Amplify human skills,\nnot replace them.', color: '#7c3aed' },
               ].map((item) => (
                 <div key={item.title} className="text-center">

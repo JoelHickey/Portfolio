@@ -19,13 +19,13 @@ test.describe('FCTG AI Talk slides', () => {
 
     // Go to next slide
     await page.keyboard.press('ArrowRight');
-    await expect(page.getByRole('heading', { name: /Questioning the fundamentals/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /The fundamentals of design hold strong/i })).toBeVisible();
   });
 
   test('navigates back through slides', async ({ page }) => {
     await page.keyboard.press('ArrowRight');
     await page.keyboard.press('ArrowRight');
-    await expect(page.getByRole('heading', { name: /Questioning the fundamentals/i })).toBeVisible();
+    await expect(page.getByRole('heading', { name: /The fundamentals of design hold strong/i })).toBeVisible();
 
     await page.keyboard.press('ArrowLeft');
     await expect(page.getByRole('heading', { name: /Looking back to look ahead/i })).toBeVisible();

@@ -30,7 +30,7 @@ const FCTG_SLIDE_QUOTES = {
   10: { quote: 'Things arise and he accepts them. Things vanish and he lets them go.', attribution: '— Rick Rubin, The Way of Code' },
   11: null,
   12: null,
-  13: { quote: 'The work is done and then forgotten. That is why it lasts forever.', attribution: '— Rick Rubin, The Way of Code' },
+  13: null,
   14: null,
   15: null,
   16: null,
@@ -339,7 +339,7 @@ function FCTGAITalkSlides() {
           <div className="absolute inset-0 fctg-pattern-flow-lines opacity-40" aria-hidden />
         </div>
       )}
-      {/* Slide 5: Questioning the fundamentals — animated blob background */}
+      {/* Slide 5: The fundamentals of design hold strong — animated blob background */}
       {slideIndex === 3 && (
         <div className="pointer-events-none fixed inset-0 z-10 overflow-hidden bg-[#030b0f]" aria-hidden>
           <div
@@ -397,7 +397,7 @@ function FCTGAITalkSlides() {
       {/* Slide 8: Wider environment — monumental hero with particles */}
       {slideIndex === 5 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
-          <ParticleBackground variant="momentum" />
+          <ParticleBackground variant="momentum" centerOffsetY={80} />
           <div className="absolute inset-0 fctg-pattern-dot-matrix opacity-30" aria-hidden />
         </div>
       )}
@@ -671,12 +671,11 @@ function FCTGAITalkSlides() {
           hero={
             <div className="relative min-h-screen overflow-hidden bg-transparent">
               <div key={slideIndex} className="fctg-text-transition absolute inset-0 flex flex-col items-center justify-center bg-gradient-to-t from-black/90 via-black/40 to-transparent pt-16 px-8 pb-16 text-center">
-                <h1 className="fctg-heading-hero">
+                <h1 className="fctg-heading-hero" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>
                   <span className="block">Invigoration, innovation</span>
                   <span className="block">and impact</span>
                 </h1>
-                <p className="mt-4 text-lg md:text-xl tracking-wide text-cyan-200/90">How AI is changing design — and how we&apos;ll get there.</p>
-                <p className="mt-3 tracking-wide text-cyan-300/80">Presented to Flight Centre Travel Group&apos;s (FCTG) Global Design Team, March 2026</p>
+                <p className="mt-8 tracking-wide text-cyan-300/80">Presented to Flight Centre Travel Group&apos;s (FCTG) Global Design Team, March 2026</p>
               </div>
             </div>
           }
@@ -707,15 +706,15 @@ function FCTGAITalkSlides() {
               <div key={slideIndex} className="fctg-text-transition relative z-10 flex min-h-screen flex-col items-center justify-center bg-gradient-to-t from-black/95 via-black/60 to-transparent pt-16 px-8 pb-16">
                 <div className="mx-auto w-full max-w-5xl">
                   <div className="w-full max-w-2xl mx-auto text-center px-2">
-                    <h2 className="fctg-heading md:whitespace-nowrap !text-[2.25rem] md:text-[2rem] lg:text-[2.5rem] xl:text-[3rem]" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Looking back to look ahead</h2>
+                    <h2 className="fctg-heading md:whitespace-nowrap !text-[2.25rem] md:!text-[2.75rem]" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Looking back to look ahead</h2>
                     <p className="fctg-subtitle mt-1 text-lg tracking-wide text-slate-300">Through every metamorphosis, the human element and mastery of craft have retained their value.</p>
                   </div>
                 <div className="mt-4 md:mt-10 w-full max-w-4xl mx-auto text-center">
-                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 place-items-center">
+                  <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 items-start">
                       {[
-                        { title: 'The weavers', text: "The loom changed; the weaver's artistry, mastery, and skill endured.", color: '#22d3ee' },
+                        { title: 'Weavers', text: "The loom changed; the weaver's artistry, mastery, and skill endured.", color: '#22d3ee' },
                         { title: 'Wheels', text: "The leap from horse-drawn cart to automobile changed the vehicle; the human in the journey remained.", color: '#2dd4bf' },
-                        { title: 'The digital era', text: "Design became systems and flows, not just single screens; the human at the centre of the experience stayed.", color: '#818cf8' },
+                        { title: 'Digital', text: "Design became systems and flows, not just single screens; the human at the centre of the experience stayed.", color: '#818cf8' },
                       ].map((item) => (
                       <div key={item.title} className="text-center max-w-xs">
                         <h3 className="text-lg font-semibold tracking-wide" style={{ color: item.color }}>
@@ -733,18 +732,18 @@ function FCTGAITalkSlides() {
         />
         )}
 
-        {/* Slide 6: Questioning the fundamentals */}
+        {/* Slide 6: The fundamentals of design hold strong */}
         {slideIndex === 3 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl flex flex-col items-center">
             <div className="flex flex-col items-center text-center max-w-md">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] md:whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Questioning the fundamentals</h2>
-              <p className="fctg-subtitle mt-1 md:whitespace-nowrap">Do design principles change — or are new ones added?</p>
+              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] md:whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>The fundamentals of design hold strong</h2>
             </div>
-            <div className="mt-4 md:mt-10 flex flex-wrap justify-center gap-6 md:gap-16">
-              <img src="/images/AI talk/appleguidlines87.png" alt="Apple Human Interface Guidelines" className="fctg-book-img max-h-40 md:max-h-64 w-auto rounded-xl object-contain -rotate-2" />
-              <img src="/images/AI talk/designforpeople.webp" alt="Designing for People by Henry Dreyfuss" className="fctg-book-img max-h-40 md:max-h-64 w-auto rounded-xl object-contain rotate-1" />
-              <img src="/images/AI talk/win95guidimage.png" alt="Windows 95 interface guidelines" className="fctg-book-img max-h-40 md:max-h-64 w-auto rounded-xl object-contain brightness-110 -rotate-1" />
+            <div className="mt-4 md:mt-10 flex flex-nowrap justify-center items-center gap-4 md:gap-8 overflow-x-auto min-w-0">
+              <img src="/images/AI talk/appleguidlines87.png" alt="Apple Human Interface Guidelines" className="fctg-book-img max-h-40 md:max-h-64 w-auto rounded-xl object-contain shrink-0 -rotate-2" />
+              <img src="/images/AI talk/designforpeople.webp" alt="Designing for People by Henry Dreyfuss" className="fctg-book-img max-h-40 md:max-h-64 w-auto rounded-xl object-contain shrink-0 rotate-1" />
+              <img src="/images/AI talk/design-of-everyday-things.png" alt="The Design of Everyday Things by Don Norman" className="fctg-book-img max-h-40 md:max-h-64 w-auto rounded-xl object-contain shrink-0 -rotate-1" />
+              <img src="/images/AI talk/win95guidimage.png" alt="Windows 95 interface guidelines" className="fctg-book-img max-h-40 md:max-h-64 w-auto rounded-xl object-contain shrink-0 brightness-110 rotate-2" />
             </div>
             <div className="mt-4 md:mt-10 text-center flex flex-col items-center">
               <SlideQuote slideIndex={6} />
@@ -759,7 +758,7 @@ function FCTGAITalkSlides() {
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl">
             <div className="max-w-md mx-auto text-center">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>The design process</h2>
-              <p className="fctg-subtitle mt-1">Does productivity still mean the same thing?</p>
+              <p className="fctg-subtitle mt-1">Productivity still means impact — what counts as productive work has evolved.</p>
             </div>
           <div className="mt-10 w-screen max-w-none" style={{ marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
             <svg viewBox="0 0 1280 120" className="block w-full min-h-[120px]" preserveAspectRatio="xMidYMid slice" aria-hidden>
@@ -804,34 +803,32 @@ function FCTGAITalkSlides() {
               <g clipPath="url(#fctg-prod-clip-q3)"><path d="M0 100 Q300 60 600 100 T1200 100 T1280 100" stroke="url(#fctg-prod-gradient)" strokeWidth="1.5" fill="none" strokeDasharray="60 240" style={{ animation: 'fctg-prod-flow 1.8s linear infinite 0.6s' }} /></g>
               <g clipPath="url(#fctg-prod-clip-q4)"><path d="M0 100 Q300 60 600 100 T1200 100 T1280 100" stroke="url(#fctg-prod-gradient)" strokeWidth="1.75" fill="none" strokeDasharray="60 240" style={{ animation: 'fctg-prod-flow 1.8s linear infinite 0.6s' }} /></g>
             </svg>
-            <div className="mt-4 flex justify-between px-2 text-xs font-medium tracking-wider text-slate-400 md:text-sm" style={{ maxWidth: '1280px', marginLeft: 'auto', marginRight: 'auto' }}>
-              <span className="text-cyan-400/90">Discover</span>
-              <span className="text-teal-400/90">Define</span>
-              <span className="text-indigo-400/90">Develop</span>
-              <span className="text-violet-400/90">Deliver</span>
-            </div>
           </div>
           </div>
         </Slide>
         )}
 
-        {/* Slide 8: Wider environment */}
+        {/* Slide 8: Wider environment — title, diagram, subtitle in clear order */}
         {slideIndex === 5 && (
-        <Slide heroOnly transparent hero={
-          <div className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden">
-            <div className="absolute inset-0 flex items-center justify-center pt-4 md:pt-24">
+        <Slide transparent className="items-center justify-center !py-6 !px-4">
+          <div key={slideIndex} className="fctg-text-transition flex flex-col items-center min-h-full w-full max-w-4xl gap-6 md:gap-8">
+            <div className="text-center">
+              <h2 className="fctg-heading !text-[2rem] md:!text-[2.5rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>
+                Ecosystem
+              </h2>
+              <p className="fctg-subtitle mt-1 text-sm md:text-base text-slate-300/95 max-w-xl mx-auto">
+                Design-centric: every decision needs to be part of the conversation.
+              </p>
+            </div>
+            <div className="flex-1 flex items-center justify-center min-h-0 w-full">
               <WiderEnvironmentCanvas
-                width={viewport.w < 768 ? Math.min(viewport.w, viewport.h) * 0.88 : Math.min(viewport.w, viewport.h) * 0.55}
-                height={viewport.w < 768 ? Math.min(viewport.w, viewport.h) * 0.88 : Math.min(viewport.w, viewport.h) * 0.55}
+                width={viewport.w < 768 ? Math.min(viewport.w, viewport.h - 220) * 0.85 : Math.min(560, viewport.w * 0.5, (viewport.h - 200) * 0.6)}
+                height={viewport.w < 768 ? Math.min(viewport.w, viewport.h - 220) * 0.85 : Math.min(560, viewport.w * 0.5, (viewport.h - 200) * 0.6)}
                 className="text-cyan-500/80"
               />
             </div>
-            <div key={slideIndex} className="fctg-text-transition relative z-10 flex flex-col items-center justify-start pt-28 md:pt-16 min-h-screen px-4 md:px-8 pb-8 md:pb-16 pointer-events-none bg-gradient-to-b from-black/40 via-transparent via-20% to-transparent">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block drop-shadow-[0_2px_8px_rgba(0,0,0,0.6)]" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>The wider environment</h2>
-              <p className="fctg-subtitle mt-1 text-sm md:text-base drop-shadow-[0_1px_4px_rgba(0,0,0,0.5)]">Where are the bottlenecks? Who owns them?</p>
-            </div>
           </div>
-        } />
+        </Slide>
         )}
 
       {/* Slide 9: Energy */}
@@ -843,8 +840,8 @@ function FCTGAITalkSlides() {
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Energy</h2>
               <p className="fctg-subtitle mt-1">What charges your designer battery?</p>
             </div>
-            {/* Right: battery — constrained, no full-width breakout */}
-            <div className="flex justify-center md:justify-end" aria-hidden>
+            {/* Right: battery — aligned with subtitle "What charges your designer battery?" */}
+            <div className="flex justify-center md:justify-end mt-4 md:mt-5" aria-hidden>
               <style>{`
                 @keyframes fctg-battery-shine { 0%, 100% { opacity: 0.3; } 50% { opacity: 0.7; } }
                 @keyframes fctg-battery-pulse { 0%, 100% { filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.3)); } 50% { filter: drop-shadow(0 0 16px rgba(34, 211, 238, 0.5)); } }
@@ -874,14 +871,14 @@ function FCTGAITalkSlides() {
                 {[{ y: 80, d: 0 }, { y: 130, d: 0.3 }, { y: 180, d: 0.6 }, { y: 105, d: 0.15 }, { y: 155, d: 0.45 }, { y: 60, d: 0.5 }, { y: 210, d: 0.2 }, { y: 115, d: 0.75 }, { y: 165, d: 0.35 }].map((p, i) => (
                   <circle key={i} cx="1068" cy={p.y} r="3" fill="rgba(34, 211, 238, 0.9)" className="fctg-battery-charge-in" style={{ animationDelay: `${p.d}s` }} />
                 ))}
-                {/* Negative terminal (left) — abuts main body at x=40 */}
-                <rect x="4" y="88" width="36" height="84" rx="6" fill="none" stroke="url(#fctg-battery-grad)" strokeWidth="2" />
-                <text x="22" y="135" textAnchor="middle" fill="url(#fctg-battery-grad)" fontSize="32" fontWeight="800">−</text>
                 {/* Main body — connects negative (40) to positive (1040) */}
                 <rect x="40" y="28" width="1000" height="204" rx="10" fill="none" stroke="url(#fctg-battery-grad)" strokeWidth="2" className="fctg-battery-body" />
-                {/* Positive terminal (right) — abuts main body at x=1040 */}
-                <rect x="1040" y="72" width="36" height="116" rx="8" fill="none" stroke="url(#fctg-battery-grad)" strokeWidth="2" />
-                <text x="1058" y="135" textAnchor="middle" fill="url(#fctg-battery-grad)" fontSize="32" fontWeight="800">+</text>
+                {/* Negative terminal (left) — centred on body centre y=130 */}
+                <rect x="4" y={28 + 204 / 2 - 104 / 2} width="36" height="104" rx="6" fill="none" stroke="url(#fctg-battery-grad)" strokeWidth="2" />
+                <text x="22" y="130" textAnchor="middle" dominantBaseline="middle" fill="url(#fctg-battery-grad)" fontSize="32" fontWeight="800">−</text>
+                {/* Positive terminal (right) — same, centred on body */}
+                <rect x="1040" y={28 + 204 / 2 - 104 / 2} width="36" height="104" rx="6" fill="none" stroke="url(#fctg-battery-grad)" strokeWidth="2" />
+                <text x="1058" y="130" textAnchor="middle" dominantBaseline="middle" fill="url(#fctg-battery-grad)" fontSize="32" fontWeight="800">+</text>
                 <g clipPath="url(#fctg-battery-clip)">
                   <foreignObject x="44" y="32" width="992" height="186">
                     <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden', borderRadius: 6, pointerEvents: 'none' }}>
@@ -891,14 +888,14 @@ function FCTGAITalkSlides() {
                   {[{ x: 160, y: 90, d: 0 }, { x: 330, y: 130, d: 0.4 }, { x: 540, y: 95, d: 0.8 }, { x: 440, y: 165, d: 0.2 }, { x: 710, y: 110, d: 0.5 }, { x: 820, y: 80, d: 0.1 }, { x: 875, y: 145, d: 0.6 }, { x: 935, y: 105, d: 0.3 }, { x: 270, y: 120, d: 0.7 }].map((b, i) => (
                     <circle key={i} cx={b.x} cy={b.y} r="3.5" fill="rgba(255,255,255,0.65)" className="fctg-battery-bubble" style={{ animationDelay: `${b.d}s` }} />
                   ))}
-                  {(() => {
-                    const w = 992, n = 5;
-                    const step = w / n;
-                    const positions = [...Array(n)].map((_, i) => 44 + step * (i + 0.5));
-                    return [{ word: 'Imagination', color: '#22d3ee', d: 0 }, { word: 'Creativity', color: '#2dd4bf', d: 0.2 }, { word: 'Knowledge', color: '#818cf8', d: 0.4 }, { word: 'Productivity', color: '#a78bfa', d: 0.6 }, { word: 'Value', color: '#e879f9', d: 0.8 }].map((item, i) => ({ ...item, x: positions[i] }));
-                  })().map(({ word, x, color, d }) => (
-                    <text key={word} x={x} y="125" dominantBaseline="middle" textAnchor="middle" fill={color} fontSize="28" fontWeight="600" className="fctg-word-charge" style={{ animationDelay: `${d}s` }}>{word}</text>
-                  ))}
+                  {/* Words in their own container: equal gaps between each word (space-evenly) */}
+                  <foreignObject x="44" y="95" width="992" height="60">
+                    <div xmlns="http://www.w3.org/1999/xhtml" className="fctg-battery-words" style={{ display: 'flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'space-evenly', boxSizing: 'border-box', pointerEvents: 'none' }}>
+                      {[{ word: 'Imagination', color: '#22d3ee', d: 0 }, { word: 'Creativity', color: '#2dd4bf', d: 0.2 }, { word: 'Knowledge', color: '#818cf8', d: 0.4 }, { word: 'Productivity', color: '#a78bfa', d: 0.6 }, { word: 'Value', color: '#e879f9', d: 0.8 }].map(({ word, color, d }) => (
+                        <span key={word} className="fctg-word-charge" style={{ flex: '0 0 auto', fontSize: 28, fontWeight: 600, color, whiteSpace: 'nowrap', animationDelay: `${d}s` }}>{word}</span>
+                      ))}
+                    </div>
+                  </foreignObject>
                 </g>
                 </svg>
               </div>
@@ -929,24 +926,24 @@ function FCTGAITalkSlides() {
                   }
                 `}</style>
                 <div className="fctg-strength-piece text-sm text-cyan-300" style={{ animationDelay: '0s' }}>
-                  <span className="fctg-strength-prompt-type">Analyse load paths for this truss</span>
+                  <span className="fctg-strength-prompt-type">Check this beam for failure modes.</span>
                 </div>
                 <div className="fctg-strength-piece text-sm text-violet-300" style={{ animationDelay: '2s' }}>
-                  <span className="fctg-strength-agent-type">Compression, tension, triangulation — the agent explained the load paths.</span>
+                  <span className="fctg-strength-agent-type">Bending, shear, buckling — the agent walked through the checks.</span>
                 </div>
               </div>
             </div>
             {/* Right: three vertical truss monuments */}
             <div className="flex justify-center items-end gap-6 overflow-visible py-4" aria-hidden>
               <style>{`
-                @keyframes fctg-truss-draw { from { stroke-dashoffset: 1700; } to { stroke-dashoffset: 0; } }
-                @keyframes fctg-truss-draw-2 { from { stroke-dashoffset: 2500; } to { stroke-dashoffset: 0; } }
-                @keyframes fctg-truss-draw-3 { from { stroke-dashoffset: 1800; } to { stroke-dashoffset: 0; } }
-                .fctg-truss-path { stroke-dasharray: 1700; stroke-dashoffset: 1700; animation: fctg-truss-draw 5s ease-out 4.5s forwards; }
-                .fctg-truss-path-2 { stroke-dasharray: 2500; stroke-dashoffset: 2500; animation: fctg-truss-draw-2 5s ease-out 4.5s forwards; }
-                .fctg-truss-path-3 { stroke-dasharray: 1800; stroke-dashoffset: 1800; animation: fctg-truss-draw-3 5s ease-out 4.5s forwards; }
+                @keyframes fctg-truss-draw { from { stroke-dashoffset: 2400; } to { stroke-dashoffset: 0; } }
+                @keyframes fctg-truss-draw-2 { from { stroke-dashoffset: 2400; } to { stroke-dashoffset: 0; } }
+                @keyframes fctg-truss-draw-3 { from { stroke-dashoffset: 2200; } to { stroke-dashoffset: 0; } }
+                .fctg-truss-path { stroke-dasharray: 2400; stroke-dashoffset: 2400; animation: fctg-truss-draw 5s ease-out 4.5s forwards; }
+                .fctg-truss-path-2 { stroke-dasharray: 2400; stroke-dashoffset: 2400; animation: fctg-truss-draw-2 5s ease-out 4.5s forwards; }
+                .fctg-truss-path-3 { stroke-dasharray: 2200; stroke-dashoffset: 2200; animation: fctg-truss-draw-3 5s ease-out 4.5s forwards; }
               `}</style>
-              {/* Monument 1: Warren truss */}
+              {/* Monument 1: Warren truss — triangulated, no box outline */}
               <svg viewBox="-5 -5 110 370" className="h-[200px] md:h-[260px] w-auto shrink-0" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" preserveAspectRatio="xMidYMid meet">
                 <defs>
                   <linearGradient id="fctg-truss-grad" x1="0%" y1="100%" x2="0%" y2="0%">
@@ -959,21 +956,17 @@ function FCTGAITalkSlides() {
                 <path className="fctg-truss-path" stroke="url(#fctg-truss-grad)" d="
                   M 10 10 L 90 10
                   M 10 350 L 90 350
-                  M 10 350 L 10 10
-                  M 90 350 L 90 10
-                  M 10 350 L 90 290
-                  M 90 290 L 10 230
-                  M 10 230 L 90 170
-                  M 90 170 L 10 110
-                  M 10 110 L 90 50
-                  M 90 50 L 10 10
-                  M 10 290 L 90 230
-                  M 90 230 L 10 170
-                  M 10 170 L 90 110
-                  M 90 110 L 10 50
+                  M 10 10 L 30 350
+                  M 30 10 L 10 350
+                  M 30 10 L 50 350
+                  M 50 10 L 30 350
+                  M 50 10 L 70 350
+                  M 70 10 L 50 350
+                  M 70 10 L 90 350
+                  M 90 10 L 70 350
                 " />
               </svg>
-              {/* Monument 2: Pratt truss — verticals + diagonals */}
+              {/* Monument 2: Pratt truss — verticals and diagonals, triangulated */}
               <svg viewBox="-5 -5 110 370" className="h-[200px] md:h-[260px] w-auto shrink-0" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" preserveAspectRatio="xMidYMid meet">
                 <defs>
                   <linearGradient id="fctg-truss-grad-2" x1="0%" y1="100%" x2="0%" y2="0%">
@@ -986,18 +979,18 @@ function FCTGAITalkSlides() {
                 <path className="fctg-truss-path-2" stroke="url(#fctg-truss-grad-2)" d="
                   M 10 10 L 90 10
                   M 10 350 L 90 350
-                  M 10 350 L 10 10
-                  M 90 350 L 90 10
-                  M 30 350 L 30 10
-                  M 50 350 L 50 10
-                  M 70 350 L 70 10
+                  M 10 10 L 10 350
+                  M 30 10 L 30 350
+                  M 50 10 L 50 350
+                  M 70 10 L 70 350
+                  M 90 10 L 90 350
                   M 10 350 L 30 10
                   M 30 350 L 50 10
                   M 50 350 L 70 10
                   M 70 350 L 90 10
                 " />
               </svg>
-              {/* Monument 3: K-truss — K-shaped panels */}
+              {/* Monument 3: K-truss — K-shaped panels, triangulated */}
               <svg viewBox="-5 -5 110 370" className="h-[200px] md:h-[260px] w-auto shrink-0" fill="none" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" preserveAspectRatio="xMidYMid meet">
                 <defs>
                   <linearGradient id="fctg-truss-grad-3" x1="0%" y1="100%" x2="0%" y2="0%">
@@ -1010,18 +1003,11 @@ function FCTGAITalkSlides() {
                 <path className="fctg-truss-path-3" stroke="url(#fctg-truss-grad-3)" d="
                   M 10 10 L 90 10
                   M 10 350 L 90 350
-                  M 10 350 L 10 10
-                  M 90 350 L 90 10
-                  M 30 180 L 30 350
-                  M 70 180 L 70 350
-                  M 10 10 L 30 180
-                  M 30 180 L 50 10
-                  M 50 10 L 70 180
-                  M 70 180 L 90 10
-                  M 10 350 L 30 180
-                  M 30 180 L 50 350
-                  M 50 350 L 70 180
-                  M 70 180 L 90 350
+                  M 10 10 L 10 350
+                  M 90 10 L 90 350
+                  M 50 10 L 50 350
+                  M 10 10 L 50 180 L 90 10
+                  M 10 350 L 50 180 L 90 350
                 " />
               </svg>
             </div>
@@ -1061,20 +1047,29 @@ function FCTGAITalkSlides() {
               `}</style>
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] fctg-speed-heading-flash inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Speed</h2>
               <p className="fctg-subtitle mt-1">Prompt to UI in seconds.</p>
-              <div className="mt-6 min-w-0 overflow-hidden" aria-hidden>
+              <div className="mt-6 flex flex-col gap-4 min-w-0 overflow-hidden" aria-hidden>
                 <style>{`
                   @keyframes fctg-speed-prompt-type { from { width: 0; } to { width: 40ch; } }
                   @keyframes fctg-speed-prompt-type-mobile { from { opacity: 0; } to { opacity: 1; } }
+                  @keyframes fctg-speed-agent-type { from { width: 0; } to { width: 65ch; } }
+                  @keyframes fctg-speed-agent-type-mobile { from { opacity: 0; } to { opacity: 1; } }
                   @keyframes fctg-speed-cursor { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
                   .fctg-speed-prompt-type { display: inline-block; overflow: hidden; white-space: nowrap; width: 0; animation: fctg-speed-prompt-type 2s steps(40) 0s forwards; }
                   .fctg-speed-prompt-type::after { content: '|'; animation: fctg-speed-cursor 0.7s step-end infinite; margin-left: 1px; color: #22d3ee; }
+                  .fctg-speed-agent-type { display: inline-block; overflow: hidden; white-space: nowrap; width: 0; animation: fctg-speed-agent-type 2s steps(65) 2.2s forwards; }
+                  .fctg-speed-agent-type::after { content: '|'; animation: fctg-speed-cursor 0.7s step-end infinite 2.2s; margin-left: 1px; color: #a78bfa; }
                   @media (max-width: 767px) {
                     .fctg-speed-prompt-type { width: auto; white-space: normal; overflow: visible; animation: fctg-speed-prompt-type-mobile 1s ease-out 0s forwards; }
                     .fctg-speed-prompt-type::after { display: none; }
+                    .fctg-speed-agent-type { width: auto; white-space: normal; overflow: visible; animation: fctg-speed-agent-type-mobile 0.8s ease-out 2s forwards; }
+                    .fctg-speed-agent-type::after { display: none; }
                   }
                 `}</style>
                 <div className="fctg-speed-ui-piece text-sm text-cyan-300">
                   <span className="fctg-speed-prompt-type">Create a login form with email and password</span>
+                </div>
+                <div className="fctg-speed-ui-piece text-sm text-violet-300" style={{ animationDelay: '2s' }}>
+                  <span className="fctg-speed-agent-type">Email field, password field, remember me, Submit — the agent rendered the form.</span>
                 </div>
               </div>
             </div>
@@ -1185,7 +1180,7 @@ function FCTGAITalkSlides() {
               <div className="inline-flex flex-col gap-2 max-w-xl">
                 <p className="fctg-card-text flex flex-col md:flex-row items-center justify-center gap-2 md:gap-x-2 md:gap-y-0 md:items-baseline">
                   <span className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] shrink-0 inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Imagination</span>
-                  <span className="whitespace-nowrap">Beyond the gates of technology.</span>
+                  <span className="whitespace-nowrap text-white">Beyond the gates of technology.</span>
                 </p>
               <div className="w-full min-w-0" aria-hidden>
                 <style>{`

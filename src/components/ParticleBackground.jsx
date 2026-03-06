@@ -33,7 +33,7 @@ const VARIANTS = {
   },
 }
 
-function ParticleBackground({ className = '', variant = 'strength' }) {
+function ParticleBackground({ className = '', variant = 'strength', centerOffsetX = 0, centerOffsetY = 0 }) {
   const canvasRef = useRef(null)
   const animationRef = useRef(null)
   const config = VARIANTS[variant] || VARIANTS.strength
@@ -159,8 +159,8 @@ function ParticleBackground({ className = '', variant = 'strength' }) {
         const swirl = time * 0.1 * (p.seed > 0.5 ? 1 : -1)
         const finalAngle = baseAngle + swirl
         return {
-          x: centerX + Math.cos(finalAngle) * r,
-          y: centerY + Math.sin(finalAngle) * r,
+          x: centerX + centerOffsetX + Math.cos(finalAngle) * r,
+          y: centerY + centerOffsetY + Math.sin(finalAngle) * r,
         }
       }
 
@@ -203,8 +203,8 @@ function ParticleBackground({ className = '', variant = 'strength' }) {
         p.angle += breathing ? 0.0008 : multidirectional ? 0.004 : orbital ? 0.003 : 0.002
 
         if (multidirectional && p.zone) {
-          const dx = p.x - centerX
-          const dy = p.y - centerY
+          const dx = p.x - (centerX + centerOffsetX)
+          const dy = p.y - (centerY + centerOffsetY)
           const dist = Math.sqrt(dx * dx + dy * dy)
           if (dist < Math.min(width, height) * 0.15) {
             const z = ZONES[Math.floor(Math.random() * ZONES.length)]
@@ -258,7 +258,7 @@ function ParticleBackground({ className = '', variant = 'strength' }) {
         cancelAnimationFrame(animationRef.current)
       }
     }
-  }, [variant])
+  }, [variant, centerOffsetX, centerOffsetY])
 
   return (
     <canvas

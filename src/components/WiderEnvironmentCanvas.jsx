@@ -1,141 +1,104 @@
-import { useEffect, useRef } from 'react'
+import { useId } from 'react'
 
-const CX = 200
-const CY = 200
-const SIZE = 640
+const VIEW = 400
+const CX = VIEW / 2
+const CY = VIEW / 2
 
-const RING_CONFIG = [
-  { r: 304, label: 'Earth' },
-  { r: 234, label: 'Society' },
-  { r: 164, label: 'Mission' },
-]
+// Three circles in an equilateral triangle (120° apart from top)
+const VENN_R = 76
+const VENN_D = 72 // distance from center to each circle center → even margin inside parent
+const toRad = (deg) => (deg * Math.PI) / 180
+const CIRCLES = [
+  { angle: -90, label: 'Product' },
+  { angle: -90 + 120, label: 'Business' },
+  { angle: -90 + 240, label: 'Technology' },
+].map(({ angle, label }) => {
+  const rad = toRad(angle)
+  return {
+    x: CX + VENN_D * Math.cos(rad),
+    y: CY + VENN_D * Math.sin(rad),
+    label,
+  }
+})
 
-const COLORS = {
-  black: {
-    ringStroke: (i) => `rgba(0, 0, 0, ${0.55 - i * 0.05})`,
-    label: 'rgba(0, 0, 0, 0.95)',
-    circleStroke: 'rgba(0, 0, 0, 0.45)',
-    centerDot: 'rgba(0, 0, 0, 0.8)',
-  },
-  cyan: {
-    ringStroke: (i) => `rgba(34, 211, 238, ${0.55 - i * 0.05})`,
-    label: 'rgba(203, 213, 225, 0.95)',
-    circleStroke: 'rgba(34, 211, 238, 0.45)',
-    centerDot: 'rgba(34, 211, 238, 0.8)',
-  },
+// One style for all diagram text — the caption look: light weight, uppercase, spaced
+const DIAGRAM_LABEL_STYLE = {
+  fontFamily: 'system-ui, -apple-system, sans-serif',
+  fontSize: 10,
+  fontWeight: 400,
+  letterSpacing: '0.2em',
+  textTransform: 'uppercase',
 }
 
-const CIRCLES = [
-  { x: 168, y: 184, r: 58, label: 'Product' },
-  { x: 232, y: 184, r: 58, label: 'Business' },
-  { x: 200, y: 232, r: 58, label: 'Design' },
-]
-
 function WiderEnvironmentCanvas({ className = '', width = 560, height = 560, variant = 'cyan' }) {
-  const canvasRef = useRef(null)
-  const rafRef = useRef(null)
-  const startRef = useRef(null)
-  const colors = COLORS[variant] ?? COLORS.cyan
-
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-
-    const dpr = Math.min(window.devicePixelRatio || 1, 2)
-    const w = width
-    const h = height
-    canvas.width = w * dpr
-    canvas.height = h * dpr
-    canvas.style.width = `${w}px`
-    canvas.style.height = `${h}px`
-
-    const ctx = canvas.getContext('2d')
-    ctx.scale(dpr, dpr)
-
-    const scale = Math.min(w, h) / SIZE
-
-    const draw = (t) => {
-      const start = startRef.current ?? t
-      startRef.current = start
-      const elapsed = (t - start) / 1000
-      const pulse = 0.75 + Math.sin(elapsed * 2) * 0.25
-
-      ctx.clearRect(0, 0, w, h)
-      ctx.save()
-      ctx.translate(w / 2, h / 2)
-      ctx.scale(scale, scale)
-      ctx.translate(-CX, -CY)
-
-      // Rings — rotate slowly
-      const rotation = elapsed * 0.15
-      ctx.translate(CX, CY)
-      ctx.rotate(rotation)
-      ctx.translate(-CX, -CY)
-      ctx.setLineDash([6, 6])
-      RING_CONFIG.forEach((ring, i) => {
-        ctx.beginPath()
-        ctx.arc(CX, CY, ring.r, 0, Math.PI * 2)
-        ctx.strokeStyle = colors.ringStroke(i)
-        ctx.lineWidth = 1.5
-        ctx.stroke()
-      })
-      ctx.setLineDash([])
-      ctx.translate(CX, CY)
-      ctx.rotate(-rotation)
-      ctx.translate(-CX, -CY)
-
-      // Ring labels — placed at bottom of each ring, inside
-      ctx.font = '14px system-ui, sans-serif'
-      ctx.textAlign = 'center'
-      ctx.textBaseline = 'top'
-      RING_CONFIG.forEach((ring) => {
-        ctx.fillStyle = colors.label
-        ctx.fillText(ring.label, CX, CY + ring.r - 24)
-      })
-
-      // Venn circles
-      ctx.strokeStyle = colors.circleStroke
-      ctx.lineWidth = 1.5
-      CIRCLES.forEach((c) => {
-        ctx.beginPath()
-        ctx.arc(c.x, c.y, c.r, 0, Math.PI * 2)
-        ctx.stroke()
-      })
-
-      // Circle labels — centered in each Venn circle
-      ctx.font = '13px system-ui, sans-serif'
-      ctx.textAlign = 'center'
-      ctx.textBaseline = 'middle'
-      ctx.fillStyle = colors.label
-      CIRCLES.forEach((c) => {
-        const labelY = c.label === 'Design' ? c.y + 24 : c.y
-        ctx.fillText(c.label, c.x, labelY)
-      })
-
-      // Center dot (design process) — pulse
-      const r = 12 * pulse
-      ctx.beginPath()
-      ctx.arc(CX, CY, r, 0, Math.PI * 2)
-      ctx.fillStyle = colors.centerDot
-      ctx.fill()
-
-      ctx.restore()
-      rafRef.current = requestAnimationFrame(draw)
-    }
-
-    rafRef.current = requestAnimationFrame(draw)
-    return () => cancelAnimationFrame(rafRef.current)
-  }, [width, height, variant])
+  const id = useId().replace(/:/g, '-')
+  const isCyan = variant !== 'black'
 
   return (
-    <canvas
-      ref={canvasRef}
-      className={className}
-      width={width}
-      height={height}
-      role="img"
-      aria-label="Design process nested within Earth, society, mission, and the overlap of Product, Business, and Design"
-    />
+    <span className={className} style={{ display: 'inline-block', lineHeight: 0 }}>
+      <svg
+        width={width}
+        height={height}
+        viewBox={`0 0 ${VIEW} ${VIEW}`}
+        preserveAspectRatio="xMidYMid meet"
+        role="img"
+        aria-label="Product, Business, and Technology overlapping"
+        style={{ overflow: 'visible', display: 'block' }}
+      >
+      <defs>
+        <linearGradient id={`${id}-stroke`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="#22d3ee" />
+          <stop offset="35%" stopColor="#2dd4bf" />
+          <stop offset="65%" stopColor="#818cf8" />
+          <stop offset="100%" stopColor="#e879f9" />
+        </linearGradient>
+        <linearGradient id={`${id}-fill`} x1="0%" y1="0%" x2="100%" y2="100%">
+          <stop offset="0%" stopColor="rgba(34, 211, 238, 0.08)" />
+          <stop offset="100%" stopColor="rgba(167, 139, 250, 0.06)" />
+        </linearGradient>
+      </defs>
+      <style>{`
+        @keyframes wider-env-dash-rotate {
+          to { stroke-dashoffset: ${2 * Math.PI * VENN_R}; }
+        }
+        .wider-env-circle { animation: wider-env-dash-rotate 12s linear infinite; }
+      `}</style>
+
+      <g fill="none" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
+        {/* Three overlapping circles — dashed, rotating stroke */}
+        {CIRCLES.map((c) => (
+          <circle
+            key={c.label}
+            className="wider-env-circle"
+            cx={c.x}
+            cy={c.y}
+            r={VENN_R}
+            fill="none"
+            stroke={isCyan ? `url(#${id}-stroke)` : 'rgba(0,0,0,0.4)'}
+            strokeWidth={1.5}
+            strokeDasharray={`${(2 * Math.PI * VENN_R) / 72} ${(2 * Math.PI * VENN_R) / 24}`}
+            opacity={0.95}
+          />
+        ))}
+        {/* Circle labels — same caption style: 10px, 400, uppercase, 0.2em spacing */}
+        <g
+          fill={isCyan ? '#e2e8f0' : '#0f172a'}
+          fontFamily={DIAGRAM_LABEL_STYLE.fontFamily}
+          fontSize={DIAGRAM_LABEL_STYLE.fontSize}
+          fontWeight={DIAGRAM_LABEL_STYLE.fontWeight}
+          style={{ letterSpacing: DIAGRAM_LABEL_STYLE.letterSpacing, textTransform: DIAGRAM_LABEL_STYLE.textTransform }}
+          textAnchor="middle"
+          dominantBaseline="middle"
+        >
+          {CIRCLES.map((c) => (
+            <text key={c.label} x={c.x} y={c.y}>
+              {c.label}
+            </text>
+          ))}
+        </g>
+      </g>
+    </svg>
+    </span>
   )
 }
 

@@ -30,17 +30,15 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 **Subtitle:** Through every metamorphosis, the human element and mastery of craft have retained their value.
 
 **Body:**
-- **The weavers** — The loom changed; the weaver's artistry, mastery, and skill endured.
+- **Weavers** — The loom changed; the weaver's artistry, mastery, and skill endured.
 - **Wheels** — The leap from horse-drawn cart to automobile changed the vehicle; the human in the journey remained.
-- **The digital era** — Design became systems and flows, not just single screens; the human at the centre of the experience stayed.
+- **Digital** — Design became systems and flows, not just single screens; the human at the centre of the experience stayed.
 
 ---
 
 ## Slide 3
 
-**Title:** Questioning the fundamentals
-
-**Subtitle:** Do design principles change — or are new ones added?
+**Title:** The fundamentals of design hold strong
 
 **Quote:** "Free from desire, you see essence unformed. Caught in desire, you see only the manifestations." — Rick Rubin, The Way of Code
 
@@ -50,7 +48,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 **Title:** The design process
 
-**Subtitle:** Does productivity still mean the same thing?
+**Subtitle:** Productivity still means impact — what counts as productive work has evolved.
 
 **Phases (below flow graphic):** Discover → Define → Develop → Deliver
 
@@ -58,9 +56,9 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ## Slide 3
 
-**Title:** The wider environment
+**Title:** Ecosystem
 
-**Subtitle:** Where are the bottlenecks? Who owns them?
+**Subtitle:** Design-centric: every decision needs to be part of the conversation.
 
 ---
 
@@ -81,8 +79,8 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 **Subtitle:** AI guided me through a structural design problem
 
 **Body:**
-- Analyse load paths for this truss
-- Compression, tension, triangulation — the agent explained the load paths.
+- Check this beam for failure modes.
+- Bending, shear, buckling — the agent walked through the checks.
 
 ---
 
@@ -119,8 +117,6 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 **Title:** Calmness
 
 **Subtitle:** Less friction, more space to think.
-
-**Quote:** "The work is done and then forgotten. That is why it lasts forever." — Rick Rubin, The Way of Code
 
 ---
 

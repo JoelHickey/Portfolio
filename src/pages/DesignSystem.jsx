@@ -54,7 +54,7 @@ export default function DesignSystem() {
         <section>
           <h2 className="text-xl font-semibold text-slate-800 mb-6">Section Cards</h2>
           <div className="grid gap-6 sm:grid-cols-2">
-            <SectionCard number={1} title="The weavers">
+            <SectionCard number={1} title="Weavers">
               Craft redefined, not replaced.
             </SectionCard>
             <SectionCard number={2} title="Cart to car">
