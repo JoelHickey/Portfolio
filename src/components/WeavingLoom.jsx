@@ -3,7 +3,7 @@ import React from 'react'
 const DURATION = 4
 const FULL_PAGE_DURATION = 72
 
-function WeavingLoom({ className = '', width = 280, height = 120, variant = 'light', fullPage = false }) {
+function WeavingLoom({ className = '', width = 280, height = 120, variant = 'light', fullPage = false, showShuttle = true }) {
   const isDark = variant === 'dark'
   const isPurple = variant === 'purple'
   const w = fullPage ? 800 : width
@@ -66,7 +66,8 @@ function WeavingLoom({ className = '', width = 280, height = 120, variant = 'lig
         </g>
         {/* Woven weft (built-up horizontal lines) */}
         <rect x="0" y="0" width={w} height={h} fill="url(#weft-pattern)" opacity={isPurple ? 0.45 : isDark ? 0.45 : 0.4} />
-        {/* Shuttle / beater bar */}
+        {/* Shuttle / beater bar — optional so it can be hidden (e.g. on Looking back slide) */}
+        {showShuttle && (
         <g
           style={{
             animation: `weaving-shuttle ${fullPage ? FULL_PAGE_DURATION : DURATION}s ease-in-out infinite`,
@@ -93,6 +94,7 @@ function WeavingLoom({ className = '', width = 280, height = 120, variant = 'lig
             strokeOpacity={isDark ? 1 : 0.8}
           />
         </g>
+        )}
     </svg>
   )
 

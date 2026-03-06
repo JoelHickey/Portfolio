@@ -1,7 +1,7 @@
 # FCTG AI Talk — Slide Deck Copy
 
 Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx`.  
-45 slides (Slide 1 = index 0 … Slide 45 = index 44). Titles, subtitles, and body copy only. *Three pillars (Invigoration, innovation, impact) moved to near the end, just before What we hope you take away.*
+43 slides (Slide 1 = index 0 … Slide 43 = index 42). Titles, subtitles, and body copy only. *Three pillars (Invigoration, innovation, impact) moved to near the end, just before What we hope you take away.*
 
 ---
 
@@ -17,47 +17,26 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ## Slide 2
 
-**Body:** In the future, the wealthy will pay for human empathy.
+**Title:** What we'll cover
 
-— Often cited in design and futures discourse
+**Subtitle:** Concepts, monumental moments, building momentum, technology and a fun agentic activity!
 
 ---
 
 ## Slide 3
 
-**Title:** What we'll cover
-
-**Subtitle:** Concepts, monumental moments, building momentum, technology.
-
----
-
-## Slide 4
-
-**Title:** State of Design 2026
-
-**Body:**
-- Only 31% of designers use AI for core creative work — vs 59% of developers.
-- You're the early majority who get to shape AI for travel design at FCTG.
-
-**Source:** [Figma's 2025 AI report](https://www.figma.com/reports/ai-2025)
-
----
-
-## Slide 5
-
 **Title:** Looking back to look ahead
 
-**Subtitle:** Craft, tools, and what stays human.
+**Subtitle:** Through every metamorphosis, the human element and mastery of craft have retained their value.
 
 **Body:**
-- **The weavers** — Craft is redefined, not replaced. Tools change; skill endures.
-- **Cart to car** — The leap matters more than the step. The focus is on the shift.
-- **The digital era** — Systems, not just screens. Flows and platforms matter.
-- **The future** — Human skills are amplified, not replaced.
+- **The weavers** — The loom changed; the weaver's artistry, mastery, and skill endured.
+- **Wheels** — The leap from horse-drawn cart to automobile changed the vehicle; the human in the journey remained.
+- **The digital era** — Design became systems and flows, not just single screens; the human at the centre of the experience stayed.
 
 ---
 
-## Slide 6
+## Slide 3
 
 **Title:** Questioning the fundamentals
 
@@ -67,7 +46,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 8
+## Slide 3
 
 **Title:** The design process
 
@@ -77,7 +56,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 9
+## Slide 3
 
 **Title:** The wider environment
 
@@ -85,7 +64,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 10
+## Slide 3
 
 **Title:** Energy
 
@@ -95,7 +74,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 11
+## Slide 3
 
 **Title:** Strength
 
@@ -107,7 +86,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 12
+## Slide 3
 
 **Title:** Speed
 
@@ -119,7 +98,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 13
+## Slide 3
 
 **Title:** Iteration
 
@@ -127,7 +106,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 14
+## Slide 3
 
 **Title:** Imagination
 
@@ -135,7 +114,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 15
+## Slide 3
 
 **Title:** Calmness
 
@@ -145,7 +124,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 16
+## Slide 3
 
 **Title:** Mystical Code
 
@@ -153,7 +132,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 17
+## Slide 3
 
 **Title:** Empowerment
 
@@ -163,7 +142,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 18
+## Slide 3
 
 **Title:** Get started and stay grounded
 
@@ -182,7 +161,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 19
+## Slide 3
 
 **Title:** What is an AI model?
 
@@ -195,7 +174,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 20
+## Slide 3
 
 **Title:** Inside the model
 
@@ -207,7 +186,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 21
+## Slide 3
 
 **Title:** What is an AI agent?
 
@@ -221,7 +200,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 21
+## Slide 3
 
 **Title:** Model or agent?
 
@@ -233,7 +212,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 23
+## Slide 3
 
 **Title:** Agent architectures
 
@@ -247,7 +226,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 24
+## Slide 3
 
 **Title:** What makes behaviour agentic?
 
@@ -257,7 +236,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 25
+## Slide 3
 
 **Title:** Vibe coding and Agentic coding
 
@@ -271,7 +250,7 @@ Same tool, two styles. Combine both: vibe for brainstorming and prototypes; agen
 
 ---
 
-## Slide 26
+## Slide 3
 
 **Title:** Prompting styles
 
@@ -287,7 +266,7 @@ Same agent, either style. Choose to fit the task.
 
 ---
 
-## Slide 27
+## Slide 3
 
 **Title:** Prompt clarity
 
@@ -299,7 +278,7 @@ Same agent, either style. Choose to fit the task.
 
 ---
 
-## Slide 28
+## Slide 3
 
 **Title:** Context and continuity
 
@@ -309,7 +288,7 @@ Same agent, either style. Choose to fit the task.
 
 ---
 
-## Slide 29
+## Slide 3
 
 **Title:** Intervention
 
@@ -321,7 +300,7 @@ Same agent, either style. Choose to fit the task.
 
 ---
 
-## Slide 30
+## Slide 3
 
 **Title:** Agentic & designer productivity
 
@@ -337,7 +316,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 31
+## Slide 3
 
 **Title:** Then vs Now
 
@@ -353,7 +332,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 32
+## Slide 3
 
 **Title:** Tech stack
 
@@ -365,7 +344,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 33
+## Slide 3
 
 **Title:** Pipeline
 
@@ -375,7 +354,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 33
+## Slide 3
 
 **Title:** Cursor
 
@@ -385,7 +364,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 34
+## Slide 3
 
 **Title:** When you prompt
 
@@ -395,7 +374,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 34
+## Slide 3
 
 **Title:** GitHub
 
@@ -403,7 +382,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 36
+## Slide 3
 
 **Title:** Vercel
 
@@ -413,7 +392,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 37
+## Slide 3
 
 **Title:** Design systems
 
@@ -423,7 +402,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 38
+## Slide 3
 
 **Title:** Design system in practice
 
@@ -446,7 +425,7 @@ Works best when the design system is documented and in code.
 
 ---
 
-## Slide 39
+## Slide 3
 
 **Title:** Testing
 
@@ -460,7 +439,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 40
+## Slide 3
 
 **Title:** Helpful tips
 
@@ -470,7 +449,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 41
+## Slide 3
 
 **Title:** Level up to agentic
 
@@ -483,7 +462,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 43
+## Slide 3
 
 **Title:** Rounds
 
@@ -494,7 +473,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 43 (Three pillars — moved to near end)
+## Slide 3 (Three pillars — moved to near end)
 
 **Title:** Invigoration, innovation, impact
 
@@ -507,7 +486,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 44
+## Slide 3
 
 **Title:** What we hope you take away
 
@@ -520,7 +499,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 45
+## Slide 3
 
 **Title:** An opportunity of a lifetime
 
@@ -532,7 +511,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 46
+## Slide 36
 
 **Title:** Thank you
 
