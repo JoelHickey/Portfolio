@@ -140,9 +140,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ## Slide 3
 
-**Title:** Get started and stay grounded
-
-**Subtitle:** Practices that help.
+**Title:** Getting started
 
 **Body (labels):**
 - Start simple
@@ -197,13 +195,13 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ## Slide 3
 
-**Title:** Model or agent?
+**Title:** Model vs. Agent
 
-**Subtitle:** Use both, in combination — to get ideas and get things done.
+**Subtitle:** Utilize both in combination to generate ideas and accomplish tasks effectively.
 
 **Body:**
-- **Model = fast thinking** — You want ideas (naming, options, outlines). You'll paste and edit (output stays with you). It's one question (scoped, no tools).
-- **Agent = thinking + doing** — You want it to do things (edit files, run commands). It's multi-step (you review as it goes). You're delegating (hand off, don't paste and edit).
+- **Model: Fast Thinking** — Generates ideas such as naming, options, and outlines. You paste and edit the output, keeping control over the process. Designed for simple interactions: one question, no additional tools required.
+- **Agent: Thinking + Doing** — Capable of executing tasks, such as editing files and running commands. Supports multi-step processes, allowing you to review progress as it occurs. Involves delegation: you hand off tasks without the need to paste and edit.
 
 ---
 

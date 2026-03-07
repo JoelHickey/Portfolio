@@ -971,7 +971,7 @@ function FCTGAITalk() {
         <div className="mx-auto w-full max-w-6xl px-6 py-28">
           <h2 className="text-6xl font-semibold pb-3 leading-normal" style={{ background: 'linear-gradient(90deg, #4c1d95 0%, #5b21b6 25%, #6d28d9 50%, #7c3aed 75%, #8b5cf6 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Building momentum</h2>
           <p className="mt-2 max-w-3xl text-slate-600">
-            Get started and stay grounded.
+            Getting started.
           </p>
           <div className="mt-12 grid gap-6 grid-cols-2 md:grid-cols-3 lg:grid-cols-5">
             <div className="flex flex-col rounded-2xl bg-rose-100 p-6 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.12),0_12px_24px_-8px_rgba(0,0,0,0.08)] transition hover:shadow-[0_32px_64px_-12px_rgba(0,0,0,0.15)] md:p-7">
