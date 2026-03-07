@@ -161,7 +161,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 **Title:** What is an AI model?
 
-**Subtitle:** The brain agents run on.
+**Subtitle:** The core intelligence agents run on.
 
 **Body:**
 - **Large language models (LLMs)** — Reads, reasons, and generates — trained on lots of text and code. Products: ChatGPT, Claude, Gemini (model-only). Tiers: Sonnet, GPT-4o-mini (quick) · Opus, GPT-4o (complex).

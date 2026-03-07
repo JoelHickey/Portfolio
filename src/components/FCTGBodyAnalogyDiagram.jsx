@@ -24,6 +24,7 @@ export default function FCTGBodyAnalogyDiagram() {
             <feDropShadow dx="0" dy="2" stdDeviation="3" floodColor="#0f172a" floodOpacity="0.3" />
           </filter>
         </defs>
+        {/* Body = Agent (Model in head, Memory, Tools in hands) */}
         {/* Body group with shadow */}
         <g filter="url(#fctg-body-shadow)">
           {/* Neck */}
@@ -58,41 +59,29 @@ export default function FCTGBodyAnalogyDiagram() {
           <circle cx="0" cy="0" r="20" fill="url(#fctg-brain-fill)" stroke="#e879f9" strokeWidth="1.5" opacity="0.98" />
           <text x="0" y="4" textAnchor="middle" fontSize="10" fill="#831843" fontWeight="600" fontFamily="system-ui, sans-serif">Model</text>
         </g>
-        {/* Left hand + gear icon */}
+        {/* Left hand holding memory stack */}
         <g transform="translate(45, 172)">
           <ellipse cx="0" cy="0" rx="12" ry="10" fill="#f59e0b" fillOpacity="0.7" stroke="#fbbf24" strokeWidth="2" />
-          <circle cx="0" cy="0" r="4" fill="none" stroke="#fbbf24" strokeWidth="1.5" />
-          <path d="M 0 -4.5 L 0 4.5 M -4.5 0 L 4.5 0 M -3 -3 L 3 3 M -3 3 L 3 -3" stroke="#fbbf24" strokeWidth="1.2" strokeLinecap="round" />
+          <g transform="translate(-12, -28) rotate(-18) scale(0.85)">
+            <rect x="0" y="0" width="30" height="38" rx="4" fill="#0f766e" fillOpacity="0.6" stroke="#2dd4bf" strokeWidth="1.5" />
+            <rect x="3" y="5" width="30" height="38" rx="4" fill="#134e4a" fillOpacity="0.7" stroke="#2dd4bf" strokeWidth="1.2" />
+            <rect x="6" y="10" width="30" height="38" rx="4" fill="#0f766e" fillOpacity="0.5" stroke="#2dd4bf" strokeWidth="1" />
+            <line x1="12" y1="22" x2="24" y2="22" stroke="#2dd4bf" strokeWidth="1.2" opacity="0.9" />
+            <line x1="12" y1="30" x2="26" y2="30" stroke="#2dd4bf" strokeWidth="1" opacity="0.7" />
+          </g>
         </g>
-        {/* Right hand + magnifier icon */}
+        {/* Right hand + magnifier icon (Tools) */}
         <g transform="translate(215, 172)">
           <ellipse cx="0" cy="0" rx="12" ry="10" fill="#f59e0b" fillOpacity="0.7" stroke="#fbbf24" strokeWidth="2" />
           <circle cx="2" cy="-2" r="4" fill="none" stroke="#fbbf24" strokeWidth="1.5" />
           <path d="M 4 0 L 7 3" stroke="#fbbf24" strokeWidth="1.5" strokeLinecap="round" />
         </g>
-        {/* Memory - stacked cards (lives outside; injects into context) */}
-        <g transform="translate(218, 40)">
-          <rect x="0" y="0" width="30" height="38" rx="4" fill="#0f766e" fillOpacity="0.6" stroke="#2dd4bf" strokeWidth="1.5" />
-          <rect x="3" y="5" width="30" height="38" rx="4" fill="#134e4a" fillOpacity="0.7" stroke="#2dd4bf" strokeWidth="1.2" />
-          <rect x="6" y="10" width="30" height="38" rx="4" fill="#0f766e" fillOpacity="0.5" stroke="#2dd4bf" strokeWidth="1" />
-          <line x1="12" y1="22" x2="24" y2="22" stroke="#2dd4bf" strokeWidth="1.2" opacity="0.9" />
-          <line x1="12" y1="30" x2="26" y2="30" stroke="#2dd4bf" strokeWidth="1" opacity="0.7" />
-        </g>
-        {/* Memory injects into model (context is the input each turn — see caption) */}
-        <g stroke="#2dd4bf" strokeWidth="1.5" fill="none" opacity="0.85">
-          <path d="M 182 52 L 162 52" strokeLinecap="round" />
-          <path d="M 159 49 L 162 52 L 159 55" fill="none" strokeWidth="1.2" strokeLinejoin="round" strokeLinecap="round" />
-        </g>
-        <text x="172" y="45" textAnchor="middle" fontSize="9" fill="#5eead4" fontFamily="system-ui, sans-serif">inject</text>
         {/* Labels */}
         <g fontFamily="system-ui, sans-serif">
-          <rect x="187" y="0" width="78" height="28" rx="14" fill="#2dd4bf" fillOpacity="0.25" stroke="#2dd4bf" strokeWidth="1" strokeOpacity="0.6" />
-          <text x="226" y="18" textAnchor="middle" fontSize="12" fill="#5eead4" fontWeight="600">Memory</text>
+          <text x="28" y="132" textAnchor="middle" fontSize="10" fill="#5eead4" fontWeight="600">Memory</text>
         </g>
         <g fontFamily="system-ui, sans-serif">
-          <rect x="181" y="188" width="68" height="34" rx="17" fill="#f59e0b" fillOpacity="0.25" stroke="#f59e0b" strokeWidth="1" strokeOpacity="0.6" />
-          <text x="215" y="206" textAnchor="middle" fontSize="12" fill="#fcd34d" fontWeight="600">Hands</text>
-          <text x="215" y="219" textAnchor="middle" fontSize="10" fill="#94a3b8">Tools</text>
+          <text x="215" y="198" textAnchor="middle" fontSize="10" fill="#fcd34d" fontWeight="600">Tools</text>
         </g>
       </svg>
     </div>

@@ -168,43 +168,273 @@ const MODEL_DIAGRAM_STEPS_TECHNICAL = [
 ]
 
 const MODEL_DIAGRAM_STEPS_BEGINNER = [
-  { title: 'Your words', subtitle: 'what you type', tone: 'border-cyan-500/35 bg-cyan-950/25 text-cyan-100' },
-  { title: 'Break into pieces', subtitle: 'chunks it knows', tone: 'border-cyan-500/35 bg-cyan-950/25 text-cyan-100' },
-  { title: 'Turn into numbers', subtitle: 'meaning as numbers', tone: 'border-cyan-500/35 bg-cyan-950/25 text-cyan-100' },
-  { title: 'The model', subtitle: 'thinks about context', tone: 'border-violet-500/35 bg-violet-950/25 text-violet-100' },
-  { title: 'What comes next?', subtitle: 'pick the next piece', tone: 'border-violet-500/35 bg-violet-950/25 text-violet-100' },
-  { title: 'Add & repeat', subtitle: 'until done', tone: 'border-amber-500/35 bg-amber-950/25 text-amber-100' },
+  { title: 'Data input', subtitle: '', tone: 'border-cyan-500/35 bg-cyan-950/25 text-cyan-100' },
+  { title: 'Pre-process input', subtitle: 'clean + tokenize', tone: 'border-cyan-500/35 bg-cyan-950/25 text-cyan-100' },
+  { title: 'Turn into numbers', subtitle: 'encode as tensors', tone: 'border-cyan-500/35 bg-cyan-950/25 text-cyan-100' },
+  { title: 'Run through model', subtitle: 'compare patterns', tone: 'border-violet-500/35 bg-violet-950/25 text-violet-100' },
+  { title: 'Rank likely outputs', subtitle: 'best options first', tone: 'border-violet-500/35 bg-violet-950/25 text-violet-100' },
+  { title: 'Return output', subtitle: 'text, label, or score', tone: 'border-amber-500/35 bg-amber-950/25 text-amber-100' },
+]
+
+const MODEL_DIAGRAM_EXAMPLE = [
+  ['Photo', 'Text'],
+  'Clean, resize, tensor',
+  'Model runs',
+  '"Golden Retriever"',
+  'Format label',
+  'User sees result',
+]
+
+const MODEL_DIAGRAM_STEPS_REFERENCE = [
+  {
+    title: 'Data input',
+    description: [
+      'Raw data is gathered from various sources, such as databases,',
+      'files, cameras, or sensors. This data can be structured (tables)',
+      'or unstructured (text, images, video).',
+    ],
+    stroke: '#38bdf8',
+    fill: 'rgba(12,74,110,0.9)',
+  },
+  {
+    title: 'Pre-processing',
+    description: [
+      'Raw data is not directly usable by AI models. It must be cleaned',
+      'and transformed into a numerical format, usually tensors',
+      '(multi-dimensional arrays).',
+    ],
+    stroke: '#22d3ee',
+    fill: 'rgba(8,51,68,0.9)',
+  },
+  {
+    title: 'Model inference',
+    description: [
+      "The processed input (tensors) flows through the model's",
+      'architecture, which is generally a neural network.',
+    ],
+    stroke: '#fb923c',
+    fill: 'rgba(69,26,3,0.9)',
+  },
+  {
+    title: 'Output Generation',
+    description: [
+      'The final layer of the network, the Output Layer, produces the',
+      'result, which could be a classification, probability score,',
+      'or generated text.',
+    ],
+    stroke: '#2dd4bf',
+    fill: 'rgba(17,94,89,0.9)',
+  },
+  {
+    title: 'Post-processing',
+    description: [
+      'The numerical output is converted back into a human-understandable',
+      'format, such as identifying an object in a photo, text generation,',
+      'or a numerical prediction.',
+    ],
+    stroke: '#e879f9',
+    fill: 'rgba(88,28,135,0.9)',
+  },
+  {
+    title: 'Result',
+    description: [
+      'After the prediction is made, the results are logged. The',
+      'difference between the predicted output and the actual expected',
+      'outcome is used to improve the model in future cycles.',
+    ],
+    stroke: '#a78bfa',
+    fill: 'rgba(46,16,101,0.9)',
+  },
 ]
 
 function ModelInBetweenDiagram() {
-  const renderDiagram = (steps, loopText) => (
-    <div className="rounded-lg md:rounded-xl border border-slate-600/40 bg-slate-900/30 p-3 md:p-4 space-y-3 md:space-y-3.5">
-      <div className="flex flex-wrap items-center justify-center gap-x-1.5 gap-y-1.5 md:gap-x-2 md:gap-y-2">
-        {steps.map((s, i) => (
-          <div key={`${s.title}-${i}`} className="flex items-center gap-1 md:gap-1.5 shrink-0">
-            <div className={`rounded border px-2 py-1.5 md:px-2.5 md:py-2 ${s.tone}`}>
-              <div className="text-[10px] md:text-[11px] font-semibold leading-none whitespace-nowrap">{s.title}</div>
-              <div className="mt-0.5 text-[9px] md:text-[10px] leading-none opacity-80 whitespace-nowrap">{s.subtitle}</div>
-            </div>
-            {i < steps.length - 1 && (
-              <span className="text-slate-500 text-xs md:text-sm select-none shrink-0" aria-hidden>→</span>
-            )}
-          </div>
-        ))}
-      </div>
-      <div className="pt-1 border-t border-slate-700/60 mt-1 text-[10px] md:text-[11px] text-slate-400 text-center">
-        {loopText}
-      </div>
-    </div>
-  )
+  const steps = MODEL_DIAGRAM_STEPS_REFERENCE
+  const titleH = 32
+  const titleR = 8
+  const gray = '#475569'
+  const cardPadding = 12
+  const minW = 80
+  const computedWidths = steps.map((s) => Math.max(minW, s.title.length * 6.5) + cardPadding * 2)
+  const titleWidths = Array(steps.length).fill(Math.max(...computedWidths))
+  const cardGap = 44
+  let x = 100
+  const positions = steps.map((s, i) => {
+    const cx = x + titleWidths[i] / 2
+    x += titleWidths[i] + cardGap
+    return { cx, titleW: titleWidths[i] }
+  })
+  const titleY = 24
+  const exampleY = 165
+  const exampleH = titleH
+  const svgW = x + 80
+  const svgH = 228
+  const resultRight = positions[5].cx + positions[5].titleW / 2
+  const modelLeft = positions[2].cx - positions[2].titleW / 2
+  const loopStroke = steps[5].stroke
+  const loopY = 66
+  const loopGap = loopY - (titleY + titleH / 2)
+  const exampleLoopY = exampleY + titleH / 2 + loopGap
+  const loopOutset = 16
+  const exPhotoY = exampleY - titleH / 2 - 8
+  const exPromptY = exampleY + titleH / 2 + 8
+  const ctrlOffset = 50
 
   return (
-    <div className="space-y-4 md:space-y-5">
-      {renderDiagram(MODEL_DIAGRAM_STEPS_TECHNICAL, 'Loop: append the sampled token to the context and run the same stack again until a stop condition.')}
-      <div>
-        <p className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-slate-500 mb-2 text-center">In plain language</p>
-        {renderDiagram(MODEL_DIAGRAM_STEPS_BEGINNER, 'Add that word and run the same steps again until it\'s done.')}
-      </div>
+    <div className="w-full max-w-[1400px] mx-auto" aria-label="Inside the model: 6-step AI pipeline with feedback loop">
+      <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
+        <defs>
+          <marker id="fctg-flow-arrow" markerWidth="5" markerHeight="4" refX="4" refY="2" orient="auto">
+            <path d="M0 0 L5 2 L0 4 Z" fill="context-stroke" />
+          </marker>
+        </defs>
+
+        {/* Feedback loop: Result → Model inference */}
+        <path
+          d={`M ${resultRight} ${titleY} H ${resultRight + loopOutset} V ${loopY} H ${modelLeft - loopOutset} V ${titleY} H ${modelLeft}`}
+          fill="none"
+          stroke={loopStroke}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeDasharray="6 4"
+          markerEnd="url(#fctg-flow-arrow)"
+          opacity="0.85"
+        />
+        <text
+          x={(resultRight + modelLeft) / 2}
+          y={loopY + 10}
+          textAnchor="middle"
+          dominantBaseline="hanging"
+          fontSize="11"
+          fill={loopStroke}
+          fontFamily="system-ui,sans-serif"
+          fontWeight="500"
+          opacity="0.9"
+        >
+          Feedback loop: user confirms or corrects, model improves
+        </text>
+
+        {positions.slice(0, -1).map((pos, i) => (
+          <path
+            key={`flow-${i}`}
+            d={`M ${pos.cx + pos.titleW / 2} ${titleY} H ${positions[i + 1].cx - positions[i + 1].titleW / 2}`}
+            fill="none"
+            stroke={steps[i + 1].stroke}
+            strokeWidth="2"
+            strokeLinecap="round"
+            markerEnd="url(#fctg-flow-arrow)"
+            opacity="0.9"
+          />
+        ))}
+
+        {steps.map(({ title, stroke, fill }, i) => {
+          const { cx, titleW } = positions[i]
+          return (
+            <g key={title}>
+              <rect
+                x={cx - titleW / 2}
+                y={titleY - titleH / 2}
+                width={titleW}
+                height={titleH}
+                rx={titleR}
+                fill={fill}
+                stroke={stroke}
+                strokeWidth="1.5"
+              />
+              <text
+                x={cx}
+                y={titleY}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fontSize="11"
+                fill="#f1f5f9"
+                fontFamily="system-ui,sans-serif"
+                fontWeight="600"
+              >
+                {title}
+              </text>
+            </g>
+          )
+        })}
+
+        {/* Example row: curved lines Photo & Text prompt → Clean, resize, tensor */}
+        <path d={`M ${positions[0].cx + positions[0].titleW / 2} ${exPhotoY} C ${positions[0].cx + positions[0].titleW / 2 + ctrlOffset} ${exPhotoY} ${positions[1].cx - positions[1].titleW / 2 - ctrlOffset} ${exampleY} ${positions[1].cx - positions[1].titleW / 2} ${exampleY}`} fill="none" stroke={steps[1].stroke} strokeWidth="2" strokeLinecap="round" markerEnd="url(#fctg-flow-arrow)" opacity="0.9" />
+        <path d={`M ${positions[0].cx + positions[0].titleW / 2} ${exPromptY} C ${positions[0].cx + positions[0].titleW / 2 + ctrlOffset} ${exPromptY} ${positions[1].cx - positions[1].titleW / 2 - ctrlOffset} ${exampleY} ${positions[1].cx - positions[1].titleW / 2} ${exampleY}`} fill="none" stroke={steps[1].stroke} strokeWidth="2" strokeLinecap="round" markerEnd="url(#fctg-flow-arrow)" opacity="0.9" />
+        {positions.slice(1, -1).map((pos, i) => (
+          <path
+            key={`ex-flow-${i + 1}`}
+            d={`M ${pos.cx + pos.titleW / 2} ${exampleY} H ${positions[i + 2].cx - positions[i + 2].titleW / 2}`}
+            fill="none"
+            stroke={steps[i + 2].stroke}
+            strokeWidth="2"
+            strokeLinecap="round"
+            markerEnd="url(#fctg-flow-arrow)"
+            opacity="0.9"
+          />
+        ))}
+
+        {/* Example feedback loop: User sees result → Model runs */}
+        <path
+          d={`M ${resultRight} ${exampleY} H ${resultRight + loopOutset} V ${exampleLoopY} H ${modelLeft - loopOutset} V ${exampleY} H ${modelLeft}`}
+          fill="none"
+          stroke={loopStroke}
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeDasharray="6 4"
+          markerEnd="url(#fctg-flow-arrow)"
+          opacity="0.75"
+        />
+        <text
+          x={(resultRight + modelLeft) / 2}
+          y={exampleLoopY + 10}
+          textAnchor="middle"
+          dominantBaseline="hanging"
+          fontSize="11"
+          fill={loopStroke}
+          fontFamily="system-ui,sans-serif"
+          fontWeight="500"
+          opacity="0.85"
+        >
+          &quot;Actually it&apos;s a Labrador&quot;
+        </text>
+
+        {/* Example row: same boxes, aligned (below flow) */}
+        {/* Step 0: Photo and Text prompt stacked — same size as other cards */}
+        <g>
+          <rect x={positions[0].cx - positions[0].titleW / 2} y={exPhotoY - titleH / 2} width={positions[0].titleW} height={titleH} rx={titleR} fill={steps[0].fill} stroke={steps[0].stroke} strokeWidth="1.5" />
+          <text x={positions[0].cx} y={exPhotoY} textAnchor="middle" dominantBaseline="middle" fontSize="11" fill="#f1f5f9" fontFamily="system-ui,sans-serif" fontWeight="600">Photo</text>
+          <rect x={positions[0].cx - positions[0].titleW / 2} y={exPromptY - titleH / 2} width={positions[0].titleW} height={titleH} rx={titleR} fill={steps[0].fill} stroke={steps[0].stroke} strokeWidth="1.5" />
+          <text x={positions[0].cx} y={exPromptY} textAnchor="middle" dominantBaseline="middle" fontSize="11" fill="#f1f5f9" fontFamily="system-ui,sans-serif" fontWeight="600">Text</text>
+        </g>
+        {steps.slice(1).map(({ stroke, fill }, i) => {
+          const { cx, titleW } = positions[i + 1]
+          return (
+            <g key={`ex-${i + 1}`}>
+              <rect
+                x={cx - titleW / 2}
+                y={exampleY - exampleH / 2}
+                width={titleW}
+                height={exampleH}
+                rx={titleR}
+                fill={fill}
+                stroke={stroke}
+                strokeWidth="1.5"
+              />
+              <text
+                x={cx}
+                y={exampleY}
+                textAnchor="middle"
+                dominantBaseline="middle"
+                fontSize="11"
+                fill="#f1f5f9"
+                fontFamily="system-ui,sans-serif"
+                fontWeight="600"
+              >
+                {MODEL_DIAGRAM_EXAMPLE[i + 1]}
+              </text>
+            </g>
+          )
+        })}
+      </svg>
     </div>
   )
 }
@@ -758,7 +988,7 @@ function FCTGAITalkSlides() {
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl">
             <div className="max-w-md mx-auto text-center">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>The design process</h2>
-              <p className="fctg-subtitle mt-1">Productivity still means impact — what counts as productive work has evolved.</p>
+              <p className="fctg-subtitle mt-1">What counts as productive work has evolved.</p>
             </div>
           <div className="mt-10 w-screen max-w-none" style={{ marginLeft: 'calc(50% - 50vw)', marginRight: 'calc(50% - 50vw)' }}>
             <svg viewBox="0 0 1280 120" className="block w-full min-h-[120px]" preserveAspectRatio="xMidYMid slice" aria-hidden>
@@ -1333,26 +1563,16 @@ function FCTGAITalkSlides() {
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:px-10 md:py-8">
             <div className="text-center mb-4 md:mb-6">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>What is an AI model?</h2>
-              <p className="fctg-subtitle mt-1 text-xs md:text-sm text-slate-400">The brain agents run on.</p>
+              <p className="fctg-subtitle mt-1 text-xs md:text-sm text-slate-400">The core intelligence agents run on.</p>
             </div>
             <div className="max-w-2xl mx-auto space-y-4 md:space-y-5 text-center">
-              <div className="rounded-lg md:rounded-xl border border-cyan-500/25 bg-gradient-to-b from-cyan-950/40 to-cyan-950/20 py-2.5 px-3 md:py-4 md:px-5 shadow-lg shadow-cyan-950/30 ring-1 ring-cyan-400/10">
-                <h3 className="text-xs md:text-sm font-semibold text-cyan-300 mb-0.5 md:mb-1.5 tracking-tight">Large language models (LLMs)</h3>
-                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">Reads, reasons, and generates.</p>
-                <p className="text-[10px] md:text-[11px] text-slate-400 mt-2 md:mt-2.5 pt-2 md:pt-2.5 border-t border-cyan-500/20">
-                  <span className="font-medium text-cyan-300/90">Products:</span> ChatGPT, Claude, Gemini (model-only).
-                </p>
-                <p className="text-[10px] md:text-[11px] text-slate-400 mt-1">
-                  <span className="font-medium text-cyan-300/90">Tiers:</span> Sonnet, GPT-4o-mini (quick) · Opus, GPT-4o (complex).
-                </p>
-              </div>
               <div className="rounded-lg md:rounded-xl border border-slate-600/40 bg-slate-900/60 py-2.5 px-3 md:py-4 md:px-5 shadow-lg shadow-slate-950/30 ring-1 ring-slate-500/30">
                 <h3 className="text-xs md:text-sm font-semibold text-cyan-300 mb-0.5 md:mb-1.5 tracking-tight">Why we use them</h3>
-                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">Generate options and drafts faster — you focus on judgment, taste, and strategy.</p>
+                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">More ideas, options, and drafts, faster — so you can focus on judgment, craft, and what&apos;s right for users.</p>
               </div>
-              <div className="rounded-lg md:rounded-xl border border-amber-500/25 bg-gradient-to-b from-amber-950/40 to-amber-950/20 py-2.5 px-3 md:py-4 md:px-5 shadow-lg shadow-amber-950/30 ring-1 ring-amber-400/10">
-                <h3 className="text-xs md:text-sm font-semibold text-amber-300 mb-0.5 md:mb-1.5 tracking-tight">Key point</h3>
-                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">Output only — they respond; they don&apos;t act.</p>
+              <div className="rounded-lg md:rounded-xl border border-cyan-500/25 bg-gradient-to-b from-cyan-950/40 to-cyan-950/20 py-2.5 px-3 md:py-4 md:px-5 shadow-lg shadow-cyan-950/30 ring-1 ring-cyan-400/10">
+                <h3 className="text-xs md:text-sm font-semibold text-cyan-300 mb-0.5 md:mb-1.5 tracking-tight">Large language models (LLMs)</h3>
+                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">Reads, reasons, and generates — output only.</p>
               </div>
             </div>
           </div>
@@ -1362,19 +1582,11 @@ function FCTGAITalkSlides() {
         {/* Slide 18: What happens inside the model? */}
         {slideIndex === 16 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
-          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:px-10 md:py-8">
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:px-10 md:py-8 -mt-8 md:-mt-12">
             <div className="text-center mb-4 md:mb-6">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Inside the model</h2>
-              <p className="fctg-subtitle mt-1 text-xs md:text-sm text-slate-400">
-                <span className="text-cyan-300 font-medium">Input</span>
-                <span> → </span>
-                <span className="text-violet-300 font-medium">processing</span>
-                <span> → </span>
-                <span className="text-amber-300 font-medium">output</span>
-                <span>. Then repeat.</span>
-              </p>
             </div>
-            <div className="max-w-4xl mx-auto">
+            <div className="w-full max-w-4xl mx-auto min-w-0">
               <ModelInBetweenDiagram />
             </div>
           </div>
@@ -1391,7 +1603,6 @@ function FCTGAITalkSlides() {
               <FCTGBodyAnalogyDiagram />
             </div>
             <p className="mt-3 md:mt-4 text-slate-500 text-[10px] md:text-xs italic">Model thinks. Memory remembers. Hands act.</p>
-            <p className="mt-1 text-slate-500/80 text-[9px] md:text-[10px] max-w-xl mx-auto">Context is the input the model sees each turn. Memory lives outside the model; the agent injects it into that context.</p>
           </div>
         </Slide>
         )}
