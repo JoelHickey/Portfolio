@@ -1562,17 +1562,17 @@ function FCTGAITalkSlides() {
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:px-10 md:py-8">
             <div className="text-center mb-4 md:mb-6">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>What is an AI model?</h2>
-              <p className="fctg-subtitle mt-1 text-xs md:text-sm text-slate-400">The core intelligence agents run on.</p>
+              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>What is an AI Model?</h2>
+              <p className="fctg-subtitle mt-1 text-xs md:text-sm text-slate-400">The core of the system — it reads data, reasons through information, and generates content.</p>
             </div>
             <div className="max-w-2xl mx-auto space-y-4 md:space-y-5 text-center">
               <div className="rounded-lg md:rounded-xl border border-slate-600/40 bg-slate-900/60 py-2.5 px-3 md:py-4 md:px-5 shadow-lg shadow-slate-950/30 ring-1 ring-slate-500/30">
-                <h3 className="text-xs md:text-sm font-semibold text-cyan-300 mb-0.5 md:mb-1.5 tracking-tight">Why we use them</h3>
-                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">More ideas, options, and drafts, faster — so you can focus on judgment, craft, and what&apos;s right for users.</p>
+                <h3 className="text-xs md:text-sm font-semibold text-cyan-300 mb-0.5 md:mb-1.5 tracking-tight">Why Use AI Models?</h3>
+                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">They expedite the creative process by providing a multitude of ideas, options, and drafts more quickly, enabling you to focus on judgment, crafting, and delivering what&apos;s best for users.</p>
               </div>
               <div className="rounded-lg md:rounded-xl border border-cyan-500/25 bg-gradient-to-b from-cyan-950/40 to-cyan-950/20 py-2.5 px-3 md:py-4 md:px-5 shadow-lg shadow-cyan-950/30 ring-1 ring-cyan-400/10">
-                <h3 className="text-xs md:text-sm font-semibold text-cyan-300 mb-0.5 md:mb-1.5 tracking-tight">Large language models (LLMs)</h3>
-                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">Reads, reasons, and generates — output only.</p>
+                <h3 className="text-xs md:text-sm font-semibold text-cyan-300 mb-0.5 md:mb-1.5 tracking-tight">Large Language Models (LLMs)</h3>
+                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">These models focus purely on output; they generate responses based on input without taking action.</p>
               </div>
             </div>
           </div>
@@ -1615,21 +1615,21 @@ function FCTGAITalkSlides() {
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Model or agent?</h2>
               <p className="fctg-subtitle mt-1 text-xs md:text-sm text-slate-400">Use both, in combination — to get ideas and get things done.</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto">
-              <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 p-4 md:p-5 text-center">
-                <h3 className="text-sm md:text-base font-semibold text-cyan-300 mb-3">Model = fast thinking</h3>
-                <ul className="space-y-2 text-xs md:text-sm text-slate-300/95 list-disc list-inside text-left inline-block">
-                  <li><strong className="text-cyan-100">You want ideas</strong> — naming, options, outlines.</li>
-                  <li><strong className="text-cyan-100">You&apos;ll paste and edit</strong> — output stays with you.</li>
-                  <li><strong className="text-cyan-100">It&apos;s one question</strong> — scoped, no tools.</li>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 max-w-4xl mx-auto">
+              <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/25 px-5 py-5 md:px-6 md:py-6 text-left">
+                <h3 className="text-base md:text-lg font-semibold text-cyan-300 mb-4">Model = fast thinking</h3>
+                <ul className="space-y-3 text-sm md:text-base text-slate-200/95 leading-relaxed list-none pl-0">
+                  <li><span className="text-cyan-200 font-medium">Ideas:</span> naming, options, outlines.</li>
+                  <li><span className="text-cyan-200 font-medium">You paste and edit</span> — you keep control.</li>
+                  <li><span className="text-cyan-200 font-medium">One question, no tools</span> — simple.</li>
                 </ul>
               </div>
-              <div className="rounded-xl border border-violet-500/30 bg-violet-950/20 p-4 md:p-5 text-center">
-                <h3 className="text-sm md:text-base font-semibold text-violet-300 mb-3">Agent = thinking + doing</h3>
-                <ul className="space-y-2 text-xs md:text-sm text-slate-300/95 list-disc list-inside text-left inline-block">
-                  <li><strong className="text-violet-100">You want it to do things</strong> — edit files, run commands.</li>
-                  <li><strong className="text-violet-100">It&apos;s multi-step</strong> — you review as it goes.</li>
-                  <li><strong className="text-violet-100">You&apos;re delegating</strong> — hand off, don&apos;t paste and edit.</li>
+              <div className="rounded-xl border border-violet-500/30 bg-violet-950/25 px-5 py-5 md:px-6 md:py-6 text-left">
+                <h3 className="text-base md:text-lg font-semibold text-violet-300 mb-4">Agent = thinking + doing</h3>
+                <ul className="space-y-3 text-sm md:text-base text-slate-200/95 leading-relaxed list-none pl-0">
+                  <li><span className="text-violet-200 font-medium">You want it to do things</span> — edit files, run commands.</li>
+                  <li><span className="text-violet-200 font-medium">It&apos;s multi-step</span> — you review as it goes.</li>
+                  <li><span className="text-violet-200 font-medium">You&apos;re delegating</span> — hand off, don&apos;t paste and edit.</li>
                 </ul>
               </div>
             </div>

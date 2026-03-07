@@ -159,14 +159,13 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ## Slide 3
 
-**Title:** What is an AI model?
+**Title:** What is an AI Model?
 
-**Subtitle:** The core intelligence agents run on.
+**Subtitle:** The core of the system — it reads data, reasons through information, and generates content.
 
 **Body:**
-- **Large language models (LLMs)** — Reads, reasons, and generates — trained on lots of text and code. Products: ChatGPT, Claude, Gemini (model-only). Tiers: Sonnet, GPT-4o-mini (quick) · Opus, GPT-4o (complex).
-- **Why we use them** — Generate options and drafts faster — you focus on judgment, taste, and strategy.
-- **Key point** — Outputs only — no tools, no actions. Models respond; they don't act.
+- **Why Use AI Models?** — They expedite the creative process by providing a multitude of ideas, options, and drafts more quickly, enabling you to focus on judgment, crafting, and delivering what's best for users.
+- **Large Language Models (LLMs)** — These models focus purely on output; they generate responses based on input without taking action.
 
 ---
 
