@@ -13,7 +13,7 @@ import FCTGAIFlowDiagram, { FCTGAIFlowCaption } from './FCTGAIFlowDiagram'
 import FCTGMultiAgentDiagram, { FCTGMultiAgentCaption } from './FCTGMultiAgentDiagram'
 import FCTGBodyAnalogyDiagram from './FCTGBodyAnalogyDiagram'
 
-const SLIDE_COUNT = 44
+const SLIDE_COUNT = 45
 
 /* Slide quotes — Rick Rubin from The Way of Code; Henry Dreyfuss for Looking back */
 const FCTG_SLIDE_QUOTES = {
@@ -32,7 +32,7 @@ const FCTG_SLIDE_QUOTES = {
   12: null,
   13: null,
   14: null,
-  15: { quote: 'Free from intellect, free from abstraction, The Vibe Coder leads all things back to natural self-sufficiency.', attribution: '— Rick Rubin, The Way of Code' },
+  15: null,
   16: null,
   17: null,
   18: null,
@@ -61,6 +61,7 @@ const FCTG_SLIDE_QUOTES = {
   41: null,
   42: null,
   43: { quote: 'Empty, yet inexhaustible, fathomless and eternal. Source is the ancestor of elegant patterns.', attribution: '— Rick Rubin, The Way of Code' },
+  44: null,
 }
 
 function SlideQuote({ slideIndex }) {
@@ -714,24 +715,23 @@ function FCTGAITalkSlides() {
           <div className="absolute inset-0 fctg-pattern-hexagon" aria-hidden />
         </div>
       )}
-      {/* Slide 22: Agent architectures */}
+      {/* Slide 22: Model vs. Agent */}
       {slideIndex === 19 && (
+        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
+          <ParticleBackground variant="brain" />
+        </div>
+      )}
+      {/* Slide 23: Agent architectures */}
+      {slideIndex === 20 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
-        </div>
-      )}
-      {/* Slide 23: Model vs. Agent */}
-      {slideIndex === 20 && (
-        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
-          <ParticleBackground variant="brain" />
         </div>
       )}
       {/* Slide 24: What makes behaviour agentic? */}
       {slideIndex === 21 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
-          <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
         </div>
       )}
       {/* Slide 25: Agentic coding (practice under vibe) */}
@@ -844,39 +844,38 @@ function FCTGAITalkSlides() {
           <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
         </div>
       )}
-      {/* Slide 38: Testing (second bg) */}
-      {slideIndex === 38 && (
-        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
-          <ParticleBackground variant="agents" />
-          <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
-        </div>
-      )}
       {/* Slide 39: Helpful tips */}
-      {slideIndex === 39 && (
+      {slideIndex === 38 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
         </div>
       )}
       {/* Slide 40: Level up (activity) */}
-      {slideIndex === 40 && (
+      {slideIndex === 39 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
         </div>
       )}
       {/* Slide 41: Rounds */}
-      {slideIndex === 41 && (
+      {slideIndex === 40 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
         </div>
       )}
       {/* Slide 41: Rounds (duplicate bg) */}
-      {slideIndex === 42 && (
+      {slideIndex === 40 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
+        </div>
+      )}
+      {/* Slide 41: Three pillars */}
+      {slideIndex === 41 && (
+        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
+          <ParticleBackground variant="calmness" />
         </div>
       )}
       {/* Slide 42: What we hope you take away */}
@@ -886,8 +885,15 @@ function FCTGAITalkSlides() {
           <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
         </div>
       )}
-      {/* Slide 43 / 44 / 45: Three pillars, Opportunity, Thank you */}
+      {/* Slide 43: Opportunity */}
       {slideIndex === 43 && (
+        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
+          <ParticleBackground variant="agents" />
+          <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
+        </div>
+      )}
+      {/* Slide 44: Thank you */}
+      {slideIndex === 44 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="calmness" />
         </div>
@@ -898,8 +904,8 @@ function FCTGAITalkSlides() {
         {slideIndex >= 4 && slideIndex <= 8 && <ChapterLabel>Concepts</ChapterLabel>}
         {slideIndex >= 9 && slideIndex <= 13 && <ChapterLabel>Monumental moments</ChapterLabel>}
         {slideIndex >= 14 && slideIndex <= 27 && <ChapterLabel>Building momentum</ChapterLabel>}
-        {slideIndex >= 28 && slideIndex <= 38 && <ChapterLabel>Technology</ChapterLabel>}
-        {slideIndex >= 39 && slideIndex <= 43 && <ChapterLabel>Activity & close</ChapterLabel>}
+        {slideIndex >= 28 && slideIndex <= 37 && <ChapterLabel>Technology</ChapterLabel>}
+        {slideIndex >= 38 && slideIndex <= 44 && <ChapterLabel>Activity & close</ChapterLabel>}
         {/* Slide 1: Title */}
         {slideIndex === 0 && (
         <Slide
@@ -1590,11 +1596,11 @@ function FCTGAITalkSlides() {
             <div className="max-w-2xl mx-auto space-y-4 md:space-y-5 text-center">
               <div className="rounded-lg md:rounded-xl border border-slate-600/40 bg-slate-900/60 py-2.5 px-3 md:py-4 md:px-5 shadow-lg shadow-slate-950/30 ring-1 ring-slate-500/30">
                 <h3 className="text-xs md:text-sm font-semibold text-cyan-300 mb-0.5 md:mb-1.5 tracking-tight">Why Use AI Models?</h3>
-                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">They expedite the creative process by providing a multitude of ideas, options, and drafts more quickly, enabling you to focus on judgment, crafting, and delivering what&apos;s best for users.</p>
+                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">More ideas and drafts, faster — you focus on judgment and delivery.</p>
               </div>
               <div className="rounded-lg md:rounded-xl border border-cyan-500/25 bg-gradient-to-b from-cyan-950/40 to-cyan-950/20 py-2.5 px-3 md:py-4 md:px-5 shadow-lg shadow-cyan-950/30 ring-1 ring-cyan-400/10">
                 <h3 className="text-xs md:text-sm font-semibold text-cyan-300 mb-0.5 md:mb-1.5 tracking-tight">Large Language Models (LLMs)</h3>
-                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">These models focus purely on output; they generate responses based on input without taking action.</p>
+                <p className="text-[11px] md:text-xs leading-snug text-slate-300/95">Respond to input; they don&apos;t act.</p>
               </div>
             </div>
           </div>
@@ -1629,8 +1635,8 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 21: Agent architectures */}
-        {slideIndex === 19 && (
+        {/* Slide 23: Agent architectures */}
+        {slideIndex === 20 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4">
             <div className="text-center mb-4 md:mb-6">
@@ -1655,7 +1661,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Slide 22: Model vs. Agent */}
-        {slideIndex === 20 && (
+        {slideIndex === 19 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:px-10 md:py-8">
             <div className="text-center mb-4 md:mb-6">
@@ -1737,18 +1743,31 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 23: What makes behaviour agentic? */}
+        {/* Slide 24: What makes behaviour agentic? */}
         {slideIndex === 21 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:py-8">
-            <div className="text-center mb-4 md:mb-6">
+            <div className="text-center mb-6 md:mb-8">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>What makes behaviour agentic?</h2>
-              <p className="fctg-subtitle mt-1">Plan → Act → Observe (inspect results) → Iterate.</p>
+              <p className="fctg-subtitle mt-2">The agent wraps the model with three things.</p>
             </div>
 
-            <div className="rounded-xl border border-cyan-500/40 bg-cyan-950/30 p-4 md:p-5 max-w-3xl mx-auto">
-              <p className="text-center text-slate-200 text-sm md:text-base max-w-2xl mx-auto">The model is the brain. The agent adds the wrapper — tools, a loop, and often memory — and that&apos;s what makes it agentic.</p>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 max-w-4xl mx-auto mb-6 md:mb-8">
+              <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 px-4 py-4 text-center">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-cyan-300/90 mb-1">Tools</h3>
+                <p className="text-xs md:text-sm text-slate-200/95">So it can act — edit files, run commands.</p>
+              </div>
+              <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 px-4 py-4 text-center">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-cyan-300/90 mb-1">Loop</h3>
+                <p className="text-xs md:text-sm text-slate-200/95">Plan → Act → Observe → Iterate.</p>
+              </div>
+              <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 px-4 py-4 text-center">
+                <h3 className="text-xs font-semibold uppercase tracking-wider text-cyan-300/90 mb-1">Memory</h3>
+                <p className="text-xs md:text-sm text-slate-200/95">Context across steps.</p>
+              </div>
             </div>
+
+            <p className="text-center text-slate-400 text-sm max-w-2xl mx-auto">That wrapper — not the model alone — is what makes behaviour agentic.</p>
           </div>
         </Slide>
         )}
@@ -1757,19 +1776,19 @@ function FCTGAITalkSlides() {
         {slideIndex === 22 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:py-8 text-center">
-            <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Agentic coding</h2>
-            <p className="fctg-subtitle mt-2 max-w-2xl mx-auto">A way of creating — one mode of vibe: autonomous, structured, execution-focused.</p>
+            <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Ways of creating with vibe</h2>
+            <p className="fctg-subtitle mt-2 max-w-2xl mx-auto">Vibe (the flow) and agentic (the structure) — two modes, one philosophy.</p>
             <div className="mt-8 md:mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-6 max-w-4xl mx-auto text-left">
               <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 p-4 md:p-5">
-                <p className="text-xs md:text-sm text-slate-300/95 mb-2">Vibe mode: intuitive, creative, fast. You prompt; you&apos;re the editor.</p>
-                <p className="text-[11px] md:text-xs text-slate-400">Ideation, rapid prototyping, creative exploration.</p>
+                <p className="text-xs md:text-sm text-slate-300/95 mb-2">Vibe: intuitive, creative, fast. You prompt; you vibe with the results.</p>
+                <p className="text-[11px] md:text-xs text-slate-400">Ideation, rapid prototyping. You edit or skip as you go. Can gloss over structure.</p>
               </div>
               <div className="rounded-xl border border-violet-500/30 bg-violet-950/20 p-4 md:p-5">
-                <p className="text-xs md:text-sm text-slate-300/95 mb-2">Agentic mode: plan, execute, test. You direct; you&apos;re the manager.</p>
-                <p className="text-[11px] md:text-xs text-slate-400">Complex systems, refactoring, CI/CD, production-level work.</p>
+                <p className="text-xs md:text-sm text-slate-300/95 mb-2">Agentic: autonomous, structured partner. Plan, execute, test. You direct; you&apos;re the architect.</p>
+                <p className="text-[11px] md:text-xs text-slate-400">Entire modules, not just snippets. Context-aware. CI/CD, production-ready.</p>
               </div>
             </div>
-            <p className="mt-8 md:mt-10 text-center text-slate-400 text-sm md:text-base max-w-2xl mx-auto">Same philosophy, different modes. Combine both: vibe for ideas; agentic for execution.</p>
+            <p className="mt-8 md:mt-10 text-center text-slate-400 text-sm md:text-base max-w-2xl mx-auto">Agentic is the evolution of vibe — creativity that scales into reliable products. Combine both: vibe for ideas; agentic for execution.</p>
           </div>
         </Slide>
         )}
@@ -2268,7 +2287,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Helpful tips */}
-        {slideIndex === 39 && (
+        {slideIndex === 38 && (
         <Slide transparent className="items-center justify-center overflow-hidden py-4 md:py-6">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-6xl px-4 min-w-0">
             <div className="text-center mb-4 md:mb-6">
@@ -2299,7 +2318,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Level up to agentic */}
-        {slideIndex === 40 && (
+        {slideIndex === 39 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-7xl px-4 md:px-6 py-4 md:py-6">
             <div className="text-center mb-4 md:mb-6">
@@ -2332,7 +2351,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Rounds */}
-        {slideIndex === 41 && (
+        {slideIndex === 40 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 md:px-6 py-4 md:py-10">
             <div className="text-center mb-4 md:mb-6">
@@ -2362,8 +2381,8 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-      {/* Slide 43: Three pillars — Invigoration, innovation, impact (in travel design terms) */}
-      {slideIndex === 42 && (
+      {/* Slide 43: Three pillars — Invigoration, innovation, impact */}
+      {slideIndex === 41 && (
         <Slide transparent className="!p-0">
           <div key={slideIndex} className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 md:px-8">
             <div className="fctg-text-transition w-full max-w-4xl">
@@ -2447,7 +2466,7 @@ function FCTGAITalkSlides() {
         )}
 
       {/* Thank you */}
-      {slideIndex === 43 && (
+      {slideIndex === 44 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition flex flex-col items-center justify-center text-center px-8 min-h-[60vh]">
             <h2 className="fctg-heading !text-[2.5rem] md:!text-[3rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Thank you</h2>

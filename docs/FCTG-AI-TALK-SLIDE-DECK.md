@@ -162,8 +162,8 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 **Subtitle:** The core of the system — it reads data, reasons through information, and generates content.
 
 **Body:**
-- **Why Use AI Models?** — They expedite the creative process by providing a multitude of ideas, options, and drafts more quickly, enabling you to focus on judgment, crafting, and delivering what's best for users.
-- **Large Language Models (LLMs)** — These models focus purely on output; they generate responses based on input without taking action.
+- **Why Use AI Models?** — More ideas and drafts, faster — you focus on judgment and delivery.
+- **Large Language Models (LLMs)** — Respond to input; they don't act.
 
 ---
 
@@ -223,9 +223,14 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 **Title:** What makes behaviour agentic?
 
-**Subtitle:** Plan → Act → Observe (inspect results) → Iterate.
+**Subtitle:** The agent wraps the model with three things.
 
-**Body:** The model is the brain. The agent adds the wrapper — tools, a loop, and often memory — and that's what makes it agentic.
+**Body (three cards):**
+- **Tools** — So it can act — edit files, run commands.
+- **Loop** — Plan → Act → Observe → Iterate.
+- **Memory** — Context across steps.
+
+**Closing:** That wrapper — not the model alone — is what makes behaviour agentic.
 
 ---
 
