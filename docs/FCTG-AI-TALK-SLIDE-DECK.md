@@ -157,13 +157,22 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ## Slide 3
 
+**Title:** Vibe coding
+
+**Body:** Creative flow · Intuition · Conversational · Rapid experimentation
+
+---
+
+## Slide 3
+
 **Title:** What is an AI Model?
 
 **Subtitle:** The core of the system — it reads data, reasons through information, and generates content.
 
-**Body:**
-- **Why Use AI Models?** — More ideas and drafts, faster — you focus on judgment and delivery.
-- **Large Language Models (LLMs)** — Respond to input; they don't act.
+**Body (three cards):**
+- **Speed** — Faster output generation.
+- **Less effort** — Less mental overhead on the mechanical parts.
+- **More to work with** — Better raw material to apply your judgment to.
 
 ---
 
@@ -183,25 +192,15 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 **Title:** What is an AI agent?
 
-**Subtitle:** Agents drive outcomes, not just outputs.
+**Subtitle:** Drive outcomes, not just outputs.
 
 **Body:** Brain thinks. Memory remembers. Hands act.
+
+**Examples:** Edit files, run commands, multi-step work, delegate.
 
 **Caption (single-agent flow):** You → Agent → [Memory | Model | Tools]; Agent loads context.; Retrieved data returns to the Agent.; Agent calls the Model and passes that context in the prompt.; Model output returns to the Agent.
 
 **Note:** Memory is separate from the model. The model is stateless — it only sees what’s in each request. Memory lives outside (e.g. conversation history, or a vector store — searchable by meaning, e.g. "things we decided about the checkout flow"). The agent retrieves it and injects it into the context the model sees. That's the idea behind RAG (retrieval-augmented generation): external knowledge, retrieved and injected into the context the model sees.
-
----
-
-## Slide 3
-
-**Title:** Model vs. Agent
-
-**Subtitle:** Utilize both in combination to generate ideas and accomplish tasks effectively.
-
-**Body:**
-- **Model: Fast Thinking** — Generates ideas such as naming, options, and outlines. You paste and edit the output, keeping control over the process. Designed for simple interactions: one question, no additional tools required.
-- **Agent: Thinking + Doing** — Capable of executing tasks, such as editing files and running commands. Supports multi-step processes, allowing you to review progress as it occurs. Involves delegation: you hand off tasks without the need to paste and edit.
 
 ---
 
@@ -238,13 +237,9 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 **Title:** Vibe coding and Agentic coding
 
-**Subtitle:** Prompt-driven and reactive vs autonomous and structured.
+**Subtitle:** Vibe Coding (Human-Centric): Focuses on creative flow, intuition, and rapid experimentation. The developer acts as a "conductor," using conversational, iterative prompts to shape a vision without worrying about implementation details.
 
-**Body:**
-- **Vibe:** Intuitive, creative, fast. You prompt AI for quick results; you're the editor and reviewer. Best for: ideation, rapid prototyping, creative exploration.
-- **Agentic:** Agents plan, execute, and test. You're the manager/supervisor. Proactive, long-running processes. Best for: complex systems, refactoring, CI/CD, production-level work.
-
-Same tool, two styles. Combine both: vibe for brainstorming and prototypes; agentic for reliable execution and maintenance.
+**Body (pills):** Fast · Conversational · Iterative · Prototyping · Structured · Goal-oriented · Autonomous · Production
 
 ---
 
