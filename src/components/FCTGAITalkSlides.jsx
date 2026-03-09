@@ -784,21 +784,21 @@ function FCTGAITalkSlides() {
           <ParticleBackground variant="agents" />
         </div>
       )}
-      {/* Slide 19: Ways of creating with vibe — pure black */}
+      {/* Slide 16: What happens inside the model? */}
       {slideIndex === 16 && (
-        <div className="pointer-events-none fixed inset-0 bg-black" aria-hidden />
-      )}
-      {/* Slide 20: What happens inside the model? */}
-      {slideIndex === 17 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="brain" />
         </div>
       )}
-      {/* Slide 20: AI Agents — pure black to match image */}
+      {/* Slide 17: AI Agents — pure black to match image */}
+      {slideIndex === 17 && (
+        <div className="pointer-events-none fixed inset-0 bg-black" aria-hidden />
+      )}
+      {/* Slide 18: Multi-agent systems — pure black */}
       {slideIndex === 18 && (
         <div className="pointer-events-none fixed inset-0 bg-black" aria-hidden />
       )}
-      {/* Slide 23: Multi-agent systems — pure black */}
+      {/* Slide 19: Ways of creating with vibe — pure black */}
       {slideIndex === 19 && (
         <div className="pointer-events-none fixed inset-0 bg-black" aria-hidden />
       )}
@@ -1658,8 +1658,8 @@ function FCTGAITalkSlides() {
         )}
 
 
-        {/* Slide 19: What happens inside the model? */}
-        {slideIndex === 17 && (
+        {/* Slide 16: What happens inside the model? */}
+        {slideIndex === 16 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:px-10 md:py-8 -mt-8 md:-mt-12">
             <div className="flex flex-col items-center text-center mb-4 md:mb-6">
@@ -1673,8 +1673,8 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 20: AI Agents */}
-        {slideIndex === 18 && (
+        {/* Slide 17: AI Agents */}
+        {slideIndex === 17 && (
         <Slide transparent className="items-center justify-start overflow-hidden">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl mx-auto flex flex-col items-center gap-2 -mt-4">
             <div className="flex flex-col items-center text-center">
@@ -1690,8 +1690,8 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 23: Multi-agent systems */}
-        {slideIndex === 19 && (
+        {/* Slide 18: Multi-agent systems */}
+        {slideIndex === 18 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl mx-auto flex flex-col items-center gap-4 px-6 py-4">
             <div className="flex flex-col items-center text-center">
@@ -1703,11 +1703,8 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-
-
-
-        {/* Slide 19: Ways of creating with vibe */}
-        {slideIndex === 16 && (
+        {/* Slide 19: Ways of creating with vibe — after multi-agent, before Context */}
+        {slideIndex === 19 && (
         <Slide transparent className="items-center justify-center overflow-hidden" style={{ background: '#000' }} wide>
           <style>{`
             @keyframes vibe-node-pulse { 0%, 100% { opacity: 0.4; r: 4.5; } 50% { opacity: 0.85; r: 6; } }
