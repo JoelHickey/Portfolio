@@ -7,7 +7,7 @@ export default function FCTGBodyAnalogyDiagram() {
     <div className="mx-auto flex flex-col items-center justify-center">
       <svg
         viewBox="-55 -10 390 340"
-        className="w-full max-w-[260px] md:max-w-[300px] h-auto"
+        className="w-full max-w-[340px] md:max-w-[420px] h-auto"
         overflow="visible"
         aria-hidden
       >

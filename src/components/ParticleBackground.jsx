@@ -31,6 +31,19 @@ const VARIANTS = {
     opacityMultiplier: 2,
     brainShape: true,
   },
+  scatter: {
+    waveSpeed: 0.18,
+    pulseSpeed: 0.12,
+    burstScale: 0,
+    lerpSpeed: 0,
+    palette: [
+      { r: 255, g: 255, b: 255 },
+      { r: 220, g: 230, b: 255 },
+      { r: 200, g: 220, b: 255 },
+    ],
+    scatter: true,
+    particleCount: 700,
+  },
 }
 
 function ParticleBackground({ className = '', variant = 'strength', centerOffsetX = 0, centerOffsetY = 0 }) {
@@ -103,7 +116,7 @@ function ParticleBackground({ className = '', variant = 'strength', centerOffset
         angle: Math.random() * Math.PI * 2,
         radius: Math.random(),
         baseColor,
-        baseOpacity: config.multidirectional ? 0.04 + Math.random() * 0.08 : config.orbital ? 0.035 + Math.random() * 0.06 : 0.02 + Math.random() * 0.04,
+        baseOpacity: config.scatter ? 0.03 + Math.random() * 0.18 : config.multidirectional ? 0.04 + Math.random() * 0.08 : config.orbital ? 0.035 + Math.random() * 0.06 : 0.02 + Math.random() * 0.04,
         speedMult: config.multidirectional ? 0.8 + Math.random() * 1.2 : 0.6 + Math.random() * 0.8,
         zone,
         zoneOffset: Math.random(),
@@ -113,6 +126,41 @@ function ParticleBackground({ className = '', variant = 'strength', centerOffset
 
     let time = 0
     const { waveSpeed, pulseSpeed, burstScale, lerpSpeed, breathing, multidirectional, orbital, brainShape, wavy, waveAmplitude = 40, waveAmplitude2 = 24 } = config
+
+    // Scatter: particles drift freely across the full canvas
+    if (config.scatter) {
+      function animateScatter() {
+        time += 0.005
+        ctx.fillStyle = 'rgba(0,0,0,0.18)'
+        ctx.fillRect(0, 0, width, height)
+        for (let i = 0; i < particles.length; i++) {
+          const p = particles[i]
+          p.x += Math.cos(p.angle) * p.speedMult * 0.04
+          p.y += Math.sin(p.angle) * p.speedMult * 0.04
+          p.angle += (p.seed - 0.5) * 0.003
+          if (p.x < -4) p.x = width + 4
+          if (p.x > width + 4) p.x = -4
+          if (p.y < -4) p.y = height + 4
+          if (p.y > height + 4) p.y = -4
+          const alpha = p.baseOpacity * (0.7 + 0.3 * Math.sin(time * 1.2 + p.seed * 10))
+          if (alpha < 0.01) continue
+          const { r, g, b } = p.baseColor
+          ctx.save()
+          ctx.translate(p.x, p.y)
+          ctx.fillStyle = `rgba(${r},${g},${b},${alpha})`
+          ctx.beginPath()
+          ctx.arc(0, 0, 0.5 + p.radius * 1.2, 0, Math.PI * 2)
+          ctx.fill()
+          ctx.restore()
+        }
+        animationRef.current = requestAnimationFrame(animateScatter)
+      }
+      animateScatter()
+      return () => {
+        window.removeEventListener('resize', resize)
+        if (animationRef.current) cancelAnimationFrame(animationRef.current)
+      }
+    }
 
     function getTarget(p) {
       if (orbital) {
