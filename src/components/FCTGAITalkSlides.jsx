@@ -1658,12 +1658,12 @@ function FCTGAITalkSlides() {
         )}
 
 
-        {/* Slide 16: What happens inside the model? */}
+        {/* Slide 16: AI models */}
         {slideIndex === 16 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:px-10 md:py-8 -mt-8 md:-mt-12">
             <div className="flex flex-col items-center text-center mb-4 md:mb-6">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Inside the model</h2>
+              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>AI models</h2>
               <p className="fctg-subtitle mt-1">The core — it reads, reasons, and generates.</p>
             </div>
             <div className="w-full max-w-4xl mx-auto min-w-0">
@@ -1673,19 +1673,15 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 17: AI Agents */}
+        {/* Slide 17: AI Agents — same aesthetic as Multi-agent, body analogy (human) diagram */}
         {slideIndex === 17 && (
-        <Slide transparent className="items-center justify-start overflow-hidden">
-          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl mx-auto flex flex-col items-center gap-2 -mt-4">
+        <Slide transparent className="items-center justify-center overflow-hidden" wide>
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl mx-auto flex flex-col items-center gap-4 px-6 py-4">
             <div className="flex flex-col items-center text-center">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>AI Agents</h2>
               <p className="fctg-subtitle mt-1">Drive outcomes, not just outputs.</p>
             </div>
-            <img
-              src="/ai-agents-slide.png"
-              alt="AI Agents diagram — Model, Memory, Tools, Delegation, Autonomy, Scale"
-              className="w-full max-w-4xl rounded-2xl"
-            />
+            <FCTGBodyAnalogyDiagram />
           </div>
         </Slide>
         )}
