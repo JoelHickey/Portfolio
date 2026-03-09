@@ -802,32 +802,32 @@ function FCTGAITalkSlides() {
       {slideIndex === 19 && (
         <div className="pointer-events-none fixed inset-0 bg-black" aria-hidden />
       )}
-      {/* Slide 22: Context and continuity */}
+      {/* Slide 27: Agentic & designer productivity */}
       {slideIndex === 20 && (
-        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
-          <ParticleBackground variant="agents" />
-          <div className="absolute inset-0 fctg-pattern-hexagon" aria-hidden />
-        </div>
-      )}
-      {/* Slide 27: Intervention */}
-      {slideIndex === 21 && (
-        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
-          <ParticleBackground variant="agents" />
-          <div className="absolute inset-0 fctg-pattern-hexagon" aria-hidden />
-        </div>
-      )}
-      {/* Slide 28: Agentic & designer productivity */}
-      {slideIndex === 22 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
         </div>
       )}
-      {/* Slide 29: Then vs Now — UI workflow */}
-      {slideIndex === 23 && (
+      {/* Slide 29: Then vs Now — same phases, you steer, agent executes */}
+      {slideIndex === 21 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="momentum" />
           <div className="absolute inset-0 fctg-pattern-flow-lines opacity-30" aria-hidden />
+        </div>
+      )}
+      {/* Slide 22: Context and continuity */}
+      {slideIndex === 22 && (
+        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
+          <ParticleBackground variant="agents" />
+          <div className="absolute inset-0 fctg-pattern-hexagon" aria-hidden />
+        </div>
+      )}
+      {/* Slide 28: Intervention */}
+      {slideIndex === 23 && (
+        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
+          <ParticleBackground variant="agents" />
+          <div className="absolute inset-0 fctg-pattern-hexagon" aria-hidden />
         </div>
       )}
       {/* Slide 30: Tech stack */}
@@ -1664,11 +1664,12 @@ function FCTGAITalkSlides() {
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:px-10 md:py-8 -mt-8 md:-mt-12">
             <div className="flex flex-col items-center text-center mb-4 md:mb-6">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>AI models</h2>
-              <p className="fctg-subtitle mt-1">The core — it reads, reasons, and generates.</p>
+              <p className="fctg-subtitle mt-1">The brain — it reads, reasons, and generates.</p>
             </div>
             <div className="w-full max-w-4xl mx-auto min-w-0">
               <InsideModelFlow />
             </div>
+            <p className="mt-3 text-xs text-slate-500 text-center">Stateless, output only — you supply context each turn; it returns the response.</p>
           </div>
         </Slide>
         )}
@@ -1682,6 +1683,7 @@ function FCTGAITalkSlides() {
               <p className="fctg-subtitle mt-1">Drive outcomes, not just outputs.</p>
             </div>
             <FCTGBodyAnalogyDiagram />
+            <p className="mt-3 text-xs text-slate-500 text-center max-w-xl mx-auto">The model is the brain. The wrapper — tools, loop, memory — is what makes it agentic.</p>
           </div>
         </Slide>
         )}
@@ -1695,6 +1697,7 @@ function FCTGAITalkSlides() {
               <p className="fctg-subtitle mt-1">Orchestrate. Delegate. Scale.</p>
             </div>
             <FCTGMultiAgentDiagram compact />
+            <p className="mt-3 text-xs text-slate-500 text-center max-w-xl mx-auto">Use multi-agent when one agent isn’t enough — distinct roles, parallel work, or a pipeline that needs handoffs.</p>
           </div>
         </Slide>
         )}
@@ -1741,14 +1744,15 @@ function FCTGAITalkSlides() {
                     <rect x="0" y="0" width="400" height="180" fill="url(#vibe-fade-bottom)" />
                   </svg>
                 </div>
-                <div className="flex-[1] px-5 pt-4 pb-5 border-t border-cyan-500/15 bg-black/30 flex flex-col gap-2.5">
+                <div className="flex-[1] px-5 pt-4 pb-5 border-t border-cyan-500/15 bg-black/30 flex flex-col gap-2.5 text-left">
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full border border-cyan-500/40 bg-cyan-950/60">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full border border-cyan-500/40 bg-cyan-950/60 shrink-0">
                       <FiZap className="w-3 h-3 text-cyan-400" />
                     </span>
                     <h3 className="text-sm md:text-base font-semibold text-cyan-300">Vibe</h3>
                   </div>
-                  <p className="text-xs md:text-sm text-slate-300 leading-relaxed">Think out loud. Chat freely, steer as you go, and let the work take shape through discovery.</p>
+                  <p className="text-xs md:text-sm text-slate-300 leading-relaxed">Creative flow, intuition, rapid experimentation. You&apos;re the conductor — conversational, iterative prompts to shape a vision without worrying about implementation details.</p>
+                  <p className="text-[10px] md:text-xs text-cyan-400/80 italic mt-1">&ldquo;I&rsquo;m thinking about a booking flow — what would you try first?&rdquo;</p>
                 </div>
               </div>
 
@@ -1801,14 +1805,15 @@ function FCTGAITalkSlides() {
                     <rect x="0" y="0" width="400" height="180" fill="url(#agent-fade-bottom)" />
                   </svg>
                 </div>
-                <div className="flex-[1] px-5 pt-4 pb-5 border-t border-violet-500/15 bg-black/30 flex flex-col gap-2.5">
+                <div className="flex-[1] px-5 pt-4 pb-5 border-t border-violet-500/15 bg-black/30 flex flex-col gap-2.5 text-left">
                   <div className="flex items-center gap-2">
-                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full border border-violet-500/40 bg-violet-950/60">
+                    <span className="inline-flex items-center justify-center w-6 h-6 rounded-full border border-violet-500/40 bg-violet-950/60 shrink-0">
                       <TbRobot className="w-3 h-3 text-violet-400" />
                     </span>
                     <h3 className="text-sm md:text-base font-semibold text-violet-300">Agentic</h3>
                   </div>
-                  <p className="text-xs md:text-sm text-slate-300 leading-relaxed">Harden your intent into a clear, goal-driven task, hand it off, and let the agent execute.</p>
+                  <p className="text-xs md:text-sm text-slate-300 leading-relaxed">Goal-oriented, autonomous execution. Give a high-level goal; the agent plans, tests, and iterates on multi-step workflows. Your role: supervisor or architect.</p>
+                  <p className="text-[10px] md:text-xs text-violet-400/80 italic mt-1">&ldquo;Create a 3-step Moon booking flow: date picker, cabin selection, add-ons. Include copy and layout.&rdquo;</p>
                 </div>
               </div>
             </div>
@@ -1816,8 +1821,38 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 26: Context and continuity */}
+        {/* Slide 27: Agentic Designer Productivity — plan, execute, reflect */}
         {slideIndex === 20 && (
+        <Slide transparent className="items-center justify-center overflow-y-auto" wide>
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:py-8">
+            <div className="text-center mb-5 md:mb-6">
+              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>The Agentic Design Loop</h2>
+              <p className="fctg-subtitle mt-1 mb-4 text-xs md:text-sm text-slate-400">The rhythm you use in every stage.</p>
+            </div>
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 max-w-4xl mx-auto mb-5 md:mb-6">
+              <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 p-3 md:p-4">
+                <h3 className="text-sm font-semibold text-cyan-300 mb-1.5">Plan</h3>
+                <p className="text-xs md:text-sm text-slate-300/95 leading-tight">You set direction and criteria. Agent gets the brief.</p>
+                <p className="mt-1 text-[10px] text-slate-500 italic leading-tight">e.g. Research competitors → 3 concepts → prototype winner → usability summary.</p>
+              </div>
+              <div className="rounded-xl border border-indigo-500/30 bg-indigo-950/20 p-3 md:p-4">
+                <h3 className="text-sm font-semibold text-indigo-300 mb-1.5">Execute</h3>
+                <p className="text-xs md:text-sm text-slate-300/95 leading-tight">Agent runs research, prototype, test, summary. You stay in review.</p>
+                <p className="mt-1 text-[10px] text-slate-500 italic leading-tight">e.g. Agent runs that brief; you step in only when needed.</p>
+              </div>
+              <div className="rounded-xl border border-violet-500/30 bg-violet-950/20 p-3 md:p-4">
+                <h3 className="text-sm font-semibold text-violet-300 mb-1.5">Reflect</h3>
+                <p className="text-xs md:text-sm text-slate-300/95 leading-tight">You evaluate and approve. Agent takes repeatable tasks; you focus on judgment.</p>
+                <p className="mt-1 text-[10px] text-slate-500 italic leading-tight">e.g. Review summary; decide what to iterate or ship.</p>
+              </div>
+            </div>
+            <p className="mt-2 text-center text-[11px] text-cyan-300/90 max-w-2xl mx-auto"><span className="text-slate-400 font-medium">Productivity impact:</span> 2–4× faster cycles; ~30–50% time saved on execution.</p>
+          </div>
+        </Slide>
+        )}
+
+        {/* Slide 26: Context and continuity */}
+        {slideIndex === 22 && (
         <Slide
           heroOnly
           transparent
@@ -1874,132 +1909,46 @@ function FCTGAITalkSlides() {
         />
         )}
 
-        {/* Slide 27: Intervention */}
-        {slideIndex === 21 && (
+        {/* Slide 28: Intervention */}
+        {slideIndex === 23 && (
         <Slide transparent className="items-center justify-center overflow-hidden">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl mx-auto flex flex-col items-center gap-5 px-6 py-4">
             <div className="flex flex-col items-center text-center">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Intervention</h2>
               <p className="fctg-subtitle mt-1">Verify outputs, redirect when they drift, reframe when looping.</p>
-            </div>
-            <div className="w-full grid gap-4 grid-cols-3 max-w-3xl mx-auto">
-
-              {/* Verify card */}
-              <div className="rounded-2xl border border-amber-500/30 bg-amber-950/15 overflow-hidden flex flex-col">
-                <div className="relative min-h-[130px] flex items-center justify-center p-4">
-                  <svg viewBox="0 0 200 100" className="w-full h-auto" aria-hidden>
-                    <defs>
-                      <filter id="intv-amber-glow"><feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                    </defs>
-                    <circle cx="28" cy="50" r="14" fill="#1e293b" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.6" />
-                    <text x="28" y="55" textAnchor="middle" fontSize="11" fill="#f59e0b" fontFamily="system-ui,sans-serif" opacity="0.85" fontWeight="600">A</text>
-                    <line x1="42" y1="50" x2="68" y2="50" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.4" />
-                    <rect x="68" y="28" width="62" height="44" rx="6" fill="#1e293b" fillOpacity="0.8" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.4" />
-                    <line x1="78" y1="40" x2="120" y2="40" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.5" strokeLinecap="round" />
-                    <line x1="78" y1="50" x2="118" y2="50" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.35" strokeLinecap="round" />
-                    <line x1="78" y1="60" x2="104" y2="60" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.22" strokeLinecap="round" />
-                    <line x1="130" y1="50" x2="156" y2="50" stroke="#f59e0b" strokeWidth="1.5" strokeOpacity="0.4" />
-                    <circle cx="172" cy="50" r="14" fill="#1e293b" stroke="#fbbf24" strokeWidth="1.5" strokeOpacity="0.8" filter="url(#intv-amber-glow)" />
-                    <text x="172" y="56" textAnchor="middle" fontSize="15" fill="#fbbf24" fontFamily="system-ui,sans-serif" fontWeight="700">✓</text>
-                  </svg>
-                </div>
-                <div className="px-4 py-3 border-t border-slate-800/60">
-                  <h3 className="text-sm font-semibold text-amber-400">Verify</h3>
-                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">Did it do what you actually asked?</p>
-                </div>
+              <div className="flex flex-wrap justify-center gap-2 mt-3">
+                <span className="rounded-full border border-amber-500/40 bg-amber-950/30 px-3 py-1 text-xs font-medium text-amber-400">Verify</span>
+                <span className="rounded-full border border-cyan-500/40 bg-cyan-950/30 px-3 py-1 text-xs font-medium text-cyan-400">Redirect</span>
+                <span className="rounded-full border border-fuchsia-500/40 bg-fuchsia-950/30 px-3 py-1 text-xs font-medium text-fuchsia-400">Reframe</span>
               </div>
-
-              {/* Redirect card */}
-              <div className="rounded-2xl border border-cyan-500/30 bg-cyan-950/15 overflow-hidden flex flex-col">
-                <div className="relative min-h-[130px] flex items-center justify-center p-4">
-                  <svg viewBox="0 0 200 100" className="w-full h-auto" aria-hidden>
-                    <defs>
-                      <filter id="intv-cyan-glow"><feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                    </defs>
-                    <line x1="10" y1="32" x2="190" y2="32" stroke="#22d3ee" strokeWidth="1.5" strokeDasharray="6 4" strokeOpacity="0.3" strokeLinecap="round" />
-                    <text x="100" y="24" textAnchor="middle" fontSize="9" fill="#22d3ee" fontFamily="system-ui,sans-serif" opacity="0.35">goal</text>
-                    <path d="M 10,32 Q 65,32 92,72" fill="none" stroke="#475569" strokeWidth="2" strokeLinecap="round" />
-                    <circle cx="92" cy="72" r="5" fill="#ef4444" fillOpacity="0.75" />
-                    <path d="M 92,72 Q 130,72 162,32" fill="none" stroke="#22d3ee" strokeWidth="2.5" strokeLinecap="round" filter="url(#intv-cyan-glow)" />
-                    <polygon points="158,25 166,35 152,35" fill="#22d3ee" opacity="0.9" />
-                    <line x1="162" y1="32" x2="190" y2="32" stroke="#22d3ee" strokeWidth="2.5" strokeOpacity="0.8" strokeLinecap="round" />
-                  </svg>
-                </div>
-                <div className="px-4 py-3 border-t border-slate-800/60">
-                  <h3 className="text-sm font-semibold text-cyan-400">Redirect</h3>
-                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">Pull it back toward the actual goal.</p>
-                </div>
-              </div>
-
-              {/* Reframe card */}
-              <div className="rounded-2xl border border-fuchsia-500/30 bg-fuchsia-950/15 overflow-hidden flex flex-col">
-                <div className="relative min-h-[130px] flex items-center justify-center p-4">
-                  <svg viewBox="0 0 200 100" className="w-full h-auto" aria-hidden>
-                    <defs>
-                      <filter id="intv-fuchsia-glow"><feGaussianBlur in="SourceGraphic" stdDeviation="3" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
-                    </defs>
-                    <path d="M 55,50 A 30,30 0 1 1 56,50" fill="none" stroke="#475569" strokeWidth="2" strokeLinecap="round" />
-                    <polygon points="56,20 64,30 48,30" fill="#475569" />
-                    <line x1="86" y1="36" x2="96" y2="64" stroke="#e879f9" strokeWidth="2.5" strokeLinecap="round" opacity="0.85" />
-                    <line x1="96" y1="36" x2="86" y2="64" stroke="#e879f9" strokeWidth="2.5" strokeLinecap="round" opacity="0.85" />
-                    <line x1="106" y1="50" x2="178" y2="50" stroke="#e879f9" strokeWidth="2.5" strokeLinecap="round" filter="url(#intv-fuchsia-glow)" />
-                    <polygon points="175,43 184,50 175,57" fill="#e879f9" />
-                  </svg>
-                </div>
-                <div className="px-4 py-3 border-t border-slate-800/60">
-                  <h3 className="text-sm font-semibold text-fuchsia-400">Reframe</h3>
-                  <p className="text-xs text-slate-400 mt-0.5 leading-relaxed">Break the loop. Change the angle entirely.</p>
-                </div>
-              </div>
-
-            </div>
-          </div>
-        </Slide>
-        )}
-
-        {/* Slide 28: Agentic & designer productivity — plan, execute, reflect */}
-        {slideIndex === 22 && (
-        <Slide transparent className="items-center justify-center overflow-hidden" wide>
-          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:py-8">
-            <div className="text-center mb-4 md:mb-6">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Agentic & designer productivity</h2>
-              <p className="fctg-subtitle mt-1 text-xs md:text-sm text-slate-400">How the agent loop improves how you work.</p>
-            </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 max-w-4xl mx-auto">
-              <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 p-3 md:p-4">
-                <h3 className="text-sm font-semibold text-cyan-300 mb-1">Plan</h3>
-                <p className="text-xs md:text-sm text-slate-300/95">You set direction. One prompt drives the steps — fewer handoffs; you decide what to do next.</p>
-              </div>
-              <div className="rounded-xl border border-indigo-500/30 bg-indigo-950/20 p-3 md:p-4">
-                <h3 className="text-sm font-semibold text-indigo-300 mb-1">Execute</h3>
-                <p className="text-xs md:text-sm text-slate-300/95">The agent tries options, reads, runs, summarizes. Less context-switching; you stay in review mode.</p>
-              </div>
-              <div className="rounded-xl border border-violet-500/30 bg-violet-950/20 p-3 md:p-4">
-                <h3 className="text-sm font-semibold text-violet-300 mb-1">Reflect</h3>
-                <p className="text-xs md:text-sm text-slate-300/95">You evaluate and decide. Delegate the repeatable; you focus on design thinking, judgment, and creativity.</p>
+              <div className="flex flex-wrap justify-center gap-2 mt-2">
+                {['Hallucinate', 'Overcomplicate', 'Loop', 'Overwrite', 'Lazy', 'Fixate', 'Ignore', 'Drift', 'Tone', 'Pushback'].map((label) => (
+                  <span key={label} className="rounded-full border border-amber-500/30 bg-amber-500/5 px-3 py-1 text-xs font-medium text-amber-300/90">
+                    {label}
+                  </span>
+                ))}
               </div>
             </div>
-            <p className="mt-4 md:mt-5 text-center text-xs text-slate-500 max-w-2xl mx-auto">Across the design process — discover, define, develop, deliver — the agent handles execution; you own direction and quality.</p>
           </div>
         </Slide>
         )}
 
         {/* Slide 29: Then vs Now — same phases, you steer, agent executes */}
-        {slideIndex === 23 && (
+        {slideIndex === 21 && (
         <Slide transparent className="items-center justify-center overflow-y-auto">
-          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:py-6 mx-auto">
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-6xl px-4 py-4 md:py-6 mx-auto">
             <div className="text-center mb-4 md:mb-5">
               <h2 className="fctg-heading !text-[2rem] md:!text-[2.5rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Then vs Now</h2>
-              <p className="fctg-subtitle mt-1 text-slate-400 text-sm">That loop in practice — same phases, you steer, the agent executes.</p>
+              <p className="fctg-subtitle mt-1 text-slate-400 text-sm">Same phases; you lead, agent runs.</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-2 md:gap-3">
               {[
-                { phase: 'Discover', phaseColor: 'text-cyan-400', borderColor: 'border-cyan-500/30', bgColor: 'bg-cyan-950/20', then: 'Manual synthesis, heavy alignment; feasibility often late.', now: 'AI synthesises and maps flows; you validate; agent checks feasibility in minutes. Fewer decks, clearer alignment.' },
-                { phase: 'Define', phaseColor: 'text-teal-400', borderColor: 'border-teal-500/30', bgColor: 'bg-teal-950/20', then: 'Flowcharts and specs for handoff; prototypes and specs go stale.', now: 'AI generates flows; you set direction. PRDs, specs, ADRs in sync. You edit and approve.' },
-                { phase: 'Develop', phaseColor: 'text-indigo-400', borderColor: 'border-indigo-500/30', bgColor: 'bg-indigo-950/20', then: 'Hours on prototypes; handoff, long cycles, context lost; design and build misaligned.', now: 'Prototypes in minutes; design system on cue. Design QA automated; one artifact; no design–dev handoff.' },
-                { phase: 'Deliver', phaseColor: 'text-violet-400', borderColor: 'border-violet-500/30', bgColor: 'bg-violet-950/20', then: 'Build and deploy, long cycles for fixes.', now: 'Ship faster; iterate on feedback. Previews for sign-off; release and UAT docs generated.' },
-              ].map(({ phase, phaseColor, borderColor, bgColor, then, now }) => (
-                <div key={phase} className={`rounded-xl border ${borderColor} ${bgColor} p-3 md:p-4 flex flex-col gap-2`}>
+                { phase: 'Discover', phaseColor: 'text-cyan-400', borderColor: 'border-cyan-500/30', bgColor: 'bg-cyan-950/20', then: 'Manual synthesis, heavy alignment; feasibility checks come late.', now: 'Agent synthesises and maps flows; you validate; agent checks feasibility in minutes.', metric: 'Feasibility in minutes vs weeks.' },
+                { phase: 'Define', phaseColor: 'text-teal-400', borderColor: 'border-teal-500/30', bgColor: 'bg-teal-950/20', then: 'Flowcharts and specs for handoff; prototypes and specs go stale.', now: 'Agent generates flows; you set direction. PRDs, specs, ADRs in sync—you edit and approve.', metric: 'Specs in sync; ~50% less rework.' },
+                { phase: 'Develop', phaseColor: 'text-indigo-400', borderColor: 'border-indigo-500/30', bgColor: 'bg-indigo-950/20', then: 'Hours on prototypes; handoff, long cycles, context lost; design and build misaligned.', now: 'Agent prototypes; design system on cue. Agent runs Design QA; one artifact, no design–dev handoff.', metric: 'Prototypes in minutes; 2–3× faster iteration.' },
+                { phase: 'Deliver', phaseColor: 'text-violet-400', borderColor: 'border-violet-500/30', bgColor: 'bg-violet-950/20', then: 'Build and deploy, long cycles for fixes.', now: 'Ship faster; iterate on feedback. Agent generates previews and UAT docs; you sign off.', metric: '~30–50% faster to release.' },
+              ].map(({ phase, phaseColor, borderColor, bgColor, then, now, metric }) => (
+                <div key={phase} className={`rounded-xl border ${borderColor} ${bgColor} p-3 md:p-4 flex flex-col gap-2 min-w-0`}>
                   <div className={`text-xs font-semibold uppercase tracking-wider ${phaseColor}`}>{phase}</div>
                   <div className="flex flex-col gap-1.5 text-xs md:text-sm text-slate-300/95">
                     <div>
@@ -2011,9 +1960,11 @@ function FCTGAITalkSlides() {
                       <span className="text-slate-300">{now}</span>
                     </div>
                   </div>
+                  <div className={`mt-1 pt-1.5 border-t border-slate-700/50 text-[10px] ${phaseColor} opacity-90`}>{metric}</div>
                 </div>
               ))}
             </div>
+            <p className="mt-4 text-center text-[11px] text-slate-400 max-w-2xl mx-auto">Across phases: 2–4× faster cycle time; ~30–50% time saved on execution.</p>
           </div>
         </Slide>
         )}
