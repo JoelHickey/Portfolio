@@ -2486,7 +2486,7 @@ function FCTGAITalkSlides() {
             <div className="text-center mb-4 md:mb-6">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Functional impact</h2>
               <p className="fctg-subtitle mt-1">What changes when AI is grounded in your design system and workflow.</p>
-              <p className="mt-1.5 text-xs text-slate-500">Impact shows up in speed, consistency, collaboration, and decision quality.</p>
+              <p className="mt-1.5 text-xs text-slate-500">Productivity impact: 2-4x faster cycles; ~30-50% time saved on execution.</p>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
               {[
@@ -3151,6 +3151,9 @@ function FCTGAITalkSlides() {
                 <p className="text-[11px] md:text-xs text-cyan-200/90">Improved prompting skills, comfort with quick iteration, ability to delegate to the agent with confidence</p>
               </div>
             </div>
+            <p className="mt-4 text-center text-xs text-slate-400">
+              Vibe produces outputs. Agentic produces outputs that more directly drive outcomes.
+            </p>
           </div>
         </Slide>
         )}
@@ -3166,19 +3169,22 @@ function FCTGAITalkSlides() {
               <div className="rounded-xl border border-violet-500/30 bg-violet-950/20 p-4">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-violet-400">Round 1 · ~15 min · Warm-up</span>
                 <h4 className="mt-2 text-sm font-semibold text-cyan-100">Start with vibe</h4>
+                <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-violet-300/80">Purpose: explore quickly</p>
                 <p className="mt-2 text-xs text-cyan-200/80">Explore flows and tone. Try: &quot;How would you approach designing a booking flow for a Moon trip?&quot; Chat, iterate, go wild.</p>
                 <p className="mt-2 text-[11px] text-cyan-400/70">Quick iterations. Exploratory.</p>
               </div>
               <div className="rounded-xl border border-indigo-500/30 bg-indigo-950/20 p-4">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-indigo-400">Round 2 · ~25 min · Main focus</span>
                 <h4 className="mt-2 text-sm font-semibold text-cyan-100">Level up to agentic</h4>
+                <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-indigo-300/80">Purpose: direct the agent toward a stronger solution</p>
                 <p className="mt-2 text-xs text-cyan-200/80">Use Stitch with a clear mission. Try: &quot;Design a 3-step booking flow: dates, cabin, add-ons.&quot;</p>
                 <p className="mt-2 text-[11px] text-cyan-400/70">Agentic: multi-step, delegated. Goal-driven.</p>
               </div>
               <div className="rounded-xl border border-amber-500/30 bg-amber-950/20 p-4">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-400">Round 3 · ~15 min</span>
                 <h4 className="mt-2 text-sm font-semibold text-cyan-100">Show & tell</h4>
-                <p className="mt-2 text-xs text-cyan-200/80">Share the clearest Moon booking outputs. Vote on which flow we'd ship. Quick poll, then wrap.</p>
+                <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-amber-300/80">Purpose: connect outputs to likely outcomes</p>
+                <p className="mt-2 text-xs text-cyan-200/80">Share the clearest Moon booking outputs. Vote on which flow we'd ship and which one is most likely to drive the best customer outcome.</p>
                 <p className="mt-2 text-xs text-cyan-300/90 italic">Debrief: How could this apply to our Earth bookings?</p>
               </div>
             </div>
