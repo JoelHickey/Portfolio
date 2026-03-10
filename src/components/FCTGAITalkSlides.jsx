@@ -446,84 +446,288 @@ function ModelInBetweenDiagram({ exampleOnly = false }) {
 
 function InsideModelFlow() {
   const nodes = [
-    { title: 'Data input',        example: 'Photo + Text',           stroke: '#38bdf8', fill: 'rgba(7,89,133,0.85)'  },
-    { title: 'Pre-process',       example: 'Clean, resize, tensor',  stroke: '#22d3ee', fill: 'rgba(8,51,68,0.9)'    },
-    { title: 'Model inference',   example: 'Neural net runs',        stroke: '#fb923c', fill: 'rgba(69,26,3,0.9)'    },
-    { title: 'Output generation', example: '"Golden Retriever"',     stroke: '#2dd4bf', fill: 'rgba(17,94,89,0.9)'   },
-    { title: 'Post-process',      example: 'Format label',           stroke: '#e879f9', fill: 'rgba(88,28,135,0.85)' },
-    { title: 'Result',            example: 'User sees it',           stroke: '#a78bfa', fill: 'rgba(46,16,101,0.9)'  },
+    { title: 'Input',     example: 'Photo + text',   stroke: '#38bdf8', fill: 'rgba(7,89,133,0.85)'  },
+    { title: 'Prep',      example: 'Clean + tensor', stroke: '#22d3ee', fill: 'rgba(8,51,68,0.9)'    },
+    { title: 'Inference', example: 'Model runs',     stroke: '#e879f9', fill: 'rgba(88,28,135,0.9)'  },
+    { title: 'Output',    example: '"Retriever"',    stroke: '#2dd4bf', fill: 'rgba(17,94,89,0.9)'   },
+    { title: 'Format',    example: 'Label',          stroke: '#e879f9', fill: 'rgba(88,28,135,0.85)' },
+    { title: 'Result',    example: 'User sees it',   stroke: '#a78bfa', fill: 'rgba(46,16,101,0.9)'  },
   ]
-  const nW = 110, nH = 68, gap = 26, marginX = 10, svgH = 195
-  const svgW = marginX * 2 + nodes.length * nW + (nodes.length - 1) * gap
+  const nW = 110, nH = 68, gap = 18, marginX = 10, svgH = 195
   const nY = 32, nCY = nY + nH / 2
   const loopOutset = 10, feedbackY = nY + nH + 44
-  const positions = nodes.map((_, i) => ({
-    x: marginX + i * (nW + gap),
-    cx: marginX + nW / 2 + i * (nW + gap),
-  }))
+  const positions = nodes.map((_, i) => {
+    const prepOffset = i === 1 ? -18 : 0
+    const brainGapOffset = i >= 2 ? 34 : 0
+    const formatOffset = i === 4 ? -12 : 0
+    const resultOffset = i === 5 ? -18 : 0
+    const totalOffset = prepOffset + brainGapOffset + formatOffset + resultOffset
+    return {
+      x: marginX + i * (nW + gap) + totalOffset,
+      cx: marginX + nW / 2 + i * (nW + gap) + totalOffset,
+    }
+  })
+  const flowStartX = positions[0].cx
   const lastRight = positions[5].x + nW
   const modelCX = positions[2].cx
+  const brainLeftX = modelCX - 62
+  const brainRightX = modelCX + 62
+  const diagramPadding = 24
+  const leftSpan = modelCX - (positions[0].x - diagramPadding)
+  const rightSpan = (lastRight + loopOutset + diagramPadding) - modelCX
+  const svgW = Math.max(leftSpan, rightSpan) * 2
+  const xShift = svgW / 2 - modelCX
+  const incomingFlowPath = `M ${flowStartX} ${nCY} H ${brainLeftX}`
+  const outgoingFlowPath = `M ${brainRightX} ${nCY} H ${positions[5].cx} H ${lastRight + loopOutset} V ${feedbackY} H ${modelCX} V ${nY + nH}`
   return (
     <div className="w-full max-w-[860px] mx-auto" aria-label="Inside the model: AI pipeline">
       <svg viewBox={`0 0 ${svgW} ${svgH}`} className="w-full h-auto" preserveAspectRatio="xMidYMid meet">
         <defs>
           <linearGradient id="itm-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-            <stop offset="0%"   stopColor="rgba(34,211,238,0)"    />
-            <stop offset="30%"  stopColor="rgba(34,211,238,0.85)" />
-            <stop offset="60%"  stopColor="rgba(129,140,248,0.85)" />
-            <stop offset="100%" stopColor="rgba(167,139,250,0)"   />
+            <stop offset="0%"   stopColor="rgba(34,211,238,0.4)" />
+            <stop offset="30%"  stopColor="rgba(34,211,238,0.88)" />
+            <stop offset="60%"  stopColor="rgba(129,140,248,0.88)" />
+            <stop offset="100%" stopColor="rgba(167,139,250,0.45)" />
           </linearGradient>
-          <marker id="itm-arr" markerWidth="7" markerHeight="6" refX="5.5" refY="3" orient="auto">
-            <path d="M0 0 L7 3 L0 6 Z" fill="rgba(129,140,248,0.9)" />
-          </marker>
-          <marker id="itm-arr-loop" markerWidth="7" markerHeight="6" refX="5.5" refY="3" orient="auto">
-            <path d="M0 0 L7 3 L0 6 Z" fill="rgba(167,139,250,0.85)" />
-          </marker>
         </defs>
-        {/* Forward connector arrows */}
-        {positions.slice(0, -1).map((pos, i) => (
-          <line
-            key={i}
-            x1={pos.x + nW} y1={nCY}
-            x2={positions[i + 1].x} y2={nCY}
-            stroke="url(#itm-grad)" strokeWidth="2" strokeDasharray="8 6"
-            markerEnd="url(#itm-arr)"
-            style={{ animation: `fctg-prod-flow 1.8s linear infinite ${(i * 0.28).toFixed(2)}s` }}
+        <g transform={`translate(${xShift} 0)`}>
+          {/* Flow: dashed line -> brain activity -> dashed line */}
+          <path
+            d={incomingFlowPath}
+            fill="none" stroke="rgba(148,163,184,0.22)" strokeWidth="1.5"
           />
-        ))}
-        {/* Feedback loop: Result → Model inference */}
-        <path
-          d={`M ${lastRight} ${nCY} H ${lastRight + loopOutset} V ${feedbackY} H ${modelCX} V ${nY + nH}`}
-          fill="none" stroke="rgba(167,139,250,0.45)" strokeWidth="1.5" strokeDasharray="7 6"
-          markerEnd="url(#itm-arr-loop)"
-          style={{ animation: 'fctg-prod-flow 3.5s linear infinite 1.4s' }}
-        />
-        <text
-          x={(lastRight + loopOutset + modelCX) / 2} y={feedbackY + 14}
-          textAnchor="middle" fontSize="9" fill="rgba(167,139,250,0.75)"
-          fontFamily="system-ui,sans-serif" fontStyle="italic"
-        >
-          &ldquo;Actually it&rsquo;s a Labrador&rdquo; — model corrects
-        </text>
-        {/* Nodes: step title (top half) + example value (bottom half) */}
-        {nodes.map(({ title, example, stroke, fill }, i) => {
-          const { x, cx } = positions[i]
-          const divY = nY + nH * 0.52
-          return (
-            <g key={i}>
-              <rect x={x} y={nY} width={nW} height={nH} rx={8} fill={fill} stroke={stroke} strokeWidth="1.5" />
-              <line x1={x + 6} y1={divY} x2={x + nW - 6} y2={divY} stroke={stroke} strokeWidth="0.75" opacity="0.4" />
-              <text x={cx} y={nY + nH * 0.28} textAnchor="middle" dominantBaseline="middle"
-                fontSize="9" fill="#f1f5f9" fontFamily="system-ui,sans-serif" fontWeight="700">
+          <path
+            d={incomingFlowPath}
+            fill="none" stroke="rgba(103,232,249,0.95)" strokeWidth="2.2" strokeDasharray="8 6"
+            style={{ animation: 'fctg-prod-flow 3s linear infinite' }}
+          />
+          <path
+            d={outgoingFlowPath}
+            fill="none" stroke="rgba(148,163,184,0.22)" strokeWidth="1.5"
+          />
+          <path
+            d={outgoingFlowPath}
+            fill="none" stroke="url(#itm-grad)" strokeWidth="2.2" strokeDasharray="8 6"
+            style={{ animation: 'fctg-prod-flow 3s linear infinite' }}
+          />
+          <text
+            x={(lastRight + loopOutset + modelCX) / 2} y={feedbackY + 14}
+            textAnchor="middle" fontSize="10.5" fill="rgba(167,139,250,0.75)"
+            fontFamily="system-ui,sans-serif" fontStyle="italic"
+          >
+            &ldquo;Actually it&rsquo;s a Labrador&rdquo; — model corrects
+          </text>
+          {/* Nodes: step title (top half) + example value (bottom half) */}
+          {nodes.map(({ title, example, stroke, fill }, i) => {
+            const { x, cx } = positions[i]
+            const isInput = i === 0
+            const isBrain = i === 2
+            const isSmallStage = i === 1 || i >= 3
+            const cardWidth = isSmallStage ? 90 : nW
+            const cardHeight = isSmallStage ? 58 : nH
+            const cardX = isSmallStage ? x + (nW - cardWidth) / 2 : x
+            const cardY = isSmallStage ? nY + (nH - cardHeight) / 2 : nY
+            return (
+              <g key={i}>
+              {isInput && (
+                <>
+                  {[
+                    { label: 'What breed is this?', x1: x - 66, y1: nY + 36, x2: x + 6, y2: nY + 36, delay: '0.8s', color: 'rgba(165,243,252,0.9)' },
+                  ].map(({ label, x1, y1, x2, y2, delay, color }) => {
+                    const path = `M ${x1} ${y1} C ${x1 + 24} ${y1}, ${x2 - 18} ${y2}, ${x2} ${y2}`
+                    return (
+                      <g key={label}>
+                        <text
+                          x={x1}
+                          y={y1}
+                          textAnchor="start"
+                          dominantBaseline="middle"
+                          fontSize="10"
+                          fill={color}
+                          fontFamily="system-ui,sans-serif"
+                          fontWeight="600"
+                          letterSpacing="0.15"
+                        >
+                          {label}
+                        </text>
+                        <path
+                          d={path}
+                          fill="none"
+                          stroke="rgba(34,211,238,0.16)"
+                          strokeWidth="1.2"
+                          strokeDasharray="3 7"
+                          strokeLinecap="round"
+                        />
+                        <circle r="2.6" fill="rgba(103,232,249,0.9)">
+                          <animateMotion
+                            dur="3.6s"
+                            begin={delay}
+                            repeatCount="indefinite"
+                            path={path}
+                          />
+                          <animate
+                            attributeName="opacity"
+                            values="0;0.95;0"
+                            dur="3.6s"
+                            begin={delay}
+                            repeatCount="indefinite"
+                          />
+                        </circle>
+                      </g>
+                    )
+                  })}
+                </>
+              )}
+              {isBrain && (
+                <>
+                  <path
+                    d={`
+                      M ${cx} ${nY - 16}
+                      C ${cx - 12} ${nY - 32}, ${cx - 34} ${nY - 32}, ${cx - 44} ${nY - 14}
+                      C ${x} ${nY - 30}, ${x - 18} ${nY - 2}, ${x - 6} ${nY + 18}
+                      C ${x - 22} ${nY + 38}, ${x - 12} ${nY + 68}, ${x + 10} ${nY + 82}
+                      C ${x + 18} ${nY + 102}, ${x + 48} ${nY + 110}, ${cx - 6} ${nY + 96}
+                      C ${cx - 3} ${nY + 68}, ${cx - 4} ${nY + 34}, ${cx} ${nY + 14}
+                      C ${cx + 4} ${nY + 34}, ${cx + 3} ${nY + 68}, ${cx + 6} ${nY + 96}
+                      C ${x + 62} ${nY + 110}, ${x + 92} ${nY + 102}, ${x + 100} ${nY + 82}
+                      C ${x + 122} ${nY + 68}, ${x + 132} ${nY + 38}, ${x + 116} ${nY + 18}
+                      C ${x + 128} ${nY - 2}, ${x + 110} ${nY - 30}, ${cx + 44} ${nY - 14}
+                      C ${cx + 34} ${nY - 32}, ${cx + 12} ${nY - 32}, ${cx} ${nY - 16}
+                      Z
+                    `}
+                    fill="rgba(232,121,249,0.08)"
+                    stroke="rgba(232,121,249,0.4)"
+                    strokeWidth="1.4"
+                  />
+                  <path
+                    d={`
+                      M ${x + 12} ${nY + 8}
+                      C ${x + 2} ${nY - 6}, ${x + 12} ${nY - 20}, ${x + 30} ${nY - 16}
+                      C ${x + 18} ${nY - 2}, ${x + 22} ${nY + 16}, ${x + 36} ${nY + 24}
+                      C ${x + 18} ${nY + 30}, ${x + 18} ${nY + 48}, ${x + 34} ${nY + 56}
+                      C ${x + 18} ${nY + 64}, ${x + 26} ${nY + 84}, ${x + 48} ${nY + 88}
+                    `}
+                    fill="none"
+                    stroke="rgba(244,114,182,0.32)"
+                    strokeWidth="1.1"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d={`
+                      M ${x + 98} ${nY + 8}
+                      C ${x + 108} ${nY - 6}, ${x + 98} ${nY - 20}, ${x + 80} ${nY - 16}
+                      C ${x + 92} ${nY - 2}, ${x + 88} ${nY + 16}, ${x + 74} ${nY + 24}
+                      C ${x + 92} ${nY + 30}, ${x + 92} ${nY + 48}, ${x + 76} ${nY + 56}
+                      C ${x + 92} ${nY + 64}, ${x + 84} ${nY + 84}, ${x + 62} ${nY + 88}
+                    `}
+                    fill="none"
+                    stroke="rgba(244,114,182,0.32)"
+                    strokeWidth="1.1"
+                    strokeLinecap="round"
+                  />
+                  <path
+                    d={`
+                      M ${cx} ${nY - 10}
+                      C ${cx - 3} ${nY + 8}, ${cx - 2} ${nY + 26}, ${cx} ${nY + 44}
+                      C ${cx + 2} ${nY + 62}, ${cx + 3} ${nY + 76}, ${cx} ${nY + 92}
+                    `}
+                    fill="none"
+                    stroke="rgba(244,114,182,0.38)"
+                    strokeWidth="1.2"
+                    strokeLinecap="round"
+                  />
+                  {[
+                    { x1: cx - 34, y1: nY + 20, x2: cx - 8, y2: nY + 40 },
+                    { x1: cx - 16, y1: nY + 54, x2: cx + 12, y2: nY + 30 },
+                    { x1: cx + 8, y1: nY + 44, x2: cx + 32, y2: nY + 22 },
+                    { x1: cx - 24, y1: nY + 72, x2: cx + 24, y2: nY + 70 },
+                  ].map((edge, idx) => (
+                    <line
+                      key={`brain-edge-${idx}`}
+                      x1={edge.x1}
+                      y1={edge.y1}
+                      x2={edge.x2}
+                      y2={edge.y2}
+                      stroke="rgba(244,114,182,0.28)"
+                      strokeWidth="1"
+                      strokeLinecap="round"
+                    />
+                  ))}
+                  {[
+                    { cx: cx - 34, cy: nY + 20, r: 3 },
+                    { cx: cx - 8, cy: nY + 40, r: 3.2 },
+                    { cx: cx - 16, cy: nY + 54, r: 2.8 },
+                    { cx: cx + 12, cy: nY + 30, r: 3.2 },
+                    { cx: cx + 32, cy: nY + 22, r: 3 },
+                    { cx: cx + 24, cy: nY + 70, r: 3 },
+                  ].map((node, idx) => (
+                    <circle
+                      key={`brain-node-${idx}`}
+                      cx={node.cx}
+                      cy={node.cy}
+                      r={node.r}
+                      fill="rgba(249,168,212,0.88)"
+                    >
+                      <animate
+                        attributeName="opacity"
+                        values="0.35;1;0.45"
+                        dur={`${1.8 + idx * 0.18}s`}
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                  ))}
+                  {[
+                    `M ${cx - 34} ${nY + 20} C ${cx - 24} ${nY + 24}, ${cx - 16} ${nY + 34}, ${cx - 8} ${nY + 40}`,
+                    `M ${cx - 16} ${nY + 54} C ${cx - 8} ${nY + 48}, ${cx + 2} ${nY + 36}, ${cx + 12} ${nY + 30}`,
+                    `M ${cx + 8} ${nY + 44} C ${cx + 16} ${nY + 38}, ${cx + 24} ${nY + 28}, ${cx + 32} ${nY + 22}`,
+                  ].map((path, idx) => (
+                    <circle key={`brain-signal-${idx}`} r="2.4" fill="rgba(252,231,243,0.95)">
+                      <animateMotion
+                        dur={`${1.6 + idx * 0.25}s`}
+                        begin={`${idx * 0.35}s`}
+                        repeatCount="indefinite"
+                        path={path}
+                      />
+                      <animate
+                        attributeName="opacity"
+                        values="0;1;0"
+                        dur={`${1.6 + idx * 0.25}s`}
+                        begin={`${idx * 0.35}s`}
+                        repeatCount="indefinite"
+                      />
+                    </circle>
+                  ))}
+                </>
+              )}
+              {!isBrain && !isInput && (
+                <rect
+                  x={cardX}
+                  y={cardY}
+                  width={cardWidth}
+                  height={cardHeight}
+                  rx={8}
+                  fill={fill}
+                  stroke={stroke}
+                  strokeWidth="1.5"
+                  opacity="0.72"
+                />
+              )}
+              {!isInput && (
+                <>
+              <text x={cx} y={isSmallStage ? cardY + cardHeight * 0.32 : nY + nH * 0.28} textAnchor="middle" dominantBaseline="middle"
+                    fontSize={isBrain ? '13' : isSmallStage ? '11' : '12'} fill={isBrain ? '#f9a8d4' : '#f1f5f9'} fontFamily="system-ui,sans-serif" fontWeight="700" opacity={isBrain ? '1' : '0.9'}>
                 {title}
               </text>
-              <text x={cx} y={nY + nH * 0.74} textAnchor="middle" dominantBaseline="middle"
-                fontSize="8" fill={stroke} fontFamily="system-ui,sans-serif" fontStyle="italic">
+              <text x={cx} y={isSmallStage ? cardY + cardHeight * 0.72 : nY + nH * 0.74} textAnchor="middle" dominantBaseline="middle"
+                    fontSize={isBrain ? '9.5' : isSmallStage ? '8' : '9'} fill={isBrain ? '#fbcfe8' : '#e2e8f0'} fontFamily="system-ui,sans-serif" fontWeight="600" opacity={isBrain ? '1' : '0.82'}>
                 {example}
               </text>
-            </g>
-          )
-        })}
+                </>
+              )}
+              </g>
+            )
+          })}
+        </g>
       </svg>
     </div>
   )
@@ -772,7 +976,7 @@ function FCTGAITalkSlides() {
           <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
         </div>
       )}
-      {/* Slide 18: Vibe coding — philosophy (above models/agents) */}
+      {/* Slide 17: Vibe coding — philosophy */}
       {slideIndex === 17 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
@@ -788,15 +992,15 @@ function FCTGAITalkSlides() {
       {slideIndex === 15 && (
         <div className="pointer-events-none fixed inset-0 bg-black" aria-hidden />
       )}
-      {/* Slide 18: Multi-agent systems — pure black */}
+      {/* Slide 16: Multi-agent systems — pure black */}
       {slideIndex === 16 && (
         <div className="pointer-events-none fixed inset-0 bg-black" aria-hidden />
       )}
-      {/* Slide 19: Ways of creating with vibe — pure black */}
+      {/* Slide 18: Ways of creating with vibe — pure black */}
       {slideIndex === 18 && (
         <div className="pointer-events-none fixed inset-0 bg-black" aria-hidden />
       )}
-      {/* Slide 27: Agentic & designer productivity */}
+      {/* Slide 19: Agentic & designer productivity */}
       {slideIndex === 19 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
@@ -817,7 +1021,7 @@ function FCTGAITalkSlides() {
           <div className="absolute inset-0 fctg-pattern-hexagon" aria-hidden />
         </div>
       )}
-      {/* Slide 28: Intervention */}
+      {/* Slide 20: How you stay in control */}
       {slideIndex === 20 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
@@ -953,7 +1157,7 @@ function FCTGAITalkSlides() {
         {/* Chapter label — same position at very top for all chapter slides */}
         {slideIndex >= 4 && slideIndex <= 6 && <ChapterLabel>Concepts</ChapterLabel>}
         {slideIndex >= 7 && slideIndex <= 13 && <ChapterLabel>Monumental moments</ChapterLabel>}
-        {slideIndex >= 14 && slideIndex <= 24 && <ChapterLabel>Building momentum</ChapterLabel>}
+        {slideIndex >= 14 && slideIndex <= 23 && <ChapterLabel>Building momentum</ChapterLabel>}
         {slideIndex >= 24 && slideIndex <= 33 && <ChapterLabel>Technology</ChapterLabel>}
         {slideIndex >= 34 && slideIndex <= 39 && <ChapterLabel>Activity & close</ChapterLabel>}
         {/* Slide 1: Title */}
@@ -1574,7 +1778,7 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 17: Vibe coding — philosophy (above models/agents) */}
+        {/* Slide 17: Vibe coding — philosophy */}
         {slideIndex === 17 && (
         <Slide transparent heroOnly hero={
           <div key={slideIndex} className="fctg-text-transition relative w-full h-screen flex flex-col items-center justify-between pt-14 md:pt-16 pb-16 md:pb-20 overflow-hidden">
@@ -1660,7 +1864,7 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 18: Multi-agent systems */}
+        {/* Slide 16: Multi-agent systems */}
         {slideIndex === 16 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl mx-auto flex flex-col items-center gap-4 px-6 py-4">
@@ -1674,7 +1878,7 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 19: Ways of creating with vibe — after multi-agent, before Context */}
+        {/* Slide 18: Ways of creating with vibe */}
         {slideIndex === 18 && (
         <Slide transparent className="items-center justify-center overflow-hidden" style={{ background: '#000' }} wide>
           <style>{`
@@ -1793,37 +1997,82 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 27: Agentic Designer Productivity — plan, execute, reflect */}
+        {/* Slide 19: Agentic Designer Productivity — plan, execute, reflect */}
         {slideIndex === 19 && (
         <Slide transparent className="items-center justify-center overflow-y-auto" wide>
-          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:py-8">
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-6xl px-4 py-4 md:py-8">
             <div className="text-center mb-5 md:mb-6">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>The Agentic Design Loop</h2>
               <p className="fctg-subtitle mt-1 mb-4 text-xs md:text-sm text-slate-400">The rhythm you inject into every stage.</p>
             </div>
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-3 md:gap-4 max-w-4xl mx-auto mb-5 md:mb-6">
-              <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 p-3 md:p-4">
+
+            <div className="grid grid-cols-1 gap-3 md:hidden max-w-4xl mx-auto mb-5 md:mb-6">
+              <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 p-3">
                 <h3 className="text-sm font-semibold text-cyan-300 mb-1.5">Plan</h3>
-                <p className="text-xs md:text-sm text-slate-300/95 leading-tight">You set direction and criteria. Agent gets the brief.</p>
-                <p className="mt-1 text-[10px] text-slate-500 italic leading-tight">e.g. Research competitors → 3 concepts → prototype winner → usability summary.</p>
-              </div>
-              <div className="rounded-xl border border-indigo-500/30 bg-indigo-950/20 p-3 md:p-4">
-                <h3 className="text-sm font-semibold text-indigo-300 mb-1.5">Execute</h3>
-                <p className="text-xs md:text-sm text-slate-300/95 leading-tight">Agent runs research, prototype, test, summary. You stay in review.</p>
-                <p className="mt-1 text-[10px] text-slate-500 italic leading-tight">e.g. Agent runs that brief; you step in only when needed.</p>
-              </div>
-              <div className="rounded-xl border border-violet-500/30 bg-violet-950/20 p-3 md:p-4">
-                <h3 className="text-sm font-semibold text-violet-300 mb-1.5">Reflect</h3>
-                <p className="text-xs md:text-sm text-slate-300/95 leading-tight">You evaluate and approve. Agent takes repeatable tasks; you focus on judgment.</p>
-                <p className="mt-1 text-[10px] text-slate-500 italic leading-tight">e.g. Review summary; decide what to iterate or ship.</p>
-              </div>
+                <p className="text-xs text-slate-300/95 leading-tight">Set direction and success criteria.</p>
             </div>
+              <div className="rounded-xl border border-indigo-500/30 bg-indigo-950/20 p-3">
+                <h3 className="text-sm font-semibold text-indigo-300 mb-1.5">Execute</h3>
+                <p className="text-xs text-slate-300/95 leading-tight">Agent runs the work.</p>
+          </div>
+              <div className="rounded-xl border border-violet-500/30 bg-violet-950/20 p-3">
+                <h3 className="text-sm font-semibold text-violet-300 mb-1.5">Reflect</h3>
+                <p className="text-xs text-slate-300/95 leading-tight">Review, refine, or approve.</p>
+            </div>
+          </div>
+
+            <div className="relative hidden md:block h-[24rem] max-w-4xl mx-auto mt-4 md:mt-6 mb-5 md:mb-6">
+              <style>{`
+                @keyframes fctg-loop-flow {
+                  from { stroke-dashoffset: 0; }
+                  to { stroke-dashoffset: -120; }
+                }
+                .fctg-loop-flow {
+                  animation: fctg-loop-flow 1.8s linear infinite;
+                }
+              `}</style>
+              <svg className="absolute inset-0 h-full w-full" viewBox="0 0 900 480" fill="none" aria-hidden>
+                  <defs>
+                  <linearGradient id="loop-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" stopColor="rgba(34,211,238,0.65)" />
+                    <stop offset="50%" stopColor="rgba(129,140,248,0.55)" />
+                    <stop offset="100%" stopColor="rgba(167,139,250,0.65)" />
+                    </linearGradient>
+                  <filter id="loop-glow">
+                    <feGaussianBlur stdDeviation="4" result="blur" />
+                    <feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge>
+                    </filter>
+                  </defs>
+                <g>
+                  <circle cx="450" cy="286" r="138" stroke="rgba(148,163,184,0.08)" strokeWidth="12" fill="none" />
+                  <circle cx="450" cy="286" r="138" stroke="url(#loop-grad)" strokeWidth="2.5" strokeDasharray="10 10" fill="none" opacity="0.35" />
+                  <circle className="fctg-loop-flow" cx="450" cy="286" r="138" stroke="url(#loop-grad)" strokeWidth="3.5" strokeDasharray="32 88" strokeLinecap="round" fill="none" opacity="0.95" />
+                </g>
+                </svg>
+
+              <div className="absolute left-1/2 top-[4%] w-[12.5rem] -translate-x-1/2 rounded-2xl border border-cyan-500/30 bg-cyan-950/20 px-3 py-2.5 text-center shadow-[0_0_30px_rgba(34,211,238,0.08)]">
+                <h3 className="text-sm font-semibold text-cyan-300 mb-1.5">Plan</h3>
+                <p className="text-[10px] text-slate-300/95 leading-snug">Set direction and success criteria.</p>
+                </div>
+
+              <div className="absolute right-[10%] top-[64%] w-[12.5rem] -translate-y-1/2 rounded-2xl border border-indigo-500/30 bg-indigo-950/20 px-3 py-2.5 text-center shadow-[0_0_30px_rgba(99,102,241,0.08)]">
+                <h3 className="text-sm font-semibold text-indigo-300 mb-1.5">Execute</h3>
+                <p className="text-[10px] text-slate-300/95 leading-snug">Agent runs the work.</p>
+                </div>
+
+              <div className="absolute left-[10%] top-[64%] w-[12.5rem] -translate-y-1/2 rounded-2xl border border-violet-500/30 bg-violet-950/20 px-3 py-2.5 text-center shadow-[0_0_30px_rgba(167,139,250,0.08)]">
+                <h3 className="text-sm font-semibold text-violet-300 mb-1.5">Reflect</h3>
+                <p className="text-[10px] text-slate-300/95 leading-snug">Review, refine, or approve.</p>
+                </div>
+
+                </div>
+
             <p className="mt-2 text-center text-[11px] text-cyan-300/90 max-w-2xl mx-auto"><span className="text-slate-400 font-medium">Productivity impact:</span> 2–4× faster cycles; ~30–50% time saved on execution.</p>
           </div>
         </Slide>
         )}
 
-        {/* Slide 26: Context and continuity */}
+        {/* Slide 22: Context and continuity */}
         {slideIndex === 22 && (
         <Slide
           heroOnly
@@ -1881,25 +2130,34 @@ function FCTGAITalkSlides() {
         />
         )}
 
-        {/* Slide 28: Intervention */}
+        {/* Slide 20: How you stay in control */}
         {slideIndex === 20 && (
         <Slide transparent className="items-center justify-center overflow-hidden">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl mx-auto flex flex-col items-center gap-5 px-6 py-4">
             <div className="flex flex-col items-center text-center">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>How you stay in control</h2>
-              <p className="fctg-subtitle mt-1">Verify outputs, redirect when they drift, reframe when looping.</p>
-              <div className="flex flex-wrap justify-center gap-2 mt-3">
-                <span className="rounded-full border border-amber-500/40 bg-amber-950/30 px-3 py-1 text-xs font-medium text-amber-400">Verify</span>
-                <span className="rounded-full border border-cyan-500/40 bg-cyan-950/30 px-3 py-1 text-xs font-medium text-cyan-400">Redirect</span>
-                <span className="rounded-full border border-fuchsia-500/40 bg-fuchsia-950/30 px-3 py-1 text-xs font-medium text-fuchsia-400">Reframe</span>
-              </div>
-              <div className="flex flex-wrap justify-center gap-2 mt-2">
-                {['Hallucinate', 'Overcomplicate', 'Loop', 'Overwrite', 'Lazy', 'Fixate', 'Ignore', 'Drift', 'Tone', 'Pushback'].map((label) => (
-                  <span key={label} className="rounded-full border border-amber-500/30 bg-amber-500/5 px-3 py-1 text-xs font-medium text-amber-300/90">
+              <p className="fctg-subtitle mt-1">Keep the agent pointed at the outcome: verify outputs, redirect drift, reframe loops.</p>
+              <div className="flex flex-wrap justify-center gap-2 mt-8 md:mt-10">
+                {[
+                  { label: 'Hallucinate', cls: 'border-fuchsia-500/30 bg-fuchsia-500/5 text-fuchsia-300/90' },
+                  { label: 'Overcomplicate', cls: 'border-violet-500/30 bg-violet-500/5 text-violet-300/90' },
+                  { label: 'Loop', cls: 'border-indigo-500/30 bg-indigo-500/5 text-indigo-300/90' },
+                  { label: 'Overwrite', cls: 'border-rose-500/30 bg-rose-500/5 text-rose-300/90' },
+                  { label: 'Lazy', cls: 'border-amber-500/30 bg-amber-500/5 text-amber-300/90' },
+                  { label: 'Fixate', cls: 'border-cyan-500/30 bg-cyan-500/5 text-cyan-300/90' },
+                  { label: 'Ignore', cls: 'border-slate-400/30 bg-slate-400/5 text-slate-300/90' },
+                  { label: 'Drift', cls: 'border-teal-500/30 bg-teal-500/5 text-teal-300/90' },
+                  { label: 'Tone', cls: 'border-pink-500/30 bg-pink-500/5 text-pink-300/90' },
+                  { label: 'Pushback', cls: 'border-orange-500/30 bg-orange-500/5 text-orange-300/90' },
+                ].map(({ label, cls }) => (
+                  <span key={label} className={`rounded-full border px-3 py-1 text-xs font-medium ${cls}`}>
                     {label}
                   </span>
                 ))}
               </div>
+              <p className="mt-6 max-w-2xl text-center text-xs text-slate-400">
+                Use an explicit operating contract: scope, file rules, budgets, and cleanup.
+              </p>
             </div>
           </div>
         </Slide>
@@ -1908,7 +2166,7 @@ function FCTGAITalkSlides() {
         {/* Slide 29: Then vs Now — UX design cycle (Empathize, Define, Ideate, Prototype, Test) */}
         {slideIndex === 21 && (
         <Slide transparent className="items-center justify-center overflow-y-auto">
-          <div key={slideIndex} className="fctg-text-transition w-full max-w-7xl px-4 py-4 md:py-6 mx-auto">
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-384 px-4 py-4 md:px-6 md:py-6 mx-auto">
             <div className="text-center mb-4 md:mb-5">
               <h2 className="fctg-heading !text-[2rem] md:!text-[2.5rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Then vs Now</h2>
               <p className="fctg-subtitle mt-1 text-slate-400 text-sm">The UX design cycle — same phases, you lead, agent runs.</p>
@@ -1922,8 +2180,8 @@ function FCTGAITalkSlides() {
                 { phase: 'Test', phaseColor: 'text-violet-400', borderColor: 'border-violet-500/30', bgColor: 'bg-violet-950/20', then: 'Usability sessions, manual analysis; feedback loops slow.', now: 'Agent runs tests, surfaces insights; you review. Iterate faster; ship with confidence.', metric: '~30–50% faster to validate.' },
               ].map(({ phase, phaseColor, borderColor, bgColor, then, now, metric }) => (
                 <div key={phase} className={`rounded-xl border ${borderColor} ${bgColor} p-3 md:p-4 flex flex-col gap-2 min-w-0`}>
-                  <div className={`text-xs font-semibold uppercase tracking-wider ${phaseColor}`}>{phase}</div>
-                  <div className="flex flex-col gap-1.5 text-xs md:text-sm text-slate-300/95">
+                  <div className={`text-[10px] md:text-[11px] font-semibold uppercase tracking-wider ${phaseColor}`}>{phase}</div>
+                  <div className="flex flex-col gap-1.5 text-[10px] md:text-xs text-slate-300/95">
                     <div>
                       <span className="text-slate-500 font-medium">Then </span>
                       <span className="text-slate-400">{then}</span>
@@ -1933,7 +2191,7 @@ function FCTGAITalkSlides() {
                       <span className="text-slate-300">{now}</span>
                     </div>
                   </div>
-                  <div className={`mt-1 pt-1.5 border-t border-slate-700/50 text-[10px] ${phaseColor} opacity-90`}>{metric}</div>
+                  <div className={`mt-1 pt-1.5 border-t border-slate-700/50 text-[9px] md:text-[10px] ${phaseColor} opacity-90`}>{metric}</div>
                 </div>
               ))}
             </div>
