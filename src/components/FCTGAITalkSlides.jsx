@@ -1044,18 +1044,18 @@ function FCTGAITalkSlides() {
           <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
         </div>
       )}
-      {/* Slide 29: Productivity gains */}
+      {/* Slide 29: Testing and validation */}
       {slideIndex === 31 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
-          <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
+          <div className="absolute inset-0 fctg-pattern-hexagon" aria-hidden />
         </div>
       )}
-      {/* Slide 30: Testing and validation */}
+      {/* Slide 30: Functional impact */}
       {slideIndex === 32 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
-          <div className="absolute inset-0 fctg-pattern-hexagon" aria-hidden />
+          <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
         </div>
       )}
       {/* Slide 31: Technology intro */}
@@ -1165,12 +1165,12 @@ function FCTGAITalkSlides() {
       {/* Slide content */}
       <div className="relative z-20 h-full overflow-x-hidden overflow-y-hidden">
         {/* Chapter label — same position at very top for all chapter slides */}
-        {slideIndex >= 2 && slideIndex <= 7 && <ChapterLabel>Concepts</ChapterLabel>}
-        {slideIndex >= 8 && slideIndex <= 15 && <ChapterLabel>Monumental moments</ChapterLabel>}
+        {slideIndex >= 3 && slideIndex <= 7 && <ChapterLabel>Concepts</ChapterLabel>}
+        {slideIndex >= 9 && slideIndex <= 15 && <ChapterLabel>Monumental moments</ChapterLabel>}
         {slideIndex >= 16 && slideIndex <= 26 && <ChapterLabel>Building momentum</ChapterLabel>}
-        {slideIndex >= 27 && slideIndex <= 32 && <ChapterLabel>Design practice</ChapterLabel>}
-        {slideIndex >= 33 && slideIndex <= 41 && <ChapterLabel>Technology</ChapterLabel>}
-        {slideIndex >= 42 && slideIndex <= 47 && <ChapterLabel>Activity & close</ChapterLabel>}
+        {slideIndex >= 28 && slideIndex <= 32 && <ChapterLabel>Design practice</ChapterLabel>}
+        {slideIndex >= 34 && slideIndex <= 41 && <ChapterLabel>Technology</ChapterLabel>}
+        {slideIndex >= 43 && slideIndex <= 47 && <ChapterLabel>Activity & close</ChapterLabel>}
         {/* Slide 1: Title */}
         {slideIndex === 0 && (
         <Slide
@@ -1218,11 +1218,11 @@ function FCTGAITalkSlides() {
                 background: 'radial-gradient(ellipse 72% 54% at 50% 18%, rgba(34,211,238,0.14) 0%, transparent 72%), linear-gradient(180deg, rgba(2,6,23,0.22) 0%, rgba(2,6,23,0.38) 48%, rgba(2,6,23,0.8) 100%)',
               }}
             />
-            <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 py-8 text-center md:px-8 md:py-10">
+            <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 pt-4 pb-24 text-center md:px-8 md:pt-6 md:pb-28">
               <div className="max-w-2xl text-center">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-cyan-300/90">Chapter 1</div>
                 <h2 className="fctg-heading !text-[2.5rem] md:!text-[3rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Concepts</h2>
-                <p className="fctg-subtitle mt-2">Foundational ideas for thinking about AI, design, and how the work is changing.</p>
+                <p className="fctg-subtitle mt-2">Foundational ideas for AI, design, and the changing shape of work.</p>
               </div>
             </div>
           </div>
@@ -1455,7 +1455,7 @@ function FCTGAITalkSlides() {
                 background: 'radial-gradient(ellipse 72% 54% at 50% 18%, rgba(129,140,248,0.16) 0%, transparent 72%), linear-gradient(180deg, rgba(2,6,23,0.22) 0%, rgba(2,6,23,0.38) 48%, rgba(2,6,23,0.8) 100%)',
               }}
             />
-            <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 py-8 text-center md:px-8 md:py-10">
+            <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 pt-4 pb-24 text-center md:px-8 md:pt-6 md:pb-28">
               <div className="max-w-2xl text-center">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-cyan-300/90">Chapter 2</div>
                 <h2 className="fctg-heading !text-[2.5rem] md:!text-[3rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Monumental moments</h2>
@@ -1903,7 +1903,8 @@ function FCTGAITalkSlides() {
               <p className="fctg-subtitle mt-1">Drive outcomes, not just outputs.</p>
             </div>
             <FCTGBodyAnalogyDiagram />
-            <p className="mt-3 text-xs text-slate-500 text-center max-w-xl mx-auto">The model is the brain. The wrapper — tools, loop, memory — is what makes it agentic.</p>
+            <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-300/80 text-center">Operational loop: model -&gt; memory/tools -&gt; result -&gt; model</p>
+            <p className="mt-3 text-xs text-slate-500 text-center max-w-xl mx-auto">Tools enable action, but the model&apos;s reasoning decides which tool, context, or memory to use.</p>
           </div>
         </Slide>
         )}
@@ -2293,7 +2294,7 @@ function FCTGAITalkSlides() {
                 background: 'radial-gradient(ellipse 72% 54% at 50% 18%, rgba(45,212,191,0.14) 0%, transparent 72%), linear-gradient(180deg, rgba(2,6,23,0.22) 0%, rgba(2,6,23,0.38) 48%, rgba(2,6,23,0.8) 100%)',
               }}
             />
-            <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 py-8 text-center md:px-8 md:py-10">
+            <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 pt-4 pb-24 text-center md:px-8 md:pt-6 md:pb-28">
               <div className="max-w-2xl text-center">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-cyan-300/90">Chapter 5</div>
                 <h2 className="fctg-heading !text-[2.5rem] md:!text-[3rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Design practice</h2>
@@ -2393,38 +2394,8 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 29: Productivity gains */}
+        {/* Slide 29: Testing and validation */}
         {slideIndex === 31 && (
-        <Slide transparent wide className="items-center justify-center overflow-hidden">
-          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4">
-            <div className="text-center mb-4 md:mb-6">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Productivity gains</h2>
-              <p className="fctg-subtitle mt-1">What improves when your design system grounds the agent.</p>
-              <p className="mt-1.5 text-xs text-slate-500">Measure: revision count, handoff rounds, time to production-ready.</p>
-            </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
-              {[
-                { title: 'Fewer revision cycles', text: 'Stronger first passes mean less back-and-forth to get on-brand UI.', tone: 'border-cyan-500/30 bg-cyan-950/20 text-cyan-200' },
-                { title: 'Fewer handoff rounds', text: 'Less repeated guidance between design and build.', tone: 'border-violet-500/30 bg-violet-950/20 text-violet-200' },
-                { title: 'Faster to production-ready', text: 'Tokens and components are applied earlier in the process.', tone: 'border-emerald-500/30 bg-emerald-950/20 text-emerald-200' },
-                { title: 'More time for judgment', text: 'You spend more time on research, flows, and craft.', tone: 'border-amber-500/30 bg-amber-950/20 text-amber-200' },
-              ].map(({ title, text, tone }) => (
-                <div key={title} className={`rounded-xl border p-4 text-center ${tone}`}>
-                  <div className="text-sm font-semibold">{title}</div>
-                  <div className="mt-1 text-xs text-slate-300">{text}</div>
-                </div>
-              ))}
-            </div>
-            <div className="mt-5 rounded-xl border border-slate-500/25 bg-slate-900/40 px-4 py-3 text-center">
-              <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">What enables this</div>
-              <div className="mt-1 text-xs text-slate-300">Tokens, components, and specs are documented and in code.</div>
-            </div>
-          </div>
-        </Slide>
-        )}
-
-        {/* Slide 30: Testing and validation */}
-        {slideIndex === 32 && (
         <Slide transparent wide className="items-center justify-center overflow-hidden">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-[72rem] px-4 py-4 md:py-6">
             <div className="flex flex-col items-center text-center mb-5 md:mb-6">
@@ -2508,6 +2479,37 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
+        {/* Slide 30: Functional impact */}
+        {slideIndex === 32 && (
+        <Slide transparent wide className="items-center justify-center overflow-hidden">
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4">
+            <div className="text-center mb-4 md:mb-6">
+              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Functional impact</h2>
+              <p className="fctg-subtitle mt-1">What changes when AI is grounded in your design system and workflow.</p>
+              <p className="mt-1.5 text-xs text-slate-500">Impact shows up in speed, consistency, collaboration, and decision quality.</p>
+            </div>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 md:gap-4">
+              {[
+                { title: 'Faster cycle time', text: 'Move from idea to testable output in hours, not days.', tone: 'border-cyan-500/30 bg-cyan-950/20 text-cyan-200' },
+                { title: 'Fewer handoffs', text: 'Design and build stay closer because the artifact is shared earlier.', tone: 'border-violet-500/30 bg-violet-950/20 text-violet-200' },
+                { title: 'Stronger first passes', text: 'Outputs are more on-brand and more usable from the start.', tone: 'border-emerald-500/30 bg-emerald-950/20 text-emerald-200' },
+                { title: 'More time for judgment', text: 'Less repetitive execution, more strategy, quality, and decisions.', tone: 'border-amber-500/30 bg-amber-950/20 text-amber-200' },
+              ].map(({ title, text, tone }) => (
+                <div key={title} className={`rounded-xl border p-4 text-center ${tone}`}>
+                  <div className="text-sm font-semibold">{title}</div>
+                  <div className="mt-1 text-xs text-slate-300">{text}</div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-5 rounded-xl border border-slate-500/25 bg-slate-900/40 px-4 py-3 text-center">
+              <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">Why it happens</div>
+              <div className="mt-1 text-xs text-slate-300">The agent works from documented tokens, components, specs, and workflow context instead of guessing.</div>
+            </div>
+          </div>
+        </Slide>
+        )}
+
+
         {/* Slide 31: Technology intro */}
         {slideIndex === 33 && (
         <Slide transparent heroOnly hero={
@@ -2524,7 +2526,7 @@ function FCTGAITalkSlides() {
                 background: 'radial-gradient(ellipse 72% 54% at 50% 18%, rgba(6,182,212,0.18) 0%, transparent 70%), linear-gradient(180deg, rgba(2,6,23,0.24) 0%, rgba(2,6,23,0.42) 48%, rgba(2,6,23,0.82) 100%)',
               }}
             />
-            <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 pt-18 pb-8 text-center md:px-8 md:pt-22 md:pb-10">
+            <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 pt-4 pb-24 text-center md:px-8 md:pt-6 md:pb-28">
               <div className="max-w-2xl text-center">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-cyan-300/90">Chapter 6</div>
                 <h2 className="fctg-heading !text-[2.5rem] md:!text-[3rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Technology</h2>
@@ -2796,6 +2798,9 @@ function FCTGAITalkSlides() {
               <a href="/design-system" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">
                 /design-system
               </a>
+            </p>
+            <p className="mt-2 text-xs text-slate-500 max-w-2xl mx-auto">
+              The same approach works with systems like Chakra UI, Primer, Material UI, Polaris, or Carbon, letting the agent explore tokens, components, and patterns quickly.
             </p>
           </div>
         </Slide>
@@ -3106,7 +3111,7 @@ function FCTGAITalkSlides() {
                 background: 'radial-gradient(ellipse 72% 54% at 50% 18%, rgba(34,211,238,0.14) 0%, transparent 72%), linear-gradient(180deg, rgba(2,6,23,0.22) 0%, rgba(2,6,23,0.38) 48%, rgba(2,6,23,0.8) 100%)',
               }}
             />
-            <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 py-8 text-center md:px-8 md:py-10">
+            <div className="relative z-10 flex h-full flex-col items-center justify-center px-4 pt-4 pb-24 text-center md:px-8 md:pt-6 md:pb-28">
               <div className="max-w-2xl text-center">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-cyan-300/90">Chapter 7</div>
                 <h2 className="fctg-heading !text-[2.5rem] md:!text-[3rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Activity &amp; close</h2>
