@@ -772,38 +772,32 @@ function FCTGAITalkSlides() {
           <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
         </div>
       )}
-      {/* Slide 17: Building momentum */}
-      {slideIndex === 14 && (
-        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
-          <ParticleBackground variant="momentum" />
-        </div>
-      )}
       {/* Slide 18: Vibe coding — philosophy (above models/agents) */}
-      {slideIndex === 15 && (
+      {slideIndex === 17 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
         </div>
       )}
       {/* Slide 16: What happens inside the model? */}
-      {slideIndex === 16 && (
+      {slideIndex === 14 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="brain" />
         </div>
       )}
       {/* Slide 17: AI Agents — pure black to match image */}
-      {slideIndex === 17 && (
+      {slideIndex === 15 && (
         <div className="pointer-events-none fixed inset-0 bg-black" aria-hidden />
       )}
       {/* Slide 18: Multi-agent systems — pure black */}
-      {slideIndex === 18 && (
+      {slideIndex === 16 && (
         <div className="pointer-events-none fixed inset-0 bg-black" aria-hidden />
       )}
       {/* Slide 19: Ways of creating with vibe — pure black */}
-      {slideIndex === 19 && (
+      {slideIndex === 18 && (
         <div className="pointer-events-none fixed inset-0 bg-black" aria-hidden />
       )}
       {/* Slide 27: Agentic & designer productivity */}
-      {slideIndex === 20 && (
+      {slideIndex === 19 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
@@ -824,69 +818,76 @@ function FCTGAITalkSlides() {
         </div>
       )}
       {/* Slide 28: Intervention */}
-      {slideIndex === 23 && (
+      {slideIndex === 20 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-hexagon" aria-hidden />
         </div>
       )}
       {/* Helpful tips — after Intervention */}
-      {slideIndex === 24 && (
+      {slideIndex === 23 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
         </div>
       )}
       {/* Slide 30: Tech stack */}
-      {slideIndex === 25 && (
+      {slideIndex === 24 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
         </div>
       )}
       {/* Slide 31: Pipeline */}
-      {slideIndex === 26 && (
+      {slideIndex === 25 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
         </div>
       )}
       {/* Slide 32: ReAct (what happens when you prompt) */}
-      {slideIndex === 27 && (
+      {slideIndex === 26 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
         </div>
       )}
       {/* Slide 33: GitHub */}
-      {slideIndex === 28 && (
+      {slideIndex === 27 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
         </div>
       )}
       {/* Slide 34: GitHub (content) — same bg as 33 */}
-      {slideIndex === 29 && (
+      {slideIndex === 28 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
         </div>
       )}
       {/* Slide 35: Vercel */}
-      {slideIndex === 30 && (
+      {slideIndex === 29 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
         </div>
       )}
       {/* Slide 36: Design systems */}
-      {slideIndex === 31 && (
+      {slideIndex === 30 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
           <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
         </div>
       )}
       {/* Slide 37: Design system in practice */}
+      {slideIndex === 31 && (
+        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
+          <ParticleBackground variant="agents" />
+          <div className="absolute inset-0 fctg-pattern-circuit" aria-hidden />
+        </div>
+      )}
+      {/* In the wild — example/payoff after Design system in practice */}
       {slideIndex === 32 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="agents" />
@@ -953,8 +954,8 @@ function FCTGAITalkSlides() {
         {slideIndex >= 4 && slideIndex <= 6 && <ChapterLabel>Concepts</ChapterLabel>}
         {slideIndex >= 7 && slideIndex <= 13 && <ChapterLabel>Monumental moments</ChapterLabel>}
         {slideIndex >= 14 && slideIndex <= 24 && <ChapterLabel>Building momentum</ChapterLabel>}
-        {slideIndex >= 25 && slideIndex <= 34 && <ChapterLabel>Technology</ChapterLabel>}
-        {slideIndex >= 35 && slideIndex <= 39 && <ChapterLabel>Activity & close</ChapterLabel>}
+        {slideIndex >= 24 && slideIndex <= 33 && <ChapterLabel>Technology</ChapterLabel>}
+        {slideIndex >= 34 && slideIndex <= 39 && <ChapterLabel>Activity & close</ChapterLabel>}
         {/* Slide 1: Title */}
         {slideIndex === 0 && (
         <Slide
@@ -1573,37 +1574,8 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-        {/* Slide 17: The mindset before the vibe */}
-        {slideIndex === 14 && (
-        <Slide transparent className="!p-0 overflow-hidden" wide>
-          <div key={slideIndex} className="absolute inset-0 flex flex-col items-center justify-center px-4 py-6">
-            <div className="fctg-text-transition w-full max-w-4xl flex flex-col items-center min-w-0">
-              <div className="w-full max-w-2xl text-center mx-auto px-2 min-w-0">
-                <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] leading-tight" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>The mindset before the vibe</h2>
-              </div>
-              <div className="mt-10 w-full space-y-6 md:space-y-8">
-                <section className="text-center">
-                  <div className="grid grid-cols-3 gap-3 md:gap-4">
-                    {[
-                      { icon: FiZap, label: 'Start simple' },
-                      { icon: FiLayers, label: 'Stay curious' },
-                      { icon: FiUser, label: 'Stay human' },
-                    ].map(({ icon: Icon, label }) => (
-                      <div key={label} className="fctg-card fctg-card-compact fctg-momentum-card">
-                        <Icon className="h-5 w-5 shrink-0 text-cyan-400" strokeWidth={1.5} />
-                        <h3 className="fctg-card-title fctg-card-title-compact">{label}</h3>
-                      </div>
-                    ))}
-                  </div>
-                </section>
-              </div>
-            </div>
-          </div>
-        </Slide>
-        )}
-
         {/* Slide 17: Vibe coding — philosophy (above models/agents) */}
-        {slideIndex === 15 && (
+        {slideIndex === 17 && (
         <Slide transparent heroOnly hero={
           <div key={slideIndex} className="fctg-text-transition relative w-full h-screen flex flex-col items-center justify-between pt-14 md:pt-16 pb-16 md:pb-20 overflow-hidden">
             <img
@@ -1659,7 +1631,7 @@ function FCTGAITalkSlides() {
 
 
         {/* Slide 16: AI models */}
-        {slideIndex === 16 && (
+        {slideIndex === 14 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:px-10 md:py-8 -mt-8 md:-mt-12">
             <div className="flex flex-col items-center text-center mb-4 md:mb-6">
@@ -1675,7 +1647,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Slide 17: AI Agents — same aesthetic as Multi-agent, body analogy (human) diagram */}
-        {slideIndex === 17 && (
+        {slideIndex === 15 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl mx-auto flex flex-col items-center gap-4 px-6 py-4">
             <div className="flex flex-col items-center text-center">
@@ -1689,7 +1661,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Slide 18: Multi-agent systems */}
-        {slideIndex === 18 && (
+        {slideIndex === 16 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl mx-auto flex flex-col items-center gap-4 px-6 py-4">
             <div className="flex flex-col items-center text-center">
@@ -1703,7 +1675,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Slide 19: Ways of creating with vibe — after multi-agent, before Context */}
-        {slideIndex === 19 && (
+        {slideIndex === 18 && (
         <Slide transparent className="items-center justify-center overflow-hidden" style={{ background: '#000' }} wide>
           <style>{`
             @keyframes vibe-node-pulse { 0%, 100% { opacity: 0.4; r: 4.5; } 50% { opacity: 0.85; r: 6; } }
@@ -1822,7 +1794,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Slide 27: Agentic Designer Productivity — plan, execute, reflect */}
-        {slideIndex === 20 && (
+        {slideIndex === 19 && (
         <Slide transparent className="items-center justify-center overflow-y-auto" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:py-8">
             <div className="text-center mb-5 md:mb-6">
@@ -1910,11 +1882,11 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Slide 28: Intervention */}
-        {slideIndex === 23 && (
+        {slideIndex === 20 && (
         <Slide transparent className="items-center justify-center overflow-hidden">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl mx-auto flex flex-col items-center gap-5 px-6 py-4">
             <div className="flex flex-col items-center text-center">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Intervention</h2>
+              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>How you stay in control</h2>
               <p className="fctg-subtitle mt-1">Verify outputs, redirect when they drift, reframe when looping.</p>
               <div className="flex flex-wrap justify-center gap-2 mt-3">
                 <span className="rounded-full border border-amber-500/40 bg-amber-950/30 px-3 py-1 text-xs font-medium text-amber-400">Verify</span>
@@ -1971,7 +1943,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Slide 30: Tech stack (merged with How this was built) — right after Then vs Now */}
-        {slideIndex === 25 && (
+        {slideIndex === 24 && (
         <Slide transparent className="items-center justify-center overflow-hidden">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 min-w-0">
             <div className="max-w-md mx-auto text-center">
@@ -2015,7 +1987,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Slide 31: Pipeline */}
-        {slideIndex === 26 && (
+        {slideIndex === 25 && (
         <Slide transparent className="items-center justify-center overflow-hidden">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 min-w-0">
             <div className="max-w-md mx-auto text-center">
@@ -2046,7 +2018,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Slide 32: Cursor — IDE */}
-        {slideIndex === 27 && (
+        {slideIndex === 26 && (
         <Slide transparent wide className="items-center justify-center overflow-hidden">
           <div key={slideIndex} className="fctg-text-transition w-full flex flex-col items-center justify-center px-4 py-4 md:px-10 md:py-10">
             <div className="text-center mb-4 md:mb-6">
@@ -2080,7 +2052,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Slide 33: What happens when you prompt (ReAct) */}
-        {slideIndex === 28 && (
+        {slideIndex === 27 && (
         <Slide transparent wide className="items-center justify-center overflow-hidden">
           <div key={slideIndex} className="fctg-text-transition w-full flex flex-col items-center justify-center px-4 pt-3 pb-20 md:px-8 md:pt-4 md:pb-24">
             <div className="text-center mb-4 md:mb-6">
@@ -2119,7 +2091,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* GitHub */}
-        {slideIndex === 29 && (
+        {slideIndex === 28 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-6xl px-6 py-8 flex flex-col lg:flex-row gap-8 lg:gap-10 items-center">
             <div className="flex-1 min-w-0 flex flex-col justify-center overflow-visible">
@@ -2181,7 +2153,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Vercel */}
-        {slideIndex === 30 && (
+        {slideIndex === 29 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-6xl px-6 py-8 flex flex-col lg:flex-row gap-8 lg:gap-10 items-center">
             <div className="flex-1 min-w-0 flex flex-col justify-center overflow-visible">
@@ -2211,7 +2183,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Design systems */}
-        {slideIndex === 31 && (
+        {slideIndex === 30 && (
         <Slide transparent wide className="items-center justify-center overflow-hidden">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl mx-auto px-4 text-center">
             <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Design systems</h2>
@@ -2231,7 +2203,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Design system + agent — productivity focus */}
-        {slideIndex === 32 && (
+        {slideIndex === 31 && (
         <Slide transparent wide className="items-center justify-center overflow-hidden">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4">
             <div className="text-center mb-4 md:mb-6">
@@ -2268,6 +2240,42 @@ function FCTGAITalkSlides() {
               ))}
             </div>
             <p className="mt-4 text-center text-xs text-slate-500">Works best when the design system is documented and in code.</p>
+          </div>
+        </Slide>
+        )}
+
+        {/* In the wild — example/payoff after Design system in practice */}
+        {slideIndex === 32 && (
+        <Slide transparent wide className="items-center justify-center overflow-y-auto">
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:py-6">
+            <div className="flex flex-col items-center text-center mb-5 md:mb-6">
+              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>In the wild</h2>
+              <p className="fctg-subtitle mt-1 text-slate-300 text-sm md:text-base max-w-2xl">Connect your design system to Cursor — brief to two live, on-brand variants, no dev handoff.</p>
+              <p className="mt-2 text-[11px] text-slate-500">Example payoff: concept to two shareable previews in one flow.</p>
+            </div>
+            <div className="grid grid-cols-5 gap-2 md:gap-3 items-stretch">
+              {[
+                { step: '01', label: 'Design system', desc: 'Tokens + components connected to Cursor. Agent references brand and components directly.', gain: 'On-brand automatically' },
+                { step: '02', label: 'You set direction', desc: 'Give the agent a brief — what to test, what the variants should explore.', gain: 'You own direction' },
+                { step: '03', label: 'Agent generates variants', desc: 'Two on-brand UI versions — your tokens applied, components used correctly.', gain: 'Two options in minutes' },
+                { step: '04', label: 'Deploy each variant', desc: 'Branch A -> Preview URL A · Branch B -> Preview URL B. Live, instantly.', gain: 'Live URLs, not mockups' },
+                { step: '05', label: 'A/B test, ready to share', desc: 'Send two links. Stakeholders click, not squint at Figma. You pick the winner.', gain: 'No dev handoff' },
+              ].map(({ step, label, desc, gain }) => (
+                <div key={step} className="rounded-xl border border-slate-600/40 bg-slate-800/40 p-3 md:p-4 flex flex-col gap-1.5">
+                  <span className="text-[10px] font-mono font-semibold text-slate-300 opacity-60">{step}</span>
+                  <h3 className="text-xs md:text-sm font-semibold text-slate-300 leading-tight">{label}</h3>
+                  <p className="text-[10px] md:text-xs text-slate-400 leading-snug flex-1">{desc}</p>
+                  <div className="pt-2 border-t border-slate-700/50">
+                    <span className="text-[10px] font-semibold text-slate-400">{gain}</span>
+                  </div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 md:mt-5 flex flex-wrap justify-center gap-2">
+              {['No token drift', 'No dev handoff', 'Two live URLs in minutes', "Designer in the driver's seat"].map((tag) => (
+                <span key={tag} className="rounded-full border border-cyan-500/30 bg-cyan-950/20 px-3 py-1 text-[10px] md:text-xs font-medium text-cyan-300">{tag}</span>
+              ))}
+            </div>
           </div>
         </Slide>
         )}
@@ -2311,7 +2319,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Helpful tips — after Intervention */}
-        {slideIndex === 24 && (
+        {slideIndex === 23 && (
         <Slide transparent className="items-center justify-center overflow-hidden py-4 md:py-6">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-6xl px-4 min-w-0">
             <div className="text-center mb-4 md:mb-6">
