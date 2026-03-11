@@ -1,0 +1,11 @@
+{
+  "carrier": "TravelEasy Domestic Demo",
+  "updatedAt": "2026-03-11",
+  "summary": "Carry-on is included on all demo fares. Checked baggage can be added during booking.",
+  "rules": [
+    "1 personal item plus 1 carry-on bag up to 10kg is included.",
+    "Checked baggage must be purchased before online check-in for best pricing.",
+    "Oversized sports equipment may require separate handling fees.",
+    "Priority baggage handling is included on selected checked bag bundles."
+  ]
+}

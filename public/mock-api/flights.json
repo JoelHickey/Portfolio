@@ -1,0 +1,92 @@
+{
+  "flights": [
+    {
+      "code": "QF401",
+      "fromCode": "SYD",
+      "toCode": "MEL",
+      "fromAirport": "Sydney Kingsford Smith",
+      "toAirport": "Melbourne Tullamarine",
+      "departure": "08:15",
+      "arrival": "09:45",
+      "status": "On Time",
+      "price": 129
+    },
+    {
+      "code": "VA823",
+      "fromCode": "SYD",
+      "toCode": "MEL",
+      "fromAirport": "Sydney Kingsford Smith",
+      "toAirport": "Melbourne Tullamarine",
+      "departure": "11:40",
+      "arrival": "13:10",
+      "status": "Boarding Soon",
+      "price": 149
+    },
+    {
+      "code": "JQ509",
+      "fromCode": "SYD",
+      "toCode": "MEL",
+      "fromAirport": "Sydney Kingsford Smith",
+      "toAirport": "Melbourne Tullamarine",
+      "departure": "18:05",
+      "arrival": "19:40",
+      "status": "On Time",
+      "price": 112
+    },
+    {
+      "code": "QF609",
+      "fromCode": "BNE",
+      "toCode": "SYD",
+      "fromAirport": "Brisbane Airport",
+      "toAirport": "Sydney Kingsford Smith",
+      "departure": "09:00",
+      "arrival": "10:35",
+      "status": "Delayed 15 min",
+      "price": 165
+    },
+    {
+      "code": "VA312",
+      "fromCode": "MEL",
+      "toCode": "BNE",
+      "fromAirport": "Melbourne Tullamarine",
+      "toAirport": "Brisbane Airport",
+      "departure": "14:20",
+      "arrival": "16:25",
+      "status": "On Time",
+      "price": 139
+    },
+    {
+      "code": "QF1448",
+      "fromCode": "ADL",
+      "toCode": "MEL",
+      "fromAirport": "Adelaide Airport",
+      "toAirport": "Melbourne Tullamarine",
+      "departure": "07:10",
+      "arrival": "08:30",
+      "status": "On Time",
+      "price": 121
+    },
+    {
+      "code": "JQ721",
+      "fromCode": "OOL",
+      "toCode": "SYD",
+      "fromAirport": "Gold Coast Airport",
+      "toAirport": "Sydney Kingsford Smith",
+      "departure": "16:05",
+      "arrival": "17:35",
+      "status": "On Time",
+      "price": 118
+    },
+    {
+      "code": "VA1411",
+      "fromCode": "CBR",
+      "toCode": "MEL",
+      "fromAirport": "Canberra Airport",
+      "toAirport": "Melbourne Tullamarine",
+      "departure": "12:15",
+      "arrival": "13:25",
+      "status": "On Time",
+      "price": 127
+    }
+  ]
+}

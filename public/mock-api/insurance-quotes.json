@@ -1,0 +1,21 @@
+{
+  "tripDurationDays": 7,
+  "destination": "Australia",
+  "quotes": [
+    {
+      "plan": "Basic Coverage",
+      "price": 25,
+      "summary": "Trip cancellation and emergency medical cover."
+    },
+    {
+      "plan": "Standard Coverage",
+      "price": 45,
+      "summary": "Adds rental car protection and higher baggage cover."
+    },
+    {
+      "plan": "Premium Coverage",
+      "price": 75,
+      "summary": "Highest limits with adventure activities and concierge support."
+    }
+  ]
+}

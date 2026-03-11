@@ -53,7 +53,7 @@
     </div>
   </nav>
 
-  <section id="flights" class="bg-gradient-to-r from-blue-600 to-indigo-700 py-16 text-white">
+  <section id="flights" class="bg-linear-to-r from-blue-600 to-indigo-700 py-16 text-white">
     <div class="mx-auto max-w-5xl px-4 text-center">
       <h1 class="fade-in mb-6 text-4xl font-bold md:text-5xl">Book Your Next Flight</h1>
       <p class="mb-10 text-lg opacity-90 md:text-xl">
@@ -301,74 +301,8 @@
   </footer>
 
   <script>
-    const demoFlights = [
-      {
-        code: "QF401",
-        fromCode: "SYD",
-        toCode: "MEL",
-        fromAirport: "Sydney Kingsford Smith",
-        toAirport: "Melbourne Tullamarine",
-        departure: "08:15",
-        arrival: "09:45",
-        status: "On Time",
-        price: 129
-      },
-      {
-        code: "VA823",
-        fromCode: "SYD",
-        toCode: "MEL",
-        fromAirport: "Sydney Kingsford Smith",
-        toAirport: "Melbourne Tullamarine",
-        departure: "11:40",
-        arrival: "13:10",
-        status: "Boarding Soon",
-        price: 149
-      },
-      {
-        code: "JQ509",
-        fromCode: "SYD",
-        toCode: "MEL",
-        fromAirport: "Sydney Kingsford Smith",
-        toAirport: "Melbourne Tullamarine",
-        departure: "18:05",
-        arrival: "19:40",
-        status: "On Time",
-        price: 112
-      },
-      {
-        code: "QF609",
-        fromCode: "BNE",
-        toCode: "SYD",
-        fromAirport: "Brisbane Airport",
-        toAirport: "Sydney Kingsford Smith",
-        departure: "09:00",
-        arrival: "10:35",
-        status: "Delayed 15 min",
-        price: 165
-      },
-      {
-        code: "VA312",
-        fromCode: "MEL",
-        toCode: "BNE",
-        fromAirport: "Melbourne Tullamarine",
-        toAirport: "Brisbane Airport",
-        departure: "14:20",
-        arrival: "16:25",
-        status: "On Time",
-        price: 139
-      },
-      {
-        code: "QF1448",
-        fromCode: "ADL",
-        toCode: "MEL",
-        fromAirport: "Adelaide Airport",
-        toAirport: "Melbourne Tullamarine",
-        departure: "07:10",
-        arrival: "08:30",
-        status: "On Time",
-        price: 121
-      }
-    ];
+    const API_BASE = "/mock-api";
+    const apiCache = new Map();
 
     const flightsGrid = document.getElementById("flights-grid");
     const fromInput = document.getElementById("from");
@@ -376,10 +310,42 @@
     const departureInput = document.getElementById("departure");
     const selectedBaggageLabel = document.getElementById("selected-baggage-label");
     const selectedBaggageTotal = document.getElementById("selected-baggage-total");
+    const baggageRules = document.getElementById("baggage-rules");
+    const insuranceQuotes = document.getElementById("insurance-quotes");
+    const baggageButton = document.getElementById("fetch-baggage-rules");
+    const insuranceButton = document.getElementById("fetch-insurance-quotes");
 
     function extractCode(value, fallback) {
       const match = value.toUpperCase().match(/\(([A-Z]{3})\)|\b([A-Z]{3})\b/);
       return match?.[1] || match?.[2] || fallback;
+    }
+
+    function setButtonLoading(button, loadingText, isLoading) {
+      if (!button.dataset.originalText) {
+        button.dataset.originalText = button.textContent.trim();
+      }
+
+      button.disabled = isLoading;
+      button.textContent = isLoading ? loadingText : button.dataset.originalText;
+      button.classList.toggle("opacity-70", isLoading);
+      button.classList.toggle("cursor-not-allowed", isLoading);
+    }
+
+    async function fetchDemoJson(endpoint) {
+      if (apiCache.has(endpoint)) {
+        return apiCache.get(endpoint);
+      }
+
+      await new Promise((resolve) => window.setTimeout(resolve, 450));
+
+      const response = await fetch(`${API_BASE}/${endpoint}`, { cache: "no-store" });
+      if (!response.ok) {
+        throw new Error(`Request failed for ${endpoint}`);
+      }
+
+      const data = await response.json();
+      apiCache.set(endpoint, data);
+      return data;
     }
 
     function renderFlights(flights, departureDate) {
@@ -387,7 +353,7 @@
 
       if (!flights.length) {
         flightsGrid.innerHTML =
-          '<p class="col-span-3 text-center text-gray-500">No flights found. Try SYD to MEL, BNE to SYD, or MEL to BNE.</p>';
+          '<p class="col-span-3 text-center text-gray-500">No flights found. Try SYD to MEL, BNE to SYD, MEL to BNE, or ADL to MEL.</p>';
         return;
       }
 
@@ -409,28 +375,73 @@
       });
     }
 
-    document.getElementById("flight-search-form").addEventListener("submit", (event) => {
-      event.preventDefault();
+    function renderFlightLoading() {
+      flightsGrid.innerHTML = `
+        <div class="col-span-3 rounded-lg border border-blue-200 bg-blue-50 p-4 text-center text-blue-800">
+          Searching flights from the demo backend...
+        </div>
+      `;
+    }
 
+    function renderFlightError() {
+      flightsGrid.innerHTML = `
+        <div class="col-span-3 rounded-lg border border-red-200 bg-red-50 p-4 text-center text-red-700">
+          Could not load flight results from the demo backend.
+        </div>
+      `;
+    }
+
+    async function searchFlights() {
       const fromCode = extractCode(fromInput.value, "SYD");
       const toCode = extractCode(toInput.value, "MEL");
       const departureDate = departureInput.value || "2026-03-18";
 
-      const matches = demoFlights.filter(
-        (flight) => flight.fromCode === fromCode && flight.toCode === toCode
-      );
+      renderFlightLoading();
 
-      renderFlights(matches, departureDate);
+      try {
+        const data = await fetchDemoJson("flights.json");
+        const matches = data.flights.filter(
+          (flight) => flight.fromCode === fromCode && flight.toCode === toCode
+        );
+        renderFlights(matches, departureDate);
+      } catch (error) {
+        console.error("Error loading demo flights:", error);
+        renderFlightError();
+      }
+    }
+
+    document.getElementById("flight-search-form").addEventListener("submit", async (event) => {
+      event.preventDefault();
+      await searchFlights();
       document.getElementById("available-flights").scrollIntoView({ behavior: "smooth" });
     });
 
-    document.getElementById("fetch-baggage-rules").addEventListener("click", () => {
-      document.getElementById("baggage-rules").innerHTML = `
-        <div class="rounded-lg border border-blue-200 bg-blue-50 p-4">
-          <p class="font-medium text-blue-900">Demo baggage rules loaded</p>
-          <p class="mt-2 text-sm text-blue-800">Carry-on: 1 bag up to 10kg. Checked bag options shown below are common domestic add-ons.</p>
-        </div>
-      `;
+    document.getElementById("fetch-baggage-rules").addEventListener("click", async () => {
+      setButtonLoading(baggageButton, "Loading baggage rules...", true);
+      baggageRules.innerHTML = "";
+
+      try {
+        const data = await fetchDemoJson("baggage-rules.json");
+        baggageRules.innerHTML = `
+          <div class="rounded-lg border border-blue-200 bg-blue-50 p-4">
+            <p class="font-medium text-blue-900">${data.carrier} baggage policy</p>
+            <p class="mt-2 text-sm text-blue-800">${data.summary}</p>
+            <ul class="mt-3 space-y-2 text-sm text-blue-800">
+              ${data.rules.map((rule) => `<li>- ${rule}</li>`).join("")}
+            </ul>
+            <p class="mt-3 text-xs text-blue-700">Updated ${data.updatedAt} • served from local demo API</p>
+          </div>
+        `;
+      } catch (error) {
+        console.error("Error loading baggage rules:", error);
+        baggageRules.innerHTML = `
+          <div class="rounded-lg border border-red-200 bg-red-50 p-4 text-red-700">
+            Could not load baggage rules from the demo backend.
+          </div>
+        `;
+      } finally {
+        setButtonLoading(baggageButton, "Loading baggage rules...", false);
+      }
     });
 
     document.querySelectorAll(".baggage-card").forEach((card) => {
@@ -453,13 +464,40 @@
       });
     });
 
-    document.getElementById("fetch-insurance-quotes").addEventListener("click", () => {
-      document.getElementById("insurance-quotes").innerHTML = `
-        <div class="rounded-lg border border-green-200 bg-green-50 p-4">
-          <p class="font-medium text-green-900">Demo quote results</p>
-          <p class="mt-2 text-sm text-green-800">Basic: $25 | Standard: $45 | Premium: $75 for a 7-day domestic trip.</p>
-        </div>
-      `;
+    document.getElementById("fetch-insurance-quotes").addEventListener("click", async () => {
+      setButtonLoading(insuranceButton, "Loading insurance quotes...", true);
+      insuranceQuotes.innerHTML = "";
+
+      try {
+        const data = await fetchDemoJson("insurance-quotes.json");
+        insuranceQuotes.innerHTML = `
+          <div class="rounded-lg border border-green-200 bg-green-50 p-4">
+            <p class="font-medium text-green-900">Insurance quotes for a ${data.tripDurationDays}-day trip in ${data.destination}</p>
+            <div class="mt-3 space-y-2 text-sm text-green-800">
+              ${data.quotes
+                .map(
+                  (quote) => `
+                    <div class="rounded border border-green-200 bg-white px-3 py-2">
+                      <div class="font-medium">${quote.plan}: $${quote.price}</div>
+                      <div>${quote.summary}</div>
+                    </div>
+                  `
+                )
+                .join("")}
+            </div>
+            <p class="mt-3 text-xs text-green-700">Served from local demo API</p>
+          </div>
+        `;
+      } catch (error) {
+        console.error("Error loading insurance quotes:", error);
+        insuranceQuotes.innerHTML = `
+          <div class="rounded-lg border border-red-200 bg-red-50 p-4 text-red-700">
+            Could not load insurance quotes from the demo backend.
+          </div>
+        `;
+      } finally {
+        setButtonLoading(insuranceButton, "Loading insurance quotes...", false);
+      }
     });
 
     const defaultDeparture = new Date();
@@ -470,10 +508,7 @@
     document.getElementById("departure").value = defaultDeparture.toISOString().slice(0, 10);
     document.getElementById("return").value = defaultReturn.toISOString().slice(0, 10);
 
-    renderFlights(
-      demoFlights.filter((flight) => flight.fromCode === "SYD" && flight.toCode === "MEL"),
-      document.getElementById("departure").value
-    );
+    searchFlights();
   </script>
 </body>
 </html>
