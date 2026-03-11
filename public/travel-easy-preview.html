@@ -1,0 +1,479 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>TravelEasy Preview</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+  />
+  <style>
+    body {
+      scroll-behavior: smooth;
+    }
+
+    .fade-in {
+      animation: fadeIn 0.8s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+  </style>
+</head>
+<body class="bg-gray-50 font-sans antialiased text-gray-900">
+  <nav class="sticky top-0 z-50 bg-white shadow-sm">
+    <div class="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center gap-3">
+        <i class="fas fa-plane-departure text-2xl text-blue-600"></i>
+        <span class="text-xl font-bold">TravelEasy</span>
+      </div>
+
+      <div class="hidden items-center gap-8 md:flex">
+        <a href="#flights" class="text-gray-700 hover:text-blue-600">Flights</a>
+        <a href="#available-flights" class="text-gray-700 hover:text-blue-600">Available Flights</a>
+        <a href="#baggage" class="text-gray-700 hover:text-blue-600">Baggage</a>
+        <a href="#insurance" class="text-gray-700 hover:text-blue-600">Insurance</a>
+        <button class="rounded-lg bg-blue-600 px-5 py-2 text-white hover:bg-blue-700">Sign In</button>
+      </div>
+
+      <button class="text-gray-700 md:hidden" aria-label="Open menu">
+        <i class="fas fa-bars text-2xl"></i>
+      </button>
+    </div>
+  </nav>
+
+  <section id="flights" class="bg-gradient-to-r from-blue-600 to-indigo-700 py-16 text-white">
+    <div class="mx-auto max-w-5xl px-4 text-center">
+      <h1 class="fade-in mb-6 text-4xl font-bold md:text-5xl">Book Your Next Flight</h1>
+      <p class="mb-10 text-lg opacity-90 md:text-xl">
+        Find available flights, add baggage, and get insurance, all in one place.
+      </p>
+
+      <form
+        id="flight-search-form"
+        class="grid grid-cols-1 gap-4 rounded-xl bg-white p-6 text-gray-800 shadow-xl md:grid-cols-5 md:p-8"
+      >
+        <div class="flex flex-col">
+          <label for="from" class="mb-2 text-sm font-medium">From</label>
+          <input
+            id="from"
+            type="text"
+            value="Sydney (SYD)"
+            placeholder="Sydney (SYD)"
+            class="rounded-lg border border-gray-300 px-4 py-2 outline-none focus:border-blue-500"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="to" class="mb-2 text-sm font-medium">To</label>
+          <input
+            id="to"
+            type="text"
+            value="Melbourne (MEL)"
+            placeholder="Melbourne (MEL)"
+            class="rounded-lg border border-gray-300 px-4 py-2 outline-none focus:border-blue-500"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="departure" class="mb-2 text-sm font-medium">Departure</label>
+          <input
+            id="departure"
+            type="date"
+            class="rounded-lg border border-gray-300 px-4 py-2 outline-none focus:border-blue-500"
+          />
+        </div>
+        <div class="flex flex-col">
+          <label for="return" class="mb-2 text-sm font-medium">Return</label>
+          <input
+            id="return"
+            type="date"
+            class="rounded-lg border border-gray-300 px-4 py-2 outline-none focus:border-blue-500"
+          />
+        </div>
+        <div class="flex items-end">
+          <button
+            type="submit"
+            class="w-full rounded-lg bg-blue-600 py-2 text-white transition hover:bg-blue-700"
+          >
+            Search Flights
+          </button>
+        </div>
+      </form>
+    </div>
+  </section>
+
+  <section id="available-flights" class="bg-white py-16">
+    <div class="mx-auto max-w-6xl px-4">
+      <div class="mb-8 text-center">
+        <h2 class="text-3xl font-bold">Available Flights</h2>
+        <p class="mt-2 text-sm text-gray-500">Interactive demo results based on your search.</p>
+      </div>
+      <div id="flights-grid" class="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3"></div>
+    </div>
+  </section>
+
+  <section id="baggage" class="bg-gray-50 py-16">
+    <div class="mx-auto max-w-6xl px-4">
+      <h2 class="mb-8 text-center text-3xl font-bold">Baggage Options</h2>
+      <button
+        id="fetch-baggage-rules"
+        class="mb-6 rounded bg-blue-100 px-4 py-2 text-blue-700 transition hover:bg-blue-200"
+      >
+        Get Live Baggage Rules (Demo)
+      </button>
+      <div id="baggage-rules" class="mb-8 text-gray-700"></div>
+
+      <div class="grid grid-cols-1 gap-8 lg:grid-cols-3">
+        <div class="space-y-4 lg:col-span-2">
+          <button
+            class="baggage-card w-full rounded-lg border-2 border-gray-200 bg-white p-6 text-left transition hover:border-gray-300"
+            data-name="Carry-On Bag"
+            data-price="0"
+          >
+            <div class="flex items-start justify-between">
+              <div class="flex flex-1 items-start gap-4">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100">
+                  <i class="fas fa-briefcase text-gray-600"></i>
+                </div>
+                <div class="flex-1">
+                  <div class="mb-1 flex items-center gap-2">
+                    <h3 class="font-semibold">Carry-On Bag</h3>
+                    <span class="rounded bg-green-100 px-2 py-1 text-xs text-green-700">Included</span>
+                  </div>
+                  <p class="mb-3 text-sm text-gray-600">1 personal item + 1 carry-on bag up to 10kg</p>
+                  <ul class="space-y-1 text-sm text-gray-600">
+                    <li class="flex items-center gap-2"><i class="fas fa-check w-4 text-green-600"></i>56 x 36 x 23 cm</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check w-4 text-green-600"></i>Max 10kg</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check w-4 text-green-600"></i>Fits in overhead bin</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="ml-4 text-right">
+                <div class="text-2xl font-semibold text-blue-600">Free</div>
+              </div>
+            </div>
+          </button>
+
+          <button
+            class="baggage-card w-full rounded-lg border-2 border-gray-200 bg-white p-6 text-left transition hover:border-gray-300"
+            data-name="Checked Bag (20kg)"
+            data-price="35"
+          >
+            <div class="flex items-start justify-between">
+              <div class="flex flex-1 items-start gap-4">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100">
+                  <i class="fas fa-suitcase text-gray-600"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-semibold">Checked Bag (20kg)</h3>
+                  <p class="mb-3 text-sm text-gray-600">1 checked bag up to 20kg</p>
+                  <ul class="space-y-1 text-sm text-gray-600">
+                    <li class="flex items-center gap-2"><i class="fas fa-check w-4 text-green-600"></i>Max 20kg</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check w-4 text-green-600"></i>Standard size</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check w-4 text-green-600"></i>Priority handling</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="ml-4 text-right">
+                <div class="text-2xl font-semibold text-blue-600">$35</div>
+              </div>
+            </div>
+          </button>
+
+          <button
+            class="baggage-card w-full rounded-lg border-2 border-gray-200 bg-white p-6 text-left transition hover:border-gray-300"
+            data-name="Checked Bag (30kg)"
+            data-price="55"
+          >
+            <div class="flex items-start justify-between">
+              <div class="flex flex-1 items-start gap-4">
+                <div class="flex h-12 w-12 items-center justify-center rounded-lg bg-gray-100">
+                  <i class="fas fa-suitcase-rolling text-gray-600"></i>
+                </div>
+                <div class="flex-1">
+                  <h3 class="font-semibold">Checked Bag (30kg)</h3>
+                  <p class="mb-3 text-sm text-gray-600">1 checked bag up to 30kg</p>
+                  <ul class="space-y-1 text-sm text-gray-600">
+                    <li class="flex items-center gap-2"><i class="fas fa-check w-4 text-green-600"></i>Max 30kg</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check w-4 text-green-600"></i>Large size</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check w-4 text-green-600"></i>Priority handling</li>
+                    <li class="flex items-center gap-2"><i class="fas fa-check w-4 text-green-600"></i>Extra protection</li>
+                  </ul>
+                </div>
+              </div>
+              <div class="ml-4 text-right">
+                <div class="text-2xl font-semibold text-blue-600">$55</div>
+              </div>
+            </div>
+          </button>
+        </div>
+
+        <div class="lg:col-span-1">
+          <div class="sticky top-20 rounded-lg border border-gray-200 bg-white p-6">
+            <h3 class="mb-4 font-semibold">Selected Baggage</h3>
+            <p id="selected-baggage-label" class="mb-4 text-sm text-gray-500">No baggage selected yet</p>
+            <div class="mb-6 border-t border-gray-200 pt-4">
+              <div class="flex items-center justify-between">
+                <span class="font-semibold">Total</span>
+                <span id="selected-baggage-total" class="text-xl font-semibold text-blue-600">$0</span>
+              </div>
+            </div>
+            <button class="w-full rounded-lg bg-blue-600 py-3 text-white transition hover:bg-blue-700">Continue</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="insurance" class="bg-white py-16">
+    <div class="mx-auto max-w-6xl px-4">
+      <h2 class="mb-8 text-center text-3xl font-bold">Travel Insurance Options</h2>
+      <button
+        id="fetch-insurance-quotes"
+        class="mb-6 rounded bg-blue-100 px-4 py-2 text-blue-700 transition hover:bg-blue-200"
+      >
+        Get Live Insurance Quotes (Demo)
+      </button>
+      <div id="insurance-quotes" class="mb-8 text-gray-700"></div>
+
+      <div class="grid grid-cols-1 gap-6 md:grid-cols-3">
+        <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-md transition hover:shadow-lg">
+          <h3 class="mb-2 text-lg font-semibold">Basic Coverage</h3>
+          <p class="mb-4 text-sm text-gray-600">Essential protection for trip cancellation and medical emergencies.</p>
+          <ul class="mb-6 space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-600"></i>Trip cancellation up to $5,000</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-600"></i>Medical expenses up to $50,000</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-600"></i>Lost baggage $500</li>
+          </ul>
+          <div class="mb-4 text-2xl font-semibold text-blue-600">$25</div>
+          <button class="w-full rounded-lg bg-blue-600 py-2 text-white hover:bg-blue-700">Add to Booking</button>
+        </div>
+
+        <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-md transition hover:shadow-lg">
+          <h3 class="mb-2 text-lg font-semibold">Standard Coverage</h3>
+          <p class="mb-4 text-sm text-gray-600">Comprehensive protection including rental car and adventure activities.</p>
+          <ul class="mb-6 space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-600"></i>Trip cancellation up to $10,000</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-600"></i>Medical expenses up to $100,000</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-600"></i>Lost baggage $1,000</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-600"></i>Rental car damage</li>
+          </ul>
+          <div class="mb-4 text-2xl font-semibold text-blue-600">$45</div>
+          <button class="w-full rounded-lg bg-blue-600 py-2 text-white hover:bg-blue-700">Add to Booking</button>
+        </div>
+
+        <div class="rounded-lg border border-gray-200 bg-white p-6 shadow-md transition hover:shadow-lg">
+          <h3 class="mb-2 text-lg font-semibold">Premium Coverage</h3>
+          <p class="mb-4 text-sm text-gray-600">Full protection with high limits and 24/7 assistance.</p>
+          <ul class="mb-6 space-y-2 text-sm text-gray-600">
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-600"></i>Trip cancellation up to $20,000</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-600"></i>Medical expenses unlimited</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-600"></i>Lost baggage $2,000</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-600"></i>Adventure sports</li>
+            <li class="flex items-center gap-2"><i class="fas fa-check text-green-600"></i>24/7 concierge</li>
+          </ul>
+          <div class="mb-4 text-2xl font-semibold text-blue-600">$75</div>
+          <button class="w-full rounded-lg bg-blue-600 py-2 text-white hover:bg-blue-700">Add to Booking</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-gray-800 py-8 text-white">
+    <div class="mx-auto max-w-7xl px-4 text-center">
+      <p class="mb-4">&copy; 2026 TravelEasy. All rights reserved.</p>
+      <div class="flex justify-center gap-6">
+        <a href="#" class="hover:text-blue-400">Privacy Policy</a>
+        <a href="#" class="hover:text-blue-400">Terms of Service</a>
+        <a href="#" class="hover:text-blue-400">Contact Us</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const demoFlights = [
+      {
+        code: "QF401",
+        fromCode: "SYD",
+        toCode: "MEL",
+        fromAirport: "Sydney Kingsford Smith",
+        toAirport: "Melbourne Tullamarine",
+        departure: "08:15",
+        arrival: "09:45",
+        status: "On Time",
+        price: 129
+      },
+      {
+        code: "VA823",
+        fromCode: "SYD",
+        toCode: "MEL",
+        fromAirport: "Sydney Kingsford Smith",
+        toAirport: "Melbourne Tullamarine",
+        departure: "11:40",
+        arrival: "13:10",
+        status: "Boarding Soon",
+        price: 149
+      },
+      {
+        code: "JQ509",
+        fromCode: "SYD",
+        toCode: "MEL",
+        fromAirport: "Sydney Kingsford Smith",
+        toAirport: "Melbourne Tullamarine",
+        departure: "18:05",
+        arrival: "19:40",
+        status: "On Time",
+        price: 112
+      },
+      {
+        code: "QF609",
+        fromCode: "BNE",
+        toCode: "SYD",
+        fromAirport: "Brisbane Airport",
+        toAirport: "Sydney Kingsford Smith",
+        departure: "09:00",
+        arrival: "10:35",
+        status: "Delayed 15 min",
+        price: 165
+      },
+      {
+        code: "VA312",
+        fromCode: "MEL",
+        toCode: "BNE",
+        fromAirport: "Melbourne Tullamarine",
+        toAirport: "Brisbane Airport",
+        departure: "14:20",
+        arrival: "16:25",
+        status: "On Time",
+        price: 139
+      },
+      {
+        code: "QF1448",
+        fromCode: "ADL",
+        toCode: "MEL",
+        fromAirport: "Adelaide Airport",
+        toAirport: "Melbourne Tullamarine",
+        departure: "07:10",
+        arrival: "08:30",
+        status: "On Time",
+        price: 121
+      }
+    ];
+
+    const flightsGrid = document.getElementById("flights-grid");
+    const fromInput = document.getElementById("from");
+    const toInput = document.getElementById("to");
+    const departureInput = document.getElementById("departure");
+    const selectedBaggageLabel = document.getElementById("selected-baggage-label");
+    const selectedBaggageTotal = document.getElementById("selected-baggage-total");
+
+    function extractCode(value, fallback) {
+      const match = value.toUpperCase().match(/\(([A-Z]{3})\)|\b([A-Z]{3})\b/);
+      return match?.[1] || match?.[2] || fallback;
+    }
+
+    function renderFlights(flights, departureDate) {
+      flightsGrid.innerHTML = "";
+
+      if (!flights.length) {
+        flightsGrid.innerHTML =
+          '<p class="col-span-3 text-center text-gray-500">No flights found. Try SYD to MEL, BNE to SYD, or MEL to BNE.</p>';
+        return;
+      }
+
+      flights.forEach((flight) => {
+        const card = document.createElement("div");
+        card.className = "rounded-lg border border-gray-200 bg-white p-6 shadow-md transition hover:shadow-lg";
+        card.innerHTML = `
+          <div class="mb-4 flex items-center justify-between gap-4">
+            <span class="text-lg font-semibold">${flight.code}</span>
+            <span class="font-medium text-blue-600">$${flight.price}</span>
+          </div>
+          <p class="mb-2 text-sm text-gray-700">${flight.fromAirport} to ${flight.toAirport}</p>
+          <p class="mb-2 text-sm text-gray-600">Route: ${flight.fromCode} to ${flight.toCode}</p>
+          <p class="mb-2 text-sm text-gray-600">Departure: ${departureDate} at ${flight.departure}</p>
+          <p class="mb-4 text-sm text-gray-600">Arrival: ${flight.arrival} | Status: ${flight.status}</p>
+          <button class="w-full rounded-lg bg-blue-600 py-2 text-white hover:bg-blue-700">Book Now</button>
+        `;
+        flightsGrid.appendChild(card);
+      });
+    }
+
+    document.getElementById("flight-search-form").addEventListener("submit", (event) => {
+      event.preventDefault();
+
+      const fromCode = extractCode(fromInput.value, "SYD");
+      const toCode = extractCode(toInput.value, "MEL");
+      const departureDate = departureInput.value || "2026-03-18";
+
+      const matches = demoFlights.filter(
+        (flight) => flight.fromCode === fromCode && flight.toCode === toCode
+      );
+
+      renderFlights(matches, departureDate);
+      document.getElementById("available-flights").scrollIntoView({ behavior: "smooth" });
+    });
+
+    document.getElementById("fetch-baggage-rules").addEventListener("click", () => {
+      document.getElementById("baggage-rules").innerHTML = `
+        <div class="rounded-lg border border-blue-200 bg-blue-50 p-4">
+          <p class="font-medium text-blue-900">Demo baggage rules loaded</p>
+          <p class="mt-2 text-sm text-blue-800">Carry-on: 1 bag up to 10kg. Checked bag options shown below are common domestic add-ons.</p>
+        </div>
+      `;
+    });
+
+    document.querySelectorAll(".baggage-card").forEach((card) => {
+      card.addEventListener("click", () => {
+        document.querySelectorAll(".baggage-card").forEach((item) => {
+          item.classList.remove("border-blue-500", "ring-2", "ring-blue-100");
+          item.classList.add("border-gray-200");
+        });
+
+        card.classList.remove("border-gray-200");
+        card.classList.add("border-blue-500", "ring-2", "ring-blue-100");
+
+        const name = card.dataset.name;
+        const price = Number(card.dataset.price);
+
+        selectedBaggageLabel.textContent = name;
+        selectedBaggageLabel.classList.remove("text-gray-500");
+        selectedBaggageLabel.classList.add("text-gray-700");
+        selectedBaggageTotal.textContent = `$${price}`;
+      });
+    });
+
+    document.getElementById("fetch-insurance-quotes").addEventListener("click", () => {
+      document.getElementById("insurance-quotes").innerHTML = `
+        <div class="rounded-lg border border-green-200 bg-green-50 p-4">
+          <p class="font-medium text-green-900">Demo quote results</p>
+          <p class="mt-2 text-sm text-green-800">Basic: $25 | Standard: $45 | Premium: $75 for a 7-day domestic trip.</p>
+        </div>
+      `;
+    });
+
+    const defaultDeparture = new Date();
+    defaultDeparture.setDate(defaultDeparture.getDate() + 7);
+    const defaultReturn = new Date();
+    defaultReturn.setDate(defaultReturn.getDate() + 12);
+
+    document.getElementById("departure").value = defaultDeparture.toISOString().slice(0, 10);
+    document.getElementById("return").value = defaultReturn.toISOString().slice(0, 10);
+
+    renderFlights(
+      demoFlights.filter((flight) => flight.fromCode === "SYD" && flight.toCode === "MEL"),
+      document.getElementById("departure").value
+    );
+  </script>
+</body>
+</html>

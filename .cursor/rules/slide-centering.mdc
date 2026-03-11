@@ -1,0 +1,33 @@
+---
+description: Centering slide titles in FCTGAITalkSlides — use flex for reliable centering
+globs: **/FCTGAITalkSlides.jsx
+alwaysApply: false
+---
+
+# Slide Title Centering
+
+When slide titles (especially gradient-text headings) appear off-center, avoid relying on `text-center` or `mx-auto` with `inline-block` — they can be unreliable with `background-clip: text` and gradient styles.
+
+## Use flex containers for centering
+
+Wrap the title in a flex container with `items-center`:
+
+```jsx
+<div className="flex flex-col items-center text-center">
+  <h2 className="fctg-heading ...">Title text</h2>
+  <p className="fctg-subtitle mt-1">Subtitle</p>
+</div>
+```
+
+Or center the whole section:
+
+```jsx
+<div className="flex flex-col items-center">
+  <div className="flex flex-col items-center text-center max-w-md">
+    <h2 className="fctg-heading ...">Title</h2>
+    <p className="fctg-subtitle mt-1">Subtitle</p>
+  </div>
+</div>
+```
+
+`flex flex-col items-center` reliably centers children horizontally regardless of gradient/background-clip styles.

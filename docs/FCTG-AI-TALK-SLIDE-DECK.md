@@ -159,6 +159,8 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 **Title:** Vibe coding
 
+**Subtitle:** A creative philosophy for building with AI
+
 **Body:** Creative flow · Intuition · Conversational · Rapid experimentation
 
 ---

@@ -493,7 +493,7 @@ function InsideModelFlow() {
               {isInput && (
                 <>
                   {[
-                    { label: 'What breed is this?', x1: x - 66, y1: nY + 36, x2: x + 6, y2: nY + 36, delay: '0.8s', color: 'rgba(165,243,252,0.9)' },
+                    { label: 'What dog breed is this?', x1: x - 66, y1: nY + 36, x2: x + 6, y2: nY + 36, delay: '0.8s', color: 'rgba(165,243,252,0.9)' },
                   ].map(({ label, x1, y1, x2, y2, delay, color }) => {
                     const path = `M ${x1} ${y1} C ${x1 + 24} ${y1}, ${x2 - 18} ${y2}, ${x2} ${y2}`
                     return (
@@ -1473,14 +1473,14 @@ function FCTGAITalkSlides() {
             {/* Left: content */}
             <div className="max-w-md mx-auto md:mx-0 text-center md:text-left">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] md:whitespace-nowrap inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Strength</h2>
-              <p className="fctg-subtitle mt-1">AI guided me through a structural design problem</p>
+              <p className="fctg-subtitle mt-1">Aim: understand the beam&apos;s likely failure modes before designing further.</p>
               <div className="mt-6 flex flex-col gap-4 min-w-0 overflow-visible" aria-hidden>
                 <style>{`
-                  @keyframes fctg-strength-prompt-type { from { width: 0; } to { width: 30ch; } }
+                  @keyframes fctg-strength-prompt-type { from { width: 0; } to { width: 44ch; } }
                   @keyframes fctg-strength-agent-type { from { width: 0; } to { width: 85ch; } }
                   @keyframes fctg-strength-agent-type-mobile { from { width: 0; } to { width: 100%; } }
                   @keyframes fctg-strength-cursor { 0%, 50% { opacity: 1; } 51%, 100% { opacity: 0; } }
-                  .fctg-strength-prompt-type { display: inline-block; overflow: hidden; white-space: nowrap; width: 0; animation: fctg-strength-prompt-type 1.5s steps(30) 0s forwards; }
+                  .fctg-strength-prompt-type { display: inline-block; overflow: hidden; white-space: nowrap; width: 0; animation: fctg-strength-prompt-type 1.5s steps(44) 0s forwards; }
                   .fctg-strength-agent-type { display: inline-block; overflow: hidden; white-space: nowrap; width: 0; animation: fctg-strength-agent-type 2.5s steps(85) 2s forwards; }
                   .fctg-strength-prompt-type::after, .fctg-strength-agent-type::after { content: '|'; animation: fctg-strength-cursor 0.7s step-end infinite; margin-left: 1px; color: #22d3ee; }
                   @media (max-width: 767px) {
@@ -1488,10 +1488,10 @@ function FCTGAITalkSlides() {
                   }
                 `}</style>
                 <div className="fctg-strength-piece text-sm text-cyan-300" style={{ animationDelay: '0s' }}>
-                  <span className="fctg-strength-prompt-type">Check this beam for failure modes.</span>
+                  <span className="fctg-strength-prompt-type">Help me understand how this beam could fail.</span>
                 </div>
                 <div className="fctg-strength-piece text-sm text-violet-300" style={{ animationDelay: '2s' }}>
-                  <span className="fctg-strength-agent-type">Bending, shear, buckling — the agent walked through the checks.</span>
+                  <span className="fctg-strength-agent-type">Bending, shear, buckling — AI helped me assess the risks faster.</span>
                 </div>
               </div>
             </div>
@@ -1608,7 +1608,8 @@ function FCTGAITalkSlides() {
                 }
               `}</style>
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] fctg-speed-heading-flash inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Speed</h2>
-              <p className="fctg-subtitle mt-1">Prompt to UI in seconds.</p>
+              <p className="fctg-subtitle mt-1">From 30+ minutes to first output in seconds.</p>
+              <p className="mt-2 text-xs text-slate-400">A usable first pass still takes judgment.</p>
               <div className="mt-6 flex flex-col gap-4 min-w-0 overflow-hidden" aria-hidden>
                 <style>{`
                   @keyframes fctg-speed-prompt-type { from { width: 0; } to { width: 40ch; } }
@@ -1631,7 +1632,7 @@ function FCTGAITalkSlides() {
                   <span className="fctg-speed-prompt-type">Create a login form with email and password</span>
                 </div>
                 <div className="fctg-speed-ui-piece text-sm text-violet-300" style={{ animationDelay: '2s' }}>
-                  <span className="fctg-speed-agent-type">Email field, password field, remember me, Submit — the agent rendered the form.</span>
+                  <span className="fctg-speed-agent-type">Email, password, remember me, submit — form rendered.</span>
                 </div>
               </div>
             </div>
@@ -1676,7 +1677,7 @@ function FCTGAITalkSlides() {
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
               <div className="relative z-10 max-w-2xl px-8 text-center">
                 <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block drop-shadow-[0_0_30px_rgba(0,0,0,0.8)]" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Iteration</h2>
-                <p className="fctg-subtitle mt-1 text-lg drop-shadow-[0_0_20px_rgba(0,0,0,0.6)] whitespace-nowrap overflow-x-auto">Trust the process. Embrace ambiguity.</p>
+                <p className="fctg-subtitle mt-1 text-lg drop-shadow-[0_0_20px_rgba(0,0,0,0.6)] whitespace-nowrap overflow-x-auto">Trust the process. Steer the direction. Embrace ambiguity.</p>
                 <div className="mt-10 flex justify-center" aria-hidden>
                   <div className="relative">
                     <div className="absolute inset-0 blur-2xl bg-cyan-500/20 rounded-full scale-150" />
@@ -1815,7 +1816,7 @@ function FCTGAITalkSlides() {
                 <span className="fctg-mystical-heading-a absolute inset-0 flex items-center justify-center" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Mystical Code</span>
                 <span className="fctg-mystical-heading-b absolute inset-0 flex items-center justify-center font-mono text-2xl tracking-widest" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>{'{ } </> ( )'}</span>
               </h2>
-              <p className="fctg-subtitle mt-1">Code felt mystical — now it&apos;s reachable.</p>
+              <p className="fctg-subtitle mt-1">More understanding of the technical side, and how UI and development interact through the process.</p>
             </div>
           </div>
           <div className="w-full max-w-5xl mt-10 text-center">
@@ -1832,6 +1833,7 @@ function FCTGAITalkSlides() {
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Empowerment</h2>
               <p className="fctg-subtitle mt-1">Build things that add value to your life.</p>
               <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-cyan-400">
+                <span className="text-cyan-300/70">Examples:</span>
                 <span>Mental health app</span>
                 <span>Drafting studio</span>
               </p>
@@ -1862,6 +1864,7 @@ function FCTGAITalkSlides() {
             <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/25 to-black/5" />
             <div className="relative z-10 text-center px-6 max-w-3xl mx-auto">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Vibe coding</h2>
+              <p className="fctg-subtitle mt-2">A creative philosophy for building with AI</p>
             </div>
             <div className="relative z-10 text-center px-6 max-w-2xl mx-auto">
               <div className="flex flex-row flex-wrap items-center justify-center gap-x-4 gap-y-1">
@@ -1915,10 +1918,10 @@ function FCTGAITalkSlides() {
           <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl mx-auto flex flex-col items-center gap-4 px-6 py-4">
             <div className="flex flex-col items-center text-center">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Multi-agent systems</h2>
-              <p className="fctg-subtitle mt-1">Orchestrate. Delegate. Scale.</p>
+              <p className="fctg-subtitle mt-1">Specialized agents, orchestrated toward one outcome</p>
             </div>
             <FCTGMultiAgentDiagram compact />
-            <p className="mt-3 text-xs text-slate-500 text-center max-w-xl mx-auto">Use multi-agent for distinct roles, parallel work, or handoffs.</p>
+            <p className="mt-3 text-xs text-slate-500 text-center max-w-xl mx-auto">Like an orchestra, each agent has a distinct role, but the value comes from coordination toward a shared outcome.</p>
           </div>
         </Slide>
         )}
@@ -2091,8 +2094,8 @@ function FCTGAITalkSlides() {
           <div key={slideIndex} className="fctg-text-transition w-full max-w-6xl px-4 py-4 md:py-8">
             <div className="text-center mb-5 md:mb-6">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>The Agentic Design Loop</h2>
-              <p className="fctg-subtitle mt-1 mb-4 text-xs md:text-sm text-slate-400">The rhythm you inject into every stage.</p>
-              <p className="mx-auto mt-1 max-w-2xl text-center text-xs text-cyan-200/80 md:text-sm">More time on judgment, less time on repetitive execution.</p>
+              <p className="fctg-subtitle mt-1 mb-4 text-xs md:text-sm text-slate-400">A repeatable rhythm across every stage.</p>
+              <p className="mx-auto mt-1 max-w-2xl text-center text-xs text-cyan-200/80 md:text-sm">More time for judgment, less time spent on repetitive execution.</p>
             </div>
 
             <div className="grid grid-cols-1 gap-3 md:hidden max-w-4xl mx-auto mb-5 md:mb-6">
@@ -2102,7 +2105,7 @@ function FCTGAITalkSlides() {
             </div>
               <div className="rounded-xl border border-indigo-500/30 bg-indigo-950/20 p-3">
                 <h3 className="text-sm font-semibold text-indigo-300 mb-1.5">Execute</h3>
-                <p className="text-xs text-slate-300/95 leading-tight">Agent runs the work.</p>
+                <p className="text-xs text-slate-300/95 leading-tight">The agent carries out the work.</p>
           </div>
               <div className="rounded-xl border border-violet-500/30 bg-violet-950/20 p-3">
                 <h3 className="text-sm font-semibold text-violet-300 mb-1.5">Reflect</h3>
@@ -2146,7 +2149,7 @@ function FCTGAITalkSlides() {
 
               <div className="absolute right-[10%] top-[64%] w-[12.5rem] -translate-y-1/2 rounded-2xl border border-indigo-500/30 bg-indigo-950/20 px-3 py-2.5 text-center shadow-[0_0_30px_rgba(99,102,241,0.08)]">
                 <h3 className="text-sm font-semibold text-indigo-300 mb-1.5">Execute</h3>
-                <p className="text-[10px] text-slate-300/95 leading-snug">Agent runs the work.</p>
+                <p className="text-[10px] text-slate-300/95 leading-snug">The agent carries out the work.</p>
                 </div>
 
               <div className="absolute left-[10%] top-[64%] w-[12.5rem] -translate-y-1/2 rounded-2xl border border-violet-500/30 bg-violet-950/20 px-3 py-2.5 text-center shadow-[0_0_30px_rgba(167,139,250,0.08)]">
@@ -2156,7 +2159,7 @@ function FCTGAITalkSlides() {
 
                 </div>
 
-            <p className="mt-2 text-center text-[11px] text-cyan-300/90 max-w-2xl mx-auto"><span className="text-slate-400 font-medium">Productivity impact:</span> 2–4× faster cycles; ~30–50% time saved on execution.</p>
+            <p className="mt-2 text-center text-[11px] text-cyan-300/90 max-w-2xl mx-auto"><span className="text-slate-400 font-medium">Typical productivity impact:</span> 2–4× faster cycles and ~30–50% less time spent on execution.</p>
           </div>
         </Slide>
         )}
@@ -2172,7 +2175,7 @@ function FCTGAITalkSlides() {
               <div className="w-full max-w-5xl">
                 <div className="max-w-md mx-auto text-center">
                   <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Context and continuity</h2>
-                  <p className="fctg-subtitle mt-1 text-sm md:text-base">Sessions break. Context doesn&apos;t have to.</p>
+                  <p className="fctg-subtitle mt-1 text-sm md:text-base">Sessions end. Context carries forward.</p>
                 </div>
                 {/* Diagram: learnings.md bridges sessions — CSS-based, elegant flow */}
                 <div className="mt-3 md:mt-8 w-full max-w-2xl mx-auto min-w-0 overflow-visible px-1" aria-hidden>
@@ -2191,14 +2194,16 @@ function FCTGAITalkSlides() {
                   <div className="flex items-center justify-between gap-2 md:gap-4">
                     <div className="flex flex-col items-center shrink-0">
                       <div className="w-10 h-10 md:w-14 md:h-14 rounded-full border-2 border-cyan-500/80 flex items-center justify-center bg-cyan-950/40">
-                        <span className="text-[10px] md:text-xs font-medium text-cyan-200">Session</span>
+                        <span className="text-[10px] md:text-xs font-medium text-cyan-200">Previous</span>
                       </div>
-                      <span className="mt-0.5 md:mt-1 text-[9px] md:text-[10px] text-slate-500">yesterday</span>
+                      <span className="mt-0.5 md:mt-1 text-[9px] md:text-[10px] text-slate-500">session</span>
                     </div>
                     <div className="flex-1 min-w-0 fctg-context-line" />
-                    <div className="flex flex-col items-center shrink-0 px-2 py-2 md:px-4 md:py-3 rounded-lg md:rounded-xl border border-cyan-500/50 bg-cyan-950/30">
-                      <span className="font-mono text-xs md:text-sm font-semibold text-cyan-50">learnings.md</span>
-                      <span className="text-[9px] md:text-[10px] text-slate-400">continuity</span>
+                    <div className="flex flex-col items-center shrink-0">
+                      <div className="flex h-12 w-12 md:h-16 md:w-16 items-center justify-center rounded-2xl border border-cyan-500/50 bg-cyan-950/30 shadow-[0_0_24px_rgba(34,211,238,0.08)]">
+                        <FiFileText className="h-6 w-6 md:h-7 md:w-7 text-cyan-300" aria-hidden />
+                      </div>
+                      <span className="mt-1.5 font-mono text-[10px] md:text-xs font-semibold text-cyan-50">learnings.md</span>
                     </div>
                     <div className="flex-1 min-w-0 fctg-context-line" />
                     <div className="flex flex-col items-center shrink-0">
@@ -2209,7 +2214,6 @@ function FCTGAITalkSlides() {
                     </div>
                   </div>
                 </div>
-                <p className="mt-2 md:mt-6 text-center text-xs md:text-sm text-slate-400">Point at files · Paste snippets · Reference learnings</p>
                 <div className="mt-2 md:mt-8 text-center">
                   <SlideQuote slideIndex={27} />
                 </div>
@@ -2233,7 +2237,7 @@ function FCTGAITalkSlides() {
                 { title: 'Stay curious', text: 'Ask follow-ups, probe alternatives, and see where the response leads.', cls: 'border-teal-500/30 bg-teal-950/20 text-teal-200' },
                 { title: 'Use analogies', text: 'Frames like critic, concierge, or collaborator make prompts easier to steer.', cls: 'border-violet-500/30 bg-violet-950/20 text-violet-200' },
                 { title: 'Shape the environment', text: 'Files, examples, screenshots, and constraints all improve the output.', cls: 'border-amber-500/30 bg-amber-950/20 text-amber-200' },
-                { title: 'Keep judgment human', text: 'Use the agent to extend your thinking, not replace it.', cls: 'border-fuchsia-500/30 bg-fuchsia-950/20 text-fuchsia-200' },
+                { title: 'Keep judgment human', text: 'Use the agent to extend your thinking and capabilities, not replace your judgment.', cls: 'border-fuchsia-500/30 bg-fuchsia-950/20 text-fuchsia-200' },
               ].map(({ title, text, cls }) => (
                 <div key={title} className={`rounded-xl border p-3 md:p-4 text-center ${cls}`}>
                   <h3 className="text-xs md:text-sm font-semibold">{title}</h3>
@@ -2251,14 +2255,30 @@ function FCTGAITalkSlides() {
           <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl mx-auto flex flex-col items-center gap-5 px-6 py-4">
             <div className="flex flex-col items-center text-center">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>How you stay in control</h2>
-              <p className="fctg-subtitle mt-1">Keep the agent pointed at the outcome: verify outputs, redirect drift, reframe loops.</p>
+              <p className="fctg-subtitle mt-1">Set the guardrails. Review the output.</p>
+              <div className="mt-4 flex flex-wrap justify-center gap-2.5">
+                {[
+                  { label: 'Scope', Icon: FiTarget },
+                  { label: 'File rules', Icon: FiFileText },
+                  { label: 'Budgets', Icon: FiActivity },
+                  { label: 'Cleanup', Icon: FiRefreshCw },
+                ].map(({ label, Icon }) => (
+                  <span
+                    key={label}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-cyan-500/30 bg-cyan-950/20 px-3 py-1 text-xs font-medium text-cyan-200"
+                  >
+                    <Icon className="h-3.5 w-3.5 text-cyan-300" aria-hidden />
+                    {label}
+                  </span>
+                ))}
+              </div>
               <div className="flex flex-wrap justify-center gap-2 mt-8 md:mt-10">
                 {[
                   { label: 'Hallucinate', cls: 'border-fuchsia-500/30 bg-fuchsia-500/5 text-fuchsia-300/90' },
                   { label: 'Overcomplicate', cls: 'border-violet-500/30 bg-violet-500/5 text-violet-300/90' },
                   { label: 'Loop', cls: 'border-indigo-500/30 bg-indigo-500/5 text-indigo-300/90' },
                   { label: 'Overwrite', cls: 'border-rose-500/30 bg-rose-500/5 text-rose-300/90' },
-                  { label: 'Lazy', cls: 'border-amber-500/30 bg-amber-500/5 text-amber-300/90' },
+                  { label: 'Shortcut', cls: 'border-amber-500/30 bg-amber-500/5 text-amber-300/90' },
                   { label: 'Fixate', cls: 'border-cyan-500/30 bg-cyan-500/5 text-cyan-300/90' },
                   { label: 'Ignore', cls: 'border-slate-400/30 bg-slate-400/5 text-slate-300/90' },
                   { label: 'Drift', cls: 'border-teal-500/30 bg-teal-500/5 text-teal-300/90' },
@@ -2270,9 +2290,6 @@ function FCTGAITalkSlides() {
                   </span>
                 ))}
               </div>
-              <p className="mt-6 max-w-2xl text-center text-xs text-slate-400">
-                Use an explicit operating contract: scope, file rules, budgets, and cleanup.
-              </p>
             </div>
           </div>
         </Slide>
@@ -2298,7 +2315,7 @@ function FCTGAITalkSlides() {
               <div className="max-w-2xl text-center">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-cyan-300/90">Chapter 5</div>
                 <h2 className="fctg-heading !text-[2.5rem] md:!text-[3rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Design practice</h2>
-                <p className="fctg-subtitle mt-2">Research, synthesis, prototyping, and validation with AI in the loop.</p>
+                <p className="fctg-subtitle mt-2">Research, synthesis, prototyping, and validation with the designer directing agentic workflows.</p>
               </div>
             </div>
           </div>
@@ -2311,7 +2328,7 @@ function FCTGAITalkSlides() {
           <div key={slideIndex} className="fctg-text-transition w-full max-w-[88rem] px-4 py-4 md:px-6 md:py-6 mx-auto">
             <div className="text-center mb-4 md:mb-4">
               <h2 className="fctg-heading !text-[2rem] md:!text-[2.5rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Then vs Now</h2>
-              <p className="fctg-subtitle mt-1 text-slate-400 text-sm">The UX design cycle — same phases, you lead, agent runs.</p>
+              <p className="fctg-subtitle mt-1 text-slate-400 text-sm">Same design phases. Faster execution. More time for judgment.</p>
             </div>
             <div className="rounded-2xl border border-slate-700/50 bg-slate-950/30 p-3 md:p-4">
               <div className="hidden md:grid md:grid-cols-[120px_minmax(0,1fr)_minmax(0,1fr)_180px] gap-3 px-3 pb-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-500">
@@ -2327,8 +2344,8 @@ function FCTGAITalkSlides() {
                     phaseColor: 'text-cyan-400',
                     phaseBox: 'bg-cyan-950/20',
                     nowBox: 'bg-cyan-950/20',
-                    then: 'Manual research and synthesis; insights come late.',
-                    now: 'Agent synthesises research fast; you validate the patterns.',
+                    then: 'Manual synthesis slows insight.',
+                    now: 'Agent finds patterns fast; you validate.',
                     metric: 'Insights in minutes',
                   },
                   {
@@ -2336,8 +2353,8 @@ function FCTGAITalkSlides() {
                     phaseColor: 'text-teal-400',
                     phaseBox: 'bg-teal-950/20',
                     nowBox: 'bg-teal-950/20',
-                    then: 'Problem frames and specs drift as handoff docs age.',
-                    now: 'Agent keeps JTBDs and PRDs in sync while you set direction.',
+                    then: 'Requirements drift over time.',
+                    now: 'Agent keeps needs and plans aligned.',
                     metric: '~50% less rework',
                   },
                   {
@@ -2345,27 +2362,27 @@ function FCTGAITalkSlides() {
                     phaseColor: 'text-amber-400',
                     phaseBox: 'bg-amber-950/20',
                     nowBox: 'bg-amber-950/20',
-                    then: 'Concepts scatter across brainstorms, notes, and prototype handoffs.',
-                    now: 'Agent generates directions quickly; you curate and refine.',
-                    metric: '2–3× faster concepts',
+                    then: 'Ideas scatter across tools.',
+                    now: 'Agent generates options; you refine.',
+                    metric: '2-3x faster concepts',
                   },
                   {
                     phase: 'Prototype',
                     phaseColor: 'text-indigo-400',
                     phaseBox: 'bg-indigo-950/20',
                     nowBox: 'bg-indigo-950/20',
-                    then: 'Wireframes and build handoffs stretch the cycle.',
-                    now: 'Agent prototypes with the design system in context; one artifact, no handoff.',
-                    metric: '2–3× faster prototypes',
+                    then: 'Handoffs slow the cycle.',
+                    now: 'Agent prototypes in context.',
+                    metric: '2-3x faster prototypes',
                   },
                   {
                     phase: 'Test',
                     phaseColor: 'text-violet-400',
                     phaseBox: 'bg-violet-950/20',
                     nowBox: 'bg-violet-950/20',
-                    then: 'Sessions and manual analysis slow the feedback loop.',
-                    now: 'Agent surfaces insights quickly; you review and iterate.',
-                    metric: '~30–50% faster validation',
+                    then: 'Analysis slows learning.',
+                    now: 'Agent surfaces signals; you iterate.',
+                    metric: '~30-50% faster validation',
                   },
                 ].map(({ phase, phaseColor, phaseBox, nowBox, then, now, metric }) => (
                   <div key={phase} className="overflow-hidden rounded-xl border border-slate-700/50 bg-slate-950/35">
@@ -2389,7 +2406,7 @@ function FCTGAITalkSlides() {
               ))}
             </div>
             </div>
-            <p className="mt-3 text-center text-[11px] text-slate-400 max-w-2xl mx-auto">Across phases: 2–4× faster cycle time; ~30–50% time saved on execution.</p>
+            <p className="mt-3 text-center text-[11px] text-slate-400 max-w-2xl mx-auto">Across phases: faster cycles, less rework, and more time for judgment.</p>
           </div>
         </Slide>
         )}
@@ -3115,44 +3132,44 @@ function FCTGAITalkSlides() {
               <div className="max-w-2xl text-center">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-cyan-300/90">Chapter 7</div>
                 <h2 className="fctg-heading !text-[2.5rem] md:!text-[3rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Activity &amp; close</h2>
-                <p className="fctg-subtitle mt-2">Make, share, reflect, and leave with prompts you can reuse.</p>
+                <p className="fctg-subtitle mt-2">Look back at real work, then apply the pattern to the work in front of you.</p>
               </div>
             </div>
           </div>
         } />
         )}
 
-        {/* Level up to agentic */}
+        {/* From real work to live practice */}
         {slideIndex === 43 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-7xl px-4 md:px-6 py-4 md:py-6">
             <div className="text-center mb-4 md:mb-6">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Level up to agentic</h2>
+              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>From real work to live practice</h2>
             </div>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-3 md:gap-4 max-w-7xl mx-auto">
               <div className="rounded-xl border border-cyan-500/30 bg-cyan-950/20 p-3 md:p-4 text-center">
-                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-cyan-400 mb-1.5">Problem</h4>
-                <p className="text-[11px] md:text-xs text-cyan-200/90">How might we create a Moon trip booking flow that&apos;s easy and enjoyable for customers to use?</p>
+                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-cyan-400 mb-1.5">Looking back</h4>
+                <p className="text-[11px] md:text-xs text-cyan-200/90">Amendments: where AI could have sped up synthesis, explored more flow options, and improved validation.</p>
               </div>
               <div className="rounded-xl border border-violet-500/25 bg-violet-950/20 p-3 md:p-4 text-center">
-                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-violet-400 mb-1.5">Setup</h4>
-                <p className="text-[11px] md:text-xs text-cyan-200/90">Work in pairs. <a href="https://miro.com/app/board/uXjVG-nWxPQ=/" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">Miro</a> for collaboration; <a href="https://stitch.withgoogle.com" target="_blank" rel="noopener noreferrer" className="text-cyan-400 hover:underline">Stitch</a> for generating UI.</p>
+                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-violet-400 mb-1.5">Second proof point</h4>
+                <p className="text-[11px] md:text-xs text-cyan-200/90">Insurance: where AI could have clarified decisions, reduced ambiguity, and strengthened customer support moments.</p>
               </div>
               <div className="rounded-xl border border-emerald-500/25 bg-emerald-950/20 p-3 md:p-4 text-center">
-                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-1.5">Process</h4>
-                <p className="text-[11px] md:text-xs text-cyan-200/90">Start with vibe (aim to iterate 2–3 times), then level up to agentic. Write clear prompts. Redirect the agent when it drifts.</p>
+                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-emerald-400 mb-1.5">Pattern</h4>
+                <p className="text-[11px] md:text-xs text-cyan-200/90">Vibe to explore. Agentic to structure, validate, and strengthen. Human judgment decides what matters.</p>
               </div>
               <div className="rounded-xl border border-amber-500/25 bg-amber-950/20 p-3 md:p-4 text-center">
-                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-amber-400 mb-1.5">Outputs</h4>
-                <p className="text-[11px] md:text-xs text-cyan-200/90">Reusable prompts, generated UI/copy, and concept variants</p>
+                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-amber-400 mb-1.5">Activity prompt</h4>
+                <p className="text-[11px] md:text-xs text-cyan-200/90">How might we design a better amendment flow for a traveller who needs to change dates after booking?</p>
               </div>
               <div className="rounded-xl border border-teal-500/25 bg-teal-950/20 p-3 md:p-4 text-center">
-                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-teal-400 mb-1.5">Outcomes</h4>
-                <p className="text-[11px] md:text-xs text-cyan-200/90">Improved prompting skills, comfort with quick iteration, ability to delegate to the agent with confidence</p>
+                <h4 className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-teal-400 mb-1.5">Goal</h4>
+                <p className="text-[11px] md:text-xs text-cyan-200/90">Use AI to improve process, outputs, and the likelihood of a better customer outcome.</p>
               </div>
             </div>
             <p className="mt-4 text-center text-xs text-slate-400">
-              Vibe produces outputs. Agentic produces outputs that more directly drive outcomes.
+              Looking back at Amendments and Insurance, the opportunity is not more artifacts. It is better process, better decisions, and faster movement to outcomes.
             </p>
           </div>
         </Slide>
@@ -3169,23 +3186,23 @@ function FCTGAITalkSlides() {
               <div className="rounded-xl border border-violet-500/30 bg-violet-950/20 p-4">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-violet-400">Round 1 · ~15 min · Warm-up</span>
                 <h4 className="mt-2 text-sm font-semibold text-cyan-100">Start with vibe</h4>
-                <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-violet-300/80">Purpose: explore quickly</p>
-                <p className="mt-2 text-xs text-cyan-200/80">Explore flows and tone. Try: &quot;How would you approach designing a booking flow for a Moon trip?&quot; Chat, iterate, go wild.</p>
+                <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-violet-300/80">Purpose: reframe the problem and explore options</p>
+                <p className="mt-2 text-xs text-cyan-200/80">Explore directions, tone, and key moments. Try: &quot;What directions would you explore for an amendment flow for a traveller changing dates after booking?&quot;</p>
                 <p className="mt-2 text-[11px] text-cyan-400/70">Quick iterations. Exploratory.</p>
               </div>
               <div className="rounded-xl border border-indigo-500/30 bg-indigo-950/20 p-4">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-indigo-400">Round 2 · ~25 min · Main focus</span>
                 <h4 className="mt-2 text-sm font-semibold text-cyan-100">Level up to agentic</h4>
-                <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-indigo-300/80">Purpose: direct the agent toward a stronger solution</p>
-                <p className="mt-2 text-xs text-cyan-200/80">Use Stitch with a clear mission. Try: &quot;Design a 3-step booking flow: dates, cabin, add-ons.&quot;</p>
+                <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-indigo-300/80">Purpose: structure the flow and strengthen decisions</p>
+                <p className="mt-2 text-xs text-cyan-200/80">Use Stitch with a clear mission. Try: &quot;Design a 3-step amendment flow: find booking, compare options and fees, confirm the change.&quot;</p>
                 <p className="mt-2 text-[11px] text-cyan-400/70">Agentic: multi-step, delegated. Goal-driven.</p>
               </div>
               <div className="rounded-xl border border-amber-500/30 bg-amber-950/20 p-4">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-400">Round 3 · ~15 min</span>
                 <h4 className="mt-2 text-sm font-semibold text-cyan-100">Show & tell</h4>
                 <p className="mt-2 text-[10px] font-semibold uppercase tracking-[0.18em] text-amber-300/80">Purpose: connect outputs to likely outcomes</p>
-                <p className="mt-2 text-xs text-cyan-200/80">Share the clearest Moon booking outputs. Vote on which flow we'd ship and which one is most likely to drive the best customer outcome.</p>
-                <p className="mt-2 text-xs text-cyan-300/90 italic">Debrief: How could this apply to our Earth bookings?</p>
+                <p className="mt-2 text-xs text-cyan-200/80">Share the clearest amendment flow outputs. Vote on which direction we&apos;d ship and which one is most likely to reduce friction for travellers and staff.</p>
+                <p className="mt-2 text-xs text-cyan-300/90 italic">Debrief: How could this apply to Amendments, Insurance, or other journeys you work on today?</p>
               </div>
             </div>
           </div>
@@ -3207,7 +3224,7 @@ function FCTGAITalkSlides() {
               </div>
               <div className="rounded-xl border border-violet-500/30 bg-violet-950/20 px-4 py-4 text-center">
                 <p className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-violet-400/90 mb-2">What changes</p>
-                <p className="text-sm text-slate-300">Point at your design system and let AI increase range, speed, and output.</p>
+                <p className="text-sm text-slate-300">Use AI to improve process, decisions, and outcomes, not just generate more output.</p>
               </div>
               <div className="rounded-xl border border-teal-500/30 bg-teal-950/20 px-4 py-4 text-center">
                 <p className="text-[10px] md:text-xs font-semibold uppercase tracking-wider text-teal-400/90 mb-2">What stays human</p>
