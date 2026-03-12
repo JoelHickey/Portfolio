@@ -1169,7 +1169,7 @@ function FCTGAITalkSlides() {
       {/* Slide content */}
       <div className="relative z-20 h-full overflow-x-hidden overflow-y-hidden">
         {/* Chapter label — same position at very top for all chapter slides */}
-        {slideIndex >= 4 && slideIndex <= 7 && <ChapterLabel>Concepts</ChapterLabel>}
+        {slideIndex >= 3 && slideIndex <= 7 && <ChapterLabel>Concepts</ChapterLabel>}
         {slideIndex >= 10 && slideIndex <= 15 && <ChapterLabel>Monumental moments</ChapterLabel>}
         {slideIndex >= 17 && slideIndex <= 20 && <ChapterLabel>Mechanisms</ChapterLabel>}
         {slideIndex >= 22 && slideIndex <= 29 && <ChapterLabel>From vibe to agentic</ChapterLabel>}
@@ -1200,9 +1200,13 @@ function FCTGAITalkSlides() {
         {slideIndex === 1 && (
         <Slide transparent className="!p-0">
           <div key={slideIndex} className="absolute inset-0 flex flex-col items-center justify-center text-center px-4 md:px-8">
-            <div className="fctg-text-transition w-full max-w-3xl">
+            <div className="fctg-text-transition w-full max-w-2xl">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>What we&apos;ll cover</h2>
-              <p className="fctg-subtitle mt-1 text-slate-300 text-base md:text-lg">From concepts to agentic design practice, technology, and live practice.</p>
+              <ul className="mt-6 md:mt-8 list-none space-y-2 md:space-y-3 text-slate-300 text-sm md:text-base flex flex-col items-center">
+                {['Concepts', 'Monumental moments', 'Mechanisms', 'From vibe to agentic', 'Design practice', 'AI-ready systems', 'Activity'].map((item) => (
+                  <li key={item}>{item}</li>
+                ))}
+              </ul>
             </div>
           </div>
         </Slide>
@@ -1254,7 +1258,7 @@ function FCTGAITalkSlides() {
                   <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8 items-start">
                       {[
                         { title: 'Weavers', text: "The loom changed; the weaver's artistry, mastery, and skill endured.", color: '#22d3ee' },
-                        { title: 'Wheels', text: "The leap from horse-drawn cart to automobile changed the vehicle; the human in the journey remained.", color: '#2dd4bf' },
+                        { title: 'Wheels', text: "The leap from horse-drawn cart to automobile changed the vehicle;\nthe human in the journey remained.", color: '#2dd4bf' },
                         { title: 'Digital', text: "Design became systems and flows, not just single screens; the human at the centre of the experience stayed.", color: '#818cf8' },
                       ].map((item) => (
                       <div key={item.title} className="text-center max-w-xs">
@@ -1822,7 +1826,7 @@ function FCTGAITalkSlides() {
                 <span className="fctg-mystical-heading-a absolute inset-0 flex items-center justify-center" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Mystical Code</span>
                 <span className="fctg-mystical-heading-b absolute inset-0 flex items-center justify-center font-mono text-2xl tracking-widest" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>{'{ } </> ( )'}</span>
               </h2>
-              <p className="fctg-subtitle mt-1">More understanding of the technical side, and how UI and development interact through the process.</p>
+              <p className="fctg-subtitle mt-1">Clearer view of the tech side and how UI and dev connect.</p>
             </div>
           </div>
           <div className="w-full max-w-5xl mt-10 text-center">
@@ -2037,15 +2041,15 @@ function FCTGAITalkSlides() {
               <div className="rounded-2xl border border-cyan-500/30 bg-cyan-950/20 p-4 text-center">
                 <div className="text-sm font-semibold text-cyan-200">Vibe</div>
                 <div className="mt-4 space-y-3 text-sm text-slate-200">
-                  <p>Open-ended prompts, fast iteration, conversational direction.</p>
-                  <p>Best when you are still discovering the problem, direction, or shape of the work.</p>
+                  <p>Open prompts, fast iteration, conversational.</p>
+                  <p>Best when you&apos;re still figuring it out.</p>
                 </div>
               </div>
               <div className="rounded-2xl border border-violet-500/30 bg-violet-950/20 p-4 text-center">
                 <div className="text-sm font-semibold text-violet-200">Agentic</div>
                 <div className="mt-4 space-y-3 text-sm text-slate-200">
-                  <p>Clear goals, constraints, and expected deliverables.</p>
-                  <p>Best when you know what needs to get done and want the work to move forward.</p>
+                  <p>Clear goals, constraints, deliverables.</p>
+                  <p>Best when you know what needs to get done.</p>
                 </div>
               </div>
             </div>
@@ -2102,7 +2106,7 @@ function FCTGAITalkSlides() {
         <Slide transparent className="items-center justify-center overflow-y-auto" style={{ background: '#000' }} wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl mx-auto px-4 py-4 md:py-6">
             <div className="flex flex-col items-center text-center mb-5 md:mb-6">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Vibe vs agentic briefs</h2>
+              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Prompts vs briefs</h2>
               <p className="fctg-subtitle mt-1 max-w-2xl">The difference is how clearly the work is directed.</p>
             </div>
             <div className="w-full rounded-2xl border border-slate-700/50 bg-slate-950/30 px-4 py-4 md:px-5 md:py-5">
@@ -2116,6 +2120,7 @@ function FCTGAITalkSlides() {
                   {
                     label: 'UI',
                     vibe: 'Explore directions for a booking flow.',
+                    agenticPrompt: 'Create a 3-step booking flow: date, cabin choice, add-ons. Premium tone, mobile compare. Deliver wireframe + copy so we can choose quickly.',
                     outcome: '3-step booking flow',
                     constraints: 'premium tone, mobile compare',
                     deliverable: 'wireframe + copy',
@@ -2124,12 +2129,13 @@ function FCTGAITalkSlides() {
                   {
                     label: 'Copy',
                     vibe: 'How could this feel more premium?',
+                    agenticPrompt: 'Write headline, helper text, and CTA. Confident and clear, no clichés. Give 3 options that fit our voice and support decisions.',
                     outcome: 'headline, helper, CTA',
                     constraints: 'confident, clear, not cliche',
                     deliverable: '3 options',
                     success: 'fits voice, supports decisions',
                   },
-                ].map(({ label, vibe, outcome, constraints, deliverable, success }) => (
+                ].map(({ label, vibe, agenticPrompt, outcome, constraints, deliverable, success }) => (
                   <div key={label} className="grid gap-3 py-3 text-left md:grid-cols-[72px_minmax(0,0.7fr)_minmax(0,1.3fr)] md:gap-4 md:items-start">
                     <div className="flex items-center md:justify-center">
                       <span className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">{label}</span>
@@ -2138,9 +2144,10 @@ function FCTGAITalkSlides() {
                       <span className="md:hidden text-[10px] font-semibold uppercase tracking-wider text-cyan-400">Vibe</span>
                       <p className="mt-1 md:mt-0 text-[11px] leading-snug text-slate-100 md:text-[12px]">{vibe}</p>
                     </div>
-                    <div className="min-w-0">
-                      <span className="md:hidden text-[10px] font-semibold uppercase tracking-wider text-violet-400">Agentic brief</span>
-                      <div className="mt-1 md:mt-0 grid gap-1.5 text-[11px] md:grid-cols-2 md:text-[12px]">
+                    <div className="min-w-0 space-y-2">
+                      <span className="md:hidden text-[10px] font-semibold uppercase tracking-wider text-violet-400">Agentic</span>
+                      <p className="mt-1 md:mt-0 text-[11px] leading-snug text-violet-100 md:text-[12px] italic border-l-2 border-violet-500/50 pl-2.5">{agenticPrompt}</p>
+                      <div className="grid gap-1.5 text-[11px] md:grid-cols-2 md:text-[12px]">
                         {[
                           ['Outcome', outcome],
                           ['Constraints', constraints],
@@ -2171,7 +2178,7 @@ function FCTGAITalkSlides() {
         <Slide transparent className="items-center justify-center overflow-y-auto" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-6xl px-4 py-4 md:py-8">
             <div className="text-center mb-5 md:mb-6">
-              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>The agent brief</h2>
+              <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent' }}>Anatomy of a brief</h2>
               <p className="fctg-subtitle mt-1 mb-4 text-xs md:text-sm text-slate-400">Good delegation starts with clear direction.</p>
             </div>
             <div className="mx-auto grid w-full max-w-5xl gap-4 lg:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] lg:items-start">

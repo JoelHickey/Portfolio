@@ -19,7 +19,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 **Title:** What we'll cover
 
-**Subtitle:** Concepts, monumental moments, building momentum, technology and a fun agentic activity!
+**Subtitle:** Concepts, monumental moments, mechanisms, vibe to agentic, design practice, AI-ready systems, and a live activity.
 
 ---
 
@@ -31,7 +31,8 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 **Body:**
 - **Weavers** — The loom changed; the weaver's artistry, mastery, and skill endured.
-- **Wheels** — The leap from horse-drawn cart to automobile changed the vehicle; the human in the journey remained.
+- **Wheels** — The leap from horse-drawn cart to automobile changed the vehicle;
+  the human in the journey remained.
 - **Digital** — Design became systems and flows, not just single screens; the human at the centre of the experience stayed.
 
 ---
