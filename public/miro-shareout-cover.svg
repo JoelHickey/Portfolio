@@ -1,0 +1,94 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="200" y1="56" x2="1410" y2="858" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111D"/>
+      <stop offset="0.47" stop-color="#0A1224"/>
+      <stop offset="1" stop-color="#050915"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="286" y1="170" x2="1310" y2="718" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="0.28" stop-color="#2DD4BF"/>
+      <stop offset="0.61" stop-color="#818CF8"/>
+      <stop offset="1" stop-color="#E879F9"/>
+    </linearGradient>
+    <radialGradient id="glowLeft" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(424 250) rotate(34) scale(350 238)">
+      <stop stop-color="#22D3EE" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowCenter" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1038 388) rotate(70) scale(420 300)">
+      <stop stop-color="#A78BFA" stop-opacity="0.22"/>
+      <stop offset="1" stop-color="#A78BFA" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="glassStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="white" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="white" stop-opacity="0.05"/>
+    </linearGradient>
+    <filter id="blurLarge" x="-240" y="-200" width="2100" height="1340" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="70"/>
+    </filter>
+    <filter id="shadow" x="0" y="0" width="1600" height="900" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#020617" flood-opacity="0.5"/>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" stroke="#7DD3FC" stroke-opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <g filter="url(#blurLarge)">
+    <ellipse cx="424" cy="250" rx="350" ry="238" fill="url(#glowLeft)"/>
+    <ellipse cx="1038" cy="388" rx="420" ry="300" fill="url(#glowCenter)"/>
+  </g>
+
+  <circle cx="188" cy="148" r="2" fill="#67E8F9"/>
+  <circle cx="1328" cy="150" r="1.9" fill="#F0ABFC"/>
+  <circle cx="1428" cy="242" r="1.7" fill="#C4B5FD"/>
+  <circle cx="1204" cy="784" r="1.8" fill="#67E8F9"/>
+  <circle cx="306" cy="780" r="1.8" fill="#A78BFA"/>
+
+  <g filter="url(#shadow)">
+    <rect x="130" y="98" width="1340" height="704" rx="34" fill="#0A1224" fill-opacity="0.67"/>
+    <rect x="130.75" y="98.75" width="1338.5" height="702.5" rx="33.25" stroke="url(#glassStroke)" stroke-opacity="0.54" stroke-width="1.5"/>
+  </g>
+
+  <rect x="178" y="146" width="410" height="604" rx="30" fill="#0C172D" fill-opacity="0.76" stroke="url(#glassStroke)" stroke-opacity="0.48"/>
+  <text x="214" y="220" fill="#E2E8F0" font-size="66" font-family="Inter, Arial, sans-serif" font-weight="700">Share Out</text>
+  <text x="214" y="270" fill="#94A3B8" font-size="28" font-family="Inter, Arial, sans-serif">Bring the work together and surface what changed.</text>
+
+  <rect x="214" y="316" width="148" height="8" rx="4" fill="url(#accent)"/>
+  <text x="214" y="386" fill="#67E8F9" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">Summarize</text>
+  <text x="214" y="422" fill="#CBD5E1" font-size="20" font-family="Inter, Arial, sans-serif">What is the core idea?</text>
+  <text x="214" y="478" fill="#2DD4BF" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">Compare</text>
+  <text x="214" y="514" fill="#CBD5E1" font-size="20" font-family="Inter, Arial, sans-serif">What changed from explore to refine?</text>
+  <text x="214" y="570" fill="#A78BFA" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">Reflect</text>
+  <text x="214" y="606" fill="#CBD5E1" font-size="20" font-family="Inter, Arial, sans-serif">What should the group take forward?</text>
+
+  <g opacity="0.95">
+    <rect x="720" y="188" width="170" height="110" rx="24" fill="#101528" stroke="#22D3EE" stroke-opacity="0.3" transform="rotate(-8 720 188)"/>
+    <rect x="1250" y="214" width="170" height="110" rx="24" fill="#101528" stroke="#E879F9" stroke-opacity="0.3" transform="rotate(8 1250 214)"/>
+    <rect x="710" y="554" width="176" height="112" rx="24" fill="#101528" stroke="#2DD4BF" stroke-opacity="0.3" transform="rotate(6 710 554)"/>
+    <rect x="1256" y="546" width="176" height="112" rx="24" fill="#101528" stroke="#818CF8" stroke-opacity="0.3" transform="rotate(-7 1256 546)"/>
+
+    <path d="M868 290C946 318 1004 340 1070 378" stroke="url(#accent)" stroke-width="3.5" stroke-linecap="round"/>
+    <path d="M1270 318C1210 334 1158 354 1102 384" stroke="#C084FC" stroke-opacity="0.52" stroke-width="3" stroke-dasharray="10 12" stroke-linecap="round"/>
+    <path d="M860 588C942 564 1000 522 1050 470" stroke="#67E8F9" stroke-opacity="0.52" stroke-width="3" stroke-dasharray="10 14" stroke-linecap="round"/>
+    <path d="M1280 592C1218 560 1164 522 1110 468" stroke="#2DD4BF" stroke-opacity="0.52" stroke-width="3" stroke-dasharray="10 14" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <circle cx="1068" cy="436" r="138" fill="#0D162B" fill-opacity="0.92" stroke="url(#glassStroke)" stroke-opacity="0.62"/>
+  </g>
+  <circle cx="1068" cy="436" r="84" fill="#0E1932" stroke="#818CF8" stroke-opacity="0.32"/>
+  <circle cx="1068" cy="436" r="16" fill="#E879F9"/>
+  <circle cx="1002" cy="408" r="14" fill="#22D3EE"/>
+  <circle cx="1132" cy="404" r="14" fill="#2DD4BF"/>
+  <circle cx="1030" cy="494" r="14" fill="#818CF8"/>
+  <circle cx="1112" cy="494" r="14" fill="#F0ABFC"/>
+
+  <path d="M1002 408L1068 436L1132 404" stroke="url(#accent)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+  <path d="M1030 494L1068 436L1112 494" stroke="url(#accent)" stroke-width="3.5" stroke-linecap="round" stroke-linejoin="round"/>
+
+  <text x="912" y="652" fill="#E2E8F0" font-size="30" font-family="Inter, Arial, sans-serif" font-weight="700">Shared insight, not just final output.</text>
+  <path d="M862 690H1272" stroke="url(#accent)" stroke-opacity="0.34" stroke-width="2"/>
+</svg>

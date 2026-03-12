@@ -1,0 +1,90 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="180" y1="60" x2="1450" y2="850" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111D"/>
+      <stop offset="0.45" stop-color="#0A1224"/>
+      <stop offset="1" stop-color="#050915"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="236" y1="174" x2="1348" y2="746" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="0.23" stop-color="#2DD4BF"/>
+      <stop offset="0.58" stop-color="#818CF8"/>
+      <stop offset="1" stop-color="#E879F9"/>
+    </linearGradient>
+    <radialGradient id="glowLeft" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(426 274) rotate(28) scale(440 300)">
+      <stop stop-color="#22D3EE" stop-opacity="0.35"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowRight" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1186 228) rotate(155) scale(340 220)">
+      <stop stop-color="#E879F9" stop-opacity="0.28"/>
+      <stop offset="1" stop-color="#E879F9" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="glassStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="white" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="white" stop-opacity="0.05"/>
+    </linearGradient>
+    <filter id="blurLarge" x="-240" y="-200" width="2080" height="1320" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="70"/>
+    </filter>
+    <filter id="shadow" x="0" y="0" width="1600" height="900" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#020617" flood-opacity="0.48"/>
+    </filter>
+    <pattern id="grid" width="44" height="44" patternUnits="userSpaceOnUse">
+      <path d="M44 0H0V44" stroke="#7DD3FC" stroke-opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <g filter="url(#blurLarge)">
+    <ellipse cx="426" cy="274" rx="440" ry="300" fill="url(#glowLeft)"/>
+    <ellipse cx="1186" cy="228" rx="340" ry="220" fill="url(#glowRight)"/>
+  </g>
+
+  <circle cx="196" cy="142" r="2" fill="#67E8F9"/>
+  <circle cx="286" cy="196" r="1.7" fill="#99F6E4"/>
+  <circle cx="1362" cy="158" r="1.8" fill="#F0ABFC"/>
+  <circle cx="1450" cy="236" r="2" fill="#C4B5FD"/>
+  <circle cx="1208" cy="778" r="1.8" fill="#67E8F9"/>
+  <circle cx="304" cy="802" r="1.6" fill="#A78BFA"/>
+
+  <g filter="url(#shadow)">
+    <rect x="130" y="98" width="1340" height="704" rx="34" fill="#0A1224" fill-opacity="0.66"/>
+    <rect x="130.75" y="98.75" width="1338.5" height="702.5" rx="33.25" stroke="url(#glassStroke)" stroke-opacity="0.54" stroke-width="1.5"/>
+  </g>
+
+  <rect x="178" y="144" width="430" height="610" rx="30" fill="#0C172D" fill-opacity="0.75" stroke="url(#glassStroke)" stroke-opacity="0.46"/>
+  <text x="214" y="220" fill="#E2E8F0" font-size="74" font-family="Inter, Arial, sans-serif" font-weight="700">Explore</text>
+  <text x="214" y="272" fill="#94A3B8" font-size="28" font-family="Inter, Arial, sans-serif">Go wide first. Sketch, branch, collect, and test directions.</text>
+
+  <rect x="214" y="316" width="126" height="8" rx="4" fill="url(#accent)"/>
+  <text x="214" y="386" fill="#67E8F9" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">Capture</text>
+  <text x="214" y="422" fill="#CBD5E1" font-size="20" font-family="Inter, Arial, sans-serif">Goal, context, pain point</text>
+  <text x="214" y="478" fill="#2DD4BF" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">Generate</text>
+  <text x="214" y="514" fill="#CBD5E1" font-size="20" font-family="Inter, Arial, sans-serif">Flows, screenshots, notes, artifacts</text>
+  <text x="214" y="570" fill="#A78BFA" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">Stay Loose</text>
+  <text x="214" y="606" fill="#CBD5E1" font-size="20" font-family="Inter, Arial, sans-serif">Messy is fine. Follow the strongest signals.</text>
+
+  <g opacity="0.96">
+    <path d="M726 214C846 248 914 280 998 332C1080 382 1166 470 1332 514" stroke="url(#accent)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M726 214C828 236 892 210 986 174C1068 144 1162 146 1332 202" stroke="#67E8F9" stroke-opacity="0.5" stroke-width="2.5" stroke-dasharray="10 12" stroke-linecap="round"/>
+    <path d="M726 214C800 290 878 390 982 468C1098 554 1224 602 1360 624" stroke="#C084FC" stroke-opacity="0.45" stroke-width="2.5" stroke-dasharray="9 16" stroke-linecap="round"/>
+    <circle cx="726" cy="214" r="16" fill="#0F1B34" stroke="#22D3EE" stroke-opacity="0.65" stroke-width="2"/>
+    <circle cx="998" cy="332" r="14" fill="#10152B" stroke="#2DD4BF" stroke-opacity="0.6" stroke-width="2"/>
+    <circle cx="1332" cy="514" r="18" fill="#10152B" stroke="#E879F9" stroke-opacity="0.62" stroke-width="2"/>
+  </g>
+
+  <g>
+    <rect x="784" y="152" width="180" height="108" rx="22" fill="#0F1B34" stroke="#22D3EE" stroke-opacity="0.34" transform="rotate(-8 784 152)"/>
+    <rect x="1036" y="226" width="192" height="112" rx="22" fill="#10142A" stroke="#818CF8" stroke-opacity="0.34" transform="rotate(6 1036 226)"/>
+    <rect x="874" y="396" width="220" height="124" rx="22" fill="#10142A" stroke="#2DD4BF" stroke-opacity="0.34" transform="rotate(-6 874 396)"/>
+    <rect x="1190" y="430" width="176" height="102" rx="22" fill="#10142A" stroke="#E879F9" stroke-opacity="0.34" transform="rotate(8 1190 430)"/>
+    <rect x="732" y="536" width="214" height="118" rx="22" fill="#10142A" stroke="#22D3EE" stroke-opacity="0.34" transform="rotate(5 732 536)"/>
+  </g>
+
+  <g opacity="0.9">
+    <path d="M768 704H1372" stroke="url(#accent)" stroke-opacity="0.4" stroke-width="2"/>
+    <text x="780" y="694" fill="#94A3B8" font-size="18" font-family="Inter, Arial, sans-serif">Possible directions</text>
+    <text x="784" y="744" fill="#E2E8F0" font-size="22" font-family="Inter, Arial, sans-serif">Diverge before you decide.</text>
+  </g>
+</svg>

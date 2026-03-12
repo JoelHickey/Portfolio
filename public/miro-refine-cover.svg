@@ -1,0 +1,95 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="214" y1="34" x2="1382" y2="862" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07101C"/>
+      <stop offset="0.48" stop-color="#0A1224"/>
+      <stop offset="1" stop-color="#050814"/>
+    </linearGradient>
+    <linearGradient id="accent" x1="290" y1="184" x2="1296" y2="694" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="0.24" stop-color="#2DD4BF"/>
+      <stop offset="0.57" stop-color="#818CF8"/>
+      <stop offset="1" stop-color="#E879F9"/>
+    </linearGradient>
+    <radialGradient id="glowLeft" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(380 316) rotate(32) scale(360 256)">
+      <stop stop-color="#22D3EE" stop-opacity="0.18"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowCenter" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1004 352) rotate(64) scale(410 280)">
+      <stop stop-color="#A78BFA" stop-opacity="0.24"/>
+      <stop offset="1" stop-color="#A78BFA" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="glassStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="white" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="white" stop-opacity="0.05"/>
+    </linearGradient>
+    <filter id="blurLarge" x="-240" y="-200" width="2100" height="1300" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="70"/>
+    </filter>
+    <filter id="shadow" x="0" y="0" width="1600" height="900" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#020617" flood-opacity="0.5"/>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" stroke="#7DD3FC" stroke-opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <g filter="url(#blurLarge)">
+    <ellipse cx="380" cy="316" rx="360" ry="256" fill="url(#glowLeft)"/>
+    <ellipse cx="1004" cy="352" rx="410" ry="280" fill="url(#glowCenter)"/>
+  </g>
+
+  <circle cx="210" cy="154" r="2" fill="#67E8F9"/>
+  <circle cx="1304" cy="142" r="1.8" fill="#F0ABFC"/>
+  <circle cx="1418" cy="254" r="1.7" fill="#C4B5FD"/>
+  <circle cx="1190" cy="788" r="1.8" fill="#67E8F9"/>
+  <circle cx="286" cy="778" r="1.9" fill="#A78BFA"/>
+
+  <g filter="url(#shadow)">
+    <rect x="130" y="98" width="1340" height="704" rx="34" fill="#0A1224" fill-opacity="0.67"/>
+    <rect x="130.75" y="98.75" width="1338.5" height="702.5" rx="33.25" stroke="url(#glassStroke)" stroke-opacity="0.54" stroke-width="1.5"/>
+  </g>
+
+  <rect x="178" y="146" width="390" height="604" rx="30" fill="#0C172D" fill-opacity="0.76" stroke="url(#glassStroke)" stroke-opacity="0.48"/>
+  <text x="214" y="220" fill="#E2E8F0" font-size="74" font-family="Inter, Arial, sans-serif" font-weight="700">Refine</text>
+  <text x="214" y="272" fill="#94A3B8" font-size="28" font-family="Inter, Arial, sans-serif">Choose the strongest direction and make it clearer.</text>
+
+  <rect x="214" y="316" width="132" height="8" rx="4" fill="url(#accent)"/>
+  <text x="214" y="388" fill="#67E8F9" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">Clarify</text>
+  <text x="214" y="424" fill="#CBD5E1" font-size="20" font-family="Inter, Arial, sans-serif">Goal, context, pain point</text>
+  <text x="214" y="482" fill="#2DD4BF" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">Select</text>
+  <text x="214" y="518" fill="#CBD5E1" font-size="20" font-family="Inter, Arial, sans-serif">Keep what matters, remove noise</text>
+  <text x="214" y="576" fill="#A78BFA" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">Sharpen</text>
+  <text x="214" y="612" fill="#CBD5E1" font-size="20" font-family="Inter, Arial, sans-serif">Turn the idea into a coherent flow or artifact</text>
+
+  <g opacity="0.92">
+    <rect x="664" y="176" width="190" height="116" rx="24" fill="#101528" stroke="#22D3EE" stroke-opacity="0.3" transform="rotate(-9 664 176)"/>
+    <rect x="790" y="286" width="176" height="104" rx="24" fill="#101528" stroke="#2DD4BF" stroke-opacity="0.28" transform="rotate(7 790 286)"/>
+    <rect x="676" y="426" width="208" height="122" rx="24" fill="#101528" stroke="#818CF8" stroke-opacity="0.3" transform="rotate(-6 676 426)"/>
+    <path d="M858 330C928 364 970 386 1032 416" stroke="url(#accent)" stroke-opacity="0.45" stroke-width="2.5" stroke-dasharray="10 12"/>
+    <path d="M824 514C914 518 970 514 1038 498" stroke="#A78BFA" stroke-opacity="0.34" stroke-width="2.5" stroke-dasharray="8 14"/>
+  </g>
+
+  <g>
+    <path d="M980 232C1042 264 1084 304 1122 352C1156 394 1180 452 1200 526" stroke="url(#accent)" stroke-width="4" stroke-linecap="round"/>
+    <path d="M952 286C1024 310 1076 334 1122 374C1174 418 1210 472 1244 558" stroke="#67E8F9" stroke-opacity="0.34" stroke-width="2.5" stroke-dasharray="10 12" stroke-linecap="round"/>
+    <path d="M938 422C1020 426 1086 426 1152 408C1218 392 1280 360 1342 312" stroke="#E879F9" stroke-opacity="0.34" stroke-width="2.5" stroke-dasharray="8 14" stroke-linecap="round"/>
+  </g>
+
+  <g filter="url(#shadow)">
+    <rect x="1022" y="250" width="314" height="330" rx="32" fill="#0D162B" fill-opacity="0.88" stroke="url(#glassStroke)" stroke-opacity="0.62"/>
+  </g>
+  <rect x="1062" y="302" width="236" height="12" rx="6" fill="url(#accent)"/>
+  <rect x="1062" y="346" width="236" height="150" rx="28" fill="#0B1327" stroke="#818CF8" stroke-opacity="0.26"/>
+  <path d="M1100 462C1140 432 1186 410 1240 378" stroke="#67E8F9" stroke-width="4" stroke-linecap="round"/>
+  <path d="M1230 368L1256 368L1256 394" stroke="#67E8F9" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+  <circle cx="1100" cy="462" r="10" fill="#22D3EE"/>
+  <circle cx="1174" cy="424" r="10" fill="#2DD4BF"/>
+  <circle cx="1240" cy="378" r="10" fill="#A78BFA"/>
+  <text x="1062" y="548" fill="#E2E8F0" font-size="28" font-family="Inter, Arial, sans-serif" font-weight="700">Clearer. Stronger. Easier to read.</text>
+
+  <path d="M1030 636H1348" stroke="url(#accent)" stroke-opacity="0.34" stroke-width="2"/>
+  <text x="1036" y="678" fill="#94A3B8" font-size="18" font-family="Inter, Arial, sans-serif">Refinement is selection plus clarity.</text>
+</svg>

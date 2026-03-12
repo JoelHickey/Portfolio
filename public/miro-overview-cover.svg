@@ -1,0 +1,124 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bg" x1="220" y1="40" x2="1380" y2="860" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#08111F"/>
+      <stop offset="0.5" stop-color="#0B1225"/>
+      <stop offset="1" stop-color="#050814"/>
+    </linearGradient>
+    <radialGradient id="glowCyan" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(420 210) rotate(38) scale(430 260)">
+      <stop stop-color="#22D3EE" stop-opacity="0.38"/>
+      <stop offset="1" stop-color="#22D3EE" stop-opacity="0"/>
+    </radialGradient>
+    <radialGradient id="glowViolet" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(1220 180) rotate(145) scale(360 240)">
+      <stop stop-color="#A78BFA" stop-opacity="0.34"/>
+      <stop offset="1" stop-color="#A78BFA" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="accent" x1="330" y1="170" x2="1270" y2="720" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22D3EE"/>
+      <stop offset="0.28" stop-color="#2DD4BF"/>
+      <stop offset="0.62" stop-color="#818CF8"/>
+      <stop offset="1" stop-color="#E879F9"/>
+    </linearGradient>
+    <linearGradient id="glassStroke" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="white" stop-opacity="0.36"/>
+      <stop offset="1" stop-color="white" stop-opacity="0.05"/>
+    </linearGradient>
+    <filter id="blurLarge" x="-200" y="-200" width="2000" height="1400" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="60"/>
+    </filter>
+    <filter id="blurSmall" x="-50" y="-50" width="1700" height="1000" filterUnits="userSpaceOnUse">
+      <feGaussianBlur stdDeviation="8"/>
+    </filter>
+    <filter id="shadow" x="0" y="0" width="1600" height="900" filterUnits="userSpaceOnUse">
+      <feDropShadow dx="0" dy="18" stdDeviation="20" flood-color="#020617" flood-opacity="0.45"/>
+    </filter>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M40 0H0V40" stroke="#7DD3FC" stroke-opacity="0.08"/>
+    </pattern>
+  </defs>
+
+  <rect width="1600" height="900" fill="url(#bg)"/>
+  <rect width="1600" height="900" fill="url(#grid)"/>
+  <g filter="url(#blurLarge)">
+    <ellipse cx="420" cy="210" rx="430" ry="260" fill="url(#glowCyan)"/>
+    <ellipse cx="1220" cy="180" rx="360" ry="240" fill="url(#glowViolet)"/>
+  </g>
+
+  <circle cx="230" cy="120" r="2" fill="#67E8F9"/>
+  <circle cx="290" cy="180" r="1.6" fill="#C4B5FD"/>
+  <circle cx="1320" cy="150" r="1.7" fill="#F0ABFC"/>
+  <circle cx="1420" cy="210" r="1.8" fill="#67E8F9"/>
+  <circle cx="1180" cy="710" r="1.7" fill="#A78BFA"/>
+  <circle cx="340" cy="760" r="1.9" fill="#99F6E4"/>
+
+  <path d="M230 680C390 600 520 580 660 600C780 616 920 676 1070 664C1182 655 1290 598 1398 512" stroke="url(#accent)" stroke-opacity="0.5" stroke-width="2.5" stroke-dasharray="10 14"/>
+  <path d="M214 716C368 664 520 650 670 668C836 688 954 760 1116 754C1224 750 1322 710 1400 654" stroke="#67E8F9" stroke-opacity="0.18" stroke-width="1.5"/>
+
+  <g filter="url(#shadow)">
+    <rect x="132" y="104" width="1336" height="692" rx="34" fill="#090E1D" fill-opacity="0.56"/>
+    <rect x="132" y="104" width="1336" height="692" rx="34" fill="#0B1225" fill-opacity="0.62"/>
+    <rect x="132.75" y="104.75" width="1334.5" height="690.5" rx="33.25" stroke="url(#glassStroke)" stroke-opacity="0.55" stroke-width="1.5"/>
+  </g>
+
+  <rect x="184" y="154" width="428" height="540" rx="28" fill="#0C172D" fill-opacity="0.72" stroke="url(#glassStroke)" stroke-opacity="0.48"/>
+  <rect x="646" y="154" width="770" height="216" rx="28" fill="#0D1529" fill-opacity="0.62" stroke="url(#glassStroke)" stroke-opacity="0.44"/>
+  <rect x="646" y="398" width="370" height="296" rx="28" fill="#0D1529" fill-opacity="0.58" stroke="url(#glassStroke)" stroke-opacity="0.4"/>
+  <rect x="1046" y="398" width="370" height="296" rx="28" fill="#0D1529" fill-opacity="0.58" stroke="url(#glassStroke)" stroke-opacity="0.4"/>
+
+  <rect x="220" y="198" width="112" height="8" rx="4" fill="url(#accent)" fill-opacity="0.9"/>
+  <text x="220" y="252" fill="#E2E8F0" font-size="72" font-family="Inter, Arial, sans-serif" font-weight="700">Overview</text>
+  <text x="220" y="302" fill="#94A3B8" font-size="28" font-family="Inter, Arial, sans-serif">Set the stage, frame the prompt, and make the flow obvious.</text>
+
+  <g opacity="0.95">
+    <text x="220" y="378" fill="#67E8F9" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">Goal</text>
+    <text x="220" y="413" fill="#CBD5E1" font-size="20" font-family="Inter, Arial, sans-serif">Explore the problem space, then refine a response.</text>
+
+    <text x="220" y="470" fill="#2DD4BF" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">Prompt</text>
+    <text x="220" y="505" fill="#CBD5E1" font-size="20" font-family="Inter, Arial, sans-serif">Give people just enough structure to start quickly.</text>
+
+    <text x="220" y="562" fill="#A78BFA" font-size="22" font-family="Inter, Arial, sans-serif" font-weight="600">Flow</text>
+    <text x="220" y="597" fill="#CBD5E1" font-size="20" font-family="Inter, Arial, sans-serif">Explore, refine, and share out.</text>
+  </g>
+
+  <g>
+    <rect x="698" y="192" width="136" height="42" rx="21" fill="#0F1B34" stroke="#22D3EE" stroke-opacity="0.45"/>
+    <text x="726" y="219" fill="#CFFAFE" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="600">START</text>
+    <path d="M852 214H961" stroke="url(#accent)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M952 204L971 214L952 224" stroke="url(#accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="990" y="192" width="152" height="42" rx="21" fill="#0F1B34" stroke="#818CF8" stroke-opacity="0.45"/>
+    <text x="1028" y="219" fill="#EDE9FE" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="600">EXPLORE</text>
+    <path d="M1161 214H1260" stroke="url(#accent)" stroke-width="3" stroke-linecap="round"/>
+    <path d="M1251 204L1270 214L1251 224" stroke="url(#accent)" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <rect x="1284" y="192" width="94" height="42" rx="21" fill="#0F1B34" stroke="#E879F9" stroke-opacity="0.45"/>
+    <text x="1305" y="219" fill="#F5D0FE" font-size="18" font-family="Inter, Arial, sans-serif" font-weight="600">NEXT</text>
+  </g>
+
+  <g opacity="0.92">
+    <rect x="688" y="276" width="686" height="54" rx="16" fill="#0A1327" stroke="url(#glassStroke)" stroke-opacity="0.34"/>
+    <circle cx="724" cy="303" r="8" fill="#22D3EE"/>
+    <text x="750" y="309" fill="#CBD5E1" font-size="22" font-family="Inter, Arial, sans-serif">Choose a clear area and label it with your name</text>
+
+    <rect x="688" y="346" width="686" height="54" rx="16" fill="#0A1327" stroke="url(#glassStroke)" stroke-opacity="0.34"/>
+    <circle cx="724" cy="373" r="8" fill="#2DD4BF"/>
+    <text x="750" y="379" fill="#CBD5E1" font-size="22" font-family="Inter, Arial, sans-serif">Capture goal, context, pain point, and response</text>
+  </g>
+
+  <g>
+    <rect x="692" y="442" width="278" height="210" rx="24" fill="#08101F" stroke="#22D3EE" stroke-opacity="0.26"/>
+    <text x="724" y="490" fill="#67E8F9" font-size="24" font-family="Inter, Arial, sans-serif" font-weight="600">What To Include</text>
+    <text x="724" y="534" fill="#E2E8F0" font-size="20" font-family="Inter, Arial, sans-serif">Goal</text>
+    <text x="724" y="572" fill="#E2E8F0" font-size="20" font-family="Inter, Arial, sans-serif">Context</text>
+    <text x="724" y="610" fill="#E2E8F0" font-size="20" font-family="Inter, Arial, sans-serif">Pain point</text>
+
+    <rect x="1092" y="442" width="278" height="210" rx="24" fill="#08101F" stroke="#A78BFA" stroke-opacity="0.26"/>
+    <text x="1124" y="490" fill="#C4B5FD" font-size="24" font-family="Inter, Arial, sans-serif" font-weight="600">Output Shape</text>
+    <text x="1124" y="534" fill="#E2E8F0" font-size="20" font-family="Inter, Arial, sans-serif">Flow</text>
+    <text x="1124" y="572" fill="#E2E8F0" font-size="20" font-family="Inter, Arial, sans-serif">Artifact</text>
+    <text x="1124" y="610" fill="#E2E8F0" font-size="20" font-family="Inter, Arial, sans-serif">Key takeaway</text>
+  </g>
+
+  <g filter="url(#blurSmall)" opacity="0.85">
+    <ellipse cx="1110" cy="682" rx="120" ry="32" fill="#22D3EE" fill-opacity="0.22"/>
+    <ellipse cx="1284" cy="700" rx="92" ry="24" fill="#E879F9" fill-opacity="0.18"/>
+  </g>
+</svg>
