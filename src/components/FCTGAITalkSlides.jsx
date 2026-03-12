@@ -3388,7 +3388,7 @@ function FCTGAITalkSlides() {
               <div className="max-w-2xl text-center">
                 <div className="text-[10px] font-semibold uppercase tracking-[0.28em] text-cyan-300/90">Chapter 8</div>
                 <h2 className="fctg-heading !text-[2.5rem] md:!text-[3rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Activity</h2>
-                <p className="fctg-subtitle mt-2">Look back at real work, then apply the pattern to the work in front of you.</p>
+                <p className="fctg-subtitle mt-2">Use AI to frame a real problem, compare approaches, and review one improved flow.</p>
               </div>
             </div>
           </div>
@@ -3398,16 +3398,39 @@ function FCTGAITalkSlides() {
         {/* Slide 46: Instructions */}
         {slideIndex === 46 && (
         <Slide transparent className="items-center justify-center">
-          <div key={slideIndex} className="fctg-text-transition w-full max-w-[100rem] px-4 md:px-6 py-4 md:py-6">
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-[124rem] px-4 md:px-6 py-4 md:py-6">
             <div className="text-center mb-4 md:mb-6">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Instructions</h2>
             </div>
-            <p className="mx-auto mb-4 max-w-3xl text-center text-[10px] text-slate-500">Work solo.</p>
-            <div className="mx-auto mb-4 grid max-w-[100rem] grid-cols-1 gap-3 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-stretch">
+            <div className="mx-auto mb-4 grid max-w-[124rem] grid-cols-1 gap-3 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-stretch">
               <div className="flex h-full flex-col rounded-xl border border-amber-500/25 bg-amber-950/20 p-3 text-left">
                 <span className="text-[9px] font-semibold uppercase tracking-wider text-amber-400">Start</span>
                 <span className="mt-1 text-[9px] text-slate-500">5 min</span>
-                <p className="mt-2 text-[11px] leading-relaxed text-cyan-200/90">Choose a real workflow with friction.</p>
+                <p className="mt-2 text-[11px] leading-relaxed text-cyan-200/90">Choose 1 real flow to improve. Note the goal, pain, and context.</p>
+              </div>
+              <div className="hidden lg:flex items-center justify-center text-cyan-400/70" aria-hidden>
+                <span className="text-xl">→</span>
+              </div>
+              <div className="flex h-full flex-col rounded-xl border border-violet-500/30 bg-violet-950/20 p-3 text-left">
+                <span className="text-[9px] font-semibold uppercase tracking-wider text-violet-400">Explore</span>
+                <span className="mt-1 text-[9px] text-slate-500">15 min</span>
+                <p className="mt-2 text-[11px] leading-relaxed text-cyan-200/80">Use AI to generate 3 approaches against that context.</p>
+              </div>
+              <div className="hidden lg:flex items-center justify-center text-cyan-400/70" aria-hidden>
+                <span className="text-xl">→</span>
+              </div>
+              <div className="flex h-full flex-col rounded-xl border border-indigo-500/30 bg-indigo-950/20 p-3 text-left">
+                <span className="text-[9px] font-semibold uppercase tracking-wider text-indigo-400">Refine</span>
+                <span className="mt-1 text-[9px] text-slate-500">25 min</span>
+                <p className="mt-2 text-[11px] leading-relaxed text-cyan-200/80">Choose 1 approach and map the improved flow.</p>
+              </div>
+              <div className="hidden lg:flex items-center justify-center text-cyan-400/70" aria-hidden>
+                <span className="text-xl">→</span>
+              </div>
+              <div className="flex h-full flex-col rounded-xl border border-amber-500/30 bg-amber-950/20 p-3 text-left">
+                <span className="text-[9px] font-semibold uppercase tracking-wider text-amber-400">Review + share</span>
+                <span className="mt-1 text-[9px] text-slate-500">15 min</span>
+                <p className="mt-2 text-[11px] leading-relaxed text-cyan-200/80">Share the improved flow, 1 gap or edge case you identified, and 1 risk to validate next.</p>
               </div>
               <div className="hidden lg:flex items-stretch justify-center text-cyan-400/70" aria-hidden>
                 <svg viewBox="0 0 48 160" className="h-full min-h-[120px] w-12 overflow-visible">
@@ -3423,49 +3446,25 @@ function FCTGAITalkSlides() {
                   <path d="M 20 122 H 42" stroke="#67e8f9" strokeOpacity="0.8" strokeWidth="2.25" fill="none" markerEnd="url(#fctg-activity-fork-arrow)" />
                 </svg>
               </div>
-              <div className="flex h-full flex-col rounded-xl border border-violet-500/30 bg-violet-950/20 p-3 text-left">
-                <span className="text-[9px] font-semibold uppercase tracking-wider text-violet-400">Explore</span>
-                <span className="mt-1 text-[9px] text-slate-500">15 min</span>
-                <p className="mt-2 text-[11px] leading-relaxed text-cyan-200/80">Explore 3 ideas for improving the workflow.</p>
-              </div>
-              <div className="hidden lg:flex items-center justify-center text-cyan-400/70" aria-hidden>
-                <span className="text-xl">→</span>
-              </div>
-              <div className="flex h-full flex-col rounded-xl border border-indigo-500/30 bg-indigo-950/20 p-3 text-left">
-                <span className="text-[9px] font-semibold uppercase tracking-wider text-indigo-400">Develop</span>
-                <span className="mt-1 text-[9px] text-slate-500">25 min</span>
-                <p className="mt-2 text-[11px] leading-relaxed text-cyan-200/80">Turn 1 idea into a clearer workflow or prototype.</p>
-              </div>
-              <div className="hidden lg:flex items-center justify-center text-cyan-400/70" aria-hidden>
-                <span className="text-xl">→</span>
-              </div>
-              <div className="flex h-full flex-col rounded-xl border border-amber-500/30 bg-amber-950/20 p-3 text-left">
-                <span className="text-[9px] font-semibold uppercase tracking-wider text-amber-400">Share</span>
-                <span className="mt-1 text-[9px] text-slate-500">15 min</span>
-                <p className="mt-2 text-[11px] leading-relaxed text-cyan-200/80">Share what you made, 1 key gap, and 1 thing to validate next.</p>
-              </div>
-              <div className="hidden lg:flex items-center justify-center text-cyan-400/70" aria-hidden>
-                <span className="text-xl">→</span>
-              </div>
               <div className="grid h-full gap-3">
                 <div className="rounded-xl border border-teal-500/25 bg-teal-950/20 p-3 text-left">
                   <span className="text-[9px] font-semibold uppercase tracking-wider text-teal-400">Outputs</span>
                   <div className="mt-2 space-y-1 text-[11px] leading-relaxed text-cyan-200/90">
-                    <p>1 clearer workflow</p>
-                    <p>1 thing to validate next</p>
+                    <p>1 improved flow</p>
+                    <p>1 gap or edge case</p>
+                    <p>1 risk to validate next</p>
                   </div>
                 </div>
                 <div className="rounded-xl border border-fuchsia-500/25 bg-fuchsia-950/20 p-3 text-left">
                   <span className="text-[9px] font-semibold uppercase tracking-wider text-fuchsia-400">Outcomes</span>
                   <div className="mt-2 space-y-1 text-[11px] leading-relaxed text-cyan-200/90">
-                    <p>Clearer direction</p>
-                    <p>Better sense of what still needs judgment</p>
+                    <p>Clearer direction for improving the flow</p>
+                    <p>Better sense of what to validate next</p>
                   </div>
                 </div>
               </div>
             </div>
             <div className="mx-auto mt-3 flex max-w-3xl flex-wrap items-center justify-center gap-2 text-[10px]">
-              <span className="uppercase tracking-[0.18em] text-slate-500">Open</span>
               <a
                 href="https://miro.com/app/board/uXjVG-nWxPQ=/"
                 target="_blank"
@@ -3480,10 +3479,9 @@ function FCTGAITalkSlides() {
                 rel="noopener noreferrer"
                 className="rounded-full border border-violet-500/30 bg-violet-950/20 px-3 py-1 text-violet-200 transition hover:border-violet-400/50 hover:bg-violet-950/35"
               >
-                Figma Make - explore/develop
+                Figma Make - explore/refine
               </a>
             </div>
-            <p className="mx-auto mt-2 max-w-3xl text-center text-[10px] text-slate-500">Capture in Miro. Explore and develop in Figma Make.</p>
           </div>
         </Slide>
         )}
@@ -3515,12 +3513,12 @@ function FCTGAITalkSlides() {
         } />
       )}
 
-      {/* Slide 48: Built with this stack */}
+      {/* Slide 48: How this was built */}
       {slideIndex === 48 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl mx-auto px-4 py-4 md:px-8 md:py-6">
             <div className="text-center mb-4 md:mb-6">
-              <h2 className="fctg-heading !text-[2.1rem] md:!text-[2.6rem] inline-block whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Built with this stack</h2>
+              <h2 className="fctg-heading !text-[2.1rem] md:!text-[2.6rem] inline-block whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>How this was built</h2>
               <p className="fctg-subtitle mt-1">The deck runs as a real app, with real testing and delivery tooling.</p>
             </div>
             <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-6">
