@@ -13,7 +13,7 @@ import FCTGAIFlowDiagram, { FCTGAIFlowCaption } from './FCTGAIFlowDiagram'
 import FCTGMultiAgentDiagram, { FCTGMultiAgentCaption } from './FCTGMultiAgentDiagram'
 import FCTGBodyAnalogyDiagram from './FCTGBodyAnalogyDiagram'
 
-const SLIDE_COUNT = 51
+const SLIDE_COUNT = 52
 
 /* Slide quotes — adapted from the Tao Te Ching, via Rick Rubin */
 const FCTG_SLIDE_QUOTES = {
@@ -1175,15 +1175,15 @@ function FCTGAITalkSlides() {
           <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
         </div>
       )}
-      {/* Slide 49: What we hope you take away */}
-      {slideIndex === 49 && (
+      {/* Slide 50: What we hope you take away */}
+      {slideIndex === 50 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="calmness" />
           <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
         </div>
       )}
-      {/* Slide 50: Thank you */}
-      {slideIndex === 50 && (
+      {/* Slide 51: Thank you */}
+      {slideIndex === 51 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="calmness" />
         </div>
@@ -1198,7 +1198,7 @@ function FCTGAITalkSlides() {
         {slideIndex >= 30 && slideIndex <= 37 && <ChapterLabel>Design practice</ChapterLabel>}
         {slideIndex >= 38 && slideIndex <= 43 && <ChapterLabel>AI-ready systems</ChapterLabel>}
         {slideIndex >= 44 && slideIndex <= 45 && <ChapterLabel>Activity</ChapterLabel>}
-        {slideIndex >= 46 && slideIndex <= 50 && <ChapterLabel>Close</ChapterLabel>}
+        {slideIndex >= 46 && slideIndex <= 51 && <ChapterLabel>Close</ChapterLabel>}
         {/* Slide 0: Title */}
         {slideIndex === 0 && (
         <Slide
@@ -3539,8 +3539,47 @@ function FCTGAITalkSlides() {
         </Slide>
       )}
 
-      {/* Slide 48: Mindset */}
+      {/* Slide 48: How AI was used to plan and run this session */}
       {slideIndex === 48 && (
+        <Slide transparent className="items-center justify-center">
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl mx-auto px-4 py-4 md:px-8 md:py-6">
+            <div className="text-center mb-4 md:mb-6">
+              <h2 className="fctg-heading !text-[2.1rem] md:!text-[2.6rem] inline-block text-center whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Using AI to plan and run this session</h2>
+              <p className="fctg-subtitle mt-1">Planning, trimming, prep, and live support.</p>
+            </div>
+            <div className="grid gap-2 sm:grid-cols-2 lg:grid-cols-5">
+              {[
+                { title: 'Planning', text: 'Structure, flow, and what to cover', cls: 'border-cyan-500/30 bg-cyan-950/20 text-cyan-200' },
+                { title: 'Trimming & combining', text: 'What to cut, what to merge, clearer narrative', cls: 'border-violet-500/30 bg-violet-950/20 text-violet-200' },
+                { title: 'Prep materials', text: 'Run-of-show, timesheet, slide list, Q&A prep', cls: 'border-teal-500/30 bg-teal-950/20 text-teal-200' },
+                { title: 'Day-of assist', text: 'Cheat sheet, transitions, “what if” backup', cls: 'border-amber-500/30 bg-amber-950/20 text-amber-200' },
+                { title: 'Live support', text: 'Second screen: pacing, answers, one-liners', cls: 'border-fuchsia-500/30 bg-fuchsia-950/20 text-fuchsia-200' },
+              ].map(({ title, text, cls }) => (
+                <div key={title} className={`rounded-lg border px-2.5 py-3 text-center ${cls}`}>
+                  <div className="text-[13px] font-semibold leading-tight">{title}</div>
+                  <div className="mt-1 text-[11px] leading-snug text-slate-300">{text}</div>
+                </div>
+              ))}
+            </div>
+            <div className="mt-4 grid gap-2 sm:grid-cols-3">
+              {[
+                { title: 'Time saving', text: 'Draft, iterate, and prep faster', cls: 'border-emerald-500/30 bg-emerald-950/20' },
+                { title: 'Coverage', text: 'Prep you’d skip otherwise — Q&A, run-of-show, backup', cls: 'border-sky-500/30 bg-sky-950/20' },
+                { title: 'Knowledge', text: 'Domain framing, structure, best practices, gap-filling', cls: 'border-rose-500/30 bg-rose-950/20' },
+              ].map(({ title, text, cls }) => (
+                <div key={title} className={`rounded-lg border px-3 py-2 text-center ${cls}`}>
+                  <div className="text-xs font-semibold text-slate-200">{title}</div>
+                  <div className="mt-0.5 text-[11px] text-slate-400">{text}</div>
+                </div>
+              ))}
+            </div>
+            <p className="mt-3 text-center text-xs text-slate-400">Same idea: brief the agent on the goal and context, then iterate. Planning and delivery benefit as much as building.</p>
+          </div>
+        </Slide>
+      )}
+
+      {/* Slide 49: Mindset */}
+      {slideIndex === 49 && (
         <Slide transparent className="items-center justify-center overflow-hidden">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl mx-auto px-6 py-4">
             <div className="text-center mb-5 md:mb-6">
@@ -3565,8 +3604,8 @@ function FCTGAITalkSlides() {
         </Slide>
       )}
 
-      {/* Slide 49: What we hope you take away */}
-      {slideIndex === 49 && (
+      {/* Slide 50: What we hope you take away */}
+      {slideIndex === 50 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-3xl mx-auto px-4 py-4 md:px-8 md:py-6">
             <div className="text-center mb-4 md:mb-6">
@@ -3592,8 +3631,8 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-      {/* Slide 50: Thank you */}
-      {slideIndex === 50 && (
+      {/* Slide 51: Thank you */}
+      {slideIndex === 51 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition flex flex-col items-center justify-center text-center px-8 min-h-[60vh]">
             <h2 className="fctg-heading !text-[2.5rem] md:!text-[3rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Thank you</h2>
