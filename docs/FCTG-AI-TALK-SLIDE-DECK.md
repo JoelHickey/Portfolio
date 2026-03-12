@@ -1,7 +1,7 @@
 # FCTG AI Talk — Slide Deck Copy
 
 Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx`.  
-43 slides (Slide 1 = index 0 … Slide 43 = index 42). Titles, subtitles, and body copy only. *Three pillars (Invigoration, innovation, impact) moved to near the end, just before What we hope you take away.*
+44 slides in this doc (Slide 1 … Slide 44 = Thank you). *Note: Component `FCTGAITalkSlides.jsx` has 50 slides (index 0–49); doc reflects an earlier structure and does not match the component 1:1.* Titles, subtitles, and body copy only. *Three pillars (Invigoration, innovation, impact) moved to near the end, just before What we hope you take away.*
 
 ---
 
@@ -37,7 +37,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 4
 
 **Title:** The fundamentals of design hold strong
 
@@ -45,7 +45,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 5
 
 **Title:** The design process
 
@@ -55,7 +55,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 6
 
 **Title:** Ecosystem
 
@@ -63,7 +63,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 7
 
 **Title:** Energy
 
@@ -73,7 +73,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 8
 
 **Title:** Strength
 
@@ -85,7 +85,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 9
 
 **Title:** Speed
 
@@ -97,7 +97,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 10
 
 **Title:** Iteration
 
@@ -105,7 +105,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 11
 
 **Title:** Imagination
 
@@ -113,7 +113,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 12
 
 **Title:** Calmness
 
@@ -121,7 +121,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 13
 
 **Title:** Mystical Code
 
@@ -129,7 +129,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 14
 
 **Title:** Empowerment
 
@@ -139,7 +139,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 15
 
 **Title:** Getting started
 
@@ -156,7 +156,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 16
 
 **Title:** Vibe coding
 
@@ -166,7 +166,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 17
 
 **Title:** What is an AI Model?
 
@@ -179,7 +179,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 18
 
 **Title:** Inside the model
 
@@ -191,7 +191,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 19
 
 **Title:** What is an AI agent?
 
@@ -207,7 +207,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 20
 
 **Title:** Agent architectures
 
@@ -221,7 +221,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 21
 
 **Title:** What makes behaviour agentic?
 
@@ -236,7 +236,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 22
 
 **Title:** Vibe coding and Agentic coding
 
@@ -246,7 +246,7 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ---
 
-## Slide 3
+## Slide 23
 
 **Title:** Prompting styles
 
@@ -262,7 +262,7 @@ Same agent, either style. Choose to fit the task.
 
 ---
 
-## Slide 3
+## Slide 24
 
 **Title:** Prompt clarity
 
@@ -274,7 +274,7 @@ Same agent, either style. Choose to fit the task.
 
 ---
 
-## Slide 3
+## Slide 25
 
 **Title:** Context and continuity
 
@@ -284,7 +284,7 @@ Same agent, either style. Choose to fit the task.
 
 ---
 
-## Slide 3
+## Slide 26
 
 **Title:** Intervention
 
@@ -296,7 +296,7 @@ Same agent, either style. Choose to fit the task.
 
 ---
 
-## Slide 3
+## Slide 27
 
 **Title:** Agentic & designer productivity
 
@@ -312,7 +312,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 3
+## Slide 28
 
 **Title:** Then vs Now
 
@@ -328,7 +328,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 3
+## Slide 29
 
 **Title:** Tech stack
 
@@ -340,7 +340,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 3
+## Slide 30
 
 **Title:** Pipeline
 
@@ -350,7 +350,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 3
+## Slide 31
 
 **Title:** Cursor
 
@@ -360,7 +360,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 3
+## Slide 32
 
 **Title:** When you prompt
 
@@ -370,7 +370,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 3
+## Slide 33
 
 **Title:** GitHub
 
@@ -378,7 +378,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 3
+## Slide 34
 
 **Title:** Vercel
 
@@ -388,7 +388,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 3
+## Slide 35
 
 **Title:** Design systems
 
@@ -398,7 +398,7 @@ Across the design process — discover, define, develop, deliver — the agent h
 
 ---
 
-## Slide 3
+## Slide 36
 
 **Title:** Design system in practice
 
@@ -421,7 +421,7 @@ Works best when the design system is documented and in code.
 
 ---
 
-## Slide 3
+## Slide 37
 
 **Title:** Testing
 
@@ -435,7 +435,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 3
+## Slide 38
 
 **Title:** Helpful tips
 
@@ -445,7 +445,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 3
+## Slide 39
 
 **Title:** Level up to agentic
 
@@ -458,7 +458,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 3
+## Slide 40
 
 **Title:** Rounds
 
@@ -469,7 +469,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 3 (Three pillars — moved to near end)
+## Slide 41 (Three pillars — moved to near end)
 
 **Title:** Invigoration, innovation, impact
 
@@ -482,7 +482,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 3
+## Slide 42
 
 **Title:** What we hope you take away
 
@@ -495,7 +495,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 3
+## Slide 43
 
 **Title:** An opportunity of a lifetime
 
@@ -507,7 +507,7 @@ This deck: 75 tests — unit, integration, E2E. Agent adds tests; you set covera
 
 ---
 
-## Slide 36
+## Slide 44
 
 **Title:** Thank you
 
