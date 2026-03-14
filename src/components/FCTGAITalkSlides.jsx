@@ -1927,7 +1927,7 @@ function FCTGAITalkSlides() {
             <FCTGBodyAnalogyDiagram />
             <p className="text-[10px] font-semibold uppercase tracking-[0.18em] text-cyan-300/80 text-center">Operational loop: model → memory/tools → result → model</p>
             <p className="mt-3 text-xs text-slate-500 text-center max-w-xl mx-auto">Tools enable action, but the model&apos;s reasoning decides which tool, context, or memory to use.</p>
-            <p className="text-xs font-medium text-violet-300/80 text-center max-w-xl mx-auto">Use when you need a task done.</p>
+            <p className="text-xs font-medium text-cyan-300/80 text-center max-w-xl mx-auto">Use when you need a task done.</p>
           </div>
         </Slide>
         )}
@@ -3587,7 +3587,7 @@ function FCTGAITalkSlides() {
           <div key={slideIndex} className="fctg-text-transition w-full max-w-3xl mx-auto px-4 py-4 md:px-8 md:py-6">
 <div className="text-center mb-6">
               <h2 className="fctg-heading !text-[2rem] md:!text-[2.5rem] inline-block whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Time with AI</h2>
-              <p className="mt-2 text-sm text-slate-300">This project: ~40–55% less time</p>
+              <p className="mt-2 text-sm text-slate-300">Less friction, more space to think clearly about what matters.</p>
             </div>
             <div className="space-y-4">
               <div>
