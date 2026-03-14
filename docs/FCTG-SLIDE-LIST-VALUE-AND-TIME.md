@@ -202,7 +202,7 @@ Instructions — 60 min activity
 
 ---
 
-**Close (9 min)**
+**Close (10 min)**
 
 Close (intro) — 1 min
 
@@ -212,7 +212,11 @@ How this was built — 1.5 min
 
 ---
 
-How AI was used to plan and run this session — 1 min
+Using AI to plan and run this session — 1 min
+
+---
+
+Productivity metrics — 1 min
 
 ---
 
@@ -228,4 +232,4 @@ Thank you — 1.5 min
 
 ---
 
-**Theory total: 65 min** (slides 0–43). Then activity 60 min, close 9 min.
+**Theory total: 65 min** (slides 0–43). Then activity 60 min, close 10 min.

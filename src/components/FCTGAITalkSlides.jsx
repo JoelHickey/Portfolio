@@ -13,7 +13,7 @@ import FCTGAIFlowDiagram, { FCTGAIFlowCaption } from './FCTGAIFlowDiagram'
 import FCTGMultiAgentDiagram, { FCTGMultiAgentCaption } from './FCTGMultiAgentDiagram'
 import FCTGBodyAnalogyDiagram from './FCTGBodyAnalogyDiagram'
 
-const SLIDE_COUNT = 52
+const SLIDE_COUNT = 53
 
 /* Slide quotes — adapted from the Tao Te Ching, via Rick Rubin */
 const FCTG_SLIDE_QUOTES = {
@@ -1175,15 +1175,15 @@ function FCTGAITalkSlides() {
           <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
         </div>
       )}
-      {/* Slide 50: What we hope you take away */}
-      {slideIndex === 50 && (
+      {/* Slide 51: What we hope you take away */}
+      {slideIndex === 51 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="calmness" />
           <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
         </div>
       )}
-      {/* Slide 51: Thank you */}
-      {slideIndex === 51 && (
+      {/* Slide 52: Thank you */}
+      {slideIndex === 52 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
           <ParticleBackground variant="calmness" />
         </div>
@@ -1198,7 +1198,7 @@ function FCTGAITalkSlides() {
         {slideIndex >= 30 && slideIndex <= 37 && <ChapterLabel>Design practice</ChapterLabel>}
         {slideIndex >= 38 && slideIndex <= 43 && <ChapterLabel>AI-ready systems</ChapterLabel>}
         {slideIndex >= 44 && slideIndex <= 45 && <ChapterLabel>Activity</ChapterLabel>}
-        {slideIndex >= 46 && slideIndex <= 51 && <ChapterLabel>Close</ChapterLabel>}
+        {slideIndex >= 46 && slideIndex <= 52 && <ChapterLabel>Close</ChapterLabel>}
         {/* Slide 0: Title */}
         {slideIndex === 0 && (
         <Slide
@@ -2076,13 +2076,13 @@ function FCTGAITalkSlides() {
                   { title: 'You can name the outcome', text: 'You know what should be produced, changed, or decided.', cls: 'border-cyan-500/30 bg-cyan-950/20 text-cyan-200' },
                   { title: 'You can state the constraints', text: 'What should stay fixed, what context matters, and where the boundaries are.', cls: 'border-violet-500/30 bg-violet-950/20 text-violet-200' },
                   { title: 'You can explain what good looks like', text: 'You have success checks that make the result reviewable.', cls: 'border-emerald-500/30 bg-emerald-950/20 text-emerald-200' },
-                ].map(({ title, text, cls }) => (
+              ].map(({ title, text, cls }) => (
                   <div key={title} className={`rounded-xl border p-4 text-left ${cls}`}>
-                    <h3 className="text-sm font-semibold">{title}</h3>
+                  <h3 className="text-sm font-semibold">{title}</h3>
                     <p className="mt-1 text-sm leading-snug text-slate-200">{text}</p>
-                  </div>
-                ))}
-              </div>
+                </div>
+              ))}
+            </div>
             </div>
           </div>
         </Slide>
@@ -3250,13 +3250,13 @@ function FCTGAITalkSlides() {
                 { title: 'Research', text: 'Themes, needs, pain points — what users actually experience.', cls: 'border-violet-500/30 bg-violet-950/20 text-violet-200' },
                 { title: 'Product rules', text: 'Edge cases, priorities, constraints — what the business needs.', cls: 'border-teal-500/30 bg-teal-950/20 text-teal-200' },
                 { title: 'Live product', text: 'Current screens, bugs, analytics — how things actually behave.', cls: 'border-amber-500/30 bg-amber-950/20 text-amber-200' },
-              ].map(({ title, text, cls }) => (
+                  ].map(({ title, text, cls }) => (
                 <div key={title} className={`rounded-xl border p-4 ${cls}`}>
-                  <div className="text-sm font-semibold">{title}</div>
+                      <div className="text-sm font-semibold">{title}</div>
                   <div className="mt-2 text-xs text-slate-300">{text}</div>
+                    </div>
+                  ))}
                 </div>
-              ))}
-            </div>
             <div className="mt-4 rounded-xl border border-slate-500/25 bg-slate-900/40 px-4 py-3 text-center">
               <div className="text-[10px] font-semibold uppercase tracking-[0.18em] text-slate-400">Key idea</div>
               <div className="mt-1 text-sm text-slate-100">Pick the inputs that change the answer. Leave out everything else.</div>
@@ -3561,11 +3561,14 @@ function FCTGAITalkSlides() {
                 </div>
               ))}
             </div>
-            <div className="mt-4 grid gap-2 sm:grid-cols-3">
+            <div className="mt-4 grid gap-2 sm:grid-cols-2 lg:grid-cols-6">
               {[
                 { title: 'Time saving', text: 'Draft, iterate, and prep faster', cls: 'border-emerald-500/30 bg-emerald-950/20' },
                 { title: 'Coverage', text: 'Prep you’d skip otherwise — Q&A, run-of-show, backup', cls: 'border-sky-500/30 bg-sky-950/20' },
                 { title: 'Knowledge', text: 'Domain framing, structure, best practices, gap-filling', cls: 'border-rose-500/30 bg-rose-950/20' },
+                { title: 'Parallel work', text: 'Deck, copy, and prep docs at the same time', cls: 'border-amber-500/30 bg-amber-950/20' },
+                { title: 'Iteration speed', text: 'Try more directions, see results quickly', cls: 'border-indigo-500/30 bg-indigo-950/20' },
+                { title: 'Higher floor', text: 'Better first drafts, focus on refining', cls: 'border-pink-500/30 bg-pink-950/20' },
               ].map(({ title, text, cls }) => (
                 <div key={title} className={`rounded-lg border px-3 py-2 text-center ${cls}`}>
                   <div className="text-xs font-semibold text-slate-200">{title}</div>
@@ -3578,8 +3581,46 @@ function FCTGAITalkSlides() {
         </Slide>
       )}
 
-      {/* Slide 49: Mindset */}
+      {/* Slide 49: Productivity metrics — building this session */}
       {slideIndex === 49 && (
+        <Slide transparent className="items-center justify-center">
+          <div key={slideIndex} className="fctg-text-transition w-full max-w-3xl mx-auto px-4 py-4 md:px-8 md:py-6">
+<div className="text-center mb-6">
+              <h2 className="fctg-heading !text-[2rem] md:!text-[2.5rem] inline-block whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Time with AI</h2>
+              <p className="mt-2 text-sm text-slate-300">This project: ~40–55% less time</p>
+            </div>
+            <div className="space-y-4">
+              <div>
+                <p className="text-xs text-slate-400 mb-1">Without AI</p>
+                <div className="flex h-4 w-full rounded overflow-hidden">
+                  <div style={{ width: '85%' }} className="bg-amber-500/60" />
+                  <div style={{ width: '6%' }} className="bg-emerald-500/60" />
+                  <div style={{ width: '5%' }} className="bg-cyan-500/60" />
+                  <div style={{ width: '4%' }} className="bg-violet-500/60" />
+                </div>
+              </div>
+              <div>
+                <p className="text-xs text-slate-400 mb-1">With Cursor</p>
+                <div className="flex h-4 w-full rounded overflow-hidden">
+                  <div style={{ width: '52%' }} className="bg-amber-500/60" />
+                  <div style={{ width: '18%' }} className="bg-emerald-500/60" />
+                  <div style={{ width: '16%' }} className="bg-cyan-500/60" />
+                  <div style={{ width: '14%' }} className="bg-violet-500/60" />
+                </div>
+              </div>
+              <div className="flex flex-wrap gap-4 justify-center pt-2 text-xs text-slate-500">
+                <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded-sm bg-amber-500/60" />Execution</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded-sm bg-emerald-500/60" />Judgment</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded-sm bg-cyan-500/60" />Direction</span>
+                <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded-sm bg-violet-500/60" />Decisions</span>
+              </div>
+            </div>
+          </div>
+        </Slide>
+      )}
+
+      {/* Slide 50: Mindset */}
+      {slideIndex === 50 && (
         <Slide transparent className="items-center justify-center overflow-hidden">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl mx-auto px-6 py-4">
             <div className="text-center mb-5 md:mb-6">
@@ -3604,8 +3645,8 @@ function FCTGAITalkSlides() {
         </Slide>
       )}
 
-      {/* Slide 50: What we hope you take away */}
-      {slideIndex === 50 && (
+      {/* Slide 51: What we hope you take away */}
+      {slideIndex === 51 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-3xl mx-auto px-4 py-4 md:px-8 md:py-6">
             <div className="text-center mb-4 md:mb-6">
@@ -3631,12 +3672,13 @@ function FCTGAITalkSlides() {
         </Slide>
         )}
 
-      {/* Slide 51: Thank you */}
-      {slideIndex === 51 && (
+      {/* Slide 52: Thank you */}
+      {slideIndex === 52 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition flex flex-col items-center justify-center text-center px-8 min-h-[60vh]">
             <h2 className="fctg-heading !text-[2.5rem] md:!text-[3rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Thank you</h2>
-            <p className="fctg-subtitle mt-4 text-slate-300">Questions?</p>
+            <p className="fctg-subtitle mt-4 text-slate-300">Reach out with any questions</p>
+            <p className="mt-2 text-sm text-slate-500">Email and LinkedIn are linked here</p>
           </div>
         </Slide>
         )}

@@ -183,18 +183,21 @@ A single-sentence “value for participants” for each slide so facilitators an
 ## Slide 47 — How this was built  
 **Value:** Shows the deck as a real app (Cursor, React, Vite, Vitest, RTL, Playwright) so the “workflow is code, tests, review, delivery” message is demonstrated, not just stated.
 
-## Slide 48 — How AI was used to plan and run this session
-**Value:** Shows that AI helped with planning, trimming, combining, prep materials (run-of-show, timesheet, Q&A), and day-of support — so participants see the same agentic loop applied to planning and delivery, not just building.
+## Slide 48 — Using AI to plan and run this session
+**Value:** Shows that AI helped with planning, trimming, combining, prep materials (run-of-show, timesheet, Q&A), day-of support, and key benefits (time saving, coverage, knowledge, parallel work, iteration speed, higher floor) — so participants see the same agentic loop applied to planning and delivery, not just building.
 
-## Slide 49 — Mindset
+## Slide 49 — Productivity metrics
+**Value:** Makes the benefit tangible with numbers — ~55–65 hr with AI, ~90–140 hr estimated without, ~20–50 hr saved — plus prep materials they likely wouldn’t have created manually, so the ROI is clear.
+
+## Slide 50 — Mindset
 **Value:** Leaves five practical principles (Start small, Stay curious, Use clear roles, Shape the environment, Keep judgment human) so they have a clear “how to work with agents” takeaway.
 
-## Slide 50 — What we hope you take away  
+## Slide 51 — What we hope you take away  
 **Value:** Reinforces three messages — how to work, what changes, what stays human — and the idea that the opportunity is better process and outcomes, not more output.
 
-## Slide 51 — Thank you  
+## Slide 52 — Thank you  
 **Value:** Closes the session and opens space for questions so the conversation can continue.
 
 ---
 
-*Generated from the FCTG AI talk deck (52 slides). Use this for facilitator notes, participant handouts, or run-of-show.*
+*Generated from the FCTG AI talk deck (53 slides). Use this for facilitator notes, participant handouts, or run-of-show.*
