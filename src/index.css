@@ -196,7 +196,6 @@ body.home-sky::after {
 header {
   position: relative;
   z-index: 10;
-  background: linear-gradient(135deg, #2c3a54 0%, #111a2b 32%, #0b111d 58%, #000000 100%);
 }
 
 .full-bleed {
@@ -368,6 +367,26 @@ header {
   to {
     stroke-dashoffset: 0;
   }
+}
+
+/* Product Strategy & Design card: draw-in via AnimatedSVGDraw, then subtle motion */
+.product-strategy-card.in-view .roadmap-path {
+  animation: stroke-draw 1.4s ease-out forwards, product-strategy-flow 2.8s linear 2s infinite;
+}
+.product-strategy-card.in-view .roadmap-path-2 {
+  animation: stroke-draw 1.4s ease-out 0.15s forwards;
+}
+@keyframes product-strategy-flow {
+  0% { stroke-dasharray: 10 120; stroke-dashoffset: 0; }
+  100% { stroke-dasharray: 10 120; stroke-dashoffset: 130; }
+}
+.product-strategy-svg .north-star-pulse {
+  transform-origin: center;
+  animation: north-star-pulse 2.2s ease-in-out 1s infinite;
+}
+@keyframes north-star-pulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.85; transform: scale(1.2); }
 }
 
 /* Image reveal (e.g. line / wipe) */

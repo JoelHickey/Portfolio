@@ -1,11 +1,18 @@
 import { HiOutlineMail } from 'react-icons/hi'
 import { SiLinkedin, SiDribbble } from 'react-icons/si'
+import ParticleBackground from '../components/ParticleBackground'
 
 function About() {
   return (
-    <section className="w-full bg-white">
-      <div className="mx-auto w-full max-w-6xl px-6 py-10">
-        <div className="grid gap-8 rounded-2xl bg-white p-8 shadow-lg lg:grid-cols-[1.2fr_2fr]">
+    <section className="relative w-full min-h-[80vh] overflow-hidden bg-black">
+      <div className="absolute inset-0 z-0">
+        <ParticleBackground variant="title" contained />
+      </div>
+      <div className="relative z-10 mx-auto w-full max-w-6xl px-6 py-10">
+        <div className="relative rounded-2xl shadow-lg">
+          {/* White layer so particles only show around the document, not behind it */}
+          <div className="absolute inset-0 rounded-2xl bg-white" aria-hidden />
+          <div className="relative z-10 grid gap-8 rounded-2xl bg-white p-8 lg:grid-cols-[1.2fr_2fr]">
             <div className="space-y-6">
               <div>
                 <p className="text-lg font-semibold text-slate-900">Joel Hickey</p>
@@ -53,18 +60,25 @@ function About() {
                   ))}
                 </ul>
               </div>
+              <div>
+                <h3 className="text-sm font-semibold text-slate-900">Education</h3>
+                <ul className="mt-3 space-y-1 text-sm text-slate-600">
+                  <li>Master of Interactive Media — Queensland College of Art (2015-2016)</li>
+                  <li>Bachelor of Audio Engineering &amp; Sound Production — JMC Academy (2011-2013)</li>
+                </ul>
+              </div>
+              <div>
+                <h3 className="text-sm font-semibold text-slate-900">References</h3>
+                <p className="mt-3 text-sm text-slate-600">References available on request</p>
+              </div>
             </div>
 
             <div className="space-y-8 text-sm text-slate-600">
-              <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-slate-900">About</h3>
-                <p>
-                  From an early age I developed a unique lens that blends art and design. With experience in interaction
-                  design, service design, and human-centred thinking, I move fast to deliver valuable, delightful,
-                  measurable solutions that feel effortless to use.
-                </p>
-              </div>
-
+              <p>
+                From an early age I developed a unique lens that blends art and design. With experience in interaction
+                design, service design, and human-centred thinking, I move fast to deliver valuable, delightful,
+                measurable solutions that feel effortless to use.
+              </p>
               <div className="space-y-4">
                 <h3 className="text-lg font-semibold text-slate-900">Experience</h3>
                 <div className="space-y-3">
@@ -128,21 +142,9 @@ function About() {
                   </div>
                 </div>
               </div>
-
-              <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-slate-900">Education</h3>
-                <ul className="space-y-1">
-                  <li>Master of Interactive Media — Queensland College of Art (2015-2016)</li>
-                  <li>Bachelor of Audio Engineering &amp; Sound Production — JMC Academy (2011-2013)</li>
-                </ul>
-              </div>
-
-              <div className="space-y-2">
-                <h3 className="text-lg font-semibold text-slate-900">References</h3>
-                <p>References available on request</p>
-              </div>
             </div>
           </div>
+        </div>
       </div>
     </section>
   )

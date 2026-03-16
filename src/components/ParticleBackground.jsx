@@ -46,14 +46,16 @@ const VARIANTS = {
   },
 }
 
-function ParticleBackground({ className = '', variant = 'strength', centerOffsetX = 0, centerOffsetY = 0 }) {
+function ParticleBackground({ className = '', variant = 'strength', centerOffsetX = 0, centerOffsetY = 0, contained = false }) {
   const canvasRef = useRef(null)
+  const containerRef = useRef(null)
   const animationRef = useRef(null)
   const config = VARIANTS[variant] || VARIANTS.strength
 
   useEffect(() => {
     const canvas = canvasRef.current
-    if (!canvas) return
+    const container = contained ? containerRef.current : null
+    if (!canvas || (contained && !container)) return
 
     const ctx = canvas.getContext('2d')
     let width = 0
@@ -62,13 +64,29 @@ function ParticleBackground({ className = '', variant = 'strength', centerOffset
     let centerY = 0
 
     const resize = () => {
-      width = canvas.width = window.innerWidth
-      height = canvas.height = window.innerHeight
+      if (contained && container) {
+        const rect = container.getBoundingClientRect()
+        width = canvas.width = rect.width
+        height = canvas.height = rect.height
+      } else {
+        width = canvas.width = window.innerWidth
+        height = canvas.height = window.innerHeight
+      }
       centerX = width / 2
       centerY = height / 2
     }
     resize()
+    let ro = null
+    if (contained && container) {
+      ro = new ResizeObserver(resize)
+      ro.observe(container)
+    }
     window.addEventListener('resize', resize)
+
+    let rafId = null
+    const run = () => {
+      resize()
+      if (contained && (width <= 0 || height <= 0)) return
 
     const PARTICLE_COUNT = config.particleCount ?? (config.multidirectional ? 600 : config.orbital ? 700 : 800)
     const particles = []
@@ -299,19 +317,42 @@ function ParticleBackground({ className = '', variant = 'strength', centerOffset
     }
 
     animate()
+    }
+
+    if (contained) {
+      rafId = requestAnimationFrame(() => {
+        rafId = requestAnimationFrame(run)
+      })
+    } else {
+      run()
+    }
 
     return () => {
+      if (rafId != null) cancelAnimationFrame(rafId)
+      if (ro) ro.disconnect()
       window.removeEventListener('resize', resize)
       if (animationRef.current) {
         cancelAnimationFrame(animationRef.current)
       }
     }
-  }, [variant, centerOffsetX, centerOffsetY])
+  }, [variant, centerOffsetX, centerOffsetY, contained])
+
+  const canvasClass = contained
+    ? `pointer-events-none absolute inset-0 h-full w-full ${className}`
+    : `pointer-events-none fixed inset-0 w-screen h-screen ${className}`
+
+  if (contained) {
+    return (
+      <div ref={containerRef} className="absolute inset-0 h-full w-full">
+        <canvas ref={canvasRef} className={canvasClass} aria-hidden />
+      </div>
+    )
+  }
 
   return (
     <canvas
       ref={canvasRef}
-      className={`pointer-events-none fixed inset-0 w-screen h-screen ${className}`}
+      className={canvasClass}
       aria-hidden
     />
   )

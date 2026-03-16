@@ -10,8 +10,13 @@ const navLinkClass = ({ isActive }) =>
 
 function Layout() {
   return (
-    <div className="flex min-h-screen flex-col text-slate-100">
-      <header className="bg-transparent">
+    <div className="flex min-h-screen flex-col bg-black text-slate-100">
+      <header
+        className="bg-black"
+        style={{
+          boxShadow: '0 4px 24px rgba(6, 182, 212, 0.2), 0 4px 40px rgba(139, 92, 246, 0.18)'
+        }}
+      >
         <div className="mx-auto flex max-w-6xl items-center justify-center p-2">
           <nav className="flex w-full items-center justify-center gap-12 text-xs font-medium text-slate-200">
             <NavLink to="/" className={navLinkClass} end>
@@ -30,7 +35,7 @@ function Layout() {
         </div>
       </header>
 
-      <main className="w-full flex-1 px-2 py-12">
+      <main className="w-full flex-1 bg-black py-12">
         <Outlet />
       </main>
     </div>

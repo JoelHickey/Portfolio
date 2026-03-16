@@ -3661,7 +3661,8 @@ function FCTGAITalkSlides() {
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition flex flex-col items-center justify-center text-center px-8 min-h-[60vh]">
             <h2 className="fctg-heading !text-[2.5rem] md:!text-[3rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Thank you</h2>
-            <p className="fctg-subtitle mt-4 text-slate-300">Reach out with any questions</p>
+            <p className="mt-6 text-sm font-medium text-slate-400">Joel Hickey</p>
+            <p className="fctg-subtitle mt-2 text-slate-300">Reach out with any questions</p>
             <p className="mt-2 flex flex-wrap items-center justify-center gap-3 text-sm">
               <a href="mailto:joelhickeydesigns@gmail.com" className="text-cyan-400 hover:text-cyan-300 underline underline-offset-2">Email</a>
               <span className="text-slate-500">·</span>
