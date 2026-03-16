@@ -970,13 +970,17 @@ function FCTGAITalkSlides() {
           <ParticleBackground variant="agents" />
         </div>
       )}
-      {/* Slide 23: Exploration & execution — pure black */}
+      {/* Slide 23: Exploration & execution */}
       {slideIndex === 23 && (
-        <div className="pointer-events-none fixed inset-0 bg-black" aria-hidden />
+        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
+          <ParticleBackground variant="agents" />
+        </div>
       )}
-      {/* Slide 24: Prompts & briefs — pure black */}
+      {/* Slide 24: Prompts & briefs */}
       {slideIndex === 24 && (
-        <div className="pointer-events-none fixed inset-0 bg-black" aria-hidden />
+        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
+          <ParticleBackground variant="agents" />
+        </div>
       )}
       {/* Slide 25: Agentic brief */}
       {slideIndex === 25 && (
