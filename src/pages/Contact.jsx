@@ -15,7 +15,7 @@ function Contact() {
             <ul className="space-y-2 text-sm text-slate-600">
               <li><a href="tel:0421366486">0421 366 486</a></li>
               <li><a href="mailto:joelhickeydesigns@gmail.com">Email</a></li>
-              <li><a href="https://linkedin.com/in/joelhickey" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
+              <li><a href="https://www.linkedin.com/in/joel-hickey-493757138/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
               <li><a href="https://dribbble.com/joelhickey" target="_blank" rel="noopener noreferrer">Dribbble</a></li>
             </ul>
           </div>

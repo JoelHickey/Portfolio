@@ -20,7 +20,7 @@ function About() {
                   </a>
                 </p>
                 <p>
-                  <a href="https://linkedin.com/in/joelhickey" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5">
+                  <a href="https://www.linkedin.com/in/joel-hickey-493757138/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5">
                     <SiLinkedin size={18} />
                     <span>LinkedIn</span>
                   </a>
