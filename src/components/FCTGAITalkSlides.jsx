@@ -1185,6 +1185,20 @@ function FCTGAITalkSlides() {
           <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
         </div>
       )}
+      {/* Slide 49: How AI was used to plan and run this session */}
+      {slideIndex === 49 && (
+        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
+          <ParticleBackground variant="calmness" />
+          <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
+        </div>
+      )}
+      {/* Slide 50: Productivity metrics — building this session */}
+      {slideIndex === 50 && (
+        <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
+          <ParticleBackground variant="calmness" />
+          <div className="absolute inset-0 fctg-pattern-contour" aria-hidden />
+        </div>
+      )}
       {/* Slide 51: Mindset */}
       {slideIndex === 51 && (
         <div className="pointer-events-none fixed inset-0 z-10 bg-[#030b0f]" aria-hidden>
@@ -1659,7 +1673,6 @@ function FCTGAITalkSlides() {
               `}</style>
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] fctg-speed-heading-flash inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Speed</h2>
               <p className="fctg-subtitle mt-1">From 30+ minutes to first output in seconds.</p>
-              <p className="mt-2 text-xs text-slate-400">A usable first pass still takes judgment.</p>
               <div className="mt-6 flex flex-col gap-4 min-w-0 overflow-hidden" aria-hidden>
                 <style>{`
                   @keyframes fctg-speed-prompt-type { from { width: 0; } to { width: 40ch; } }
@@ -1830,7 +1843,7 @@ function FCTGAITalkSlides() {
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl">
             <div className="max-w-md mx-auto text-center">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Calmness</h2>
-              <p className="fctg-subtitle mt-1">Less friction, more space to think clearly about what matters.</p>
+              <p className="fctg-subtitle mt-1 whitespace-nowrap overflow-x-auto">Less friction, more space to think clearly about what matters.</p>
             </div>
             <div className="w-full max-w-5xl mt-10 text-center">
               <SlideQuote slideIndex={13} />
@@ -1863,7 +1876,7 @@ function FCTGAITalkSlides() {
                 <span className="fctg-mystical-heading-a absolute inset-0 flex items-center justify-center" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Mystical Code</span>
                 <span className="fctg-mystical-heading-b absolute inset-0 flex items-center justify-center font-mono text-2xl tracking-widest" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>{'{ } </> ( )'}</span>
               </h2>
-              <p className="fctg-subtitle mt-1">AI bridges the gap between design intent and technical implementation.</p>
+              <p className="fctg-subtitle mt-1 whitespace-nowrap overflow-x-auto">AI bridges the gap between design intent and technical implementation.</p>
             </div>
           </div>
         </Slide>
@@ -1876,7 +1889,7 @@ function FCTGAITalkSlides() {
             <div className="max-w-md text-center md:text-left">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Empowerment</h2>
               <p className="fctg-subtitle mt-1">Build things that add value to your life.</p>
-              <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-cyan-400">
+              <p className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-sm text-cyan-400 cursor-default select-none">
                 <span className="text-cyan-300/70">Examples:</span>
                 <span>Mental health app</span>
                 <span>Drafting studio</span>
@@ -3558,7 +3571,7 @@ function FCTGAITalkSlides() {
           <div key={slideIndex} className="fctg-text-transition w-full max-w-3xl mx-auto px-4 py-4 md:px-8 md:py-6">
 <div className="text-center mb-6">
               <h2 className="fctg-heading !text-[2rem] md:!text-[2.5rem] inline-block whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Time with AI</h2>
-              <p className="mt-2 text-sm text-slate-300">Less friction, more space to think clearly about what matters.</p>
+              <p className="mt-2 text-sm text-slate-300 whitespace-nowrap overflow-x-auto">Less friction, more space to think clearly about what matters.</p>
             </div>
             <div className="space-y-4">
               <div>

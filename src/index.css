@@ -751,11 +751,6 @@ html.fctg-v1-scroll-snap .fctg-v1-snap-section {
 
 .fctg-book-img {
   box-shadow: 0 0 50px rgba(34, 211, 238, 0.2);
-  transition: box-shadow 0.3s ease, transform 0.3s ease;
-}
-.fctg-book-img:hover {
-  box-shadow: 0 0 70px rgba(34, 211, 238, 0.35);
-  transform: scale(1.02);
 }
 
 /* FCTG slides — animations */
