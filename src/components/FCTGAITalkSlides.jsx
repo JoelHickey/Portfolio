@@ -1243,7 +1243,7 @@ function FCTGAITalkSlides() {
                   <span className="block">and impact</span>
                 </h1>
                 <p className="mt-8 text-sm font-medium text-slate-400">Joel Hickey</p>
-                <p className="mt-2 text-sm tracking-wide text-cyan-300/80">Presented to Flight Centre Travel Group&apos;s (FCTG) Global Design Team, March 2026</p>
+                <p className="mt-2 text-sm tracking-wide text-cyan-300/80">Design & AI · March 2026</p>
               </div>
             </div>
           }

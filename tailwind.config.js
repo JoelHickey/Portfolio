@@ -42,10 +42,15 @@ export default {
       borderRadius: {
         'ds-card': '0.75rem',
         'ds-badge': '0.5rem',
+        'home-card': '2rem',
       },
       boxShadow: {
         'ds-card': '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
         'ds-card-hover': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
+        'home-card-glow':
+          '0 2px 8px rgba(34, 211, 238, 0.16), 0 8px 24px rgba(34, 211, 238, 0.12), 0 24px 48px -12px rgba(34, 211, 238, 0.1)',
+        'home-card-glow-hover':
+          '0 4px 16px rgba(34, 211, 238, 0.22), 0 12px 32px rgba(34, 211, 238, 0.16), 0 32px 64px -16px rgba(34, 211, 238, 0.14)',
       },
       backgroundImage: {
         'ds-heading-gradient': 'linear-gradient(to right, #1e293b, #4f46e5, #1e293b)',
@@ -53,6 +58,19 @@ export default {
         /* FCTG AI Talk — v1 (light) and v2 (dark slides) */
         'fctg-heading-v1': 'linear-gradient(to right, #1e293b, #4f46e5, #1e293b)',
         'fctg-heading-v2': 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)',
+        /**
+         * Home page — extracted design tokens (primary CTA bar, section H2s, card chrome).
+         * JS fallbacks: src/design-system/home.js
+         */
+        'home-cta': 'linear-gradient(90deg, #0e7490 0%, #4f46e5 38%, #7c3aed 62%, #c026d3 100%)',
+        'home-cta-label':
+          'linear-gradient(90deg, #5eead4 0%, #a5b4fc 38%, #c4b5fd 62%, #f0abfc 100%)',
+        'home-h2-stories':
+          'linear-gradient(135deg, #0f172a 0%, #312e81 22%, #5b21b6 42%, #7c3aed 58%, #a78bfa 74%, #4c1d95 100%)',
+        'home-h2-value':
+          'linear-gradient(135deg, #0f172a 0%, #0d9488 25%, #06b6d4 50%, #22d3ee 75%, #0f172a 100%)',
+        'home-card-title-on-dark':
+          'linear-gradient(90deg, #0f172a 0%, #4f46e5 35%, #0891b2 70%, #0f172a 100%)',
       },
       /* FCTG section layout */
       maxWidth: {

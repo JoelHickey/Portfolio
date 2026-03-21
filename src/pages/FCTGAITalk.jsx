@@ -302,7 +302,7 @@ function FCTGAITalk() {
                   and impact
                 </h1>
                 <p className="mt-6 max-w-2xl text-base text-white md:text-lg">
-                  Presented to Flight Centre Travel Group&apos;s (FCTG) Global Design Team, March 2026
+                  Design & AI · March 2026
                 </p>
                 </div>
               </div>
@@ -1442,7 +1442,11 @@ function FCTGAITalk() {
               <strong className="text-slate-800">Extracted a design system.</strong> We moved repeated values into <code className="rounded bg-slate-100 px-1 py-0.5 text-sm">tailwind.config.js</code> and wrapped patterns into components: <code className="rounded bg-slate-100 px-1 py-0.5 text-sm">FCTGHeading</code> (v1 light / v2 dark), <code className="rounded bg-slate-100 px-1 py-0.5 text-sm">FCTGCard</code>, <code className="rounded bg-slate-100 px-1 py-0.5 text-sm">FCTGLabelPill</code>. v2 uses them; v1 uses inline Tailwind for scroll performance.
             </p>
             <p className="text-slate-600 leading-relaxed mb-3">
-              See <Link to="/design-system" className="text-indigo-600 hover:text-indigo-700 underline">/design-system</Link> for the full reference.
+              See{' '}
+              <Link to="/design-system" className="text-indigo-600 hover:text-indigo-700 underline">
+                Design system — Home
+              </Link>
+              .
             </p>
             <p className="text-slate-600 leading-relaxed text-sm">
               <strong className="text-slate-800">Hook into existing systems.</strong> Extend Chakra, Primer, Radix, Mantine, Material UI, Ant Design, Polaris (Shopify) for accessibility and primitives.

@@ -1,4 +1,6 @@
 @import "tailwindcss";
+/* Wire v3-style theme (tailwind.config.js) — required for custom keys like home-*, ds-*, etc. */
+@config "../tailwind.config.js";
 
 *,
 *::before,
@@ -7,7 +9,7 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
   overflow-x: hidden;
 }
 
@@ -92,6 +94,8 @@ body.home-sky::before {
   pointer-events: none;
   z-index: 0;
   opacity: 1;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   background:
     radial-gradient(1200px 900px at 18% 30%, rgba(255, 255, 255, 0.045), transparent 65%),
     radial-gradient(900px 700px at 72% 60%, rgba(255, 255, 255, 0.035), transparent 70%),
@@ -159,6 +163,8 @@ body.home-sky::after {
   pointer-events: none;
   z-index: 0;
   opacity: 0.5;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   background:
     radial-gradient(circle at 10% 20%, rgba(255, 255, 255, 0.6) 0 1px, transparent 2px),
     radial-gradient(circle at 25% 40%, rgba(255, 255, 255, 0.4) 0 0.8px, transparent 1.8px),
@@ -184,6 +190,8 @@ body.home-sky::after {
   height: 100vh;
   pointer-events: none;
   z-index: 0;
+  transform: translateZ(0);
+  backface-visibility: hidden;
   background:
     radial-gradient(circle at 20% 25%, rgba(255, 255, 255, 0.9) 0 1px, transparent 2px),
     radial-gradient(circle at 55% 15%, rgba(255, 255, 255, 0.9) 0 1px, transparent 2px),
@@ -195,7 +203,7 @@ body.home-sky::after {
 
 header {
   position: relative;
-  z-index: 10;
+  z-index: 20;
 }
 
 .full-bleed {
@@ -251,6 +259,43 @@ header {
 #root {
   position: relative;
   z-index: 1;
+}
+
+/* Keep footer above home-sky fixed overlays so it stays visible after load */
+#site-footer {
+  position: relative;
+  z-index: 10;
+  isolation: isolate;
+}
+
+/* FCTG preso — Imagination slide: sound wave dots (same timing as slides) */
+@keyframes home-imagination-sound-dot {
+  0%,
+  100% {
+    transform: translateY(6px);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+.home-imagination-sound-dot {
+  transform-origin: center;
+  animation: home-imagination-sound-dot 1.2s ease-in-out infinite;
+}
+
+/* Stories page — larger wave dots */
+@keyframes stories-sound-dot {
+  0%,
+  100% {
+    transform: translateY(10px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+.stories-sound-dot {
+  transform-origin: center;
+  animation: stories-sound-dot 1.2s ease-in-out infinite;
 }
 
 @keyframes star-flicker {
@@ -361,6 +406,55 @@ header {
 @keyframes capability-icon-pulse {
   0%, 100% { opacity: 1; transform: scale(1); }
   50% { opacity: 0.85; transform: scale(1.06); }
+}
+
+/* Interactive star map (capabilities diagram) */
+@keyframes star-map-twinkle {
+  0%, 100% { opacity: 0.9; filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.2)); }
+  50% { opacity: 1; filter: drop-shadow(0 0 6px rgba(255, 255, 255, 0.3)); }
+}
+@keyframes star-map-drift {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes star-map-orbit-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+@keyframes star-map-orbit-spin-reverse {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+.star-map-container {
+  background:
+    radial-gradient(ellipse 100% 100% at 50% 50%, rgba(2, 6, 12, 0.55) 0%, transparent 55%),
+    radial-gradient(circle at 20% 30%, rgba(255, 255, 255, 0.015) 0%, transparent 25%),
+    radial-gradient(circle at 80% 70%, rgba(255, 255, 255, 0.012) 0%, transparent 25%);
+}
+.star-map-star.selected {
+  filter: brightness(1.04);
+}
+.star-map-drift-inner {
+  animation: star-map-drift 72s linear infinite;
+}
+.star-map-orbit-inner {
+  transform-origin: center;
+  animation: none;
+}
+.star-map-orbit-outer {
+  transform-origin: center;
+  animation: none;
+}
+.star-map-twinkle-delay-0 { animation: star-map-twinkle 2.5s ease-in-out infinite; }
+.star-map-twinkle-delay-1 { animation: star-map-twinkle 2.5s ease-in-out 0.3s infinite; }
+.star-map-twinkle-delay-2 { animation: star-map-twinkle 2.5s ease-in-out 0.6s infinite; }
+.star-map-twinkle-delay-3 { animation: star-map-twinkle 2.5s ease-in-out 0.9s infinite; }
+.star-map-twinkle-delay-4 { animation: star-map-twinkle 2.5s ease-in-out 1.2s infinite; }
+.star-map-twinkle-delay-5 { animation: star-map-twinkle 2.5s ease-in-out 1.5s infinite; }
+.star-map-twinkle-delay-6 { animation: star-map-twinkle 2.5s ease-in-out 1.8s infinite; }
+.star-map-twinkle-delay-7 { animation: star-map-twinkle 2.5s ease-in-out 2.1s infinite; }
+.star-map-dot {
+  animation: star-flicker 4s ease-in-out infinite;
 }
 
 @keyframes stroke-draw {

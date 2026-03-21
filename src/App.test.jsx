@@ -11,7 +11,7 @@ describe('App routing', () => {
       </MemoryRouter>
     )
 
-    expect(screen.getAllByText(/Streamlining Amendments|AI talk for now/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Amendments|Invigoration, innovation and impact/i).length).toBeGreaterThan(0)
   })
 
   it('renders Work at /stories', () => {
@@ -21,7 +21,7 @@ describe('App routing', () => {
       </MemoryRouter>
     )
 
-    expect(screen.getAllByText(/Streamlining Amendments|Coverage without the extra steps/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Amendments|Insurance/i).length).toBeGreaterThan(0)
   })
 
   it('renders Amendments case study at /stories/amendments', () => {
