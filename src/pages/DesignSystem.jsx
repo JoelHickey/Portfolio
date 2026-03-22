@@ -17,39 +17,29 @@ const OVERVIEW_AREA_ITEMS = [
 
 const OVERVIEW_AREA_DETAILS = {
   Foundations: {
-    status: 'Defined for Home',
-    summary: 'The shared visual rules for the Home page.',
+    status: 'In use',
+    summary: 'The shared visual rules for the live page.',
     detail:
-      'Today that mainly means typography, gradients, colors, shadows, and radius values used across the Home experience.',
+      'Today that mainly means typography, gradients, colors, shadows, and radius values used across the primary experience.',
     sources: ['tailwind.config.js', 'src/design-system/home.js'],
     next: 'See the Foundations tab for heading examples and the Sources tab for where these values are defined.'
   },
   Architecture: {
-    status: 'Emerging structure',
-    summary: 'How the Home design system is organized and consumed in code.',
-    detail:
-      'The current structure splits shared theme values into Tailwind config, mirrors some values in `home.js` for JavaScript-driven use, and applies them in `Home.jsx` while this page documents the result.',
-    sources: ['tailwind.config.js', 'src/design-system/home.js', 'src/pages/Home.jsx', 'src/pages/DesignSystem.jsx'],
-    next: ''
+    sources: ['tailwind.config.js', 'src/design-system/home.js', 'src/pages/Home.jsx', 'src/pages/DesignSystem.jsx']
   },
   Tokens: {
-    status: 'Defined for Home',
-    summary: 'The smallest shared style values in the current system.',
-    detail:
-      'Tokens are the shared visual decisions that keep the interface consistent. They help designers make faster, more repeatable decisions and help engineers implement those same decisions once and reuse them reliably across components and patterns.',
-    sources: ['tailwind.config.js', 'src/design-system/home.js', 'src/pages/Home.jsx'],
-    next: ''
+    sources: ['tailwind.config.js', 'src/design-system/home.js', 'src/pages/Home.jsx']
   },
   Components: {
-    status: 'Defined for Home',
-    summary: 'Reusable UI building blocks that already appear in Home.',
+    status: 'In use',
+    summary: 'Reusable UI building blocks that already appear on the live page.',
     detail:
       'Buttons and card treatments are the clearest current component layer in this system, and they are documented in the component tabs on this page.',
     sources: ['src/pages/Home.jsx', 'src/pages/DesignSystem.jsx'],
     next: 'See the Components tabs for button treatments, card titles, and case-study card shells.'
   },
   Patterns: {
-    status: 'Defined for Home',
+    status: 'In use',
     summary: 'Repeatable arrangements built from components.',
     detail:
       'Right now this mostly shows up as hero sections, CTA groupings, and case-study shells that combine multiple shared styles and components into larger UI patterns.',
@@ -57,28 +47,28 @@ const OVERVIEW_AREA_DETAILS = {
     next: 'Patterns are nested inside components in this overview because they are built from those reusable pieces.'
   },
   Documentation: {
-    status: 'Defined for Home',
-    summary: 'The current explanation layer for the Home system.',
+    status: 'In use',
+    summary: 'The current explanation layer for this system.',
     detail:
-      'This design system route, the recipe text under each example, and the Sources tab are the current documentation surface for how Home is built.',
+      'This design system route, the recipe text under each example, and the Sources tab are the current documentation surface for how the live page is built.',
     sources: ['src/pages/DesignSystem.jsx'],
-    next: 'Use this page to understand the system, then jump to `Home.jsx` to see it used in the live page.'
+    next: 'Use this page to understand the system, then open `src/pages/Home.jsx` to see it used in the live page.'
   },
   'How to': {
     status: 'Lightly defined',
-    summary: 'Practical guidance for working with the Home system.',
+    summary: 'Practical guidance for working with this system.',
     detail:
       'The current how-to guidance is lightweight: this overview explains the structure, recipe blocks show how examples are composed, and the Sources tab points to the files to edit.',
     sources: ['src/pages/DesignSystem.jsx', 'src/pages/Home.jsx'],
     next: 'This area can grow into more explicit contribution or extension guidance over time.'
   },
   'Sample pages': {
-    status: 'Defined for Home',
+    status: 'In use',
     summary: 'Live examples that show the system in use.',
     detail:
-      'Today the main sample page is `Home.jsx`, while this design system route provides focused previews of the same decisions in isolation.',
+      'Today the main sample is `src/pages/Home.jsx`, while this design system route provides focused previews of the same decisions in isolation.',
     sources: ['src/pages/Home.jsx', 'src/pages/DesignSystem.jsx'],
-    next: 'This is currently centered on Home, but the label leaves room for future sample pages.'
+    next: 'This is currently centered on that route, but the label leaves room for future sample pages.'
   },
   'Design principles': {
     status: 'Not yet defined',
@@ -90,11 +80,11 @@ const OVERVIEW_AREA_DETAILS = {
   },
   'Brand guidelines': {
     status: 'Not yet defined',
-    summary: 'Rules for brand expression beyond the current Home visuals.',
+    summary: 'Rules for brand expression beyond the current visuals.',
     detail:
-      'The Home page has a visual identity, but there is not yet a standalone brand-guidelines layer describing logo use, voice, or broader brand rules.',
+      'The portfolio has a visual identity, but there is not yet a standalone brand-guidelines layer describing logo use, voice, or broader brand rules.',
     sources: [],
-    next: 'This can stay muted until the broader design system expands beyond the current Home slice.'
+    next: 'This can stay muted until the broader design system expands beyond the current documented slice.'
   },
   Resources: {
     status: 'Not yet defined',
@@ -108,13 +98,13 @@ const OVERVIEW_AREA_DETAILS = {
 
 const OVERVIEW_AREA_SECTION_MAP = {
   Foundations: ['foundations-tokens', 'foundations-headings'],
-  Architecture: ['foundations-tokens', 'sources'],
-  Tokens: ['foundations-tokens', 'sources'],
-  Components: ['card-titles', 'buttons-primary', 'buttons-secondary', 'cards-elevation'],
-  Patterns: ['card-titles', 'buttons-primary', 'buttons-secondary', 'cards-elevation'],
-  Documentation: ['foundations-tokens', 'sources'],
-  'How to': ['foundations-tokens', 'sources'],
-  'Sample pages': ['foundations-tokens', 'foundations-headings', 'card-titles', 'buttons-primary', 'buttons-secondary', 'cards-elevation'],
+  Architecture: [],
+  Tokens: ['foundations-tokens'],
+  Components: [],
+  Patterns: [],
+  Documentation: [],
+  'How to': [],
+  'Sample pages': [],
   'Design principles': [],
   'Brand guidelines': [],
   Resources: []
@@ -157,51 +147,155 @@ const COMPONENT_LIBRARY_ITEMS = [
   { label: 'Tabs', active: false }
 ]
 
-const TOKEN_BENEFITS = ['Speed', 'Consistency', 'Reuse', 'Safer updates', 'Shared language']
-const ARCHITECTURE_BENEFITS = ['Clarity', 'Shared structure', 'Easier onboarding', 'Safer changes', 'Scales better']
+const IN_PRACTICE_INPUTS = [
+  {
+    title: 'Portfolio goals',
+    copy: 'Help visitors quickly understand who I am, what I do, and why the work is worth their attention.',
+    className: 'border-cyan-400/28 bg-cyan-950/20 text-cyan-50'
+  },
+  {
+    title: 'Brand expression',
+    copy: 'Make the portfolio feel recognizably mine through a consistent visual language, tone, and point of view.',
+    className: 'border-cyan-400/28 bg-cyan-950/20 text-cyan-50'
+  },
+  {
+    title: 'Accessibility and clarity',
+    copy: 'Keep the work easy to scan, readable on any screen, and usable for different kinds of visitors.',
+    className: 'border-cyan-400/28 bg-cyan-950/20 text-cyan-50'
+  },
+  {
+    title: 'Technical constraints',
+    copy: 'Stay performant, responsive, and easy to refine without the site becoming harder to maintain.',
+    className: 'border-cyan-400/28 bg-cyan-950/20 text-cyan-50'
+  }
+]
+
+const IN_PRACTICE_OUTCOMES = [
+  {
+    title: 'Faster iteration',
+    copy: 'Refine pages and components without rebuilding the same decisions each time.',
+    className: 'border-emerald-400/28 bg-emerald-950/20 text-emerald-50'
+  },
+  {
+    title: 'Safer changes',
+    copy: 'Update styles and patterns with less visual drift across the site.',
+    className: 'border-emerald-400/28 bg-emerald-950/20 text-emerald-50'
+  },
+  {
+    title: 'Stronger identity',
+    copy: 'Make the portfolio feel more distinct and recognizably mine.',
+    className: 'border-emerald-400/28 bg-emerald-950/20 text-emerald-50'
+  },
+  {
+    title: 'Consistent experience',
+    copy: 'Keep pages, case studies, and interactions feeling part of one system.',
+    className: 'border-emerald-400/28 bg-emerald-950/20 text-emerald-50'
+  }
+]
+
+const COMBINED_TOP_GUIDANCE = ['Design principles', 'Brand guidelines']
+
+const COMBINED_FOUNDATION_ITEMS = ['Tokens']
+
+const COMBINED_SYSTEM_GROUPS = [
+  {
+    title: 'Style Guide',
+    subtitle: 'Defines visual rules',
+    items: STYLE_GUIDE_ITEMS
+  },
+  {
+    title: 'Components Library',
+    subtitle: 'Defines reusable blocks in code',
+    items: COMPONENT_LIBRARY_ITEMS
+  },
+  {
+    title: 'Pattern Library',
+    subtitle: 'Built from components as repeatable arrangements',
+    items: PATTERN_LIBRARY_ITEMS
+  }
+]
+
+const COMBINED_SUPPORTING_ITEMS = ['Documentation', 'How to', 'Sample pages', 'Resources']
+
+const TOKEN_BENEFITS = [
+  'Define once',
+  'Reuse across UI',
+  'Keep visuals consistent',
+  'Update with less risk',
+  'Share one language'
+]
+const OVERVIEW_AREA_BENEFITS = {
+  Foundations: ['Shared rules', 'Named values', 'Consistent hierarchy', 'Reusable surfaces'],
+  Components: ['Reusable blocks', 'Consistent actions', 'Shared surfaces', 'Faster assembly'],
+  Patterns: ['Built from components', 'Repeatable layouts', 'Clear hierarchy', 'Scales across pages'],
+  Documentation: ['Explains decisions', 'Shows examples', 'Maps source files', 'Supports handoff'],
+  'How to': ['Use examples', 'Read recipes', 'Find source files', 'Extend safely'],
+  'Sample pages': ['See it in context', 'Validate real usage', 'Compare isolated examples']
+}
+const ARCHITECTURE_BENEFITS = [
+  'Gives the system structure',
+  'Keeps decisions consistent',
+  'Makes ownership clearer',
+  'Makes changes safer',
+  'Supports growth'
+]
 const ARCHITECTURE_SOURCE_ROLES = [
   {
     label: 'Define shared values',
     file: 'tailwind.config.js',
-    description: 'This is where the reusable Home styles are named, like gradients, radius, and glow values.'
+    description: 'This file defines shared gradients, radius, and glow values.',
+    cls: 'border-cyan-500/30 bg-cyan-950/20',
+    titleCls: 'text-cyan-100'
   },
   {
-    label: 'Reuse in JavaScript',
+    label: 'Mirror for JavaScript',
     file: 'src/design-system/home.js',
-    description: 'This mirrors some of those same values when the UI needs JavaScript or inline styles instead of a Tailwind class.'
+    description: 'This file mirrors the same values for JavaScript and inline styles.',
+    cls: 'border-violet-500/30 bg-violet-950/20',
+    titleCls: 'text-violet-100'
   },
   {
-    label: 'Use in the page',
+    label: 'Apply in the UI',
     file: 'src/pages/Home.jsx',
-    description: 'This is where the live Home page applies those shared values in real buttons, headings, and cards.'
-  },
-  {
-    label: 'Explain the system',
-    file: 'src/pages/DesignSystem.jsx',
-    description: 'This page breaks the system into examples and explanations so people can understand how it is put together.'
+    description: 'This file applies those shared values in buttons, headings, and cards.',
+    cls: 'border-emerald-500/30 bg-emerald-950/20',
+    titleCls: 'text-emerald-100'
   }
 ]
+const ARCHITECTURE_DOC_ROLE = {
+  label: 'Document the system',
+  file: 'src/pages/DesignSystem.jsx',
+  description: 'This page documents the full flow.',
+  cls: 'border-amber-500/30 bg-amber-950/20',
+  titleCls: 'text-amber-100'
+}
 const TOKEN_SOURCE_ROLES = [
   {
     label: 'Define tokens',
     file: 'tailwind.config.js',
-    description: 'Defines the named Home token values used by Tailwind classes.'
+    description: 'This file defines named token values used across the system.',
+    cls: 'border-cyan-500/30 bg-cyan-950/20',
+    titleCls: 'text-cyan-100'
   },
   {
-    label: 'Reuse in JavaScript',
+    label: 'Mirror for JavaScript',
     file: 'src/design-system/home.js',
-    description: 'Mirrors some of those same values for JavaScript and inline-style use.'
+    description: 'This file mirrors those token values for JavaScript and inline styles.',
+    cls: 'border-violet-500/30 bg-violet-950/20',
+    titleCls: 'text-violet-100'
   },
   {
-    label: 'Use in the live page',
+    label: 'Apply in the UI',
     file: 'src/pages/Home.jsx',
-    description: 'Uses the tokens in the live page so you can see the system applied in a real UI.'
+    description: 'This file applies those token values in headings, buttons, and cards.',
+    cls: 'border-emerald-500/30 bg-emerald-950/20',
+    titleCls: 'text-emerald-100'
   }
 ]
 
 const TOKEN_GROUPS = [
   {
-    title: 'Named Home gradients',
+    title: 'Named gradients',
     description: 'These give repeated gradients one source of truth so headings, CTAs, and card titles feel like part of the same system.',
     items: [
       { name: 'bg-home-cta', note: 'Primary CTA fill', previewClass: 'bg-home-cta' },
@@ -228,7 +322,7 @@ const TOKEN_GROUPS = [
     description: 'These keep surfaces and elevation treatments consistent so cards feel related instead of individually styled.',
     items: [
       { name: 'rounded-home-card', note: '2rem card radius token', previewClass: 'rounded-home-card border border-white/10 bg-black/35' },
-      { name: 'shadow-home-card-glow', note: 'Base cyan glow for Home cards', previewClass: 'rounded-home-card border border-cyan-300/20 bg-black/35 shadow-home-card-glow' },
+      { name: 'shadow-home-card-glow', note: 'Base cyan glow for case-study cards', previewClass: 'rounded-home-card border border-cyan-300/20 bg-black/35 shadow-home-card-glow' },
       { name: 'shadow-home-card-glow-hover', note: 'Stronger glow used on hover', previewClass: 'rounded-home-card border border-cyan-300/20 bg-black/35 shadow-home-card-glow-hover' }
     ]
   },
@@ -247,50 +341,50 @@ const TOKEN_GROUPS = [
 
 const OVERVIEW_ITEM_DETAILS = {
   Typography: {
-    status: 'Defined for Home',
-    summary: 'Display typography used across the Home page.',
+    status: 'In use',
+    summary: 'The main typography system used across the live page.',
     detail:
-      'Typography in this system currently focuses on the hero name, section headings, and large card titles that create visual hierarchy.',
+      'Typography in this system includes the hero display, section headings, card titles, supporting copy, labels, and other text styles used throughout the home page.',
     sources: ['tailwind.config.js', 'src/pages/Home.jsx', 'src/pages/DesignSystem.jsx'],
-    next: 'See the foundations and card-title sections for the current type treatments.',
-    sections: ['foundations-headings', 'card-titles'],
+    next: 'See the heading, supporting type, and card-title sections for the current typography treatments.',
+    sections: ['foundations-headings', 'typography-supporting', 'card-titles'],
     accent: 'border-cyan-400/25 bg-cyan-950/18 shadow-[0_0_40px_-22px_rgba(34,211,238,0.3)]'
   },
   Colors: {
-    status: 'Defined for Home',
-    summary: 'Shared color decisions used across Home.',
+    status: 'In use',
+    summary: 'Shared color decisions used across the live page.',
     detail:
-      'Color in the Home system appears through dark surfaces, white text, cyan-indigo-violet accents, and supporting gradient palettes.',
+      'Color in this system appears through dark surfaces, white text, cyan-indigo-violet accents, and supporting gradient palettes.',
     sources: ['tailwind.config.js', 'src/pages/Home.jsx'],
     next: 'Buttons, cards, and headings all show how color is applied in the current system.',
     sections: ['foundations-tokens', 'foundations-headings', 'buttons-primary', 'buttons-secondary', 'cards-elevation'],
     accent: 'border-cyan-400/25 bg-cyan-950/18 shadow-[0_0_40px_-22px_rgba(34,211,238,0.3)]'
   },
   Gradients: {
-    status: 'Defined for Home',
+    status: 'In use',
     summary: 'Gradient tokens used across headings, CTAs, and card titles.',
     detail:
-      'Gradients are one of the strongest signatures in the Home system, appearing in section headings, CTA treatments, and the hero name.',
+      'Gradients are one of the strongest signatures in this system, appearing in section headings, CTA treatments, and the hero name.',
     sources: ['tailwind.config.js', 'src/design-system/home.js', 'src/pages/Home.jsx'],
     next: 'See the foundations and button examples to compare where different gradients are used.',
     sections: ['foundations-tokens', 'foundations-headings', 'card-titles', 'buttons-primary', 'buttons-secondary'],
     accent: 'border-cyan-400/25 bg-cyan-950/18 shadow-[0_0_40px_-22px_rgba(34,211,238,0.3)]'
   },
   Shadows: {
-    status: 'Defined for Home',
-    summary: 'Glow and elevation treatments that give Home depth.',
+    status: 'In use',
+    summary: 'Glow and elevation treatments that give the interface depth.',
     detail:
-      'Shadows in the Home system are used mostly as glows and elevation cues, especially around buttons and case-study shells.',
+      'Shadows in this system are used mostly as glows and elevation cues, especially around buttons and case-study shells.',
     sources: ['tailwind.config.js', 'src/pages/Home.jsx', 'src/pages/DesignSystem.jsx'],
     next: 'The cards and CTA examples below show where those shadows matter most.',
     sections: ['foundations-tokens', 'buttons-primary', 'buttons-secondary', 'cards-elevation'],
     accent: 'border-cyan-400/25 bg-cyan-950/18 shadow-[0_0_40px_-22px_rgba(34,211,238,0.3)]'
   },
   Radius: {
-    status: 'Defined for Home',
-    summary: 'Corner-radius decisions used across Home components.',
+    status: 'In use',
+    summary: 'Corner-radius decisions used across these components.',
     detail:
-      'Radius values help create the soft edge treatment on cards, buttons, and larger shells throughout the Home page.',
+      'Radius values help create the soft edge treatment on cards, buttons, and larger shells throughout the live page.',
     sources: ['tailwind.config.js', 'src/pages/Home.jsx'],
     next: 'Buttons and card shells are the clearest current examples of radius in the system.',
     sections: ['foundations-tokens', 'buttons-primary', 'buttons-secondary', 'cards-elevation'],
@@ -300,7 +394,7 @@ const OVERVIEW_ITEM_DETAILS = {
     status: 'Not yet defined',
     summary: 'A reusable icon layer is not yet documented here.',
     detail:
-      'The site does use icons in places, but this page does not yet define an icon system or icon-usage guidance for Home.',
+      'The site does use icons in places, but this page does not yet define an icon system or icon-usage guidance for this system.',
     sources: [],
     next: 'This can become active once iconography is documented as part of the broader system.',
     sections: [],
@@ -308,27 +402,27 @@ const OVERVIEW_ITEM_DETAILS = {
   },
   Brand: {
     status: 'Not yet defined',
-    summary: 'Brand guidance is not yet separated from the Home visuals.',
+    summary: 'Brand guidance is not yet separated from the current visuals.',
     detail:
-      'There is a visual identity on the Home page, but this route does not yet define brand rules as their own documented system layer.',
+      'There is a visual identity on the live page, but this route does not yet define brand rules as their own documented system layer.',
     sources: [],
     next: 'A later version could add logo, voice, and broader brand-expression guidance here.',
     sections: [],
     accent: 'border-white/10 bg-black/25 shadow-[0_0_30px_-18px_rgba(255,255,255,0.08)]'
   },
   Buttons: {
-    status: 'Defined for Home',
-    summary: 'Primary and secondary CTA components used on Home.',
+    status: 'In use',
+    summary: 'Primary and secondary CTA components used on the live page.',
     detail:
-      'Buttons are one of the clearest reusable components in the current Home system, with gradient fills, ghost treatments, and shared type and radius conventions.',
+      'Buttons are one of the clearest reusable components in this system, with gradient fills, ghost treatments, and shared type and radius conventions.',
     sources: ['src/pages/Home.jsx', 'src/pages/DesignSystem.jsx'],
     next: 'See the primary and secondary sections below for the current button variants.',
     sections: ['buttons-primary', 'buttons-secondary'],
     accent: 'border-violet-400/25 bg-violet-950/18 shadow-[0_0_40px_-22px_rgba(167,139,250,0.28)]'
   },
   Cards: {
-    status: 'Defined for Home',
-    summary: 'Card shells and title treatments used on Home.',
+    status: 'In use',
+    summary: 'Card shells and title treatments used on the live page.',
     detail:
       'Cards in this system include large case-study shells, title treatments, and surface/elevation decisions that make them feel part of the same family.',
     sources: ['src/pages/Home.jsx', 'src/pages/DesignSystem.jsx'],
@@ -338,17 +432,17 @@ const OVERVIEW_ITEM_DETAILS = {
   },
   Tabs: {
     status: 'Not yet defined',
-    summary: 'A reusable tabs component is not yet defined for Home.',
+    summary: 'A reusable tabs component is not yet defined for this system.',
     detail:
-      'This page uses chip and tab-like controls, but the Home system does not yet document a reusable tabs component as part of its library.',
+      'This page uses chip and tab-like controls, but this system does not yet document a reusable tabs component as part of its library.',
     sources: [],
     next: 'This can become active once a reusable tabs treatment is documented as part of the system.',
     sections: [],
     accent: 'border-white/10 bg-black/25 shadow-[0_0_30px_-18px_rgba(255,255,255,0.08)]'
   },
   'Hero sections': {
-    status: 'Defined for Home',
-    summary: 'The hero is one of the clearest page-level patterns on Home.',
+    status: 'In use',
+    summary: 'The hero is one of the clearest page-level patterns on the live page.',
     detail:
       'The hero pattern combines large gradient-led type, supporting copy, and a CTA treatment into a recognizable opening section.',
     sources: ['src/pages/Home.jsx', 'src/pages/DesignSystem.jsx'],
@@ -357,7 +451,7 @@ const OVERVIEW_ITEM_DETAILS = {
     accent: 'border-fuchsia-400/25 bg-fuchsia-950/16 shadow-[0_0_40px_-22px_rgba(232,121,249,0.25)]'
   },
   'Case-study shells': {
-    status: 'Defined for Home',
+    status: 'In use',
     summary: 'Large story-card layouts used to present featured work.',
     detail:
       'Case-study shells are larger arrangements built from card surfaces, titles, spacing, and CTA components.',
@@ -367,7 +461,7 @@ const OVERVIEW_ITEM_DETAILS = {
     accent: 'border-fuchsia-400/25 bg-fuchsia-950/16 shadow-[0_0_40px_-22px_rgba(232,121,249,0.25)]'
   },
   'CTA groups': {
-    status: 'Defined for Home',
+    status: 'In use',
     summary: 'Grouped call-to-action patterns built from multiple button treatments.',
     detail:
       'CTA groups are larger patterns where primary and secondary actions are presented together with a clear hierarchy.',
@@ -378,9 +472,9 @@ const OVERVIEW_ITEM_DETAILS = {
   },
   Forms: {
     status: 'Not yet defined',
-    summary: 'Forms are not yet part of the documented Home patterns.',
+    summary: 'Forms are not yet part of the documented patterns.',
     detail:
-      'Forms are a reasonable future pattern area, but this page does not yet include form-specific components or patterns for the Home system.',
+      'Forms are a reasonable future pattern area, but this page does not yet include form-specific components or patterns for this system.',
     sources: [],
     next: 'This can become active once forms are designed and documented as part of the broader system.',
     sections: [],
@@ -476,6 +570,202 @@ function TabPanel({ id, children, className = '' }) {
   )
 }
 
+function InPracticeFlowCard({ title, copy, className, edge = null }) {
+  const edgeStub =
+    edge === 'right' ? (
+      <span className="pointer-events-none absolute left-full top-1/2 hidden h-px w-4 -translate-y-1/2 bg-slate-300/70 shadow-[0_0_8px_rgba(148,163,184,0.16)] min-[901px]:block" />
+    ) : edge === 'left' ? (
+      <span className="pointer-events-none absolute right-full top-1/2 hidden h-px w-4 -translate-y-1/2 bg-slate-300/70 shadow-[0_0_8px_rgba(148,163,184,0.16)] min-[901px]:block" />
+    ) : null
+
+  return (
+    <article
+      className={`relative min-h-[82px] rounded-[14px] border px-3 py-[11px] shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_0_1px_rgba(255,255,255,0.02)] ${className}`.trim()}
+    >
+      {edgeStub}
+      <h3 className="text-[12px] font-semibold">{title}</h3>
+      <p className="mt-1 text-[10px] leading-[1.3] text-slate-200/84">{copy}</p>
+    </article>
+  )
+}
+
+function InPracticeMergeConnector() {
+  return (
+    <div className="hidden items-center justify-center text-slate-300 min-[901px]:flex">
+      <svg viewBox="0 0 96 358" fill="none" className="block h-[358px] w-[96px] overflow-visible">
+        <path d="M 0 41 H 48" stroke="currentColor" strokeOpacity="0.12" strokeWidth="3" strokeLinecap="round" />
+        <path d="M 0 133 H 48" stroke="currentColor" strokeOpacity="0.12" strokeWidth="3" strokeLinecap="round" />
+        <path d="M 0 225 H 48" stroke="currentColor" strokeOpacity="0.12" strokeWidth="3" strokeLinecap="round" />
+        <path d="M 0 317 H 48" stroke="currentColor" strokeOpacity="0.12" strokeWidth="3" strokeLinecap="round" />
+        <path d="M 48 41 V 317" stroke="currentColor" strokeOpacity="0.12" strokeWidth="3" strokeLinecap="round" />
+        <path d="M 48 179 H 96" stroke="currentColor" strokeOpacity="0.12" strokeWidth="3" strokeLinecap="round" />
+        <path d="M 0 41 H 48" stroke="currentColor" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M 0 133 H 48" stroke="currentColor" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M 0 225 H 48" stroke="currentColor" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M 0 317 H 48" stroke="currentColor" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M 48 41 V 317" stroke="currentColor" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M 48 179 H 96" stroke="currentColor" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    </div>
+  )
+}
+
+function InPracticeFanConnector() {
+  return (
+    <div className="hidden items-center justify-center text-slate-300 min-[901px]:flex">
+      <svg viewBox="0 0 96 358" fill="none" className="block h-[358px] w-[96px] overflow-visible">
+        <path d="M 0 179 H 48" stroke="currentColor" strokeOpacity="0.12" strokeWidth="3" strokeLinecap="round" />
+        <path d="M 48 41 V 317" stroke="currentColor" strokeOpacity="0.12" strokeWidth="3" strokeLinecap="round" />
+        <path d="M 48 41 H 96" stroke="currentColor" strokeOpacity="0.12" strokeWidth="3" strokeLinecap="round" />
+        <path d="M 48 133 H 96" stroke="currentColor" strokeOpacity="0.12" strokeWidth="3" strokeLinecap="round" />
+        <path d="M 48 225 H 96" stroke="currentColor" strokeOpacity="0.12" strokeWidth="3" strokeLinecap="round" />
+        <path d="M 48 317 H 96" stroke="currentColor" strokeOpacity="0.12" strokeWidth="3" strokeLinecap="round" />
+        <path d="M 0 179 H 48" stroke="currentColor" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M 48 41 V 317" stroke="currentColor" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M 48 41 H 96" stroke="currentColor" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M 48 133 H 96" stroke="currentColor" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M 48 225 H 96" stroke="currentColor" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" />
+        <path d="M 48 317 H 96" stroke="currentColor" strokeOpacity="0.8" strokeWidth="1.5" strokeLinecap="round" />
+      </svg>
+    </div>
+  )
+}
+
+function CombinedSystemGroup({ title, subtitle, items, activeOverviewArea, setActiveOverviewArea }) {
+  return (
+    <section className="rounded-2xl border border-white/18 bg-white/3 p-4 shadow-[inset_0_1px_0_rgba(255,255,255,0.08),0_0_0_1px_rgba(255,255,255,0.04)]">
+      <h3 className="text-[13px] font-semibold tracking-wide text-white">{title}</h3>
+      <p className="mt-1 text-[11px] leading-relaxed text-slate-300/80">{subtitle}</p>
+      <div className="mt-3 flex flex-wrap gap-2">
+        {items.map(({ label, active }) => (
+          <SystemChip
+            key={label}
+            label={label}
+            active={active || activeOverviewArea === label}
+            selected={activeOverviewArea === label}
+            onClick={() => setActiveOverviewArea(label)}
+            controlsId="overview-detail-panel"
+          />
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function DesignSystemInPracticeDiagram({ activeOverviewArea, setActiveOverviewArea }) {
+  const isOverviewItemActive = (label) =>
+    OVERVIEW_AREA_ITEMS.some((item) => item.label === label && item.active) || activeOverviewArea === label
+
+  return (
+    <div className="mx-auto max-w-[1220px]">
+      <div className="grid items-center gap-6 min-[901px]:gap-0 min-[901px]:grid-cols-[minmax(0,1.08fr)_96px_minmax(360px,0.98fr)_96px_minmax(0,1.08fr)]">
+        <div className="relative z-20 grid gap-[10px] min-[901px]:col-start-1">
+          {IN_PRACTICE_INPUTS.map((item) => (
+            <InPracticeFlowCard
+              key={item.title}
+              title={item.title}
+              copy={item.copy}
+              className={item.className}
+              edge="right"
+            />
+          ))}
+        </div>
+
+        <div className="min-[901px]:col-start-2">
+          <InPracticeMergeConnector />
+        </div>
+
+        <article className="relative rounded-[18px] border border-violet-300/28 bg-violet-950/14 px-5 pb-5 pt-[18px] shadow-[inset_0_1px_0_rgba(255,255,255,0.04),0_0_28px_-24px_rgba(167,139,250,0.22)] min-[901px]:col-start-3">
+          <span className="pointer-events-none absolute right-full top-1/2 hidden h-px w-4 -translate-y-1/2 bg-slate-300/70 shadow-[0_0_8px_rgba(148,163,184,0.16)] min-[901px]:block" />
+          <span className="pointer-events-none absolute left-full top-1/2 hidden h-px w-4 -translate-y-1/2 bg-slate-300/70 shadow-[0_0_8px_rgba(148,163,184,0.16)] min-[901px]:block" />
+          <p className="text-center text-[10px] font-bold uppercase tracking-[0.18em] text-violet-100/84">Design system</p>
+          <p className="mx-auto mt-2 max-w-[360px] text-center text-[11px] text-slate-200/76">
+            Brings together the shared rules, reusable parts, and guidance that shape how a team designs and builds
+            a product.
+          </p>
+
+          <div className="mt-4 flex flex-wrap justify-center gap-2">
+            {COMBINED_TOP_GUIDANCE.map((label) => (
+              <SystemChip
+                key={label}
+                label={label}
+                active={activeOverviewArea === label}
+                selected={activeOverviewArea === label}
+                onClick={() => setActiveOverviewArea(label)}
+                controlsId="overview-detail-panel"
+              />
+            ))}
+          </div>
+
+          <div className="mt-2 flex flex-wrap justify-center gap-2">
+            <SystemChip
+              label="Architecture"
+              active
+              selected={activeOverviewArea === 'Architecture'}
+              onClick={() => setActiveOverviewArea('Architecture')}
+              controlsId="overview-detail-panel"
+            />
+            {COMBINED_FOUNDATION_ITEMS.map((label) => (
+              <SystemChip
+                key={label}
+                label={label}
+                active={isOverviewItemActive(label)}
+                selected={activeOverviewArea === label}
+                onClick={() => setActiveOverviewArea(label)}
+                controlsId="overview-detail-panel"
+              />
+            ))}
+          </div>
+
+          <div className="mt-4 grid gap-3">
+            {COMBINED_SYSTEM_GROUPS.map((group) => (
+              <CombinedSystemGroup
+                key={group.title}
+                title={group.title}
+                subtitle={group.subtitle}
+                items={group.items}
+                activeOverviewArea={activeOverviewArea}
+                setActiveOverviewArea={setActiveOverviewArea}
+              />
+            ))}
+          </div>
+
+          <div className="mt-4 border-t border-white/8 pt-4">
+            <div className="flex flex-wrap justify-center gap-2">
+              {COMBINED_SUPPORTING_ITEMS.map((label) => (
+                <SystemChip
+                  key={label}
+                  label={label}
+                  active={isOverviewItemActive(label)}
+                  selected={activeOverviewArea === label}
+                  onClick={() => setActiveOverviewArea(label)}
+                  controlsId="overview-detail-panel"
+                />
+              ))}
+            </div>
+          </div>
+        </article>
+
+        <div className="min-[901px]:col-start-4">
+          <InPracticeFanConnector />
+        </div>
+
+        <div className="relative z-20 grid gap-[10px] min-[901px]:col-start-5">
+          {IN_PRACTICE_OUTCOMES.map((item) => (
+            <InPracticeFlowCard
+              key={item.title}
+              title={item.title}
+              copy={item.copy}
+              className={item.className}
+              edge="left"
+            />
+          ))}
+        </div>
+      </div>
+    </div>
+  )
+}
+
 export default function DesignSystem() {
   const [activeOverviewArea, setActiveOverviewArea] = useState(OVERVIEW_AREA_ITEMS[0].label)
   const activeOverviewDetail =
@@ -485,110 +775,53 @@ export default function DesignSystem() {
   )
   const activeOverviewAccent =
     activeOverviewDetail?.accent ?? OVERVIEW_AREA_ACCENTS[activeOverviewArea]
+  const activeOverviewBenefits = OVERVIEW_AREA_BENEFITS[activeOverviewArea] ?? null
+  const suppressSupportingCopy =
+    activeOverviewArea === 'Architecture' ||
+    activeOverviewArea === 'Tokens' ||
+    Boolean(activeOverviewBenefits) ||
+    visibleSections.size > 0
+  const suppressEmptyStateAreas = new Set([
+    'Architecture',
+    'Components',
+    'Patterns',
+    'Documentation',
+    'How to',
+    'Sample pages'
+  ])
 
   return (
     <div className="min-h-screen bg-black tracking-wide text-slate-200">
-      <div className="mx-auto max-w-6xl space-y-16 px-6 py-12">
-        <TabPanel id="overview">
-          <div className="grid gap-8 lg:grid-cols-[minmax(0,1.2fr)_minmax(320px,0.8fr)] lg:items-start">
-            <div
-              className="relative overflow-hidden border border-cyan-300/30 bg-[radial-gradient(circle_at_top_left,rgba(103,232,249,0.28),transparent_28%),radial-gradient(circle_at_top_right,rgba(129,140,248,0.22),transparent_32%),radial-gradient(circle_at_bottom,rgba(232,121,249,0.18),transparent_34%),rgba(12,74,110,0.88)] px-6 py-8 text-center text-sm leading-relaxed text-slate-100 shadow-home-card-glow sm:px-8"
-              style={{ borderRadius: '2.75rem 2.75rem 3.5rem 3rem / 2.5rem 3rem 3.5rem 3rem' }}
-            >
-              <div className="pointer-events-none absolute inset-0 overflow-hidden">
-                <div className="absolute -left-12 top-8 h-48 w-48 rounded-full bg-cyan-400/12 blur-3xl" />
-                <div className="absolute right-0 top-0 h-60 w-60 rounded-full bg-indigo-500/12 blur-3xl" />
-                <div className="absolute bottom-0 left-1/3 h-56 w-72 rounded-full bg-fuchsia-500/10 blur-3xl" />
-              </div>
+      <TabPanel id="system-diagrams">
+        <div className="mx-auto max-w-6xl space-y-10 px-6 pt-0">
+          <section className="space-y-4">
+            <DesignSystemInPracticeDiagram
+              activeOverviewArea={activeOverviewArea}
+              setActiveOverviewArea={setActiveOverviewArea}
+            />
+          </section>
 
-              <div className="relative z-10">
-                <h2 className="text-3xl font-semibold tracking-wide text-white sm:text-4xl">Design System</h2>
-                <p className="mx-auto mt-2 max-w-2xl text-sm leading-relaxed text-slate-300">
-                Defines shared rules and reusable UI.
-                </p>
-                <div className="mt-6 flex flex-wrap justify-center gap-2">
-                  {OVERVIEW_AREA_ITEMS.map(({ label, active }) => (
-                    <SystemChip
-                      key={label}
-                      label={label}
-                      active={active}
-                      selected={activeOverviewArea === label}
-                      onClick={() => setActiveOverviewArea(label)}
-                      controlsId="overview-detail-panel"
-                    />
-                  ))}
-                </div>
-
-                <div className="mt-8 grid gap-5 lg:grid-cols-[0.92fr_1.08fr] lg:items-start">
-                  <div
-                    className="rounded-4xl border border-cyan-400/20 bg-cyan-950/18 p-6 text-left shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] lg:p-8"
-                  >
-                    <p className="text-2xl font-semibold text-white">Style Guide</p>
-                    <p className="mt-1 text-sm text-cyan-100/85">Defines visual rules</p>
-                    <div className="mt-5 flex flex-wrap gap-2 lg:mt-8 lg:max-w-60">
-                      {STYLE_GUIDE_ITEMS.map(({ label, active }) => (
-                        <SystemChip
-                          key={label}
-                          label={label}
-                          active={active}
-                          selected={activeOverviewArea === label}
-                          onClick={() => setActiveOverviewArea(label)}
-                          controlsId="overview-detail-panel"
-                        />
-                      ))}
         </div>
-      </div>
+      </TabPanel>
 
-                  <div
-                    className="rounded-4xl border border-violet-400/20 bg-violet-950/18 p-6 text-left shadow-[inset_0_1px_0_0_rgba(255,255,255,0.06)] lg:p-8"
-                  >
-                    <p className="text-2xl font-semibold text-white">Components Library</p>
-                    <p className="mt-1 text-sm text-violet-100/85">Defines reusable blocks in code</p>
-                    <div className="mt-5 flex flex-wrap gap-2 lg:mt-8 lg:max-w-56">
-                      {COMPONENT_LIBRARY_ITEMS.map(({ label, active }) => (
-                        <SystemChip
-                          key={label}
-                          label={label}
-                          active={active}
-                          selected={activeOverviewArea === label}
-                          onClick={() => setActiveOverviewArea(label)}
-                          controlsId="overview-detail-panel"
-                        />
-                      ))}
-                    </div>
-                    <div className="mt-6 border border-white/10 bg-black/30 p-4 shadow-[inset_0_1px_0_0_rgba(255,255,255,0.04)] lg:max-w-72 lg:p-5"
-                      style={{ borderRadius: '1.75rem 1.75rem 2rem 2rem / 1.5rem 1.5rem 2rem 2rem' }}>
-                      <p className="text-2xl font-semibold text-white">Pattern Library</p>
-                      <p className="mt-1 text-xs text-slate-400 lg:text-sm">Built from components as repeatable arrangements</p>
-                      <div className="mt-4 flex flex-wrap gap-2">
-                        {PATTERN_LIBRARY_ITEMS.map(({ label, active }) => (
-                          <SystemChip
-                            key={label}
-                            label={label}
-                            active={active}
-                            selected={activeOverviewArea === label}
-                            onClick={() => setActiveOverviewArea(label)}
-                            controlsId="overview-detail-panel"
-                          />
-                        ))}
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-
+      <div className="mx-auto max-w-6xl space-y-16 px-6 py-12">
+        <TabPanel id="overview-detail-wrap">
             <div
               id="overview-detail-panel"
               className={`rounded-4xl border p-6 text-left ${activeOverviewAccent}`.trim()}
             >
               <div>
-                <p className="text-3xl font-semibold tracking-wide text-white sm:text-4xl">{activeOverviewArea}</p>
-                <p className="mt-2 text-sm text-slate-400">{activeOverviewDetail.status}</p>
+                <h2 className="text-3xl font-semibold tracking-wide text-white sm:text-4xl">{activeOverviewArea}</h2>
+                {activeOverviewDetail.status && !suppressSupportingCopy ? (
+                  <p className="mt-2 text-sm text-slate-400">{activeOverviewDetail.status}</p>
+                ) : null}
+                {activeOverviewDetail.summary ? (
+                  <p className="mt-2 text-sm leading-relaxed text-slate-400/95">{activeOverviewDetail.summary}</p>
+                ) : null}
               </div>
-              <p className="mt-4 text-sm leading-relaxed text-slate-300">
-                {activeOverviewDetail.detail}
-              </p>
+              {activeOverviewDetail.detail && !suppressSupportingCopy ? (
+                <p className="mt-4 text-sm leading-relaxed text-slate-300">{activeOverviewDetail.detail}</p>
+              ) : null}
               {activeOverviewArea === 'Tokens' ? (
                 <div className="mt-5 flex flex-wrap gap-2">
                   {TOKEN_BENEFITS.map((benefit) => (
@@ -601,72 +834,86 @@ export default function DesignSystem() {
                     <BenefitPill key={benefit} label={benefit} />
                   ))}
                 </div>
+              ) : activeOverviewBenefits ? (
+                <div className="mt-5 flex flex-wrap gap-2">
+                  {activeOverviewBenefits.map((benefit) => (
+                    <BenefitPill key={benefit} label={benefit} />
+                  ))}
+                </div>
               ) : null}
-              {activeOverviewDetail.sources.length ? (
+              {activeOverviewDetail.sources?.length ? (
                 <div className="mt-5">
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">Files to look at</p>
-                  {activeOverviewArea === 'Architecture' ? (
-                    <div className="mt-2 text-sm leading-relaxed text-slate-400">
-                      This is the current flow: shared values are defined first, reused when JavaScript needs them, applied
-                      in the live page, and then explained here.
-                    </div>
-                  ) : null}
                   {activeOverviewArea === 'Tokens' ? (
-                    <div className="mt-3 rounded-3xl border border-white/10 bg-black/20 p-4">
-                      <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center">
-                        {TOKEN_SOURCE_ROLES.map(({ label, file, description }, index) => (
+                    <>
+                      <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-stretch">
+                        {TOKEN_SOURCE_ROLES.map(({ label, file, description, cls, titleCls }, index) => (
                           <div key={file} className="contents">
-                            <div className="rounded-2xl border border-white/10 bg-white/3 px-4 py-4">
-                              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500">{label}</p>
-                              <p className="mt-2 font-mono text-[11px] text-cyan-100/90">{file}</p>
-                              <p className="mt-2 text-sm leading-relaxed text-slate-400">{description}</p>
+                            <div className={`flex h-full min-h-0 flex-col rounded-2xl border px-4 py-4 ${cls}`.trim()}>
+                              <p className={`text-sm font-semibold leading-snug ${titleCls}`.trim()}>{label}</p>
+                              <p className="mt-2 flex-1 text-xs leading-relaxed text-slate-400">{description}</p>
+                              <p className="mt-3 font-mono text-[11px] text-cyan-100/70">{file}</p>
                             </div>
                             {index < TOKEN_SOURCE_ROLES.length - 1 ? (
-                              <div className="hidden text-center text-slate-500 lg:block" aria-hidden>
+                              <div
+                                className="hidden h-full min-h-12 items-center justify-center text-slate-500 lg:flex"
+                                aria-hidden
+                              >
                                 <span className="text-lg">-&gt;</span>
                               </div>
                             ) : null}
                           </div>
                         ))}
                       </div>
-                    </div>
+                    </>
                   ) : activeOverviewArea === 'Architecture' ? (
-                    <div className="mt-3 rounded-3xl border border-white/10 bg-black/20 p-4">
-                      <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-center">
-                        {ARCHITECTURE_SOURCE_ROLES.map(({ label, file, description }, index) => (
+                    <>
+                      <div className="grid gap-3 lg:grid-cols-[minmax(0,1fr)_auto_minmax(0,1fr)_auto_minmax(0,1fr)] lg:items-stretch">
+                        {ARCHITECTURE_SOURCE_ROLES.map(({ label, file, description, cls, titleCls }, index) => (
                           <div key={file} className="contents">
-                            <div className="rounded-2xl border border-white/10 bg-white/3 px-4 py-4">
-                              <p className="text-[10px] font-medium uppercase tracking-[0.2em] text-slate-500">{label}</p>
-                              <p className="mt-2 font-mono text-[11px] text-cyan-100/90">{file}</p>
-                              <p className="mt-2 text-sm leading-relaxed text-slate-400">{description}</p>
+                            <div className={`flex h-full min-h-0 flex-col rounded-2xl border px-4 py-4 ${cls}`.trim()}>
+                              <p className={`text-sm font-semibold leading-snug ${titleCls}`.trim()}>{label}</p>
+                              <p className="mt-2 flex-1 text-xs leading-relaxed text-slate-400">{description}</p>
+                              <p className="mt-3 font-mono text-[11px] text-cyan-100/70">{file}</p>
                             </div>
                             {index < ARCHITECTURE_SOURCE_ROLES.length - 1 ? (
-                              <div className="hidden text-center text-slate-500 lg:block" aria-hidden>
+                              <div
+                                className="hidden h-full min-h-12 items-center justify-center text-slate-500 lg:flex"
+                                aria-hidden
+                              >
                                 <span className="text-lg">-&gt;</span>
                               </div>
                             ) : null}
                           </div>
                         ))}
                       </div>
-                    </div>
-                  ) : null}
-                  {activeOverviewArea === 'Tokens' ? null : (
+                      <div className={`mt-4 rounded-2xl border px-4 py-4 ${ARCHITECTURE_DOC_ROLE.cls}`.trim()}>
+                        <p className={`text-sm font-semibold leading-snug ${ARCHITECTURE_DOC_ROLE.titleCls}`.trim()}>
+                          {ARCHITECTURE_DOC_ROLE.label}
+                        </p>
+                        <p className="mt-2 text-xs leading-relaxed text-slate-300">{ARCHITECTURE_DOC_ROLE.description}</p>
+                        <p className="mt-3 font-mono text-[11px] text-cyan-100/70">{ARCHITECTURE_DOC_ROLE.file}</p>
+                      </div>
+                    </>
+                  ) : (
                     <div className="mt-3 flex flex-wrap gap-2">
-                      {activeOverviewDetail.sources.map((source) => (
+                      <p className="w-full text-xs font-medium uppercase tracking-[0.2em] text-slate-500">
+                        Files to look at
+                      </p>
+                      {(activeOverviewDetail.sources ?? []).map((source) => (
                         <SourceBadge key={source} label={source} />
                       ))}
                     </div>
                   )}
                 </div>
               ) : null}
-              {activeOverviewDetail.next ? (
+              {activeOverviewDetail.next && !suppressSupportingCopy ? (
                 <p className="mt-5 text-sm leading-relaxed text-slate-400">
                   {activeOverviewDetail.next}
                 </p>
               ) : null}
               {activeOverviewArea === 'Sample pages' ? (
                 <div className="mt-6 rounded-4xl border border-white/10 bg-black/20 px-5 py-4">
-                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">Home Page</p>
+                  <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">Live page</p>
                   <p className="mt-2 text-sm leading-relaxed text-slate-300">
                     <code className={code}>src/pages/Home.jsx</code> uses these shared styles, components, and larger UI
                     patterns in the live page.
@@ -674,32 +921,12 @@ export default function DesignSystem() {
                 </div>
               ) : null}
             </div>
-        </div>
         </TabPanel>
-
-        {visibleSections.size ? (
-          <DarkPanel className="text-sm leading-relaxed text-slate-400">
-            <p className="text-xs font-medium uppercase tracking-[0.2em] text-slate-500">Relevant Examples</p>
-            <p className="mt-3 text-white">
-              Showing the sections on this page that best support <code className={code}>{activeOverviewArea}</code>.
-            </p>
-          </DarkPanel>
-        ) : null}
 
         {visibleSections.has('foundations-tokens') ? (
         <TabPanel id="foundations-tokens">
           <section>
-            <p className="mb-4 text-sm text-slate-400">
-              Tokens exist so shared visual values are defined once and reused everywhere. For designers, that means faster
-              decisions and more consistent screens. For engineers, it means less duplicated styling and safer updates. Named
-              tokens live in <code className={code}>tailwind.config.js</code> and are mirrored in{' '}
-              <code className={code}>src/design-system/home.js</code> when JavaScript needs the same values.
-            </p>
-            <div className="mb-4 flex flex-wrap gap-2">
-              {TOKEN_BENEFITS.map((benefit) => (
-                <BenefitPill key={benefit} label={benefit} />
-              ))}
-            </div>
+            <p className="mb-4 text-sm text-slate-400">Current token groups and named values in use.</p>
             <DarkPanel className="space-y-8 overflow-visible py-8">
               <div className="grid gap-6 lg:grid-cols-2">
                 {TOKEN_GROUPS.map(({ title, description, items }) => (
@@ -730,7 +957,7 @@ export default function DesignSystem() {
         {visibleSections.has('foundations-headings') ? (
         <TabPanel id="foundations-headings">
           <section>
-            <p className="mb-4 text-sm text-slate-400">Hero name and gradient H2s as on Home.</p>
+            <p className="mb-4 text-sm text-slate-400">Hero name and gradient H2s as shipped.</p>
             <DarkPanel className="space-y-8 overflow-visible py-8">
               <SampleCard>
                 <TokenCaption>Hero</TokenCaption>
@@ -741,32 +968,93 @@ export default function DesignSystem() {
                   Joel Hickey
                 </p>
                 <ElementSpec>
-                  <code>homeHeroNameGradientTextStyle</code> from home.js (inline style) +{' '}
+                  <code>homeHeroNameGradientTextStyle</code> from <code className={code}>src/design-system/home.js</code>{' '}
+                  (inline style) +{' '}
                   <code>text-7xl md:text-8xl lg:text-9xl font-semibold leading-[1.1] tracking-normal</code>
                 </ElementSpec>
               </SampleCard>
               <SampleCard>
-                <TokenCaption>
-                  <code className={tokenLabel}>bg-home-h2-stories</code>
-                </TokenCaption>
-                <p className="w-full bg-home-h2-stories bg-clip-text text-center text-6xl font-bold tracking-normal text-transparent md:text-7xl lg:text-8xl">
+                <TokenCaption>Stories section heading</TokenCaption>
+                <p className="w-full bg-home-h2-stories bg-clip-text text-center text-6xl font-bold tracking-wide text-transparent md:text-7xl lg:text-8xl">
                   Stories
                 </p>
                 <ElementSpec>
-                  <code>bg-clip-text text-transparent</code> +{' '}
-                  <code>text-6xl md:text-7xl lg:text-8xl font-bold tracking-normal</code> — see token label
+                  <code className={tokenLabel}>bg-home-h2-stories</code> + <code>bg-clip-text text-transparent</code> +{' '}
+                  <code>text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide</code>
                 </ElementSpec>
               </SampleCard>
               <SampleCard>
-                <TokenCaption>
-                  <code className={tokenLabel}>bg-home-h2-value</code>
-                </TokenCaption>
+                <TokenCaption>Value section heading</TokenCaption>
                 <p className="w-full bg-home-h2-value bg-clip-text text-center text-6xl font-bold tracking-wide text-transparent md:text-7xl lg:text-8xl">
                   How I create value
                 </p>
                 <ElementSpec>
-                  <code>bg-clip-text text-transparent</code> +{' '}
-                  <code>text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide</code> — see token label
+                  <code className={tokenLabel}>bg-home-h2-value</code> + <code>bg-clip-text text-transparent</code> +{' '}
+                  <code>text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide</code>
+                </ElementSpec>
+              </SampleCard>
+            </DarkPanel>
+          </section>
+        </TabPanel>
+        ) : null}
+
+        {visibleSections.has('typography-supporting') ? (
+        <TabPanel id="typography-supporting">
+          <section>
+            <p className="mb-4 text-sm text-slate-400">Supporting typography styles used across the home page.</p>
+            <DarkPanel className="space-y-8 overflow-visible py-8">
+              <SampleCard>
+                <TokenCaption>Hero supporting line</TokenCaption>
+                <p className="text-center text-base font-light leading-snug tracking-wider text-slate-200 sm:text-xl md:text-2xl lg:text-3xl">
+                  Designing high-impact products with systems thinking, craft, and AI.
+                </p>
+                <ElementSpec>
+                  <code>text-base sm:text-xl md:text-2xl lg:text-3xl font-light leading-snug tracking-wider</code>
+                </ElementSpec>
+              </SampleCard>
+
+              <SampleCard>
+                <TokenCaption>Case-study supporting copy</TokenCaption>
+                <p className="text-xl font-extralight tracking-wider text-white md:text-2xl">
+                  Coverage woven into the travel journey.
+                </p>
+                <ElementSpec>
+                  <code>text-xl md:text-2xl font-extralight tracking-wider text-white</code>
+                </ElementSpec>
+              </SampleCard>
+
+              <SampleCard>
+                <TokenCaption>Small uppercase labels</TokenCaption>
+                <div className="flex flex-wrap items-center gap-4">
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-200/80 md:text-xs">CRM</p>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-100/80 md:text-xs">
+                    Deep link
+                  </p>
+                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-200/80 md:text-xs">
+                    Product
+                  </p>
+                </div>
+                <ElementSpec>
+                  <code>text-[10px] md:text-xs font-semibold uppercase tracking-[0.22em]</code>
+                </ElementSpec>
+              </SampleCard>
+
+              <SampleCard>
+                <TokenCaption>Star-map labels</TokenCaption>
+                <p className="text-sm font-normal leading-tight tracking-wider text-white md:text-lg lg:text-xl">
+                  Strategy
+                </p>
+                <ElementSpec>
+                  <code>text-sm sm:text-base md:text-lg lg:text-xl font-normal leading-tight tracking-wider</code>
+                </ElementSpec>
+              </SampleCard>
+
+              <SampleCard>
+                <TokenCaption>Button label typography</TokenCaption>
+                <p className="text-base font-normal tracking-wider text-white">View story</p>
+                <ElementSpec>
+                  <code>text-base font-normal tracking-wider text-white</code> — used by CTA labels, while button
+                  padding, fill, radius, and states remain documented in the Buttons section.
                 </ElementSpec>
               </SampleCard>
             </DarkPanel>
@@ -777,12 +1065,12 @@ export default function DesignSystem() {
         {visibleSections.has('card-titles') ? (
         <TabPanel id="card-titles">
           <section>
-            <p className="mb-4 text-sm text-slate-400">Card <code className={code}>h3</code> scales on Home.</p>
+            <p className="mb-4 text-sm text-slate-400">Card <code className={code}>h3</code> scales as shipped.</p>
             <DarkPanel className="space-y-8 overflow-visible py-8">
               <SampleCard>
                 <TokenCaption>Gradient · card title</TokenCaption>
                 <p className="bg-home-card-title-on-dark bg-clip-text text-5xl font-semibold tracking-wide text-transparent md:text-6xl lg:text-7xl">
-                  Magento Bulk Shipments
+                  Agentic AI
                 </p>
                 <ElementSpec>
                   <code>bg-home-card-title-on-dark</code> + <code>bg-clip-text text-transparent</code> +{' '}
@@ -811,12 +1099,12 @@ export default function DesignSystem() {
             <DarkPanel className="flex flex-col flex-wrap gap-8 overflow-visible sm:flex-row sm:items-start">
               <SampleCard className="sm:min-w-0 sm:flex-1">
                 <TokenCaption>Hero · larger padding</TokenCaption>
-                <span className="inline-block rounded-full bg-home-cta px-8 py-4 text-base font-normal tracking-wide text-white shadow-lg shadow-violet-500/25">
+                <span className="inline-block rounded-full bg-home-cta px-8 py-4 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25">
                   Explore
                 </span>
                 <ElementSpec>
                   <code>bg-home-cta</code> + <code>px-8 py-4</code> +{' '}
-                  <code>text-base font-normal tracking-wide text-white</code> + violet shadow / hover as on Home
+                  <code>text-base font-normal tracking-wider text-white</code> + violet shadow / hover as shipped
                 </ElementSpec>
               </SampleCard>
               <SampleCard className="sm:min-w-0 sm:flex-1">
@@ -826,7 +1114,7 @@ export default function DesignSystem() {
                 </span>
                 <ElementSpec>
                   <code>bg-home-cta</code> + <code>px-5 py-2.5</code> +{' '}
-                  <code>text-base font-normal tracking-wider text-white</code> + shadow / hover as on Home
+                  <code>text-base font-normal tracking-wider text-white</code> + shadow / hover as shipped
                 </ElementSpec>
               </SampleCard>
             </DarkPanel>
@@ -837,7 +1125,11 @@ export default function DesignSystem() {
         {visibleSections.has('buttons-secondary') ? (
         <TabPanel id="buttons-secondary">
           <section>
-            <p className="mb-4 text-sm text-slate-400">Ghost control — ring + inner fill.</p>
+            <p className="mb-4 text-sm text-slate-400">
+              Ghost control — gradient hairline ring + gradient label. Inner fill must be opaque (e.g.{' '}
+              <code className="text-slate-300">bg-black</code>) so the outer gradient doesn’t show through as a solid
+              pill.
+            </p>
             <DarkPanel className="flex flex-col flex-wrap gap-8 overflow-visible sm:flex-row sm:items-start">
               <SampleCard className="sm:min-w-0 sm:flex-1">
                 <TokenCaption>Label only</TokenCaption>
@@ -850,16 +1142,16 @@ export default function DesignSystem() {
                 </ElementSpec>
               </SampleCard>
               <SampleCard className="sm:min-w-0 sm:flex-1">
-                <TokenCaption>Gradient ring + inner fill</TokenCaption>
-                <div className="inline-block rounded-full bg-home-cta p-px shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-105">
-                  <span className="block rounded-full bg-black/55 px-5 py-2.5 text-base font-normal tracking-wider">
+                <TokenCaption>Gradient ring · opaque inner (live)</TokenCaption>
+                <div className="inline-block rounded-full bg-home-cta p-px shadow-sm shadow-violet-500/15 transition hover:shadow-violet-500/25 hover:brightness-105">
+                  <span className="block rounded-full bg-black px-5 py-2.5 text-base font-normal tracking-wider transition hover:bg-white/5">
                     <span className="bg-home-cta-label bg-clip-text text-transparent">View more stories</span>
                   </span>
                 </div>
                 <ElementSpec>
-                  Outer <code>bg-home-cta p-px</code> (hairline gradient ring) + inner <code>bg-black/55</code> +{' '}
-                  <code>px-5 py-2.5</code> + label with <code>bg-home-cta-label</code> / clip-text; hover on outer as
-                  Home
+                  Outer <code>bg-home-cta p-px</code> + inner <code>bg-black</code> (masks center —{' '}
+                  <code>bg-transparent</code> wrongly shows full gradient) + <code>hover:bg-white/5</code> + gradient
+                  label
                 </ElementSpec>
               </SampleCard>
             </DarkPanel>
@@ -870,7 +1162,7 @@ export default function DesignSystem() {
         {visibleSections.has('cards-elevation') ? (
         <TabPanel id="cards-elevation">
           <section className="pb-2">
-            <p className="mb-4 text-sm text-slate-400">Case study shells on Home.</p>
+            <p className="mb-4 text-sm text-slate-400">Case study shells as shipped.</p>
             <DarkPanel className="overflow-visible py-8">
               <SampleCard>
                 <TokenCaption>Case study shell</TokenCaption>
@@ -897,28 +1189,31 @@ export default function DesignSystem() {
 
         {visibleSections.has('sources') ? (
         <TabPanel id="sources" className="pb-8">
-          <p className="mb-4 text-sm text-slate-400">Definitions in the repo:</p>
+          <p className="mb-4 text-sm text-slate-400">How responsibilities are split across the repo:</p>
           <DarkPanel className="text-sm text-slate-400">
             <ul className="list-inside list-disc space-y-2 marker:text-slate-600">
               <li>
-                <code className={code}>tailwind.config.js</code> — <code className={code}>home-*</code> theme keys
-                (gradients, shadows, radius). Loaded via <code className={code}>@config</code> in{' '}
-                <code className={code}>src/index.css</code>.
+                <code className={code}>tailwind.config.js</code> — defines the shared visual values used across the
+                system, including gradients, shadows, and radius.
               </li>
               <li>
-                <code className={code}>src/design-system/home.js</code> — same gradient strings for inline styles
-                (e.g. hero name), SVG, or non-Tailwind use.
+                <code className={code}>src/design-system/home.js</code> — mirrors those values for JavaScript and
+                inline-style use when Tailwind utilities are not enough.
               </li>
               <li>
-                <code className={code}>src/pages/Home.jsx</code> — where these tokens are composed. Each sample here is
-                wrapped in a card so previews and recipes stay scoped.
+                <code className={code}>src/pages/Home.jsx</code> — applies those shared values in the live UI through
+                buttons, headings, cards, and larger page patterns.
+              </li>
+              <li>
+                <code className={code}>src/pages/DesignSystem.jsx</code> — documents the system so the structure and
+                usage are visible without tracing the whole app first.
               </li>
             </ul>
           </DarkPanel>
         </TabPanel>
         ) : null}
 
-        {!visibleSections.size ? (
+        {!visibleSections.size && !suppressEmptyStateAreas.has(activeOverviewArea) ? (
           <DarkPanel className="text-sm leading-relaxed text-slate-400">
             <p className="text-white">No detailed examples are documented for this area yet.</p>
             <p className="mt-2">
