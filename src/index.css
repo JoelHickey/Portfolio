@@ -435,7 +435,7 @@ header {
   filter: brightness(1.04);
 }
 .star-map-drift-inner {
-  animation: star-map-drift 72s linear infinite;
+  animation: none;
 }
 .star-map-orbit-inner {
   transform-origin: center;
@@ -454,7 +454,7 @@ header {
 .star-map-twinkle-delay-6 { animation: star-map-twinkle 2.5s ease-in-out 1.8s infinite; }
 .star-map-twinkle-delay-7 { animation: star-map-twinkle 2.5s ease-in-out 2.1s infinite; }
 .star-map-dot {
-  animation: star-flicker 4s ease-in-out infinite;
+  animation: none;
 }
 
 @keyframes stroke-draw {

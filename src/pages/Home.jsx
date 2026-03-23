@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { HiOutlineMail } from 'react-icons/hi'
 import { SiLinkedin } from 'react-icons/si'
@@ -6,9 +6,10 @@ import ParticleBackground from '../components/ParticleBackground'
 import { FCTG_PRESO_URL } from '../constants/preso'
 import BatteryParticleFill from '../components/BatteryParticleFill'
 import { homeHeroNameGradientTextStyle } from '../design-system/home'
+import { applyStarMapOrbitTransform } from '../hooks/useStarMapBounceIntro.js'
 
 // Energy slide preview for FCTG AI talk card — full battery from slide "Energy / What charges your designer battery?"
-function FCTGEnergyPreview() {
+export function FCTGEnergyPreview() {
   return (
     <div className="flex min-w-0 h-full w-full flex-col bg-transparent">
       <div className="flex-1 min-h-0 min-w-0 flex items-center justify-center px-1 py-1">
@@ -221,21 +222,150 @@ function storyCardHeadingTitle(item) {
   return item.title
 }
 
-const PILLARS = ['Strategy', 'Craft', 'Research', 'Systems']
+const PILLARS = ['Strategy', 'Craft', 'Research', 'Systems', 'AI']
 
-/* Outer ring: concrete capabilities, mapped 2-per-pillar */
+/*
+ * Outer ring: five pillars ×3 satellites each (AI: augment → steer → trust).
+ */
 const OUTER_RING = [
   { label: 'Direction', pillar: 0 },
   { label: 'Focus', pillar: 0 },
-  { label: 'Clarity', pillar: 1 },
-  { label: 'Flow', pillar: 1 },
-  { label: 'Insight', pillar: 2 },
-  { label: 'Evidence', pillar: 2 },
+  { label: 'Align', pillar: 0 },
+  { label: 'Usability', pillar: 1 },
+  { label: 'Visual', pillar: 1 },
+  { label: 'Detail', pillar: 1 },
+  { label: 'Discover', pillar: 2 },
+  { label: 'Validate', pillar: 2 },
+  { label: 'Learn', pillar: 2 },
   { label: 'Scale', pillar: 3 },
-  { label: 'Speed', pillar: 3 }
+  { label: 'Integrate', pillar: 3 },
+  { label: 'Sustain', pillar: 3 },
+  { label: 'Augment', pillar: 4 },
+  { label: 'Steer', pillar: 4 },
+  { label: 'Trust', pillar: 4 }
+]
+
+const STAR_MAP_NODE_COUNT = PILLARS.length + OUTER_RING.length
+
+/** Inner pillars: regular pentagon on the orbit (-90° = top, clockwise). */
+const INNER_ORBIT_START_DEG = -90
+const STAR_CHART_INNER = PILLARS.map((_, i) => ({
+  angle: INNER_ORBIT_START_DEG + i * (360 / PILLARS.length),
+  radiusScale: 1
+}))
+
+/*
+ * Outer satellites: wider ±° clusters around each pillar ray so labels don’t stack (esp. Systems).
+ * Hub angles: Strategy -90°, Craft -18°, Research 54°, Systems 126°, AI 198° (−162°).
+ */
+const STAR_CHART_OUTER = [
+  { angle: -110, radiusScale: 0.93 },
+  { angle: -90, radiusScale: 1 },
+  { angle: -70, radiusScale: 0.97 },
+  { angle: -38, radiusScale: 0.94 },
+  { angle: -18, radiusScale: 1.03 },
+  { angle: 2, radiusScale: 0.92 },
+  { angle: 34, radiusScale: 0.94 },
+  { angle: 54, radiusScale: 1.02 },
+  { angle: 74, radiusScale: 0.95 },
+  { angle: 104, radiusScale: 0.92 },
+  { angle: 126, radiusScale: 1.06 },
+  { angle: 148, radiusScale: 0.94 },
+  { angle: -182, radiusScale: 0.92 },
+  { angle: -162, radiusScale: 1.05 },
+  { angle: -142, radiusScale: 0.94 }
 ]
 const OUTER_RING_RADIUS_MULTIPLIER = 2
-const OUTER_RING_ANGLE_OFFSET_DEG = 22.5
+
+/** SVG segments: core → inner pillars, then inner → outer satellites (trimmed to disc edges). */
+function measureStarMapConnectors(containerEl, starsRef, coreRef) {
+  if (!containerEl) return null
+  const stars = starsRef?.current
+  if (!stars || stars.length < PILLARS.length + OUTER_RING.length) return null
+  const w = containerEl.offsetWidth
+  const h = containerEl.offsetHeight
+  if (w < 1 || h < 1) return null
+  const c = containerEl.getBoundingClientRect()
+  const innerCount = PILLARS.length
+  const lines = []
+
+  const coreEl = coreRef?.current
+  if (coreEl) {
+    const cr = coreEl.getBoundingClientRect()
+    const cxc = cr.left + cr.width / 2 - c.left
+    const cyc = cr.top + cr.height / 2 - c.top
+    const rCore = Math.max(cr.width, cr.height) / 2
+    for (let pi = 0; pi < PILLARS.length; pi++) {
+      const innerEl = stars[pi]
+      if (!innerEl) continue
+      const ir = innerEl.getBoundingClientRect()
+      const ixc = ir.left + ir.width / 2 - c.left
+      const iyc = ir.top + ir.height / 2 - c.top
+      let dx = ixc - cxc
+      let dy = iyc - cyc
+      const len = Math.hypot(dx, dy) || 1e-6
+      const ux = dx / len
+      const uy = dy / len
+      const rInner = Math.max(ir.width, ir.height) / 2
+      if (len <= rCore + rInner + 2) continue
+      lines.push({
+        kind: 'core',
+        pillar: pi,
+        x1: cxc + ux * rCore,
+        y1: cyc + uy * rCore,
+        x2: ixc - ux * rInner,
+        y2: iyc - uy * rInner
+      })
+    }
+  }
+
+  for (let i = 0; i < OUTER_RING.length; i++) {
+    const { pillar } = OUTER_RING[i]
+    const innerEl = stars[pillar]
+    const outerEl = stars[innerCount + i]
+    if (!innerEl || !outerEl) continue
+    const ir = innerEl.getBoundingClientRect()
+    const or = outerEl.getBoundingClientRect()
+    const ixc = ir.left + ir.width / 2 - c.left
+    const iyc = ir.top + ir.height / 2 - c.top
+    const oxc = or.left + or.width / 2 - c.left
+    const oyc = or.top + or.height / 2 - c.top
+    let dx = oxc - ixc
+    let dy = oyc - iyc
+    const len = Math.hypot(dx, dy) || 1e-6
+    const ux = dx / len
+    const uy = dy / len
+    /* Circle radii — trim segment so strokes don’t run through disc interiors */
+    const rInner = Math.max(ir.width, ir.height) / 2
+    const rOuter = Math.max(or.width, or.height) / 2
+    if (len <= rInner + rOuter + 2) continue
+    lines.push({
+      kind: 'spoke',
+      x1: ixc + ux * rInner,
+      y1: iyc + uy * rInner,
+      x2: oxc - ux * rOuter,
+      y2: oyc - uy * rOuter,
+      pillar,
+      outerIndex: i
+    })
+  }
+  return lines.length ? { w, h, lines } : null
+}
+
+/** Subtle scroll-linked vertical offset (Apple-style): element drifts as it crosses the viewport. */
+function getScrollParallaxOffset(
+  el,
+  { strength = 0.11, maxPx = 20, focalFrac = 0.4 } = {}
+) {
+  if (!el) return 0
+  const rect = el.getBoundingClientRect()
+  const vh = window.innerHeight
+  if (rect.bottom < -rect.height || rect.top > vh + rect.height) return 0
+  const centerY = rect.top + rect.height / 2
+  const focal = vh * focalFrac
+  const raw = -(centerY - focal) * strength
+  return Math.max(-maxPx, Math.min(maxPx, Math.round(raw * 10) / 10))
+}
 
 function Home() {
   const [storiesHeadingInView, setStoriesHeadingInView] = useState(false)
@@ -245,11 +375,37 @@ function Home() {
   const [showAllCapabilities, setShowAllCapabilities] = useState(false)
   const [selectedPillarIndex, setSelectedPillarIndex] = useState(0)
   const [starMapMeasure, setStarMapMeasure] = useState({ size: 0, radius: 100, radiusOuter: 200 })
+  const [starMapConnectors, setStarMapConnectors] = useState(null)
   const storiesHeadingRef = useRef(null)
+  const storiesParallaxWrapRef = useRef(null)
   const capabilitiesRef = useRef(null)
   const capabilitiesHeadingRef = useRef(null)
+  const capabilitiesParallaxWrapRef = useRef(null)
+  const contactParallaxWrapRef = useRef(null)
   const capabilitiesCardsRef = useRef(null)
   const starMapRef = useRef(null)
+  const starMapCoreRef = useRef(null)
+  const starMapStarRefs = useRef(Array.from({ length: STAR_MAP_NODE_COUNT }, () => null))
+
+  const starMapLayouts = useMemo(
+    () => [
+      ...STAR_CHART_INNER.map((c) => ({
+        angle: c.angle,
+        outer: false,
+        radiusScale: c.radiusScale
+      })),
+      ...STAR_CHART_OUTER.map((c) => ({
+        angle: c.angle,
+        outer: true,
+        radiusScale: c.radiusScale
+      }))
+    ],
+    []
+  )
+
+  const storyCardParallax0Ref = useRef(null)
+  const storyCardParallax1Ref = useRef(null)
+  const storyCardParallax2Ref = useRef(null)
 
   useEffect(() => {
     const el = storiesHeadingRef.current
@@ -351,6 +507,91 @@ function Home() {
     return () => ro.disconnect()
   }, [capabilitiesInView])
 
+  useLayoutEffect(() => {
+    if (!capabilitiesInView) return
+    const refs = starMapStarRefs.current
+    starMapLayouts.forEach((layout, i) => {
+      const el = refs[i]
+      if (el) applyStarMapOrbitTransform(el, layout)
+    })
+  }, [capabilitiesInView, starMapLayouts])
+
+  /* Pillar → capability connector lines (re-measure on resize). */
+  useLayoutEffect(() => {
+    const el = starMapRef.current
+    if (!el) return
+    let rafId = 0
+    let rafId2 = 0
+    const update = () => {
+      setStarMapConnectors(measureStarMapConnectors(el, starMapStarRefs, starMapCoreRef))
+    }
+    update()
+    rafId = requestAnimationFrame(() => {
+      rafId2 = requestAnimationFrame(update)
+    })
+    const ro = new ResizeObserver(() => {
+      requestAnimationFrame(update)
+    })
+    ro.observe(el)
+    return () => {
+      if (rafId) cancelAnimationFrame(rafId)
+      if (rafId2) cancelAnimationFrame(rafId2)
+      ro.disconnect()
+    }
+  }, [capabilitiesInView, starMapLayouts])
+
+  /* Scroll-linked heading parallax — direct DOM updates, respects reduced motion */
+  useLayoutEffect(() => {
+    if (typeof window.matchMedia !== 'function') return
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)')
+    if (mq.matches) return
+
+    const headingWraps = [storiesParallaxWrapRef, capabilitiesParallaxWrapRef, contactParallaxWrapRef]
+    const cardRefs = [storyCardParallax0Ref, storyCardParallax1Ref, storyCardParallax2Ref]
+    let scheduled = 0
+
+    const tick = () => {
+      scheduled = 0
+      for (const ref of headingWraps) {
+        const wrap = ref.current
+        if (!wrap) continue
+        const target = wrap.querySelector('h2') ?? wrap
+        const y = getScrollParallaxOffset(target)
+        wrap.style.transform = y !== 0 ? `translate3d(0, ${y}px, 0)` : ''
+      }
+      for (const ref of cardRefs) {
+        const wrap = ref.current
+        if (!wrap) continue
+        const y = getScrollParallaxOffset(wrap, {
+          strength: 0.07,
+          maxPx: 18,
+          focalFrac: 0.42
+        })
+        wrap.style.transform = y !== 0 ? `translate3d(0, ${y}px, 0)` : ''
+      }
+    }
+
+    const onScrollOrResize = () => {
+      if (!scheduled) scheduled = requestAnimationFrame(tick)
+    }
+
+    window.addEventListener('scroll', onScrollOrResize, { passive: true })
+    window.addEventListener('resize', onScrollOrResize)
+    tick()
+
+    return () => {
+      window.removeEventListener('scroll', onScrollOrResize)
+      window.removeEventListener('resize', onScrollOrResize)
+      if (scheduled) cancelAnimationFrame(scheduled)
+      for (const ref of headingWraps) {
+        if (ref.current) ref.current.style.transform = ''
+      }
+      for (const ref of cardRefs) {
+        if (ref.current) ref.current.style.transform = ''
+      }
+    }
+  }, [])
+
   return (
     <section className="relative z-10 flex w-full flex-col items-center">
       <div className="home-hero relative flex min-h-[calc(100vh-64px)] w-full items-center justify-center overflow-hidden">
@@ -383,14 +624,16 @@ function Home() {
         aria-label="Stories"
       >
         <div className="w-full overflow-visible">
-          <h2
-            ref={storiesHeadingRef}
-            className={`w-full pt-[112px] pb-32 text-center text-6xl font-bold tracking-wide md:pb-36 md:text-7xl lg:text-8xl transition-all duration-700 ease-out bg-home-h2-stories bg-clip-text text-transparent ${
-              storiesHeadingInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
-            Stories
-          </h2>
+          <div ref={storiesParallaxWrapRef} className="w-full will-change-transform">
+            <h2
+              ref={storiesHeadingRef}
+              className={`w-full pt-[112px] pb-32 text-center text-6xl font-bold tracking-wide md:pb-36 md:text-7xl lg:text-8xl transition-all duration-700 ease-out bg-home-h2-stories bg-clip-text text-transparent ${
+                storiesHeadingInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              Stories
+            </h2>
+          </div>
           <div className="w-full px-10 pb-8">
           {/* Row 1: AI talk only — shorter aspect to reduce height */}
           <div className="w-full">
@@ -400,6 +643,10 @@ function Home() {
                   className="group relative flex min-w-0 transition-all duration-500 hover:translate-y-[-2px]"
                 >
                   {item.externalUrl ? (
+                    <div
+                      ref={storyCardParallax0Ref}
+                      className="will-change-transform w-full min-w-0"
+                    >
                     <div
                       className={`relative flex h-full min-h-[320px] w-full min-w-0 flex-col overflow-hidden rounded-home-card border border-white/10 py-16 transition-shadow duration-500 md:min-h-[380px] md:flex-row md:py-20 shadow-home-card-glow group-hover:shadow-home-card-glow-hover`}
                     style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
@@ -424,18 +671,23 @@ function Home() {
                         </div>
                       </div>
                     </div>
+                    </div>
                   ) : null}
                 </div>
               ))}
           </div>
           {/* Row 2: Insurance + Amendments — items-start so card height = content + padding (same as AI card) */}
           <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">
-            {CASE_STUDY_CARDS.slice(1, 3).map((item) => (
+            {CASE_STUDY_CARDS.slice(1, 3).map((item, rowIdx) => (
               <div
                 key={item.id}
                 className="group relative flex min-w-0 transition-all duration-500 hover:translate-y-[-2px]"
               >
                 {item.externalUrl ? (
+                  <div
+                    ref={rowIdx === 0 ? storyCardParallax1Ref : storyCardParallax2Ref}
+                    className="will-change-transform w-full min-w-0"
+                  >
                   <div
                     className={`relative flex h-full min-h-[320px] w-full min-w-0 flex-col overflow-hidden rounded-home-card border border-white/10 ${item.preview === 'insurance' || item.preview === 'amendments' ? 'py-20 md:py-24' : 'py-12 md:py-14'} transition-shadow duration-500 md:min-h-[380px] md:flex-row shadow-home-card-glow group-hover:shadow-home-card-glow-hover`}
                     style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
@@ -492,7 +744,12 @@ function Home() {
                       </div>
                     </div>
                   </div>
+                  </div>
                 ) : (
+                  <div
+                    ref={rowIdx === 0 ? storyCardParallax1Ref : storyCardParallax2Ref}
+                    className="will-change-transform w-full min-w-0"
+                  >
                   <div className={`relative flex h-full min-h-[320px] w-full min-w-0 flex-col overflow-hidden rounded-home-card border border-white/10 ${item.preview === 'insurance' || item.preview === 'amendments' ? 'py-20 md:py-24' : 'py-12 md:py-14'} transition-shadow duration-500 md:min-h-[380px] md:flex-row shadow-home-card-glow group-hover:shadow-home-card-glow-hover`}
                     style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
                     <div className="relative flex min-w-0 flex-1 flex-col items-start text-left justify-start px-10 md:px-11 lg:px-12">
@@ -554,15 +811,20 @@ function Home() {
                       </div>
                     </div>
                   </div>
+                  </div>
                 )}
               </div>
             ))}
           </div>
-          <div className="flex justify-center pt-10">
-            <div className="inline-block rounded-full bg-home-cta p-px shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-105">
+          <div className="flex justify-center pt-20">
+            {/*
+              Gradient “ring” trick: outer has bg-home-cta + p-px; inner must be opaque (e.g. bg-black).
+              bg-transparent on the inner shows the parent’s full gradient — reads as a solid fill, not a ring.
+            */}
+            <div className="inline-block rounded-full bg-home-cta p-px shadow-sm shadow-violet-500/15 transition hover:shadow-violet-500/25 hover:brightness-105">
               <Link
                 to="/stories"
-                className="block rounded-full bg-black/55 px-5 py-2.5 text-base font-normal tracking-wider outline-none transition hover:bg-black/70 focus-visible:ring-2 focus-visible:ring-white/45 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                className="block rounded-full bg-black px-5 py-2.5 text-base font-normal tracking-wider outline-none transition hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-white/45 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
               >
                 <span className="bg-home-cta-label bg-clip-text text-transparent">
                   View more stories
@@ -576,14 +838,16 @@ function Home() {
       <section ref={capabilitiesRef} className="relative z-10 w-full min-h-screen overflow-visible bg-transparent pb-[112px]" aria-label="How I create value">
         <div className="w-full overflow-visible">
           {/* pb-48/md:pb-52 — extra space vs Stories h2: star map orbits overflow the box; tighter pb reads cramped */}
-          <h2
-            ref={capabilitiesHeadingRef}
-            className={`w-full pt-[112px] pb-48 text-center text-6xl font-bold tracking-wide md:pb-52 md:text-7xl lg:text-8xl transition-all duration-700 ease-out bg-home-h2-value bg-clip-text text-transparent ${
-              capabilitiesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
-            }`}
-          >
-            How I create value
-          </h2>
+          <div ref={capabilitiesParallaxWrapRef} className="w-full will-change-transform">
+            <h2
+              ref={capabilitiesHeadingRef}
+              className={`w-full pt-[112px] pb-48 text-center text-6xl font-bold tracking-wide md:pb-52 md:text-7xl lg:text-8xl transition-all duration-700 ease-out bg-home-h2-value bg-clip-text text-transparent ${
+                capabilitiesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
+              }`}
+            >
+              How I create value
+            </h2>
+          </div>
           <div className="w-full px-10 pb-16 sm:pb-20 md:pb-24 lg:pb-32">
             <div
               ref={capabilitiesCardsRef}
@@ -594,7 +858,7 @@ function Home() {
               {/* Interactive star map — starfield, constellation lines, twinkle, glow */}
               <div
                 ref={starMapRef}
-                className="star-map-container relative mt-20 w-[420px] h-[420px] sm:w-[540px] sm:h-[540px] md:w-[640px] md:h-[640px] lg:w-[800px] lg:h-[800px] flex items-center justify-center overflow-visible rounded-home-card [--cap-radius:150px] sm:[--cap-radius:180px] md:[--cap-radius:210px] lg:[--cap-radius:260px] [--cap-radius-outer:calc(var(--cap-radius)*2)]"
+                className="star-map-container relative mt-20 w-[420px] h-[420px] sm:w-[540px] sm:h-[540px] md:w-[640px] md:h-[640px] lg:w-[800px] lg:h-[800px] flex shrink-0 items-center justify-center overflow-visible rounded-home-card [--cap-radius:150px] sm:[--cap-radius:180px] md:[--cap-radius:210px] lg:[--cap-radius:260px] [--cap-radius-outer:calc(var(--cap-radius)*2)]"
               >
                 {/* Starfield — subtle dots with slow drift */}
                 <div className="star-map-drift-inner absolute inset-0 overflow-hidden rounded-home-card" aria-hidden>
@@ -608,13 +872,50 @@ function Home() {
                     ))}
                   </svg>
                 </div>
-                {/* Connector lines intentionally removed for a cleaner map */}
-                {/* Center star — Core */}
+                {capabilitiesInView && starMapConnectors ? (
+                  <svg
+                    className="pointer-events-none absolute inset-0 z-[6] h-full w-full overflow-visible"
+                    width={starMapConnectors.w}
+                    height={starMapConnectors.h}
+                    viewBox={`0 0 ${starMapConnectors.w} ${starMapConnectors.h}`}
+                    preserveAspectRatio="none"
+                    aria-hidden
+                  >
+                    {starMapConnectors.lines.map((ln) =>
+                      ln.kind === 'core' ? (
+                        <line
+                          key={`conn-core-${ln.pillar}`}
+                          x1={ln.x1}
+                          y1={ln.y1}
+                          x2={ln.x2}
+                          y2={ln.y2}
+                          stroke="rgba(165, 243, 252, 0.22)"
+                          strokeWidth={1.15}
+                          strokeLinecap="round"
+                        />
+                      ) : (
+                        <line
+                          key={`conn-spoke-${ln.outerIndex}`}
+                          x1={ln.x1}
+                          y1={ln.y1}
+                          x2={ln.x2}
+                          y2={ln.y2}
+                          stroke="rgba(165, 243, 252, 0.22)"
+                          strokeWidth={1.15}
+                          strokeLinecap="round"
+                        />
+                      )
+                    )}
+                  </svg>
+                ) : null}
+                {/* Center — Core (same disc language as inner pillars, non-interactive) */}
                 <div
-                  className="absolute left-1/2 top-1/2 z-10 flex h-24 w-24 -translate-x-1/2 -translate-y-1/2 items-center justify-center sm:h-28 sm:w-28 md:h-32 md:w-32"
+                  ref={starMapCoreRef}
+                  className="absolute left-1/2 top-1/2 z-[13] flex h-32 w-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/20 opacity-95 shadow-home-card-glow sm:h-40 sm:w-40 md:h-44 md:w-44 lg:h-48 lg:w-48"
+                  aria-label="Core — people and outcomes"
                 >
                   <div
-                    className="absolute inset-0 rounded-full"
+                    className="pointer-events-none absolute inset-0 rounded-full"
                     style={{
                       background: 'radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.035) 45%, rgba(255,255,255,0) 75%)',
                       filter: 'blur(1px)'
@@ -635,11 +936,12 @@ function Home() {
                         <stop offset="100%" stopColor="#e879f9" />
                       </linearGradient>
                     </defs>
+                    {/* Hairline-friendly in 24×24; thinner than heart’s apparent weight */}
                     <path
                       d="M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
                       fill="none"
                       stroke="url(#core-user-grad)"
-                      strokeWidth="1.8"
+                      strokeWidth="1.35"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
@@ -647,29 +949,27 @@ function Home() {
                       d="M4.5 20a7.5 7.5 0 0 1 15 0"
                       fill="none"
                       stroke="url(#core-user-grad)"
-                      strokeWidth="1.8"
+                      strokeWidth="1.35"
                       strokeLinecap="round"
                       strokeLinejoin="round"
                     />
                   </svg>
                 </div>
                 <div className="star-map-orbit-inner absolute inset-0">
-                  {/* First ring — 4 pillars */}
+                  {/* First ring — five inner lenses (PILLARS) */}
                   {PILLARS.map((pillar, i) => {
-                    const angle = -45 + (i * 360) / PILLARS.length
                     const isSelected = selectedPillarIndex === i
                     return (
                       <button
                         key={i}
+                        ref={(el) => {
+                          starMapStarRefs.current[i] = el
+                        }}
                         type="button"
                         onClick={() => setSelectedPillarIndex(i)}
-                        className={`group star-map-star shadow-home-card-glow group-hover:shadow-home-card-glow-hover absolute left-1/2 top-1/2 z-10 flex h-40 w-40 items-center justify-center rounded-full border border-white/10 text-center opacity-95 transition-all duration-300 sm:h-44 sm:w-44 md:h-48 md:w-48 lg:h-56 lg:w-56 ${isSelected ? 'selected' : ''}`}
-                        style={{
-                          backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                          transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(calc(-1 * var(--cap-radius))) rotate(${-angle}deg)`
-                        }}
+                        className={`group star-map-star shadow-home-card-glow group-hover:shadow-home-card-glow-hover absolute left-1/2 top-1/2 z-[11] flex h-28 w-28 items-center justify-center rounded-full border border-white/10 bg-black/20 text-center opacity-95 transition-shadow duration-300 sm:h-32 sm:w-32 md:h-36 md:w-36 lg:h-40 lg:w-40 ${isSelected ? 'selected' : ''}`}
                       >
-                        <span className="block max-w-33 whitespace-nowrap text-2xl font-semibold leading-tight tracking-wider text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)] sm:max-w-36 md:max-w-40 md:text-3xl lg:max-w-48 lg:text-4xl">
+                        <span className="block max-w-24 whitespace-nowrap text-sm font-normal leading-tight tracking-wider text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)] sm:max-w-28 sm:text-base md:max-w-32 md:text-lg lg:text-xl">
                           {pillar}
                         </span>
                       </button>
@@ -677,20 +977,18 @@ function Home() {
                   })}
                 </div>
                 <div className="star-map-orbit-outer absolute inset-0">
-                  {/* Outer ring — 8 capabilities, grouped by pillar */}
+                  {/* Outer ring — five pillars ×3 satellites */}
                   {OUTER_RING.map((node, i) => {
-                    const angle = -90 + OUTER_RING_ANGLE_OFFSET_DEG + (i * 360) / OUTER_RING.length
                     return (
                       <div
                         key={`outer-${i}`}
-                        className="star-map-star shadow-home-card-glow pointer-events-none absolute left-1/2 top-1/2 z-10 flex h-36 w-36 items-center justify-center rounded-full border border-white/10 text-center opacity-95 sm:h-40 sm:w-40 md:h-44 md:w-44 lg:h-52 lg:w-52"
-                        style={{
-                          backgroundColor: 'rgba(0, 0, 0, 0.2)',
-                          transform: `translate(-50%, -50%) rotate(${angle}deg) translateY(calc(-1 * var(--cap-radius-outer))) rotate(${-angle}deg)`
+                        ref={(el) => {
+                          starMapStarRefs.current[PILLARS.length + i] = el
                         }}
+                        className="star-map-star shadow-home-card-glow pointer-events-none absolute left-1/2 top-1/2 z-[12] flex h-16 w-16 items-center justify-center overflow-visible rounded-full border border-white/10 bg-black/20 text-center opacity-95 sm:h-[4.5rem] sm:w-[4.5rem] md:h-20 md:w-20 lg:h-24 lg:w-24"
                       >
                         {node.label ? (
-                          <span className="block max-w-28 whitespace-nowrap text-2xl font-semibold leading-tight tracking-wider text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)] sm:max-w-32 md:max-w-36 md:text-3xl lg:max-w-40 lg:text-4xl">
+                          <span className="block max-w-20 whitespace-nowrap text-sm font-normal leading-tight tracking-wider text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)] sm:max-w-24 sm:text-base md:max-w-28 md:text-lg lg:text-lg">
                             {node.label}
                           </span>
                         ) : null}
@@ -705,9 +1003,11 @@ function Home() {
       </section>
       <section className="relative z-10 w-full min-h-screen bg-transparent pb-[112px]" aria-label="Get in touch">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-10 pt-[112px] pb-8 text-center">
-          <h2 className="w-full pb-32 text-center text-6xl font-bold tracking-wide md:pb-36 md:text-7xl lg:text-8xl bg-[linear-gradient(90deg,#cffafe_0%,#67e8f9_24%,#818cf8_52%,#c084fc_78%,#f5d0fe_100%)] bg-clip-text text-transparent">
-            Get in touch
-          </h2>
+          <div ref={contactParallaxWrapRef} className="w-full will-change-transform">
+            <h2 className="w-full pb-8 text-center text-6xl font-bold tracking-wide md:pb-10 md:text-7xl lg:text-8xl bg-[linear-gradient(90deg,#cffafe_0%,#67e8f9_24%,#818cf8_52%,#c084fc_78%,#f5d0fe_100%)] bg-clip-text text-transparent">
+              Get in touch
+            </h2>
+          </div>
           <div className="w-full text-center">
             <p className="inline-block text-xl font-extralight tracking-wider text-white md:text-2xl">
               Open to senior roles and collaborations.

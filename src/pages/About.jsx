@@ -13,11 +13,11 @@ function About() {
     <section className="relative z-10 flex w-full flex-col">
       {/* Hero — same pattern as Stories */}
       <div
-        className="relative flex min-h-[calc(100vh-64px)] w-full flex-col justify-center overflow-hidden px-6 py-12"
+        className="relative flex min-h-[75svh] w-full flex-col justify-center overflow-hidden px-6 py-12"
         role="region"
         aria-labelledby="about-heading"
       >
-        <div className="pointer-events-none absolute inset-0 min-h-[calc(100vh-64px)]">
+        <div className="pointer-events-none absolute inset-0 min-h-[75svh]">
           <ParticleBackground variant="momentum" className="absolute inset-0 h-full w-full" />
         </div>
         <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center text-center">
