@@ -3,78 +3,209 @@ import { useEffect } from 'react'
 import MatrixRain from '../components/MatrixRain'
 import ParticleBackground from '../components/ParticleBackground'
 import { FCTG_PRESO_URL } from '../constants/preso'
-import { FCTGEnergyPreview } from './Home'
+import { FCTGEnergyPreview, InsurancePreview, AmendmentsPreview } from './Home'
+
+const lineIcons = {
+  package: {
+    viewBox: '0 0 100 100',
+    paths: [
+      'M 50 18 L 82 34 L 82 66 L 50 82 L 18 66 L 18 34 Z',
+      'M 50 18 L 50 82',
+      'M 18 34 L 50 50 L 82 34',
+    ],
+  },
+  coin: {
+    viewBox: '0 0 100 100',
+    paths: [
+      'M 50 14 A 36 36 0 1 1 49.99 14',
+      'M 42 36 Q 42 30 50 30 Q 58 30 58 36 Q 58 44 50 44 Q 42 44 42 52 Q 42 58 50 58 Q 58 58 58 52',
+      'M 50 24 L 50 64',
+    ],
+  },
+  panels: {
+    viewBox: '0 0 100 100',
+    paths: [
+      'M 14 22 L 56 22 L 56 62 L 14 62 Z',
+      'M 44 38 L 86 38 L 86 78 L 44 78 Z',
+    ],
+  },
+
+  link: {
+    viewBox: '0 0 100 100',
+    paths: [
+      'M 36 50 A 18 18 0 1 1 35.99 50',
+      'M 64 50 A 18 18 0 1 1 63.99 50',
+    ],
+  },
+  connect: {
+    viewBox: '0 0 100 100',
+    paths: [
+      'M 26 50 A 14 14 0 1 1 25.99 50',
+      'M 74 50 A 14 14 0 1 1 73.99 50',
+      'M 40 50 L 60 50',
+    ],
+  },
+  arrow: {
+    viewBox: '0 0 100 100',
+    paths: [
+      'M 20 50 L 75 50',
+      'M 60 35 L 75 50 L 60 65',
+    ],
+  },
+  stack: {
+    viewBox: '0 0 100 100',
+    paths: [
+      'M 18 32 L 82 32',
+      'M 18 50 L 82 50',
+      'M 18 68 L 62 68',
+    ],
+  },
+  code: {
+    viewBox: '0 0 100 100',
+    paths: [
+      'M 34 24 L 14 50 L 34 76',
+      'M 66 24 L 86 50 L 66 76',
+    ],
+  },
+  person: {
+    viewBox: '0 0 100 100',
+    paths: [
+      'M 50 36 A 13 13 0 1 1 49.99 36',
+      'M 24 80 Q 24 58 50 52 Q 76 58 76 80',
+    ],
+  },
+  chart: {
+    viewBox: '0 0 100 100',
+    paths: [
+      'M 16 78 L 36 52 L 56 62 L 78 24',
+      'M 68 24 L 80 24 L 80 36',
+    ],
+  },
+  grid: {
+    viewBox: '0 0 100 100',
+    paths: [
+      'M 18 18 L 46 18 L 46 46 L 18 46 Z',
+      'M 54 18 L 82 18 L 82 46 L 54 46 Z',
+      'M 18 54 L 46 54 L 46 82 L 18 82 Z',
+      'M 54 54 L 82 54 L 82 82 L 54 82 Z',
+    ],
+  },
+}
+
+function LineDrawingIcon({ type }) {
+  const icon = lineIcons[type]
+  if (!icon) return null
+  return (
+    <svg viewBox={icon.viewBox} className="h-24 w-24 overflow-visible" aria-hidden>
+      <defs>
+        <linearGradient id={`line-grad-${type}`} x1="0%" y1="0%" x2="100%" y2="0%">
+          <stop offset="0%" stopColor="#818cf8" />
+          <stop offset="45%" stopColor="#22d3ee" />
+          <stop offset="100%" stopColor="#a78bfa" />
+        </linearGradient>
+      </defs>
+      {icon.paths.map((d, i) => (
+        <path
+          key={i}
+          d={d}
+          fill="none"
+          stroke={`url(#line-grad-${type})`}
+          strokeWidth="2.5"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          pathLength="1"
+          className="line-draw-trace"
+          style={{ strokeDasharray: 1, animationDelay: `${i * 0.3}s` }}
+        />
+      ))}
+    </svg>
+  )
+}
+
+const lineDrawCSS = `
+@keyframes line-draw-trace {
+  0% { stroke-dashoffset: 1; opacity: 0.4; }
+  30% { stroke-dashoffset: 0; opacity: 1; }
+  70% { stroke-dashoffset: 0; opacity: 1; }
+  100% { stroke-dashoffset: 1; opacity: 0.4; }
+}
+.line-draw-trace {
+  animation: line-draw-trace 3.6s ease-in-out infinite;
+  filter: drop-shadow(0 0 6px rgba(34,211,238,0.3)) drop-shadow(0 0 14px rgba(129,140,248,0.2));
+}
+`
 
 /* Apple shop–style: soft shadow visible at top of card + diffuse below (matches apple.com/shop) */
 const cardShadow =
-  'shadow-[0_-2px_8px_rgba(0,0,0,0.04),0_1px_2px_rgba(0,0,0,0.04),0_4px_20px_rgba(0,0,0,0.06),0_20px_48px_-12px_rgba(0,0,0,0.08)]'
+  'shadow-[0_0_0_1px_rgba(255,255,255,0.02),0_2px_12px_rgba(0,0,0,0.15),0_8px_28px_-6px_rgba(0,0,0,0.2)]'
 const cardShadowHover =
-  'hover:shadow-[0_-4px_12px_rgba(0,0,0,0.05),0_2px_8px_rgba(0,0,0,0.05),0_12px_32px_rgba(0,0,0,0.08),0_28px_56px_-16px_rgba(0,0,0,0.1)]'
+  'hover:shadow-[0_0_0_1px_rgba(255,255,255,0.04),0_4px_18px_rgba(0,0,0,0.22),0_12px_36px_-8px_rgba(0,0,0,0.28)]'
 
 const caseStudies = [
   {
-    title: 'Insurance',
-    summary: 'Coverage woven into the travel journey.',
-    tags: ['Travel', 'Insurance', 'Conversion'],
-    image: '/portfolio-slideshow/compono.png',
-    path: '/stories/insurance'
-  },
-  {
-    title: 'Amendments',
-    summary: 'Updates to travel components simplified.',
-    tags: ['Workflow', 'Product', 'Research'],
-    image: '/images/amendments/traveltourism-1.jpg',
-    path: '/stories/amendments'
-  },
-  {
-    title: 'Agentic AI',
-    summary: 'Presented live, March 2026.',
-    tags: ['AI', 'Travel', 'Talk'],
+    title: 'Agentic AI Talk',
+    summary: '',
+    tags: ['Live presentation', '15+ designers'],
     image: null,
     path: null,
     externalUrl: FCTG_PRESO_URL,
     preview: 'energy'
   },
   {
-    title: 'Deep link',
-    summary: 'Unified entry point from CRM into Helio.',
-    tags: ['Travel', 'Systems', 'Navigation'],
+    title: 'Travel Insurance',
+    summary: '',
+    tags: ['+45% attachment', '~30s add time'],
     image: null,
-    preview: 'crm-helio',
+    preview: 'insurance',
+    path: '/stories/insurance'
+  },
+  {
+    title: 'Travel Amendments',
+    summary: '',
+    tags: ['10+ min → 2–3 min', '67% faster workflow'],
+    image: null,
+    preview: 'amendments',
+    path: '/stories/amendments'
+  },
+  {
+    title: 'CRM Deep Linking',
+    summary: '',
+    tags: ['Systems design', 'Navigation strategy'],
+    image: null,
+    preview: 'link',
     path: '/stories/helio-deep-linking'
   },
   {
-    title: 'Helio Platform Enhancements',
-    summary: 'Case study in progress.',
-    tags: ['Travel', 'Platform'],
+    title: 'Helio Platform',
+    summary: '',
+    tags: ['Fullstory analytics', 'Workflow redesign'],
     image: null,
-    preview: 'placeholder',
-    path: null
+    preview: 'grid',
+    path: '/stories/helio-platform'
   },
   {
-    title: 'Magento Bulk Shipments',
-    summary: 'Rebuilt the bulk update flow to reduce carrier escalations and speed fulfilment.',
-    tags: ['Logistics', 'Magento', 'Workflow'],
-    image: '/portfolio-slideshow/magento-batch.png',
+    title: 'Magento Shipping',
+    summary: '',
+    tags: ['Reduced escalations', 'Faster fulfilment'],
+    image: null,
+    preview: 'package',
     path: '/stories/magento-shipping'
   }
 ]
 
 const archiveItems = [
-  { title: 'Bitcoin Gift Card', image: '/portfolio-slideshow/bicoin-card.png', path: null, summary: '', tags: [] },
-  { title: 'Compono Return Portal', image: '/portfolio-slideshow/compono.png', path: null, summary: '', tags: [] },
-  { title: 'Magento Batch Processing', image: '/portfolio-slideshow/magento-batch.png', path: null, summary: '', tags: [] },
-  { title: 'Magento Shipping Partners', image: '/portfolio-slideshow/magento-partners.jpg', path: null, summary: '', tags: [] },
-  { title: 'Magento Shipping Welcome', image: '/portfolio-slideshow/magento-welcome.png', path: null, summary: '', tags: [] },
-  { title: 'Temando Backlog Concept', image: '/portfolio-slideshow/temando-backog.png', path: null, summary: '', tags: [] },
-  { title: 'Temando Developers Portal', image: '/portfolio-slideshow/temando-landing.png', path: null, summary: '', tags: [] },
-  { title: 'Shipping Personas', image: '/portfolio-slideshow/temando-personas.png', path: null, summary: '', tags: [] },
-  { title: 'Magento Shipping Reports', image: '/portfolio-slideshow/temando-reports.png', path: null, summary: '', tags: [] },
-  { title: 'Temando T3 Style Guide', image: '/portfolio-slideshow/temando-styleguide.png', path: null, summary: '', tags: [] }
+  { title: 'Bitcoin Gift Card', image: null, preview: 'coin', path: null, summary: '', tags: [] },
+  { title: 'Compono Portal', image: null, preview: 'panels', path: null, summary: '', tags: [] },
+  { title: 'Shipping Partners', image: null, preview: 'connect', path: null, summary: '', tags: [] },
+  { title: 'Shipping Welcome', image: null, preview: 'arrow', path: null, summary: '', tags: [] },
+  { title: 'Backlog Concept', image: null, preview: 'stack', path: null, summary: '', tags: [] },
+  { title: 'Developers Portal', image: null, preview: 'code', path: null, summary: '', tags: [] },
+  { title: 'Shipping Personas', image: null, preview: 'person', path: null, summary: '', tags: [] },
+  { title: 'Shipping Reports', image: null, preview: 'chart', path: null, summary: '', tags: [] },
+  { title: 'T3 Style Guide', image: null, preview: 'grid', path: null, summary: '', tags: [] },
 ]
 
-const featuredStory = caseStudies.find((card) => card.externalUrl) ?? caseStudies[0]
-const storyIndexCards = [...caseStudies.filter((card) => card !== featuredStory), ...archiveItems]
+const allCards = [...caseStudies, ...archiveItems]
 
 function Work() {
   useEffect(() => {
@@ -82,164 +213,71 @@ function Work() {
     return () => document.body.classList.remove('home-sky')
   }, [])
 
-  const featuredStoryContent = (
-    <article
-      className={`group relative overflow-hidden rounded-[32px] border border-slate-200/80 bg-white transition duration-300 ease-out ${
-        featuredStory.path || featuredStory.externalUrl ? `hover:-translate-y-0.5 ${cardShadowHover}` : ''
-      } ${cardShadow} md:flex md:min-h-[380px]`}
-    >
-      <div className="relative flex flex-1 flex-col justify-center p-8 md:p-10 lg:p-12">
-        <p className="text-[11px] font-semibold uppercase tracking-[0.22em] text-slate-500">Featured story</p>
-        <h3 className="mt-4 text-4xl font-semibold tracking-wide text-slate-900 md:text-5xl lg:text-6xl">
-          {featuredStory.title}
-        </h3>
-        {featuredStory.summary && (
-          <p className="mt-3 text-xl font-extralight tracking-wider text-slate-600 md:text-2xl">
-            {featuredStory.summary}
-          </p>
-        )}
-        {featuredStory.tags.length > 0 && (
-          <div className="mt-5 flex flex-wrap gap-2 text-xs font-medium text-slate-600">
-            {featuredStory.tags.map((tag) => (
-              <span key={tag} className="rounded-full border border-slate-200 bg-white px-3 py-1">
-                {tag}
-              </span>
-            ))}
-          </div>
-        )}
-        {(featuredStory.path || featuredStory.externalUrl) && (
-          <span className="mt-6 inline-block w-fit rounded-full bg-slate-900 px-5 py-2.5 text-base font-normal tracking-wider text-white shadow-sm">
-            {featuredStory.externalUrl ? 'Open presentation' : 'View case study'}
-          </span>
-        )}
-      </div>
-
-      <div className="border-t border-slate-200 md:w-[46%] md:border-l md:border-t-0">
-        <div className="relative h-full min-h-[280px] w-full overflow-hidden bg-slate-950">
-          {featuredStory.preview === 'energy' ? (
-            <div className="flex h-full w-full items-center justify-center bg-slate-950 px-6">
-              <FCTGEnergyPreview />
-            </div>
-          ) : featuredStory.matrixPreview ? (
-            <>
-              <MatrixRain className="absolute inset-0 h-full w-full" opacity={0.85} />
-              <div className="pointer-events-none absolute inset-0 bg-black/70" aria-hidden />
-            </>
-          ) : featuredStory.preview === 'crm-helio' ? (
-            <div
-              className="relative flex h-full w-full items-center justify-center overflow-hidden"
-              style={{
-                background:
-                  'radial-gradient(circle at 20% 30%, rgba(34, 211, 238, 0.2), transparent 28%), radial-gradient(circle at 78% 32%, rgba(129, 140, 248, 0.22), transparent 28%), linear-gradient(135deg, #020617 0%, #0f172a 40%, #111827 75%, #000000 100%)'
-              }}
-            >
-              <div className="grid w-full max-w-[88%] grid-cols-[1fr_auto_1fr] items-center gap-3">
-                <div className="rounded-2xl border border-cyan-400/20 bg-white/5 px-4 py-4 text-center backdrop-blur-sm">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-200/80">CRM</p>
-                  <p className="mt-2 text-base font-semibold text-white">Microsoft</p>
-                </div>
-                <div className="text-center text-xs font-semibold uppercase tracking-[0.22em] text-cyan-100/80">
-                  Link
-                </div>
-                <div className="rounded-2xl border border-violet-400/20 bg-white/5 px-4 py-4 text-center backdrop-blur-sm">
-                  <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-200/80">Product</p>
-                  <p className="mt-2 text-base font-semibold text-white">Helio</p>
-                </div>
-              </div>
-            </div>
-          ) : featuredStory.preview === 'placeholder' ? (
-            <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(135deg,#f8fafc_0%,#eef2ff_45%,#ecfeff_100%)]">
-              <div className="rounded-full border border-slate-200 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500 shadow-sm">
-                Coming soon
-              </div>
-            </div>
-          ) : (
-            <img
-              src={featuredStory.image}
-              alt={featuredStory.title}
-              className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
-            />
-          )}
-        </div>
-      </div>
-    </article>
-  )
-
   return (
     <section className="relative z-10 flex flex-col">
+      <style>{lineDrawCSS}</style>
       {/* Full viewport: title + subtitle centered — cards below the fold */}
       <div
-        className="relative flex min-h-[75svh] w-full flex-col justify-center overflow-hidden px-16 py-12 md:px-20 lg:px-24"
+        className="relative flex w-full flex-col justify-start overflow-hidden px-16 pt-24 pb-4 md:px-20 md:pt-32 lg:px-24"
         role="region"
         aria-labelledby="stories-heading"
       >
-        <div className="pointer-events-none absolute inset-0 min-h-full overflow-hidden bg-[#0a0f18]">
-          {/* contained = canvas clips to hero only; default fixed fullscreen canvas was painting over the white section below */}
-          <ParticleBackground variant="scatter" contained className="h-full w-full" />
-        </div>
-        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-center text-center">
-          <div className="flex max-w-full flex-col items-center leading-none">
-            <h1 id="stories-heading" className="m-0 text-6xl font-bold tracking-wide md:text-7xl lg:text-8xl">
-              <span className="bg-[linear-gradient(90deg,#06b6d4_0%,#14b8a6_35%,#2dd4bf_65%,#5eead4_100%)] bg-clip-text text-transparent">
-                Stories
-              </span>
+        <div className="relative z-10 mx-auto flex w-full max-w-6xl flex-col items-start text-left">
+          <div className="flex max-w-full flex-col items-start leading-none">
+            <h1 id="stories-heading" className="m-0 text-5xl font-bold tracking-wide bg-clip-text text-transparent md:text-6xl lg:text-7xl" style={{ background: 'linear-gradient(90deg, #0891b2 0%, #0d9488 25%, #4f46e5 50%, #7c3aed 75%, #c026d3 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text' }}>
+              Stories
             </h1>
-            <div
-              className="mt-3 h-10 w-full max-w-md min-w-[16rem] sm:h-11 sm:max-w-lg md:h-14 md:max-w-xl"
-              aria-hidden
-            >
-              <svg
-                viewBox="0 0 420 72"
-                className="mx-auto h-full w-full max-w-full text-cyan-400/70"
-                preserveAspectRatio="xMidYMid meet"
-              >
-                <title>Sound wave</title>
-                {[...Array(22)].map((_, i) => (
-                  <circle
-                    key={i}
-                    cx={14 + i * 18}
-                    cy={36}
-                    r={4}
-                    fill="currentColor"
-                    className="stories-sound-dot"
-                    style={{ animationDelay: `${i * 0.08}s` }}
-                  />
-                ))}
-              </svg>
-            </div>
           </div>
         </div>
       </div>
-      <div className="w-full bg-white pb-28">
-        <div className="w-full pt-[112px] pb-20 text-center md:pb-24">
-          <h2 className="text-4xl font-semibold tracking-wide text-slate-900 md:text-5xl lg:text-6xl">
-            From discovery to delivery.
-          </h2>
-        </div>
-        <div className="w-full px-16 text-left md:px-20 lg:px-24">
-          {featuredStory.externalUrl ? (
-            <a
-              href={featuredStory.externalUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="block"
-            >
-              {featuredStoryContent}
-            </a>
-          ) : featuredStory.path ? (
-            <Link to={featuredStory.path} className="block">
-              {featuredStoryContent}
-            </Link>
-          ) : (
-            featuredStoryContent
-          )}
-
-          <div className="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {storyIndexCards.map((card) => {
-              const content = (
-                <>
-                  <div className="aspect-video w-full overflow-hidden rounded-t-[32px] border-b border-slate-200">
-                    {card.matrixPreview ? (
+      <div className="w-full px-16 pt-16 pb-28 md:px-20 md:pt-20 lg:px-24">
+        <div className="mx-auto max-w-6xl">
+          <div className="w-full text-left">
+          <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            {allCards.map((card) => {
+              const imageBlock = (
+                  <div className="aspect-video w-full overflow-hidden">
+                    {card.preview === 'energy' ? (
+                      <div className="flex h-full w-full items-center justify-center bg-slate-950 px-10">
+                        <div className="w-full max-w-[360px]">
+                          <FCTGEnergyPreview />
+                        </div>
+                      </div>
+                    ) : card.preview === 'insurance' ? (
+                      <div className="flex h-full w-full items-center justify-center bg-slate-950">
+                        <style>{`
+                          @keyframes insurance-heart-trace { 0% { stroke-dashoffset: 1; } 28% { stroke-dashoffset: 0; } 72% { stroke-dashoffset: 0; } 100% { stroke-dashoffset: 1; } }
+                          @keyframes insurance-heart-beat { 0%, 100% { transform: scale(1); } 12% { transform: scale(1.08); } 24% { transform: scale(1); } 36% { transform: scale(1.05); } 48% { transform: scale(1); } }
+                          @keyframes insurance-heart-glow { 0%, 100% { filter: drop-shadow(0 0 4px rgba(34,211,238,0.4)) drop-shadow(0 0 12px rgba(129,140,248,0.25)); opacity: 0.9; } 50% { filter: drop-shadow(0 0 10px rgba(34,211,238,0.55)) drop-shadow(0 0 20px rgba(167,139,250,0.35)); opacity: 1; } }
+                          .insurance-heart-beat-wrap { transform-origin: 160px 50px; animation: insurance-heart-beat 2.4s ease-in-out infinite; }
+                          .insurance-home-heart { stroke-linejoin: round; stroke-linecap: round; stroke-dasharray: 1; animation: insurance-heart-trace 3.2s ease-in-out infinite, insurance-heart-glow 2.4s ease-in-out infinite; }
+                        `}</style>
+                        <svg viewBox="130 16 60 60" className="h-14 w-14 overflow-visible" aria-hidden>
+                          <defs>
+                            <linearGradient id="stories-heart-grad" x1="0%" y1="0%" x2="100%" y2="0%">
+                              <stop offset="0%" stopColor="#818cf8" />
+                              <stop offset="45%" stopColor="#22d3ee" />
+                              <stop offset="100%" stopColor="#a78bfa" />
+                            </linearGradient>
+                          </defs>
+                          <g className="insurance-heart-beat-wrap">
+                            <path
+                              d="M 160 68 C 144 52, 136 38, 136 30 C 136 24, 142 22, 148 26 C 152 28, 154 32, 160 38 C 166 32, 168 28, 172 26 C 178 22, 184 24, 184 30 C 184 38, 176 52, 160 68 Z"
+                              fill="none"
+                              stroke="url(#stories-heart-grad)"
+                              strokeWidth="3"
+                              pathLength="1"
+                              className="insurance-home-heart"
+                              style={{ strokeDasharray: 1 }}
+                            />
+                          </g>
+                        </svg>
+                      </div>
+                    ) : card.preview === 'amendments' ? (
+                      <div className="flex h-full w-full items-center justify-center bg-slate-950">
+                        <AmendmentsPreview />
+                      </div>
+                    ) : card.matrixPreview ? (
                       <div className="relative h-full w-full bg-[#030b0f]">
                         <MatrixRain className="absolute inset-0 h-full w-full" opacity={0.85} />
                         <div
@@ -247,70 +285,43 @@ function Work() {
                           aria-hidden
                         />
                       </div>
-                    ) : card.preview === 'crm-helio' ? (
-                      <div
-                        className="relative flex h-full w-full items-center justify-center overflow-hidden"
-                        style={{
-                          background:
-                            'radial-gradient(circle at 20% 30%, rgba(34, 211, 238, 0.2), transparent 28%), radial-gradient(circle at 78% 32%, rgba(129, 140, 248, 0.22), transparent 28%), linear-gradient(135deg, #020617 0%, #0f172a 40%, #111827 75%, #000000 100%)'
-                        }}
-                      >
-                        <div className="grid w-full max-w-[88%] grid-cols-[1fr_auto_1fr] items-center gap-3">
-                          <div className="rounded-2xl border border-cyan-400/20 bg-white/5 px-4 py-4 text-center backdrop-blur-sm">
-                            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-200/80">CRM</p>
-                            <p className="mt-2 text-base font-semibold text-white">Microsoft</p>
-                          </div>
-                          <div className="text-center text-xs font-semibold uppercase tracking-[0.22em] text-cyan-100/80">
-                            Link
-                          </div>
-                          <div className="rounded-2xl border border-violet-400/20 bg-white/5 px-4 py-4 text-center backdrop-blur-sm">
-                            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-200/80">Product</p>
-                            <p className="mt-2 text-base font-semibold text-white">Helio</p>
-                          </div>
-                        </div>
-                      </div>
                     ) : card.preview === 'placeholder' ? (
-                      <div className="flex h-full w-full items-center justify-center bg-[linear-gradient(135deg,#f8fafc_0%,#eef2ff_45%,#ecfeff_100%)]">
-                        <div className="rounded-full border border-slate-200 bg-white px-5 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500 shadow-sm">
+                      <div className="flex h-full w-full items-center justify-center bg-slate-950">
+                        <div className="rounded-full border border-slate-700 bg-slate-900 px-5 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-slate-500">
                           Coming soon
                         </div>
                       </div>
-                    ) : (
+                    ) : lineIcons[card.preview] ? (
+                      <div className="flex h-full w-full items-center justify-center bg-slate-950">
+                        <LineDrawingIcon type={card.preview} />
+                      </div>
+                    ) : card.image ? (
                       <img
                         src={card.image}
                         alt={card.title}
                         className="h-full w-full object-cover transition duration-300 group-hover:scale-105"
                       />
-                    )}
+                    ) : null}
                   </div>
-                  <div className="flex flex-1 flex-col p-6 pb-12">
-                    <h3 className="text-xl font-semibold tracking-wide text-slate-900 md:text-2xl">{card.title}</h3>
+              )
+              const isEnergy = card.preview === 'energy'
+              const textBlock = (
+                  <div className="flex flex-col items-center px-8 pt-8 pb-4 text-center">
+                    <h3 className="text-2xl font-semibold tracking-wider text-white md:text-3xl">{card.title}</h3>
                     {card.summary && (
                       <p
-                        className={`mt-3 text-base font-extralight tracking-wider text-slate-600 ${
+                        className={`mt-3 text-base font-medium tracking-wide text-slate-400 ${
                           card.path === '/stories/insurance' ? 'whitespace-nowrap' : 'whitespace-pre-line'
                         }`}
                       >
                         {card.summary}
                       </p>
                     )}
-                    {card.tags.length > 0 && (
-                      <div className="mt-4 flex flex-wrap gap-2 text-xs font-medium text-slate-600">
-                        {card.tags.map((tag) => (
-                          <span key={tag} className="rounded-full border border-slate-200 bg-white px-3 py-1">
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    )}
-                    {(card.path || card.externalUrl) && (
-                      <span className="mt-4 inline-block w-fit rounded-full bg-slate-900 px-5 py-2.5 text-base font-normal tracking-wider text-white shadow-sm">
-                        {card.externalUrl ? 'Open presentation' : 'View case study'}
-                      </span>
-                    )}
                   </div>
-                </>
               )
+              const content = <>{textBlock}{imageBlock}</>
+
+              const articleCls = `group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-slate-800/60 bg-slate-950 transition duration-300 ease-out hover:-translate-y-0.5 ${cardShadow} ${cardShadowHover}`
 
               if (card.externalUrl) {
                 return (
@@ -321,9 +332,7 @@ function Work() {
                     rel="noopener noreferrer"
                     className="block"
                   >
-                    <article
-                      className={`group relative flex h-full flex-col overflow-hidden rounded-[32px] border border-slate-200/80 bg-white transition duration-300 ease-out hover:-translate-y-0.5 ${cardShadow} ${cardShadowHover}`}
-                    >
+                    <article className={articleCls}>
                       {content}
                     </article>
                   </a>
@@ -337,9 +346,7 @@ function Work() {
                     to={card.path}
                     className="block"
                   >
-                    <article
-                      className={`group relative flex h-full flex-col overflow-hidden rounded-[32px] border border-slate-200/80 bg-white transition duration-300 ease-out hover:-translate-y-0.5 ${cardShadow} ${cardShadowHover}`}
-                    >
+                    <article className={articleCls}>
                       {content}
                     </article>
                   </Link>
@@ -349,13 +356,14 @@ function Work() {
               return (
                 <article
                   key={card.title}
-                  className={`group relative flex h-full flex-col overflow-hidden rounded-[32px] border border-slate-200/80 bg-white transition duration-300 ease-out ${cardShadow}`}
+                  className={`group relative flex h-full flex-col overflow-hidden rounded-[24px] border border-slate-800/60 bg-slate-950 transition duration-300 ease-out ${cardShadow}`}
                 >
                   {content}
                 </article>
               )
             })}
           </div>
+        </div>
         </div>
       </div>
     </section>

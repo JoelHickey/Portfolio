@@ -1967,12 +1967,12 @@ function FCTGAITalkSlides() {
           <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl mx-auto flex flex-col items-center gap-4 px-6 py-4">
             <div className="flex flex-col items-center text-center">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Multi-agent systems</h2>
-              <p className="fctg-subtitle mt-1">Specialized agents, orchestrated toward one outcome.</p>
+              <p className="fctg-subtitle mt-1">A lead agent coordinates specialized sub-agents toward one outcome.</p>
             </div>
             <FCTGMultiAgentDiagram compact />
             <div className="-mt-2 space-y-1">
-              <p className="text-xs text-slate-500 text-center max-w-xl mx-auto">The value comes from coordination toward a shared outcome.</p>
-              <p className="text-xs font-medium text-cyan-300/80 text-center max-w-xl mx-auto">Use when work spans multiple steps.</p>
+              <p className="text-xs text-slate-500 text-center max-w-xl mx-auto">The value comes from delegation, parallel work, and coordination across focused tasks.</p>
+              <p className="text-xs font-medium text-cyan-300/80 text-center max-w-xl mx-auto">Use when work can be split into parallel streams or multiple steps.</p>
             </div>
           </div>
         </Slide>

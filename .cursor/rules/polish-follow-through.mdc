@@ -1,0 +1,22 @@
+---
+description: Follow through on dependent polish changes in the same pass
+alwaysApply: true
+---
+
+# Polish Follow-Through
+
+When making a polish change, also update the obvious dependent layout in the same pass.
+
+Examples:
+
+- If text gets shorter or smaller, reassess card height, padding, spacing, and connector alignment.
+- If a component becomes visually lighter or denser, rebalance nearby elements so the composition still feels intentional.
+- If mirrored or repeated elements are changed on one side, check whether the matching side should be updated too.
+
+Do not stop after the first local edit if the surrounding layout is now visibly out of proportion.
+
+Before calling a polish task done, check:
+
+- Did the sizing change affect container height?
+- Did spacing or alignment now need updating?
+- Did connectors, strokes, or surrounding elements need to move with it?

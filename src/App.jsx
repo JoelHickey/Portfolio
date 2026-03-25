@@ -13,6 +13,7 @@ const InsuranceDemo = lazy(() => import('./pages/InsuranceDemo.jsx'))
 const FCTGAITalk = lazy(() => import('./pages/FCTGAITalk.jsx'))
 const MagentoShipping = lazy(() => import('./pages/MagentoShipping.jsx'))
 const HelioDeepLinking = lazy(() => import('./pages/HelioDeepLinking.jsx'))
+const HelioPlatform = lazy(() => import('./pages/HelioPlatform.jsx'))
 const DesignSystem = lazy(() => import('./pages/DesignSystem.jsx'))
 
 function App() {
@@ -30,6 +31,7 @@ function App() {
           <Route path="stories/fctg-ai-talk/v2" element={<FCTGAITalk />} />
           <Route path="stories/magento-shipping" element={<MagentoShipping />} />
           <Route path="stories/helio-deep-linking" element={<HelioDeepLinking />} />
+          <Route path="stories/helio-platform" element={<HelioPlatform />} />
           <Route path="design-system" element={<DesignSystem />} />
           <Route path="contact" element={<Contact />} />
           <Route path="about" element={<About />} />

@@ -1,557 +1,417 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
+const gradientStyle = {
+  background: 'linear-gradient(90deg, #0891b2 0%, #0d9488 25%, #4f46e5 50%, #7c3aed 75%, #c026d3 100%)',
+  WebkitBackgroundClip: 'text',
+  backgroundClip: 'text',
+}
+
 function Amendments() {
   useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
 
-  const discoveryActivities = [
-    {
-      title: 'Global workshops',
-      description:
-        'Co-led interactive workshops with 60+ consultants and stakeholders across all brands globally to ensure complete coverage.',
-      image: '/images/amendments/image1.png'
-    },
-    {
-      title: 'Problem discovery workshop',
-      description: 'Captured pain points and context during the problem discovery session.',
-      image: '/images/amendments/Problem discovery.png'
-    },
-    {
-      title: 'Voting on pain points',
-      description: 'Mapped manual amendment steps across product verticals.',
-      image: '/images/amendments/image3.png'
-    },
-    {
-      title: 'Matrix analysis',
-      description:
-        'Prioritized amendment types by frequency versus friction, with stakeholder voting to align on the biggest productivity wins.',
-      image: '/images/amendments/matrix.png'
-    },
-    {
-      title: 'Competitive analysis',
-      description: 'Benchmarked amendment flows across key competitors.'
-    },
-    {
-      title: 'Risk assessment',
-      description: 'Assessed technical and financial impacts and risks.'
-    }
-  ]
 
-  const keyFindings = [
-    { big: '13+', subtext: 'clicks with hidden dependency impacts' },
-    { big: '0%', subtext: 'automation — manual data entry caused booking errors' },
-    { big: '9', subtext: 'screens for amendment flows' },
-    { big: '30s', subtext: 'load time reduced consultant confidence' },
-    { big: '10+ min', subtext: 'hold times frustrated customers' },
-    { big: '100%', subtext: 'core fixes blocked by legacy platform' }
-  ]
 
-  const _ideationBullets = [
-    'Design studio workshops and Crazy 8s with internal and external stakeholders produced rapid sketches and 50+ reframes to explore breadth.',
-    'Competitive reviews and technology exploration benchmarked flows and assessed AI, automation, and real-time integration feasibility.'
-  ]
 
-  const concepts = [
-    { name: 'AI-powered conversational interface', description: 'Natural language amendment requests.', outcome: 'Not supported by underlying technology', selected: false },
-    { name: 'Single-page unified workflow', description: 'All amendment logic on one screen.', outcome: 'Too complex with underlying technology', selected: false },
-    { name: 'Three-page guided workflow', description: 'Step-by-step validation with dependency checking.', outcome: 'Selected approach', selected: true },
-    { name: 'Inline flow', description: 'Changes made directly within the booking view.', outcome: 'Cluttered interface, unclear validation states', selected: false },
-    { name: 'Modal flow', description: 'All changes available in one modal per amendment.', outcome: 'Disrupted context, frustrated users', selected: false },
-    { name: 'Tool-led solutions', description: 'Technical and financial impacts assessed.', outcome: 'Not used — UX unsatisfactory', selected: false }
-  ]
-
-  const usabilityMethods = [
-    { method: 'Task-based testing', detail: '15 common amendment scenarios tested with 24 consultants' },
-    { method: 'Think-aloud protocols', detail: 'Identified confusion points and mental model mismatches' },
-    { method: 'A/B testing', detail: 'Compared new workflow against legacy system for time and accuracy' },
-    { method: 'Edge case validation', detail: 'Tested complex multi-component amendments (e.g., date change + hotel swap)' },
-    { method: 'Accessibility audit', detail: 'Keyboard navigation, screen reader compatibility, color contrast' }
-  ]
-
-  const usabilityResults = [
-    { value: '97%', label: 'Task success rate' },
-    { value: '89%', label: 'CSAT' },
-    { value: '8–12 min → 2–3 min', label: 'Average time' }
-  ]
-
-  const developmentBullets = [
-    'Design handoff — detailed specs for build with flowcharts and annotated prototypes to reduce ambiguity.',
-    'Delivery cycles — 3-month cycles with planned checkpoints across the 5.5-hour time gap.',
-    'Real-time collaboration — continuous UI/UX alignment and fast adjustments during build.'
-  ]
-
-  const qaBullets = [
-    'Comprehensive testing — real-world scenarios validated through UAT.',
-    'Data validation — edge cases like past dates, sold-out inventory, and concurrent bookings.',
-    'UAT with consultants — 2-week pilot with 50 consultants.',
-    'Regression testing — existing booking flows stayed stable.',
-    'Iteration — fixes tested and patched as needed.'
-  ]
-
-  const deliveryBullets = [
-    'Global partnership — build delivered within platform.',
-    'Cross-functional delivery — engineering, design, ops, and training across time zones.',
-    'Pilots first — validate with select markets before global rollout.',
-    'Training — materials and sessions for 60+ consultants.',
-    'Change management — support docs and feedback loops.',
-    'Feature toggles — enable/disable releases safely.',
-    'Success tracking — adoption and efficiency monitoring.'
-  ]
-
-  const workflowMetrics = [
-    { label: 'Screens', value: '67%', detail: '9 → 3 screens' },
-    { label: 'Loading time', value: '69%', detail: '30s → 9s' },
-    { label: 'User actions', value: '55%', detail: '18+ → 8–10 clicks' }
-  ]
-
-  const postReleaseMetrics = [
-    { label: 'Adoption rate', value: '94%', detail: 'active within 30 days' },
-    { label: 'Task completion', value: '97%', detail: 'error-free amendments' },
-    { label: 'Avg session time', value: '2.4m', detail: 'down from 10.2m' },
-    { label: 'Rage clicks', value: '-82%', detail: 'reduction in frustrated interactions' }
-  ]
-
-  const challengeBullets = [
-    'Limited domain context — engineers lacked direct exposure to consultant workflows.',
-    'Bulk amendments out of scope — group/corporate flows weren’t covered initially.',
-    'Stakeholder pushback — UX improvements conflicted with delivery effort.',
-    'Decision noise — too many stakeholders and unclear ownership slowed progress.',
-    'Async gaps — 12+ hour feedback loops delayed decisions.',
-    'Context loss — edge cases didn’t transfer well through docs alone.',
-    'Long cycles — 3‑month delivery limited iteration during build.',
-    'Quality trade‑offs — timelines constrained UX refinement.',
-    'Testing limits — limited production‑like environments slowed validation.'
-  ]
-
-  const learningBullets = [
-    'Kick‑off alignment — early workshops prevented months of rework.',
-    'Visual specs win — flowcharts and annotated screenshots cut back‑and‑forth by 60%.',
-    'Video walkthroughs — short Looms beat long documents.',
-    'Overlap windows — small time‑shift enabled real‑time decisions.',
-    'Reliability builds trust — consistent cadence reduced uncertainty.',
-    'Embrace constraints — limits led to simpler, maintainable solutions.'
-  ]
-
-  const dreamBullets = [
-    'Interpret intent and recommend best options',
-    'Validate dependencies across flights, hotels, transfers, and activities',
-    'Show live pricing and availability',
-    'Auto-check business rules and compliance',
-    'Complete the amendment in one conversational flow'
-  ]
-
-  const dreamConstraints = [
-    'Technical constraints — legacy systems couldn’t aggregate real-time inventory across GDS providers.',
-    'Data silos — hotel, car, and activity inventory had no unified API.',
-    'AI limitations — NLP wasn’t production-ready for complex bookings.',
-    'Business risk — commission/SLA requirements needed human validation.',
-    'Timeline pressure — consultants needed relief now, not a multi‑year build.'
-  ]
 
   return (
     <section className="flex flex-col">
-      <div className="flex min-h-[calc(100vh-64px)] w-full items-start justify-center bg-white pb-28 -mt-12">
-        <div className="mx-auto w-full max-w-6xl px-6 text-left">
-          <div className="full-bleed mb-0">
-            <div className="relative w-full h-[600px] overflow-hidden bg-slate-200">
-              <img
-                src="/images/amendments/traveltourism-1.jpg"
-                alt="Travel consultant and client with passports and boarding passes"
-                className="h-full w-full object-cover object-left"
-              />
-              <div
-                className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-black/35 to-black/80"
-                aria-hidden
-              />
-              <div className="absolute left-0 right-0 top-0 pt-12">
-                <div className="mx-auto w-full max-w-6xl px-6">
-                  <Link
-                    to="/stories"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-white/90 transition hover:text-white"
-                  >
-                    <span aria-hidden>←</span>
-                    Back to Stories
-                  </Link>
-                </div>
-              </div>
-              <div className="pointer-events-none absolute inset-0 flex flex-col items-stretch justify-end pb-16">
-                <div className="mx-auto w-full max-w-6xl px-6 text-left text-white">
-                  <p className="text-lg font-medium leading-snug whitespace-nowrap sm:text-xl md:text-2xl">
-                    My whole shift became minutes. That&apos;s time I have for my customers now.
-                  </p>
-                  <p className="mt-3 text-sm text-white/90">— Sarah Mitchell, Senior Travel Consultant, Melbourne</p>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div className="relative z-10 overflow-hidden pt-20">
-            <h1 className="text-6xl font-semibold text-slate-900 md:text-7xl">
-              Streamlining Amendments
-            </h1>
-            <p className="mt-6 max-w-2xl text-base text-slate-600 leading-relaxed md:text-lg">
-              How might we help travel consultants complete amendments quickly and accurately with dependency checks, without
-              jumping between systems? A guided workflow that cut handling time and boosted confidence.
-            </p>
-            <div className="mt-8">
+
+      {/* ════════════════════════════════════════════════════════════════
+          HERO — Set up the problem, not the solution
+          ════════════════════════════════════════════════════════════════ */}
+      <div className="w-full -mt-12">
+        <div className="relative w-full h-[400px] sm:h-[480px] md:h-[560px] lg:h-[600px] overflow-hidden bg-slate-200">
+          <img
+            src="/images/amendments/traveltourism-1.jpg"
+            alt="Travel consultant and client with passports and boarding passes"
+            className="h-full w-full object-cover object-left"
+          />
+          <div
+            className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/25 via-black/35 to-black/80"
+            aria-hidden
+          />
+          <div className="absolute left-0 right-0 top-0 pt-12">
+            <div className="mx-auto w-full max-w-6xl px-6">
               <Link
-                to="/stories/amendments/demo"
-                className="inline-flex rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+                to="/stories"
+                className="inline-flex items-center gap-1.5 rounded-full bg-black/30 px-3.5 py-1.5 text-sm font-medium text-white/90 backdrop-blur-sm transition hover:bg-black/45 hover:text-white"
               >
-                Try interactive demo →
+                <span aria-hidden>←</span>
+                Back to Stories
               </Link>
             </div>
           </div>
-        </div>
-      </div>
-
-      <div className="w-full bg-slate-50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <div className="grid gap-x-10 gap-y-10 sm:grid-cols-2 lg:grid-cols-3">
-            <div>
-              <p className="text-4xl font-semibold text-slate-900 md:text-6xl">+67%</p>
-              <p className="mt-2 text-base font-medium text-slate-500">Efficiency</p>
-            </div>
-            <div>
-              <p className="text-4xl font-semibold text-slate-900 md:text-6xl">89%</p>
-              <p className="mt-2 text-base font-medium text-slate-500">Satisfaction</p>
-            </div>
-            <div>
-              <p className="text-4xl font-semibold text-slate-900 md:text-6xl">-70%</p>
-              <p className="mt-2 text-base font-medium text-slate-500">Handling time</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <h2 className="text-6xl font-semibold text-slate-900 pb-16">Discovery</h2>
-          <p className="max-w-2xl text-lg text-slate-600 leading-relaxed -mt-10 mb-10">
-            How we understood the problem with stakeholders and evidence.
-          </p>
-          <div className="space-y-10">
-          <div className="space-y-4">
-            <ul className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 text-sm text-slate-600">
-              {discoveryActivities.map((activity) => (
-                <li
-                  key={activity.title}
-                  className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm"
-                >
-                  {activity.image && (
-                    <img
-                      src={activity.image}
-                      alt=""
-                      className="h-40 w-full object-cover"
-                    />
-                  )}
-                  <div className="px-4 py-3">
-                    <p className="text-sm font-semibold text-slate-800">{activity.title}</p>
-                    <p className="mt-1 text-xs text-slate-600">{activity.description}</p>
-                  </div>
-                </li>
-              ))}
-            </ul>
-          </div>
-          <div className="space-y-4 pt-12 pb-12">
-            <h3 className="text-xl font-semibold text-slate-700">Key findings</h3>
-            <div className="flex flex-wrap justify-between gap-x-10 gap-y-10 sm:grid sm:grid-cols-2 lg:grid-cols-3">
-              {keyFindings.map((item) => (
-                <div key={`${item.big}-${item.subtext}`}>
-                  <p className="text-3xl font-semibold text-slate-900 md:text-4xl">{item.big}</p>
-                  <p className="mt-2 text-sm font-medium text-slate-500">{item.subtext}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full bg-slate-50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <h2 className="text-6xl font-semibold text-slate-900 pb-16">Ideation</h2>
-          <p className="max-w-2xl text-lg text-slate-600 leading-relaxed -mt-10 mb-10">
-            Exploring breadth through workshops and competitive review before we narrowed the direction.
-          </p>
-          <div className="space-y-8 max-w-3xl">
-            <p className="text-lg text-slate-600 leading-relaxed">
-              Design studio workshops and Crazy 8s with internal and external stakeholders produced rapid sketches and 50+ reframes to explore breadth.
-            </p>
-            <p className="text-lg text-slate-600 leading-relaxed">
-              Competitive reviews and technology exploration benchmarked flows and assessed AI, automation, and real-time integration feasibility.
-            </p>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <h2 className="text-6xl font-semibold text-slate-900 pb-16">Concept development</h2>
-          <p className="max-w-2xl text-lg text-slate-600 leading-relaxed -mt-10 mb-10">
-            Six directions we explored; one we chose.
-          </p>
-          <div className="space-y-6">
-            <ul className="space-y-3 text-sm">
-              {concepts.filter((c) => !c.selected).map((concept) => (
-                <li
-                  key={concept.name}
-                  className="border-l-2 border-slate-200 pl-4 py-2.5 pr-3 rounded-r-lg"
-                >
-                  <div className="flex flex-wrap items-baseline gap-2">
-                    <span className="font-semibold text-slate-900">{concept.name}</span>
-                    <span className="text-slate-600">— {concept.description}</span>
-                  </div>
-                  <span className="inline-block mt-1.5 text-xs font-medium px-2 py-0.5 rounded bg-slate-100 text-slate-600">
-                    {concept.outcome}
-                  </span>
-                </li>
-              ))}
-            </ul>
-            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
-              ✓ <span className="font-semibold">Three-page guided workflow</span> — Step-by-step validation with dependency checking.
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full bg-slate-50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <h2 className="text-6xl font-semibold text-slate-900 pb-16">Prototyping</h2>
-          <p className="max-w-2xl text-lg text-slate-600 leading-relaxed -mt-10 mb-10">
-            Wireframes and hi-fidelity prototypes to test the chosen workflow.
-          </p>
-          <div className="space-y-6">
-          <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 text-sm text-slate-600">
-            {[
-              { src: '/images/amendments/amendment-wireframes-r16.png', alt: 'Amendment wireframes' },
-              { src: '/images/amendments/amendment-wiresframes2.png', alt: 'Amendment wireframes 2' },
-              { src: '/images/amendments/amendments-hifi.png', alt: 'Hi-fidelity prototypes' }
-            ].map((image) => (
-              <div
-                key={image.src}
-                className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm"
-              >
-                <img src={image.src} alt={image.alt} className="h-40 w-full object-cover" />
-                <div className="px-4 py-3">
-                  <p className="text-sm font-semibold text-slate-800">{image.alt}</p>
-                </div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </div>
-      </div>
-
-      <div className="w-full bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <h2 className="text-6xl font-semibold text-slate-900 pb-16">Usability testing</h2>
-          <p className="max-w-2xl text-lg text-slate-600 leading-relaxed -mt-10 mb-10">
-            Validating the workflow with consultants before build.
-          </p>
-          <div className="space-y-10">
-            <div>
-              <ul className="space-y-2 text-sm text-slate-600">
-                {usabilityMethods.map((item) => (
-                  <li key={item.method} className="flex gap-3 leading-relaxed">
-                    <span className="font-semibold text-slate-800 shrink-0 min-w-[10rem]">{item.method}</span>
-                    <span>{item.detail}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm max-w-2xl">
-              <img
-                src="/images/amendments/amendments-proto-testing.png"
-                alt="Prototype testing"
-                className="h-48 w-full object-cover"
-              />
-              <div className="px-4 py-3">
-                <p className="text-sm font-semibold text-slate-800">Prototype testing</p>
-              </div>
-            </div>
-
-            <div>
-              <div className="grid gap-4 sm:grid-cols-3">
-                {usabilityResults.map((stat) => (
-                  <div key={stat.label} className="rounded-xl border border-emerald-200 bg-emerald-50/80 px-4 py-3">
-                    <p className="text-2xl font-semibold text-emerald-900">{stat.value}</p>
-                    <p className="text-xs font-medium text-emerald-800">{stat.label}</p>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <blockquote className="border-l-4 border-slate-300 pl-5 py-1 text-lg italic text-slate-700">
-              “If this works the way it looks, amendments will take minutes, dependencies will be clear, and the risk of missed changes drops.”
-              <footer className="mt-3 not-italic text-sm font-medium text-slate-600">— Alex Carter, Senior Consultant, Sydney</footer>
-            </blockquote>
-          </div>
-        </div>
-      </div>
-
-      <div className="w-full bg-slate-50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <div className="space-y-12">
-            <div>
-              <h2 className="text-6xl font-semibold text-slate-900 pb-16">Development</h2>
-              <p className="max-w-2xl text-lg text-slate-600 leading-relaxed -mt-10 mb-10">
-                Handoff, build, and delivery across time zones.
+          <div className="pointer-events-none absolute inset-0 flex flex-col items-stretch justify-end pb-16">
+            <div className="mx-auto w-full max-w-6xl px-6 text-left text-white">
+              <h1 className="text-4xl font-bold tracking-wide leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
+                Fewer steps, more presence.
+              </h1>
+              <p className="mt-3 max-w-2xl font-extralight tracking-wider text-white/90 text-xl md:text-2xl">
+                Redesigning the amendment workflow so 3,000+ consultants could focus on the customer, not the tool.
               </p>
-              <div className="space-y-4">
-            <ul className="space-y-2 text-sm text-slate-600">
-              {developmentBullets.map((item) => (
-                <li key={item} className="flex gap-3 leading-relaxed">
-                  <span className="text-slate-400 shrink-0">—</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            </div>
-          </div>
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-slate-900">Quality assurance</h3>
-            <ul className="space-y-2 text-sm text-slate-600">
-              {qaBullets.map((item) => (
-                <li key={item} className="flex gap-3 leading-relaxed">
-                  <span className="text-slate-400 shrink-0">—</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="rounded-xl border border-sky-200 bg-sky-50 px-3 py-2 text-sm text-sky-900">
-              <span className="font-semibold">Launch readiness:</span> Zero critical bugs, 94% UAT approval,
-              benchmarks exceeded.
-            </div>
-            </div>
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-slate-900">Delivery</h3>
-            <p className="max-w-2xl text-slate-600 leading-relaxed">
-              Coordinated teams and regions while keeping consultants productive during the transition:
-            </p>
-            <ul className="space-y-2 text-sm text-slate-600">
-              {deliveryBullets.map((item) => (
-                <li key={item} className="flex gap-3 leading-relaxed">
-                  <span className="text-slate-400 shrink-0">—</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="rounded-2xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800">
-              ✓ <span className="font-semibold">On‑time, zero downtime</span> — transitioned without disrupting daily
-              operations.
             </div>
           </div>
         </div>
       </div>
+
+      {/* Slim metadata bar */}
+      <div className="w-full bg-slate-50 border-b border-slate-200">
+        <div className="mx-auto w-full max-w-6xl px-6 py-5">
+          <p className="text-xs text-slate-500 leading-relaxed">
+            <span className="font-semibold uppercase tracking-widest text-slate-400">Role</span>{' '}<span className="font-medium text-slate-600">Lead UX Designer</span>
+            <span className="mx-2 text-slate-300" aria-hidden>·</span>
+            <span className="font-semibold uppercase tracking-widest text-slate-400">Team</span>{' '}<span className="font-medium text-slate-600">PM, 2 UX, offshore dev, ops</span>
+            <span className="mx-2 text-slate-300" aria-hidden>·</span>
+            <span className="font-semibold uppercase tracking-widest text-slate-400">Duration</span>{' '}<span className="font-medium text-slate-600">~12 months, 2021–22</span>
+          </p>
+        </div>
+      </div>
+
+
+      {/* ════════════════════════════════════════════════════════════════
+          ACT 1 — THE PROBLEM
+          ════════════════════════════════════════════════════════════════ */}
+
+      {/* ── The problem ── */}
+      <div className="w-full bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-20">
+          <p className="max-w-2xl text-lg text-slate-600 leading-relaxed">
+            An amendment is any post-booking change — swapping a flight, extending a hotel, adding a car, updating traveller details — across five verticals (flights, hotels, cars, tours, insurance). Consultants were processing thousands a day through Helio, the internal front-end built on Codegen's Travelbox booking platform.
+          </p>
+
+          <blockquote className="mt-10 border-l-2 border-slate-300 pl-6">
+            <p className="text-2xl italic text-slate-800 md:text-3xl leading-snug">
+              "I spend half the call fighting the tool. The customer's just… waiting."
+            </p>
+            <footer className="mt-3 text-sm font-medium text-slate-500">— Consultant, discovery workshop</footer>
+          </blockquote>
+
+          {/* Three bold baseline numbers */}
+          <div className="mt-12 grid gap-8 sm:grid-cols-3">
+            <div>
+              <p className="text-5xl font-semibold text-slate-900 md:text-6xl">13+</p>
+              <p className="mt-2 text-sm text-slate-500">clicks per amendment</p>
+            </div>
+            <div>
+              <p className="text-5xl font-semibold text-slate-900 md:text-6xl">9</p>
+              <p className="mt-2 text-sm text-slate-500">screens per change</p>
+            </div>
+            <div>
+              <p className="text-5xl font-semibold text-slate-900 md:text-6xl">10+ min</p>
+              <p className="mt-2 text-sm text-slate-500">average handling time</p>
+            </div>
+          </div>
+
+          {/* Prose — how we uncovered the depth */}
+          <div className="mt-16 max-w-2xl space-y-4">
+            <p className="text-lg text-slate-600 leading-relaxed">
+              Workshops with 60+ consultants across every brand revealed the same pattern — the same change re-keyed across multiple systems, near-zero automation, 30-second page loads eroding confidence, and legacy constraints blocking most proposed improvements.
+            </p>
+            <p className="text-lg text-slate-600 leading-relaxed">
+              Consultants had adapted to the pain, but the cost was invisible — longer calls, more errors, lower satisfaction. We used frequency-versus-friction analysis to prioritise which amendment types to tackle first.
+            </p>
+          </div>
+
+          {/* Frequency × friction quadrant */}
+          <div className="mt-12">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Frequency × friction prioritisation</p>
+            <div className="grid grid-cols-2 rounded-xl border border-slate-200 overflow-hidden">
+              {/* Top-left: High frequency, low friction — not the priority */}
+              <div className="border-r border-b border-slate-200 bg-slate-50 p-5">
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">High frequency · Low friction</p>
+                <p className="text-sm text-slate-400 italic">Quick wins — handled in business-as-usual</p>
+              </div>
+
+              {/* Top-right: High frequency, high friction — FOCUS */}
+              <div className="border-b border-slate-200 bg-red-50 p-5">
+                <p className="text-xs font-semibold uppercase tracking-widest text-red-400 mb-3">High frequency · High friction</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {['Usability (too many steps)', 'Refresh booking record (Flights)', 'Error messaging', 'Updating passenger details', 'Bulk amendments'].map((item) => (
+                    <span key={item} className="rounded-md bg-red-600 px-2 py-1 text-xs font-medium text-white">{item}</span>
+                  ))}
+                </div>
+                <p className="mt-3 text-xs font-semibold text-red-700">▸ Tackled first</p>
+              </div>
+
+              {/* Bottom-left: Low frequency, low friction — parked */}
+              <div className="border-r border-slate-200 bg-slate-50 p-5">
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Low frequency · Low friction</p>
+                <p className="text-sm text-slate-400 italic">Deprioritised</p>
+              </div>
+
+              {/* Bottom-right: Low frequency, high friction — monitor */}
+              <div className="bg-slate-50 p-5">
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Low frequency · High friction</p>
+                <div className="flex flex-wrap gap-1.5">
+                  {['Availability (Hotels)', 'Price fluctuations', 'Insurance', 'Amendment history'].map((item) => (
+                    <span key={item} className="rounded-md bg-slate-300 px-2 py-1 text-xs font-medium text-slate-600">{item}</span>
+                  ))}
+                </div>
+                <p className="mt-3 text-xs text-slate-400">9 other issues parked for later</p>
+              </div>
+            </div>
+            {/* Axis labels */}
+            <div className="flex justify-between mt-2 text-xs font-semibold uppercase tracking-widest text-slate-400">
+              <span>← Low friction</span>
+              <span>High friction →</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      {/* ════════════════════════════════════════════════════════════════
+          ACT 2 — THE CRAFT
+          ════════════════════════════════════════════════════════════════ */}
+
+      {/* ── Ideation ── */}
+      <div className="w-full bg-slate-50">
+        <div className="mx-auto w-full max-w-6xl px-6 py-20">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">The craft</h2>
+          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed">
+            We knew what was broken. The question was how ambitious to be.
+          </p>
+
+          <div className="mt-12 max-w-2xl space-y-8">
+            <div className="space-y-4">
+              <p className="text-lg text-slate-600 leading-relaxed">
+                The ideal solution was an AI-powered conversational flow — consultants describe the change in plain language, the system validates dependencies, surfaces pricing, and completes the amendment in one interaction. No screens, no clicks.
+              </p>
+              <p className="text-lg text-slate-600 leading-relaxed">
+                But the legacy stack had no unified API across inventory systems, NLP wasn't production-ready for complex multi-component bookings, and consultants needed relief now — not a multi-year build.
+              </p>
+            </div>
+
+            <p className="text-lg text-slate-600 leading-relaxed">
+              We explored six directions and evaluated each against three criteria: <span className="font-medium text-slate-800">technical feasibility</span> within the legacy stack, <span className="font-medium text-slate-800">cognitive load</span> during a live customer call, and <span className="font-medium text-slate-800">dependency visibility</span> — could the consultant see cascading impacts before committing?
+            </p>
+          </div>
+
+          {/* Concept evaluation matrix */}
+          <div className="mt-10 overflow-x-auto">
+            <table className="w-full max-w-3xl text-xs">
+              <thead>
+                <tr className="border-b border-slate-200">
+                  <th className="py-3 pr-4 text-left font-semibold uppercase tracking-widest text-slate-400">Concept</th>
+                  <th className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-400">Feasibility</th>
+                  <th className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-400">Cognitive load</th>
+                  <th className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-400">Dependency visibility</th>
+                </tr>
+              </thead>
+              <tbody className="text-sm text-slate-600">
+                {[
+                  { name: 'AI conversational flow', scores: ['✗', '✓', '✗'], highlight: false },
+                  { name: 'Single-page unified', scores: ['✗', '✗', '✓'], highlight: false },
+                  { name: 'Inline edit', scores: ['✓', '✗', '✗'], highlight: false },
+                  { name: 'Modal overlay', scores: ['✓', '✗', '✗'], highlight: false },
+                  { name: 'Tool-led (vendor default)', scores: ['✓', '✗', '✗'], highlight: false },
+                  { name: 'Three-page guided workflow', scores: ['✓', '✓', '✓'], highlight: true },
+                ].map((row) => (
+                  <tr key={row.name} className={`border-b border-slate-100 ${row.highlight ? 'bg-emerald-50' : ''}`}>
+                    <td className={`py-3 pr-4 ${row.highlight ? 'font-semibold text-emerald-800' : 'text-slate-700'}`}>{row.name}</td>
+                    {row.scores.map((score, i) => (
+                      <td key={i} className={`py-3 px-3 text-center ${score === '✓' ? 'text-emerald-600' : 'text-slate-300'}`}>
+                        <span className="text-base">{score}</span>
+                      </td>
+                    ))}
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+
+        </div>
+      </div>
+
+      {/* ── Prototyping & testing ── */}
+      <div className="w-full bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-20">
+          <h3 className="text-2xl font-semibold text-slate-900">Prototyping & testing</h3>
+          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed">
+            Wireframes exposed that consultants needed to see dependency impacts before committing — not after. That insight reshaped the hi-fi into a preview-first confirmation pattern.
+          </p>
+
+          {/* Wireframes — 2-up, taller */}
+          <div className="mt-10 grid gap-6 sm:grid-cols-2">
+            {[
+              { src: '/images/amendments/amendment-wireframes-r16.png', label: 'Wireframes — dependency mapping' },
+              { src: '/images/amendments/amendment-wiresframes2.png', label: 'Wireframes — step validation' },
+            ].map((image) => (
+              <div key={image.src} className="overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+                <img src={image.src} alt={image.label} className="h-64 w-full object-cover object-top" />
+                <p className="px-4 py-2.5 text-xs font-medium text-slate-500">{image.label}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* Hi-fi — full width, hero treatment */}
+          <div className="mt-6 overflow-hidden rounded-xl border border-slate-200 shadow-sm">
+            <img src="/images/amendments/amendments-hifi.png" alt="Hi-fidelity — final flow" className="w-full object-cover object-top" />
+            <p className="px-4 py-2.5 text-xs font-medium text-slate-500">Hi-fidelity — final three-page flow</p>
+          </div>
+
+          <p className="mt-10 max-w-2xl text-lg text-slate-600 leading-relaxed">
+            We tested 15 amendment scenarios with 24 consultants — task-based flows, think-aloud sessions, and A/B comparisons against the legacy system. Consultants completed tasks successfully, but near-misses and workarounds surfaced in almost every session. Multi-component amendments (date change + hotel swap) exposed gaps in the dependency logic that would have shipped unnoticed.
+          </p>
+
+          <div className="mt-12">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Pre-launch validation</p>
+            <div className="grid gap-8 sm:grid-cols-3">
+              {[
+                { value: '96%', label: 'Task success rate (n=24)' },
+                { value: '4.5/5', label: 'Usability rating (n=24)' },
+                { value: '~3 min', label: 'Avg task time (moderated)' }
+              ].map((stat) => (
+                <div key={stat.label}>
+                  <p className="text-4xl font-semibold text-slate-900 md:text-5xl">{stat.value}</p>
+                  <p className="mt-2 text-sm text-slate-500">{stat.label}</p>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Delivery ── */}
+      <div className="w-full bg-slate-50">
+        <div className="mx-auto w-full max-w-6xl px-6 py-20">
+          <h3 className="text-2xl font-semibold text-slate-900">Shipping across time zones</h3>
+          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed">
+            After two rounds of misbuilt flows from written specs, I switched to annotated Figma prototypes with flowcharts, and short Loom walkthroughs for each flow — 3-minute videos that replaced 10-page documents and worked across the 5.5-hour time gap. Revision rounds per feature dropped roughly 60%.
+          </p>
+          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed">
+            We ran a 2-week UAT pilot with 50 consultants, shipped high-impact verticals first in Australia, then expanded globally.
+          </p>
+          <div className="mt-8 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800 max-w-2xl">
+            ✓ <span className="font-semibold">On-time, zero downtime</span> — zero critical bugs at launch. UAT pilot scored 47/50 consultants ready to go live.
+          </div>
+        </div>
+      </div>
+
+
+      {/* ════════════════════════════════════════════════════════════════
+          ACT 3 — THE OUTCOME
+          ════════════════════════════════════════════════════════════════ */}
 
       <div className="w-full bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <h2 className="text-6xl font-semibold text-slate-900 pb-16">Rollout</h2>
-          <p className="max-w-2xl text-lg text-slate-600 leading-relaxed -mt-10 mb-10">
-            Progressive launch, metrics, and post-release validation.
-          </p>
-          <div className="space-y-6">
-          <p className="max-w-2xl text-slate-600 leading-relaxed">
-            Progressive rollout — shipped high‑impact verticals first, then expanded in later releases from Australia
-            to global.
-          </p>
-          <h3 className="text-xl font-semibold text-slate-900">Workflow efficiency measurements</h3>
-          <div className="grid gap-6 md:grid-cols-3">
-            {workflowMetrics.map((metric) => (
-              <div key={metric.label} className="rounded-2xl border border-slate-200 bg-white p-6 text-center shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">{metric.label}</p>
-                <p className="mt-2 text-4xl font-semibold text-slate-900 md:text-5xl">{metric.value}</p>
-                <p className="mt-1 text-xs text-emerald-600">↓ fewer / faster</p>
-                <p className="mt-1 text-xs text-slate-500">{metric.detail}</p>
+        <div className="mx-auto w-full max-w-6xl px-6 py-20">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">The outcome</h2>
+
+          <div className="mt-12 grid gap-8 sm:grid-cols-3">
+            <div>
+              <p className="text-5xl font-semibold text-transparent md:text-6xl lg:text-7xl" style={gradientStyle}>67%</p>
+              <p className="mt-1 text-sm font-medium tracking-wider text-slate-900">Fewer screens</p>
+              <p className="mt-1 text-xs text-slate-500">9 → 3 screens per change</p>
+            </div>
+            <div>
+              <p className="text-5xl font-semibold text-transparent md:text-6xl lg:text-7xl" style={gradientStyle}>89%</p>
+              <p className="mt-1 text-sm font-medium tracking-wider text-slate-900">Consultant CSAT</p>
+              <p className="mt-1 text-xs text-slate-500">Post-launch survey, n=200+</p>
+            </div>
+            <div>
+              <p className="text-5xl font-semibold text-transparent md:text-6xl lg:text-7xl" style={gradientStyle}>~75%</p>
+              <p className="mt-1 text-sm font-medium tracking-wider text-slate-900">Shorter handling time</p>
+              <p className="mt-1 text-xs text-slate-500">10+ min → ~2.5 min AHT (FullStory)</p>
+            </div>
+          </div>
+
+          {/* Before / after flow comparison */}
+          <div className="mt-16 space-y-8">
+            <div>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-400">Before — 9 screens, 13+ clicks</p>
+              <div className="flex flex-wrap items-center gap-1.5">
+                {['Itinerary', 'Amend modal', 'Reason form', 'Search modal', 'Results', 'Cart', 'Travellers', 'Payment', 'Confirmation'].map((step, i) => (
+                  <div key={step} className="flex items-center gap-1.5">
+                    <div className="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs text-slate-500">
+                      {step}
+                    </div>
+                    {i < 8 && <span className="text-slate-300 text-xs">→</span>}
+                  </div>
+                ))}
+                <span className="ml-2 text-xs text-slate-400 italic">+ 30s loads between screens</span>
               </div>
-            ))}
-          </div>
-          <h3 className="text-xl font-semibold text-slate-900">Post‑release validation</h3>
-          <p className="max-w-2xl text-slate-600 leading-relaxed">FullStory used to validate real‑world impact post‑launch.</p>
-          <div className="grid gap-6 md:grid-cols-2">
-            {postReleaseMetrics.map((metric) => (
-              <div key={metric.label} className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-                <p className="text-xs font-semibold uppercase tracking-wider text-slate-500">{metric.label}</p>
-                <p className="mt-2 text-4xl font-semibold text-slate-900 md:text-5xl">{metric.value}</p>
-                <p className="mt-1 text-xs text-slate-500">{metric.detail}</p>
+            </div>
+            <div>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-emerald-600">After — 3 screens, 6 clicks</p>
+              <div className="flex flex-wrap items-center gap-1.5">
+                {['Search & Travellers', 'Results', 'Review & Confirm'].map((step, i) => (
+                  <div key={step} className="flex items-center gap-1.5">
+                    <div className="rounded-md border border-emerald-200 bg-emerald-50 px-2.5 py-1.5 text-xs text-emerald-800">
+                      {step}
+                    </div>
+                    {i < 2 && <span className="text-emerald-400 text-xs">→</span>}
+                  </div>
+                ))}
               </div>
-            ))}
+            </div>
           </div>
-          <div className="rounded-2xl border border-sky-200 bg-sky-50 px-4 py-3 text-sm text-sky-900">
-            <span className="font-semibold">FullStory insights:</span> Amendments completed 76% faster; error‑related
-            tickets down 88% in the first quarter.
+
+          <blockquote className="mt-12">
+            <p className="text-xl italic text-slate-700 md:text-2xl">
+              "I used to burn most of a call on the tool. Now I&apos;m present for the customer again."
+            </p>
+            <footer className="mt-2 text-sm font-medium text-slate-500">— Senior Travel Consultant, Melbourne</footer>
+          </blockquote>
+
+          <div className="mt-12 max-w-2xl space-y-4">
+            <p className="text-lg text-slate-600 leading-relaxed">
+              FullStory confirmed the shift at scale: clicks fell from 13+ to 6 per amendment, rage clicks dropped 82%, and page loads fell from 30 seconds to 9. Within 30 days, 94% of consultants had completed at least one amendment in the new flow.
+            </p>
+            <p className="text-sm italic text-slate-500">
+              Validated double-digit labour cost reduction with ops finance. Full ROI and revenue attribution available on request.
+            </p>
           </div>
-          <p className="text-sm italic text-slate-500">
-            Business impact available on request — ROI, labor savings, and revenue attribution.
-          </p>
+
+          <div className="mt-16">
+            <Link
+              to="/stories/amendments/demo"
+              className="inline-flex rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+            >
+              Try the interactive demo →
+            </Link>
           </div>
         </div>
       </div>
 
+      {/* ── Reflection ── */}
       <div className="w-full bg-slate-50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <div>
-            <h2 className="text-6xl font-semibold text-slate-900 pb-16">Reflection</h2>
-          <p className="max-w-2xl text-lg text-slate-600 leading-relaxed -mt-10 mb-10">
-            Challenges, learnings, and what we'd do differently.
+        <div className="mx-auto w-full max-w-6xl px-6 py-20">
+          <h3 className="text-2xl font-semibold text-slate-900">Reflection</h3>
+          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed">
+            A 12-month offshore engagement taught me more about communication design than any UI project.
           </p>
-          <div className="space-y-6">
-          <div className="grid gap-8 lg:grid-cols-2">
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-slate-900">Challenges & learnings</h3>
-              <ul className="space-y-2 text-sm text-slate-600">
-                {challengeBullets.map((item) => (
-                  <li key={item} className="border-l-2 border-amber-300 pl-4 py-1.5 leading-relaxed">
-                    {item}
-                  </li>
-                ))}
-              </ul>
+
+          <div className="mt-10 max-w-2xl space-y-6 text-sm text-slate-600">
+            <div className="border-l-2 border-amber-300 pl-4 py-1.5 leading-relaxed">
+              <p className="font-semibold text-slate-800">Offshore coordination was the defining constraint</p>
+              <p className="mt-1">12+ hour feedback loops, context loss on edge cases, and 3-month delivery cycles limited iteration. Visual handoffs — annotated screenshots and flowcharts — became the default communication layer and compressed decision cycles.</p>
             </div>
-            <div className="space-y-4">
-              <h3 className="text-xl font-semibold text-slate-900">What I learned</h3>
-              <ul className="space-y-2 text-sm text-slate-600">
-                {learningBullets.map((item) => (
-                  <li key={item} className="border-l-2 border-emerald-400 pl-4 py-1.5 leading-relaxed">
-                    {item}
-                  </li>
-                ))}
-              </ul>
+            <div className="border-l-2 border-emerald-400 pl-4 py-1.5 leading-relaxed">
+              <p className="font-semibold text-slate-800">Early workshops prevented months of rework</p>
+              <p className="mt-1">The global discovery sessions surfaced edge cases and cross-brand differences we would have missed, and built consultant buy-in before a single screen was designed.</p>
+            </div>
+            <div className="border-l-2 border-sky-400 pl-4 py-1.5 leading-relaxed">
+              <p className="font-semibold text-slate-800">Dropping the AI ambition uncovered the real design problem</p>
+              <p className="mt-1">The dream was an AI flow. The reality was a legacy stack. Accepting that early led to a simpler, shippable solution that still cut handling time by ~75%.</p>
             </div>
           </div>
-          <div className="space-y-4">
-            <h3 className="text-xl font-semibold text-slate-900">Dream vs reality</h3>
-            <p className="max-w-2xl text-slate-600 leading-relaxed">
-              The ideal solution was an AI “Dream Flow” where consultants describe the change in plain language and the
-              system handles the rest.
-            </p>
-            <ul className="grid gap-2 text-sm text-slate-600 md:grid-cols-2">
-              {dreamBullets.map((item) => (
-                <li key={item} className="flex gap-3 leading-relaxed">
-                  <span className="text-slate-400 shrink-0">—</span>
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-            <div className="rounded-2xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-900">
-              <p className="font-semibold">Why we couldn’t build this (2019–2020):</p>
-              <ul className="mt-2 space-y-1">
-                {dreamConstraints.map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
-              </ul>
-            </div>
-            <p className="text-sm italic text-slate-500">
-              We delivered a practical three‑page workflow with 75% time savings. The Dream Flow later became the 2024
-              demo showing what’s now possible.
-            </p>
-          </div>
-          </div>
+
+          <p className="mt-10 max-w-2xl text-sm italic text-slate-500">
+            The AI "Dream Flow" later became the 2024 demo — showing what's now technically possible with modern tooling.
+          </p>
         </div>
       </div>
-      </div>
+
+      {/* ── Footer navigation ── */}
+      <div className="w-full bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-16">
+          <Link to="/stories" className="text-sm text-slate-500 transition hover:text-slate-900">
+            ← All stories
+          </Link>
+        </div>
       </div>
     </section>
   )

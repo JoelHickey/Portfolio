@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
 
 const TAB_LABELS = ['itinerary', 'travellers', 'documents', 'payments', 'notes', 'history']
 
@@ -196,7 +196,7 @@ const DREAM_ALTERNATIVE_HOTELS = [
   { name: 'Sheraton Waikiki', price: '$315', available: true }
 ]
 
-function AmendmentsFlowDemoTailwind({ embedded = false, onBackToCaseStudy, onClose }) {
+const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwind({ embedded = false, onBackToCaseStudy, onClose, onFlowComplete }, ref) {
   const [activeTab, setActiveTab] = useState('itinerary')
   const [showNewFlow, setShowNewFlow] = useState(false)
   const [newFlowLoadingMessage, setNewFlowLoadingMessage] = useState(null)
@@ -401,6 +401,12 @@ function AmendmentsFlowDemoTailwind({ embedded = false, onBackToCaseStudy, onClo
     setDreamConfirmLoading(false)
   }
 
+  useImperativeHandle(ref, () => ({
+    startOldFlow,
+    startAmendmentFlow,
+    startDreamFlow
+  }), [])
+
   const confirmDreamAndCollapse = () => {
     const hotel = DREAM_HOTELS.find((h) => h.name === dreamSelectedHotelName) || DREAM_HOTELS[0]
     const room = DREAM_ROOM_OPTIONS.find((r) => r.id === dreamSelectedRoomId) || DREAM_ROOM_OPTIONS[0]
@@ -431,6 +437,7 @@ function AmendmentsFlowDemoTailwind({ embedded = false, onBackToCaseStudy, onClo
     })
     setShowAmendedSuccessCheckmark(true)
     closeDreamFlow()
+    onFlowComplete?.('dream')
   }
 
   const dreamSearch = () => {
@@ -963,6 +970,7 @@ function AmendmentsFlowDemoTailwind({ embedded = false, onBackToCaseStudy, onClo
                   onClick={() => {
                     closeNewFlow()
                     setSuccessToast('Amendment confirmed')
+                    onFlowComplete?.('rabbit')
                   }}
                   className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
                 >
@@ -1318,6 +1326,7 @@ function AmendmentsFlowDemoTailwind({ embedded = false, onBackToCaseStudy, onClo
                       onClick={() => showOldFlowLoadingThen('Processing payment…', () => {
                         closeOldFlow()
                         setSuccessToast('Amendment confirmed')
+                        onFlowComplete?.('turtle')
                       })}
                   className="rounded-lg bg-slate-900 px-4 py-2 text-sm font-semibold text-white hover:bg-slate-800"
                 >
@@ -1852,7 +1861,7 @@ function AmendmentsFlowDemoTailwind({ embedded = false, onBackToCaseStudy, onClo
       )}
     </div>
   )
-}
+})
 
 export { getAvailability, rangeContainsSoldNight, getLargestAvailableSegment, getSoldNightsInRange, getAllAvailableSegments, formatDateRange }
 export default AmendmentsFlowDemoTailwind

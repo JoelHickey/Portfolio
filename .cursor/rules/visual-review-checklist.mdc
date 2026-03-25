@@ -1,0 +1,23 @@
+---
+description: Visual QA checklist for UI, diagrams, and mirrored layouts
+alwaysApply: true
+---
+
+# Visual Review Checklist
+
+When doing visual, UI, diagram, or layout work:
+
+- Do not say a change is done from code inspection alone.
+- Verify the rendered result with a screenshot, browser check, or equivalent visual evidence.
+- If a layout is mirrored or repeated on both sides, explicitly compare: structure, spacing, stroke color, stroke weight, opacity, and hierarchy.
+- If the rendered result still feels wrong after 1-2 connector or diagram tweaks, stop patching by intuition and switch to a simpler, more explicit visual system.
+- Do not add visual elements the user did not ask for, such as badges, labels, icons, or helper decorations.
+- Before closing a visual task, run this checklist and mention that you checked it.
+
+Minimum visual sign-off checklist:
+
+- [ ] Actual rendered result reviewed
+- [ ] Mirrored elements compared side by side
+- [ ] Colors / strokes / spacing match where intended
+- [ ] No extra visual flourishes added without request
+- [ ] Output judged on what is visible, not just what the code intends

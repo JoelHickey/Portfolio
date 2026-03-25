@@ -1,0 +1,23 @@
+---
+description: Fix obvious follow-on issues without asking again
+alwaysApply: true
+---
+
+# Proactive Obvious Fixes
+
+When the user points out a clear issue and the next fix is obvious, make the fix instead of asking for confirmation again.
+
+Apply this especially when:
+
+- a visual or layout inconsistency is the direct follow-on from the previous change
+- mirrored elements should match in structure, color, spacing, stroke, or hierarchy
+- a bug or inconsistency is small, local, and unambiguous
+- the user has already established the direction and is clearly asking for execution, not options
+
+Do not stop to ask "do you want me to fix that too?" when the fix is the natural continuation of the current task.
+
+Still ask before:
+
+- changing direction or introducing a new concept
+- making broader product or design decisions with real tradeoffs
+- doing destructive, risky, or unrelated work

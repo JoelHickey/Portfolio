@@ -35,11 +35,14 @@ export function FCTGEnergyPreview() {
             {[{ y: 80, d: 0 }, { y: 130, d: 0.3 }, { y: 180, d: 0.6 }, { y: 105, d: 0.15 }, { y: 155, d: 0.45 }, { y: 60, d: 0.5 }, { y: 210, d: 0.2 }, { y: 115, d: 0.75 }, { y: 165, d: 0.35 }].map((p, i) => (
               <circle key={i} cx="1068" cy={p.y} r="3" fill="rgba(34, 211, 238, 0.9)" className="energy-card-charge-in" style={{ animationDelay: `${p.d}s` }} />
             ))}
-            <rect x="40" y="28" width="1000" height="204" rx="10" fill="none" stroke="url(#energy-card-grad)" strokeWidth="2" className="energy-card-body" />
-            <rect x="4" y="78" width="36" height="104" rx="6" fill="none" stroke="url(#energy-card-grad)" strokeWidth="2" />
-            <text x="22" y="130" textAnchor="middle" dominantBaseline="middle" fill="url(#energy-card-grad)" fontSize="32" fontWeight="800">−</text>
-            <rect x="1040" y="78" width="36" height="104" rx="6" fill="none" stroke="url(#energy-card-grad)" strokeWidth="2" />
-            <text x="1058" y="130" textAnchor="middle" dominantBaseline="middle" fill="url(#energy-card-grad)" fontSize="32" fontWeight="800">+</text>
+            <rect x="40" y="28" width="1000" height="204" rx="10" fill="none" stroke="url(#energy-card-grad)" strokeWidth="5" className="energy-card-body" />
+            <rect x="4" y="78" width="36" height="104" rx="6" fill="none" stroke="url(#energy-card-grad)" strokeWidth="5" />
+            <rect x="1040" y="78" width="36" height="104" rx="6" fill="none" stroke="url(#energy-card-grad)" strokeWidth="5" />
+            {/* − terminal (left) */}
+            <line x1="12" y1="130" x2="32" y2="130" stroke="url(#energy-card-grad)" strokeWidth="3" strokeLinecap="round" />
+            {/* + terminal (right) */}
+            <line x1="1048" y1="130" x2="1068" y2="130" stroke="url(#energy-card-grad)" strokeWidth="3" strokeLinecap="round" />
+            <line x1="1058" y1="120" x2="1058" y2="140" stroke="url(#energy-card-grad)" strokeWidth="3" strokeLinecap="round" />
             <g clipPath="url(#energy-card-clip)">
               <foreignObject x="44" y="32" width="992" height="186">
                 <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden', borderRadius: 6, pointerEvents: 'none' }}>
@@ -65,7 +68,7 @@ export function FCTGEnergyPreview() {
 }
 
 // Insurance card — heart under description; same gradient as amendments + trace + heartbeat + glow
-function InsurancePreview() {
+export function InsurancePreview() {
   const gradId = 'insurance-home-heart-grad'
   const heartD =
     'M 160 68 C 144 52, 136 38, 136 30 C 136 24, 142 22, 148 26 C 152 28, 154 32, 160 38 C 166 32, 168 28, 172 26 C 178 22, 184 24, 184 30 C 184 38, 176 52, 160 68 Z'
@@ -140,7 +143,7 @@ function InsurancePreview() {
 }
 
 // Amendments card preview — squiggly line that becomes straighter (streamlining); same gradient line aesthetic
-function AmendmentsPreview() {
+export function AmendmentsPreview() {
   const gradId = 'amendments-home-card-grad'
   const strokeClass = 'amendments-home-card-draw'
   // Two clear S-waves then smooth ease into straight so "streamlining" reads at a glance.
@@ -204,14 +207,12 @@ const CASE_STUDY_CARDS = [
   {
     id: 'insurance',
     title: 'Insurance',
-    description: 'Coverage woven into the travel journey.',
+    description: '+45% attachment rate · $2.4M revenue impact.',
     path: '/stories/insurance',
     image: null,
     preview: 'insurance'
   },
-  { id: 'amendments', title: 'Amendments', description: 'Updates to travel components simplified.', path: '/stories/amendments', image: null, preview: 'amendments' },
-  { id: 'placeholder-1', title: 'Coming soon', description: 'Case study in the works.', path: null, image: null, preview: null },
-  { id: 'placeholder-2', title: 'Coming soon', description: 'Case study in the works.', path: null, image: null, preview: null }
+  { id: 'amendments', title: 'Amendments', description: '~75% shorter handling time · 67% faster workflows.', path: '/stories/amendments', image: null, preview: 'amendments' }
 ]
 
 /** Insurance card title */
@@ -223,6 +224,14 @@ function storyCardHeadingTitle(item) {
 }
 
 const PILLARS = ['Strategy', 'Craft', 'Research', 'Systems', 'AI']
+
+const PILLAR_EVIDENCE = [
+  'Shaped product direction through stakeholder workshops, opportunity mapping, and roadmap influence across Flight Centre\u2019s travel platforms.',
+  'Shipped interaction-rich interfaces \u2014 from insurance quoting flows to amendment workflows \u2014 grounded in usability testing and iterative refinement.',
+  'Ran moderated testing with 60+ consultants and advisors, turning real usage patterns into design decisions that shipped.',
+  'Built design systems, documentation, and cross-timezone handoff patterns that scaled across brands and development teams.',
+  'Presented agentic AI workflows to 15+ designers. Integrated AI tools into daily design and development practice.'
+]
 
 /*
  * Outer ring: five pillars ×3 satellites each (AI: augment → steer → trust).
@@ -603,7 +612,7 @@ function Home() {
               </span>
             </p>
             <p className="hero-line mt-2 text-base font-light leading-snug tracking-wider text-slate-200 sm:text-xl md:text-2xl lg:text-3xl mb-10 [animation-delay:120ms]">
-              Designing high‑impact products that people love using.
+              Senior Product Designer — strategy, systems thinking, and human‑centred craft.
             </p>
             <div className="hero-line flex justify-center mt-1" style={{ animationDelay: '200ms' }}>
             <a
@@ -707,7 +716,7 @@ function Home() {
                       >
                         {storyCardHeadingTitle(item)}
                       </h3>
-                      <p className="mt-3 whitespace-nowrap font-extralight tracking-wider text-white text-xl md:text-2xl">
+                      <p className="mt-3 font-extralight tracking-wider text-white text-xl md:text-2xl">
                         {item.description}
                       </p>
                       {item.preview === 'insurance' && (
@@ -767,7 +776,7 @@ function Home() {
                       >
                         {storyCardHeadingTitle(item)}
                       </h3>
-                      <p className="mt-3 whitespace-nowrap font-extralight tracking-wider text-white text-xl md:text-2xl">
+                      <p className="mt-3 font-extralight tracking-wider text-white text-xl md:text-2xl">
                         {item.description}
                       </p>
                       {item.preview === 'insurance' && (
@@ -911,7 +920,7 @@ function Home() {
                 {/* Center — Core (same disc language as inner pillars, non-interactive) */}
                 <div
                   ref={starMapCoreRef}
-                  className="absolute left-1/2 top-1/2 z-[13] flex h-32 w-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/20 opacity-95 shadow-home-card-glow sm:h-40 sm:w-40 md:h-44 md:w-44 lg:h-48 lg:w-48"
+                  className="absolute left-1/2 top-1/2 z-[13] flex h-32 w-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/50 shadow-home-card-glow sm:h-40 sm:w-40 md:h-44 md:w-44 lg:h-48 lg:w-48"
                   aria-label="Core — people and outcomes"
                 >
                   <div
@@ -967,7 +976,7 @@ function Home() {
                         }}
                         type="button"
                         onClick={() => setSelectedPillarIndex(i)}
-                        className={`group star-map-star shadow-home-card-glow group-hover:shadow-home-card-glow-hover absolute left-1/2 top-1/2 z-[11] flex h-28 w-28 items-center justify-center rounded-full border border-white/10 bg-black/20 text-center opacity-95 transition-shadow duration-300 sm:h-32 sm:w-32 md:h-36 md:w-36 lg:h-40 lg:w-40 ${isSelected ? 'selected' : ''}`}
+                        className={`group star-map-star shadow-home-card-glow group-hover:shadow-home-card-glow-hover absolute left-1/2 top-1/2 z-[11] flex h-28 w-28 items-center justify-center rounded-full border border-white/10 bg-black/50 text-center transition-shadow duration-300 sm:h-32 sm:w-32 md:h-36 md:w-36 lg:h-40 lg:w-40 ${isSelected ? 'selected' : ''}`}
                       >
                         <span className="block max-w-24 whitespace-nowrap text-sm font-normal leading-tight tracking-wider text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)] sm:max-w-28 sm:text-base md:max-w-32 md:text-lg lg:text-xl">
                           {pillar}
@@ -985,7 +994,7 @@ function Home() {
                         ref={(el) => {
                           starMapStarRefs.current[PILLARS.length + i] = el
                         }}
-                        className="star-map-star shadow-home-card-glow pointer-events-none absolute left-1/2 top-1/2 z-[12] flex h-16 w-16 items-center justify-center overflow-visible rounded-full border border-white/10 bg-black/20 text-center opacity-95 sm:h-[4.5rem] sm:w-[4.5rem] md:h-20 md:w-20 lg:h-24 lg:w-24"
+                        className="star-map-star shadow-home-card-glow pointer-events-none absolute left-1/2 top-1/2 z-[12] flex h-16 w-16 items-center justify-center overflow-visible rounded-full border border-white/10 bg-black/50 text-center sm:h-[4.5rem] sm:w-[4.5rem] md:h-20 md:w-20 lg:h-24 lg:w-24"
                       >
                         {node.label ? (
                           <span className="block max-w-20 whitespace-nowrap text-sm font-normal leading-tight tracking-wider text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)] sm:max-w-24 sm:text-base md:max-w-28 md:text-lg lg:text-lg">
@@ -996,6 +1005,17 @@ function Home() {
                     )
                   })}
                 </div>
+              </div>
+              {/* Evidence panel — grounded proof for the selected pillar */}
+              <div
+                className={`mx-auto mt-40 max-w-xl text-center transition-all duration-500 md:mt-44 lg:mt-48 ${
+                  capabilitiesCardsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
+                }`}
+                aria-live="polite"
+              >
+                <p className="text-lg font-light leading-relaxed tracking-wider text-slate-300 md:text-xl">
+                  {PILLAR_EVIDENCE[selectedPillarIndex]}
+                </p>
               </div>
             </div>
           </div>
@@ -1009,8 +1029,11 @@ function Home() {
             </h2>
           </div>
           <div className="w-full text-center">
-            <p className="inline-block text-xl font-extralight tracking-wider text-white md:text-2xl">
-              Open to senior roles and collaborations.
+            <p className="inline-block text-xl font-extralight leading-relaxed tracking-wider text-white md:text-2xl">
+              Seeking a senior product design role where strategy and systems thinking drive real outcomes.
+            </p>
+            <p className="mt-3 inline-block text-base font-extralight tracking-wider text-slate-400 md:text-lg">
+              Enterprise or startup — also open to speaking, workshops, and collaborations.
             </p>
           </div>
           <div className="mt-10 flex flex-wrap justify-center gap-6">

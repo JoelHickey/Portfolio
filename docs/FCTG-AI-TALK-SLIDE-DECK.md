@@ -209,15 +209,13 @@ Full text of the slide deck. Extracted from `src/components/FCTGAITalkSlides.jsx
 
 ## Slide 20
 
-**Title:** Agent architectures
+**Title:** Multi-agent systems
 
-**Subtitle:** Single-agent vs multi-agent.
+**Subtitle:** A lead agent coordinates specialized sub-agents toward one outcome.
 
-**Body:**
-- **Single-agent:** Best for: renames, refactors, single-step logic.
-- **Multi-agent:** Agent plans, coordinates with Memory, Model, and Tools; delegates; sub-agents can hand off. Best for: architecture decisions, parallel work, multi-step tasks.
+**Supporting copy:** The value comes from delegation, parallel work, and coordination across focused tasks.
 
-**In practice:** Simple multi-agent: one agent had the main task ("turn the slide deck into a document"); it delegated a subtask ("read the file and extract all slide copy") to another agent. Two agents, one handoff.
+**Bottom line:** Use when work can be split into parallel streams or multiple steps.
 
 ---
 

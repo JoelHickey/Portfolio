@@ -1,24 +1,48 @@
+import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi'
+import { SiLinkedin, SiDribbble } from 'react-icons/si'
+
 function Contact() {
   return (
-    <section className="flex flex-col">
-      <div className="flex min-h-[calc(100vh-64px)] w-full items-center justify-center">
-        <div className="mx-auto w-full max-w-3xl px-6 text-center">
-          <h1 className="text-5xl font-medium text-white md:text-6xl">Contact</h1>
-          <p className="mt-4 text-base leading-relaxed text-slate-200 md:text-lg">
-            Let’s build the next release together.
-          </p>
-        </div>
-      </div>
-      <div className="w-full min-h-screen bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-16">
-          <div className="rounded-2xl border border-slate-200 bg-white p-8 shadow-sm">
-            <ul className="space-y-2 text-sm text-slate-600">
-              <li><a href="tel:0421366486">0421 366 486</a></li>
-              <li><a href="mailto:joelhickeydesigns@gmail.com">Email</a></li>
-              <li><a href="https://www.linkedin.com/in/joel-hickey-493757138/" target="_blank" rel="noopener noreferrer">LinkedIn</a></li>
-              <li><a href="https://dribbble.com/joelhickey" target="_blank" rel="noopener noreferrer">Dribbble</a></li>
-            </ul>
-          </div>
+    <section className="relative z-10 flex flex-col items-center px-16 pt-24 pb-20 md:px-20 md:pt-32 lg:px-24">
+      <div
+        className="flex flex-col items-center text-center"
+        role="region"
+        aria-labelledby="contact-heading"
+      >
+        <h1 id="contact-heading" className="m-0 text-5xl font-bold tracking-wide bg-clip-text text-transparent md:text-6xl lg:text-7xl" style={{ background: 'linear-gradient(90deg, #06b6d4 0%, #14b8a6 25%, #6366f1 50%, #8b5cf6 75%, #d946ef 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text' }}>
+          Contact
+        </h1>
+        <p className="mt-6 text-lg text-slate-400">Let's build the next release together.</p>
+        <div className="mt-10 flex flex-col items-center gap-4 text-sm text-slate-300 sm:flex-row sm:gap-8">
+          <a href="tel:0421366486" className="inline-flex items-center gap-2 transition-colors hover:text-white">
+            <HiOutlinePhone size={16} />
+            <span>0421 366 486</span>
+          </a>
+          <a
+            href="mailto:joelhickeydesigns@gmail.com"
+            className="inline-flex items-center gap-2 transition-colors hover:text-white"
+          >
+            <HiOutlineMail size={16} />
+            <span>joelhickeydesigns@gmail.com</span>
+          </a>
+          <a
+            href="https://www.linkedin.com/in/joel-hickey-493757138/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 transition-colors hover:text-white"
+          >
+            <SiLinkedin size={14} />
+            <span>LinkedIn</span>
+          </a>
+          <a
+            href="https://dribbble.com/joelhickey"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-2 transition-colors hover:text-white"
+          >
+            <SiDribbble size={14} />
+            <span>Dribbble</span>
+          </a>
         </div>
       </div>
     </section>
