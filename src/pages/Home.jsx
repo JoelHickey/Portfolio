@@ -39,10 +39,9 @@ export function FCTGEnergyPreview() {
             <rect x="4" y="78" width="36" height="104" rx="6" fill="none" stroke="url(#energy-card-grad)" strokeWidth="5" />
             <rect x="1040" y="78" width="36" height="104" rx="6" fill="none" stroke="url(#energy-card-grad)" strokeWidth="5" />
             {/* − terminal (left) */}
-            <line x1="12" y1="130" x2="32" y2="130" stroke="url(#energy-card-grad)" strokeWidth="3" strokeLinecap="round" />
+            <text x="22" y="145" textAnchor="middle" fontSize="56" fontWeight="600" fill="url(#energy-card-grad)" style={{ userSelect: 'none' }}>−</text>
             {/* + terminal (right) */}
-            <line x1="1048" y1="130" x2="1068" y2="130" stroke="url(#energy-card-grad)" strokeWidth="3" strokeLinecap="round" />
-            <line x1="1058" y1="120" x2="1058" y2="140" stroke="url(#energy-card-grad)" strokeWidth="3" strokeLinecap="round" />
+            <text x="1058" y="145" textAnchor="middle" fontSize="56" fontWeight="600" fill="url(#energy-card-grad)" style={{ userSelect: 'none' }}>+</text>
             <g clipPath="url(#energy-card-clip)">
               <foreignObject x="44" y="32" width="992" height="186">
                 <div xmlns="http://www.w3.org/1999/xhtml" style={{ width: '100%', height: '100%', overflow: 'hidden', borderRadius: 6, pointerEvents: 'none' }}>
