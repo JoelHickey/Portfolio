@@ -193,6 +193,85 @@
     gap: 4px;
   }
 
+  /* ─── LIVE FEED BAR ─── */
+  .live-feed-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.52rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .lfb-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .lfb-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .lfb-dot.live {
+    background: var(--accent-green);
+    box-shadow: 0 0 6px var(--accent-green);
+    animation: lfb-pulse 2s ease-in-out infinite;
+  }
+
+  .lfb-dot.error {
+    background: var(--accent-red);
+    box-shadow: 0 0 6px var(--accent-red);
+  }
+
+  @keyframes lfb-pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--accent-green); }
+    50% { opacity: 0.5; box-shadow: 0 0 2px var(--accent-green); }
+  }
+
+  .lfb-label {
+    color: var(--text-dim);
+  }
+
+  .lfb-label.live { color: var(--accent-green); }
+  .lfb-label.error { color: var(--accent-red); }
+
+  .lfb-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--text-dim);
+  }
+
+  .lfb-source {
+    color: var(--text-dim);
+  }
+
+  .lfb-countdown {
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .lfb-time {
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @keyframes price-flash {
+    0% { background: rgba(0, 255, 102, 0.2); }
+    100% { background: transparent; }
+  }
+
+  .price-updated {
+    animation: price-flash 1.2s ease-out;
+  }
+
   /* ─── TAB BAR ─── */
   .tab-bar {
     display: flex;
@@ -1127,6 +1206,19 @@
     <span class="hb-live"><span class="dot green"></span> <span id="indicatorCount">16</span> INDICATORS</span>
   </div>
   <div>CRISIS INTEL BRIEFING</div>
+</div>
+
+<!-- LIVE FEED BAR -->
+<div class="live-feed-bar" id="liveFeedBar">
+  <div class="lfb-status">
+    <div class="lfb-dot" id="lfbDot"></div>
+    <span class="lfb-label" id="lfbLabel">CONNECTING...</span>
+  </div>
+  <div class="lfb-meta">
+    <span class="lfb-source">SRC: YAHOO FINANCE</span>
+    <span class="lfb-time" id="lfbTime">—</span>
+    <span class="lfb-countdown" id="lfbCountdown">—</span>
+  </div>
 </div>
 
 <!-- TAB BAR -->
@@ -2162,6 +2254,237 @@
   }
   updateClock();
   setInterval(updateClock, 1000);
+
+  // ─── LIVE PRICE DATA ───
+  const PROXY = 'https://corsproxy.io/?';
+  const SYMBOLS = {
+    'FLT.AX': { tab: 'flt', label: 'FLT' },
+    'TSLA':   { tab: 'tsla', label: 'TSLA' },
+    'NVDA':   { tab: 'nvda', label: 'NVDA' },
+    'ADBE':   { tab: 'adbe', label: 'ADBE' },
+    'BZ=F':   { tab: null,   label: 'BRENT' }
+  };
+
+  function buildSparkSVG(closes, color, w, h) {
+    const valid = closes.filter(c => c != null);
+    if (valid.length < 2) return null;
+    const min = Math.min(...valid), max = Math.max(...valid);
+    const range = max - min || 1;
+    const step = w / (valid.length - 1);
+    const pts = valid.map((c, i) =>
+      `${(i * step).toFixed(1)},${(h - ((c - min) / range) * (h - 2) - 1).toFixed(1)}`
+    ).join(' ');
+    const lx = ((valid.length - 1) * step).toFixed(1);
+    const ly = (h - ((valid[valid.length - 1] - min) / range) * (h - 2) - 1).toFixed(1);
+    return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><polyline fill="none" stroke="${color}" stroke-width="1" stroke-linecap="round" points="${pts}"/><circle cx="${lx}" cy="${ly}" r="1.5" fill="${color}"/></svg>`;
+  }
+
+  async function fetchChart(symbol) {
+    const url = PROXY + encodeURIComponent(
+      'https://query1.finance.yahoo.com/v8/finance/chart/' + symbol + '?interval=1d&range=1mo'
+    );
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(res.status);
+    const json = await res.json();
+    const r = json.chart.result[0];
+    const price = r.meta.regularMarketPrice;
+    const prev = r.meta.chartPreviousClose || r.meta.previousClose;
+    const closes = r.indicators.quote[0].close;
+    const change = price - prev;
+    const changePct = (change / prev) * 100;
+    return { price, change, changePct, closes };
+  }
+
+  function fmtPrice(p, isBrent) {
+    return isBrent ? '~$' + Math.round(p) : '$' + p.toFixed(2);
+  }
+
+  function updateDOM(config, data) {
+    const { tab, label } = config;
+    const { price, changePct, closes } = data;
+    const up = changePct >= 0;
+    const arrow = up ? '↑' : '↓';
+    const tri = up ? '▲' : '▼';
+    const cls = up ? 'green' : 'red';
+    const isBrent = label === 'BRENT';
+    const displayPrice = fmtPrice(price, isBrent);
+
+    // Tab button
+    if (tab) {
+      const tp = document.querySelector('[data-tab="' + tab + '"] .tab-price');
+      if (tp) tp.textContent = displayPrice;
+    }
+
+    // Overview card
+    if (tab) {
+      document.querySelectorAll('.stock-card').forEach(card => {
+        const tk = card.querySelector('.sc-ticker');
+        if (tk && tk.textContent.trim() === label) {
+          const pe = card.querySelector('.sc-price');
+          const ce = card.querySelector('.sc-change');
+          if (pe) pe.textContent = displayPrice;
+          if (ce) {
+            ce.textContent = tri + ' ' + Math.abs(changePct).toFixed(1) + '% today';
+            ce.className = 'sc-change ' + cls;
+          }
+        }
+      });
+    }
+
+    // Data strip — stock's own price (first item in its tab)
+    if (tab) {
+      const panel = document.getElementById('panel-' + tab);
+      if (panel) {
+        const firstVal = panel.querySelector('.data-strip .ds-item:first-child .ds-value');
+        if (firstVal) {
+          firstVal.textContent = displayPrice;
+          firstVal.className = 'ds-value ' + cls;
+        }
+        // Sparkline in data strip
+        const sparkRow = panel.querySelector('.data-strip .sparkline-row');
+        if (sparkRow && closes) {
+          const color = up ? '#00ff66' : '#ff3333';
+          const svg = buildSparkSVG(closes, color, 50, 14);
+          if (svg) {
+            const old = sparkRow.querySelector('svg');
+            if (old) old.outerHTML = svg;
+          }
+        }
+      }
+    }
+
+    // Brent crude — update in all data strips and overview summary
+    if (isBrent) {
+      document.querySelectorAll('.ds-item').forEach(item => {
+        const lbl = item.querySelector('.ds-label');
+        if (lbl && lbl.textContent.trim().toUpperCase().includes('BRENT')) {
+          const val = item.querySelector('.ds-value');
+          if (val) val.textContent = displayPrice;
+        }
+      });
+      document.querySelectorAll('.ps-item').forEach(item => {
+        const lbl = item.querySelector('.ps-label');
+        if (lbl && lbl.textContent.trim().toUpperCase().includes('BRENT')) {
+          const val = item.querySelector('.ps-value');
+          if (val) val.textContent = '$' + Math.round(price);
+        }
+      });
+    }
+
+    // Ticker bar — find by label text, update both copies (for seamless scroll)
+    document.querySelectorAll('.ti').forEach(ti => {
+      const spans = ti.querySelectorAll('span');
+      if (spans.length >= 2 && spans[0].textContent.trim() === label) {
+        spans[1].textContent = displayPrice + ' ' + arrow;
+        spans[1].className = 'tv ' + cls;
+      }
+    });
+  }
+
+  function flashElement(el) {
+    if (!el) return;
+    el.classList.remove('price-updated');
+    void el.offsetWidth;
+    el.classList.add('price-updated');
+  }
+
+  const REFRESH_INTERVAL = 300;
+  let lastRefreshTime = null;
+  let countdownSeconds = 0;
+  let isLive = false;
+
+  function setFeedStatus(state, msg) {
+    const dot = document.getElementById('lfbDot');
+    const label = document.getElementById('lfbLabel');
+    if (!dot || !label) return;
+
+    dot.className = 'lfb-dot';
+    label.className = 'lfb-label';
+
+    if (state === 'live') {
+      dot.classList.add('live');
+      label.classList.add('live');
+      label.textContent = msg || 'LIVE FEED ACTIVE';
+      isLive = true;
+    } else if (state === 'updating') {
+      dot.classList.add('live');
+      label.classList.add('live');
+      label.textContent = 'FETCHING PRICES...';
+    } else if (state === 'error') {
+      dot.classList.add('error');
+      label.classList.add('error');
+      label.textContent = msg || 'FEED OFFLINE — STATIC DATA';
+      isLive = false;
+    } else {
+      label.textContent = msg || 'CONNECTING...';
+    }
+  }
+
+  function updateCountdown() {
+    const el = document.getElementById('lfbCountdown');
+    const timeEl = document.getElementById('lfbTime');
+    if (!el) return;
+
+    if (isLive && countdownSeconds > 0) {
+      countdownSeconds--;
+      const m = Math.floor(countdownSeconds / 60);
+      const s = countdownSeconds % 60;
+      el.textContent = 'NEXT REFRESH: ' + m + ':' + String(s).padStart(2, '0');
+    } else if (!isLive) {
+      el.textContent = '';
+    }
+
+    if (timeEl && lastRefreshTime) {
+      const ago = Math.floor((Date.now() - lastRefreshTime) / 1000);
+      if (ago < 60) {
+        timeEl.textContent = 'UPDATED ' + ago + 's AGO';
+      } else {
+        timeEl.textContent = 'UPDATED ' + Math.floor(ago / 60) + 'm AGO';
+      }
+    }
+  }
+
+  // Update the ticker bar LIVE badge when data is flowing
+  function updateTickerBadge(live) {
+    const tag = document.querySelector('.ticker-tag');
+    if (!tag) return;
+    const dot = tag.querySelector('.dot');
+    if (dot) {
+      dot.className = live ? 'dot green' : 'dot red';
+    }
+  }
+
+  async function refreshAllPrices() {
+    setFeedStatus('updating');
+    let success = 0;
+
+    for (const [symbol, config] of Object.entries(SYMBOLS)) {
+      try {
+        const data = await fetchChart(symbol);
+        updateDOM(config, data);
+        success++;
+      } catch (err) {
+        console.warn('Fetch failed for ' + symbol + ':', err);
+      }
+    }
+
+    if (success > 0) {
+      lastRefreshTime = Date.now();
+      countdownSeconds = REFRESH_INTERVAL;
+      setFeedStatus('live', 'LIVE FEED — ' + success + '/' + Object.keys(SYMBOLS).length + ' SOURCES');
+      updateTickerBadge(true);
+
+      // Flash all price elements
+      document.querySelectorAll('.sc-price, .ds-value, .tab-price, .ps-value').forEach(flashElement);
+    } else {
+      setFeedStatus('error');
+      updateTickerBadge(false);
+    }
+  }
+
+  setInterval(updateCountdown, 1000);
+  setTimeout(refreshAllPrices, 3500);
+  setInterval(refreshAllPrices, REFRESH_INTERVAL * 1000);
 </script>
 
 </body>
