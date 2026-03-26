@@ -143,8 +143,8 @@ const cardShadowHover =
 
 const caseStudies = [
   {
-    title: 'Agentic AI Talk',
-    summary: '',
+    title: 'Agentic AI',
+    summary: 'Presented live, March 2026.',
     tags: ['Live presentation', '15+ designers'],
     image: null,
     path: null,
@@ -152,8 +152,8 @@ const caseStudies = [
     preview: 'energy'
   },
   {
-    title: 'Travel Insurance',
-    summary: '',
+    title: 'Insurance',
+    summary: '+45% attachment rate · $2.4M revenue impact.',
     tags: ['+45% attachment', '~30s add time'],
     image: null,
     preview: 'insurance',
@@ -161,7 +161,7 @@ const caseStudies = [
   },
   {
     title: 'Travel Amendments',
-    summary: '',
+    summary: '~75% shorter handling time · 67% faster workflows.',
     tags: ['10+ min → 2–3 min', '67% faster workflow'],
     image: null,
     preview: 'amendments',
@@ -169,7 +169,7 @@ const caseStudies = [
   },
   {
     title: 'CRM Deep Linking',
-    summary: '',
+    summary: 'Context-aware navigation across a multi-brand booking platform.',
     tags: ['Systems design', 'Navigation strategy'],
     image: null,
     preview: 'link',
@@ -177,7 +177,7 @@ const caseStudies = [
   },
   {
     title: 'Helio Platform',
-    summary: '',
+    summary: 'Analytics-driven redesign of consultant booking workflows.',
     tags: ['Fullstory analytics', 'Workflow redesign'],
     image: null,
     preview: 'grid',
@@ -185,7 +185,7 @@ const caseStudies = [
   },
   {
     title: 'Magento Shipping',
-    summary: '',
+    summary: 'Bulk shipment flows for merchant dispatch at scale.',
     tags: ['Reduced escalations', 'Faster fulfilment'],
     image: null,
     preview: 'package',
@@ -310,9 +310,7 @@ function Work() {
                     <h3 className="text-2xl font-semibold tracking-wider text-white md:text-3xl">{card.title}</h3>
                     {card.summary && (
                       <p
-                        className={`mt-3 text-base font-medium tracking-wide text-slate-400 ${
-                          card.path === '/stories/insurance' ? 'whitespace-nowrap' : 'whitespace-pre-line'
-                        }`}
+                        className="mt-3 text-base font-medium tracking-wide text-slate-400"
                       >
                         {card.summary}
                       </p>

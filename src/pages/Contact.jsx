@@ -12,7 +12,15 @@ function Contact() {
         <h1 id="contact-heading" className="m-0 text-5xl font-bold tracking-wide bg-clip-text text-transparent md:text-6xl lg:text-7xl" style={{ background: 'linear-gradient(90deg, #06b6d4 0%, #14b8a6 25%, #6366f1 50%, #8b5cf6 75%, #d946ef 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text' }}>
           Contact
         </h1>
-        <p className="mt-6 text-lg text-slate-400">Let's build the next release together.</p>
+        <p className="mt-6 text-lg leading-relaxed text-slate-300">
+          Seeking a senior product design role where strategy and systems thinking drive real outcomes.
+        </p>
+        <p className="mt-2 text-base text-slate-500">
+          Enterprise or startup — also open to speaking, workshops, and collaborations.
+        </p>
+        <p className="mt-1 text-sm text-slate-600">
+          Based in Brisbane, AU · open to remote.
+        </p>
         <div className="mt-10 flex flex-col items-center gap-4 text-sm text-slate-300 sm:flex-row sm:gap-8">
           <a href="tel:0421366486" className="inline-flex items-center gap-2 transition-colors hover:text-white">
             <HiOutlinePhone size={16} />

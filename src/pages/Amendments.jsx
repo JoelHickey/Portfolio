@@ -61,7 +61,7 @@ function Amendments() {
       <div className="w-full bg-slate-50 border-b border-slate-200">
         <div className="mx-auto w-full max-w-6xl px-6 py-5">
           <p className="text-xs text-slate-500 leading-relaxed">
-            <span className="font-semibold uppercase tracking-widest text-slate-400">Role</span>{' '}<span className="font-medium text-slate-600">Lead UX Designer</span>
+            <span className="font-semibold uppercase tracking-widest text-slate-400">Role</span>{' '}<span className="font-medium text-slate-600">Senior Product Designer</span>
             <span className="mx-2 text-slate-300" aria-hidden>·</span>
             <span className="font-semibold uppercase tracking-widest text-slate-400">Team</span>{' '}<span className="font-medium text-slate-600">PM, 2 UX, offshore dev, ops</span>
             <span className="mx-2 text-slate-300" aria-hidden>·</span>

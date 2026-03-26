@@ -328,6 +328,45 @@ header {
   }
 }
 
+@keyframes value-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+@keyframes hover-glow {
+  0%, 100% {
+    transform: translateX(-50%) scaleX(0.8);
+    opacity: 0.3;
+    filter: blur(20px);
+  }
+  45% {
+    transform: translateX(-50%) scaleX(1.5);
+    opacity: 1;
+    filter: blur(28px);
+  }
+  50% {
+    transform: translateX(-50%) scaleX(1.4);
+    opacity: 0.9;
+    filter: blur(24px);
+  }
+  55% {
+    transform: translateX(-50%) scaleX(1.5);
+    opacity: 1;
+    filter: blur(28px);
+  }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @keyframes underline {
   0% {
     transform: scaleX(0);
@@ -408,6 +447,7 @@ header {
   50% { opacity: 0.85; transform: scale(1.06); }
 }
 
+
 /* Interactive star map (capabilities diagram) */
 @keyframes star-map-twinkle {
   0%, 100% { opacity: 0.9; filter: drop-shadow(0 0 2px rgba(255, 255, 255, 0.2)); }
@@ -438,10 +478,6 @@ header {
   animation: none;
 }
 .star-map-orbit-inner {
-  transform-origin: center;
-  animation: none;
-}
-.star-map-orbit-outer {
   transform-origin: center;
   animation: none;
 }

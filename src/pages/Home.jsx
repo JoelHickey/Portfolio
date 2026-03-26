@@ -384,12 +384,14 @@ function Home() {
   const [selectedPillarIndex, setSelectedPillarIndex] = useState(0)
   const [starMapMeasure, setStarMapMeasure] = useState({ size: 0, radius: 100, radiusOuter: 200 })
   const [starMapConnectors, setStarMapConnectors] = useState(null)
+  const [logosInView, setLogosInView] = useState(false)
   const storiesHeadingRef = useRef(null)
   const storiesParallaxWrapRef = useRef(null)
   const capabilitiesRef = useRef(null)
   const capabilitiesHeadingRef = useRef(null)
   const capabilitiesParallaxWrapRef = useRef(null)
   const contactParallaxWrapRef = useRef(null)
+  const logosRef = useRef(null)
   const capabilitiesCardsRef = useRef(null)
   const starMapRef = useRef(null)
   const starMapCoreRef = useRef(null)
@@ -462,6 +464,19 @@ function Home() {
         if (entry.isIntersecting) setCapabilitiesCardsInView(true)
       },
       { threshold: 0.2 }
+    )
+    observer.observe(el)
+    return () => observer.disconnect()
+  }, [])
+
+  useEffect(() => {
+    const el = logosRef.current
+    if (!el) return
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) setLogosInView(true)
+      },
+      { threshold: 0.3 }
     )
     observer.observe(el)
     return () => observer.disconnect()
@@ -849,175 +864,123 @@ function Home() {
           <div ref={capabilitiesParallaxWrapRef} className="w-full will-change-transform">
             <h2
               ref={capabilitiesHeadingRef}
-              className={`w-full pt-[112px] pb-48 text-center text-6xl font-bold tracking-wide md:pb-52 md:text-7xl lg:text-8xl transition-all duration-700 ease-out bg-home-h2-value bg-clip-text text-transparent ${
+              className={`w-full pt-[112px] pb-32 text-center text-6xl font-bold tracking-wide md:pb-36 md:text-7xl lg:text-8xl transition-all duration-700 ease-out bg-home-h2-value bg-clip-text text-transparent ${
                 capabilitiesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
               How I create value
             </h2>
           </div>
-          <div className="w-full px-10 pb-16 sm:pb-20 md:pb-24 lg:pb-32">
-            <div
-              ref={capabilitiesCardsRef}
-              className={`relative mx-auto flex flex-col items-center transition-opacity duration-500 ${
-                capabilitiesInView ? 'opacity-100' : 'opacity-0'
-              }`}
-            >
-              {/* Interactive star map — starfield, constellation lines, twinkle, glow */}
-              <div
-                ref={starMapRef}
-                className="star-map-container relative mt-20 w-[420px] h-[420px] sm:w-[540px] sm:h-[540px] md:w-[640px] md:h-[640px] lg:w-[800px] lg:h-[800px] flex shrink-0 items-center justify-center overflow-visible rounded-home-card [--cap-radius:150px] sm:[--cap-radius:180px] md:[--cap-radius:210px] lg:[--cap-radius:260px] [--cap-radius-outer:calc(var(--cap-radius)*2)]"
-              >
-                {/* Starfield — subtle dots with slow drift */}
-                <div className="star-map-drift-inner absolute inset-0 overflow-hidden rounded-home-card" aria-hidden>
-                  <svg className="absolute inset-0 h-full w-full" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet">
-                    {[
-                      [20, 30], [55, 18], [85, 42], [120, 25], [160, 38], [175, 70], [150, 105], [180, 140],
-                      [140, 165], [100, 155], [60, 170], [25, 145], [15, 100], [45, 65], [70, 88], [110, 72],
-                      [95, 115], [130, 95], [35, 120], [155, 55], [50, 48], [165, 125], [78, 140], [115, 32]
-                    ].map(([x, y], i) => (
-                      <circle key={i} cx={x} cy={y} r="0.8" fill="rgba(255,255,255,0.35)" className="star-map-dot" style={{ animationDelay: `${(i % 5) * 0.4}s` }} />
-                    ))}
+          <div
+            ref={capabilitiesCardsRef}
+            className={`mx-auto grid w-full max-w-7xl grid-cols-1 items-center gap-6 px-6 pb-16 md:grid-cols-[4fr_5fr_4fr] md:gap-6 md:px-10 md:pb-24 transition-all duration-700 ease-out ${
+              capabilitiesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
+            }`}
+          >
+            <div className="flex flex-col gap-5 md:gap-6">
+              {[
+                { title: 'Strategy', desc: 'Stakeholder alignment, opportunity mapping, and product roadmap direction', icon: (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
+                    <circle cx="5" cy="5" r="2" /><circle cx="19" cy="5" r="2" /><circle cx="12" cy="19" r="2" /><circle cx="12" cy="11" r="1.5" />
+                    <path d="M6.8 6.2l3.7 3.3M17.2 6.2l-3.7 3.3M12 13v4" />
                   </svg>
-                </div>
-                {capabilitiesInView && starMapConnectors ? (
-                  <svg
-                    className="pointer-events-none absolute inset-0 z-[6] h-full w-full overflow-visible"
-                    width={starMapConnectors.w}
-                    height={starMapConnectors.h}
-                    viewBox={`0 0 ${starMapConnectors.w} ${starMapConnectors.h}`}
-                    preserveAspectRatio="none"
-                    aria-hidden
-                  >
-                    {starMapConnectors.lines.map((ln) =>
-                      ln.kind === 'core' ? (
-                        <line
-                          key={`conn-core-${ln.pillar}`}
-                          x1={ln.x1}
-                          y1={ln.y1}
-                          x2={ln.x2}
-                          y2={ln.y2}
-                          stroke="rgba(165, 243, 252, 0.22)"
-                          strokeWidth={1.15}
-                          strokeLinecap="round"
-                        />
-                      ) : (
-                        <line
-                          key={`conn-spoke-${ln.outerIndex}`}
-                          x1={ln.x1}
-                          y1={ln.y1}
-                          x2={ln.x2}
-                          y2={ln.y2}
-                          stroke="rgba(165, 243, 252, 0.22)"
-                          strokeWidth={1.15}
-                          strokeLinecap="round"
-                        />
-                      )
-                    )}
+                )},
+                { title: 'Research', desc: 'Usability testing, customer interviews, and data-driven design decisions', icon: (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
+                    <path d="M3 20h18M6 16V10M10 16V6M14 16V12M18 16V8" strokeLinecap="round" />
+                    <path d="M3 14l4-6 4 4 4-6 4 4" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                ) : null}
-                {/* Center — Core (same disc language as inner pillars, non-interactive) */}
+                )},
+                { title: 'Leadership', desc: 'Mentoring designers, running workshops, and elevating team capability', icon: (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
+                    <circle cx="9" cy="7" r="3" /><circle cx="17" cy="9" r="2.5" />
+                    <path d="M2 21v-2a5 5 0 015-5h4a5 5 0 015 5v2" strokeLinecap="round" />
+                    <path d="M17 12a4 4 0 014 4v1" strokeLinecap="round" />
+                  </svg>
+                )},
+              ].map((p, i) => (
                 <div
-                  ref={starMapCoreRef}
-                  className="absolute left-1/2 top-1/2 z-[13] flex h-32 w-32 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full border border-white/10 bg-black/50 shadow-home-card-glow sm:h-40 sm:w-40 md:h-44 md:w-44 lg:h-48 lg:w-48"
-                  aria-label="Core — people and outcomes"
+                  key={p.title}
+                  className="rounded-home-card border border-white/10 px-6 py-5 shadow-home-card-glow transition-shadow duration-300 hover:shadow-home-card-glow-hover md:px-8 md:py-6"
+                  style={{ backgroundColor: 'rgba(0,0,0,0.5)', transitionDelay: capabilitiesInView ? `${200 + i * 120}ms` : '0ms' }}
                 >
-                  <div
-                    className="pointer-events-none absolute inset-0 rounded-full"
-                    style={{
-                      background: 'radial-gradient(circle, rgba(255,255,255,0.08) 0%, rgba(255,255,255,0.035) 45%, rgba(255,255,255,0) 75%)',
-                      filter: 'blur(1px)'
-                    }}
-                    aria-hidden
-                  />
-                  <svg
-                    viewBox="0 0 24 24"
-                    className="relative z-10 h-11 w-11 sm:h-12 sm:w-12 md:h-14 md:w-14"
-                    aria-hidden
-                  >
-                    <defs>
-                      <linearGradient id="core-user-grad" x1="0%" y1="0%" x2="100%" y2="0%">
-                        <stop offset="0%" stopColor="#22d3ee" />
-                        <stop offset="25%" stopColor="#2dd4bf" />
-                        <stop offset="50%" stopColor="#818cf8" />
-                        <stop offset="75%" stopColor="#a78bfa" />
-                        <stop offset="100%" stopColor="#e879f9" />
-                      </linearGradient>
-                    </defs>
-                    {/* Hairline-friendly in 24×24; thinner than heart’s apparent weight */}
-                    <path
-                      d="M15 7a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z"
-                      fill="none"
-                      stroke="url(#core-user-grad)"
-                      strokeWidth="1.35"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
-                    <path
-                      d="M4.5 20a7.5 7.5 0 0 1 15 0"
-                      fill="none"
-                      stroke="url(#core-user-grad)"
-                      strokeWidth="1.35"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                    />
+                  <div className="flex items-center gap-2.5">
+                    {p.icon}
+                    <h3 className="text-base font-semibold tracking-wider text-white md:text-lg">{p.title}</h3>
+                  </div>
+                  <p className="mt-1.5 text-sm font-light leading-relaxed tracking-wider text-slate-400 md:text-base">{p.desc}</p>
+                </div>
+              ))}
+            </div>
+            <div className="relative flex items-center justify-center">
+              <div className="pointer-events-none absolute bottom-0 left-1/2 animate-[hover-glow_4s_ease-in-out_infinite]"
+                style={{ width: 0, height: 0, borderLeft: '80px solid transparent', borderRight: '80px solid transparent', borderTop: '48px solid rgba(34,211,238,0.35)', filter: 'blur(18px)' }}
+              />
+              <img
+                src="/images/value-section-hero.png"
+                alt="Designer orchestrating strategy, research, craft, systems, and AI"
+                className="relative h-[240px] w-auto object-contain sm:h-[280px] md:h-[340px] lg:h-[400px] animate-[value-float_4s_ease-in-out_infinite]"
+              />
+            </div>
+            <div className="flex flex-col gap-5 md:gap-6">
+              {[
+                { title: 'Craft', desc: 'Interaction-rich interfaces from quoting flows to amendment workflows', icon: (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
+                    <rect x="3" y="3" width="18" height="18" rx="3" />
+                    <path d="M3 9h18M9 9v12" strokeLinecap="round" />
+                    <rect x="12" y="12" width="6" height="4" rx="1" />
                   </svg>
+                )},
+                { title: 'Systems', desc: 'Scalable design systems, documentation, and cross-team handoff patterns', icon: (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
+                    <rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" />
+                    <rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" />
+                  </svg>
+                )},
+                { title: 'AI', desc: 'Agentic workflows integrated into daily design and development practice', icon: (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
+                    <ellipse cx="12" cy="12" rx="8" ry="9" />
+                    <path d="M8 8.5c0 1 .8 2 2 2.5s2.5.3 3.5-.5M9 15c1 .8 3 1 4.5 0" strokeLinecap="round" />
+                    <circle cx="9" cy="8" r="0.75" fill="currentColor" /><circle cx="15" cy="8" r="0.75" fill="currentColor" />
+                    <path d="M4 10H2M20 10h2M4 15H2M20 15h2M7 3L6 1M17 3l1-2" strokeLinecap="round" />
+                  </svg>
+                )},
+              ].map((p, i) => (
+                <div
+                  key={p.title}
+                  className="rounded-home-card border border-white/10 px-6 py-5 shadow-home-card-glow transition-shadow duration-300 hover:shadow-home-card-glow-hover md:px-8 md:py-6"
+                  style={{ backgroundColor: 'rgba(0,0,0,0.5)', transitionDelay: capabilitiesInView ? `${200 + (i + 3) * 120}ms` : '0ms' }}
+                >
+                  <div className="flex items-center gap-2.5">
+                    {p.icon}
+                    <h3 className="text-base font-semibold tracking-wider text-white md:text-lg">{p.title}</h3>
+                  </div>
+                  <p className="mt-1.5 text-sm font-light leading-relaxed tracking-wider text-slate-400 md:text-base">{p.desc}</p>
                 </div>
-                <div className="star-map-orbit-inner absolute inset-0">
-                  {/* First ring — five inner lenses (PILLARS) */}
-                  {PILLARS.map((pillar, i) => {
-                    const isSelected = selectedPillarIndex === i
-                    return (
-                      <button
-                        key={i}
-                        ref={(el) => {
-                          starMapStarRefs.current[i] = el
-                        }}
-                        type="button"
-                        onClick={() => setSelectedPillarIndex(i)}
-                        className={`group star-map-star shadow-home-card-glow group-hover:shadow-home-card-glow-hover absolute left-1/2 top-1/2 z-[11] flex h-28 w-28 items-center justify-center rounded-full border border-white/10 bg-black/50 text-center transition-shadow duration-300 sm:h-32 sm:w-32 md:h-36 md:w-36 lg:h-40 lg:w-40 ${isSelected ? 'selected' : ''}`}
-                      >
-                        <span className="block max-w-24 whitespace-nowrap text-sm font-normal leading-tight tracking-wider text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)] sm:max-w-28 sm:text-base md:max-w-32 md:text-lg lg:text-xl">
-                          {pillar}
-                        </span>
-                      </button>
-                    )
-                  })}
-                </div>
-                <div className="star-map-orbit-outer absolute inset-0">
-                  {/* Outer ring — five pillars ×3 satellites */}
-                  {OUTER_RING.map((node, i) => {
-                    return (
-                      <div
-                        key={`outer-${i}`}
-                        ref={(el) => {
-                          starMapStarRefs.current[PILLARS.length + i] = el
-                        }}
-                        className="star-map-star shadow-home-card-glow pointer-events-none absolute left-1/2 top-1/2 z-[12] flex h-16 w-16 items-center justify-center overflow-visible rounded-full border border-white/10 bg-black/50 text-center sm:h-[4.5rem] sm:w-[4.5rem] md:h-20 md:w-20 lg:h-24 lg:w-24"
-                      >
-                        {node.label ? (
-                          <span className="block max-w-20 whitespace-nowrap text-sm font-normal leading-tight tracking-wider text-white drop-shadow-[0_1px_4px_rgba(0,0,0,0.45)] sm:max-w-24 sm:text-base md:max-w-28 md:text-lg lg:text-lg">
-                            {node.label}
-                          </span>
-                        ) : null}
-                      </div>
-                    )
-                  })}
-                </div>
-              </div>
-              {/* Evidence panel — grounded proof for the selected pillar */}
-              <div
-                className={`mx-auto mt-40 max-w-xl text-center transition-all duration-500 md:mt-44 lg:mt-48 ${
-                  capabilitiesCardsInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'
-                }`}
-                aria-live="polite"
-              >
-                <p className="text-lg font-light leading-relaxed tracking-wider text-slate-300 md:text-xl">
-                  {PILLAR_EVIDENCE[selectedPillarIndex]}
-                </p>
-              </div>
+              ))}
             </div>
           </div>
+        </div>
+      </section>
+      <section
+        ref={logosRef}
+        className="relative z-10 w-full bg-transparent"
+        aria-label="Brands I've designed for"
+      >
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-10 py-28 md:py-36">
+          <div className={`w-full mx-auto transition-all duration-700 ease-out ${logosInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
+            <div className="mx-auto mb-12 h-px w-24 bg-linear-to-r from-transparent via-slate-500 to-transparent" />
+            <p className="text-center text-lg font-medium uppercase tracking-[0.3em] text-slate-400 md:text-xl lg:text-2xl">
+              Brands I've designed for
+            </p>
+          </div>
+          <div className={`mt-14 flex w-full flex-nowrap items-center justify-center gap-x-8 sm:gap-x-12 md:gap-x-16 lg:gap-x-20 transition-all duration-700 ease-out delay-200 ${logosInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <img src="/images/logos/flight-centre.png" alt="Flight Centre Travel Group" className="h-10 w-auto object-contain brightness-0 invert opacity-30 transition-opacity duration-300 hover:opacity-50 md:h-14 lg:h-16" />
+            <img src="/images/logos/canstar.png" alt="Canstar" className="h-12 w-auto object-contain opacity-40 grayscale transition-all duration-300 hover:opacity-60 hover:grayscale-0 md:h-16 lg:h-20" />
+            <img src="/images/logos/temando.png" alt="Temando" className="h-4 w-auto object-contain brightness-0 invert opacity-30 transition-opacity duration-300 hover:opacity-50 md:h-6 lg:h-7" />
+            <img src="/images/logos/4zzz.svg" alt="4ZZZ" className="h-10 w-auto object-contain opacity-30 transition-opacity duration-300 hover:opacity-50 md:h-14 lg:h-16" />
+          </div>
+          <div className={`mt-14 mx-auto h-px w-24 bg-linear-to-r from-transparent via-slate-500 to-transparent transition-all duration-700 ease-out delay-300 ${logosInView ? 'opacity-100' : 'opacity-0'}`} />
         </div>
       </section>
       <section className="relative z-10 w-full min-h-screen bg-transparent pb-[112px]" aria-label="Get in touch">

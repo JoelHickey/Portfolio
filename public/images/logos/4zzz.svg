@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 62.933 62.874">
+  <defs>
+    <mask id="text-cutout">
+      <ellipse cx="31.467" cy="31.437" rx="31.467" ry="31.437" fill="white"/>
+      <path d="m 17.368,24.125 -6.548,12.361 6.548,-0.055 -0.067,5.738" style="fill:none;stroke:black;stroke-width:3.175;stroke-linecap:round;stroke-linejoin:round"/>
+      <path d="m 22.041,24.037 6.591,0.095 -6.426,12.379 h 6.52" style="fill:none;stroke:black;stroke-width:3.175;stroke-linecap:round;stroke-linejoin:round"/>
+      <path d="m 33.061,24.179 6.591,0.095 -6.426,12.379 h 6.52" style="fill:none;stroke:black;stroke-width:3.175;stroke-linecap:round;stroke-linejoin:round"/>
+      <path d="m 43.759,24.17 6.591,0.094 -6.426,12.379 h 6.52" style="fill:none;stroke:black;stroke-width:3.175;stroke-linecap:round;stroke-linejoin:round"/>
+    </mask>
+  </defs>
+  <ellipse cx="31.467" cy="31.437" rx="31.467" ry="31.437" fill="white" mask="url(#text-cutout)"/>
+</svg>

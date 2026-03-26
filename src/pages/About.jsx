@@ -23,10 +23,10 @@ function About() {
               <div>
                 <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-500">Summary</h2>
                 <p className="mt-3">
-                  Senior Product Designer with experience across interaction design, service design, and
-                  human-centred thinking. I move fast to deliver measurable solutions that feel effortless
-                  to use — from discovery through to delivery. Background in audio engineering gives me a
-                  unique perspective on multi-sensory experience design.
+                  Senior Product Designer focused on strategy, systems thinking, and human-centred craft.
+                  I connect business goals to user needs — shaping product direction, building scalable design systems,
+                  and delivering measurable outcomes from discovery through to delivery. Background in audio engineering
+                  gives me a unique perspective on multi-sensory experience design.
                 </p>
               </div>
               <div className="space-y-6">
@@ -34,7 +34,7 @@ function About() {
                 <div className="space-y-6">
                   <div className="space-y-2">
                     <p className="font-semibold text-slate-900">
-                      Flight Centre Travel Group — Senior UI/UX Designer · 2021–2025
+                      Flight Centre Travel Group — Senior Product Designer · 2021–2025
                     </p>
                     <ul className="space-y-1.5 text-slate-600">
                       <li>
@@ -49,7 +49,7 @@ function About() {
                         • Led design across cross-functional squads from discovery through prototyping, launch,
                         and post-release optimisation for enterprise booking platforms.
                       </li>
-                      <li>• Recognized: FCTG Global Lisbon selectee (2024); Buzz Night award winner (2022, 2023).</li>
+                      <li>• Recognised: FCTG Global Lisbon selectee (2024); Buzz Night award winner (2022, 2023).</li>
                     </ul>
                   </div>
                   <div className="space-y-2">
