@@ -202,7 +202,7 @@ function CRMLinkingPreview() {
 
 // Case study cards: 3 per row grid
 const CASE_STUDY_CARDS = [
-  { id: 'fctg', title: 'Agentic AI', description: 'Presented live, March 2026.', path: null, externalUrl: FCTG_PRESO_URL, image: null, preview: 'energy' },
+  { id: 'fctg', title: 'Agentic AI', description: 'Designed and presented agentic design workflows to 200+ consultants and 15+ designers.', path: null, externalUrl: FCTG_PRESO_URL, image: null, preview: 'energy' },
   {
     id: 'insurance',
     title: 'Insurance',
@@ -625,8 +625,11 @@ function Home() {
                 Joel Hickey
               </span>
             </p>
-            <p className="hero-line mt-2 text-base font-light leading-snug tracking-wider text-slate-200 sm:text-xl md:text-2xl lg:text-3xl mb-10 [animation-delay:120ms]">
-              Senior Product Designer
+            <p className="hero-line mt-2 text-base font-light leading-snug tracking-wider text-slate-200 sm:text-xl md:text-2xl lg:text-3xl [animation-delay:120ms]">
+              Product Design + AI Workflows
+            </p>
+            <p className="hero-line mt-3 text-sm font-extralight tracking-wider text-slate-400 sm:text-base md:text-lg mb-10 [animation-delay:180ms]">
+              I design products that ship — and build the agentic workflows that make design teams faster.
             </p>
             <div className="hero-line flex justify-center mt-1" style={{ animationDelay: '200ms' }}>
             <a
@@ -906,6 +909,14 @@ function Home() {
             </div>
             <div className="flex flex-col gap-8 md:gap-10">
               {[
+                { title: 'AI & Agentic', desc: 'Building and teaching agentic workflows that make design teams measurably faster', icon: (
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
+                    <ellipse cx="12" cy="12" rx="8" ry="9" />
+                    <path d="M8 8.5c0 1 .8 2 2 2.5s2.5.3 3.5-.5M9 15c1 .8 3 1 4.5 0" strokeLinecap="round" />
+                    <circle cx="9" cy="8" r="0.75" fill="currentColor" /><circle cx="15" cy="8" r="0.75" fill="currentColor" />
+                    <path d="M4 10H2M20 10h2M4 15H2M20 15h2M7 3L6 1M17 3l1-2" strokeLinecap="round" />
+                  </svg>
+                )},
                 { title: 'Craft', desc: 'Interaction-rich interfaces from quoting flows to amendment workflows', icon: (
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <rect x="3" y="3" width="18" height="18" rx="3" />
@@ -917,14 +928,6 @@ function Home() {
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" />
                     <rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" />
-                  </svg>
-                )},
-                { title: 'AI', desc: 'Agentic workflows integrated into daily design and development practice', icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
-                    <ellipse cx="12" cy="12" rx="8" ry="9" />
-                    <path d="M8 8.5c0 1 .8 2 2 2.5s2.5.3 3.5-.5M9 15c1 .8 3 1 4.5 0" strokeLinecap="round" />
-                    <circle cx="9" cy="8" r="0.75" fill="currentColor" /><circle cx="15" cy="8" r="0.75" fill="currentColor" />
-                    <path d="M4 10H2M20 10h2M4 15H2M20 15h2M7 3L6 1M17 3l1-2" strokeLinecap="round" />
                   </svg>
                 )},
               ].map((p, i) => (
@@ -972,7 +975,7 @@ function Home() {
           </div>
           <div className="w-full text-center">
             <p className="inline-block text-base font-extralight leading-relaxed tracking-wider text-white md:text-lg">
-              Open to senior product design roles, speaking, and collaborations.
+              Open to product design and AI workflow roles — plus speaking, workshops, and collaborations.
             </p>
           </div>
           <div className="mt-16 flex flex-wrap justify-center gap-6">

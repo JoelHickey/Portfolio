@@ -23,10 +23,11 @@ function About() {
               <div>
                 <h2 className="text-xs font-semibold uppercase tracking-widest text-slate-500">Summary</h2>
                 <p className="mt-3">
-                  Senior Product Designer focused on strategy, systems thinking, and human-centred craft.
-                  I connect business goals to user needs — shaping product direction, building scalable design systems,
-                  and delivering measurable outcomes from discovery through to delivery. Background in audio engineering
-                  gives me a unique perspective on multi-sensory experience design.
+                  Product designer who ships end-to-end — and builds the AI workflows that make design teams faster.
+                  I connect business goals to user needs through strategy, systems thinking, and human-centred craft,
+                  while integrating agentic AI tools into real design and development practice.
+                  Background across enterprise travel platforms, comparison marketplaces, and logistics SaaS,
+                  with measurable revenue and efficiency impact at each.
                 </p>
               </div>
               <div className="space-y-6">
@@ -48,6 +49,10 @@ function About() {
                       <li>
                         • Led design across cross-functional squads from discovery through prototyping, launch,
                         and post-release optimisation for enterprise booking platforms.
+                      </li>
+                      <li>
+                        • Designed and presented agentic AI workflows to 15+ designers and 200+ consultants,
+                        demonstrating practical AI integration for design and development teams.
                       </li>
                       <li>• Recognised: FCTG Global Lisbon selectee (2024); Buzz Night award winner (2022, 2023).</li>
                     </ul>
@@ -90,11 +95,13 @@ function About() {
                 <ul className="mt-3 space-y-1.5 text-sm text-slate-600">
                   {[
                     'Figma',
+                    'Cursor (AI-native IDE)',
+                    'Claude / ChatGPT',
                     'Miro',
                     'FullStory',
                     'Confluence',
-                    'Cursor',
-                    'GitHub Copilot'
+                    'GitHub Copilot',
+                    'v0 / Bolt'
                   ].map((tool) => (
                     <li key={tool}>• {tool}</li>
                   ))}
@@ -104,11 +111,13 @@ function About() {
                 <h3 className="text-xs font-semibold uppercase tracking-widest text-slate-500">Skills</h3>
                 <ul className="mt-3 space-y-1.5 text-sm text-slate-600">
                   {[
+                    'Agentic AI Workflows',
                     'Design Systems',
                     'Prototyping',
                     'Usability Testing',
                     'Research & Synthesis',
                     'UX Strategy',
+                    'AI-Augmented Design',
                     'Accessibility'
                   ].map((skill) => (
                     <li key={skill}>• {skill}</li>

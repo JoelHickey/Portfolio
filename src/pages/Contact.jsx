@@ -13,10 +13,10 @@ function Contact() {
           Contact
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-slate-300">
-          Seeking a senior product design role where strategy and systems thinking drive real outcomes.
+          Open to product design and AI workflow roles — where strategy, craft, and agentic tooling drive real outcomes.
         </p>
         <p className="mt-2 text-base text-slate-500">
-          Enterprise or startup — also open to speaking, workshops, and collaborations.
+          Enterprise or startup — also open to speaking, AI workshops, and collaborations.
         </p>
         <p className="mt-1 text-sm text-slate-600">
           Based in Brisbane, AU · open to remote.

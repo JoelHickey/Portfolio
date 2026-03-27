@@ -144,7 +144,8 @@ const cardShadowHover =
 const caseStudies = [
   {
     title: 'Agentic AI',
-    summary: 'Presented live, March 2026.',
+    company: 'Flight Centre',
+    summary: 'AI-assisted workflows demoed live to 200+ travel consultants.',
     tags: ['Live presentation', '15+ designers'],
     image: null,
     path: null,
@@ -153,6 +154,7 @@ const caseStudies = [
   },
   {
     title: 'Insurance',
+    company: 'Flight Centre',
     summary: '+45% attachment rate · $2.4M revenue impact.',
     tags: ['+45% attachment', '~30s add time'],
     image: null,
@@ -161,6 +163,7 @@ const caseStudies = [
   },
   {
     title: 'Travel Amendments',
+    company: 'Flight Centre',
     summary: '~75% shorter handling time · 67% faster workflows.',
     tags: ['10+ min → 2–3 min', '67% faster workflow'],
     image: null,
@@ -169,7 +172,8 @@ const caseStudies = [
   },
   {
     title: 'CRM Deep Linking',
-    summary: 'Context-aware navigation across a multi-brand booking platform.',
+    company: 'Flight Centre',
+    summary: '~45s saved per transition · 3,000+ consultants connected.',
     tags: ['Systems design', 'Navigation strategy'],
     image: null,
     preview: 'link',
@@ -177,7 +181,8 @@ const caseStudies = [
   },
   {
     title: 'Helio Platform',
-    summary: 'Analytics-driven redesign of consultant booking workflows.',
+    company: 'Flight Centre',
+    summary: '3,000+ daily users · Fullstory-driven workflow redesigns.',
     tags: ['Fullstory analytics', 'Workflow redesign'],
     image: null,
     preview: 'grid',
@@ -185,8 +190,9 @@ const caseStudies = [
   },
   {
     title: 'Magento Shipping',
-    summary: 'Bulk shipment flows for merchant dispatch at scale.',
-    tags: ['Reduced escalations', 'Faster fulfilment'],
+    company: 'Temando',
+    summary: 'Batch fulfillment for Magento merchants · research to ship.',
+    tags: ['End-to-end ownership', 'Merchant workflows'],
     image: null,
     preview: 'package',
     path: '/stories/magento-shipping'
@@ -194,15 +200,15 @@ const caseStudies = [
 ]
 
 const archiveItems = [
-  { title: 'Bitcoin Gift Card', image: null, preview: 'coin', path: null, summary: '', tags: [] },
-  { title: 'Compono Portal', image: null, preview: 'panels', path: null, summary: '', tags: [] },
-  { title: 'Shipping Partners', image: null, preview: 'connect', path: null, summary: '', tags: [] },
-  { title: 'Shipping Welcome', image: null, preview: 'arrow', path: null, summary: '', tags: [] },
-  { title: 'Backlog Concept', image: null, preview: 'stack', path: null, summary: '', tags: [] },
-  { title: 'Developers Portal', image: null, preview: 'code', path: null, summary: '', tags: [] },
-  { title: 'Shipping Personas', image: null, preview: 'person', path: null, summary: '', tags: [] },
-  { title: 'Shipping Reports', image: null, preview: 'chart', path: null, summary: '', tags: [] },
-  { title: 'T3 Style Guide', image: null, preview: 'grid', path: null, summary: '', tags: [] },
+  { title: 'Bitcoin Gift Card', image: null, preview: 'coin', path: null, summary: 'Crypto rewards redemption flow.', tags: [] },
+  { title: 'Compono Portal', company: 'Compono', image: null, preview: 'panels', path: null, summary: 'HR platform dashboard and onboarding.', tags: [] },
+  { title: 'Shipping Partners', company: 'Temando', image: null, preview: 'connect', path: null, summary: 'Carrier integration and partner management.', tags: [] },
+  { title: 'Shipping Welcome', company: 'Temando', image: null, preview: 'arrow', path: null, summary: 'Merchant onboarding and activation flow.', tags: [] },
+  { title: 'Backlog Concept', company: 'Temando', image: null, preview: 'stack', path: null, summary: 'Prioritisation tool for product teams.', tags: [] },
+  { title: 'Developers Portal', company: 'Temando', image: null, preview: 'code', path: null, summary: 'API documentation and developer experience.', tags: [] },
+  { title: 'Shipping Personas', company: 'Temando', image: null, preview: 'person', path: null, summary: 'Research-driven merchant persona framework.', tags: [] },
+  { title: 'Shipping Reports', company: 'Temando', image: null, preview: 'chart', path: null, summary: 'Analytics dashboards for shipment tracking.', tags: [] },
+  { title: 'T3 Style Guide', company: 'Temando', image: null, preview: 'grid', path: null, summary: 'Component library and design system documentation.', tags: [] },
 ]
 
 const allCards = [...caseStudies, ...archiveItems]
@@ -227,6 +233,9 @@ function Work() {
             <h1 id="stories-heading" className="m-0 text-5xl font-bold tracking-wide bg-clip-text text-transparent md:text-6xl lg:text-7xl" style={{ background: 'linear-gradient(90deg, #0891b2 0%, #0d9488 25%, #4f46e5 50%, #7c3aed 75%, #c026d3 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text' }}>
               Stories
             </h1>
+            <p className="mt-4 text-base font-extralight tracking-wider text-slate-400 md:text-lg">
+              Product design across B2B platforms, insurance, travel ops, and logistics — problem framing through to measured outcomes.
+            </p>
           </div>
         </div>
       </div>
@@ -307,6 +316,9 @@ function Work() {
               const isEnergy = card.preview === 'energy'
               const textBlock = (
                   <div className="flex flex-col items-center px-8 pt-8 pb-4 text-center">
+                    {card.company && (
+                      <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-slate-500">{card.company}</p>
+                    )}
                     <h3 className="text-2xl font-semibold tracking-wider text-white md:text-3xl">{card.title}</h3>
                     {card.summary && (
                       <p
