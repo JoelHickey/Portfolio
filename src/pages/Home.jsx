@@ -570,7 +570,7 @@ function Home() {
     if (mq.matches) return
 
     const headingWraps = [storiesParallaxWrapRef, capabilitiesParallaxWrapRef, contactParallaxWrapRef]
-    const cardRefs = [storyCardParallax0Ref, storyCardParallax1Ref, storyCardParallax2Ref]
+    const cardRefs = [storyCardParallax0Ref]
     let scheduled = 0
 
     const tick = () => {
@@ -626,7 +626,7 @@ function Home() {
               </span>
             </p>
             <p className="hero-line mt-2 text-base font-light leading-snug tracking-wider text-slate-200 sm:text-xl md:text-2xl lg:text-3xl mb-10 [animation-delay:120ms]">
-              Senior Product Designer — strategy, systems thinking, and human‑centred craft.
+              Senior Product Designer
             </p>
             <div className="hero-line flex justify-center mt-1" style={{ animationDelay: '200ms' }}>
             <a
@@ -658,59 +658,44 @@ function Home() {
             </h2>
           </div>
           <div className="w-full px-10 pb-8">
-          {/* Row 1: AI talk only — shorter aspect to reduce height */}
-          <div className="w-full">
-              {CASE_STUDY_CARDS.slice(0, 1).map((item) => (
+          <div ref={storyCardParallax0Ref} className="grid grid-cols-1 gap-10 md:grid-cols-2 will-change-transform">
+            {/* Row 1: AI talk — spans full width */}
+            <div className="md:col-span-2 group relative flex min-w-0 transition-all duration-500 hover:translate-y-[-2px]">
+              <div className="w-full min-w-0">
                 <div
-                  key={item.id}
-                  className="group relative flex min-w-0 transition-all duration-500 hover:translate-y-[-2px]"
+                  className="relative flex h-full min-h-[320px] w-full min-w-0 flex-col overflow-hidden rounded-home-card border border-white/10 py-16 transition-shadow duration-500 md:min-h-[380px] md:flex-row md:py-20 shadow-home-card-glow group-hover:shadow-home-card-glow-hover"
+                  style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
                 >
-                  {item.externalUrl ? (
-                    <div
-                      ref={storyCardParallax0Ref}
-                      className="will-change-transform w-full min-w-0"
+                  <div className="relative flex min-w-0 flex-1 flex-col items-start text-left justify-start px-12 md:px-14">
+                    <h3 className="text-4xl font-semibold tracking-wide text-white md:text-5xl lg:text-6xl">
+                      {CASE_STUDY_CARDS[0].title}
+                    </h3>
+                    <p className="mt-3 text-xl font-extralight tracking-wider text-white md:text-2xl">{CASE_STUDY_CARDS[0].description}</p>
+                    <a
+                      href={CASE_STUDY_CARDS[0].externalUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="mt-6 inline-block rounded-full bg-home-cta px-5 py-2.5 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110"
                     >
-                    <div
-                      className={`relative flex h-full min-h-[320px] w-full min-w-0 flex-col overflow-hidden rounded-home-card border border-white/10 py-16 transition-shadow duration-500 md:min-h-[380px] md:flex-row md:py-20 shadow-home-card-glow group-hover:shadow-home-card-glow-hover`}
-                    style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
-                    >
-                      <div className="relative flex min-w-0 flex-1 flex-col items-start text-left justify-start px-12 md:px-14">
-                        <h3 className="text-4xl font-semibold tracking-wide text-white md:text-5xl lg:text-6xl">
-                          {item.title}
-                        </h3>
-                        <p className="mt-3 text-xl font-extralight tracking-wider text-white md:text-2xl">{item.description}</p>
-                        <a
-                          href={item.externalUrl}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="mt-6 inline-block rounded-full bg-home-cta px-5 py-2.5 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110"
-                        >
-                          Open presentation
-                        </a>
-                      </div>
-                      <div className="relative w-full shrink-0 overflow-hidden md:w-[52%] md:min-w-0 md:max-w-[640px] flex items-center justify-center px-10 md:px-12">
-                        <div className="w-full max-h-[180px] md:max-h-[280px] [aspect-ratio:1100/280] flex items-center justify-center">
-                          <FCTGEnergyPreview />
-                        </div>
-                      </div>
+                      Open presentation
+                    </a>
+                  </div>
+                  <div className="relative w-full shrink-0 overflow-hidden md:w-[52%] md:min-w-0 md:max-w-[640px] flex items-center justify-center px-10 md:px-12">
+                    <div className="w-full max-h-[180px] md:max-h-[280px] [aspect-ratio:1100/280] flex items-center justify-center">
+                      <FCTGEnergyPreview />
                     </div>
-                    </div>
-                  ) : null}
+                  </div>
                 </div>
-              ))}
-          </div>
-          {/* Row 2: Insurance + Amendments — items-start so card height = content + padding (same as AI card) */}
-          <div className="mt-10 grid grid-cols-1 gap-10 md:grid-cols-2">
+              </div>
+            </div>
+            {/* Row 2: Insurance + Amendments */}
             {CASE_STUDY_CARDS.slice(1, 3).map((item, rowIdx) => (
               <div
                 key={item.id}
                 className="group relative flex min-w-0 transition-all duration-500 hover:translate-y-[-2px]"
               >
                 {item.externalUrl ? (
-                  <div
-                    ref={rowIdx === 0 ? storyCardParallax1Ref : storyCardParallax2Ref}
-                    className="will-change-transform w-full min-w-0"
-                  >
+                  <div className="w-full min-w-0">
                   <div
                     className={`relative flex h-full min-h-[320px] w-full min-w-0 flex-col overflow-hidden rounded-home-card border border-white/10 ${item.preview === 'insurance' || item.preview === 'amendments' ? 'py-20 md:py-24' : 'py-12 md:py-14'} transition-shadow duration-500 md:min-h-[380px] md:flex-row shadow-home-card-glow group-hover:shadow-home-card-glow-hover`}
                     style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
@@ -769,10 +754,7 @@ function Home() {
                   </div>
                   </div>
                 ) : (
-                  <div
-                    ref={rowIdx === 0 ? storyCardParallax1Ref : storyCardParallax2Ref}
-                    className="will-change-transform w-full min-w-0"
-                  >
+                  <div className="w-full min-w-0">
                   <div className={`relative flex h-full min-h-[320px] w-full min-w-0 flex-col overflow-hidden rounded-home-card border border-white/10 ${item.preview === 'insurance' || item.preview === 'amendments' ? 'py-20 md:py-24' : 'py-12 md:py-14'} transition-shadow duration-500 md:min-h-[380px] md:flex-row shadow-home-card-glow group-hover:shadow-home-card-glow-hover`}
                     style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
                     <div className="relative flex min-w-0 flex-1 flex-col items-start text-left justify-start px-10 md:px-11 lg:px-12">
@@ -877,7 +859,7 @@ function Home() {
               capabilitiesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'
             }`}
           >
-            <div className="flex flex-col gap-5 md:gap-6">
+            <div className="flex flex-col gap-8 md:gap-10">
               {[
                 { title: 'Strategy', desc: 'Stakeholder alignment, opportunity mapping, and product roadmap direction', icon: (
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
@@ -922,7 +904,7 @@ function Home() {
                 className="relative h-[240px] w-auto object-contain sm:h-[280px] md:h-[340px] lg:h-[400px] animate-[value-float_4s_ease-in-out_infinite]"
               />
             </div>
-            <div className="flex flex-col gap-5 md:gap-6">
+            <div className="flex flex-col gap-8 md:gap-10">
               {[
                 { title: 'Craft', desc: 'Interaction-rich interfaces from quoting flows to amendment workflows', icon: (
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
@@ -967,20 +949,18 @@ function Home() {
         className="relative z-10 w-full bg-transparent"
         aria-label="Brands I've designed for"
       >
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-10 py-28 md:py-36">
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-10 pt-28 pb-44 md:pt-36 md:pb-56">
           <div className={`w-full mx-auto transition-all duration-700 ease-out ${logosInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <div className="mx-auto mb-12 h-px w-24 bg-linear-to-r from-transparent via-slate-500 to-transparent" />
-            <p className="text-center text-lg font-medium uppercase tracking-[0.3em] text-slate-400 md:text-xl lg:text-2xl">
+            <p className="text-center text-4xl font-semibold tracking-wide text-white md:text-5xl lg:text-6xl">
               Brands I've designed for
             </p>
           </div>
-          <div className={`mt-14 flex w-full flex-nowrap items-center justify-center gap-x-8 sm:gap-x-12 md:gap-x-16 lg:gap-x-20 transition-all duration-700 ease-out delay-200 ${logosInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <img src="/images/logos/flight-centre.png" alt="Flight Centre Travel Group" className="h-10 w-auto object-contain brightness-0 invert opacity-30 transition-opacity duration-300 hover:opacity-50 md:h-14 lg:h-16" />
-            <img src="/images/logos/canstar.png" alt="Canstar" className="h-12 w-auto object-contain opacity-40 grayscale transition-all duration-300 hover:opacity-60 hover:grayscale-0 md:h-16 lg:h-20" />
-            <img src="/images/logos/temando.png" alt="Temando" className="h-4 w-auto object-contain brightness-0 invert opacity-30 transition-opacity duration-300 hover:opacity-50 md:h-6 lg:h-7" />
-            <img src="/images/logos/4zzz.svg" alt="4ZZZ" className="h-10 w-auto object-contain opacity-30 transition-opacity duration-300 hover:opacity-50 md:h-14 lg:h-16" />
+          <div className={`mt-24 flex w-full flex-nowrap items-center justify-center gap-x-16 sm:gap-x-20 md:gap-x-28 lg:gap-x-36 transition-all duration-700 ease-out delay-200 ${logosInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <img src="/images/logos/flight-centre.png" alt="Flight Centre Travel Group" className="h-10 w-auto object-contain brightness-0 invert md:h-14 lg:h-16" />
+            <img src="/images/logos/canstar.png" alt="Canstar" className="h-12 w-auto object-contain md:h-16 lg:h-20" />
+            <img src="/images/logos/temando.png" alt="Temando" className="h-4 w-auto object-contain md:h-6 lg:h-7" />
+            <img src="/images/logos/4zzz.svg" alt="4ZZZ" className="h-10 w-auto object-contain md:h-14 lg:h-16" />
           </div>
-          <div className={`mt-14 mx-auto h-px w-24 bg-linear-to-r from-transparent via-slate-500 to-transparent transition-all duration-700 ease-out delay-300 ${logosInView ? 'opacity-100' : 'opacity-0'}`} />
         </div>
       </section>
       <section className="relative z-10 w-full min-h-screen bg-transparent pb-[112px]" aria-label="Get in touch">
@@ -991,14 +971,11 @@ function Home() {
             </h2>
           </div>
           <div className="w-full text-center">
-            <p className="inline-block text-xl font-extralight leading-relaxed tracking-wider text-white md:text-2xl">
-              Seeking a senior product design role where strategy and systems thinking drive real outcomes.
-            </p>
-            <p className="mt-3 inline-block text-base font-extralight tracking-wider text-slate-400 md:text-lg">
-              Enterprise or startup — also open to speaking, workshops, and collaborations.
+            <p className="inline-block text-base font-extralight leading-relaxed tracking-wider text-white md:text-lg">
+              Open to senior product design roles, speaking, and collaborations.
             </p>
           </div>
-          <div className="mt-10 flex flex-wrap justify-center gap-6">
+          <div className="mt-16 flex flex-wrap justify-center gap-6">
             <a
               href="mailto:joelhickeydesigns@gmail.com"
               className="inline-flex items-center gap-2 rounded-full bg-home-cta px-6 py-3 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent min-h-[44px]"

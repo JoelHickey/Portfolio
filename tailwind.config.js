@@ -48,9 +48,9 @@ export default {
         'ds-card': '0 1px 3px 0 rgb(0 0 0 / 0.1), 0 1px 2px -1px rgb(0 0 0 / 0.1)',
         'ds-card-hover': '0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1)',
         'home-card-glow':
-          '0 2px 8px rgba(34, 211, 238, 0.16), 0 8px 24px rgba(34, 211, 238, 0.12), 0 24px 48px -12px rgba(34, 211, 238, 0.1)',
+          '0 0 8px rgba(34, 211, 238, 0.16), 0 0 24px rgba(34, 211, 238, 0.12), 0 0 48px -12px rgba(34, 211, 238, 0.1)',
         'home-card-glow-hover':
-          '0 4px 16px rgba(34, 211, 238, 0.22), 0 12px 32px rgba(34, 211, 238, 0.16), 0 32px 64px -16px rgba(34, 211, 238, 0.14)',
+          '0 0 16px rgba(34, 211, 238, 0.22), 0 0 32px rgba(34, 211, 238, 0.16), 0 0 64px -16px rgba(34, 211, 238, 0.14)',
       },
       backgroundImage: {
         'ds-heading-gradient': 'linear-gradient(to right, #1e293b, #4f46e5, #1e293b)',
