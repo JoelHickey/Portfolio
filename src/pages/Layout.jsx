@@ -28,7 +28,7 @@ function Layout() {
       )}
       <header className={`relative z-20 ${isLightPage ? 'bg-white' : 'bg-black'}`}>
         <div className="mx-auto flex max-w-6xl items-center justify-center p-2">
-          <nav className={`flex w-full items-center justify-center gap-12 text-xs font-light tracking-wider ${isLightPage ? 'text-slate-800' : 'text-slate-200'}`}>
+          <nav className={`flex w-full items-center justify-center gap-4 text-xs font-light tracking-wider sm:gap-8 md:gap-12 ${isLightPage ? 'text-slate-800' : 'text-slate-200'}`}>
             <NavLink to="/" className={navLinkClass} end>
               Home
             </NavLink>

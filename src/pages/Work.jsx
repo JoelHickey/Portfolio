@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { useEffect } from 'react'
 import MatrixRain from '../components/MatrixRain'
 import ParticleBackground from '../components/ParticleBackground'
-import { FCTG_PRESO_URL } from '../constants/preso'
+
 import { FCTGEnergyPreview, InsurancePreview, AmendmentsPreview } from './Home'
 
 const lineIcons = {
@@ -148,8 +148,7 @@ const caseStudies = [
     summary: 'Agentic design workflows presented live to 15+ designers.',
     tags: ['Live presentation', '15+ designers'],
     image: null,
-    path: null,
-    externalUrl: FCTG_PRESO_URL,
+    path: '/stories/fctg-ai-talk',
     preview: 'energy'
   },
   {

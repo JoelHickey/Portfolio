@@ -628,13 +628,9 @@ function Home() {
             <p className="hero-line mt-2 text-base font-light leading-snug tracking-wider text-slate-200 sm:text-xl md:text-2xl lg:text-3xl [animation-delay:120ms]">
               Product Design + AI Workflows
             </p>
-            <div className="hero-line mt-5 flex flex-wrap justify-center gap-x-6 gap-y-1 text-xs font-medium tracking-wider text-slate-500 sm:text-sm [animation-delay:180ms]">
-              <span>+45pp insurance attachment</span>
-              <span className="text-slate-700" aria-hidden>·</span>
-              <span>~75% faster workflows</span>
-              <span className="text-slate-700" aria-hidden>·</span>
-              <span>$2.4M revenue lift</span>
-            </div>
+            <p className="hero-line mt-5 text-center text-xs font-medium tracking-wider text-slate-500 sm:text-sm [animation-delay:180ms]">
+              +45pp attachment<span className="mx-2 text-slate-700" aria-hidden>·</span>~75% faster workflows<span className="mx-2 text-slate-700" aria-hidden>·</span>$2.4M revenue lift
+            </p>
             <div className="hero-line flex justify-center mt-8" style={{ animationDelay: '220ms' }}>
             <a
               href="#stories"
@@ -956,15 +952,15 @@ function Home() {
       >
         <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-10 pt-28 pb-44 md:pt-36 md:pb-56">
           <div className={`w-full mx-auto transition-all duration-700 ease-out ${logosInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <p className="text-center text-4xl font-semibold tracking-wide text-white md:text-5xl lg:text-6xl">
+            <p className="text-center text-2xl font-light tracking-wider text-slate-300 md:text-3xl lg:text-4xl">
               Brands I've designed for
             </p>
           </div>
-          <div className={`mt-24 flex w-full flex-nowrap items-center justify-center gap-x-16 sm:gap-x-20 md:gap-x-28 lg:gap-x-36 transition-all duration-700 ease-out delay-200 ${logosInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <img src="/images/logos/flight-centre.png" alt="Flight Centre Travel Group" className="h-10 w-auto object-contain brightness-0 invert md:h-14 lg:h-16" />
-            <img src="/images/logos/canstar.png" alt="Canstar" className="h-12 w-auto object-contain md:h-16 lg:h-20" />
-            <img src="/images/logos/temando.png" alt="Temando" className="h-4 w-auto object-contain md:h-6 lg:h-7" />
-            <img src="/images/logos/4zzz.svg" alt="4ZZZ" className="h-10 w-auto object-contain md:h-14 lg:h-16" />
+          <div className={`mt-24 flex w-full flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-16 md:gap-x-28 lg:gap-x-36 transition-all duration-700 ease-out delay-200 ${logosInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+            <img src="/images/logos/flight-centre.png" alt="Flight Centre Travel Group" className="h-8 w-auto object-contain brightness-0 invert sm:h-10 md:h-14 lg:h-16" />
+            <img src="/images/logos/canstar.png" alt="Canstar" className="h-10 w-auto object-contain sm:h-12 md:h-16 lg:h-20" />
+            <img src="/images/logos/temando.png" alt="Temando" className="h-3.5 w-auto object-contain sm:h-4 md:h-6 lg:h-7" />
+            <img src="/images/logos/4zzz.svg" alt="4ZZZ" className="h-8 w-auto object-contain sm:h-10 md:h-14 lg:h-16" />
           </div>
         </div>
       </section>
