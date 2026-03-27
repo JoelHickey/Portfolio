@@ -202,7 +202,7 @@ function CRMLinkingPreview() {
 
 // Case study cards: 3 per row grid
 const CASE_STUDY_CARDS = [
-  { id: 'fctg', title: 'Agentic AI', description: 'Designed and presented agentic design workflows to 200+ consultants and 15+ designers.', path: null, externalUrl: FCTG_PRESO_URL, image: null, preview: 'energy' },
+  { id: 'fctg', title: 'Agentic AI', description: 'Agentic design workflows presented live to 15+ designers.', path: null, externalUrl: FCTG_PRESO_URL, image: null, preview: 'energy' },
   {
     id: 'insurance',
     title: 'Insurance',

@@ -145,7 +145,7 @@ const caseStudies = [
   {
     title: 'Agentic AI',
     company: 'Flight Centre',
-    summary: 'AI-assisted workflows demoed live to 200+ travel consultants.',
+    summary: 'Agentic design workflows presented live to 15+ designers.',
     tags: ['Live presentation', '15+ designers'],
     image: null,
     path: null,
