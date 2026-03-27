@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 import { HiOutlineMail } from 'react-icons/hi'
 import { SiLinkedin } from 'react-icons/si'
 import ParticleBackground from '../components/ParticleBackground'
-import { FCTG_PRESO_URL } from '../constants/preso'
+
 import BatteryParticleFill from '../components/BatteryParticleFill'
 import { homeHeroNameGradientTextStyle } from '../design-system/home'
 import { applyStarMapOrbitTransform } from '../hooks/useStarMapBounceIntro.js'
@@ -202,7 +202,7 @@ function CRMLinkingPreview() {
 
 // Case study cards: 3 per row grid
 const CASE_STUDY_CARDS = [
-  { id: 'fctg', title: 'Agentic AI', description: 'Agentic design workflows presented live to 15+ designers.', path: null, externalUrl: FCTG_PRESO_URL, image: null, preview: 'energy' },
+  { id: 'fctg', title: 'Agentic AI', description: 'Agentic design workflows presented live to 15+ designers.', path: '/stories/fctg-ai-talk', externalUrl: null, image: null, preview: 'energy' },
   {
     id: 'insurance',
     title: 'Insurance',
@@ -628,10 +628,14 @@ function Home() {
             <p className="hero-line mt-2 text-base font-light leading-snug tracking-wider text-slate-200 sm:text-xl md:text-2xl lg:text-3xl [animation-delay:120ms]">
               Product Design + AI Workflows
             </p>
-            <p className="hero-line mt-3 text-sm font-extralight tracking-wider text-slate-400 sm:text-base md:text-lg mb-10 [animation-delay:180ms]">
-              I design products that ship — and build the agentic workflows that make design teams faster.
-            </p>
-            <div className="hero-line flex justify-center mt-1" style={{ animationDelay: '200ms' }}>
+            <div className="hero-line mt-5 flex flex-wrap justify-center gap-x-6 gap-y-1 text-xs font-medium tracking-wider text-slate-500 sm:text-sm [animation-delay:180ms]">
+              <span>+45pp insurance attachment</span>
+              <span className="text-slate-700" aria-hidden>·</span>
+              <span>~75% faster workflows</span>
+              <span className="text-slate-700" aria-hidden>·</span>
+              <span>$2.4M revenue lift</span>
+            </div>
+            <div className="hero-line flex justify-center mt-8" style={{ animationDelay: '220ms' }}>
             <a
               href="#stories"
               onClick={scrollToStories}
@@ -674,14 +678,12 @@ function Home() {
                       {CASE_STUDY_CARDS[0].title}
                     </h3>
                     <p className="mt-3 text-xl font-extralight tracking-wider text-white md:text-2xl">{CASE_STUDY_CARDS[0].description}</p>
-                    <a
-                      href={CASE_STUDY_CARDS[0].externalUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
+                    <Link
+                      to={CASE_STUDY_CARDS[0].path}
                       className="mt-6 inline-block rounded-full bg-home-cta px-5 py-2.5 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110"
                     >
-                      Open presentation
-                    </a>
+                      View story
+                    </Link>
                   </div>
                   <div className="relative w-full shrink-0 overflow-hidden md:w-[52%] md:min-w-0 md:max-w-[640px] flex items-center justify-center px-10 md:px-12">
                     <div className="w-full max-h-[180px] md:max-h-[280px] [aspect-ratio:1100/280] flex items-center justify-center">

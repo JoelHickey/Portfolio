@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import CaseStudyNav from '../components/CaseStudyNav'
 
 const gradientStyle = {
   background: 'linear-gradient(90deg, #0891b2 0%, #0d9488 25%, #4f46e5 50%, #7c3aed 75%, #c026d3 100%)',
@@ -18,6 +19,14 @@ function Amendments() {
 
   return (
     <section className="flex flex-col">
+      <CaseStudyNav sections={[
+        { id: 'amend-problem', label: 'Problem' },
+        { id: 'amend-strategy', label: 'Strategy' },
+        { id: 'amend-prototyping', label: 'Prototyping' },
+        { id: 'amend-delivery', label: 'Delivery' },
+        { id: 'amend-outcome', label: 'Outcome' },
+        { id: 'amend-reflection', label: 'Reflection' },
+      ]} />
 
       {/* ════════════════════════════════════════════════════════════════
           HERO — Set up the problem, not the solution
@@ -60,26 +69,48 @@ function Amendments() {
       {/* Slim metadata bar */}
       <div className="w-full bg-slate-50 border-b border-slate-200">
         <div className="mx-auto w-full max-w-6xl px-6 py-5">
-          <p className="text-xs text-slate-500 leading-relaxed">
-            <span className="font-semibold uppercase tracking-widest text-slate-400">Role</span>{' '}<span className="font-medium text-slate-600">Senior Product Designer</span>
-            <span className="mx-2 text-slate-300" aria-hidden>·</span>
-            <span className="font-semibold uppercase tracking-widest text-slate-400">Team</span>{' '}<span className="font-medium text-slate-600">PM, 2 UX, offshore dev, ops</span>
-            <span className="mx-2 text-slate-300" aria-hidden>·</span>
-            <span className="font-semibold uppercase tracking-widest text-slate-400">Duration</span>{' '}<span className="font-medium text-slate-600">~12 months, 2021–22</span>
-          </p>
+          <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs">
+            <div>
+              <p className="font-semibold uppercase tracking-widest text-slate-400">Role</p>
+              <p className="mt-0.5 font-medium text-slate-700">Senior Product Designer — led UX from discovery through global rollout</p>
+            </div>
+            <div>
+              <p className="font-semibold uppercase tracking-widest text-slate-400">Domain</p>
+              <p className="mt-0.5 font-medium text-slate-700">B2B travel — internal consultant tooling</p>
+            </div>
+            <div>
+              <p className="font-semibold uppercase tracking-widest text-slate-400">Team</p>
+              <p className="mt-0.5 font-medium text-slate-700">PM, 2 UX, engineering (distributed team), ops</p>
+            </div>
+            <div>
+              <p className="font-semibold uppercase tracking-widest text-slate-400">Duration</p>
+              <p className="mt-0.5 font-medium text-slate-700">~12 months, 2021–22</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* TL;DR */}
+      <div className="w-full bg-white border-b border-slate-100">
+        <div className="mx-auto w-full max-w-6xl px-6 py-6">
+          <div className="max-w-3xl space-y-2 text-sm text-slate-600">
+            <p className="font-semibold uppercase tracking-widest text-slate-400 text-xs">Summary</p>
+            <p className="leading-relaxed">Post-booking amendments — flight changes, hotel extensions, car swaps — were taking consultants 8–12 minutes per call, most of it spent fighting the tool rather than helping the customer. I redesigned the workflow across 5 booking verticals within the legacy Travelbox platform, cutting average handling time to ~2.5 minutes, achieving 89% CSAT (n=200+), and reducing amendment-related error escalations by ~40%.</p>
+          </div>
         </div>
       </div>
 
 
       {/* ════════════════════════════════════════════════════════════════
-          ACT 1 — THE PROBLEM
+          PROBLEM
           ════════════════════════════════════════════════════════════════ */}
 
-      {/* ── The problem ── */}
-      <div className="w-full bg-white">
+      {/* ── Problem ── */}
+      <div id="amend-problem" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <p className="max-w-2xl text-lg text-slate-600 leading-relaxed">
-            An amendment is any post-booking change — swapping a flight, extending a hotel, adding a car, updating traveller details — across five verticals (flights, hotels, cars, tours, insurance). Consultants were processing thousands a day through Helio, the internal front-end built on Codegen's Travelbox booking platform.
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Problem</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            An amendment is any post-booking change — swapping a flight, extending a hotel, adding a car, updating traveller details — across five verticals (flights, hotels, cars, tours, insurance). Consultants were processing thousands a day through Helio (the internal booking UI, built on Travelbox — a vendor-managed middleware layer).
           </p>
 
           <blockquote className="mt-10 border-l-2 border-slate-300 pl-6">
@@ -107,10 +138,10 @@ function Amendments() {
 
           {/* Prose — how we uncovered the depth */}
           <div className="mt-16 max-w-2xl space-y-4">
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
               Workshops with 60+ consultants across every brand revealed the same pattern — the same change re-keyed across multiple systems, near-zero automation, 30-second page loads eroding confidence, and legacy constraints blocking most proposed improvements.
             </p>
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
               Consultants had adapted to the pain, but the cost was invisible — longer calls, more errors, lower satisfaction. We used frequency-versus-friction analysis to prioritise which amendment types to tackle first.
             </p>
           </div>
@@ -164,29 +195,29 @@ function Amendments() {
 
 
       {/* ════════════════════════════════════════════════════════════════
-          ACT 2 — THE CRAFT
+          STRATEGY
           ════════════════════════════════════════════════════════════════ */}
 
       {/* ── Ideation ── */}
-      <div className="w-full bg-slate-50">
+      <div id="amend-strategy" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">The craft</h2>
-          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Strategy</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             We knew what was broken. The question was how ambitious to be.
           </p>
 
           <div className="mt-12 max-w-2xl space-y-8">
             <div className="space-y-4">
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
                 The ideal solution was an AI-powered conversational flow — consultants describe the change in plain language, the system validates dependencies, surfaces pricing, and completes the amendment in one interaction. No screens, no clicks.
               </p>
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
                 But the legacy stack had no unified API across inventory systems, NLP wasn't production-ready for complex multi-component bookings, and consultants needed relief now — not a multi-year build.
               </p>
             </div>
 
-            <p className="text-lg text-slate-600 leading-relaxed">
-              We explored six directions and evaluated each against three criteria: <span className="font-medium text-slate-800">technical feasibility</span> within the legacy stack, <span className="font-medium text-slate-800">cognitive load</span> during a live customer call, and <span className="font-medium text-slate-800">dependency visibility</span> — could the consultant see cascading impacts before committing?
+            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
+              We explored six directions — from a conversational AI assistant to a single-screen mega-form to a full vertical-by-vertical rebuild — and evaluated each against three criteria: <span className="font-medium text-slate-800">technical feasibility</span> within the legacy stack, <span className="font-medium text-slate-800">cognitive load</span> during a live customer call, and <span className="font-medium text-slate-800">dependency visibility</span> — could the consultant see cascading impacts before committing?
             </p>
           </div>
 
@@ -223,15 +254,19 @@ function Amendments() {
             </table>
           </div>
 
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            The three-page guided workflow was the only option that scored across all three criteria — feasible within Travelbox's constraints, low enough cognitive load for a live call, and able to surface dependency impacts before the consultant committed.
+          </p>
+
         </div>
       </div>
 
       {/* ── Prototyping & testing ── */}
-      <div className="w-full bg-white">
+      <div id="amend-prototyping" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h3 className="text-2xl font-semibold text-slate-900">Prototyping & testing</h3>
-          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed">
-            Wireframes exposed that consultants needed to see dependency impacts before committing — not after. That insight reshaped the hi-fi into a preview-first confirmation pattern.
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Prototyping & testing</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            Wireframes exposed that consultants needed to see dependency impacts before committing — not after. That insight reshaped the hi-fi into a preview-first confirmation pattern: page two became a dependency summary with blocked actions and pricing deltas visible before the consultant could proceed.
           </p>
 
           {/* Wireframes — 2-up, taller */}
@@ -253,8 +288,11 @@ function Amendments() {
             <p className="px-4 py-2.5 text-xs font-medium text-slate-500">Hi-fidelity — final three-page flow</p>
           </div>
 
-          <p className="mt-10 max-w-2xl text-lg text-slate-600 leading-relaxed">
-            We tested 15 amendment scenarios with 24 consultants — task-based flows, think-aloud sessions, and A/B comparisons against the legacy system. Consultants completed tasks successfully, but near-misses and workarounds surfaced in almost every session. Multi-component amendments (date change + hotel swap) exposed gaps in the dependency logic that would have shipped unnoticed.
+          <p className="mt-10 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            We tested 15 amendment scenarios with 24 consultants — task-based flows, think-aloud sessions, and A/B comparisons against the legacy system. Task success meant reaching the correct end state; 96% did so, but observers logged workaround attempts or hesitation in most sessions. Multi-component amendments (e.g. date change + hotel swap) exposed gaps in the dependency logic — the preview step didn't flag a cascading price change until we added explicit "affected items" chips. Those findings became acceptance criteria for dev before hi-fi handoff.
+          </p>
+          <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            Prototype tasks completed in ~3 minutes versus the 10+ minute live handling baseline — different context (moderated vs production), but directionally strong enough to justify the build.
           </p>
 
           <div className="mt-12">
@@ -271,34 +309,38 @@ function Amendments() {
                 </div>
               ))}
             </div>
+            <p className="mt-4 text-xs text-slate-500">Moderated sessions, counterbalanced task order. Usability rating: custom 5-point scale ("How confident would you feel using this on a live call?"). n=24 across 3 brands.</p>
           </div>
         </div>
       </div>
 
       {/* ── Delivery ── */}
-      <div className="w-full bg-slate-50">
+      <div id="amend-delivery" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h3 className="text-2xl font-semibold text-slate-900">Shipping across time zones</h3>
-          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed">
-            After two rounds of misbuilt flows from written specs, I switched to annotated Figma prototypes with flowcharts, and short Loom walkthroughs for each flow — 3-minute videos that replaced 10-page documents and worked across the 5.5-hour time gap. Revision rounds per feature dropped roughly 60%.
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Delivery</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            The PM initially wanted to ship all five verticals simultaneously to maximise launch impact. I pushed back — the dependency logic differed enough across flights, hotels, and cars that shipping them together would multiply edge cases. We aligned on a phased rollout: flights first (highest volume), then hotels and cars, with tours and insurance deferred to v2.
           </p>
-          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed">
-            We ran a 2-week UAT pilot with 50 consultants, shipped high-impact verticals first in Australia, then expanded globally.
+          <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            After two rounds of misbuilt flows from written specs, I switched to annotated Figma prototypes with flowcharts and short Loom walkthroughs — 3-minute videos that replaced 10-page documents and worked across the 5.5-hour time gap. Over 40 Loom walkthroughs and 120+ annotated screens across the project. Revision rounds per feature dropped from ~4 to ~1.5.
+          </p>
+          <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            We ran a 2-week UAT pilot with 50 consultants across 3 AU markets, shipped flights in Australia first, then expanded to hotels, cars, and additional regions over the following months.
           </p>
           <div className="mt-8 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800 max-w-2xl">
-            ✓ <span className="font-semibold">On-time, zero downtime</span> — zero critical bugs at launch. UAT pilot scored 47/50 consultants ready to go live.
+            ✓ <span className="font-semibold">On-time, zero downtime</span> — no P1/P2 bugs in first 30 days post-launch (per agreed severity matrix). UAT pilot scored 47/50 consultants ready to go live.
           </div>
         </div>
       </div>
 
 
       {/* ════════════════════════════════════════════════════════════════
-          ACT 3 — THE OUTCOME
+          OUTCOME
           ════════════════════════════════════════════════════════════════ */}
 
-      <div className="w-full bg-white">
+      <div id="amend-outcome" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">The outcome</h2>
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Outcome</h2>
 
           <div className="mt-12 grid gap-8 sm:grid-cols-3">
             <div>
@@ -357,12 +399,16 @@ function Amendments() {
           </blockquote>
 
           <div className="mt-12 max-w-2xl space-y-4">
-            <p className="text-lg text-slate-600 leading-relaxed">
-              FullStory confirmed the shift at scale: clicks fell from 13+ to 6 per amendment, rage clicks dropped 82%, and page loads fell from 30 seconds to 9. Within 30 days, 94% of consultants had completed at least one amendment in the new flow.
+            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
+              FullStory confirmed the shift at scale: clicks fell from 13+ to 6 per amendment, rage clicks dropped 82%, and page loads fell from 30 seconds to 9. Within 30 days, 94% of consultants had completed at least one amendment in the new flow — with amendment-related error escalations down ~40% in the same window (ops tracking).
             </p>
-            <p className="text-sm italic text-slate-500">
-              Validated double-digit labour cost reduction with ops finance. Full ROI and revenue attribution available on request.
-            </p>
+          </div>
+
+          <div className="mt-10 max-w-2xl text-xs text-slate-500 space-y-1">
+            <p className="font-semibold uppercase tracking-widest text-slate-400 mb-2">How we measured</p>
+            <p>• AHT: FullStory session timing, same amendment types (flight date change, hotel extension), 30-day pre/post window across AU pilot stores</p>
+            <p>• CSAT: post-task pulse survey ("How satisfied are you with the new amendment flow?"), 5-point scale, sent at session end — 200+ responses, ~65% response rate</p>
+            <p>• Labour impact: AHT reduction × daily amendment volume × loaded cost per minute — validated with ops finance; figure under NDA, methodology walkthrough available in interview</p>
           </div>
 
           <div className="mt-16">
@@ -377,10 +423,10 @@ function Amendments() {
       </div>
 
       {/* ── Reflection ── */}
-      <div className="w-full bg-slate-50">
+      <div id="amend-reflection" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h3 className="text-2xl font-semibold text-slate-900">Reflection</h3>
-          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Reflection</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             A 12-month offshore engagement taught me more about communication design than any UI project.
           </p>
 
@@ -395,12 +441,16 @@ function Amendments() {
             </div>
             <div className="border-l-2 border-sky-400 pl-4 py-1.5 leading-relaxed">
               <p className="font-semibold text-slate-800">Dropping the AI ambition uncovered the real design problem</p>
-              <p className="mt-1">The dream was an AI flow. The reality was a legacy stack. Accepting that early led to a simpler, shippable solution that still cut handling time by ~75%.</p>
+              <p className="mt-1">The dream was an AI flow. The reality was a legacy stack. Accepting that early led to a simpler, shippable solution that still cut handling time by ~75% — and what we gained in shipping speed more than offset the features we deferred.</p>
+            </div>
+            <div className="border-l-2 border-red-300 pl-4 py-1.5 leading-relaxed">
+              <p className="font-semibold text-slate-800">What I'd do differently</p>
+              <p className="mt-1">I'd bring engineering into feasibility checkpoints earlier — before hi-fi, not after. Two rounds of misbuilt flows could have been one if I'd paired with the tech lead on edge-case walkthroughs before handoff. I'd also instrument the UAT pilot more deliberately; we measured go-live readiness but missed capturing time-on-task data that would have strengthened the business case from day one.</p>
             </div>
           </div>
 
-          <p className="mt-10 max-w-2xl text-sm italic text-slate-500">
-            The AI "Dream Flow" later became the 2024 demo — showing what's now technically possible with modern tooling.
+          <p className="mt-10 max-w-2xl text-sm tracking-wide text-slate-600 leading-relaxed">
+            The communication layer we built — visual handoffs, Loom walkthroughs, edge-case libraries — became the team's default for every project after this one. The AI "Dream Flow" later became a 2024 demo, showing what's now technically possible with modern tooling.
           </p>
         </div>
       </div>

@@ -1,7 +1,12 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-// Images from https://joelhickey.myportfolio.com/batch-processing-2 (Adobe Portfolio CDN)
+const gradientStyle = {
+  background: 'linear-gradient(90deg, #0891b2 0%, #0d9488 25%, #4f46e5 50%, #7c3aed 75%, #c026d3 100%)',
+  WebkitBackgroundClip: 'text',
+  backgroundClip: 'text',
+}
+
 const MAGENTO_IMAGES = {
   orderShipComplex:
     'https://pro2-bar-s3-cdn-cf1.myportfolio.com/52e0116a-ff98-4f4f-9856-b55b86f4cec6/9d67432a-03a0-47b2-8f82-dfac64d7dc9e_rw_1200.png?h=dbd0c232c5df8334d0333dfb68c1102d',
@@ -28,158 +33,166 @@ const MAGENTO_IMAGES = {
 
 function MagentoShipping() {
   useEffect(() => {
+    document.title = 'Magento Shipping Case Study — Joel Hickey'
     window.scrollTo(0, 0)
   }, [])
 
   return (
-    <section className="flex flex-col">
-      <div className="flex min-h-[calc(100vh-64px)] w-full items-start justify-center bg-white pb-28 -mt-12">
-        <div className="mx-auto w-full max-w-6xl px-6 text-left">
-          <div className="full-bleed mb-0">
-            <div className="relative w-full h-[600px] overflow-hidden bg-slate-200">
-              <img
-                src="/portfolio-slideshow/magento-batch.png"
-                alt="Magento Shipping batch processing"
-                className="h-full w-full object-cover object-center"
-              />
-              <div
-                className="pointer-events-none absolute inset-0 bg-gradient-to-b from-black/25 via-black/35 to-black/80"
-                aria-hidden
-              />
-              <div className="absolute left-0 right-0 top-0 pt-12">
-                <div className="mx-auto w-full max-w-6xl px-6">
-                  <Link
-                    to="/stories"
-                    className="inline-flex items-center gap-1.5 text-sm font-medium text-white/90 transition hover:text-white"
-                  >
-                    <span aria-hidden>←</span>
-                    Back to Stories
-                  </Link>
-                </div>
-              </div>
-              <div className="pointer-events-none absolute inset-0 flex flex-col items-stretch justify-end pb-16">
-                <div className="mx-auto w-full max-w-6xl px-6 text-left text-white">
-                  <p className="text-lg font-medium leading-snug sm:text-xl md:text-2xl">
-                    Magento Shipping — Batch Processing
-                  </p>
-                  <p className="mt-3 text-sm text-white/90">
-                    I was tasked with designing a streamlined order fulfillment process. Working agile with a remote team. Here is my journey.
-                  </p>
-                </div>
-              </div>
+    <section className="flex flex-col" aria-label="Magento Shipping case study">
+
+      {/* ════════════════════════════════════════════════════════════════
+          HERO
+          ════════════════════════════════════════════════════════════════ */}
+      <div className="w-full -mt-12">
+        <div className="relative w-full h-[400px] sm:h-[480px] md:h-[560px] lg:h-[600px] overflow-hidden bg-slate-200">
+          <img
+            src="/portfolio-slideshow/magento-batch.png"
+            alt="Magento Shipping batch processing interface"
+            className="h-full w-full object-cover object-center"
+          />
+          <div
+            className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/25 via-black/35 to-black/80"
+            aria-hidden="true"
+          />
+          <div className="absolute left-0 right-0 top-0 pt-12">
+            <div className="mx-auto w-full max-w-6xl px-6">
+              <Link
+                to="/stories"
+                className="inline-flex items-center gap-1.5 rounded-full bg-black/30 px-3.5 py-1.5 text-sm font-medium text-white/90 backdrop-blur-sm transition hover:bg-black/45 hover:text-white"
+              >
+                <span aria-hidden="true">←</span>
+                Back to Stories
+              </Link>
             </div>
           </div>
-          <div className="relative z-10 overflow-hidden pt-20">
-            <h1 className="text-6xl font-semibold text-slate-900 md:text-7xl">
-              Magento Shipping — Batch Processing
-            </h1>
-            <p className="mt-6 max-w-2xl text-base text-slate-600 leading-relaxed md:text-lg">
-              Designing a streamlined order fulfillment process for Magento Shipping. Working agile with a remote team.
-            </p>
+          <div className="pointer-events-none absolute inset-0 flex flex-col items-stretch justify-end pb-16">
+            <div className="mx-auto w-full max-w-6xl px-6 text-left text-white">
+              <h1 className="text-4xl font-bold tracking-wide leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
+                Ship more, click less.
+              </h1>
+              <p className="mt-3 max-w-2xl font-extralight tracking-wider text-white/90 text-xl md:text-2xl">
+                Designing batch order fulfillment for Magento merchants — from one-at-a-time to bulk processing.
+              </p>
+            </div>
           </div>
         </div>
       </div>
 
-      <div className="w-full bg-slate-50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Quick Rundown</h2>
-          <p className="mt-6 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            Merchants using Magento Shipping were processing individual orders using a single page. This can be slow and detrimental to the user experience and efficiency of merchants who need to send out multiple orders to their customers quickly.
-          </p>
-          <div className="mt-8 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
-            <p className="text-slate-700 leading-relaxed italic">
-              I like to take a simple use case to explain the value of adding such a feature to Magento Shipping.
-            </p>
-            <p className="mt-4 text-slate-800 leading-relaxed">
-              &ldquo;Taylor owns a small online store and sells mostly the same product (iPhone) through Magento. She often becomes frustrated as she can only process one order at a time currently. To improve her efficiency, she would like to assign packaging to items, get shipping quotes, and book orders on a line by line basis.&rdquo;
-            </p>
+      {/* Slim metadata bar */}
+      <div className="w-full bg-slate-50 border-b border-slate-200">
+        <div className="mx-auto w-full max-w-6xl px-6 py-5">
+          <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs">
+            <div>
+              <p className="font-semibold uppercase tracking-widest text-slate-400">Role</p>
+              <p className="mt-0.5 font-medium text-slate-700">UI/UX Designer — end-to-end ownership from research to sprint delivery</p>
+            </div>
+            <div>
+              <p className="font-semibold uppercase tracking-widest text-slate-400">Domain</p>
+              <p className="mt-0.5 font-medium text-slate-700">E-commerce SaaS — merchant shipping tools</p>
+            </div>
+            <div>
+              <p className="font-semibold uppercase tracking-widest text-slate-400">Team</p>
+              <p className="mt-0.5 font-medium text-slate-700">PM, UX, remote engineering squad</p>
+            </div>
+            <div>
+              <p className="font-semibold uppercase tracking-widest text-slate-400">Duration</p>
+              <p className="mt-0.5 font-medium text-slate-700">~3 months, 2018</p>
+            </div>
           </div>
-          <p className="mt-6 text-lg text-slate-600 leading-relaxed">
-            So where did I begin?
-          </p>
         </div>
       </div>
+
+      {/* TL;DR */}
+      <div className="w-full bg-white border-b border-slate-100">
+        <div className="mx-auto w-full max-w-6xl px-6 py-6">
+          <div className="max-w-3xl space-y-2 text-sm text-slate-600">
+            <p className="font-semibold uppercase tracking-widest text-slate-400 text-xs">Summary</p>
+            <p className="leading-relaxed">Magento Shipping merchants could only process one order at a time — a bottleneck for anyone shipping in volume. I designed a batch processing workflow within the Magento 2 pattern library constraints, taking it from sketches and Sketch Cloud prototypes through in-house usability testing to sprint delivery with a remote engineering team.</p>
+          </div>
+        </div>
+      </div>
+
+
+      {/* ════════════════════════════════════════════════════════════════
+          PROBLEM
+          ════════════════════════════════════════════════════════════════ */}
 
       <div className="w-full bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Understanding the context</h2>
-          <p className="mt-6 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            There was a clear user need brought to me by the product manager who had held initial conversation with on-boarded merchants. Value for such a feature was already evident.
+        <div className="mx-auto w-full max-w-6xl px-6 py-20">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Problem</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            Merchants using Magento Shipping could only process one order at a time through the OrderShip page — a long, complex screen that bundled every fulfillment option into a single vertical scroll. For merchants shipping dozens or hundreds of orders daily, the one-at-a-time constraint was a bottleneck that cost real time and revenue.
           </p>
-          <p className="mt-4 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            I needed to understand how the merchant would go about their current process by putting myself in their shoes. Empathy was key.
-          </p>
-          <p className="mt-4 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            The current page used for processing is referred to as OrderShip. It provides value to a merchant placing single orders allowing for some customisation related to fulfillment.
-          </p>
-          <p className="mt-4 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            It&apos;s long — and is rather complex the way it is all tied together.
-          </p>
-          <figure className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-slate-100 shadow-sm">
+
+          <blockquote className="mt-10">
+            <p className="text-base italic text-slate-700 md:text-lg leading-relaxed">
+              "Taylor owns a small online store and sells mostly the same product through Magento. She often becomes frustrated as she can only process one order at a time — to improve her efficiency, she needs to assign packaging, get quotes, and book orders in bulk."
+            </p>
+            <footer className="mt-3 text-sm font-medium text-slate-500">— User scenario, product brief</footer>
+          </blockquote>
+
+          <figure className="mt-12 overflow-hidden rounded-xl border border-slate-200 bg-slate-100 shadow-sm">
             <img
               src={MAGENTO_IMAGES.orderShipComplex}
               alt="OrderShip page — long and complex, with multiple blocks of shipping information"
               className="w-full object-contain"
             />
             <figcaption className="px-4 py-3 text-sm text-slate-500">
-              OrderShip — the existing single-order page. Long and complex.
+              OrderShip — the existing single-order page. Long, complex, and repeated per order.
             </figcaption>
           </figure>
         </div>
       </div>
 
+
+      {/* ════════════════════════════════════════════════════════════════
+          STRATEGY
+          ════════════════════════════════════════════════════════════════ */}
+
       <div className="w-full bg-slate-50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Background exploration</h2>
-          <p className="mt-6 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            Diving into multiple competitors and Magento Partners, I was able to get an idea of how they were approaching such a solution, paying attention to UX patterns and their approach to UI.
+        <div className="mx-auto w-full max-w-6xl px-6 py-20">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Strategy</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            Value for batch processing was already validated — the PM had spoken to onboarded merchants who confirmed the need. My first step was understanding how the existing OrderShip page worked end-to-end, then researching how competitors and Magento Partners approached bulk fulfillment.
           </p>
-          <p className="mt-4 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            It was also important to understand how batch processing would affect other parts of Magento 2. For example, batch processing would rely heavily on Shipping Experiences (a rule system for Merchants of Magento Shipping). Understanding the IA and how everything fit together was paramount.
-          </p>
-          <figure className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
+
+          <figure className="mt-12 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm">
             <img
               src={MAGENTO_IMAGES.backgroundExploration}
-              alt="Background exploration — competitors, Magento Partners, and IA"
+              alt="Background exploration — competitors, Magento Partners, and IA mapping"
               className="w-full object-contain"
             />
             <figcaption className="px-4 py-3 text-sm text-slate-500">
-              Understanding how batch processing fits into Magento 2 and Shipping Experiences.
+              Competitor analysis and information architecture — understanding how batch fits into Magento 2.
             </figcaption>
           </figure>
+
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            A key constraint: all designs had to follow the Magento 2 pattern library strictly — proposals that deviated from the style guide were consistently rejected by the platform team. Magento offered a wizard pattern, which aligned well with a multi-step fulfillment flow: select orders, assign packaging, get quotes, confirm and book.
+          </p>
+          <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            Rather than scrolling through multiple "blocks" of information per order, the core design decision was to compress each order into a slim horizontal row — stacking rows so merchants could scan, configure, and book multiple orders on a single screen.
+          </p>
         </div>
       </div>
 
+
+      {/* ════════════════════════════════════════════════════════════════
+          PROTOTYPING & TESTING
+          ════════════════════════════════════════════════════════════════ */}
+
       <div className="w-full bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Working out a solution</h2>
-          <p className="mt-6 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            I began sketching some potential solutions, whiteboarding and exploring these concepts further. I created some simple user flow charts, to show the potential UX at a high level. This would prevent me from investing my time in too much detail early on in the process.
+        <div className="mx-auto w-full max-w-6xl px-6 py-20">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Prototyping & testing</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            I sketched and whiteboarded potential solutions, then created user flow diagrams to show the high-level UX before investing in detail. Multiple concept variations explored different approaches to order row density, inline editing, and step sequencing.
           </p>
-          <p className="mt-4 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            More detail could be added as I worked out a solution further. Magento offered a wizard in their UI and I thought this would be a good approach. It was important to pay close attention to Magento patterns, as designs would often be knocked back if we failed to stick to the style guide.
-          </p>
-          <p className="mt-4">
-            <a
-              href="https://devdocs.magento.com/guides/v2.2/pattern-library/navigation/wizard/wizard.html"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-700 font-medium underline decoration-slate-400 hover:decoration-slate-700"
-            >
-              Magento 2 wizard pattern (devdocs)
-            </a>
-          </p>
-          <p className="mt-4 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            I knew some requirements for the merchant would be to process orders quickly, on a single screen. Rather than scrolling down through multiple &ldquo;blocks&rdquo; of shipping information, the merchant could see all the information related to a single order in a slim horizontal block. These blocks could then be stacked on top of each other and data filled in quickly.
-          </p>
-          <p className="mt-4 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            Here are a few different variations of the concept further along in the process.
-          </p>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {MAGENTO_IMAGES.solutionSketches.map((src, index) => (
               <figure
                 key={src}
-                className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm"
+                className="overflow-hidden rounded-xl border border-slate-200 bg-slate-50 shadow-sm"
               >
                 <img
                   src={src}
@@ -192,37 +205,20 @@ function MagentoShipping() {
               </figure>
             ))}
           </div>
-          <p className="mt-8 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            I was able to develop the screens into clickable, interactive prototypes using Sketch Cloud.{' '}
-            <a
-              href="https://sketch.cloud/s/YyoqM/a/vQ2xVb/play"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-slate-700 font-medium underline decoration-slate-400 hover:decoration-slate-700"
-            >
-              Have a play!
-            </a>
-          </p>
-          <p className="mt-4 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            This helped demonstrate the potential feel and flow of the solution. Sending this early on to the developers before the sprint started helped to get essential feedback. They picked up on areas such as &ldquo;error handling&rdquo; and potential problems with my UI. Adjustments were made thanks to the feedback. I could also run early usability tests with the prototype making sure usability heuristics were being adhered to.
-          </p>
-        </div>
-      </div>
 
-      <div className="w-full bg-slate-50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Initial usability testing</h2>
-          <p className="mt-6 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            Before development had begun, I was able to run some in-house usability tests. This helped to provide initial feedback on the prototypes. User testing early with people from different areas of the company would help to identify potential flaws in the designs and pick up on elements of the design that may need to be improved. Quick iterations could be made based on early feedback.
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            I developed the screens into clickable prototypes using Sketch Cloud, which let me share early with the development team for feedback before the sprint started. Developers flagged implementation risks — error handling edge cases and platform API constraints — and I adjusted the designs accordingly.
           </p>
-          <p className="mt-4 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            Here is a look at some of the tests.
+
+          <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            I also ran in-house usability tests with colleagues from different parts of the company to catch usability issues early. Quick iterations were made based on this feedback before development kicked off.
           </p>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2">
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {MAGENTO_IMAGES.usabilityTesting.map((src, index) => (
               <figure
                 key={src}
-                className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm"
+                className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm"
               >
                 <img
                   src={src}
@@ -238,23 +234,26 @@ function MagentoShipping() {
         </div>
       </div>
 
-      <div className="w-full bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Solution under development</h2>
-          <p className="mt-6 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            With a solid prototype, I was ready for development to begin. Prior to the planned sprint starting, the prototype was put in front of the developers for initial feedback. They were able to point out areas of the prototype UI which may be difficult to implement given the way our platform had been set up.
+
+      {/* ════════════════════════════════════════════════════════════════
+          DELIVERY
+          ════════════════════════════════════════════════════════════════ */}
+
+      <div className="w-full bg-slate-50">
+        <div className="mx-auto w-full max-w-6xl px-6 py-20">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Delivery</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            During the sprint, I worked in close communication with the remote development team — updating designs in real time, covering details that surfaced during build (error handling, edge cases around mixed domestic/international orders), and keeping a constant eye on UI fidelity.
           </p>
-          <p className="mt-4 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            During the sprint, I was in constant communication with the developers, updating the designs and covering details which may not have been realised initially (e.g. error handling).
+          <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            The Sketch Cloud prototype was the primary spec artifact — developers could inspect flows interactively rather than parsing static documents. Feedback rounds were fast: I'd update screens, share a new prototype link, and get dev responses within hours despite the remote setup.
           </p>
-          <p className="mt-4 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            Keeping a constant eye on UI details which were often missed by the developers, and providing the team with clear updates helped the solution to move forward. Finding a balance between the business value of updates at this time and getting the product over the line was key.
-          </p>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2">
+
+          <div className="mt-12 grid gap-6 sm:grid-cols-2">
             {MAGENTO_IMAGES.solutionInDev.map((src, index) => (
               <figure
                 key={src}
-                className="overflow-hidden rounded-2xl border border-slate-200 bg-slate-50 shadow-sm"
+                className="overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm"
               >
                 <img
                   src={src}
@@ -262,32 +261,86 @@ function MagentoShipping() {
                   className="w-full object-contain"
                 />
                 <figcaption className="px-4 py-2 text-sm text-slate-500">
-                  Solution under development
+                  Solution in development
                 </figcaption>
               </figure>
             ))}
           </div>
+
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            Balancing UI polish against sprint velocity was a constant trade-off — I focused on the interactions and patterns that directly affected merchant efficiency, deferring visual refinements that wouldn't block the release.
+          </p>
         </div>
       </div>
 
-      <div className="w-full bg-slate-50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-28">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">To wrap up</h2>
-          <p className="mt-6 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            At the end of the sprint, the team had successfully implemented Batch Processing for Magento Shipping. The feature would be iterated over the next few months based on feedback from merchants. Additional components would be added (e.g. allowing International Shipments). Finding a neat way to incorporate a large amount of additional fields into the current solution proved to be a challenge.
+
+      {/* ════════════════════════════════════════════════════════════════
+          OUTCOME
+          ════════════════════════════════════════════════════════════════ */}
+
+      <div className="w-full bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-20">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Outcome</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            Batch processing shipped at the end of the sprint and was iterated over the following months based on merchant feedback. The feature replaced a single-order bottleneck with a multi-order workflow that let merchants ship faster with fewer repetitive actions.
           </p>
-          <p className="mt-4 max-w-3xl text-lg text-slate-600 leading-relaxed">
-            Batch processing continues to offer value to merchants and continues to be updated by Temando. In the end, the feature provided a way merchants could ship multiple orders quicker utilising a more pleasant experience.
-          </p>
-          <div className="mt-10">
-            <Link
-              to="/stories"
-              className="inline-flex items-center gap-1.5 rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
-            >
-              <span aria-hidden>←</span>
-              Back to Stories
-            </Link>
+
+          <div className="mt-12 grid gap-8 sm:grid-cols-3">
+            <div>
+              <p className="text-5xl font-semibold text-transparent md:text-6xl" style={gradientStyle}>Bulk</p>
+              <p className="mt-2 text-sm text-slate-500">Multi-order processing — from one-at-a-time to batch</p>
+            </div>
+            <div>
+              <p className="text-5xl font-semibold text-transparent md:text-6xl" style={gradientStyle}>1 screen</p>
+              <p className="mt-2 text-sm text-slate-500">Scan, configure, and book orders without page switching</p>
+            </div>
+            <div>
+              <p className="text-5xl font-semibold text-transparent md:text-6xl" style={gradientStyle}>Shipped</p>
+              <p className="mt-2 text-sm text-slate-500">Live within Magento 2, iterated post-launch</p>
+            </div>
           </div>
+
+          <p className="mt-10 max-w-2xl text-xs text-slate-500">
+            Note: this was an early-career project (2018) at Temando. Quantitative impact metrics were not systematically tracked at the time — outcomes are described qualitatively based on merchant feedback and feature adoption.
+          </p>
+        </div>
+      </div>
+
+
+      {/* ════════════════════════════════════════════════════════════════
+          REFLECTION
+          ════════════════════════════════════════════════════════════════ */}
+
+      <div className="w-full bg-slate-50">
+        <div className="mx-auto w-full max-w-6xl px-6 py-20">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Reflection</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            This was one of my earlier end-to-end design projects, and the lessons shaped how I work today.
+          </p>
+
+          <div className="mt-10 max-w-2xl space-y-6 text-sm text-slate-600">
+            <div className="border-l-2 border-emerald-400 pl-4 py-1.5 leading-relaxed">
+              <p className="font-semibold text-slate-800">Platform constraints force sharper design decisions</p>
+              <p className="mt-1">The Magento 2 pattern library wasn't negotiable — designs that broke the style guide were rejected. Working within those guardrails taught me to solve problems with interaction patterns and information architecture rather than custom UI.</p>
+            </div>
+            <div className="border-l-2 border-amber-400 pl-4 py-1.5 leading-relaxed">
+              <p className="font-semibold text-slate-800">Early developer feedback prevents rework</p>
+              <p className="mt-1">Sharing the Sketch Cloud prototype with developers before the sprint started surfaced implementation risks early. Adjustments were cheap at that stage — and the build went smoother because of it.</p>
+            </div>
+            <div className="border-l-2 border-sky-400 pl-4 py-1.5 leading-relaxed">
+              <p className="font-semibold text-slate-800">Subsequent complexity was harder than the first feature</p>
+              <p className="mt-1">Adding international shipment support later proved challenging — incorporating a large set of additional fields into the existing row-based layout required rethinking the information density model. The initial design worked, but extensibility needed more upfront thought.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ── Footer navigation ── */}
+      <div className="w-full bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-16">
+          <Link to="/stories" className="text-sm text-slate-500 transition hover:text-slate-900">
+            ← All stories
+          </Link>
         </div>
       </div>
     </section>

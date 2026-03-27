@@ -1,5 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
+import CaseStudyNav from '../components/CaseStudyNav'
 
 const gradientStyle = {
   background: 'linear-gradient(90deg, #0891b2 0%, #0d9488 25%, #4f46e5 50%, #7c3aed 75%, #c026d3 100%)',
@@ -15,6 +16,14 @@ function Insurance() {
 
   return (
     <section className="flex flex-col" aria-label="Insurance case study">
+      <CaseStudyNav sections={[
+        { id: 'ins-problem', label: 'Problem' },
+        { id: 'ins-strategy', label: 'Strategy' },
+        { id: 'ins-prototyping', label: 'Prototyping' },
+        { id: 'ins-delivery', label: 'Delivery' },
+        { id: 'ins-outcome', label: 'Outcome' },
+        { id: 'ins-reflection', label: 'Reflection' },
+      ]} />
 
       {/* ════════════════════════════════════════════════════════════════
           HERO
@@ -63,6 +72,10 @@ function Insurance() {
               <p className="mt-0.5 font-medium text-slate-700">Senior Product Designer</p>
             </div>
             <div>
+              <p className="font-semibold uppercase tracking-widest text-slate-400">Domain</p>
+              <p className="mt-0.5 font-medium text-slate-700">B2B travel — insurance quoting platform</p>
+            </div>
+            <div>
               <p className="font-semibold uppercase tracking-widest text-slate-400">Team</p>
               <p className="mt-0.5 font-medium text-slate-700">PM, UX, in-house dev, insurance API partner</p>
             </div>
@@ -74,12 +87,22 @@ function Insurance() {
         </div>
       </div>
 
+      {/* TL;DR */}
+      <div className="w-full bg-white border-b border-slate-100">
+        <div className="mx-auto w-full max-w-6xl px-6 py-6">
+          <div className="max-w-3xl space-y-2 text-sm text-slate-600">
+            <p className="font-semibold uppercase tracking-widest text-slate-400 text-xs">Summary</p>
+            <p className="leading-relaxed">Insurance was disconnected from the booking workflow — consultants had to leave the platform, re-enter data in a third-party tool, and manually apply quotes. I designed Travel Connect, a new in-house quoting platform that integrated with the existing booking system via API. The result: +45pp insurance attachment rate, ~30s to add coverage (down from 5–8 min), and ~$2.4M estimated annual revenue lift from the pilot.</p>
+          </div>
+        </div>
+      </div>
+
 
       {/* ════════════════════════════════════════════════════════════════
           ACT 1 — THE PROBLEM
           ════════════════════════════════════════════════════════════════ */}
 
-      <div className="w-full bg-white">
+      <div id="ins-problem" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Problem</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
@@ -117,7 +140,7 @@ function Insurance() {
           ════════════════════════════════════════════════════════════════ */}
 
       {/* ── Ideation ── */}
-      <div className="w-full bg-slate-50">
+      <div id="ins-strategy" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Strategy</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
@@ -233,7 +256,7 @@ function Insurance() {
       </div>
 
       {/* ── Prototyping & testing ── */}
-      <div className="w-full bg-white">
+      <div id="ins-prototyping" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Prototyping & testing</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
@@ -337,7 +360,7 @@ function Insurance() {
       </div>
 
       {/* ── Delivery ── */}
-      <div className="w-full bg-slate-50">
+      <div id="ins-delivery" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Delivery</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
@@ -345,6 +368,9 @@ function Insurance() {
           </p>
           <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             The insurance partner team initially wanted us to embed their full portal via iframe — faster for them, but it would have locked us into their UI and blocked the platform play. I walked through the data-flow requirements and the long-term architecture with both teams until we aligned on an API-first approach where each side owned their surface.
+          </p>
+          <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            Spec delivery wasn't one-shot. After the initial Figma handoff, the first eng review surfaced three issues: edge cases around multi-traveller pricing, an incorrect assumption about how Travelbox exposed cancellation data, and a loading state I'd designed for a synchronous response that was actually async. I revised the spec, added an explicit state diagram for the quote lifecycle, and we agreed on a definition of done that included both the happy path and the four most common failure states. Revision rounds dropped from three in the first feature module to one for the final two.
           </p>
           <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             Because this was the pilot for Travel Connect as a platform, the stakes were higher than a feature launch. Three external dependencies could block independently — Travelbox for data, the insurance partner API for pricing, and Helio for the launch-point — and the platform itself had no production track record. We mitigated with a controlled pilot: limited stores, close monitoring of attachment rates and system stability, and a rollback path if integration failed. I drafted training materials and we shipped quote and bind, deferring mid-trip modifications and multi-policy management to v2.
@@ -425,7 +451,7 @@ function Insurance() {
           ACT 3 — THE OUTCOME
           ════════════════════════════════════════════════════════════════ */}
 
-      <div className="w-full bg-white">
+      <div id="ins-outcome" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Outcome</h2>
 
@@ -591,7 +617,7 @@ function Insurance() {
       </div>
 
       {/* ── Reflection ── */}
-      <div className="w-full bg-slate-50">
+      <div id="ins-reflection" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Reflection</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">

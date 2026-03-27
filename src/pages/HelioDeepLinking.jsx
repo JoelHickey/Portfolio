@@ -79,24 +79,46 @@ function HelioDeepLinking() {
       {/* Slim metadata bar */}
       <div className="w-full bg-slate-50 border-b border-slate-200">
         <div className="mx-auto w-full max-w-6xl px-6 py-5">
-          <p className="text-xs text-slate-500 leading-relaxed">
-            <span className="font-semibold uppercase tracking-widest text-slate-400">Role</span>{' '}<span className="font-medium text-slate-600">Lead UX Designer</span>
-            <span className="mx-2 text-slate-300" aria-hidden>·</span>
-            <span className="font-semibold uppercase tracking-widest text-slate-400">Team</span>{' '}<span className="font-medium text-slate-600">PM, UX, CRM team, platform architects</span>
-            <span className="mx-2 text-slate-300" aria-hidden>·</span>
-            <span className="font-semibold uppercase tracking-widest text-slate-400">Duration</span>{' '}<span className="font-medium text-slate-600">~3 months, 2023</span>
-          </p>
+          <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs">
+            <div>
+              <p className="font-semibold uppercase tracking-widest text-slate-400">Role</p>
+              <p className="mt-0.5 font-medium text-slate-700">Lead UX Designer</p>
+            </div>
+            <div>
+              <p className="font-semibold uppercase tracking-widest text-slate-400">Domain</p>
+              <p className="mt-0.5 font-medium text-slate-700">B2B travel — CRM-to-platform integration</p>
+            </div>
+            <div>
+              <p className="font-semibold uppercase tracking-widest text-slate-400">Team</p>
+              <p className="mt-0.5 font-medium text-slate-700">PM, UX, CRM team, platform architects</p>
+            </div>
+            <div>
+              <p className="font-semibold uppercase tracking-widest text-slate-400">Duration</p>
+              <p className="mt-0.5 font-medium text-slate-700">~3 months, 2023</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* TL;DR */}
+      <div className="w-full bg-white border-b border-slate-100">
+        <div className="mx-auto w-full max-w-6xl px-6 py-6">
+          <div className="max-w-3xl space-y-2 text-sm text-slate-600">
+            <p className="font-semibold uppercase tracking-widest text-slate-400 text-xs">Summary</p>
+            <p className="leading-relaxed">Consultants were losing ~45 seconds per transition between Microsoft CRM and Helio because there was no contextual link between the two systems. I designed a deep-linking solution that passed booking context via URL parameters — navigating the trade-off between product coherence (single entry point) and enterprise flexibility (multiple entry points). The org chose multi-entry for scalability; the project connected 3,000+ consultants.</p>
+          </div>
         </div>
       </div>
 
 
       {/* ════════════════════════════════════════════════════════════════
-          ACT 1 — THE PROBLEM
+          PROBLEM
           ════════════════════════════════════════════════════════════════ */}
 
       <div className="w-full bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <p className="max-w-2xl text-lg text-slate-600 leading-relaxed">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Problem</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             Travel consultants lived between two systems: Microsoft CRM for customer records and relationship management, and Helio for booking, quoting, and servicing. Every time a consultant needed to act on a booking, they'd manually navigate from the customer record in CRM to the right screen in Helio — re-finding the customer, re-locating the booking, and re-establishing context. The handoff was invisible and expensive.
           </p>
 
@@ -123,10 +145,10 @@ function HelioDeepLinking() {
           </div>
 
           <div className="mt-16 max-w-2xl space-y-4">
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
               The deeper problem wasn't just the wasted seconds — it was the cognitive cost. Consultants had to hold the customer context in their head while navigating between systems, often while on a live call. The gap between CRM and Helio created a seam in the experience that consultants papered over with memory, browser tabs, and workarounds.
             </p>
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
               The business wanted deep links — clickable connections from a CRM customer record directly into Helio. The design question was deceptively simple: <span className="font-medium text-slate-800">where should those links land?</span>
             </p>
           </div>
@@ -173,26 +195,26 @@ function HelioDeepLinking() {
 
 
       {/* ════════════════════════════════════════════════════════════════
-          ACT 2 — THE CRAFT
+          STRATEGY
           ════════════════════════════════════════════════════════════════ */}
 
       {/* ── Ideation ── */}
       <div className="w-full bg-slate-50">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">The craft</h2>
-          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Strategy</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             The answer depended on a deeper question: should CRM ask users to choose their destination before leaving, or should Helio receive them and handle wayfinding from inside the product?
           </p>
 
           <div className="mt-12 max-w-2xl space-y-8">
             <div className="space-y-4">
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
                 My recommendation was a <span className="font-medium text-slate-800">single entry point</span> — one button in CRM that opens Helio at a coherent starting screen, with the customer context pre-loaded. From there, the consultant navigates within Helio to the right task. The product owns the wayfinding, not the CRM.
               </p>
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
                 The architectural team favoured <span className="font-medium text-slate-800">multiple CRM launch points</span> — separate buttons for different destinations (flights, hotels, etc.), each deep-linking to a specific Helio screen. This gave CRM more control and allowed buttons to be rerouted to different systems in the future without changing the Helio experience.
               </p>
-              <p className="text-lg text-slate-600 leading-relaxed">
+              <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
                 Both approaches solved the navigation problem. The trade-off was between product coherence (my proposal) and enterprise flexibility (architecture's direction).
               </p>
             </div>
@@ -255,10 +277,10 @@ function HelioDeepLinking() {
           </div>
 
           <div className="mt-10 max-w-2xl space-y-4">
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
               I mapped both patterns against consultant mental models from discovery sessions. Consultants who thought in <span className="font-medium text-slate-800">customer journeys</span> preferred a single entry point — they wanted to land in one place and orient from there. Consultants who thought in <span className="font-medium text-slate-800">task buckets</span> (flights, hotels, insurance) preferred direct links — they already knew where they were going.
             </p>
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
               Both were valid. The question was which model the organisation wanted to optimise for, and which trade-offs were acceptable.
             </p>
           </div>
@@ -286,12 +308,12 @@ function HelioDeepLinking() {
       {/* ── Prototyping & testing ── */}
       <div className="w-full bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h3 className="text-2xl font-semibold text-slate-900">Prototyping & exploring the trade-off</h3>
-          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Prototyping & testing</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             I prototyped both approaches in Figma — the single-entry flow showing a Helio landing screen with contextual navigation, and the multi-entry flow showing CRM with task-specific buttons mapping to individual Helio screens.
           </p>
 
-          <p className="mt-6 max-w-2xl text-lg text-slate-600 leading-relaxed">
+          <p className="mt-6 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             Walkthrough sessions with consultants and stakeholders clarified where each model broke down. The single-entry approach felt more natural when consultants didn't know what task they needed yet — they wanted to see the customer's full picture first. The multi-entry approach was faster when the task was already clear — skip the landing, go straight to flights.
           </p>
 
@@ -349,11 +371,11 @@ function HelioDeepLinking() {
       {/* ── Decision ── */}
       <div className="w-full bg-slate-50">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h3 className="text-2xl font-semibold text-slate-900">The decision</h3>
-          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Delivery</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             The organisation chose the <span className="font-medium text-slate-800">multi-entry approach</span>. The architectural benefits — re-routability, loose coupling, and CRM team ownership — aligned better with the enterprise strategy of keeping the CRM as a stable orchestration layer above shifting underlying systems.
           </p>
-          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed">
+          <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             My role was to articulate the UX trade-off clearly enough that the decision was made intentionally, not by default. The architectural team understood the user cost — and accepted it as a conscious trade-off for long-term platform flexibility.
           </p>
           <div className="mt-8 rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-sm text-violet-800 max-w-2xl">
@@ -364,12 +386,12 @@ function HelioDeepLinking() {
 
 
       {/* ════════════════════════════════════════════════════════════════
-          ACT 3 — THE OUTCOME
+          OUTCOME
           ════════════════════════════════════════════════════════════════ */}
 
       <div className="w-full bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">The outcome</h2>
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Outcome</h2>
 
           <div className="mt-12 grid gap-8 sm:grid-cols-3">
             <div>
@@ -421,10 +443,10 @@ function HelioDeepLinking() {
           </div>
 
           <div className="mt-12 max-w-2xl space-y-4">
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
               Deep linking eliminated the manual system-switching ritual entirely. Customer context — booking ID, traveller details — flowed directly from CRM into Helio via URL parameters. Consultants no longer had to hold context in their head or re-navigate between systems during live calls.
             </p>
-            <p className="text-lg text-slate-600 leading-relaxed">
+            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
               The multi-entry approach means Helio isn't the only possible destination — the same pattern can extend to Travel Connect and future platforms without changing the CRM experience.
             </p>
           </div>
@@ -434,8 +456,8 @@ function HelioDeepLinking() {
       {/* ── Reflection ── */}
       <div className="w-full bg-slate-50">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h3 className="text-2xl font-semibold text-slate-900">Reflection</h3>
-          <p className="mt-4 max-w-2xl text-lg text-slate-600 leading-relaxed">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Reflection</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             A navigation design project that turned into a lesson about systems thinking, organisational incentives, and the difference between the best UX answer and the best enterprise answer.
           </p>
 
