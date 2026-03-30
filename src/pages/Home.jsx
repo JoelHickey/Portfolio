@@ -539,19 +539,19 @@ function Home() {
           >
             <div className="flex flex-col gap-8 md:gap-10">
               {[
-                { title: 'Strategy', desc: 'Brought different teams together to plan and deliver across insurance, travel changes, and shipping.', icon: (
+                { title: 'Strategy', desc: 'I bring different teams together to plan and deliver — from insurance to travel changes to shipping.', icon: (
                   <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <circle cx="5" cy="5" r="2" /><circle cx="19" cy="5" r="2" /><circle cx="12" cy="19" r="2" /><circle cx="12" cy="11" r="1.5" />
                     <path d="M6.8 6.2l3.7 3.3M17.2 6.2l-3.7 3.3M12 13v4" />
                   </svg>
                 )},
-                { title: 'Research', desc: 'Tested designs with 24 real users, compared options side by side, and watched how people actually used the product.', icon: (
+                { title: 'Research', desc: 'I test designs with real users, compare options side by side, and watch how people actually use the product.', icon: (
                   <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <path d="M3 20h18M6 16V10M10 16V6M14 16V12M18 16V8" strokeLinecap="round" />
                     <path d="M3 14l4-6 4 4 4-6 4 4" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 )},
-                { title: 'Leadership', desc: 'Presented to Flight Centre\u2019s design team, ran workshops, and set up clear steps for turning designs into working software.', icon: (
+                { title: 'Leadership', desc: 'I present to teams, run workshops, and set up clear steps for turning designs into working software.', icon: (
                   <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <circle cx="9" cy="7" r="3" /><circle cx="17" cy="9" r="2.5" />
                     <path d="M2 21v-2a5 5 0 015-5h4a5 5 0 015 5v2" strokeLinecap="round" />
@@ -584,7 +584,7 @@ function Home() {
             </div>
             <div className="flex flex-col gap-8 md:gap-10">
               {[
-                { title: 'AI & Automation', desc: 'Built this portfolio using AI tools — then presented the approach to Flight Centre\u2019s design team.', icon: (
+                { title: 'AI & Automation', desc: 'I use AI tools in my daily work — I built this portfolio with them and teach other designers how.', icon: (
                   <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <ellipse cx="12" cy="12" rx="8" ry="9" />
                     <path d="M8 8.5c0 1 .8 2 2 2.5s2.5.3 3.5-.5M9 15c1 .8 3 1 4.5 0" strokeLinecap="round" />
@@ -592,14 +592,14 @@ function Home() {
                     <path d="M4 10H2M20 10h2M4 15H2M20 15h2M7 3L6 1M17 3l1-2" strokeLinecap="round" />
                   </svg>
                 )},
-                { title: 'Craft', desc: 'Designed insurance purchasing, booking changes, and system connections — all live in products used by thousands.', icon: (
+                { title: 'Craft', desc: 'I design real features — insurance purchasing, booking changes, system connections — used by thousands every day.', icon: (
                   <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <rect x="3" y="3" width="18" height="18" rx="3" />
                     <path d="M3 9h18M9 9v12" strokeLinecap="round" />
                     <rect x="12" y="12" width="6" height="4" rx="1" />
                   </svg>
                 )},
-                { title: 'Systems', desc: 'Created ready-made building blocks, clear instructions, and shared guides that the whole team now uses.', icon: (
+                { title: 'Systems', desc: 'I create ready-made building blocks, clear instructions, and shared guides so the whole team works faster.', icon: (
                   <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" />
                     <rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" />
@@ -633,7 +633,7 @@ function Home() {
               Brands I've designed for
             </h2>
           </div>
-          <div className={`mt-8 flex w-full flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-16 md:gap-x-28 lg:gap-x-36 transition-all duration-700 ease-out delay-200 ${logosInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className={`mt-14 flex w-full flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:mt-16 sm:gap-x-16 md:gap-x-28 lg:gap-x-36 transition-all duration-700 ease-out delay-200 ${logosInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <img src="/images/logos/flight-centre.png" alt="Flight Centre Travel Group" className="h-8 w-auto object-contain brightness-0 invert sm:h-10 md:h-14 lg:h-16" />
             <img src="/images/logos/canstar.png" alt="Canstar" className="h-10 w-auto object-contain sm:h-12 md:h-16 lg:h-20" />
             <img src="/images/logos/temando.png" alt="Temando" className="h-3.5 w-auto object-contain sm:h-4 md:h-6 lg:h-7" />
