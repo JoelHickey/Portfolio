@@ -49,13 +49,9 @@ export function FCTGEnergyPreview() {
               {[{ x: 160, y: 90, d: 0 }, { x: 330, y: 130, d: 0.4 }, { x: 540, y: 95, d: 0.8 }, { x: 440, y: 165, d: 0.2 }, { x: 710, y: 110, d: 0.5 }, { x: 820, y: 80, d: 0.1 }, { x: 875, y: 145, d: 0.6 }, { x: 935, y: 105, d: 0.3 }, { x: 270, y: 120, d: 0.7 }].map((b, i) => (
                 <circle key={i} cx={b.x} cy={b.y} r="3.5" fill="rgba(255,255,255,0.65)" className="energy-card-bubble" style={{ animationDelay: `${b.d}s` }} />
               ))}
-              <foreignObject x="44" y="89" width="992" height="72">
-                <div xmlns="http://www.w3.org/1999/xhtml" style={{ display: 'flex', width: '100%', height: '100%', alignItems: 'center', justifyContent: 'space-evenly', boxSizing: 'border-box', pointerEvents: 'none' }}>
-                  {[{ word: 'Innovation', color: '#22d3ee', d: 0 }, { word: 'Invigoration', color: '#818cf8', d: 0.35 }, { word: 'Impact', color: '#e879f9', d: 0.7 }].map(({ word, color, d }) => (
-                    <span key={word} className="energy-card-word" style={{ flex: '0 0 auto', fontSize: 46, fontWeight: 500, color, whiteSpace: 'nowrap', letterSpacing: '0.12em', animationDelay: `${d}s` }}>{word}</span>
-                  ))}
-                </div>
-              </foreignObject>
+              {[{ word: 'Innovation', color: '#22d3ee', x: 210, d: 0 }, { word: 'Invigoration', color: '#818cf8', x: 540, d: 0.35 }, { word: 'Impact', color: '#e879f9', x: 870, d: 0.7 }].map(({ word, color, x, d }) => (
+                <text key={word} x={x} y="135" textAnchor="middle" fontSize="42" fontWeight="500" letterSpacing="0.12em" fill={color} className="energy-card-word" style={{ animationDelay: `${d}s`, pointerEvents: 'none' }}>{word}</text>
+              ))}
             </g>
           </svg>
         </div>
@@ -171,7 +167,7 @@ export function AmendmentsPreview() {
 
 // Case study cards: 3 per row grid
 const CASE_STUDY_CARDS = [
-  { id: 'fctg', title: 'AI & Design', description: 'Built and presented an interactive talk on AI-powered design workflows to Flight Centre\u2019s design team.', path: '/stories/fctg-ai-talk', externalUrl: null, image: null, preview: 'energy' },
+  { id: 'fctg', title: 'AI & Design', description: 'Presented a live talk showing Flight Centre\u2019s design team how AI tools can speed up their work.', path: '/stories/fctg-ai-talk', externalUrl: null, image: null, preview: 'energy' },
   {
     id: 'insurance',
     title: 'Insurance',
@@ -368,18 +364,18 @@ function Home() {
   return (
     <div className="relative z-10 flex w-full flex-col items-center">
       <div className="home-hero relative flex min-h-[calc(100vh-64px)] w-full items-center justify-center overflow-hidden">
-        <div className="relative z-10 mx-auto w-full max-w-6xl space-y-16 px-6 text-center -mt-16">
+        <div className="relative z-10 mx-auto w-full max-w-6xl space-y-16 px-4 sm:px-6 text-center -mt-8 sm:-mt-16">
           <div className="hero-stack">
-            <h1 className="hero-line text-7xl font-semibold leading-[1.1] tracking-normal md:text-8xl lg:text-9xl">
+            <h1 className="hero-line text-[2.75rem] font-semibold leading-[1.1] tracking-normal sm:text-6xl md:text-8xl lg:text-9xl">
               <span className="inline-block w-fit" style={homeHeroNameGradientTextStyle}>
                 Joel Hickey
               </span>
             </h1>
             <p className="hero-line mt-4 text-base font-light leading-snug tracking-wider text-slate-300 sm:text-xl md:text-2xl lg:text-3xl [animation-delay:120ms]">
-              Senior Product Designer<span className="mx-3 text-slate-500" aria-hidden>·</span>AI Workflows
+              Senior Product Designer<span className="mx-2 sm:mx-3 text-slate-500" aria-hidden>·</span>AI Workflows
             </p>
-            <p className="hero-line mt-5 text-center text-xs font-medium tracking-wider text-slate-400 sm:text-sm [animation-delay:180ms]">
-              <span className="whitespace-nowrap">$2.4M revenue impact</span><span className="mx-2 text-slate-500" aria-hidden>·</span><span className="whitespace-nowrap">+45% conversion</span><span className="mx-2 text-slate-500" aria-hidden>·</span><span className="whitespace-nowrap">75% time saved</span>
+            <p className="hero-line mt-5 flex flex-wrap items-center justify-center gap-y-1 text-center text-[11px] font-medium tracking-wider text-slate-400 sm:text-sm [animation-delay:180ms]">
+              <span className="whitespace-nowrap">$2.4M revenue impact</span><span className="mx-1.5 sm:mx-2 text-slate-500" aria-hidden>·</span><span className="whitespace-nowrap">+45% customers buying</span><span className="mx-1.5 sm:mx-2 text-slate-500" aria-hidden>·</span><span className="whitespace-nowrap">75% time saved</span>
             </p>
             <div className="hero-line flex justify-center mt-6" style={{ animationDelay: '220ms' }}>
             <a
@@ -403,14 +399,14 @@ function Home() {
           <div ref={storiesParallaxWrapRef} className="w-full will-change-transform">
             <h2
               ref={storiesHeadingRef}
-              className={`w-full pt-[112px] pb-32 text-center text-6xl font-bold tracking-wide md:pb-36 md:text-7xl lg:text-8xl transition-all duration-700 ease-out bg-home-h2-stories bg-clip-text text-transparent ${
+              className={`w-full pt-16 pb-20 text-center text-4xl font-bold tracking-wide sm:pt-[112px] sm:pb-32 sm:text-6xl md:pb-36 md:text-7xl lg:text-8xl transition-all duration-700 ease-out bg-home-h2-stories bg-clip-text text-transparent ${
                 storiesHeadingInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
               Stories
             </h2>
           </div>
-          <div className="w-full px-10 pb-8">
+          <div className="w-full px-4 sm:px-10 pb-8">
           <div ref={storyCardParallax0Ref} className="grid grid-cols-1 gap-10 md:grid-cols-2 will-change-transform">
             {/* Row 1: AI talk — spans full width */}
             <div className="md:col-span-2 group relative flex min-w-0 transition-all duration-500 hover:translate-y-[-2px]">
@@ -419,11 +415,11 @@ function Home() {
                   className="relative flex h-full w-full min-w-0 flex-col overflow-hidden rounded-home-card border border-white/10 py-14 transition-shadow duration-500 md:flex-row md:py-16 shadow-home-card-glow group-hover:shadow-home-card-glow-hover"
                   style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
                 >
-                  <div className="relative flex min-w-0 flex-1 flex-col items-start text-left justify-start px-10 md:px-11 lg:px-12">
-                    <h3 className="text-4xl font-semibold tracking-wide text-white md:text-5xl lg:text-6xl">
+                  <div className="relative flex min-w-0 flex-1 flex-col items-start text-left justify-start px-5 sm:px-10 md:px-11 lg:px-12">
+                    <h3 className="text-2xl font-semibold tracking-wide text-white sm:text-4xl md:text-5xl lg:text-6xl">
                       {CASE_STUDY_CARDS[0].title}
                     </h3>
-                    <p className="mt-6 text-xl font-extralight tracking-wider text-white md:text-2xl">{CASE_STUDY_CARDS[0].description}</p>
+                    <p className="mt-4 text-base font-extralight tracking-wider text-white sm:mt-6 sm:text-xl md:text-2xl">{CASE_STUDY_CARDS[0].description}</p>
                     <Link
                       to={CASE_STUDY_CARDS[0].path}
                       aria-label={`View story: ${CASE_STUDY_CARDS[0].title}`}
@@ -432,12 +428,12 @@ function Home() {
                       View story
                     </Link>
                   </div>
-                  <div className="relative mt-6 md:mt-0 w-full shrink-0 overflow-hidden md:w-[52%] md:min-w-0 md:max-w-[640px] flex items-center justify-center px-10 md:px-12">
+                  <div className="relative mt-6 md:mt-0 w-full shrink-0 overflow-hidden md:w-[52%] md:min-w-0 md:max-w-[640px] flex items-center justify-center px-5 sm:px-10 md:px-12">
                     <div className="w-full [aspect-ratio:1100/280] flex items-center justify-center">
                       <FCTGEnergyPreview />
                     </div>
                   </div>
-                  <div className="mt-6 px-10 md:hidden">
+                  <div className="mt-6 px-5 sm:px-10 md:hidden">
                     <Link
                       to={CASE_STUDY_CARDS[0].path}
                       aria-label={`View story: ${CASE_STUDY_CARDS[0].title}`}
@@ -460,18 +456,18 @@ function Home() {
                     className="relative flex h-full w-full min-w-0 flex-col overflow-hidden rounded-home-card border border-white/10 py-14 md:py-16 transition-shadow duration-500 shadow-home-card-glow group-hover:shadow-home-card-glow-hover"
                     style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
                   >
-                    <div className="relative flex min-w-0 flex-col items-start text-left justify-start px-10 md:px-11 lg:px-12">
+                    <div className="relative flex min-w-0 flex-col items-start text-left justify-start px-5 sm:px-10 md:px-11 lg:px-12">
                       <h3
-                        className="text-4xl font-semibold tracking-wide text-white md:text-5xl lg:text-6xl"
+                        className="text-2xl font-semibold tracking-wide text-white sm:text-4xl md:text-5xl lg:text-6xl"
                         {...(item.preview === 'insurance' ? { 'aria-label': 'Insurance' } : {})}
                       >
                         {storyCardHeadingTitle(item)}
                       </h3>
-                      <p className="mt-6 text-xl font-extralight tracking-wider text-white md:text-2xl">
+                      <p className="mt-4 text-base font-extralight tracking-wider text-white sm:mt-6 sm:text-xl md:text-2xl">
                         {item.description}
                       </p>
                     </div>
-                    <div className="mt-6 px-10 md:px-11 lg:px-12">
+                    <div className="mt-6 px-5 sm:px-10 md:px-11 lg:px-12">
                       {item.preview === 'insurance' && (
                         <div className="w-full max-w-[360px]">
                           <InsurancePreview />
@@ -483,7 +479,7 @@ function Home() {
                         </div>
                       )}
                     </div>
-                    <div className="mt-6 px-10 md:px-11 lg:px-12">
+                    <div className="mt-6 px-5 sm:px-10 md:px-11 lg:px-12">
                       {item.path ? (
                         <Link
                           to={item.path}
@@ -528,7 +524,7 @@ function Home() {
           <div ref={capabilitiesParallaxWrapRef} className="w-full will-change-transform">
             <h2
               ref={capabilitiesHeadingRef}
-              className={`w-full pt-[112px] pb-32 text-center text-6xl font-bold tracking-wide md:pb-36 md:text-7xl lg:text-8xl transition-all duration-700 ease-out bg-home-h2-value bg-clip-text text-transparent ${
+              className={`w-full pt-16 pb-20 text-center text-4xl font-bold tracking-wide sm:pt-[112px] sm:pb-32 sm:text-6xl md:pb-36 md:text-7xl lg:text-8xl transition-all duration-700 ease-out bg-home-h2-value bg-clip-text text-transparent ${
                 capabilitiesInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-8'
               }`}
             >
@@ -543,19 +539,19 @@ function Home() {
           >
             <div className="flex flex-col gap-8 md:gap-10">
               {[
-                { title: 'Strategy', desc: 'Brought product, engineering, and partner teams together to plan and deliver across insurance, amendments, and logistics.', icon: (
+                { title: 'Strategy', desc: 'Brought different teams together to plan and deliver across insurance, travel changes, and shipping.', icon: (
                   <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <circle cx="5" cy="5" r="2" /><circle cx="19" cy="5" r="2" /><circle cx="12" cy="19" r="2" /><circle cx="12" cy="11" r="1.5" />
                     <path d="M6.8 6.2l3.7 3.3M17.2 6.2l-3.7 3.3M12 13v4" />
                   </svg>
                 )},
-                { title: 'Research', desc: 'Tested designs with 24 real users, ran A/B comparisons, and used session recordings to validate every decision.', icon: (
+                { title: 'Research', desc: 'Tested designs with 24 real users, compared options side by side, and watched how people actually used the product.', icon: (
                   <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <path d="M3 20h18M6 16V10M10 16V6M14 16V12M18 16V8" strokeLinecap="round" />
                     <path d="M3 14l4-6 4 4 4-6 4 4" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 )},
-                { title: 'Leadership', desc: 'Presented to Flight Centre\u2019s design team, ran workshops, and set up design-to-developer handoff standards.', icon: (
+                { title: 'Leadership', desc: 'Presented to Flight Centre\u2019s design team, ran workshops, and set up clear steps for turning designs into working software.', icon: (
                   <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <circle cx="9" cy="7" r="3" /><circle cx="17" cy="9" r="2.5" />
                     <path d="M2 21v-2a5 5 0 015-5h4a5 5 0 015 5v2" strokeLinecap="round" />
@@ -596,14 +592,14 @@ function Home() {
                     <path d="M4 10H2M20 10h2M4 15H2M20 15h2M7 3L6 1M17 3l1-2" strokeLinecap="round" />
                   </svg>
                 )},
-                { title: 'Craft', desc: 'Insurance quoting, booking amendments, and system linking — all shipped into large, established platforms.', icon: (
+                { title: 'Craft', desc: 'Designed insurance purchasing, booking changes, and system connections — all live in products used by thousands.', icon: (
                   <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <rect x="3" y="3" width="18" height="18" rx="3" />
                     <path d="M3 9h18M9 9v12" strokeLinecap="round" />
                     <rect x="12" y="12" width="6" height="4" rx="1" />
                   </svg>
                 )},
-                { title: 'Systems', desc: 'Reusable component libraries, detailed specs, and design-to-dev documentation adopted as team standards.', icon: (
+                { title: 'Systems', desc: 'Created ready-made building blocks, clear instructions, and shared guides that the whole team now uses.', icon: (
                   <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" />
                     <rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" />
@@ -647,13 +643,13 @@ function Home() {
       <section className="relative z-10 w-full min-h-screen bg-transparent pb-[112px]" aria-label="Get in touch">
         <div className="mx-auto flex w-full max-w-6xl flex-col items-center px-10 pt-[112px] pb-8 text-center">
           <div ref={contactParallaxWrapRef} className="w-full will-change-transform">
-            <h2 className="w-full pb-8 text-center text-6xl font-bold tracking-wide md:pb-10 md:text-7xl lg:text-8xl bg-[linear-gradient(90deg,#cffafe_0%,#67e8f9_24%,#818cf8_52%,#c084fc_78%,#f5d0fe_100%)] bg-clip-text text-transparent">
+            <h2 className="w-full pb-8 text-center text-4xl font-bold tracking-wide sm:text-6xl md:pb-10 md:text-7xl lg:text-8xl bg-[linear-gradient(90deg,#cffafe_0%,#67e8f9_24%,#818cf8_52%,#c084fc_78%,#f5d0fe_100%)] bg-clip-text text-transparent">
               Get in touch
             </h2>
           </div>
           <div className="w-full text-center">
             <p className="inline-block text-base font-extralight leading-relaxed tracking-wider text-white md:text-lg">
-              Open to senior product design contracts — strategy, complex workflows, and AI-assisted prototyping.
+              Open to senior product design contracts — strategy, hands-on design, and AI-powered tools.
             </p>
           </div>
           <div className="mt-8 flex flex-wrap justify-center gap-6">
