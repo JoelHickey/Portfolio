@@ -2,12 +2,6 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CaseStudyNav from '../components/CaseStudyNav'
 
-const gradientStyle = {
-  background: 'linear-gradient(90deg, #0891b2 0%, #0d9488 25%, #4f46e5 50%, #7c3aed 75%, #c026d3 100%)',
-  WebkitBackgroundClip: 'text',
-  backgroundClip: 'text',
-}
-
 function Insurance() {
   useEffect(() => {
     document.title = 'Insurance Case Study — Joel Hickey'
@@ -19,7 +13,7 @@ function Insurance() {
       <CaseStudyNav sections={[
         { id: 'ins-problem', label: 'Problem' },
         { id: 'ins-strategy', label: 'Strategy' },
-        { id: 'ins-prototyping', label: 'Prototyping' },
+        { id: 'ins-prototyping', label: 'Design' },
         { id: 'ins-delivery', label: 'Delivery' },
         { id: 'ins-outcome', label: 'Outcome' },
         { id: 'ins-reflection', label: 'Reflection' },
@@ -63,51 +57,80 @@ function Insurance() {
         </div>
       </div>
 
-      {/* Slim metadata bar */}
-      <div className="w-full bg-slate-50 border-b border-slate-200">
-        <div className="mx-auto w-full max-w-6xl px-6 py-5">
-          <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs">
+      {/* Key results */}
+      <div className="w-full bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-10">
+          <p className="text-xs text-slate-400 mb-6">Sole designer · Flight Centre Travel Group · 2024</p>
+          <div className="grid gap-8 sm:grid-cols-3">
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-500">Role</p>
-              <p className="mt-0.5 font-medium text-slate-700">Senior Product Designer</p>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">+45%</p>
+              <p className="mt-2 text-sm text-slate-500">Insurance attachment rate</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-500">Domain</p>
-              <p className="mt-0.5 font-medium text-slate-700">B2B travel — insurance quoting platform</p>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">~30s</p>
+              <p className="mt-2 text-sm text-slate-500">To add coverage (from 5–8 min)</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-500">Team</p>
-              <p className="mt-0.5 font-medium text-slate-700">PM, UX, in-house dev, insurance API partner</p>
-            </div>
-            <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-500">Duration</p>
-              <p className="mt-0.5 font-medium text-slate-700">~6 months, 2024</p>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">~$2.4M</p>
+              <p className="mt-2 text-sm text-slate-500">Estimated annual revenue lift (pilot)</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* TL;DR */}
-      <div className="w-full bg-white border-b border-slate-100">
-        <div className="mx-auto w-full max-w-6xl px-6 py-6">
-          <div className="max-w-3xl space-y-2 text-sm text-slate-600">
-            <p className="font-semibold uppercase tracking-widest text-slate-500 text-xs">Summary</p>
-            <p className="leading-relaxed">Insurance was disconnected from the booking workflow — consultants had to leave the platform, re-enter data in a third-party tool, and manually apply quotes. I designed Travel Connect, a new in-house quoting platform that integrated with the existing booking system via API. The result: +45pp insurance attachment rate, ~30s to add coverage (down from 5–8 min), and ~$2.4M estimated annual revenue lift from the pilot.</p>
-          </div>
-        </div>
-      </div>
 
 
       {/* ════════════════════════════════════════════════════════════════
           ACT 1 — THE PROBLEM
           ════════════════════════════════════════════════════════════════ */}
 
-      <div id="ins-problem" className="w-full bg-white scroll-mt-20">
+      <div id="ins-problem" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Problem</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Insurance was completely disconnected from the booking workflow. To quote or manage coverage, consultants had to leave Helio, the internal booking platform, re-enter details in a third-party tool, calculate premiums manually, then switch back — all without shared data or automation. Most didn't bother.
+            Adding insurance meant leaving the booking platform, re-entering customer data in a separate tool, and copying the quote back by hand. Most consultants didn't bother.
           </p>
+
+          {/* Old flow — railway tracks diagram */}
+          <div className="mt-10 overflow-x-auto" role="img" aria-label="Old insurance flow: start on booking in Helio, switch down to third-party tool, re-enter data, get quote, switch back up to Helio to manually apply.">
+            <svg viewBox="0 0 780 130" className="w-full max-w-2xl" style={{ minWidth: '480px' }} fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Helio track — dashed idle line */}
+              <line x1="182" y1="32" x2="635" y2="32" stroke="#cbd5e1" strokeWidth="1.5" strokeDasharray="6 4" />
+
+              {/* 3rd party connectors between boxes */}
+              <line x1="265" y1="98" x2="280" y2="98" stroke="#fcd34d" strokeWidth="1.5" />
+              <line x1="375" y1="98" x2="390" y2="98" stroke="#fcd34d" strokeWidth="1.5" />
+              <line x1="500" y1="98" x2="515" y2="98" stroke="#fcd34d" strokeWidth="1.5" />
+
+              {/* Curved switches — S-curves, horizontal at both ends */}
+              <path d="M182,32 L196,32 C212,32 194,98 210,98" stroke="#94a3b8" strokeWidth="1.5" />
+              <path d="M590,98 L604,98 C620,98 617,32 635,32" stroke="#94a3b8" strokeWidth="1.5" />
+
+              {/* Lane labels */}
+              <text x="4" y="36" fontSize="10" fontWeight="600" letterSpacing="0.05em" fill="#64748b">HELIO</text>
+              <text x="4" y="102" fontSize="10" fontWeight="600" letterSpacing="0.05em" fill="#d97706">3RD PARTY</text>
+
+              {/* Helio steps */}
+              <rect x="72" y="18" width="110" height="28" rx="5" fill="#f1f5f9" />
+              <text x="127" y="37" textAnchor="middle" fontSize="11" fill="#475569">Start on booking</text>
+
+              <rect x="635" y="18" width="138" height="28" rx="5" fill="#f1f5f9" />
+              <text x="704" y="37" textAnchor="middle" fontSize="11" fill="#475569">Manually apply quote</text>
+
+              {/* 3rd party steps */}
+              <rect x="210" y="84" width="55" height="28" rx="5" fill="#fffbeb" stroke="#fcd34d" />
+              <text x="237" y="103" textAnchor="middle" fontSize="11" fill="#92400e">Log in</text>
+
+              <rect x="280" y="84" width="95" height="28" rx="5" fill="#fffbeb" stroke="#fcd34d" />
+              <text x="327" y="103" textAnchor="middle" fontSize="11" fill="#92400e">Re-enter trip</text>
+
+              <rect x="390" y="84" width="110" height="28" rx="5" fill="#fffbeb" stroke="#fcd34d" />
+              <text x="445" y="103" textAnchor="middle" fontSize="11" fill="#92400e">Re-enter customer</text>
+
+              <rect x="515" y="84" width="75" height="28" rx="5" fill="#fffbeb" stroke="#fcd34d" />
+              <text x="552" y="103" textAnchor="middle" fontSize="11" fill="#92400e">Get quote</text>
+            </svg>
+          </div>
 
           <blockquote className="mt-10">
             <p className="text-base italic text-slate-700 md:text-lg leading-relaxed">
@@ -115,21 +138,6 @@ function Insurance() {
             </p>
             <footer className="mt-3 text-sm font-medium text-slate-500">— Travel consultant, baseline research</footer>
           </blockquote>
-
-          <div className="mt-12 grid gap-8 sm:grid-cols-3">
-            <div>
-              <p className="text-5xl font-semibold text-slate-900 md:text-6xl">2</p>
-              <p className="mt-2 text-sm text-slate-500">separate systems to quote and manage</p>
-            </div>
-            <div>
-              <p className="text-5xl font-semibold text-slate-900 md:text-6xl">5–8 min</p>
-              <p className="mt-2 text-sm text-slate-500">to add insurance to a booking</p>
-            </div>
-            <div>
-              <p className="text-5xl font-semibold text-slate-900 md:text-6xl">60%</p>
-              <p className="mt-2 text-sm text-slate-500">of eligible bookings went uninsured</p>
-            </div>
-          </div>
 
         </div>
       </div>
@@ -140,88 +148,14 @@ function Insurance() {
           ════════════════════════════════════════════════════════════════ */}
 
       {/* ── Ideation ── */}
-      <div id="ins-strategy" className="w-full bg-slate-50 scroll-mt-20">
+      <div id="ins-strategy" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Strategy</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            The obvious answer was to build insurance directly into Helio. But Helio was vendor-managed — any new feature had to go through Codegen, adding cost, time, and dependency. We landed on a different path: build the insurance experience on a new in-house platform, <span className="font-medium text-slate-800">Travel Connect</span>, and use insurance as the pilot to prove it could eventually replace Helio entirely. Insurance won the first-pilot slot because the revenue gap was quantifiable (60% of eligible bookings uninsured) and the workflow was self-contained enough to ship without touching the core booking flow.
+            The obvious answer was to build insurance directly into Helio. But Helio was vendor-managed — any change meant going through an external dev team, adding cost and dependency.
           </p>
 
-          <div className="mt-12 max-w-2xl space-y-8">
-            <div className="space-y-4">
-              <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-                The trade-off was a new-tab context switch. But with booking data pre-filled via API, three coverage tiers displayed side-by-side, and the confirmed quote injecting back into Travelbox automatically, the flow was still dramatically faster than the status quo. We evaluated embedded and iframe approaches first — neither was viable within the vendor constraints and pilot timeline.
-              </p>
-            </div>
-          </div>
-
-          {/* Platform handoff diagram — focuses on the Helio↔Travel Connect design decision */}
-          <div className="mt-12" role="img" aria-label="Platform handoff: Helio opens Travel Connect in a new tab. Booking data flows right via API, confirmed quote flows back left.">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Platform handoff</p>
-            <div className="rounded-xl border border-slate-200 bg-white p-6 sm:p-8 overflow-x-auto">
-              <div className="min-w-[480px]">
-                <div className="flex items-stretch gap-0">
-                  {/* Left: Legacy stack */}
-                  <div className="w-[200px] shrink-0">
-                    <div className="rounded-lg border-2 border-slate-300 overflow-hidden">
-                      <div className="bg-slate-100 px-4 py-3 border-b border-slate-300">
-                        <p className="text-xs font-semibold uppercase tracking-wider text-slate-600">Helio</p>
-                        <p className="text-[11px] text-slate-500 mt-0.5">Consultant front-end</p>
-                      </div>
-                      <div className="bg-slate-50 px-4 py-3">
-                        <p className="text-xs font-semibold uppercase tracking-wider text-slate-600">Travelbox</p>
-                        <p className="text-[11px] text-slate-500 mt-0.5">Booking engine (vendor)</p>
-                      </div>
-                    </div>
-                    <p className="mt-2 text-[11px] text-slate-500 text-center whitespace-nowrap">Vendor-managed · via Codegen</p>
-                  </div>
-
-                  {/* Center: Arrows */}
-                  <div className="flex-1 flex flex-col justify-center items-center px-3 min-w-[120px]">
-                    <div className="w-full flex items-center gap-1.5 mb-3">
-                      <div className="flex-1 border-t border-dashed border-slate-200" />
-                      <svg className="w-2.5 h-2.5 text-slate-400 shrink-0" aria-hidden="true" viewBox="0 0 12 12" fill="currentColor"><path d="M8 1l4 5-4 5V7H0V5h8V1z" /></svg>
-                    </div>
-                    <p className="text-[9px] text-slate-500 font-medium uppercase tracking-wider -mt-1 mb-1">Opens new tab</p>
-
-                    <div className="w-full flex items-center gap-1.5 mb-1 mt-2">
-                      <div className="flex-1 border-t-2 border-emerald-400" />
-                      <svg className="w-3 h-3 text-emerald-600 shrink-0" aria-hidden="true" viewBox="0 0 12 12" fill="currentColor"><path d="M8 1l4 5-4 5V7H0V5h8V1z" /></svg>
-                    </div>
-                    <p className="text-[10px] text-emerald-700 font-medium text-center">Travellers + trip data</p>
-
-                    <div className="w-full flex items-center gap-1.5 mt-3 mb-1">
-                      <svg className="w-3 h-3 text-emerald-600 shrink-0 rotate-180" aria-hidden="true" viewBox="0 0 12 12" fill="currentColor"><path d="M8 1l4 5-4 5V7H0V5h8V1z" /></svg>
-                      <div className="flex-1 border-t-2 border-emerald-400" />
-                    </div>
-                    <p className="text-[10px] text-emerald-700 font-medium text-center">Confirmed quote</p>
-                  </div>
-
-                  {/* Right: Travel Connect */}
-                  <div className="w-[200px] shrink-0">
-                    <div className="rounded-lg border-2 border-emerald-400 overflow-hidden">
-                      <div className="bg-emerald-50 px-4 py-3 border-b border-emerald-200">
-                        <p className="text-xs font-semibold uppercase tracking-wider text-emerald-700">Travel Connect</p>
-                        <p className="text-[11px] text-emerald-600 mt-0.5">New in-house platform</p>
-                      </div>
-                      <div className="bg-white px-4 py-3 space-y-1.5">
-                        <div className="flex gap-1">
-                          {['Basic', 'Standard', 'Premium'].map((tier) => (
-                            <span key={tier} className="rounded bg-emerald-100 px-1.5 py-0.5 text-[10px] font-medium text-emerald-700">{tier}</span>
-                          ))}
-                        </div>
-                        <p className="text-[11px] text-slate-500 whitespace-nowrap">Real-time pricing · 3 tiers</p>
-                      </div>
-                    </div>
-                    <p className="mt-2 text-[11px] text-emerald-600 text-center font-medium whitespace-nowrap">In-house · platform pilot</p>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <p className="mt-2 text-[11px] text-slate-500 italic">Full integration lifecycle (incl. insurance partner API) shown in the Delivery section below.</p>
-          </div>
-
-          {/* Concept evaluation */}
+          {/* Concept evaluation — shows the thinking before the decision */}
           <div className="mt-10 overflow-x-auto">
             <table className="w-full max-w-3xl text-xs" aria-label="Concept evaluation comparing four approaches">
               <thead>
@@ -229,15 +163,16 @@ function Insurance() {
                   <th scope="col" className="py-3 pr-4 text-left font-semibold uppercase tracking-widest text-slate-500">Approach</th>
                   <th scope="col" className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-500">Feasibility</th>
                   <th scope="col" className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-500">Data passthrough</th>
+                  <th scope="col" className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-500">UX seamlessness</th>
                   <th scope="col" className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-500">Platform strategy</th>
                 </tr>
               </thead>
               <tbody className="text-sm text-slate-600">
                 {[
-                  { name: 'AI coverage assistant', scores: ['✗', '✓', '✗'], highlight: false },
-                  { name: 'Build within Helio (vendor)', scores: ['✗', '✗', '✗'], highlight: false },
-                  { name: 'Third-party tool (status quo)', scores: ['✓', '✗', '✗'], highlight: false },
-                  { name: 'Travel Connect (new tab, API-linked)', scores: ['✓', '✓', '✓'], highlight: true },
+                  { name: 'AI coverage assistant', scores: ['✗', '✓', '✓', '✗'], highlight: false },
+                  { name: 'Build within Helio (vendor)', scores: ['✗', '✓', '✓', '✗'], highlight: false },
+                  { name: 'Third-party tool (status quo)', scores: ['✓', '✗', '✗', '✗'], highlight: false },
+                  { name: 'Travel Connect (new tab, API-linked)', scores: ['✓', '✓', '✗', '✓'], highlight: true },
                 ].map((row) => (
                   <tr key={row.name} className={`border-b border-slate-100 ${row.highlight ? 'bg-emerald-50' : ''}`}>
                     <th scope="row" className={`py-3 pr-4 text-left font-normal ${row.highlight ? 'font-semibold text-emerald-800' : 'text-slate-700'}`}>{row.name}</th>
@@ -252,94 +187,260 @@ function Insurance() {
             </table>
           </div>
 
+          <p className="mt-10 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            We landed on a different path: build the insurance experience on a new in-house platform, <span className="font-medium text-slate-800">Travel Connect</span>, and use insurance as the pilot to prove it could eventually replace Helio entirely. The trade-off was a new-tab context switch — but with booking data pre-filled automatically and the confirmed quote writing back into the booking system, the flow was still dramatically faster.
+          </p>
+
+          {/* Platform handoff diagram */}
+          <div className="mt-12" role="img" aria-label="Platform handoff: Helio opens Travel Connect in a new tab. Booking data flows right via API, confirmed quote flows back left.">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Platform handoff</p>
+            <div className="rounded-xl border border-slate-200 bg-white overflow-x-auto">
+              <div className="min-w-[480px]">
+                <div className="flex items-stretch">
+                  {/* Left: Legacy stack */}
+                  <div className="w-[200px] shrink-0 border-r border-slate-200">
+                    <div className="px-4 py-3 border-b border-slate-200 bg-slate-50">
+                      <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Helio</p>
+                      <p className="text-[9px] text-slate-500">Consultant front-end</p>
+                    </div>
+                    <div className="px-4 py-3 border-b border-slate-100">
+                      <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Travelbox</p>
+                      <p className="text-[9px] text-slate-500">Booking engine (vendor)</p>
+                    </div>
+                    <div className="px-4 py-2">
+                      <p className="text-[9px] text-slate-400 text-center">Vendor-managed · external dev team</p>
+                    </div>
+                  </div>
+
+                  {/* Center: Data flow */}
+                  <div className="flex-1 flex flex-col justify-center items-center px-4 min-w-[120px] py-4 gap-3">
+                    <div className="flex items-center gap-2 w-full">
+                      <div className="flex-1 border-t border-emerald-300" />
+                      <span className="text-[10px] text-emerald-500">→</span>
+                    </div>
+                    <p className="text-[10px] text-emerald-700 font-medium text-center">Travellers + trip data</p>
+
+                    <div className="flex items-center gap-2 w-full mt-1">
+                      <span className="text-[10px] text-emerald-500">←</span>
+                      <div className="flex-1 border-t border-emerald-300" />
+                    </div>
+                    <p className="text-[10px] text-emerald-700 font-medium text-center">Confirmed quote</p>
+                  </div>
+
+                  {/* Right: Travel Connect */}
+                  <div className="w-[200px] shrink-0 border-l border-slate-200">
+                    <div className="px-4 py-3 border-b border-emerald-200 bg-emerald-50">
+                      <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-600">Travel Connect</p>
+                      <p className="text-[9px] text-emerald-500">New in-house platform</p>
+                    </div>
+                    <div className="px-4 py-3 border-b border-slate-100">
+                      <div className="flex gap-1">
+                        {['Basic', 'Standard', 'Premium'].map((tier) => (
+                          <span key={tier} className="rounded border border-emerald-200 bg-emerald-50 px-1.5 py-0.5 text-[9px] font-medium text-emerald-700">{tier}</span>
+                        ))}
+                      </div>
+                      <p className="text-[9px] text-slate-500 mt-1.5">Real-time pricing · 3 tiers</p>
+                    </div>
+                    <div className="px-4 py-2">
+                      <p className="text-[9px] text-emerald-600 text-center font-medium">In-house · platform pilot</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
         </div>
       </div>
 
-      {/* ── Prototyping & testing ── */}
-      <div id="ins-prototyping" className="w-full bg-white scroll-mt-20">
+      {/* ── Design ── */}
+      <div id="ins-prototyping" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Prototyping & testing</h2>
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Design</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            I designed the quoting experience in Figma — information architecture, tier comparison layout, and API-driven states. During the search phase, the insurance partner API surfaced destination-specific travel advisories — giving consultants risk context they'd never had before, right when it mattered. For the comparison screen, the key insight: consultants needed to see all three coverage tiers with pricing side-by-side, not step through them sequentially.
+            Booking data pre-fills automatically from Helio, and consultants see all three coverage tiers with pricing side-by-side — not one at a time. Pick a tier, confirm, and the quote writes back to the booking.
           </p>
 
-          {/* Figma screenshot — tier comparison */}
-          <div className="mt-12 max-w-3xl">
-            <div className="rounded-xl border border-slate-200 bg-slate-100 overflow-hidden">
-              <div className="aspect-[16/9] flex items-center justify-center">
-                {/* TODO: Replace with actual Figma screenshot */}
-                <p className="text-sm text-slate-400">Figma screenshot — tier comparison layout</p>
-              </div>
-            </div>
-            <p className="mt-2 text-[11px] text-slate-500 italic">Three coverage tiers displayed side-by-side with real-time pricing — the core design decision from usability insight.</p>
+          {/* New flow — two-track railway diagram */}
+          <div className="mt-10 overflow-x-auto" role="img" aria-label="New insurance flow: start on booking in Helio, switch to Travel Connect where data is pre-filled, compare tiers, confirm, switch back to Helio with quote applied.">
+            <svg viewBox="0 0 780 130" className="w-full max-w-2xl" style={{ minWidth: '480px' }} fill="none" xmlns="http://www.w3.org/2000/svg">
+              {/* Helio track */}
+              <line x1="182" y1="32" x2="543" y2="32" stroke="#cbd5e1" strokeWidth="1.5" strokeDasharray="6 4" />
+              <line x1="618" y1="32" x2="635" y2="32" stroke="#cbd5e1" strokeWidth="1.5" />
+
+              {/* Travel Connect connectors between boxes */}
+              <line x1="282" y1="98" x2="300" y2="98" stroke="#6ee7b7" strokeWidth="1.5" />
+              <line x1="412" y1="98" x2="430" y2="98" stroke="#6ee7b7" strokeWidth="1.5" />
+
+              {/* Curved switches */}
+              <path d="M182,32 L196,32 C212,32 194,98 210,98" stroke="#6ee7b7" strokeWidth="1.5" />
+              <path d="M498,98 L512,98 C528,98 525,32 543,32" stroke="#6ee7b7" strokeWidth="1.5" />
+
+              {/* Lane labels */}
+              <text x="4" y="36" fontSize="10" fontWeight="600" letterSpacing="0.05em" fill="#64748b">HELIO</text>
+              <text x="4" y="102" fontSize="10" fontWeight="600" letterSpacing="0.05em" fill="#059669">TRAVEL CONNECT</text>
+
+              {/* Helio steps */}
+              <rect x="72" y="18" width="110" height="28" rx="5" fill="#f1f5f9" />
+              <text x="127" y="37" textAnchor="middle" fontSize="11" fill="#475569">Start on booking</text>
+
+              <rect x="543" y="18" width="75" height="28" rx="5" fill="#f1f5f9" />
+              <text x="580" y="37" textAnchor="middle" fontSize="11" fill="#475569">Refresh tab</text>
+
+              <rect x="635" y="18" width="115" height="28" rx="5" fill="#f1f5f9" />
+              <text x="692" y="37" textAnchor="middle" fontSize="11" fill="#475569">Quote on booking</text>
+
+              {/* Travel Connect steps */}
+              <rect x="210" y="84" width="72" height="28" rx="5" fill="#ecfdf5" stroke="#6ee7b7" />
+              <text x="246" y="103" textAnchor="middle" fontSize="11" fill="#065f46">Pre-filled</text>
+
+              <rect x="300" y="84" width="112" height="28" rx="5" fill="#ecfdf5" stroke="#6ee7b7" />
+              <text x="356" y="103" textAnchor="middle" fontSize="11" fill="#065f46">Compare tiers</text>
+
+              <rect x="430" y="84" width="68" height="28" rx="5" fill="#ecfdf5" stroke="#6ee7b7" />
+              <text x="464" y="103" textAnchor="middle" fontSize="11" fill="#065f46">Confirm</text>
+            </svg>
           </div>
 
-          <p className="mt-12 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            I then ran remote moderated testing with 5 consultants on the Travel Connect prototype, across two task-based scenarios:
-          </p>
+          <p className="mt-10 max-w-2xl text-sm font-medium uppercase tracking-widest text-slate-400">Product screen</p>
+          <div className="mt-3 max-w-3xl" role="img" aria-label="Travel Connect tier comparison screen showing Bronze, Silver, and Gold coverage options side-by-side with pricing">
+            <div className="rounded-xl border border-slate-200 overflow-hidden shadow-sm text-[13px]" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
+              {/* Browser chrome */}
+              <div className="bg-[#e8e8e8] pt-2.5 pb-0 px-3">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <div className="w-[10px] h-[10px] rounded-full bg-[#ff5f57]" />
+                  <div className="w-[10px] h-[10px] rounded-full bg-[#febc2e]" />
+                  <div className="w-[10px] h-[10px] rounded-full bg-[#28c840]" />
+                </div>
+                <div className="flex items-end gap-0.5">
+                  <div className="bg-[#d1d1d1] rounded-t-md px-3 py-1.5 text-[10px] text-slate-600 flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded-sm bg-slate-400/40" />
+                    Helio
+                    <span className="text-slate-400 text-[8px] ml-1">×</span>
+                  </div>
+                  <div className="bg-white rounded-t-md px-3 py-1.5 text-[10px] text-slate-800 flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded-sm bg-blue-400/30" />
+                    TravelConnect
+                    <span className="text-slate-400 text-[8px] ml-1">×</span>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[#f0f0f0] px-3 py-1.5 flex items-center gap-2 border-b border-slate-200">
+                <div className="flex items-center gap-1 text-slate-400">
+                  <span className="text-[10px]">←</span>
+                  <span className="text-[10px]">→</span>
+                  <span className="text-[10px] ml-0.5">⟳</span>
+                </div>
+                <div className="flex-1 bg-white rounded-sm px-2.5 py-1 text-[10px] text-slate-500">
+                  travelconnect.flightcentre.space
+                </div>
+              </div>
 
-          {/* Two tested tasks with flow diagrams */}
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 max-w-3xl">
-            {/* Task 1 */}
-            <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-              <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">Task 1 — Add a quote</p>
-              <p className="text-sm text-slate-600 leading-relaxed">Navigate from Helio to Travel Connect, select travellers, search for an insurance quote, then return to Helio and refresh to see it on the booking.</p>
-              <p className="mt-3 text-xs font-semibold text-slate-800">15 → 6 clicks</p>
-              {/* Flow */}
-              <div className="mt-4 flex flex-wrap items-center gap-1">
-                {[
-                  { label: 'Insurance btn', color: 'slate' },
-                  { label: 'Select travellers', color: 'emerald' },
-                  { label: 'Search quote', color: 'emerald' },
-                  { label: 'Confirm', color: 'emerald' },
-                  { label: 'Refresh tab', color: 'slate' },
-                  { label: 'On booking', color: 'slate' },
-                ].map((step, i) => (
-                  <div key={i} className="flex items-center gap-1">
-                    <div className={`rounded px-1.5 py-0.5 text-[10px] font-medium ${step.color === 'emerald' ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-200 text-slate-600'}`}>
-                      {step.label}
-                    </div>
-                    {i < 5 && <span className="text-[10px] text-slate-400" aria-hidden="true">→</span>}
+              {/* FC header bar */}
+              <div className="bg-[#e10a0a] px-4 py-2 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="white" strokeWidth="1"/><circle cx="6" cy="4" r="1.5" fill="white"/><path d="M3 9.5c0-1.7 1.3-3 3-3s3 1.3 3 3" stroke="white" strokeWidth="0.8"/></svg>
                   </div>
-                ))}
+                  <span className="text-[11px] font-bold text-white tracking-wide">FLIGHT CENTRE</span>
+                  <span className="text-[11px] text-white/70 ml-1">Payments</span>
+                </div>
+                <div className="w-6 h-6 rounded-full bg-emerald-600 flex items-center justify-center">
+                  <span className="text-[8px] font-bold text-white">MK</span>
+                </div>
+              </div>
+
+              {/* Page body — light grey background like the real app */}
+              <div className="bg-[#f7f7f7] px-6 py-6">
+                {/* Quote header card */}
+                <div className="bg-white rounded-lg px-5 py-4 mb-5 shadow-[0_1px_3px_rgba(0,0,0,0.06)]">
+                  <div className="flex items-start gap-3">
+                    <div className="w-10 h-10 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center shrink-0 mt-0.5">
+                      <svg width="18" height="18" viewBox="0 0 18 18" fill="none"><rect x="3" y="5" width="12" height="9" rx="1.5" stroke="#dc2626" strokeWidth="1.2"/><path d="M6 5V3.5A1.5 1.5 0 0 1 7.5 2h3A1.5 1.5 0 0 1 12 3.5V5" stroke="#dc2626" strokeWidth="1.2"/><circle cx="13" cy="10" r="3" fill="#dc2626" stroke="#dc2626" strokeWidth="0.5"/><path d="M11.8 10l.8.8 1.6-1.6" stroke="white" strokeWidth="0.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
+                    </div>
+                    <div>
+                      <p className="text-[14px] font-semibold text-slate-900">Get an insurance quote</p>
+                      <p className="text-[11px] text-slate-400 mt-0.5">Travelling to <span className="font-medium text-slate-600">Indonesia</span> from <span className="font-medium text-slate-600">10 May 2024 - 18 May 2024</span> for <span className="font-medium text-slate-600">2 travellers</span>. <span className="text-blue-500">Edit</span></p>
+                    </div>
+                  </div>
+                </div>
+
+                {/* Tier comparison card */}
+                <div className="bg-white rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] overflow-hidden">
+                  <table className="w-full border-collapse">
+                    <thead>
+                      <tr className="border-b border-slate-100">
+                        <th className="w-[36%]" />
+                        {[
+                          { tier: 'Bronze', price: '160.00' },
+                          { tier: 'Silver', price: '160.00' },
+                          { tier: 'Gold', price: '200.00' }
+                        ].map((t) => (
+                          <th key={t.tier} className="text-center py-4 px-2 font-normal">
+                            <p className="text-[12px] text-slate-500">{t.tier}</p>
+                            <p className="text-slate-900 mt-0.5"><span className="text-[8px] text-slate-400 align-top mr-px">AUD</span><span className="text-[18px] font-bold">{t.price}</span></p>
+                          </th>
+                        ))}
+                      </tr>
+                    </thead>
+                    <tbody className="text-[12px] text-slate-600">
+                      {[
+                        { label: 'Medical screening', vals: ['✓', '✓', '✓'] },
+                        { label: 'Cruise cover', vals: ['✗', '✗', '✗'] },
+                        { label: 'Covid-19: Cancellation', vals: ['$2,500', '$2,500', '$5,000'] },
+                        { label: 'Covid-19: Overseas Medical', vals: ['Unlimited', 'Unlimited', 'Unlimited'] },
+                        { label: 'Cancellation', vals: ['$15,000', '$15,000', 'Unlimited'] },
+                        { label: 'Medical expenses', vals: ['Unlimited', 'Unlimited', 'Unlimited'] },
+                        { label: 'Excess', vals: ['$100', '$100', '$100'] },
+                        { label: 'Personal liability', vals: ['$2,500,000', '$2,500,000', '$5,000,000'] },
+                        { label: 'Baggage', vals: ['$6,000', '$6,000', '✗'] },
+                        { label: 'Accidental death', vals: ['$37,500', '$37,500', '$50,000'] },
+                      ].map((row) => (
+                        <tr key={row.label} className="border-b border-slate-100/60">
+                          <td className="py-[7px] pl-5 pr-3 text-slate-700">{row.label}</td>
+                          {row.vals.map((v, i) => (
+                            <td key={i} className="py-[7px] text-center px-2">
+                              {v === '✓' ? <span className="text-emerald-500 text-[14px]">✓</span> : v === '✗' ? <span className="text-red-400 text-[14px]">✗</span> : v}
+                            </td>
+                          ))}
+                        </tr>
+                      ))}
+                    </tbody>
+                  </table>
+
+                  <div className="py-1 flex items-center justify-center">
+                    <p className="text-[11px] text-slate-300 tracking-[0.2em]">⋯</p>
+                  </div>
+
+                  {/* CTAs */}
+                  <div className="px-5 pb-5 pt-2">
+                    <div className="grid grid-cols-[36%_1fr_1fr_1fr] gap-0">
+                      <div />
+                      {['Bronze', 'Silver', 'Gold'].map((tier) => (
+                        <div key={tier} className="text-center px-2">
+                          <div className="bg-[#e10a0a] text-white text-[10px] font-semibold py-[7px] px-2 rounded-[4px] cursor-default">Add to HELIO</div>
+                          <p className="mt-2 text-[10px] text-blue-500 cursor-default">Refine quote <span className="text-[8px]">↗</span></p>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
               </div>
             </div>
-            {/* Task 2 */}
-            <div className="rounded-xl border border-slate-200 bg-slate-50 p-4">
-              <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-2">Task 2 — Convert to policy</p>
-              <p className="text-sm text-slate-600 leading-relaxed">Open "Manage Insurance" via kebab menu in Helio, navigate through the insurance partner portal to accept declarations, confirm the policy, then return to Helio and refresh.</p>
-              <p className="mt-3 text-xs font-semibold text-slate-800">6 → 3 clicks</p>
-              {/* Flow */}
-              <div className="mt-4 flex flex-wrap items-center gap-1">
-                {[
-                  { label: 'Manage Ins.', color: 'slate' },
-                  { label: 'Declarations', color: 'sky' },
-                  { label: 'Confirm policy', color: 'sky' },
-                  { label: 'Refresh tab', color: 'slate' },
-                  { label: 'Policy live', color: 'slate' },
-                ].map((step, i) => (
-                  <div key={i} className="flex items-center gap-1">
-                    <div className={`rounded px-1.5 py-0.5 text-[10px] font-medium ${step.color === 'sky' ? 'bg-sky-100 text-sky-700' : 'bg-slate-200 text-slate-600'}`}>
-                      {step.label}
-                    </div>
-                    {i < 4 && <span className="text-[10px] text-slate-400" aria-hidden="true">→</span>}
-                  </div>
-                ))}
-              </div>
-            </div>
+            <p className="mt-2 text-[11px] text-slate-500">Simplified representation of the shipped product — 10 of 30+ coverage rows shown. "Refine quote" deep-links to the insurance partner's portal for edge-case customisation and policy conversion.</p>
           </div>
 
-          <p className="mt-6 max-w-2xl text-sm text-slate-500 leading-relaxed">
-            One honest UX wart: consultants still had to manually refresh the Helio tab to see the insurance appear on the booking. Even so, sentiment was overwhelmingly positive — the flow was faster and simpler than the status quo even with that extra step.
+          {/* Testing results */}
+          <p className="mt-14 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            I ran moderated testing with consultants across brands and regions, comparing the new flow against the old tool on the same booking tasks one week apart.
           </p>
 
-          <div className="mt-12">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Usability validation</p>
+          <div className="mt-10">
             <div className="grid gap-8 sm:grid-cols-3">
               {[
                 { value: '28–36 → 16', label: 'Combined clicks in moderated testing' },
-                { value: '27 → 90', label: 'UMUX-Lite score (out of 100)' },
-                { value: '5/5', label: 'Would use in production' }
+                { value: '27 → 90', label: 'Usability score (UMUX-Lite, out of 100)' },
+                { value: '5/5', label: 'Would use it for real work' }
               ].map((stat) => (
                 <div key={stat.label}>
                   <p className="text-4xl font-semibold text-slate-900 md:text-5xl">{stat.value}</p>
@@ -347,36 +448,40 @@ function Insurance() {
                 </div>
               ))}
             </div>
-            <p className="mt-4 text-xs text-slate-500">UMUX-Lite baseline (27) measured against the same two tasks on the legacy third-party tool. Same 5 participants, same scale, tested one week apart.</p>
           </div>
 
-          <blockquote className="mt-12 border-l-2 border-slate-300 pl-6">
+          <blockquote className="mt-10 border-l-2 border-slate-300 pl-6">
             <p className="text-xl italic text-slate-700 md:text-2xl leading-snug">
               "The fact that I don't have to do 27 clicks to load this into the quote is a win."
             </p>
             <footer className="mt-3 text-sm font-medium text-slate-500">— Travel consultant, usability testing</footer>
           </blockquote>
+
+          <div className="mt-10">
+            <Link
+              to="/stories/insurance/demo"
+              className="inline-flex rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
+            >
+              Try the interactive demo →
+            </Link>
+          </div>
+
+          <p className="mt-10 max-w-2xl text-sm text-slate-500 leading-relaxed">
+            One trade-off we couldn't avoid: consultants still had to manually refresh the Helio tab to see the confirmed quote. Fixing that required changes to the booking system we didn't control, but even with that friction the flow was dramatically faster.
+          </p>
         </div>
       </div>
 
       {/* ── Delivery ── */}
-      <div id="ins-delivery" className="w-full bg-slate-50 scroll-mt-20">
+      <div id="ins-delivery" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Delivery</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            I worked across three integration points with engineering and the insurance partner team: Travelbox for booking data, partner APIs for real-time quoting and policy conversion, and Helio for the launch-point and quote injection — spec'ing handoff states, error handling, and edge cases at each boundary.
+            Shipping meant coordinating across three systems owned by different teams, each with their own constraints and release cycles.
           </p>
-          <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            The insurance partner team initially wanted us to embed their full portal via iframe — faster for them, but it would have locked us into their UI and blocked the platform play. I walked through the data-flow requirements and the long-term architecture with both teams until we aligned on an API-first approach where each side owned their surface.
-          </p>
-          <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Spec delivery wasn't one-shot. After the initial Figma handoff, the first eng review surfaced three issues: edge cases around multi-traveller pricing, an incorrect assumption about how Travelbox exposed cancellation data, and a loading state I'd designed for a synchronous response that was actually async. I revised the spec, added an explicit state diagram for the quote lifecycle, and we agreed on a definition of done that included both the happy path and the four most common failure states. Revision rounds dropped from three in the first feature module to one for the final two.
-          </p>
-          <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Because this was the pilot for Travel Connect as a platform, the stakes were higher than a feature launch. Three external dependencies could block independently — Travelbox for data, the insurance partner API for pricing, and Helio for the launch-point — and the platform itself had no production track record. We mitigated with a controlled pilot: limited stores, close monitoring of attachment rates and system stability, and a rollback path if integration failed. I drafted training materials and we shipped quote and bind, deferring mid-trip modifications and multi-policy management to v2.
-          </p>
+
           {/* Integration lifecycle diagram */}
-          <div className="mt-12" role="img" aria-label="Integration lifecycle: Travelbox provides traveller data to Travel Connect, which builds a quote request sent to insurance partner API. Confirmed quotes are written back to Travelbox. Policy conversion happens via partner portal.">
+          <div className="mt-10" role="img" aria-label="Integration lifecycle: Travelbox provides traveller data to Travel Connect, which builds a quote request sent to insurance partner API. Confirmed quotes are written back to Travelbox. Policy conversion happens via partner portal.">
             <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Integration lifecycle</p>
             <div className="rounded-xl border border-slate-200 bg-white overflow-x-auto">
               <div className="min-w-[520px]">
@@ -423,13 +528,23 @@ function Insurance() {
                   </div>
                   <div className="px-3 py-3" />
                 </div>
+                {/* Refine phase */}
+                <div className="grid grid-cols-3 border-b border-slate-100">
+                  <div className="px-3 py-3 border-r border-slate-100" />
+                  <div className="px-3 py-3 border-r border-slate-100 flex flex-col items-center justify-center gap-1.5">
+                    <p className="text-[9px] font-semibold uppercase tracking-wider text-sky-500">Refine</p>
+                    <div className="rounded border border-emerald-200 bg-emerald-50 px-2 py-1 text-[10px] text-emerald-700 text-center w-full">Deep link to partner</div>
+                    <span className="text-[10px] text-sky-400">→</span>
+                  </div>
+                  <div className="px-3 py-3 flex items-center justify-center">
+                    <div className="rounded border border-sky-200 bg-sky-50 px-2 py-1 text-[10px] text-sky-700 text-center w-full">Customise in partner portal</div>
+                  </div>
+                </div>
                 {/* Policy phase */}
                 <div className="grid grid-cols-3">
+                  <div className="px-3 py-3 border-r border-slate-100" />
                   <div className="px-3 py-3 border-r border-slate-100 flex flex-col items-center justify-center gap-1.5">
                     <p className="text-[9px] font-semibold uppercase tracking-wider text-sky-500">Policy</p>
-                    <span className="text-[9px] text-slate-500 italic">via Helio kebab menu</span>
-                  </div>
-                  <div className="px-3 py-3 border-r border-slate-100 flex items-center justify-center">
                     <span className="text-[10px] text-sky-400">→</span>
                   </div>
                   <div className="px-3 py-3 flex items-center justify-center">
@@ -440,8 +555,14 @@ function Insurance() {
             </div>
           </div>
 
+          <p className="mt-12 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            The insurance partner team initially wanted us to embed their screens directly inside ours — faster for them, but it would have locked us into their design. I walked both teams through the data needs and long-term vision until we agreed: each side builds their own screens, shared data through a clean API.
+          </p>
+          <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            The first engineering review surfaced pricing edge cases, a wrong assumption about cancellation data, and a screen I'd designed as if the response was instant when it wasn't. I revised and added a state diagram for the quote lifecycle. Revision rounds dropped from three to one.
+          </p>
           <div className="mt-8 rounded-xl border border-emerald-200 bg-emerald-50 px-4 py-3 text-sm text-emerald-800 max-w-2xl">
-            <span aria-hidden="true">✓</span> <span className="font-semibold">Launched July 2024</span> — first feature live on Travel Connect. Training completion above 95%. Attachment rates climbed immediately, validating the platform for broader rollout.
+            <span aria-hidden="true">✓</span> <span className="font-semibold">Launched July 2024</span> — controlled rollout to pilot stores with monitoring and rollback path. Training completion above 95%. Mid-trip changes and multi-policy management deferred to v2.
           </div>
         </div>
       </div>
@@ -451,173 +572,25 @@ function Insurance() {
           ACT 3 — THE OUTCOME
           ════════════════════════════════════════════════════════════════ */}
 
-      <div id="ins-outcome" className="w-full bg-white scroll-mt-20">
+      <div id="ins-outcome" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Outcome</h2>
-
-          <div className="mt-12 grid gap-8 sm:grid-cols-3">
-            <div>
-              <p className="text-5xl font-semibold text-transparent md:text-6xl lg:text-7xl" style={gradientStyle}>+45 pp</p>
-              <p className="mt-1 text-sm font-medium tracking-wider text-slate-900">Attachment rate increase</p>
-              <p className="mt-1 text-xs text-slate-500">Pilot stores, 90-day pre/post comparison</p>
-            </div>
-            <div>
-              <p className="text-5xl font-semibold text-transparent md:text-6xl lg:text-7xl" style={gradientStyle}>~30s</p>
-              <p className="mt-1 text-sm font-medium tracking-wider text-slate-900">Time to add insurance</p>
-              <p className="mt-1 text-xs text-slate-500">Down from 5–8 minutes</p>
-            </div>
-            <div>
-              <p className="text-5xl font-semibold text-transparent md:text-6xl lg:text-7xl" style={gradientStyle}>~$2.4M</p>
-              <p className="mt-1 text-sm font-medium tracking-wider text-slate-900">Estimated annual revenue lift</p>
-              <p className="mt-1 text-xs text-slate-500">Pilot-store extrapolation — attachment delta × avg premium</p>
-            </div>
-          </div>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            Pilot stores saw attachment rates jump 45%, quoting time drop to ~30 seconds, and an estimated ~$2.4M annual revenue lift.
+          </p>
 
           <div className="mt-10 max-w-2xl text-xs text-slate-500 space-y-1">
             <p className="font-semibold uppercase tracking-widest text-slate-500 mb-2">How we measured</p>
             <p>• Pilot cohort: 3 Flight Centre AU stores, selected for comparable booking volume</p>
             <p>• Baseline: 90-day pre-launch attachment rate for eligible itineraries at the same stores</p>
-            <p>• Revenue model: directional — attachment delta × average premium, not finance-audited</p>
+            <p>• Revenue model: directional — based on the increase in insurance sales × average premium, not finance-audited</p>
             <p>• Attribution limit: no control group; other seasonal or promotional factors not isolated</p>
-          </div>
-
-          {/* Before / after flow comparison — swimlane diagrams */}
-          <div className="mt-16 space-y-12" role="img" aria-label="Before and after flow comparison. Before: 28 to 36 steps across Helio, a 3rd-party tool, and manual work including re-login, duplicate data entry, and context switching. After: 16 steps across Helio, Travel Connect, and partner portal with pre-filled data and automatic quote injection.">
-            {/* BEFORE flow */}
-            <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Before — 3 systems, 28–36 steps with re-login and manual re-entry</p>
-              <div className="rounded-xl border border-slate-200 bg-white overflow-x-auto">
-                <div className="min-w-[520px]">
-                  {/* Swimlane headers */}
-                  <div className="grid grid-cols-3 border-b border-slate-200">
-                    <div className="px-4 py-2 border-r border-slate-200">
-                      <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Helio / Travelbox</p>
-                    </div>
-                    <div className="px-4 py-2 border-r border-slate-200">
-                      <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">3rd-party insurance tool</p>
-                    </div>
-                    <div className="px-4 py-2">
-                      <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-500">Manual work</p>
-                    </div>
-                  </div>
-                  {/* Swimlane rows */}
-                  <div className="grid grid-cols-3">
-                    {/* Helio column */}
-                    <div className="px-3 py-4 border-r border-slate-100 space-y-2">
-                      {['Start on booking', 'Leave platform'].map((s) => (
-                        <div key={s} className="rounded border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-[11px] text-slate-500 text-center">{s}</div>
-                      ))}
-                      <div className="h-px" />
-                      <div className="border-t border-dashed border-slate-200 pt-2 space-y-2">
-                        <p className="text-[9px] text-slate-500 italic text-center">… wait for quote …</p>
-                        {['Switch back to Helio', 'Manually apply quote'].map((s) => (
-                          <div key={s} className="rounded border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-[11px] text-slate-500 text-center">{s}</div>
-                        ))}
-                      </div>
-                    </div>
-                    {/* 3rd-party column */}
-                    <div className="px-3 py-4 border-r border-slate-100 space-y-2">
-                      <div className="h-[36px]" />
-                      {['Login to tool', 'Re-enter trip details', 'Re-enter customer details', 'Calculate premium', 'Select plan', 'Generate quote'].map((s) => (
-                        <div key={s} className="rounded border border-red-200 bg-red-50 px-2.5 py-1.5 text-[11px] text-red-700 text-center">{s}</div>
-                      ))}
-                    </div>
-                    {/* Manual work column */}
-                    <div className="px-3 py-4 space-y-2">
-                      <div className="h-[36px]" />
-                      <div className="rounded border border-red-200 bg-red-50 px-2.5 py-1.5 text-[11px] text-red-600 text-center">Re-login</div>
-                      <div className="rounded border border-red-200 bg-red-50 px-2.5 py-1.5 text-[11px] text-red-600 text-center">Duplicate data entry</div>
-                      <div className="rounded border border-red-200 bg-red-50 px-2.5 py-1.5 text-[11px] text-red-600 text-center">Manual calculation</div>
-                      <div className="h-px" />
-                      <div className="border-t border-dashed border-slate-200 pt-2">
-                        <div className="rounded border border-red-200 bg-red-50 px-2.5 py-1.5 text-[11px] text-red-600 text-center">Context switching ×2</div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <p className="mt-2 text-[11px] text-slate-500 italic">Heavy context switching, duplicate data entry, no shared data between systems.</p>
-            </div>
-
-            {/* AFTER flow */}
-            <div>
-              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-emerald-600">After — unified flow, 16 steps with pre-filled data</p>
-              <div className="rounded-xl border border-emerald-200 bg-white overflow-x-auto">
-                <div className="min-w-[520px]">
-                  {/* Swimlane headers */}
-                  <div className="grid grid-cols-3 border-b border-emerald-100">
-                    <div className="px-4 py-2 border-r border-emerald-100">
-                      <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-600">Helio</p>
-                    </div>
-                    <div className="px-4 py-2 border-r border-emerald-100">
-                      <p className="text-[10px] font-semibold uppercase tracking-wider text-emerald-700">Travel Connect</p>
-                    </div>
-                    <div className="px-4 py-2">
-                      <p className="text-[10px] font-semibold uppercase tracking-wider text-sky-600">Partner portal</p>
-                    </div>
-                  </div>
-                  {/* Swimlane rows — quoting phase */}
-                  <div className="grid grid-cols-3 border-b border-emerald-50">
-                    <div className="px-3 py-4 border-r border-emerald-50 space-y-2">
-                      <p className="text-[9px] font-semibold uppercase tracking-wider text-slate-500 mb-1">Quote</p>
-                      <div className="rounded border border-emerald-200 bg-emerald-50 px-2.5 py-1.5 text-[11px] text-emerald-800 text-center">Insurance button</div>
-                      <div className="flex justify-center">
-                        <span className="text-[10px] text-emerald-400">↓ new tab</span>
-                      </div>
-                    </div>
-                    <div className="px-3 py-4 border-r border-emerald-50 space-y-2">
-                      <p className="text-[9px] font-semibold uppercase tracking-wider text-emerald-500 mb-1">&nbsp;</p>
-                      <div className="rounded border border-emerald-200 bg-emerald-50 px-2.5 py-1.5 text-[11px] text-emerald-800 text-center">Select travellers</div>
-                      <div className="rounded border border-emerald-200 bg-emerald-50 px-2.5 py-1.5 text-[11px] text-emerald-800 text-center">Compare 3 tiers</div>
-                      <div className="rounded border border-emerald-300 bg-emerald-100 px-2.5 py-1.5 text-[11px] font-semibold text-emerald-900 text-center">Confirm quote</div>
-                      <p className="text-[9px] text-emerald-500 italic text-center">Data pre-filled via API</p>
-                    </div>
-                    <div className="px-3 py-4" />
-                  </div>
-                  {/* Swimlane rows — injection + policy phase */}
-                  <div className="grid grid-cols-3">
-                    <div className="px-3 py-4 border-r border-emerald-50 space-y-2">
-                      <p className="text-[9px] font-semibold uppercase tracking-wider text-slate-500 mb-1">Policy</p>
-                      <div className="rounded border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-[11px] text-slate-500 text-center">Refresh Helio tab</div>
-                      <div className="rounded border border-emerald-200 bg-emerald-50 px-2.5 py-1.5 text-[11px] text-emerald-800 text-center">Manage Insurance ⋮</div>
-                      <div className="flex justify-center">
-                        <span className="text-[10px] text-sky-400">↓ redirect</span>
-                      </div>
-                    </div>
-                    <div className="px-3 py-4 border-r border-emerald-50" />
-                    <div className="px-3 py-4 space-y-2">
-                      <p className="text-[9px] font-semibold uppercase tracking-wider text-sky-500 mb-1">&nbsp;</p>
-                      <div className="rounded border border-sky-200 bg-sky-50 px-2.5 py-1.5 text-[11px] text-sky-800 text-center">Accept declarations</div>
-                      <div className="rounded border border-sky-300 bg-sky-100 px-2.5 py-1.5 text-[11px] font-semibold text-sky-900 text-center">Confirm policy</div>
-                    </div>
-                  </div>
-                  {/* Final row — result */}
-                  <div className="border-t border-emerald-100 px-4 py-2.5 bg-emerald-50/50">
-                    <p className="text-[11px] text-emerald-700 text-center font-medium">Policy on booking — quote auto-injected into Travelbox</p>
-                  </div>
-                </div>
-              </div>
-              <p className="mt-2 text-[11px] text-emerald-600">No duplicate data entry. Three clear system handoffs. Booking data flows via API.</p>
-            </div>
-          </div>
-
-          <p className="mt-12 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Beyond the insurance numbers, the pilot proved the in-house build model and the API integration pattern that would scale to other verticals.
-          </p>
-
-          <div className="mt-16">
-            <Link
-              to="/stories/insurance/demo"
-              className="inline-flex rounded-full bg-slate-900 px-6 py-3 text-sm font-semibold text-white transition hover:bg-slate-800"
-            >
-              Try the interactive demo →
-            </Link>
           </div>
         </div>
       </div>
 
       {/* ── Reflection ── */}
-      <div id="ins-reflection" className="w-full bg-slate-50 scroll-mt-20">
+      <div id="ins-reflection" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Reflection</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
@@ -627,15 +600,15 @@ function Insurance() {
           <div className="mt-10 max-w-2xl space-y-6 text-sm text-slate-600">
             <div className="border-l-2 border-amber-300 pl-4 py-1.5 leading-relaxed">
               <p className="font-semibold text-slate-800">A vendor blocker turned into a platform bet</p>
-              <p className="mt-1">We couldn't build inside Helio. Pitching Travel Connect as the alternative meant reframing a feature request as a platform investment — a harder sell internally, but it gave the team ownership of the front-end for the first time.</p>
+              <p className="mt-1">Reframing a feature request as a platform investment was a harder sell, but it gave the team ownership of the front-end for the first time.</p>
             </div>
             <div className="border-l-2 border-emerald-400 pl-4 py-1.5 leading-relaxed">
               <p className="font-semibold text-slate-800">Real booking data exposed what mocks couldn't</p>
-              <p className="mt-1">Prototyping with real booking scenarios revealed edge cases in pricing, traveller combinations, and policy rules that would have shipped as bugs with synthetic test data.</p>
+              <p className="mt-1">Testing with real scenarios surfaced pricing edge cases and policy rules that would have shipped as bugs with synthetic data.</p>
             </div>
             <div className="border-l-2 border-sky-400 pl-4 py-1.5 leading-relaxed">
               <p className="font-semibold text-slate-800">Phasing the dream unlocked the real win</p>
-              <p className="mt-1">The vision was a fully embedded AI coverage assistant. By shipping the connected quoting flow first — deferring mid-trip modifications, multi-policy management, and AI-driven recommendations — we proved the business case quickly enough to secure investment in the broader platform.</p>
+              <p className="mt-1">Shipping the simplest valuable slice first proved the business case quickly enough to secure investment in the broader platform.</p>
             </div>
           </div>
 
@@ -650,7 +623,7 @@ function Insurance() {
                     <span className="text-[10px] font-bold text-emerald-700">1</span>
                   </div>
                   <p className="mt-2 text-[10px] font-semibold text-slate-700">Travel Connect v1</p>
-                  <p className="text-[9px] text-slate-500">Insurance pilot (née "Payments Platform")</p>
+                  <p className="text-[9px] text-slate-500">Insurance pilot (formerly "Payments Platform")</p>
                   <p className="mt-1 text-[9px] text-emerald-600 font-medium">Jul 2024</p>
                 </div>
                 {/* Connector */}
