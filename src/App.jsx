@@ -18,7 +18,7 @@ const DesignSystem = lazy(() => import('./pages/DesignSystem.jsx'))
 
 function App() {
   return (
-    <Suspense fallback={<div className="flex min-h-[50vh] items-center justify-center bg-black text-slate-400">Loading…</div>}>
+    <Suspense fallback={<div role="status" aria-live="polite" className="flex min-h-[50vh] items-center justify-center bg-black text-slate-400">Loading…</div>}>
       <Routes>
         <Route element={<Layout />}>
           <Route index element={<Home />} />

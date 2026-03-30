@@ -163,7 +163,7 @@ const caseStudies = [
   {
     title: 'Travel Amendments',
     company: 'Flight Centre',
-    summary: '~75% shorter handling time · 67% faster workflows.',
+    summary: '75% shorter handling time · 67% faster workflows.',
     tags: ['10+ min → 2–3 min', '67% faster workflow'],
     image: null,
     preview: 'amendments',
@@ -214,6 +214,7 @@ const allCards = [...caseStudies, ...archiveItems]
 
 function Work() {
   useEffect(() => {
+    document.title = 'Stories — Joel Hickey'
     document.body.classList.add('home-sky')
     return () => document.body.classList.remove('home-sky')
   }, [])
@@ -232,7 +233,7 @@ function Work() {
             <h1 id="stories-heading" className="m-0 text-5xl font-bold tracking-wide bg-clip-text text-transparent md:text-6xl lg:text-7xl" style={{ background: 'linear-gradient(90deg, #0891b2 0%, #0d9488 25%, #4f46e5 50%, #7c3aed 75%, #c026d3 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text' }}>
               Stories
             </h1>
-            <p className="mt-4 text-base font-extralight tracking-wider text-slate-400 md:text-lg">
+            <p className="mt-4 text-base font-extralight tracking-wider text-slate-600 md:text-lg">
               Product design across B2B platforms, insurance, travel ops, and logistics — problem framing through to measured outcomes.
             </p>
           </div>
@@ -318,7 +319,7 @@ function Work() {
                     {card.company && (
                       <p className="mb-2 text-xs font-medium uppercase tracking-[0.2em] text-slate-500">{card.company}</p>
                     )}
-                    <h3 className="text-2xl font-semibold tracking-wider text-white md:text-3xl">{card.title}</h3>
+                    <h2 className="text-2xl font-semibold tracking-wider text-white md:text-3xl">{card.title}</h2>
                     {card.summary && (
                       <p
                         className="mt-3 text-base font-medium tracking-wide text-slate-400"

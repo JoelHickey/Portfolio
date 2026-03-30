@@ -10,6 +10,7 @@ const gradientStyle = {
 
 function Amendments() {
   useEffect(() => {
+    document.title = 'Amendments Case Study — Joel Hickey'
     window.scrollTo(0, 0)
   }, [])
 
@@ -71,19 +72,19 @@ function Amendments() {
         <div className="mx-auto w-full max-w-6xl px-6 py-5">
           <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs">
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Role</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Role</p>
               <p className="mt-0.5 font-medium text-slate-700">Senior Product Designer — led UX from discovery through global rollout</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Domain</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Domain</p>
               <p className="mt-0.5 font-medium text-slate-700">B2B travel — internal consultant tooling</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Team</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Team</p>
               <p className="mt-0.5 font-medium text-slate-700">PM, 2 UX, engineering (distributed team), ops</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Duration</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Duration</p>
               <p className="mt-0.5 font-medium text-slate-700">~12 months, 2021–22</p>
             </div>
           </div>
@@ -94,7 +95,7 @@ function Amendments() {
       <div className="w-full bg-white border-b border-slate-100">
         <div className="mx-auto w-full max-w-6xl px-6 py-6">
           <div className="max-w-3xl space-y-2 text-sm text-slate-600">
-            <p className="font-semibold uppercase tracking-widest text-slate-400 text-xs">Summary</p>
+            <p className="font-semibold uppercase tracking-widest text-slate-500 text-xs">Summary</p>
             <p className="leading-relaxed">Post-booking amendments — flight changes, hotel extensions, car swaps — were taking consultants 8–12 minutes per call, most of it spent fighting the tool rather than helping the customer. I redesigned the workflow across 5 booking verticals within the legacy Travelbox platform, cutting average handling time to ~2.5 minutes, achieving 89% CSAT (n=200+), and reducing amendment-related error escalations by ~40%.</p>
           </div>
         </div>
@@ -148,12 +149,15 @@ function Amendments() {
 
           {/* Frequency × friction quadrant */}
           <div className="mt-12">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Frequency × friction prioritisation</p>
-            <div className="grid grid-cols-2 rounded-xl border border-slate-200 overflow-hidden">
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Frequency × friction prioritisation</p>
+            <div
+              className="grid grid-cols-2 rounded-xl border border-slate-200 overflow-hidden"
+              aria-label="Frequency versus friction prioritisation matrix"
+            >
               {/* Top-left: High frequency, low friction — not the priority */}
               <div className="border-r border-b border-slate-200 bg-slate-50 p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">High frequency · Low friction</p>
-                <p className="text-sm text-slate-400 italic">Quick wins — handled in business-as-usual</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">High frequency · Low friction</p>
+                <p className="text-sm text-slate-500 italic">Quick wins — handled in business-as-usual</p>
               </div>
 
               {/* Top-right: High frequency, high friction — FOCUS */}
@@ -169,23 +173,23 @@ function Amendments() {
 
               {/* Bottom-left: Low frequency, low friction — parked */}
               <div className="border-r border-slate-200 bg-slate-50 p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Low frequency · Low friction</p>
-                <p className="text-sm text-slate-400 italic">Deprioritised</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">Low frequency · Low friction</p>
+                <p className="text-sm text-slate-500 italic">Deprioritised</p>
               </div>
 
               {/* Bottom-right: Low frequency, high friction — monitor */}
               <div className="bg-slate-50 p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Low frequency · High friction</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">Low frequency · High friction</p>
                 <div className="flex flex-wrap gap-1.5">
                   {['Availability (Hotels)', 'Price fluctuations', 'Insurance', 'Amendment history'].map((item) => (
                     <span key={item} className="rounded-md bg-slate-300 px-2 py-1 text-xs font-medium text-slate-600">{item}</span>
                   ))}
                 </div>
-                <p className="mt-3 text-xs text-slate-400">9 other issues parked for later</p>
+                <p className="mt-3 text-xs text-slate-500">9 other issues parked for later</p>
               </div>
             </div>
             {/* Axis labels */}
-            <div className="flex justify-between mt-2 text-xs font-semibold uppercase tracking-widest text-slate-400">
+            <div className="flex justify-between mt-2 text-xs font-semibold uppercase tracking-widest text-slate-500">
               <span>← Low friction</span>
               <span>High friction →</span>
             </div>
@@ -226,10 +230,10 @@ function Amendments() {
             <table className="w-full max-w-3xl text-xs">
               <thead>
                 <tr className="border-b border-slate-200">
-                  <th className="py-3 pr-4 text-left font-semibold uppercase tracking-widest text-slate-400">Concept</th>
-                  <th className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-400">Feasibility</th>
-                  <th className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-400">Cognitive load</th>
-                  <th className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-400">Dependency visibility</th>
+                  <th className="py-3 pr-4 text-left font-semibold uppercase tracking-widest text-slate-500">Concept</th>
+                  <th className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-500">Feasibility</th>
+                  <th className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-500">Cognitive load</th>
+                  <th className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-500">Dependency visibility</th>
                 </tr>
               </thead>
               <tbody className="text-sm text-slate-600">
@@ -242,9 +246,14 @@ function Amendments() {
                   { name: 'Three-page guided workflow', scores: ['✓', '✓', '✓'], highlight: true },
                 ].map((row) => (
                   <tr key={row.name} className={`border-b border-slate-100 ${row.highlight ? 'bg-emerald-50' : ''}`}>
-                    <td className={`py-3 pr-4 ${row.highlight ? 'font-semibold text-emerald-800' : 'text-slate-700'}`}>{row.name}</td>
+                    <th
+                      scope="row"
+                      className={`py-3 pr-4 text-left ${row.highlight ? 'font-semibold text-emerald-800' : 'font-normal text-slate-700'}`}
+                    >
+                      {row.name}
+                    </th>
                     {row.scores.map((score, i) => (
-                      <td key={i} className={`py-3 px-3 text-center ${score === '✓' ? 'text-emerald-600' : 'text-slate-300'}`}>
+                      <td key={i} className={`py-3 px-3 text-center ${score === '✓' ? 'text-emerald-600' : 'text-slate-400'}`}>
                         <span className="text-base">{score}</span>
                       </td>
                     ))}
@@ -296,7 +305,7 @@ function Amendments() {
           </p>
 
           <div className="mt-12">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Pre-launch validation</p>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Pre-launch validation</p>
             <div className="grid gap-8 sm:grid-cols-3">
               {[
                 { value: '96%', label: 'Task success rate (n=24)' },
@@ -354,7 +363,7 @@ function Amendments() {
               <p className="mt-1 text-xs text-slate-500">Post-launch survey, n=200+</p>
             </div>
             <div>
-              <p className="text-5xl font-semibold text-transparent md:text-6xl lg:text-7xl" style={gradientStyle}>~75%</p>
+              <p className="text-5xl font-semibold text-transparent md:text-6xl lg:text-7xl" style={gradientStyle}>75%</p>
               <p className="mt-1 text-sm font-medium tracking-wider text-slate-900">Shorter handling time</p>
               <p className="mt-1 text-xs text-slate-500">10+ min → ~2.5 min AHT (FullStory)</p>
             </div>
@@ -363,17 +372,17 @@ function Amendments() {
           {/* Before / after flow comparison */}
           <div className="mt-16 space-y-8">
             <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-400">Before — 9 screens, 13+ clicks</p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-500">Before — 9 screens, 13+ clicks</p>
               <div className="flex flex-wrap items-center gap-1.5">
                 {['Itinerary', 'Amend modal', 'Reason form', 'Search modal', 'Results', 'Cart', 'Travellers', 'Payment', 'Confirmation'].map((step, i) => (
                   <div key={step} className="flex items-center gap-1.5">
                     <div className="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs text-slate-500">
                       {step}
                     </div>
-                    {i < 8 && <span className="text-slate-300 text-xs">→</span>}
+                    {i < 8 && <span className="text-slate-400 text-xs">→</span>}
                   </div>
                 ))}
-                <span className="ml-2 text-xs text-slate-400 italic">+ 30s loads between screens</span>
+                <span className="ml-2 text-xs text-slate-500 italic">+ 30s loads between screens</span>
               </div>
             </div>
             <div>
@@ -405,7 +414,7 @@ function Amendments() {
           </div>
 
           <div className="mt-10 max-w-2xl text-xs text-slate-500 space-y-1">
-            <p className="font-semibold uppercase tracking-widest text-slate-400 mb-2">How we measured</p>
+            <p className="font-semibold uppercase tracking-widest text-slate-500 mb-2">How we measured</p>
             <p>• AHT: FullStory session timing, same amendment types (flight date change, hotel extension), 30-day pre/post window across AU pilot stores</p>
             <p>• CSAT: post-task pulse survey ("How satisfied are you with the new amendment flow?"), 5-point scale, sent at session end — 200+ responses, ~65% response rate</p>
             <p>• Labour impact: AHT reduction × daily amendment volume × loaded cost per minute — validated with ops finance; figure under NDA, methodology walkthrough available in interview</p>
@@ -441,7 +450,7 @@ function Amendments() {
             </div>
             <div className="border-l-2 border-sky-400 pl-4 py-1.5 leading-relaxed">
               <p className="font-semibold text-slate-800">Dropping the AI ambition uncovered the real design problem</p>
-              <p className="mt-1">The dream was an AI flow. The reality was a legacy stack. Accepting that early led to a simpler, shippable solution that still cut handling time by ~75% — and what we gained in shipping speed more than offset the features we deferred.</p>
+              <p className="mt-1">The dream was an AI flow. The reality was a legacy stack. Accepting that early led to a simpler, shippable solution that still cut handling time by 75% — and what we gained in shipping speed more than offset the features we deferred.</p>
             </div>
             <div className="border-l-2 border-red-300 pl-4 py-1.5 leading-relaxed">
               <p className="font-semibold text-slate-800">What I'd do differently</p>

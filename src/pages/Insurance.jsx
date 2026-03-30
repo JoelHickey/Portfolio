@@ -68,19 +68,19 @@ function Insurance() {
         <div className="mx-auto w-full max-w-6xl px-6 py-5">
           <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs">
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Role</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Role</p>
               <p className="mt-0.5 font-medium text-slate-700">Senior Product Designer</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Domain</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Domain</p>
               <p className="mt-0.5 font-medium text-slate-700">B2B travel — insurance quoting platform</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Team</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Team</p>
               <p className="mt-0.5 font-medium text-slate-700">PM, UX, in-house dev, insurance API partner</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Duration</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Duration</p>
               <p className="mt-0.5 font-medium text-slate-700">~6 months, 2024</p>
             </div>
           </div>
@@ -91,7 +91,7 @@ function Insurance() {
       <div className="w-full bg-white border-b border-slate-100">
         <div className="mx-auto w-full max-w-6xl px-6 py-6">
           <div className="max-w-3xl space-y-2 text-sm text-slate-600">
-            <p className="font-semibold uppercase tracking-widest text-slate-400 text-xs">Summary</p>
+            <p className="font-semibold uppercase tracking-widest text-slate-500 text-xs">Summary</p>
             <p className="leading-relaxed">Insurance was disconnected from the booking workflow — consultants had to leave the platform, re-enter data in a third-party tool, and manually apply quotes. I designed Travel Connect, a new in-house quoting platform that integrated with the existing booking system via API. The result: +45pp insurance attachment rate, ~30s to add coverage (down from 5–8 min), and ~$2.4M estimated annual revenue lift from the pilot.</p>
           </div>
         </div>
@@ -180,9 +180,9 @@ function Insurance() {
                   <div className="flex-1 flex flex-col justify-center items-center px-3 min-w-[120px]">
                     <div className="w-full flex items-center gap-1.5 mb-3">
                       <div className="flex-1 border-t border-dashed border-slate-200" />
-                      <svg className="w-2.5 h-2.5 text-slate-300 shrink-0" aria-hidden="true" viewBox="0 0 12 12" fill="currentColor"><path d="M8 1l4 5-4 5V7H0V5h8V1z" /></svg>
+                      <svg className="w-2.5 h-2.5 text-slate-400 shrink-0" aria-hidden="true" viewBox="0 0 12 12" fill="currentColor"><path d="M8 1l4 5-4 5V7H0V5h8V1z" /></svg>
                     </div>
-                    <p className="text-[9px] text-slate-400 font-medium uppercase tracking-wider -mt-1 mb-1">Opens new tab</p>
+                    <p className="text-[9px] text-slate-500 font-medium uppercase tracking-wider -mt-1 mb-1">Opens new tab</p>
 
                     <div className="w-full flex items-center gap-1.5 mb-1 mt-2">
                       <div className="flex-1 border-t-2 border-emerald-400" />
@@ -242,7 +242,7 @@ function Insurance() {
                   <tr key={row.name} className={`border-b border-slate-100 ${row.highlight ? 'bg-emerald-50' : ''}`}>
                     <th scope="row" className={`py-3 pr-4 text-left font-normal ${row.highlight ? 'font-semibold text-emerald-800' : 'text-slate-700'}`}>{row.name}</th>
                     {row.scores.map((score, i) => (
-                      <td key={i} className={`py-3 px-3 text-center ${score === '✓' ? 'text-emerald-600' : 'text-slate-300'}`}>
+                      <td key={i} className={`py-3 px-3 text-center ${score === '✓' ? 'text-emerald-600' : 'text-slate-400'}`}>
                         <span className="text-base">{score}</span>
                       </td>
                     ))}
@@ -474,7 +474,7 @@ function Insurance() {
           </div>
 
           <div className="mt-10 max-w-2xl text-xs text-slate-500 space-y-1">
-            <p className="font-semibold uppercase tracking-widest text-slate-400 mb-2">How we measured</p>
+            <p className="font-semibold uppercase tracking-widest text-slate-500 mb-2">How we measured</p>
             <p>• Pilot cohort: 3 Flight Centre AU stores, selected for comparable booking volume</p>
             <p>• Baseline: 90-day pre-launch attachment rate for eligible itineraries at the same stores</p>
             <p>• Revenue model: directional — attachment delta × average premium, not finance-audited</p>

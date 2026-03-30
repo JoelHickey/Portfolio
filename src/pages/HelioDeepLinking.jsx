@@ -9,6 +9,7 @@ const gradientStyle = {
 
 function HelioDeepLinking() {
   useEffect(() => {
+    document.title = 'Deep Linking Case Study — Joel Hickey'
     window.scrollTo(0, 0)
   }, [])
 
@@ -81,19 +82,19 @@ function HelioDeepLinking() {
         <div className="mx-auto w-full max-w-6xl px-6 py-5">
           <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs">
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Role</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Role</p>
               <p className="mt-0.5 font-medium text-slate-700">Lead UX Designer</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Domain</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Domain</p>
               <p className="mt-0.5 font-medium text-slate-700">B2B travel — CRM-to-platform integration</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Team</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Team</p>
               <p className="mt-0.5 font-medium text-slate-700">PM, UX, CRM team, platform architects</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Duration</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Duration</p>
               <p className="mt-0.5 font-medium text-slate-700">~3 months, 2023</p>
             </div>
           </div>
@@ -104,7 +105,7 @@ function HelioDeepLinking() {
       <div className="w-full bg-white border-b border-slate-100">
         <div className="mx-auto w-full max-w-6xl px-6 py-6">
           <div className="max-w-3xl space-y-2 text-sm text-slate-600">
-            <p className="font-semibold uppercase tracking-widest text-slate-400 text-xs">Summary</p>
+            <p className="font-semibold uppercase tracking-widest text-slate-500 text-xs">Summary</p>
             <p className="leading-relaxed">Consultants were losing ~45 seconds per transition between Microsoft CRM and Helio because there was no contextual link between the two systems. I designed a deep-linking solution that passed booking context via URL parameters — navigating the trade-off between product coherence (single entry point) and enterprise flexibility (multiple entry points). The org chose multi-entry for scalability; the project connected 3,000+ consultants.</p>
           </div>
         </div>
@@ -155,7 +156,7 @@ function HelioDeepLinking() {
 
           {/* Pain-point summary */}
           <div className="mt-12">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Key friction points</p>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Key friction points</p>
             <div className="grid grid-cols-2 rounded-xl border border-slate-200 overflow-hidden">
               <div className="border-r border-b border-slate-200 bg-red-50 p-5">
                 <p className="text-xs font-semibold uppercase tracking-widest text-red-400 mb-3">Navigation friction</p>
@@ -176,7 +177,7 @@ function HelioDeepLinking() {
               </div>
 
               <div className="border-r border-slate-200 bg-slate-50 p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Workarounds</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">Workarounds</p>
                 <div className="flex flex-wrap gap-1.5">
                   {['Pinned browser tabs', 'Memorised booking IDs', 'Separate note-taking'].map((item) => (
                     <span key={item} className="rounded-md bg-slate-300 px-2 py-1 text-xs font-medium text-slate-600">{item}</span>
@@ -185,7 +186,7 @@ function HelioDeepLinking() {
               </div>
 
               <div className="bg-slate-50 p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Design question</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">Design question</p>
                 <p className="text-sm text-slate-500">Where should deep links from CRM land in Helio — and who should own the wayfinding?</p>
               </div>
             </div>
@@ -225,10 +226,10 @@ function HelioDeepLinking() {
             <table className="w-full max-w-3xl text-xs">
               <thead>
                 <tr className="border-b border-slate-200">
-                  <th className="py-3 pr-4 text-left font-semibold uppercase tracking-widest text-slate-400">Approach</th>
-                  <th className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-400">UX coherence</th>
-                  <th className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-400">Enterprise flexibility</th>
-                  <th className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-400">Future-proofing</th>
+                  <th scope="col" className="py-3 pr-4 text-left font-semibold uppercase tracking-widest text-slate-500">Approach</th>
+                  <th scope="col" className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-500">UX coherence</th>
+                  <th scope="col" className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-500">Enterprise flexibility</th>
+                  <th scope="col" className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-500">Future-proofing</th>
                 </tr>
               </thead>
               <tbody className="text-sm text-slate-600">
@@ -241,7 +242,7 @@ function HelioDeepLinking() {
                   <tr key={row.name} className={`border-b border-slate-100 ${row.highlight === 'cyan' ? 'bg-cyan-50' : row.highlight === 'violet' ? 'bg-violet-50' : ''}`}>
                     <td className={`py-3 pr-4 ${row.highlight === 'cyan' ? 'font-semibold text-cyan-800' : row.highlight === 'violet' ? 'font-semibold text-violet-800' : 'text-slate-700'}`}>{row.name}</td>
                     {row.scores.map((score, i) => (
-                      <td key={i} className={`py-3 px-3 text-center ${score === '✓' ? 'text-emerald-600' : score === '○' ? 'text-amber-500' : 'text-slate-300'}`}>
+                      <td key={i} className={`py-3 px-3 text-center ${score === '✓' ? 'text-emerald-600' : score === '○' ? 'text-amber-500' : 'text-slate-400'}`}>
                         <span className="text-base">{score}</span>
                       </td>
                     ))}
@@ -249,7 +250,7 @@ function HelioDeepLinking() {
                 ))}
               </tbody>
             </table>
-            <p className="mt-2 text-xs text-slate-400">✓ strong · ○ partial · ✗ weak</p>
+            <p className="mt-2 text-xs text-slate-500">✓ strong · ○ partial · ✗ weak</p>
           </div>
 
           {/* Two proposals side by side */}
@@ -287,7 +288,7 @@ function HelioDeepLinking() {
 
           {/* Design direction */}
           <div className="mt-10">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Key design principles</p>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Key design principles</p>
             <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl">
               {[
                 'Customer context passed via URL parameters',
@@ -325,7 +326,7 @@ function HelioDeepLinking() {
           </blockquote>
 
           <div className="mt-12">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Trade-off analysis</p>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Trade-off analysis</p>
             <div className="grid gap-8 sm:grid-cols-2">
               <div className="space-y-3">
                 <p className="text-sm font-semibold text-cyan-800">Single entry — strengths</p>
@@ -414,17 +415,17 @@ function HelioDeepLinking() {
           {/* Before / after flow comparison */}
           <div className="mt-16 space-y-8">
             <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-400">Before — manual navigation</p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-500">Before — manual navigation</p>
               <div className="flex flex-wrap items-center gap-1.5">
                 {['Customer record (CRM)', 'Copy booking ID', 'Open Helio', 'Search customer', 'Find booking', 'Navigate to task', 'Begin work'].map((step, i) => (
                   <div key={step} className="flex items-center gap-1.5">
                     <div className="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs text-slate-500">
                       {step}
                     </div>
-                    {i < 6 && <span className="text-slate-300 text-xs">→</span>}
+                    {i < 6 && <span className="text-slate-400 text-xs">→</span>}
                   </div>
                 ))}
-                <span className="ml-2 text-xs text-slate-400 italic">+ context loss, tab switching, memory load</span>
+                <span className="ml-2 text-xs text-slate-500 italic">+ context loss, tab switching, memory load</span>
               </div>
             </div>
             <div>

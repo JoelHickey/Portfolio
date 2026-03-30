@@ -83,19 +83,19 @@ function MagentoShipping() {
         <div className="mx-auto w-full max-w-6xl px-6 py-5">
           <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs">
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Role</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Role</p>
               <p className="mt-0.5 font-medium text-slate-700">UI/UX Designer — end-to-end ownership from research to sprint delivery</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Domain</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Domain</p>
               <p className="mt-0.5 font-medium text-slate-700">E-commerce SaaS — merchant shipping tools</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Team</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Team</p>
               <p className="mt-0.5 font-medium text-slate-700">PM, UX, remote engineering squad</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Duration</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Duration</p>
               <p className="mt-0.5 font-medium text-slate-700">~3 months, 2018</p>
             </div>
           </div>
@@ -106,7 +106,7 @@ function MagentoShipping() {
       <div className="w-full bg-white border-b border-slate-100">
         <div className="mx-auto w-full max-w-6xl px-6 py-6">
           <div className="max-w-3xl space-y-2 text-sm text-slate-600">
-            <p className="font-semibold uppercase tracking-widest text-slate-400 text-xs">Summary</p>
+            <p className="font-semibold uppercase tracking-widest text-slate-500 text-xs">Summary</p>
             <p className="leading-relaxed">Magento Shipping merchants could only process one order at a time — a bottleneck for anyone shipping in volume. I designed a batch processing workflow within the Magento 2 pattern library constraints, taking it from sketches and Sketch Cloud prototypes through in-house usability testing to sprint delivery with a remote engineering team.</p>
           </div>
         </div>
@@ -257,7 +257,7 @@ function MagentoShipping() {
               >
                 <img
                   src={src}
-                  alt={`Batch processing in development — screenshot ${index + 1}`}
+                  alt={`Magento batch order processing flow — step ${index + 1} of ${MAGENTO_IMAGES.solutionInDev.length}: origin selection, order confirmation, and booking preparation`}
                   className="w-full object-contain"
                 />
                 <figcaption className="px-4 py-2 text-sm text-slate-500">

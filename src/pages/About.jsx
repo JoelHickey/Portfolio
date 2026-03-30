@@ -1,4 +1,7 @@
+import { useEffect } from 'react'
+
 function About() {
+  useEffect(() => { document.title = 'About — Joel Hickey' }, [])
 
   return (
     <section className="relative z-10 flex flex-col">

@@ -51,6 +51,7 @@ export default function CaseStudyNav({ sections }) {
     <nav
       ref={navRef}
       aria-label="Case study sections"
+      aria-hidden={!visible}
       className={`fixed top-20 right-6 z-40 hidden xl:flex flex-col gap-1.5 transition-opacity duration-300 ${
         visible ? 'opacity-100' : 'opacity-0 pointer-events-none'
       }`}
@@ -59,6 +60,7 @@ export default function CaseStudyNav({ sections }) {
         <button
           key={s.id}
           onClick={() => handleClick(s.id)}
+          tabIndex={visible ? 0 : -1}
           className={`text-right text-xs tracking-wide transition-colors px-3 py-1 rounded-full ${
             activeId === s.id
               ? 'text-slate-900 bg-slate-200/80 font-medium'

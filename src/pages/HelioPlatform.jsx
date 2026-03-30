@@ -9,6 +9,7 @@ const gradientStyle = {
 
 function HelioPlatform() {
   useEffect(() => {
+    document.title = 'Helio Platform Case Study — Joel Hickey'
     window.scrollTo(0, 0)
   }, [])
 
@@ -62,19 +63,19 @@ function HelioPlatform() {
         <div className="mx-auto w-full max-w-6xl px-6 py-5">
           <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs">
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Role</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Role</p>
               <p className="mt-0.5 font-medium text-slate-700">Senior UX/UI Designer</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Domain</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Domain</p>
               <p className="mt-0.5 font-medium text-slate-700">B2B travel — internal consultant platform</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Team</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Team</p>
               <p className="mt-0.5 font-medium text-slate-700">PM, UX, Codegen dev, platform architects</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Duration</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Duration</p>
               <p className="mt-0.5 font-medium text-slate-700">Ongoing, 2023–present</p>
             </div>
           </div>
@@ -85,7 +86,7 @@ function HelioPlatform() {
       <div className="w-full bg-white border-b border-slate-100">
         <div className="mx-auto w-full max-w-6xl px-6 py-6">
           <div className="max-w-3xl space-y-2 text-sm text-slate-600">
-            <p className="font-semibold uppercase tracking-widest text-slate-400 text-xs">Summary</p>
+            <p className="font-semibold uppercase tracking-widest text-slate-500 text-xs">Summary</p>
             <p className="leading-relaxed">Helio is the booking platform used by 3,000+ Flight Centre consultants daily. As the UX designer embedded in the platform team, I worked across multiple features — Tours Search & Book, Payment Schedules, and Grab PNR — within the constraints of a vendor-managed front-end, using FullStory analytics to diagnose friction and measure improvement.</p>
           </div>
         </div>
@@ -140,10 +141,10 @@ function HelioPlatform() {
 
           {/* Design approach */}
           <div className="mt-12">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Approach within a constrained platform</p>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Approach within a constrained platform</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 rounded-xl border border-slate-200 overflow-hidden">
               <div className="sm:border-r border-b border-slate-200 bg-slate-50 p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">What we can do</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">What we can do</p>
                 <div className="flex flex-wrap gap-1.5">
                   {['Configure workflows', 'Design within existing patterns', 'Build adjacent platforms (Travel Connect)', 'Run analytics & usability testing'].map((item) => (
                     <span key={item} className="rounded-md bg-emerald-600 px-2 py-1 text-xs font-medium text-white">{item}</span>
@@ -152,7 +153,7 @@ function HelioPlatform() {
               </div>
 
               <div className="border-b border-slate-200 bg-slate-50 p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">What we can't</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">What we can't</p>
                 <div className="flex flex-wrap gap-1.5">
                   {['Rewrite the front-end', 'Ship custom UI components', 'Control release cadence', 'Bypass vendor architecture'].map((item) => (
                     <span key={item} className="rounded-md bg-slate-300 px-2 py-1 text-xs font-medium text-slate-600">{item}</span>
@@ -161,12 +162,12 @@ function HelioPlatform() {
               </div>
 
               <div className="sm:border-r border-slate-200 bg-white p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">The lever</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">The lever</p>
                 <p className="text-sm text-slate-500">Use data, research, and testing to make smarter configuration decisions — and prove the case for deeper changes with evidence.</p>
               </div>
 
               <div className="bg-white p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">The strategy</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">The strategy</p>
                 <p className="text-sm text-slate-500">Build what we can in-house (Travel Connect), validate everything with real usage data, and design the path from legacy to modern.</p>
               </div>
             </div>
@@ -197,7 +198,7 @@ function HelioPlatform() {
 
           {/* Methodology card */}
           <div className="mt-10 rounded-xl border border-slate-200 bg-white p-6 max-w-2xl">
-            <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-4">Research methodology</p>
+            <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-4">Research methodology</p>
             <div className="grid gap-4 sm:grid-cols-3">
               <div>
                 <p className="text-sm font-semibold text-slate-800">Method</p>
@@ -264,7 +265,7 @@ function HelioPlatform() {
 
           {/* Funnel visualisation */}
           <div className="mt-16">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Funnel breakdown</p>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Funnel breakdown</p>
             <div className="flex flex-wrap items-center gap-1.5">
               {[
                 { step: 'Search form', status: 'ok' },
@@ -285,7 +286,7 @@ function HelioPlatform() {
                   }`}>
                     {item.step}
                   </div>
-                  {i < 6 && <span className="text-slate-300 text-xs">→</span>}
+                  {i < 6 && <span className="text-slate-400 text-xs">→</span>}
                 </div>
               ))}
             </div>
@@ -293,7 +294,7 @@ function HelioPlatform() {
 
           {/* Performance */}
           <div className="mt-12 max-w-2xl">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Performance comparison</p>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Performance comparison</p>
             <div className="grid gap-4 sm:grid-cols-2">
               <div className="rounded-xl border border-emerald-200 bg-emerald-50/50 p-4">
                 <p className="text-3xl font-semibold text-emerald-800">2,000ms</p>
@@ -309,7 +310,7 @@ function HelioPlatform() {
 
           {/* Opportunities identified */}
           <div className="mt-12">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Opportunities uncovered</p>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Opportunities uncovered</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 rounded-xl border border-slate-200 overflow-hidden">
               <div className="sm:border-r border-b border-slate-200 bg-amber-50 p-5">
                 <p className="text-xs font-semibold uppercase tracking-widest text-amber-600 mb-3">Enable additional suppliers</p>
@@ -326,14 +327,14 @@ function HelioPlatform() {
               </div>
 
               <div className="sm:border-r border-slate-200 bg-white p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Improve search functionality</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">Improve search functionality</p>
                 <p className="text-sm text-slate-600 leading-relaxed">
                   Pre-post accommodation options, solo/single supplement handling, and other edge cases that consultants expected but the POC didn't yet support.
                 </p>
               </div>
 
               <div className="bg-white p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Improve Grab as a fallback</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">Improve Grab as a fallback</p>
                 <p className="text-sm text-slate-600 leading-relaxed">
                   With 28% of consultants still preferring Grab, improving that fallback path in parallel would help the consultants who couldn't yet be served by Search & Book.
                 </p>
@@ -370,7 +371,7 @@ function HelioPlatform() {
 
           {/* Before / after */}
           <div className="mt-12">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">The friction</p>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">The friction</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 rounded-xl border border-slate-200 overflow-hidden">
               <div className="sm:border-r border-b border-slate-200 bg-red-50 p-5">
                 <p className="text-xs font-semibold uppercase tracking-widest text-red-400 mb-3">Before</p>
@@ -391,12 +392,12 @@ function HelioPlatform() {
               </div>
 
               <div className="sm:border-r border-slate-200 bg-white p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Root cause</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">Root cause</p>
                 <p className="text-sm text-slate-500">The platform treated every booking as having one payment timeline — but real itineraries have as many payment schedules as they have suppliers.</p>
               </div>
 
               <div className="bg-white p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-400 mb-3">Impact</p>
+                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">Impact</p>
                 <p className="text-sm text-slate-500">Consultants could now manage deposit and final payment timing per flight, hotel, or tour directly within the itinerary — eliminating the need for parallel spreadsheets and reducing the risk of missed supplier deadlines.</p>
               </div>
             </div>
@@ -439,7 +440,7 @@ function HelioPlatform() {
           {/* Problem → solution flow */}
           <div className="mt-12 space-y-8">
             <div>
-              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-400">Before — generic error modal, blocked import</p>
+              <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-500">Before — generic error modal, blocked import</p>
               <div className="flex flex-wrap items-center gap-1.5">
                 {['Import PNR', 'System validates', 'Name mismatch detected', 'Generic error modal', 'Import blocked', 'Close modal', 'Investigate manually', 'Fix traveller record', 'Retry import'].map((step, i) => (
                   <div key={step} className="flex items-center gap-1.5">
@@ -450,7 +451,7 @@ function HelioPlatform() {
                     }`}>
                       {step}
                     </div>
-                    {i < 8 && <span className="text-slate-300 text-xs">→</span>}
+                    {i < 8 && <span className="text-slate-400 text-xs">→</span>}
                   </div>
                 ))}
               </div>
@@ -481,7 +482,7 @@ function HelioPlatform() {
 
           {/* Key design decisions */}
           <div className="mt-10">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-400">Modal redesign approach</p>
+            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Modal redesign approach</p>
             <div className="grid gap-3 sm:grid-cols-2 max-w-3xl">
               {[
                 'PNR data vs. booking travellers shown side by side in modal',

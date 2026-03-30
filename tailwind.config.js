@@ -66,9 +66,9 @@ export default {
         'home-cta-label':
           'linear-gradient(90deg, #5eead4 0%, #a5b4fc 38%, #c4b5fd 62%, #f0abfc 100%)',
         'home-h2-stories':
-          'linear-gradient(135deg, #0f172a 0%, #312e81 22%, #5b21b6 42%, #7c3aed 58%, #a78bfa 74%, #4c1d95 100%)',
+          'linear-gradient(135deg, #6d28d9 0%, #7c3aed 30%, #a78bfa 55%, #7c3aed 75%, #6d28d9 100%)',
         'home-h2-value':
-          'linear-gradient(135deg, #0f172a 0%, #0d9488 25%, #06b6d4 50%, #22d3ee 75%, #0f172a 100%)',
+          'linear-gradient(135deg, #0d9488 0%, #06b6d4 35%, #22d3ee 65%, #06b6d4 100%)',
         'home-card-title-on-dark':
           'linear-gradient(90deg, #0f172a 0%, #4f46e5 35%, #0891b2 70%, #0f172a 100%)',
       },

@@ -1,7 +1,11 @@
 import { HiOutlineMail, HiOutlinePhone } from 'react-icons/hi'
 import { SiLinkedin, SiDribbble } from 'react-icons/si'
 
+import { useEffect } from 'react'
+
 function Contact() {
+  useEffect(() => { document.title = 'Contact — Joel Hickey' }, [])
+
   return (
     <section className="relative z-10 flex flex-col items-center px-16 pt-24 pb-20 md:px-20 md:pt-32 lg:px-24">
       <div
@@ -18,19 +22,19 @@ function Contact() {
         <p className="mt-2 text-base text-slate-500">
           Enterprise or startup — also open to speaking, AI workshops, and collaborations.
         </p>
-        <p className="mt-1 text-sm text-slate-600">
+        <p className="mt-1 text-sm text-slate-500">
           Based in Brisbane, AU · open to remote.
         </p>
         <div className="mt-10 flex flex-col items-center gap-4 text-sm text-slate-300 sm:flex-row sm:gap-8">
           <a href="tel:0421366486" className="inline-flex items-center gap-2 transition-colors hover:text-white">
-            <HiOutlinePhone size={16} />
+            <HiOutlinePhone size={16} aria-hidden="true" />
             <span>0421 366 486</span>
           </a>
           <a
             href="mailto:joelhickeydesigns@gmail.com"
             className="inline-flex items-center gap-2 transition-colors hover:text-white"
           >
-            <HiOutlineMail size={16} />
+            <HiOutlineMail size={16} aria-hidden="true" />
             <span>joelhickeydesigns@gmail.com</span>
           </a>
           <a
@@ -39,7 +43,7 @@ function Contact() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 transition-colors hover:text-white"
           >
-            <SiLinkedin size={14} />
+            <SiLinkedin size={14} aria-hidden="true" />
             <span>LinkedIn</span>
           </a>
           <a
@@ -48,7 +52,7 @@ function Contact() {
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 transition-colors hover:text-white"
           >
-            <SiDribbble size={14} />
+            <SiDribbble size={14} aria-hidden="true" />
             <span>Dribbble</span>
           </a>
         </div>

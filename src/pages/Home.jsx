@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useLayoutEffect, useMemo, useRef, useState } from 'react'
+import { useCallback, useEffect, useLayoutEffect, useRef, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { HiOutlineMail } from 'react-icons/hi'
 import { SiLinkedin } from 'react-icons/si'
@@ -6,14 +6,13 @@ import ParticleBackground from '../components/ParticleBackground'
 
 import BatteryParticleFill from '../components/BatteryParticleFill'
 import { homeHeroNameGradientTextStyle } from '../design-system/home'
-import { applyStarMapOrbitTransform } from '../hooks/useStarMapBounceIntro.js'
 
 // Energy slide preview for FCTG AI talk card — full battery from slide "Energy / What charges your designer battery?"
 export function FCTGEnergyPreview() {
   return (
     <div className="flex min-w-0 h-full w-full flex-col bg-transparent">
       <div className="flex-1 min-h-0 min-w-0 flex items-center justify-center px-1 py-1">
-        <div className="w-full h-full max-h-[120px] md:max-h-[152px]" style={{ aspectRatio: '1100/280' }}>
+        <div className="w-full h-full max-h-[110px] md:max-h-[120px]" style={{ aspectRatio: '1100/280' }}>
           <style>{`
             @keyframes energy-card-pulse { 0%, 100% { filter: drop-shadow(0 0 6px rgba(34, 211, 238, 0.3)); } 50% { filter: drop-shadow(0 0 16px rgba(34, 211, 238, 0.5)); } }
             @keyframes energy-card-bubble { 0% { opacity: 0; transform: translateX(0) scale(0.5); } 20% { opacity: 0.8; transform: translateX(6px) scale(1); } 80% { opacity: 0.5; transform: translateX(-40px) scale(0.8); } 100% { opacity: 0; transform: translateX(-56px) scale(0.4); } }
@@ -25,7 +24,6 @@ export function FCTGEnergyPreview() {
             .energy-card-word { animation: energy-card-word 2s ease-in-out infinite; }
           `}</style>
           <svg viewBox="0 0 1100 280" className="block w-full h-full text-cyan-400/90" preserveAspectRatio="xMidYMid meet" aria-hidden>
-            <title>Energy battery</title>
             <defs>
               <linearGradient id="energy-card-grad" x1="0%" y1="0%" x2="100%" y2="0%">
                 <stop offset="0%" stopColor="#22d3ee" /><stop offset="25%" stopColor="#2dd4bf" /><stop offset="50%" stopColor="#818cf8" /><stop offset="75%" stopColor="#a78bfa" /><stop offset="100%" stopColor="#e879f9" />
@@ -114,7 +112,6 @@ export function InsurancePreview() {
         preserveAspectRatio="xMinYMid meet"
         aria-hidden
       >
-        <title>Insurance</title>
         <defs>
           <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#818cf8" />
@@ -159,7 +156,6 @@ export function AmendmentsPreview() {
         .amendments-home-card-draw { stroke-dasharray: 1; animation: amendments-home-pulse 2.5s ease-in-out infinite, amendments-home-draw 3s ease-out infinite; }
       `}</style>
       <svg viewBox="0 0 320 100" width="280" height="80" className="block shrink-0 text-cyan-400" style={{ minWidth: 200, maxWidth: '100%' }} preserveAspectRatio="xMidYMid meet" aria-hidden>
-        <title>Streamlining Amendments — from winding to straight</title>
         <defs>
           <linearGradient id={gradId} x1="0%" y1="0%" x2="100%" y2="0%">
             <stop offset="0%" stopColor="#818cf8" /><stop offset="45%" stopColor="#22d3ee" /><stop offset="100%" stopColor="#a78bfa" />
@@ -172,46 +168,19 @@ export function AmendmentsPreview() {
   )
 }
 
-function CRMLinkingPreview() {
-  return (
-    <div className="flex min-h-0 w-full items-center justify-center bg-transparent p-2">
-      <div
-        className="relative flex w-full max-w-[340px] items-center justify-center overflow-hidden rounded-[28px] border border-white/10 px-4 py-5"
-        style={{
-          background:
-            'radial-gradient(circle at 20% 30%, rgba(34, 211, 238, 0.14), transparent 32%), radial-gradient(circle at 78% 28%, rgba(129, 140, 248, 0.16), transparent 32%), linear-gradient(135deg, rgba(2, 6, 23, 0.88) 0%, rgba(15, 23, 42, 0.72) 40%, rgba(0, 0, 0, 0.7) 100%)'
-        }}
-      >
-        <div className="grid w-full grid-cols-[1fr_auto_1fr] items-center gap-3">
-          <div className="rounded-2xl border border-cyan-400/20 bg-white/5 px-3 py-4 text-center backdrop-blur-sm">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-200/80">CRM</p>
-            <p className="mt-2 text-sm font-semibold text-white md:text-base">Microsoft</p>
-          </div>
-          <div className="text-center text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-100/80 md:text-xs">
-            Deep link
-          </div>
-          <div className="rounded-2xl border border-violet-400/20 bg-white/5 px-3 py-4 text-center backdrop-blur-sm">
-            <p className="text-[10px] font-semibold uppercase tracking-[0.22em] text-cyan-200/80">Product</p>
-            <p className="mt-2 text-sm font-semibold text-white md:text-base">Helio</p>
-          </div>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 // Case study cards: 3 per row grid
 const CASE_STUDY_CARDS = [
-  { id: 'fctg', title: 'Agentic AI', description: 'Agentic design workflows presented live to 15+ designers.', path: '/stories/fctg-ai-talk', externalUrl: null, image: null, preview: 'energy' },
+  { id: 'fctg', title: 'AI & Design', description: 'Built and presented an interactive talk on AI-powered design workflows to Flight Centre\u2019s design team.', path: '/stories/fctg-ai-talk', externalUrl: null, image: null, preview: 'energy' },
   {
     id: 'insurance',
     title: 'Insurance',
-    description: '+45% attachment rate · $2.4M revenue impact.',
+    description: 'Redesigned travel insurance buying experience — +45% more customers added cover.',
     path: '/stories/insurance',
     image: null,
     preview: 'insurance'
   },
-  { id: 'amendments', title: 'Amendments', description: '~75% shorter handling time · 67% faster workflows.', path: '/stories/amendments', image: null, preview: 'amendments' }
+  { id: 'amendments', title: 'Amendments', description: 'Simplified post-booking changes — 75% faster for staff, 67% fewer steps.', path: '/stories/amendments', image: null, preview: 'amendments' }
 ]
 
 /** Insurance card title */
@@ -222,143 +191,6 @@ function storyCardHeadingTitle(item) {
   return item.title
 }
 
-const PILLARS = ['Strategy', 'Craft', 'Research', 'Systems', 'AI']
-
-const PILLAR_EVIDENCE = [
-  'Shaped product direction through stakeholder workshops, opportunity mapping, and roadmap influence across Flight Centre\u2019s travel platforms.',
-  'Shipped interaction-rich interfaces \u2014 from insurance quoting flows to amendment workflows \u2014 grounded in usability testing and iterative refinement.',
-  'Ran moderated testing with 60+ consultants and advisors, turning real usage patterns into design decisions that shipped.',
-  'Built design systems, documentation, and cross-timezone handoff patterns that scaled across brands and development teams.',
-  'Presented agentic AI workflows to 15+ designers. Integrated AI tools into daily design and development practice.'
-]
-
-/*
- * Outer ring: five pillars ×3 satellites each (AI: augment → steer → trust).
- */
-const OUTER_RING = [
-  { label: 'Direction', pillar: 0 },
-  { label: 'Focus', pillar: 0 },
-  { label: 'Align', pillar: 0 },
-  { label: 'Usability', pillar: 1 },
-  { label: 'Visual', pillar: 1 },
-  { label: 'Detail', pillar: 1 },
-  { label: 'Discover', pillar: 2 },
-  { label: 'Validate', pillar: 2 },
-  { label: 'Learn', pillar: 2 },
-  { label: 'Scale', pillar: 3 },
-  { label: 'Integrate', pillar: 3 },
-  { label: 'Sustain', pillar: 3 },
-  { label: 'Augment', pillar: 4 },
-  { label: 'Steer', pillar: 4 },
-  { label: 'Trust', pillar: 4 }
-]
-
-const STAR_MAP_NODE_COUNT = PILLARS.length + OUTER_RING.length
-
-/** Inner pillars: regular pentagon on the orbit (-90° = top, clockwise). */
-const INNER_ORBIT_START_DEG = -90
-const STAR_CHART_INNER = PILLARS.map((_, i) => ({
-  angle: INNER_ORBIT_START_DEG + i * (360 / PILLARS.length),
-  radiusScale: 1
-}))
-
-/*
- * Outer satellites: wider ±° clusters around each pillar ray so labels don’t stack (esp. Systems).
- * Hub angles: Strategy -90°, Craft -18°, Research 54°, Systems 126°, AI 198° (−162°).
- */
-const STAR_CHART_OUTER = [
-  { angle: -110, radiusScale: 0.93 },
-  { angle: -90, radiusScale: 1 },
-  { angle: -70, radiusScale: 0.97 },
-  { angle: -38, radiusScale: 0.94 },
-  { angle: -18, radiusScale: 1.03 },
-  { angle: 2, radiusScale: 0.92 },
-  { angle: 34, radiusScale: 0.94 },
-  { angle: 54, radiusScale: 1.02 },
-  { angle: 74, radiusScale: 0.95 },
-  { angle: 104, radiusScale: 0.92 },
-  { angle: 126, radiusScale: 1.06 },
-  { angle: 148, radiusScale: 0.94 },
-  { angle: -182, radiusScale: 0.92 },
-  { angle: -162, radiusScale: 1.05 },
-  { angle: -142, radiusScale: 0.94 }
-]
-const OUTER_RING_RADIUS_MULTIPLIER = 2
-
-/** SVG segments: core → inner pillars, then inner → outer satellites (trimmed to disc edges). */
-function measureStarMapConnectors(containerEl, starsRef, coreRef) {
-  if (!containerEl) return null
-  const stars = starsRef?.current
-  if (!stars || stars.length < PILLARS.length + OUTER_RING.length) return null
-  const w = containerEl.offsetWidth
-  const h = containerEl.offsetHeight
-  if (w < 1 || h < 1) return null
-  const c = containerEl.getBoundingClientRect()
-  const innerCount = PILLARS.length
-  const lines = []
-
-  const coreEl = coreRef?.current
-  if (coreEl) {
-    const cr = coreEl.getBoundingClientRect()
-    const cxc = cr.left + cr.width / 2 - c.left
-    const cyc = cr.top + cr.height / 2 - c.top
-    const rCore = Math.max(cr.width, cr.height) / 2
-    for (let pi = 0; pi < PILLARS.length; pi++) {
-      const innerEl = stars[pi]
-      if (!innerEl) continue
-      const ir = innerEl.getBoundingClientRect()
-      const ixc = ir.left + ir.width / 2 - c.left
-      const iyc = ir.top + ir.height / 2 - c.top
-      let dx = ixc - cxc
-      let dy = iyc - cyc
-      const len = Math.hypot(dx, dy) || 1e-6
-      const ux = dx / len
-      const uy = dy / len
-      const rInner = Math.max(ir.width, ir.height) / 2
-      if (len <= rCore + rInner + 2) continue
-      lines.push({
-        kind: 'core',
-        pillar: pi,
-        x1: cxc + ux * rCore,
-        y1: cyc + uy * rCore,
-        x2: ixc - ux * rInner,
-        y2: iyc - uy * rInner
-      })
-    }
-  }
-
-  for (let i = 0; i < OUTER_RING.length; i++) {
-    const { pillar } = OUTER_RING[i]
-    const innerEl = stars[pillar]
-    const outerEl = stars[innerCount + i]
-    if (!innerEl || !outerEl) continue
-    const ir = innerEl.getBoundingClientRect()
-    const or = outerEl.getBoundingClientRect()
-    const ixc = ir.left + ir.width / 2 - c.left
-    const iyc = ir.top + ir.height / 2 - c.top
-    const oxc = or.left + or.width / 2 - c.left
-    const oyc = or.top + or.height / 2 - c.top
-    let dx = oxc - ixc
-    let dy = oyc - iyc
-    const len = Math.hypot(dx, dy) || 1e-6
-    const ux = dx / len
-    const uy = dy / len
-    /* Circle radii — trim segment so strokes don’t run through disc interiors */
-    const rInner = Math.max(ir.width, ir.height) / 2
-    const rOuter = Math.max(or.width, or.height) / 2
-    if (len <= rInner + rOuter + 2) continue
-    lines.push({
-      kind: 'spoke',
-      x1: ixc + ux * rInner,
-      y1: iyc + uy * rInner,
-      x2: oxc - ux * rOuter,
-      y2: oyc - uy * rOuter,
-      pillar,
-      outerIndex: i
-    })
-  }
-  return lines.length ? { w, h, lines } : null
-}
 
 /** Subtle scroll-linked vertical offset (Apple-style): element drifts as it crosses the viewport. */
 function getScrollParallaxOffset(
@@ -379,11 +211,6 @@ function Home() {
   const [storiesHeadingInView, setStoriesHeadingInView] = useState(false)
   const [capabilitiesInView, setCapabilitiesInView] = useState(false)
   const [, setCapabilitiesHeadingInView] = useState(false)
-  const [capabilitiesCardsInView, setCapabilitiesCardsInView] = useState(false)
-  const [showAllCapabilities, setShowAllCapabilities] = useState(false)
-  const [selectedPillarIndex, setSelectedPillarIndex] = useState(0)
-  const [starMapMeasure, setStarMapMeasure] = useState({ size: 0, radius: 100, radiusOuter: 200 })
-  const [starMapConnectors, setStarMapConnectors] = useState(null)
   const [logosInView, setLogosInView] = useState(false)
   const storiesHeadingRef = useRef(null)
   const storiesParallaxWrapRef = useRef(null)
@@ -393,29 +220,11 @@ function Home() {
   const contactParallaxWrapRef = useRef(null)
   const logosRef = useRef(null)
   const capabilitiesCardsRef = useRef(null)
-  const starMapRef = useRef(null)
-  const starMapCoreRef = useRef(null)
-  const starMapStarRefs = useRef(Array.from({ length: STAR_MAP_NODE_COUNT }, () => null))
-
-  const starMapLayouts = useMemo(
-    () => [
-      ...STAR_CHART_INNER.map((c) => ({
-        angle: c.angle,
-        outer: false,
-        radiusScale: c.radiusScale
-      })),
-      ...STAR_CHART_OUTER.map((c) => ({
-        angle: c.angle,
-        outer: true,
-        radiusScale: c.radiusScale
-      }))
-    ],
-    []
-  )
-
   const storyCardParallax0Ref = useRef(null)
   const storyCardParallax1Ref = useRef(null)
   const storyCardParallax2Ref = useRef(null)
+
+  useEffect(() => { document.title = 'Joel Hickey — Product Design + AI Workflows' }, [])
 
   useEffect(() => {
     const el = storiesHeadingRef.current
@@ -456,18 +265,6 @@ function Home() {
     return () => observer.disconnect()
   }, [])
 
-  useEffect(() => {
-    const el = capabilitiesCardsRef.current
-    if (!el) return
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setCapabilitiesCardsInView(true)
-      },
-      { threshold: 0.2 }
-    )
-    observer.observe(el)
-    return () => observer.disconnect()
-  }, [])
 
   useEffect(() => {
     const el = logosRef.current
@@ -515,53 +312,6 @@ function Home() {
       cancelled = true
     }
   }, [])
-
-  useLayoutEffect(() => {
-    const el = starMapRef.current
-    if (!el) return
-    const measure = () => {
-      const w = el.offsetWidth
-      const r = parseFloat(getComputedStyle(el).getPropertyValue('--cap-radius').trim()) || 100
-      setStarMapMeasure({ size: w, radius: r, radiusOuter: r * OUTER_RING_RADIUS_MULTIPLIER })
-    }
-    measure()
-    const ro = new ResizeObserver(measure)
-    ro.observe(el)
-    return () => ro.disconnect()
-  }, [capabilitiesInView])
-
-  useLayoutEffect(() => {
-    if (!capabilitiesInView) return
-    const refs = starMapStarRefs.current
-    starMapLayouts.forEach((layout, i) => {
-      const el = refs[i]
-      if (el) applyStarMapOrbitTransform(el, layout)
-    })
-  }, [capabilitiesInView, starMapLayouts])
-
-  /* Pillar → capability connector lines (re-measure on resize). */
-  useLayoutEffect(() => {
-    const el = starMapRef.current
-    if (!el) return
-    let rafId = 0
-    let rafId2 = 0
-    const update = () => {
-      setStarMapConnectors(measureStarMapConnectors(el, starMapStarRefs, starMapCoreRef))
-    }
-    update()
-    rafId = requestAnimationFrame(() => {
-      rafId2 = requestAnimationFrame(update)
-    })
-    const ro = new ResizeObserver(() => {
-      requestAnimationFrame(update)
-    })
-    ro.observe(el)
-    return () => {
-      if (rafId) cancelAnimationFrame(rafId)
-      if (rafId2) cancelAnimationFrame(rafId2)
-      ro.disconnect()
-    }
-  }, [capabilitiesInView, starMapLayouts])
 
   /* Scroll-linked heading parallax — direct DOM updates, respects reduced motion */
   useLayoutEffect(() => {
@@ -616,28 +366,28 @@ function Home() {
   }, [])
 
   return (
-    <section className="relative z-10 flex w-full flex-col items-center">
+    <div className="relative z-10 flex w-full flex-col items-center">
       <div className="home-hero relative flex min-h-[calc(100vh-64px)] w-full items-center justify-center overflow-hidden">
         <div className="relative z-10 mx-auto w-full max-w-6xl space-y-16 px-6 text-center -mt-16">
           <div className="hero-stack">
-            <p className="hero-line text-7xl font-semibold leading-[1.1] tracking-normal md:text-8xl lg:text-9xl">
+            <h1 className="hero-line text-7xl font-semibold leading-[1.1] tracking-normal md:text-8xl lg:text-9xl">
               <span className="inline-block w-fit" style={homeHeroNameGradientTextStyle}>
                 Joel Hickey
               </span>
+            </h1>
+            <p className="hero-line mt-4 text-base font-light leading-snug tracking-wider text-slate-300 sm:text-xl md:text-2xl lg:text-3xl [animation-delay:120ms]">
+              Senior Product Designer<span className="mx-3 text-slate-500" aria-hidden>·</span>AI Workflows
             </p>
-            <p className="hero-line mt-2 text-base font-light leading-snug tracking-wider text-slate-200 sm:text-xl md:text-2xl lg:text-3xl [animation-delay:120ms]">
-              Product Design + AI Workflows
+            <p className="hero-line mt-5 text-center text-xs font-medium tracking-wider text-slate-400 sm:text-sm [animation-delay:180ms]">
+              <span className="whitespace-nowrap">$2.4M revenue impact</span><span className="mx-2 text-slate-500" aria-hidden>·</span><span className="whitespace-nowrap">+45% conversion</span><span className="mx-2 text-slate-500" aria-hidden>·</span><span className="whitespace-nowrap">75% time saved</span>
             </p>
-            <p className="hero-line mt-5 text-center text-xs font-medium tracking-wider text-slate-500 sm:text-sm [animation-delay:180ms]">
-              +45pp attachment<span className="mx-2 text-slate-700" aria-hidden>·</span>~75% faster workflows<span className="mx-2 text-slate-700" aria-hidden>·</span>$2.4M revenue lift
-            </p>
-            <div className="hero-line flex justify-center mt-8" style={{ animationDelay: '220ms' }}>
+            <div className="hero-line flex justify-center mt-6" style={{ animationDelay: '220ms' }}>
             <a
               href="#stories"
               onClick={scrollToStories}
-              className="inline-block w-fit max-w-full rounded-full bg-home-cta px-8 py-4 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent whitespace-nowrap"
+              className="inline-block w-fit max-w-full rounded-full bg-home-cta px-5 py-2.5 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent whitespace-nowrap min-h-[44px]"
             >
-              Explore
+              View stories
             </a>
           </div>
           </div>
@@ -666,159 +416,90 @@ function Home() {
             <div className="md:col-span-2 group relative flex min-w-0 transition-all duration-500 hover:translate-y-[-2px]">
               <div className="w-full min-w-0">
                 <div
-                  className="relative flex h-full min-h-[320px] w-full min-w-0 flex-col overflow-hidden rounded-home-card border border-white/10 py-16 transition-shadow duration-500 md:min-h-[380px] md:flex-row md:py-20 shadow-home-card-glow group-hover:shadow-home-card-glow-hover"
+                  className="relative flex h-full w-full min-w-0 flex-col overflow-hidden rounded-home-card border border-white/10 py-14 transition-shadow duration-500 md:flex-row md:py-16 shadow-home-card-glow group-hover:shadow-home-card-glow-hover"
                   style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
                 >
-                  <div className="relative flex min-w-0 flex-1 flex-col items-start text-left justify-start px-12 md:px-14">
+                  <div className="relative flex min-w-0 flex-1 flex-col items-start text-left justify-start px-10 md:px-11 lg:px-12">
                     <h3 className="text-4xl font-semibold tracking-wide text-white md:text-5xl lg:text-6xl">
                       {CASE_STUDY_CARDS[0].title}
                     </h3>
-                    <p className="mt-3 text-xl font-extralight tracking-wider text-white md:text-2xl">{CASE_STUDY_CARDS[0].description}</p>
+                    <p className="mt-6 text-xl font-extralight tracking-wider text-white md:text-2xl">{CASE_STUDY_CARDS[0].description}</p>
                     <Link
                       to={CASE_STUDY_CARDS[0].path}
-                      className="mt-6 inline-block rounded-full bg-home-cta px-5 py-2.5 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110"
+                      aria-label={`View story: ${CASE_STUDY_CARDS[0].title}`}
+                      className="mt-6 hidden md:inline-flex items-center rounded-full bg-home-cta px-5 py-2.5 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[44px]"
                     >
                       View story
                     </Link>
                   </div>
-                  <div className="relative w-full shrink-0 overflow-hidden md:w-[52%] md:min-w-0 md:max-w-[640px] flex items-center justify-center px-10 md:px-12">
-                    <div className="w-full max-h-[180px] md:max-h-[280px] [aspect-ratio:1100/280] flex items-center justify-center">
+                  <div className="relative mt-6 md:mt-0 w-full shrink-0 overflow-hidden md:w-[52%] md:min-w-0 md:max-w-[640px] flex items-center justify-center px-10 md:px-12">
+                    <div className="w-full [aspect-ratio:1100/280] flex items-center justify-center">
                       <FCTGEnergyPreview />
                     </div>
+                  </div>
+                  <div className="mt-6 px-10 md:hidden">
+                    <Link
+                      to={CASE_STUDY_CARDS[0].path}
+                      aria-label={`View story: ${CASE_STUDY_CARDS[0].title}`}
+                      className="inline-flex items-center rounded-full bg-home-cta px-5 py-2.5 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[44px]"
+                    >
+                      View story
+                    </Link>
                   </div>
                 </div>
               </div>
             </div>
-            {/* Row 2: Insurance + Amendments */}
-            {CASE_STUDY_CARDS.slice(1, 3).map((item, rowIdx) => (
+            {/* Row 2: Insurance + Amendments — same structure as AI card */}
+            {CASE_STUDY_CARDS.slice(1, 3).map((item) => (
               <div
                 key={item.id}
                 className="group relative flex min-w-0 transition-all duration-500 hover:translate-y-[-2px]"
               >
-                {item.externalUrl ? (
-                  <div className="w-full min-w-0">
+                <div className="w-full min-w-0">
                   <div
-                    className={`relative flex h-full min-h-[320px] w-full min-w-0 flex-col overflow-hidden rounded-home-card border border-white/10 ${item.preview === 'insurance' || item.preview === 'amendments' ? 'py-20 md:py-24' : 'py-12 md:py-14'} transition-shadow duration-500 md:min-h-[380px] md:flex-row shadow-home-card-glow group-hover:shadow-home-card-glow-hover`}
+                    className="relative flex h-full w-full min-w-0 flex-col overflow-hidden rounded-home-card border border-white/10 py-14 md:py-16 transition-shadow duration-500 shadow-home-card-glow group-hover:shadow-home-card-glow-hover"
                     style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}
                   >
-                    <div className="relative flex min-w-0 flex-1 flex-col items-start text-left justify-start px-10 md:px-11 lg:px-12">
+                    <div className="relative flex min-w-0 flex-col items-start text-left justify-start px-10 md:px-11 lg:px-12">
                       <h3
-                        className={`font-semibold tracking-wide ${
-                          item.preview === 'insurance' || item.preview === 'amendments'
-                            ? 'text-4xl md:text-5xl lg:text-6xl'
-                            : 'text-5xl md:text-6xl lg:text-7xl'
-                        } ${
-                          item.preview === 'insurance' || item.preview === 'amendments'
-                            ? 'text-white'
-                            : `bg-home-card-title-on-dark bg-clip-text text-transparent`
-                        }`}
+                        className="text-4xl font-semibold tracking-wide text-white md:text-5xl lg:text-6xl"
                         {...(item.preview === 'insurance' ? { 'aria-label': 'Insurance' } : {})}
                       >
                         {storyCardHeadingTitle(item)}
                       </h3>
-                      <p className="mt-3 font-extralight tracking-wider text-white text-xl md:text-2xl">
+                      <p className="mt-6 text-xl font-extralight tracking-wider text-white md:text-2xl">
                         {item.description}
                       </p>
-                      {item.preview === 'insurance' && (
-                        <div className="mt-4 w-full max-w-[360px] shrink-0">
-                          <InsurancePreview />
-                        </div>
-                      )}
-                      <a
-                        href={item.externalUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="mt-auto inline-block rounded-full bg-home-cta px-5 py-2.5 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110"
-                      >
-                        Open presentation
-                      </a>
                     </div>
-                    <div className="relative w-full shrink-0 overflow-hidden md:w-[40%] md:min-w-0 md:max-w-[300px] flex items-center justify-center px-6 md:px-8">
-                      <div className="w-full min-h-[100px] max-h-[140px] md:min-h-[120px] md:max-h-[220px] flex items-center justify-center overflow-visible">
-                        {item.preview === 'insurance' ? (
-                          <div className="h-full w-full min-h-[80px] rounded-lg bg-cyan-950/20" aria-hidden />
-                        ) : item.preview === 'amendments' ? (
-                          <AmendmentsPreview />
-                        ) : item.preview === 'crm-helio' ? (
-                          <CRMLinkingPreview />
-                        ) : item.image ? (
-                          <img
-                            src={item.image}
-                            alt=""
-                            className="h-full w-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
-                          />
-                        ) : (
-                          <div className="h-full w-full bg-cyan-950/40" aria-hidden />
-                        )}
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                ) : (
-                  <div className="w-full min-w-0">
-                  <div className={`relative flex h-full min-h-[320px] w-full min-w-0 flex-col overflow-hidden rounded-home-card border border-white/10 ${item.preview === 'insurance' || item.preview === 'amendments' ? 'py-20 md:py-24' : 'py-12 md:py-14'} transition-shadow duration-500 md:min-h-[380px] md:flex-row shadow-home-card-glow group-hover:shadow-home-card-glow-hover`}
-                    style={{ backgroundColor: 'rgba(0,0,0,0.5)' }}>
-                    <div className="relative flex min-w-0 flex-1 flex-col items-start text-left justify-start px-10 md:px-11 lg:px-12">
-                      <h3
-                        className={`font-semibold tracking-wide ${
-                          item.preview === 'insurance' || item.preview === 'amendments'
-                            ? 'text-4xl md:text-5xl lg:text-6xl'
-                            : 'text-5xl md:text-6xl lg:text-7xl'
-                        } ${
-                          item.preview === 'insurance' || item.preview === 'amendments'
-                            ? 'text-white'
-                            : `bg-home-card-title-on-dark bg-clip-text text-transparent`
-                        }`}
-                        {...(item.preview === 'insurance' ? { 'aria-label': 'Insurance' } : {})}
-                      >
-                        {storyCardHeadingTitle(item)}
-                      </h3>
-                      <p className="mt-3 font-extralight tracking-wider text-white text-xl md:text-2xl">
-                        {item.description}
-                      </p>
+                    <div className="mt-6 px-10 md:px-11 lg:px-12">
                       {item.preview === 'insurance' && (
-                        <div className="mt-4 w-full max-w-[360px] shrink-0">
+                        <div className="w-full max-w-[360px]">
                           <InsurancePreview />
                         </div>
                       )}
                       {item.preview === 'amendments' && (
-                        <div className="mt-4 w-full max-w-[280px] shrink-0">
+                        <div className="w-full max-w-[280px]">
                           <AmendmentsPreview />
                         </div>
                       )}
+                    </div>
+                    <div className="mt-6 px-10 md:px-11 lg:px-12">
                       {item.path ? (
                         <Link
                           to={item.path}
-                          className="mt-auto inline-block rounded-full bg-home-cta px-5 py-2.5 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent"
+                          aria-label={`View story: ${item.title}`}
+                          className="inline-flex items-center rounded-full bg-home-cta px-5 py-2.5 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[44px]"
                         >
                           View story
                         </Link>
                       ) : (
-                        <span className="mt-auto inline-block rounded-full bg-home-cta px-5 py-2.5 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25">
+                        <span className="inline-block rounded-full bg-home-cta px-5 py-2.5 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25">
                           Coming soon
                         </span>
                       )}
                     </div>
-                    <div className="relative w-full shrink-0 overflow-hidden md:w-[40%] md:min-w-0 md:max-w-[300px] flex items-center justify-center px-6 md:px-8">
-                      <div className="w-full min-h-[100px] max-h-[140px] md:min-h-[120px] md:max-h-[220px] flex items-center justify-center overflow-visible">
-                        {item.preview === 'insurance' || item.preview === 'amendments' ? (
-                          <div className="h-full w-full min-h-[80px] rounded-lg bg-cyan-950/20" aria-hidden />
-                        ) : item.preview === 'crm-helio' ? (
-                          <CRMLinkingPreview />
-                        ) : item.image ? (
-                          <img
-                            src={item.image}
-                            alt=""
-                            className="h-full w-full object-cover opacity-90 group-hover:opacity-100 transition-opacity"
-                          />
-                        ) : (
-                          <div className="h-full w-full bg-cyan-950/40" aria-hidden />
-                        )}
-                      </div>
-                    </div>
                   </div>
-                  </div>
-                )}
+                </div>
               </div>
             ))}
           </div>
@@ -830,7 +511,7 @@ function Home() {
             <div className="inline-block rounded-full bg-home-cta p-px shadow-sm shadow-violet-500/15 transition hover:shadow-violet-500/25 hover:brightness-105">
               <Link
                 to="/stories"
-                className="block rounded-full bg-black px-5 py-2.5 text-base font-normal tracking-wider outline-none transition hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-white/45 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent"
+                className="inline-flex items-center rounded-full bg-black px-5 py-2.5 text-base font-normal tracking-wider outline-none transition hover:bg-white/5 focus-visible:ring-2 focus-visible:ring-white/45 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[44px]"
               >
                 <span className="bg-home-cta-label bg-clip-text text-transparent">
                   View more stories
@@ -841,7 +522,7 @@ function Home() {
           </div>
         </div>
       </section>
-      <section ref={capabilitiesRef} className="relative z-10 w-full min-h-screen overflow-visible bg-transparent pb-[112px]" aria-label="How I create value">
+      <section ref={capabilitiesRef} className="relative z-10 w-full min-h-screen overflow-visible bg-transparent" aria-label="How I create value">
         <div className="w-full overflow-visible">
           {/* pb-48/md:pb-52 — extra space vs Stories h2: star map orbits overflow the box; tighter pb reads cramped */}
           <div ref={capabilitiesParallaxWrapRef} className="w-full will-change-transform">
@@ -862,20 +543,20 @@ function Home() {
           >
             <div className="flex flex-col gap-8 md:gap-10">
               {[
-                { title: 'Strategy', desc: 'Stakeholder alignment, opportunity mapping, and product roadmap direction', icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
+                { title: 'Strategy', desc: 'Brought product, engineering, and partner teams together to plan and deliver across insurance, amendments, and logistics.', icon: (
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <circle cx="5" cy="5" r="2" /><circle cx="19" cy="5" r="2" /><circle cx="12" cy="19" r="2" /><circle cx="12" cy="11" r="1.5" />
                     <path d="M6.8 6.2l3.7 3.3M17.2 6.2l-3.7 3.3M12 13v4" />
                   </svg>
                 )},
-                { title: 'Research', desc: 'Usability testing, customer interviews, and data-driven design decisions', icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
+                { title: 'Research', desc: 'Tested designs with 24 real users, ran A/B comparisons, and used session recordings to validate every decision.', icon: (
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <path d="M3 20h18M6 16V10M10 16V6M14 16V12M18 16V8" strokeLinecap="round" />
                     <path d="M3 14l4-6 4 4 4-6 4 4" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 )},
-                { title: 'Leadership', desc: 'Mentoring designers, running workshops, and elevating team capability', icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
+                { title: 'Leadership', desc: 'Presented to Flight Centre\u2019s design team, ran workshops, and set up design-to-developer handoff standards.', icon: (
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <circle cx="9" cy="7" r="3" /><circle cx="17" cy="9" r="2.5" />
                     <path d="M2 21v-2a5 5 0 015-5h4a5 5 0 015 5v2" strokeLinecap="round" />
                     <path d="M17 12a4 4 0 014 4v1" strokeLinecap="round" />
@@ -891,7 +572,7 @@ function Home() {
                     {p.icon}
                     <h3 className="text-base font-semibold tracking-wider text-white md:text-lg">{p.title}</h3>
                   </div>
-                  <p className="mt-1.5 text-sm font-light leading-relaxed tracking-wider text-slate-400 md:text-base">{p.desc}</p>
+                  <p className="mt-1.5 text-sm font-light leading-relaxed tracking-wider text-slate-300 md:text-base">{p.desc}</p>
                 </div>
               ))}
             </div>
@@ -907,23 +588,23 @@ function Home() {
             </div>
             <div className="flex flex-col gap-8 md:gap-10">
               {[
-                { title: 'AI & Agentic', desc: 'Building and teaching agentic workflows that make design teams measurably faster', icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
+                { title: 'AI & Automation', desc: 'Built this portfolio using AI tools — then presented the approach to Flight Centre\u2019s design team.', icon: (
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <ellipse cx="12" cy="12" rx="8" ry="9" />
                     <path d="M8 8.5c0 1 .8 2 2 2.5s2.5.3 3.5-.5M9 15c1 .8 3 1 4.5 0" strokeLinecap="round" />
                     <circle cx="9" cy="8" r="0.75" fill="currentColor" /><circle cx="15" cy="8" r="0.75" fill="currentColor" />
                     <path d="M4 10H2M20 10h2M4 15H2M20 15h2M7 3L6 1M17 3l1-2" strokeLinecap="round" />
                   </svg>
                 )},
-                { title: 'Craft', desc: 'Interaction-rich interfaces from quoting flows to amendment workflows', icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
+                { title: 'Craft', desc: 'Insurance quoting, booking amendments, and system linking — all shipped into large, established platforms.', icon: (
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <rect x="3" y="3" width="18" height="18" rx="3" />
                     <path d="M3 9h18M9 9v12" strokeLinecap="round" />
                     <rect x="12" y="12" width="6" height="4" rx="1" />
                   </svg>
                 )},
-                { title: 'Systems', desc: 'Scalable design systems, documentation, and cross-team handoff patterns', icon: (
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
+                { title: 'Systems', desc: 'Reusable component libraries, detailed specs, and design-to-dev documentation adopted as team standards.', icon: (
+                  <svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" className="h-5 w-5 text-cyan-400">
                     <rect x="3" y="3" width="7" height="7" rx="1.5" /><rect x="14" y="3" width="7" height="7" rx="1.5" />
                     <rect x="3" y="14" width="7" height="7" rx="1.5" /><rect x="14" y="14" width="7" height="7" rx="1.5" />
                   </svg>
@@ -938,7 +619,7 @@ function Home() {
                     {p.icon}
                     <h3 className="text-base font-semibold tracking-wider text-white md:text-lg">{p.title}</h3>
                   </div>
-                  <p className="mt-1.5 text-sm font-light leading-relaxed tracking-wider text-slate-400 md:text-base">{p.desc}</p>
+                  <p className="mt-1.5 text-sm font-light leading-relaxed tracking-wider text-slate-300 md:text-base">{p.desc}</p>
                 </div>
               ))}
             </div>
@@ -950,17 +631,16 @@ function Home() {
         className="relative z-10 w-full bg-transparent"
         aria-label="Brands I've designed for"
       >
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-10 pt-28 pb-44 md:pt-36 md:pb-56">
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-10 pt-[112px] pb-[112px]">
           <div className={`w-full mx-auto transition-all duration-700 ease-out ${logosInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
-            <p className="text-center text-2xl font-light tracking-wider text-slate-300 md:text-3xl lg:text-4xl">
+            <h2 className="text-center text-2xl font-light tracking-wider text-slate-300 md:text-3xl lg:text-4xl">
               Brands I've designed for
-            </p>
+            </h2>
           </div>
-          <div className={`mt-24 flex w-full flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-16 md:gap-x-28 lg:gap-x-36 transition-all duration-700 ease-out delay-200 ${logosInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+          <div className={`mt-8 flex w-full flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:gap-x-16 md:gap-x-28 lg:gap-x-36 transition-all duration-700 ease-out delay-200 ${logosInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
             <img src="/images/logos/flight-centre.png" alt="Flight Centre Travel Group" className="h-8 w-auto object-contain brightness-0 invert sm:h-10 md:h-14 lg:h-16" />
             <img src="/images/logos/canstar.png" alt="Canstar" className="h-10 w-auto object-contain sm:h-12 md:h-16 lg:h-20" />
             <img src="/images/logos/temando.png" alt="Temando" className="h-3.5 w-auto object-contain sm:h-4 md:h-6 lg:h-7" />
-            <img src="/images/logos/4zzz.svg" alt="4ZZZ" className="h-8 w-auto object-contain sm:h-10 md:h-14 lg:h-16" />
           </div>
         </div>
       </section>
@@ -973,13 +653,13 @@ function Home() {
           </div>
           <div className="w-full text-center">
             <p className="inline-block text-base font-extralight leading-relaxed tracking-wider text-white md:text-lg">
-              Open to product design and AI workflow roles — plus speaking, workshops, and collaborations.
+              Open to senior product design contracts — strategy, complex workflows, and AI-assisted prototyping.
             </p>
           </div>
-          <div className="mt-16 flex flex-wrap justify-center gap-6">
+          <div className="mt-8 flex flex-wrap justify-center gap-6">
             <a
               href="mailto:joelhickeydesigns@gmail.com"
-              className="inline-flex items-center gap-2 rounded-full bg-home-cta px-6 py-3 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent min-h-[44px]"
+              className="inline-flex items-center gap-2 rounded-full bg-home-cta px-6 py-3 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[44px]"
             >
               <HiOutlineMail className="shrink-0" size={20} aria-hidden />
               Email me
@@ -988,7 +668,8 @@ function Home() {
               href="https://www.linkedin.com/in/joelhickey"
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 rounded-full bg-home-cta px-6 py-3 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110 focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-transparent min-h-[44px]"
+              aria-label="LinkedIn (opens in a new tab)"
+              className="inline-flex items-center gap-2 rounded-full bg-home-cta px-6 py-3 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[44px]"
             >
               <SiLinkedin className="shrink-0" size={20} aria-hidden />
               LinkedIn
@@ -996,7 +677,7 @@ function Home() {
           </div>
         </div>
       </section>
-    </section>
+    </div>
   )
 }
 

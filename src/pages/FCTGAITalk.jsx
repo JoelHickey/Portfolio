@@ -61,19 +61,19 @@ function FCTGAITalk() {
         <div className="mx-auto w-full max-w-6xl px-6 py-5">
           <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs">
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Role</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Role</p>
               <p className="mt-0.5 font-medium text-slate-700">Senior Product Designer</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Context</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Context</p>
               <p className="mt-0.5 font-medium text-slate-700">Invited talk — FCTG design team, 15+ designers</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Duration</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Duration</p>
               <p className="mt-0.5 font-medium text-slate-700">~4 weeks, solo, 2025</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-400">Tools</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Tools</p>
               <p className="mt-0.5 font-medium text-slate-700">Cursor Agent, Claude, React, Vite, Tailwind</p>
             </div>
           </div>
@@ -84,7 +84,7 @@ function FCTGAITalk() {
       <div className="w-full bg-white border-b border-slate-100">
         <div className="mx-auto w-full max-w-6xl px-6 py-6">
           <div className="max-w-3xl space-y-2 text-sm text-slate-600">
-            <p className="font-semibold uppercase tracking-widest text-slate-400 text-xs">Summary</p>
+            <p className="font-semibold uppercase tracking-widest text-slate-500 text-xs">Summary</p>
             <p className="leading-relaxed">Invited to present on agentic AI to FCTG's design team. I solo-built a 54-slide interactive presentation — including 2 working React prototypes, 5+ custom SVG diagrams, and a 3-round hands-on workshop — entirely using agentic workflows (Cursor Agent + Claude). The presentation itself was the proof: built with the tools it teaches.</p>
           </div>
         </div>
@@ -352,7 +352,7 @@ function FCTGAITalk() {
             <div className="grid gap-6 md:grid-cols-3">
               <div className="rounded-xl border border-violet-200 bg-violet-50/50 p-6">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-violet-600">Round 1 · ~15 min</span>
-                <h4 className="mt-2 text-lg font-semibold text-slate-900">Start with vibe</h4>
+                <h3 className="mt-2 text-lg font-semibold text-slate-900">Start with vibe</h3>
                 <p className="mt-2 text-sm text-slate-600">
                   Explore flows and tone. Open-ended prompting, iterating freely. No wrong answers — just getting comfortable with the tool.
                 </p>
@@ -360,7 +360,7 @@ function FCTGAITalk() {
               </div>
               <div className="rounded-xl border border-indigo-200 bg-indigo-50/50 p-6">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-indigo-600">Round 2 · ~25 min</span>
-                <h4 className="mt-2 text-lg font-semibold text-slate-900">Level up to agentic</h4>
+                <h3 className="mt-2 text-lg font-semibold text-slate-900">Level up to agentic</h3>
                 <p className="mt-2 text-sm text-slate-600">
                   Give AI a clear mission with defined steps and expected outcomes. One structured prompt, full deliverable. See the difference in output quality.
                 </p>
@@ -368,7 +368,7 @@ function FCTGAITalk() {
               </div>
               <div className="rounded-xl border border-amber-200 bg-amber-50/50 p-6">
                 <span className="text-[10px] font-semibold uppercase tracking-wider text-amber-600">Round 3 · ~15 min</span>
-                <h4 className="mt-2 text-lg font-semibold text-slate-900">Compare & discuss</h4>
+                <h3 className="mt-2 text-lg font-semibold text-slate-900">Compare & discuss</h3>
                 <p className="mt-2 text-sm text-slate-600">
                   Side-by-side comparison: what changed between vibe and agentic? Group discussion on when each mode is useful and where the human matters most.
                 </p>
@@ -425,9 +425,6 @@ function FCTGAITalk() {
             </div>
           </div>
 
-          <p className="mt-6 max-w-2xl text-xs text-slate-500">
-            Post-session, three product squads began experimenting with agentic workflows for prototyping and documentation. A follow-up deep-dive was requested for the broader design org.
-          </p>
         </div>
       </div>
 

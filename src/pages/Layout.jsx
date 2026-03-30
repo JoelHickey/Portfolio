@@ -12,7 +12,7 @@ function Layout() {
 
   const navLinkClass = ({ isActive }) =>
     [
-      'relative inline-block font-light transition',
+      'relative inline-flex items-center min-h-[44px] px-2 font-light transition rounded focus-visible:ring-2 focus-visible:ring-white/50 focus-visible:ring-offset-2 focus-visible:ring-offset-transparent outline-none',
       isLightPage ? 'hover:text-slate-900' : 'hover:text-slate-100',
       isActive
         ? isLightPage ? 'text-slate-900 font-medium' : 'text-white'
@@ -21,6 +21,9 @@ function Layout() {
 
   return (
     <div className={`flex min-h-screen flex-col ${isLightPage ? 'bg-white text-slate-900' : 'bg-black text-slate-100'}`}>
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-slate-900 focus:shadow-lg">
+        Skip to content
+      </a>
       {isHome && (
         <div className="pointer-events-none fixed inset-0 z-0" aria-hidden>
           <ParticleBackground variant="title" />
@@ -28,7 +31,7 @@ function Layout() {
       )}
       <header className={`relative z-20 ${isLightPage ? 'bg-white' : 'bg-black'}`}>
         <div className="mx-auto flex max-w-6xl items-center justify-center p-2">
-          <nav className={`flex w-full items-center justify-center gap-4 text-xs font-light tracking-wider sm:gap-8 md:gap-12 ${isLightPage ? 'text-slate-800' : 'text-slate-200'}`}>
+          <nav aria-label="Main" className={`flex w-full items-center justify-center gap-4 text-xs font-light tracking-wider sm:gap-8 md:gap-12 ${isLightPage ? 'text-slate-800' : 'text-slate-200'}`}>
             <NavLink to="/" className={navLinkClass} end>
               Home
             </NavLink>
@@ -49,6 +52,7 @@ function Layout() {
       </header>
 
       <main
+        id="main-content"
         className={
           isLightPage
             ? 'w-full flex-1 bg-white text-slate-900'
@@ -64,7 +68,7 @@ function Layout() {
         <Outlet />
       </main>
 
-      <footer id="site-footer" role="contentinfo" className={`relative z-10 mt-auto shrink-0 py-6 text-center text-sm tracking-wider ${isLightPage ? 'text-slate-400' : 'text-slate-500'}`}>
+      <footer id="site-footer" className={`relative z-10 mt-auto shrink-0 py-6 text-center text-sm tracking-wider ${isLightPage ? 'text-slate-500' : 'text-slate-500'}`}>
         © {new Date().getFullYear()} Joel Hickey Designs
       </footer>
     </div>
