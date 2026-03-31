@@ -1,4 +1,5 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import { JOEL_AVATAR_SRC } from '../components/JoelAvatar';
 import {
   ActionList,
   ActionMenu,
@@ -1886,23 +1887,19 @@ const AmendmentsFlowDemoPrimer = ({ onBackToCaseStudy, onClose, position, zIndex
             <Box sx={sectionListSx}>
               <div style={{ ...compactCardStyle, display: 'flex', alignItems: 'center' }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                  <div
+                  <img
+                    src={JOEL_AVATAR_SRC}
+                    alt=""
+                    width={32}
+                    height={32}
                     style={{
-                      width: 32,
-                      height: 32,
                       borderRadius: '50%',
-                      background: 'var(--canvas-subtle)',
-                      color: 'var(--fgColor-muted)',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      fontWeight: 600,
-                      fontSize: 11
+                      objectFit: 'cover',
+                      flexShrink: 0,
+                      display: 'block'
                     }}
-                    aria-hidden="true"
-                  >
-                    JH
-                  </div>
+                    aria-hidden
+                  />
                   <div style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                     <Text as="span" sx={{ fontWeight: 600 }}>Joel Hickey</Text>
                     <Text as="span" sx={{ color: 'fg.muted', fontSize: 0 }}>• Adult</Text>

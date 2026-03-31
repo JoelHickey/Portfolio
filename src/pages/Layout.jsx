@@ -55,7 +55,7 @@ function Layout() {
               ? 'w-full flex-1 bg-black pb-12 pt-20 text-slate-200'
               : contactPage
                 ? 'w-full flex-1 bg-black text-slate-200'
-                : 'w-full flex-1 bg-black py-12'
+                : 'w-full flex-1 bg-black'
         }
       >
         <Outlet />

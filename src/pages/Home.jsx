@@ -171,12 +171,12 @@ const CASE_STUDY_CARDS = [
   {
     id: 'insurance',
     title: 'Insurance',
-    description: 'Redesigned travel insurance buying experience — +45% more customers added cover.',
+    description: 'Redesigned the travel insurance buying experience. +45% more customers added cover.',
     path: '/stories/insurance',
     image: null,
     preview: 'insurance'
   },
-  { id: 'amendments', title: 'Amendments', description: 'Simplified post-booking changes — 75% faster for staff, 67% fewer steps.', path: '/stories/amendments', image: null, preview: 'amendments' }
+  { id: 'amendments', title: 'Amendments', description: 'Simplified post-booking changes. 75% faster for staff, 67% fewer steps.', path: '/stories/amendments', image: null, preview: 'amendments' }
 ]
 
 /** Insurance card title */
@@ -627,15 +627,15 @@ function Home() {
         className="relative z-10 w-full bg-transparent"
         aria-label="Brands I've designed for"
       >
-        <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-10 pt-[112px] pb-[112px]">
+        <div className="mx-auto flex w-full max-w-5xl flex-col items-center px-10 pt-[160px] pb-[160px]">
           <div className={`w-full mx-auto transition-all duration-700 ease-out ${logosInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-6'}`}>
             <h2 className="text-center text-2xl font-light tracking-wider text-slate-300 md:text-3xl lg:text-4xl">
               Brands I've designed for
             </h2>
           </div>
           <div className={`mt-14 flex w-full flex-wrap items-center justify-center gap-x-12 gap-y-8 sm:mt-16 sm:gap-x-16 md:gap-x-28 lg:gap-x-36 transition-all duration-700 ease-out delay-200 ${logosInView ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
-            <img src="/images/logos/flight-centre.png" alt="Flight Centre Travel Group" className="h-8 w-auto object-contain brightness-0 invert sm:h-10 md:h-14 lg:h-16" />
             <img src="/images/logos/canstar.png" alt="Canstar" className="h-10 w-auto object-contain sm:h-12 md:h-16 lg:h-20" />
+            <img src="/images/logos/flight-centre.png" alt="Flight Centre Travel Group" className="h-8 w-auto object-contain brightness-0 invert sm:h-10 md:h-14 lg:h-16" />
             <img src="/images/logos/temando.png" alt="Temando" className="h-3.5 w-auto object-contain sm:h-4 md:h-6 lg:h-7" />
           </div>
         </div>

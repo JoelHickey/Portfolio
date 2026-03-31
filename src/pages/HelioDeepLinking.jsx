@@ -1,11 +1,7 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
-const gradientStyle = {
-  background: 'linear-gradient(90deg, #0891b2 0%, #0d9488 25%, #4f46e5 50%, #7c3aed 75%, #c026d3 100%)',
-  WebkitBackgroundClip: 'text',
-  backgroundClip: 'text',
-}
+import CaseStudyNav from '../components/CaseStudyNav'
+import { JoelAvatar } from '../components/JoelAvatar'
 
 function HelioDeepLinking() {
   useEffect(() => {
@@ -15,98 +11,93 @@ function HelioDeepLinking() {
 
   return (
     <section className="flex flex-col" aria-label="Deep linking case study">
+      <CaseStudyNav sections={[
+        { id: 'dl-problem', label: 'Problem' },
+        { id: 'dl-strategy', label: 'Strategy' },
+        { id: 'dl-design', label: 'Design' },
+        { id: 'dl-delivery', label: 'Delivery' },
+        { id: 'dl-outcome', label: 'Outcome' },
+        { id: 'dl-reflection', label: 'Reflection' },
+      ]} />
 
       {/* ════════════════════════════════════════════════════════════════
           HERO
           ════════════════════════════════════════════════════════════════ */}
       <div className="w-full -mt-12">
-        <div className="relative w-full h-[400px] sm:h-[480px] md:h-[560px] lg:h-[600px] overflow-hidden bg-slate-950">
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'radial-gradient(circle at 20% 30%, rgba(34, 211, 238, 0.25), transparent 30%), radial-gradient(circle at 80% 35%, rgba(129, 140, 248, 0.28), transparent 30%), linear-gradient(135deg, #020617 0%, #0f172a 38%, #111827 72%, #000000 100%)'
-            }}
-            aria-hidden
+        <div className="relative w-full h-[400px] sm:h-[480px] md:h-[560px] lg:h-[600px] overflow-hidden bg-slate-200">
+          <img
+            src="/images/deep-linking-hero.png"
+            alt="Aerial view of a bridge stretching across turquoise ocean"
+            className="h-full w-full object-cover object-center"
           />
           <div
-            className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/15 via-black/25 to-black/70"
-            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/25 via-black/35 to-black/80"
+            aria-hidden="true"
           />
-          <div className="absolute left-0 right-0 top-0 pt-12">
+          <div className="absolute left-0 right-0 top-0 pt-20">
             <div className="mx-auto w-full max-w-6xl px-6">
               <Link
                 to="/stories"
                 className="inline-flex items-center gap-1.5 rounded-full bg-black/30 px-3.5 py-1.5 text-sm font-medium text-white/90 backdrop-blur-sm transition hover:bg-black/45 hover:text-white"
               >
-                <span aria-hidden>←</span>
+                <span aria-hidden="true">←</span>
                 Back to Stories
               </Link>
             </div>
           </div>
-
-          {/* Hero visual — CRM → Deep Link → Helio (hidden on small screens) */}
-          <div className="absolute inset-x-0 top-24 hidden justify-center px-6 md:flex md:top-28 lg:top-32">
-            <div className="grid w-full max-w-2xl gap-3 grid-cols-[1fr_auto_1fr]">
-              <div className="rounded-xl border border-cyan-400/20 bg-black/35 px-5 py-4 shadow-[0_0_32px_rgba(34,211,238,0.14)] backdrop-blur-sm">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-200/80">Entry point</p>
-                <p className="mt-1.5 text-2xl font-semibold text-white">Microsoft CRM</p>
-              </div>
-              <div className="flex items-center justify-center">
-                <div className="rounded-full border border-white/10 bg-white/5 px-4 py-2 text-xs font-semibold uppercase tracking-[0.22em] text-cyan-100">
-                  →
-                </div>
-              </div>
-              <div className="rounded-xl border border-violet-400/20 bg-black/35 px-5 py-4 shadow-[0_0_32px_rgba(129,140,248,0.14)] backdrop-blur-sm">
-                <p className="text-[10px] font-semibold uppercase tracking-[0.24em] text-cyan-200/80">Destination</p>
-                <p className="mt-1.5 text-2xl font-semibold text-white">Helio</p>
-              </div>
-            </div>
-          </div>
-
-          <div className="pointer-events-none absolute inset-0 flex flex-col items-stretch justify-end pb-12 sm:pb-16">
+          <div className="pointer-events-none absolute inset-0 flex flex-col items-stretch justify-end pb-16">
             <div className="mx-auto w-full max-w-6xl px-6 text-left text-white">
               <h1 className="text-4xl font-bold tracking-wide leading-tight sm:text-5xl md:text-6xl lg:text-7xl">
                 One link, two philosophies.
               </h1>
               <p className="mt-3 max-w-2xl font-extralight tracking-wider text-white/90 text-xl md:text-2xl">
-                Deep-linking from Microsoft CRM into Helio — a product coherence vs enterprise flexibility trade-off.
+                Connecting Microsoft CRM to the booking platform so consultants stay with the customer, not the tool.
               </p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* Slim metadata bar */}
+      {/* Metadata bar */}
       <div className="w-full bg-slate-50 border-b border-slate-200">
         <div className="mx-auto w-full max-w-6xl px-6 py-5">
           <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs">
             <div>
               <p className="font-semibold uppercase tracking-widest text-slate-500">Role</p>
-              <p className="mt-0.5 font-medium text-slate-700">Lead UX Designer</p>
+              <p className="mt-0.5 font-medium text-slate-700">Senior UI/UX Designer</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-500">Domain</p>
-              <p className="mt-0.5 font-medium text-slate-700">B2B travel — CRM-to-platform integration</p>
-            </div>
-            <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-500">Team</p>
-              <p className="mt-0.5 font-medium text-slate-700">PM, UX, CRM team, platform architects</p>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Company</p>
+              <p className="mt-0.5 font-medium text-slate-700">Flight Centre Travel Group</p>
             </div>
             <div>
               <p className="font-semibold uppercase tracking-widest text-slate-500">Duration</p>
-              <p className="mt-0.5 font-medium text-slate-700">~3 months, 2023</p>
+              <p className="mt-0.5 font-medium text-slate-700">3 months · 2023</p>
+            </div>
+            <div>
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Team</p>
+              <p className="mt-0.5 font-medium text-slate-700">Dedicated cross-functional team</p>
             </div>
           </div>
         </div>
       </div>
 
-      {/* TL;DR */}
-      <div className="w-full bg-white border-b border-slate-100">
-        <div className="mx-auto w-full max-w-6xl px-6 py-6">
-          <div className="max-w-3xl space-y-2 text-sm text-slate-600">
-            <p className="font-semibold uppercase tracking-widest text-slate-500 text-xs">Summary</p>
-            <p className="leading-relaxed">Consultants were losing ~45 seconds per transition between Microsoft CRM and Helio because there was no contextual link between the two systems. I designed a deep-linking solution that passed booking context via URL parameters — navigating the trade-off between product coherence (single entry point) and enterprise flexibility (multiple entry points). The org chose multi-entry for scalability; the project connected 3,000+ consultants.</p>
+      {/* Key results */}
+      <div className="w-full bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-10">
+          <div className="grid gap-8 sm:grid-cols-3">
+            <div>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">45s</p>
+              <p className="mt-2 text-sm text-slate-500">Saved per transition</p>
+            </div>
+            <div>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">3,000+</p>
+              <p className="mt-2 text-sm text-slate-500">Consultants connected</p>
+            </div>
+            <div>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">0</p>
+              <p className="mt-2 text-sm text-slate-500">Manual navigation steps</p>
+            </div>
           </div>
         </div>
       </div>
@@ -116,81 +107,24 @@ function HelioDeepLinking() {
           PROBLEM
           ════════════════════════════════════════════════════════════════ */}
 
-      <div className="w-full bg-white">
+      <div id="dl-problem" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Problem</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Travel consultants lived between two systems: Microsoft CRM for customer records and relationship management, and Helio for booking, quoting, and servicing. Every time a consultant needed to act on a booking, they'd manually navigate from the customer record in CRM to the right screen in Helio — re-finding the customer, re-locating the booking, and re-establishing context. The handoff was invisible and expensive.
+            Travel consultants lived between two systems: Microsoft CRM for customer records, and Helio for booking and servicing. Every time a consultant needed to act on a booking, they'd manually navigate from CRM to Helio — re-finding the customer, re-locating the booking, and re-establishing context. Multiply that by thousands of transitions a day across 3,000+ consultants, and it was one of the biggest hidden drains on the network.
           </p>
 
           <blockquote className="mt-10 border-l-2 border-slate-300 pl-6">
-            <p className="text-2xl italic text-slate-800 md:text-3xl leading-snug">
+            <p className="text-base italic text-slate-700 md:text-lg leading-relaxed">
               "I've got the customer on the phone, their record open in CRM, and I still have to go hunt for their booking in Helio."
             </p>
             <footer className="mt-3 text-sm font-medium text-slate-500">— Consultant, discovery session</footer>
           </blockquote>
 
-          <div className="mt-12 grid gap-8 sm:grid-cols-3">
-            <div>
-              <p className="text-5xl font-semibold text-slate-900 md:text-6xl">2</p>
-              <p className="mt-2 text-sm text-slate-500">disconnected systems</p>
-            </div>
-            <div>
-              <p className="text-5xl font-semibold text-slate-900 md:text-6xl">~45s</p>
-              <p className="mt-2 text-sm text-slate-500">lost per transition finding context</p>
-            </div>
-            <div>
-              <p className="text-5xl font-semibold text-slate-900 md:text-6xl">3,000+</p>
-              <p className="mt-2 text-sm text-slate-500">consultants making the jump daily</p>
-            </div>
-          </div>
-
-          <div className="mt-16 max-w-2xl space-y-4">
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-              The deeper problem wasn't just the wasted seconds — it was the cognitive cost. Consultants had to hold the customer context in their head while navigating between systems, often while on a live call. The gap between CRM and Helio created a seam in the experience that consultants papered over with memory, browser tabs, and workarounds.
-            </p>
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
+          <p className="mt-10 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
               The business wanted deep links — clickable connections from a CRM customer record directly into Helio. The design question was deceptively simple: <span className="font-medium text-slate-800">where should those links land?</span>
             </p>
-          </div>
 
-          {/* Pain-point summary */}
-          <div className="mt-12">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Key friction points</p>
-            <div className="grid grid-cols-2 rounded-xl border border-slate-200 overflow-hidden">
-              <div className="border-r border-b border-slate-200 bg-red-50 p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-red-400 mb-3">Navigation friction</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {['Manual system switching', 'Re-finding customer in Helio', 'No context carried across', 'Multiple browser tabs'].map((item) => (
-                    <span key={item} className="rounded-md bg-red-600 px-2 py-1 text-xs font-medium text-white">{item}</span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="border-b border-slate-200 bg-red-50 p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-red-400 mb-3">Consultant impact</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {['Cognitive load during calls', 'Slower response time', 'Error-prone handoffs', 'Broken flow state'].map((item) => (
-                    <span key={item} className="rounded-md bg-red-600 px-2 py-1 text-xs font-medium text-white">{item}</span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="border-r border-slate-200 bg-slate-50 p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">Workarounds</p>
-                <div className="flex flex-wrap gap-1.5">
-                  {['Pinned browser tabs', 'Memorised booking IDs', 'Separate note-taking'].map((item) => (
-                    <span key={item} className="rounded-md bg-slate-300 px-2 py-1 text-xs font-medium text-slate-600">{item}</span>
-                  ))}
-                </div>
-              </div>
-
-              <div className="bg-slate-50 p-5">
-                <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">Design question</p>
-                <p className="text-sm text-slate-500">Where should deep links from CRM land in Helio — and who should own the wayfinding?</p>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
@@ -200,26 +134,16 @@ function HelioDeepLinking() {
           ════════════════════════════════════════════════════════════════ */}
 
       {/* ── Ideation ── */}
-      <div className="w-full bg-slate-50">
+      <div id="dl-strategy" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Strategy</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             The answer depended on a deeper question: should CRM ask users to choose their destination before leaving, or should Helio receive them and handle wayfinding from inside the product?
           </p>
 
-          <div className="mt-12 max-w-2xl space-y-8">
-            <div className="space-y-4">
-              <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-                My recommendation was a <span className="font-medium text-slate-800">single entry point</span> — one button in CRM that opens Helio at a coherent starting screen, with the customer context pre-loaded. From there, the consultant navigates within Helio to the right task. The product owns the wayfinding, not the CRM.
-              </p>
-              <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-                The architectural team favoured <span className="font-medium text-slate-800">multiple CRM launch points</span> — separate buttons for different destinations (flights, hotels, etc.), each deep-linking to a specific Helio screen. This gave CRM more control and allowed buttons to be rerouted to different systems in the future without changing the Helio experience.
-              </p>
-              <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-                Both approaches solved the navigation problem. The trade-off was between product coherence (my proposal) and enterprise flexibility (architecture's direction).
-              </p>
-            </div>
-          </div>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            I recommended a <span className="font-medium text-slate-800">single entry point</span> — one button in CRM that opens Helio with the customer context pre-loaded. The architectural team favoured <span className="font-medium text-slate-800">multiple CRM launch points</span> — separate buttons for flights, hotels, etc., each linking to a specific Helio screen. Both solved the problem. The trade-off was between a seamless product experience and long-term organisational flexibility.
+          </p>
 
           {/* Concept evaluation */}
           <div className="mt-10 overflow-x-auto">
@@ -227,8 +151,8 @@ function HelioDeepLinking() {
               <thead>
                 <tr className="border-b border-slate-200">
                   <th scope="col" className="py-3 pr-4 text-left font-semibold uppercase tracking-widest text-slate-500">Approach</th>
-                  <th scope="col" className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-500">UX coherence</th>
-                  <th scope="col" className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-500">Enterprise flexibility</th>
+                  <th scope="col" className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-500">Feels like one product</th>
+                  <th scope="col" className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-500">Org flexibility</th>
                   <th scope="col" className="py-3 px-3 text-center font-semibold uppercase tracking-widest text-slate-500">Future-proofing</th>
                 </tr>
               </thead>
@@ -240,7 +164,7 @@ function HelioDeepLinking() {
                   { name: 'CRM-side task picker modal', scores: ['○', '○', '✗'], highlight: false },
                 ].map((row) => (
                   <tr key={row.name} className={`border-b border-slate-100 ${row.highlight === 'cyan' ? 'bg-cyan-50' : row.highlight === 'violet' ? 'bg-violet-50' : ''}`}>
-                    <td className={`py-3 pr-4 ${row.highlight === 'cyan' ? 'font-semibold text-cyan-800' : row.highlight === 'violet' ? 'font-semibold text-violet-800' : 'text-slate-700'}`}>{row.name}</td>
+                    <th scope="row" className={`py-3 pr-4 text-left font-normal ${row.highlight === 'cyan' ? 'font-semibold text-cyan-800' : row.highlight === 'violet' ? 'font-semibold text-violet-800' : 'text-slate-700'}`}>{row.name}</th>
                     {row.scores.map((score, i) => (
                       <td key={i} className={`py-3 px-3 text-center ${score === '✓' ? 'text-emerald-600' : score === '○' ? 'text-amber-500' : 'text-slate-400'}`}>
                         <span className="text-base">{score}</span>
@@ -272,49 +196,180 @@ function HelioDeepLinking() {
                 <li>Task-specific entry points (flights, hotels, etc.) from CRM</li>
                 <li>Buttons can be rerouted to different systems as the landscape evolves</li>
                 <li>CRM positioned as a stable launchpad above underlying tools</li>
-                <li>Optimised for organisational flexibility and looser coupling</li>
+                <li>Optimised for flexibility — no dependency on Helio's internal structure</li>
               </ul>
             </div>
           </div>
 
-          <div className="mt-10 max-w-2xl space-y-4">
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
+          <p className="mt-10 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
               I mapped both patterns against consultant mental models from discovery sessions. Consultants who thought in <span className="font-medium text-slate-800">customer journeys</span> preferred a single entry point — they wanted to land in one place and orient from there. Consultants who thought in <span className="font-medium text-slate-800">task buckets</span> (flights, hotels, insurance) preferred direct links — they already knew where they were going.
             </p>
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-              Both were valid. The question was which model the organisation wanted to optimise for, and which trade-offs were acceptable.
-            </p>
-          </div>
 
-          {/* Design direction */}
-          <div className="mt-10">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Key design principles</p>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl">
-              {[
-                'Customer context passed via URL parameters',
-                'Zero re-entry — booking auto-loaded on landing',
-                'Wayfinding owned by the destination, not the launcher',
-                'Graceful fallbacks for broken or expired links',
-                'Extensible to future systems beyond Helio',
-              ].map((feature) => (
-                <div key={feature} className="rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 text-sm text-slate-700">
-                  {feature}
-                </div>
-              ))}
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* ── Prototyping & testing ── */}
-      <div className="w-full bg-white">
+      <div id="dl-design" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Prototyping & testing</h2>
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Design</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             I prototyped both approaches in Figma — the single-entry flow showing a Helio landing screen with contextual navigation, and the multi-entry flow showing CRM with task-specific buttons mapping to individual Helio screens.
           </p>
 
-          <p className="mt-6 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+          {/* CRM → Helio screen mockups */}
+          <p className="mt-10 max-w-2xl text-sm font-medium uppercase tracking-widest text-slate-400">Multi-entry flow — shipped design</p>
+          <div className="mt-3 grid gap-6 lg:grid-cols-[1fr_auto_1fr] items-start">
+            {/* Screen 1: Microsoft CRM */}
+            <div>
+              <div className="mb-2 flex items-center gap-2">
+                <span className="inline-block w-2 h-2 rounded-full bg-[#2b579a]" />
+                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Entry point</span>
+                <span className="text-[10px] text-slate-400">Microsoft CRM</span>
+              </div>
+            <div className="rounded-xl border border-slate-200 overflow-hidden shadow-sm text-[13px]" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
+              <div className="bg-[#e8e8e8] pt-2.5 pb-0 px-3">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <div className="w-[10px] h-[10px] rounded-full bg-[#ff5f57]" />
+                  <div className="w-[10px] h-[10px] rounded-full bg-[#febc2e]" />
+                  <div className="w-[10px] h-[10px] rounded-full bg-[#28c840]" />
+                </div>
+                <div className="flex items-end gap-0.5">
+                  <div className="bg-white rounded-t-md px-3 py-1.5 text-[10px] text-slate-800 flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded-sm bg-[#2b579a]/30" />
+                    Dynamics 365
+                    <span className="text-slate-400 text-[8px] ml-1">×</span>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[#2b579a] px-4 py-2 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                  <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none"><rect x="1" y="1" width="5" height="5" rx="0.5" fill="white" fillOpacity="0.9"/><rect x="8" y="1" width="5" height="5" rx="0.5" fill="white" fillOpacity="0.6"/><rect x="1" y="8" width="5" height="5" rx="0.5" fill="white" fillOpacity="0.6"/><rect x="8" y="8" width="5" height="5" rx="0.5" fill="white" fillOpacity="0.4"/></svg>
+                  <span className="text-[11px] font-semibold text-white tracking-wide">Dynamics 365</span>
+                  <span className="text-[11px] text-white/60 ml-1">Sales Hub</span>
+                </div>
+                <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                  <span className="text-[8px] font-bold text-white">JH</span>
+                </div>
+              </div>
+              <div className="bg-[#f5f5f5] px-5 py-5">
+                <div className="bg-white rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] px-5 py-4">
+                  <div className="flex items-center gap-2 mb-3">
+                    <div className="w-8 h-8 rounded-full bg-[#2b579a]/10 flex items-center justify-center">
+                      <svg aria-hidden="true" width="14" height="14" viewBox="0 0 14 14" fill="none"><circle cx="7" cy="5" r="2.5" stroke="#2b579a" strokeWidth="1.2"/><path d="M3 12c0-2.2 1.8-4 4-4s4 1.8 4 4" stroke="#2b579a" strokeWidth="1.2"/></svg>
+                    </div>
+                    <div>
+                      <p className="text-[13px] font-semibold text-slate-900">Sarah Mitchell</p>
+                      <p className="text-[10px] text-slate-400">Contact · Active</p>
+                    </div>
+                  </div>
+                  <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-[11px] mt-3 border-t border-slate-100 pt-3">
+                    <div><span className="text-slate-400">Email</span><p className="text-slate-700">s.mitchell@email.com</p></div>
+                    <div><span className="text-slate-400">Phone</span><p className="text-slate-700">+61 4XX XXX XXX</p></div>
+                    <div><span className="text-slate-400">Booking ref</span><p className="text-slate-700 font-medium">FC-2023-84291</p></div>
+                    <div><span className="text-slate-400">Status</span><p className="text-slate-700">Confirmed</p></div>
+                  </div>
+                </div>
+                <div className="mt-3 bg-white rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] px-5 py-4">
+                  <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 mb-3">Open in Helio</p>
+                  <div className="flex flex-wrap gap-2" aria-hidden="true">
+                    {['Flights', 'Hotels', 'Insurance', 'Travellers'].map((label, i) => (
+                      <span key={label} className={`rounded-md px-3 py-1.5 text-[11px] font-medium ${i === 0 ? 'bg-[#2b579a] text-white shadow-sm' : 'bg-slate-100 text-slate-600 border border-slate-200'}`}>
+                        {label} <span className="text-[9px] ml-0.5">{i === 0 ? '→' : '↗'}</span>
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            </div>
+
+            {/* Connecting arrow — horizontal on lg, vertical on mobile */}
+            <div className="flex flex-col items-center justify-center lg:hidden py-2" aria-hidden="true">
+              <svg width="32" height="32" viewBox="0 0 32 32" fill="none">
+                <path d="M16 6v18" stroke="#94a3b8" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M10 18l6 6 6-6" stroke="#94a3b8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span className="text-[9px] font-medium text-slate-400 uppercase tracking-wider">Deep link</span>
+            </div>
+            <div className="hidden lg:flex flex-col items-center justify-center self-center py-8" aria-hidden="true">
+              <svg width="48" height="48" viewBox="0 0 48 48" fill="none">
+                <path d="M8 24h28" stroke="#94a3b8" strokeWidth="1.5" strokeLinecap="round"/>
+                <path d="M30 18l6 6-6 6" stroke="#94a3b8" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+              </svg>
+              <span className="mt-1 text-[9px] font-medium text-slate-400 uppercase tracking-wider">Deep link</span>
+            </div>
+
+            {/* Screen 2: Helio */}
+            <div>
+              <div className="mb-2 flex items-center gap-2">
+                <span className="inline-block w-2 h-2 rounded-full bg-[#e10a0a]" />
+                <span className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Destination</span>
+                <span className="text-[10px] text-slate-400">Helio</span>
+              </div>
+            <div className="rounded-xl border border-slate-200 overflow-hidden shadow-sm text-[13px]" style={{ fontFamily: '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif' }}>
+              <div className="bg-[#e8e8e8] pt-2.5 pb-0 px-3">
+                <div className="flex items-center gap-1.5 mb-2">
+                  <div className="w-[10px] h-[10px] rounded-full bg-[#ff5f57]" />
+                  <div className="w-[10px] h-[10px] rounded-full bg-[#febc2e]" />
+                  <div className="w-[10px] h-[10px] rounded-full bg-[#28c840]" />
+                </div>
+                <div className="flex items-end gap-0.5">
+                  <div className="bg-[#d1d1d1] rounded-t-md px-3 py-1.5 text-[10px] text-slate-600 flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded-sm bg-[#2b579a]/30" />
+                    Dynamics 365
+                    <span className="text-slate-400 text-[8px] ml-1">×</span>
+                  </div>
+                  <div className="bg-white rounded-t-md px-3 py-1.5 text-[10px] text-slate-800 flex items-center gap-1.5">
+                    <div className="w-3 h-3 rounded-sm bg-red-400/30" />
+                    Helio — Flights
+                    <span className="text-slate-400 text-[8px] ml-1">×</span>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-[#e10a0a] px-4 py-2 flex items-center justify-between">
+                <div className="flex items-center gap-2.5">
+                  <div className="w-6 h-6 rounded-full bg-white/20 flex items-center justify-center">
+                    <svg aria-hidden="true" width="12" height="12" viewBox="0 0 12 12" fill="none"><circle cx="6" cy="6" r="5" stroke="white" strokeWidth="1"/><circle cx="6" cy="4" r="1.5" fill="white"/><path d="M3 9.5c0-1.7 1.3-3 3-3s3 1.3 3 3" stroke="white" strokeWidth="0.8"/></svg>
+                  </div>
+                  <span className="text-[11px] font-bold text-white tracking-wide">FLIGHT CENTRE</span>
+                  <span className="text-[11px] text-white/70 ml-1">Helio</span>
+                </div>
+                <JoelAvatar sizeClass="h-6 w-6" className="ring-2 ring-white" alt="" />
+              </div>
+              <div className="bg-[#f7f7f7] px-5 py-5">
+                <div className="bg-white rounded-lg shadow-[0_1px_3px_rgba(0,0,0,0.06)] px-5 py-4 mb-3">
+                  <div className="flex items-center justify-between mb-3">
+                    <div className="flex items-center gap-2">
+                      <div className="w-8 h-8 rounded-full bg-slate-50 border border-slate-200 flex items-center justify-center">
+                        <span className="text-[9px] font-bold text-slate-500">SM</span>
+                      </div>
+                      <div>
+                        <p className="text-[13px] font-semibold text-slate-900">Sarah Mitchell</p>
+                        <p className="text-[10px] text-slate-400">FC-2023-84291 · Bali · 10–18 May</p>
+                      </div>
+                    </div>
+                    <span className="rounded-full bg-emerald-100 px-2 py-0.5 text-[9px] font-medium text-emerald-700">Context loaded</span>
+                  </div>
+                  <div className="border-t border-slate-100 pt-3">
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-slate-400 mb-2">Flight amendment</p>
+                    <div className="grid grid-cols-2 gap-x-4 gap-y-2 text-[11px]">
+                      <div><span className="text-slate-400">Outbound</span><p className="text-slate-700">SYD → DPS · 10 May · QF43</p></div>
+                      <div><span className="text-slate-400">Return</span><p className="text-slate-700">DPS → SYD · 18 May · QF44</p></div>
+                      <div><span className="text-slate-400">Travellers</span><p className="text-slate-700">2 adults</p></div>
+                      <div><span className="text-slate-400">Status</span><p className="text-slate-700 font-medium">Confirmed</p></div>
+                    </div>
+                  </div>
+                </div>
+                <div className="flex gap-2">
+                  <div className="flex-1 bg-[#e10a0a] text-white text-[10px] font-semibold py-2 px-3 rounded-md text-center">Change flights</div>
+                  <div className="flex-1 bg-white text-slate-600 text-[10px] font-medium py-2 px-3 rounded-md text-center border border-slate-200">View itinerary</div>
+                </div>
+              </div>
+            </div>
+            </div>
+          </div>
+          <p className="mt-2 text-[11px] text-slate-500">Simplified representation — CRM deep link opens Helio with the customer, booking, and flight context pre-loaded. No re-entry required.</p>
+
+          <p className="mt-14 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             Walkthrough sessions with consultants and stakeholders clarified where each model broke down. The single-entry approach felt more natural when consultants didn't know what task they needed yet — they wanted to see the customer's full picture first. The multi-entry approach was faster when the task was already clear — skip the landing, go straight to flights.
           </p>
 
@@ -325,62 +380,23 @@ function HelioDeepLinking() {
             <footer className="mt-3 text-sm font-medium text-slate-500">— Senior consultant, prototype walkthrough</footer>
           </blockquote>
 
-          <div className="mt-12">
-            <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Trade-off analysis</p>
-            <div className="grid gap-8 sm:grid-cols-2">
-              <div className="space-y-3">
-                <p className="text-sm font-semibold text-cyan-800">Single entry — strengths</p>
-                <div className="space-y-1.5">
-                  {['Simpler CRM interface', 'Product-led wayfinding', 'Lower cognitive load at launch', 'Consistent mental model'].map((item) => (
-                    <div key={item} className="flex items-start gap-2 text-sm text-slate-600">
-                      <span className="mt-0.5 text-cyan-500">+</span> {item}
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-4 text-sm font-semibold text-cyan-800">Single entry — weaknesses</p>
-                <div className="space-y-1.5">
-                  {['Extra click when task is known', 'Helio must handle all routing logic', 'Tighter coupling to Helio\'s IA'].map((item) => (
-                    <div key={item} className="flex items-start gap-2 text-sm text-slate-600">
-                      <span className="mt-0.5 text-red-400">−</span> {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-              <div className="space-y-3">
-                <p className="text-sm font-semibold text-violet-800">Multi-entry — strengths</p>
-                <div className="space-y-1.5">
-                  {['Fastest path when task is clear', 'Buttons re-routable to other systems', 'CRM team owns the integration', 'Scales to new destinations'].map((item) => (
-                    <div key={item} className="flex items-start gap-2 text-sm text-slate-600">
-                      <span className="mt-0.5 text-violet-500">+</span> {item}
-                    </div>
-                  ))}
-                </div>
-                <p className="mt-4 text-sm font-semibold text-violet-800">Multi-entry — weaknesses</p>
-                <div className="space-y-1.5">
-                  {['More CRM clutter as destinations grow', 'Users choose before full context', 'Fragmented experience across entries'].map((item) => (
-                    <div key={item} className="flex items-start gap-2 text-sm text-slate-600">
-                      <span className="mt-0.5 text-red-400">−</span> {item}
-                    </div>
-                  ))}
-                </div>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
-      {/* ── Decision ── */}
-      <div className="w-full bg-slate-50">
+      <div id="dl-delivery" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Delivery</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            The organisation chose the <span className="font-medium text-slate-800">multi-entry approach</span>. The architectural benefits — re-routability, loose coupling, and CRM team ownership — aligned better with the enterprise strategy of keeping the CRM as a stable orchestration layer above shifting underlying systems.
+            The organisation chose the <span className="font-medium text-slate-800">multi-entry approach</span>. The architectural benefits — buttons that can be rerouted to new systems, clear team ownership, and no dependency on Helio's internal structure — aligned better with the enterprise strategy of keeping the CRM as a stable launch point above shifting underlying tools.
+          </p>
+          <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            Delivery constraints shaped the decision as much as design rationale. The CRM team operated on fixed 3-month delivery cycles with dependencies on CodeGen for any changes — meaning anything that required CRM-side work had a hard ceiling on complexity and turnaround. The multi-entry approach fit within those constraints; the single-entry model I'd recommended would have required deeper CRM integration that the timeline and dependencies couldn't absorb.
           </p>
           <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             My role was to articulate the UX trade-off clearly enough that the decision was made intentionally, not by default. The architectural team understood the user cost — and accepted it as a conscious trade-off for long-term platform flexibility.
           </p>
           <div className="mt-8 rounded-xl border border-violet-200 bg-violet-50 px-4 py-3 text-sm text-violet-800 max-w-2xl">
-            <span className="font-semibold">Direction adopted:</span> Multiple CRM launch points with task-specific deep links into Helio. Customer context passed via URL parameters; graceful fallbacks for invalid or expired links.
+            <span className="font-semibold">Direction adopted:</span> Multiple CRM launch points with task-specific deep links into Helio. Customer context passed automatically; graceful fallbacks for invalid or expired links.
           </div>
         </div>
       </div>
@@ -390,30 +406,16 @@ function HelioDeepLinking() {
           OUTCOME
           ════════════════════════════════════════════════════════════════ */}
 
-      <div className="w-full bg-white">
+      <div id="dl-outcome" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Outcome</h2>
 
-          <div className="mt-12 grid gap-8 sm:grid-cols-3">
-            <div>
-              <p className="text-5xl font-semibold text-transparent md:text-6xl lg:text-7xl" style={gradientStyle}>0</p>
-              <p className="mt-1 text-sm font-medium tracking-wider text-slate-900">Manual navigation steps</p>
-              <p className="mt-1 text-xs text-slate-500">CRM → Helio in one click with context</p>
-            </div>
-            <div>
-              <p className="text-5xl font-semibold text-transparent md:text-6xl lg:text-7xl" style={gradientStyle}>~45s</p>
-              <p className="mt-1 text-sm font-medium tracking-wider text-slate-900">Saved per transition</p>
-              <p className="mt-1 text-xs text-slate-500">No more re-finding customer and booking</p>
-            </div>
-            <div>
-              <p className="text-5xl font-semibold text-transparent md:text-6xl lg:text-7xl" style={gradientStyle}>3,000+</p>
-              <p className="mt-1 text-sm font-medium tracking-wider text-slate-900">Consultants connected</p>
-              <p className="mt-1 text-xs text-slate-500">CRM and Helio seamlessly linked</p>
-            </div>
-          </div>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            Deep linking eliminated the manual system-switching ritual entirely. Customer context — booking ID, traveller details — flows directly from CRM into Helio in one click. Across 3,000+ consultants making this jump daily, that's hundreds of hours reclaimed per week for customer-facing work.
+          </p>
 
           {/* Before / after flow comparison */}
-          <div className="mt-16 space-y-8">
+          <div className="mt-16 space-y-8" role="group" aria-label="Before and after flow comparison. Before: 7 steps with manual navigation. After: 4 steps with deep linking.">
             <div>
               <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-500">Before — manual navigation</p>
               <div className="flex flex-wrap items-center gap-1.5">
@@ -422,7 +424,7 @@ function HelioDeepLinking() {
                     <div className="rounded-md border border-slate-200 bg-slate-50 px-2.5 py-1.5 text-xs text-slate-500">
                       {step}
                     </div>
-                    {i < 6 && <span className="text-slate-400 text-xs">→</span>}
+                    {i < 6 && <span className="text-slate-400 text-xs" aria-hidden="true">→</span>}
                   </div>
                 ))}
                 <span className="ml-2 text-xs text-slate-500 italic">+ context loss, tab switching, memory load</span>
@@ -436,26 +438,21 @@ function HelioDeepLinking() {
                     <div className="rounded-md border border-emerald-200 bg-emerald-50 px-2.5 py-1.5 text-xs text-emerald-800">
                       {step}
                     </div>
-                    {i < 3 && <span className="text-emerald-400 text-xs">→</span>}
+                    {i < 3 && <span className="text-emerald-400 text-xs" aria-hidden="true">→</span>}
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          <div className="mt-12 max-w-2xl space-y-4">
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-              Deep linking eliminated the manual system-switching ritual entirely. Customer context — booking ID, traveller details — flowed directly from CRM into Helio via URL parameters. Consultants no longer had to hold context in their head or re-navigate between systems during live calls.
-            </p>
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
+          <p className="mt-12 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
               The multi-entry approach means Helio isn't the only possible destination — the same pattern can extend to Travel Connect and future platforms without changing the CRM experience.
             </p>
-          </div>
         </div>
       </div>
 
       {/* ── Reflection ── */}
-      <div className="w-full bg-slate-50">
+      <div id="dl-reflection" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Reflection</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
@@ -469,7 +466,7 @@ function HelioDeepLinking() {
             </div>
             <div className="border-l-2 border-emerald-400 pl-4 py-1.5 leading-relaxed">
               <p className="font-semibold text-slate-800">Good design rationale still matters when you don't win</p>
-              <p className="mt-1">Clearly articulating the user cost of the chosen direction helped the team make an intentional trade-off rather than a default one. The architectural team knew exactly what they were trading away — and designed mitigations for the UX gaps.</p>
+              <p className="mt-1">Clearly articulating the user cost of the chosen direction helped the team make an intentional trade-off rather than a default one. The architectural team knew exactly what they were trading away — and designed mitigations for the UX gaps. In enterprise environments, the best design doesn't win on merit alone — delivery cycles, team dependencies, and organisational ownership all shape what's possible. Understanding those constraints early is as important as the design work itself.</p>
             </div>
             <div className="border-l-2 border-sky-400 pl-4 py-1.5 leading-relaxed">
               <p className="font-semibold text-slate-800">The right answer depends on user intent — and organisational intent</p>

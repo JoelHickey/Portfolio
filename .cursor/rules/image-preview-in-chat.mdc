@@ -1,0 +1,39 @@
+---
+description: Show inline preview of generated or referenced image deliverables
+alwaysApply: true
+---
+
+# Image preview in chat
+
+## Required (same turn)
+
+When you **create or update** any **raster image** (PNG, JPG, WebP, GIF) that the user is meant to **see** (diagrams, exported previews, screenshots, assets):
+
+1. In the **same assistant turn** as writing the file, **Read** that image path with the **Read** tool (workspace or absolute path).
+2. **Do not** end the reply with only a file path when a visual check matters—the user expects an **inline preview** in chat.
+
+When you use **GenerateImage**, also **Read** the returned file path in that turn so preview is consistent (unless the client already inlined it and you confirm it).
+
+## SVG
+
+After generating or changing an SVG meant for visual review: **export PNG** (e.g. `sharp` in `fresh-project`) and **Read** the PNG in the **same turn**. Do not skip the Read step.
+
+## Other
+
+When the user asks to **preview** an existing image, **Read** it rather than only naming the path.
+
+**Reason:** Path-only replies force the user to hunt files; Read triggers inline display.
+
+## Clickable link (fresh-project / Vite)
+
+When the deliverable lives in **`fresh-project/public/`** and the user runs **`npm run dev`** (default **port 3000**), end the same reply with a **markdown link** they can click, e.g.:
+
+`[Open rotary-draw-actual-layout.png](http://localhost:3000/rotary-draw-actual-layout.png)`
+
+Also mention the index page: **[All bender diagrams](http://localhost:3000/bender-diagrams.html)** when relevant.
+
+## HTML index pages (`fresh-project/public/*.html`)
+
+Asset links to `.png` / `.svg` must use **underlined** `<a>` styling (`text-decoration: underline` + sensible `text-underline-offset`) so filenames read as clickable, not body copy.
+
+If their dev server uses another port, say so once and they can swap the port in the URL.

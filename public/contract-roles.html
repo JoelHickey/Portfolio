@@ -1,0 +1,464 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contract Role Comparison — Joel Hickey</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: #0a0a0f;
+    color: #e2e8f0;
+    padding: 48px 24px;
+    min-height: 100vh;
+  }
+  .header { max-width: 1200px; margin: 0 auto 24px; }
+  .header h1 { font-size: 26px; font-weight: 700; letter-spacing: -0.5px; color: #f8fafc; }
+  .header p { margin-top: 4px; font-size: 13px; color: #64748b; }
+  .header .updated { margin-top: 6px; font-size: 11px; color: #334155; }
+  .header .updated span { color: #34d399; }
+  .assumptions {
+    max-width: 1200px; margin: 0 auto 20px;
+    display: flex; gap: 12px; flex-wrap: wrap;
+    font-size: 11px; color: #94a3b8;
+  }
+  .assumptions span {
+    background: #1e293b; padding: 5px 10px;
+    border-radius: 5px; border: 1px solid #334155;
+  }
+  .section-label {
+    max-width: 1200px; margin: 28px auto 10px;
+    font-size: 10px; font-weight: 700; letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+  .section-label.contract { color: #2dd4bf; }
+  .section-label.ft { color: #818cf8; }
+  .section-label.expired { color: #475569; }
+  .section-label .count {
+    font-weight: 400; letter-spacing: 0; text-transform: none;
+    color: #475569; margin-left: 6px;
+  }
+  .table-wrap {
+    max-width: 1200px; margin: 0 auto;
+    overflow-x: auto; border-radius: 12px;
+    border: 1px solid #1e293b; background: #0f172a;
+  }
+  table { width: 100%; border-collapse: collapse; font-size: 12px; }
+  thead th {
+    background: #1e293b; padding: 10px 10px;
+    text-align: left; font-weight: 600; font-size: 9px;
+    text-transform: uppercase; letter-spacing: 1px;
+    color: #94a3b8; border-bottom: 2px solid #334155;
+    white-space: nowrap; position: sticky; top: 0;
+  }
+  thead th:first-child { border-radius: 11px 0 0 0; }
+  thead th:last-child { border-radius: 0 11px 0 0; }
+  thead th.section-start { border-left: 2px solid #334155; }
+  tbody td {
+    padding: 10px 10px; border-bottom: 1px solid #1e293b;
+    vertical-align: middle; white-space: nowrap;
+  }
+  tbody td.section-start { border-left: 2px solid #1e293b; }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: rgba(30, 41, 59, 0.4); }
+  tbody tr.expired { opacity: 0.35; }
+  tbody tr.expired:hover { opacity: 0.55; }
+  .role-name { font-weight: 600; color: #f1f5f9; font-size: 12px; }
+  .role-name a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
+  .role-name a:hover { border-bottom-color: #64748b; }
+  .company { font-size: 10px; color: #64748b; margin-top: 1px; }
+  .loc { font-size: 11px; color: #94a3b8; }
+  .badge {
+    display: inline-block; font-size: 9px; font-weight: 600;
+    padding: 1px 5px; border-radius: 3px; margin-left: 3px;
+    letter-spacing: 0.4px; vertical-align: middle;
+  }
+  .badge.remote { background: #064e3b; color: #6ee7b7; }
+  .badge.hybrid { background: #1e3a5f; color: #7dd3fc; }
+  .badge.onsite { background: #3b2f1e; color: #fbbf24; }
+  .badge.ftc { background: #312e81; color: #a5b4fc; }
+  .badge.live { background: #064e3b; color: #6ee7b7; font-size: 8px; letter-spacing: 0.6px; }
+  .badge.gone { background: #1e293b; color: #475569; font-size: 8px; letter-spacing: 0.6px; }
+  .badge.new { background: #7c2d12; color: #fb923c; font-size: 8px; letter-spacing: 0.6px; }
+  .m { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 12px; }
+  .m.gross { color: #94a3b8; }
+  .m.green { color: #34d399; }
+  .m.bright { color: #2dd4bf; font-weight: 600; }
+  .m.dim { color: #64748b; font-size: 11px; }
+  .m.red { color: #f87171; font-size: 11px; }
+  .m.violet { color: #a78bfa; }
+  .vs { font-family: 'JetBrains Mono', monospace; font-size: 11px; font-weight: 600; color: #34d399; }
+  .vs.violet { color: #a78bfa; }
+  .tier {
+    display: inline-block; font-size: 9px; font-weight: 700;
+    padding: 2px 6px; border-radius: 3px; letter-spacing: 0.6px;
+  }
+  .tier.t1 { background: #3730a3; color: #a5b4fc; }
+  .tier.t2 { background: #334155; color: #94a3b8; }
+  .tier.ft { background: #1e1b4b; color: #818cf8; }
+  .fit {
+    font-size: 10px; color: #64748b; white-space: normal !important;
+    max-width: 190px; line-height: 1.4;
+  }
+
+  .baseline {
+    max-width: 1200px; margin: 20px auto 0;
+    background: #1e293b; border: 1px solid #334155;
+    border-radius: 10px; padding: 18px 20px;
+  }
+  .baseline h2 { font-size: 14px; font-weight: 600; color: #f1f5f9; margin-bottom: 12px; }
+  .baseline-grid {
+    display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
+  }
+  .baseline-card {
+    background: #0f172a; border: 1px solid #334155;
+    border-radius: 8px; padding: 12px;
+  }
+  .baseline-card .label {
+    font-size: 9px; text-transform: uppercase;
+    letter-spacing: 0.8px; color: #64748b; margin-bottom: 4px;
+  }
+  .baseline-card .value {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 18px; font-weight: 600;
+  }
+  .baseline-card .value.teal { color: #2dd4bf; }
+  .baseline-card .value.amber { color: #fbbf24; }
+  .baseline-card .value.violet { color: #a78bfa; }
+  .baseline-card .sub { font-size: 10px; color: #94a3b8; margin-top: 3px; }
+
+  .method {
+    max-width: 1200px; margin: 16px auto 0;
+    font-size: 11px; color: #475569; line-height: 1.6;
+  }
+  .method strong { color: #64748b; }
+  .footer {
+    max-width: 1200px; margin: 20px auto 0;
+    font-size: 11px; color: #475569; line-height: 1.6;
+  }
+  .footer strong { color: #64748b; }
+</style>
+</head>
+<body>
+  <div class="header">
+    <h1>Role Shortlist — Take-Home Comparison</h1>
+    <p>Senior Product Designer &middot; Brisbane-based &middot; March 2026</p>
+    <p class="updated">Last refreshed from <span>SEEK</span> &middot; 30 Mar 2026</p>
+  </div>
+
+  <div class="assumptions">
+    <span>220 billable days/yr</span>
+    <span>11.5% self-funded super</span>
+    <span>2024-25 ATO tax brackets + 2% Medicare</span>
+    <span>Sole trader / ABN basis</span>
+    <span>FC = $130k total pkg (incl. 11.5% super) &rarr; $116.6k base</span>
+    <span>FT roles: super employer-paid, taxed at marginal rate</span>
+  </div>
+
+  <!-- ───── CONTRACT / FTC — STILL LIVE ───── -->
+  <div class="section-label contract">Contract &amp; FTC — Live on SEEK today <span class="count">(3 roles)</span></div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Role / Company</th>
+          <th>Location</th>
+          <th>Day Rate</th>
+          <th>Gross / yr</th>
+          <th class="section-start">Tax + Medicare</th>
+          <th>Super (self)</th>
+          <th class="section-start" style="color:#2dd4bf">Take-Home / yr</th>
+          <th style="color:#2dd4bf">Take-Home / mo</th>
+          <th style="color:#2dd4bf">Take-Home / fn</th>
+          <th class="section-start">vs FC Perm</th>
+          <th>Angle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Bluefin — still live on SEEK 30 Mar -->
+        <tr>
+          <td><span class="tier t1">T1</span> <span class="badge live">LIVE</span></td>
+          <td><div class="role-name">Sr Product Designer, Payments</div><div class="company">Bluefin Resources / Digital Bank</div></td>
+          <td><span class="loc">Syd</span> <span class="badge hybrid">HYB</span></td>
+          <td class="m green">$800–890</td>
+          <td class="m gross">$176k–196k</td>
+          <td class="m dim section-start">$42k–49k</td>
+          <td class="m dim">$20k–23k</td>
+          <td class="m bright section-start">$114k–124k</td>
+          <td class="m bright">$9.5k–10.4k</td>
+          <td class="m bright">$4,370–4,790</td>
+          <td class="vs section-start">+$25k–36k</td>
+          <td class="fit">Contract. Complex payments workflows. Amendments case study maps directly.</td>
+        </tr>
+        <!-- SEEK Selection — still live on SEEK 30 Mar -->
+        <tr>
+          <td><span class="tier t1">T1</span> <span class="badge live">LIVE</span></td>
+          <td><div class="role-name">Sr Product Designer, Selection</div><div class="company">SEEK</div></td>
+          <td><span class="loc">Mel</span> <span class="badge hybrid">HYB</span> <span class="badge ftc">10M FTC</span></td>
+          <td class="m green">~$750*</td>
+          <td class="m gross">~$165k*</td>
+          <td class="m dim section-start">~$38k</td>
+          <td class="m dim">~$19k</td>
+          <td class="m green section-start">~$108k</td>
+          <td class="m green">~$9.0k</td>
+          <td class="m green">~$4,150</td>
+          <td class="vs section-start">+~$19k</td>
+          <td class="fit">10mo fixed-term. Strong brand. Flexible hybrid. *Rate estimated from FTC pkg.</td>
+        </tr>
+        <!-- Expertech — still live on SEEK 30 Mar -->
+        <tr>
+          <td><span class="tier t1">T1</span> <span class="badge live">LIVE</span></td>
+          <td><div class="role-name">Senior UX/UI Designer | Digital</div><div class="company">Expertech</div></td>
+          <td><span class="loc">Syd</span> <span class="badge remote">REM</span></td>
+          <td class="m green">$700–750</td>
+          <td class="m gross">$154k–165k</td>
+          <td class="m dim section-start">$35k–38k</td>
+          <td class="m dim">$18k–19k</td>
+          <td class="m green section-start">$102k–108k</td>
+          <td class="m green">$8.5k–9.0k</td>
+          <td class="m green">$3,920–4,150</td>
+          <td class="vs section-start">+$13k–19k</td>
+          <td class="fit">Contract. Fully remote from BNE. Best Brisbane-friendly option.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ───── FULL-TIME — NEW FROM TODAY'S SEARCH ───── -->
+  <div class="section-label ft">Full-Time — New from today's SEEK search <span class="count">(5 roles)</span></div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Role / Company</th>
+          <th>Location</th>
+          <th>Salary (pkg)</th>
+          <th>Base (est.)</th>
+          <th class="section-start">Tax + Medicare</th>
+          <th>Super (employer)</th>
+          <th class="section-start" style="color:#818cf8">Take-Home / yr</th>
+          <th style="color:#818cf8">Take-Home / mo</th>
+          <th style="color:#818cf8">Take-Home / fn</th>
+          <th class="section-start">vs FC Perm</th>
+          <th>Angle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- eHealth NSW — Product Design Manager AI — salary listed -->
+        <tr>
+          <td><span class="tier ft">FT</span> <span class="badge new">NEW</span></td>
+          <td><div class="role-name">Product Design Manager — AI</div><div class="company">eHealth NSW</div></td>
+          <td><span class="loc">Syd</span> <span class="badge hybrid">HYB</span></td>
+          <td class="m violet">$176k + 12%</td>
+          <td class="m violet">~$176k</td>
+          <td class="m dim section-start">~$48k</td>
+          <td class="m dim">~$21k (employer)</td>
+          <td class="m violet section-start">~$128k</td>
+          <td class="m violet">~$10.6k</td>
+          <td class="m violet">~$4,900</td>
+          <td class="vs violet section-start">+~$39k</td>
+          <td class="fit">Listed salary: up to $175,917 + 12% super + 17.5% leave loading. AI focus. Govt benefits.</td>
+        </tr>
+        <!-- AutoGuru — Sr Product Designer — Gold Coast (close to BNE!) -->
+        <tr>
+          <td><span class="tier ft">FT</span> <span class="badge new">NEW</span></td>
+          <td><div class="role-name">Senior Product Designer</div><div class="company">AutoGuru</div></td>
+          <td><span class="loc">Gold Coast</span> <span class="badge hybrid">HYB</span></td>
+          <td class="m violet">~$140–160k*</td>
+          <td class="m violet">~$126–143k*</td>
+          <td class="m dim section-start">~$30–36k</td>
+          <td class="m dim">~$16–18k (employer)</td>
+          <td class="m violet section-start">~$96k–107k*</td>
+          <td class="m violet">~$8.0k–8.9k</td>
+          <td class="m violet">~$3,690–4,120</td>
+          <td class="vs violet section-start">+~$7k–19k</td>
+          <td class="fit">Broadbeach — closest to BNE. No relocation. Hybrid. *Salary estimated.</td>
+        </tr>
+        <!-- SEEK — Sr Product Designer, Role Insights -->
+        <tr>
+          <td><span class="tier ft">FT</span> <span class="badge new">NEW</span></td>
+          <td><div class="role-name">Sr Product Designer, Role Insights</div><div class="company">SEEK</div></td>
+          <td><span class="loc">Mel</span> <span class="badge hybrid">HYB</span></td>
+          <td class="m violet">~$150–170k*</td>
+          <td class="m violet">~$134–152k*</td>
+          <td class="m dim section-start">~$33–39k</td>
+          <td class="m dim">~$17–20k (employer)</td>
+          <td class="m violet section-start">~$101k–113k*</td>
+          <td class="m violet">~$8.4k–9.4k</td>
+          <td class="m violet">~$3,880–4,350</td>
+          <td class="vs violet section-start">+~$13k–25k</td>
+          <td class="fit">FT perm. Strong brand + annual bonus. Flexible hybrid. *Salary estimated.</td>
+        </tr>
+        <!-- SEEK — Sr Product Designer, Hiring Automation -->
+        <tr>
+          <td><span class="tier ft">FT</span> <span class="badge new">NEW</span></td>
+          <td><div class="role-name">Sr Product Designer, Hiring Automation</div><div class="company">SEEK</div></td>
+          <td><span class="loc">Mel</span> <span class="badge hybrid">HYB</span></td>
+          <td class="m violet">~$150–170k*</td>
+          <td class="m violet">~$134–152k*</td>
+          <td class="m dim section-start">~$33–39k</td>
+          <td class="m dim">~$17–20k (employer)</td>
+          <td class="m violet section-start">~$101k–113k*</td>
+          <td class="m violet">~$8.4k–9.4k</td>
+          <td class="m violet">~$3,880–4,350</td>
+          <td class="vs violet section-start">+~$13k–25k</td>
+          <td class="fit">FT perm. AI/automation focus — strong agentic angle. Annual bonus. *Salary estimated.</td>
+        </tr>
+        <!-- Munro Footwear — Sr Product Designer UI/UX -->
+        <tr>
+          <td><span class="tier ft">FT</span> <span class="badge new">NEW</span></td>
+          <td><div class="role-name">Senior Product Designer | UI/UX</div><div class="company">Munro Footwear Group</div></td>
+          <td><span class="loc">Mel</span> <span class="badge hybrid">HYB</span></td>
+          <td class="m violet">~$130–150k*</td>
+          <td class="m violet">~$117–134k*</td>
+          <td class="m dim section-start">~$27–33k</td>
+          <td class="m dim">~$15–17k (employer)</td>
+          <td class="m violet section-start">~$90k–101k*</td>
+          <td class="m violet">~$7.5k–8.4k</td>
+          <td class="m violet">~$3,460–3,880</td>
+          <td class="vs violet section-start">+~$2k–13k</td>
+          <td class="fit">FT. E-commerce. Web + mobile at scale. Cross-functional PD+eng. *Salary estimated.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ───── NOT APPEARING TODAY — LIKELY EXPIRED ───── -->
+  <div class="section-label expired">Not appearing on SEEK today — likely expired <span class="count">(3 roles)</span></div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Role / Company</th>
+          <th>Location</th>
+          <th>Day Rate</th>
+          <th>Gross / yr</th>
+          <th class="section-start">Tax + Medicare</th>
+          <th>Super (self)</th>
+          <th class="section-start">Take-Home / yr</th>
+          <th>Take-Home / mo</th>
+          <th>Take-Home / fn</th>
+          <th class="section-start">vs FC Perm</th>
+          <th>Notes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="expired">
+          <td><span class="badge gone">GONE</span></td>
+          <td><div class="role-name">Sr Experience Designer</div><div class="company">Talent / Major Bank</div></td>
+          <td><span class="loc">Syd</span> <span class="badge hybrid">HYB</span></td>
+          <td class="m dim">$850–950</td>
+          <td class="m dim">$187k–209k</td>
+          <td class="m dim section-start">$46k–54k</td>
+          <td class="m dim">$22k–24k</td>
+          <td class="m dim section-start">$120k–132k</td>
+          <td class="m dim">$10.0k–11.0k</td>
+          <td class="m dim">$4,600–5,060</td>
+          <td class="m dim section-start">+$31k–43k</td>
+          <td class="fit">Not found in today's search. May have been filled or pulled.</td>
+        </tr>
+        <tr class="expired">
+          <td><span class="badge gone">GONE</span></td>
+          <td><div class="role-name">Senior Product Designer</div><div class="company">ubank</div></td>
+          <td><span class="loc">Syd</span> <span class="badge hybrid">HYB</span></td>
+          <td class="m dim">~$800*</td>
+          <td class="m dim">~$176k*</td>
+          <td class="m dim section-start">~$42k</td>
+          <td class="m dim">~$20k</td>
+          <td class="m dim section-start">~$114k</td>
+          <td class="m dim">~$9.5k</td>
+          <td class="m dim">~$4,370</td>
+          <td class="m dim section-start">+~$25k</td>
+          <td class="fit">Not found in today's search.</td>
+        </tr>
+        <tr class="expired">
+          <td><span class="badge gone">GONE</span></td>
+          <td><div class="role-name">Senior Product Designer</div><div class="company">Nintex</div></td>
+          <td><span class="loc">Mel</span> <span class="badge remote">REM</span></td>
+          <td class="m dim">~$750*</td>
+          <td class="m dim">~$165k*</td>
+          <td class="m dim section-start">~$38k</td>
+          <td class="m dim">~$19k</td>
+          <td class="m dim section-start">~$108k</td>
+          <td class="m dim">~$9.0k</td>
+          <td class="m dim">~$4,150</td>
+          <td class="m dim section-start">+~$19k</td>
+          <td class="fit">Not found in today's search. Was flagged as expiring.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- FC Perm baseline comparison -->
+  <div class="baseline">
+    <h2>FC Perm Baseline ($130k pkg incl. super) vs Market</h2>
+    <div class="baseline-grid">
+      <div class="baseline-card">
+        <div class="label">FC Total Package</div>
+        <div class="value amber">$130k</div>
+        <div class="sub">Incl. 11.5% super ($13.4k)</div>
+      </div>
+      <div class="baseline-card">
+        <div class="label">FC Base Salary</div>
+        <div class="value amber">$116.6k</div>
+        <div class="sub">Taxable income</div>
+      </div>
+      <div class="baseline-card">
+        <div class="label">FC Take-Home / yr</div>
+        <div class="value amber">$88.5k</div>
+        <div class="sub">After tax + Medicare</div>
+      </div>
+      <div class="baseline-card">
+        <div class="label">FC Take-Home / mo</div>
+        <div class="value amber">$7,375</div>
+        <div class="sub">+ paid leave, sick leave</div>
+      </div>
+      <div class="baseline-card">
+        <div class="label">FC Take-Home / fn</div>
+        <div class="value amber">$3,404</div>
+        <div class="sub">Fortnightly net pay</div>
+      </div>
+      <div class="baseline-card">
+        <div class="label">Contract Range / yr</div>
+        <div class="value teal">$102k–124k</div>
+        <div class="sub">After tax, super, Medicare</div>
+      </div>
+      <div class="baseline-card">
+        <div class="label">FT Market Range / yr</div>
+        <div class="value violet">$90k–128k</div>
+        <div class="sub">Take-home, employer super</div>
+      </div>
+      <div class="baseline-card">
+        <div class="label">Real Uplift / yr</div>
+        <div class="value teal">+$2k–36k</div>
+        <div class="sub">After all deductions</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="method">
+    <strong>Tax method:</strong> 2024-25 ATO individual rates &mdash; $0-18.2k: 0%, $18.2-45k: 16%, $45-135k: 30%, $135-190k: 37%, $190k+: 45%.
+    Medicare levy: 2%. Contract super: 11.5% self-contributed (tax-deductible). FT super: employer-paid (not deducted from base). Taxable income = gross minus super (contract) or base salary (FT).
+    Take-home = gross &minus; tax &minus; Medicare &minus; super (contract) or base &minus; tax &minus; Medicare (FT). * = rate estimated from market data. No paid leave or sick leave factored into contract figures.
+  </div>
+
+  <div class="footer">
+    <strong>Key insight — 30 Mar:</strong> 3 of your original 6 contract shortlist roles appear to have expired. <strong>Bluefin</strong> ($800–890/day) remains the strongest live contract.
+    <strong>Expertech</strong> is still the best Brisbane-remote option. The SEEK FTC is solid mid-range.
+    <br><br>
+    <strong>New today:</strong> <strong>eHealth NSW</strong> (Product Design Manager — AI, $176k + 12% super) is the highest-paying listed role and has an AI focus.
+    <strong>AutoGuru</strong> in Broadbeach is the only role near Brisbane — no relocation needed.
+    SEEK has <strong>3 Sr PD roles open</strong> (Selection FTC, Role Insights FT, Hiring Automation FT) — the Hiring Automation role aligns with your agentic AI angle.
+    <br><br>
+    <strong>Priority moves:</strong> Apply to <strong>Bluefin</strong> (highest contract take-home, still live). <strong>Expertech</strong> if remote from BNE matters most.
+    <strong>eHealth NSW</strong> if FT + AI positioning appeals. <strong>SEEK Hiring Automation</strong> as a strong FT brand play with AI overlap.
+    <strong>AutoGuru</strong> for proximity — only Gold Coast/BNE option on the board.
+  </div>
+</body>
+</html>

@@ -17,28 +17,30 @@ function Contact() {
           Contact
         </h1>
         <p className="mt-6 text-lg leading-relaxed text-slate-300">
-          Open to product design and AI workflow roles — where strategy, craft, and agentic tooling drive real outcomes.
+          Open to product design roles — helping teams build better digital products with AI.
         </p>
-        <p className="mt-2 text-base text-slate-500">
-          Enterprise or startup — also open to speaking, AI workshops, and collaborations.
+        <p className="mt-2 text-sm text-slate-500">
+          Brisbane, AU · remote friendly · talks &amp; workshops welcome
         </p>
-        <p className="mt-1 text-sm text-slate-500">
-          Based in Brisbane, AU · open to remote.
-        </p>
-        <div className="mt-10 flex flex-col items-center gap-4 text-sm text-slate-300 sm:flex-row sm:gap-8">
-          <a href="tel:0421366486" className="inline-flex items-center gap-2 transition-colors hover:text-white">
-            <HiOutlinePhone size={16} aria-hidden="true" />
-            <span>0421 366 486</span>
-          </a>
+        <div className="mt-10 flex flex-wrap justify-center gap-4">
           <a
             href="mailto:joelhickeydesigns@gmail.com"
-            className="inline-flex items-center gap-2 transition-colors hover:text-white"
+            className="inline-flex items-center gap-2 rounded-full bg-home-cta px-6 py-3 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[44px]"
           >
-            <HiOutlineMail size={16} aria-hidden="true" />
-            <span>joelhickeydesigns@gmail.com</span>
+            <HiOutlineMail className="shrink-0" size={20} aria-hidden="true" />
+            Email me
           </a>
           <a
-            href="https://www.linkedin.com/in/joel-hickey-493757138/"
+            href="tel:0421366486"
+            className="inline-flex items-center gap-2 rounded-full bg-home-cta px-6 py-3 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[44px]"
+          >
+            <HiOutlinePhone className="shrink-0" size={20} aria-hidden="true" />
+            Call me
+          </a>
+        </div>
+        <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-slate-400">
+          <a
+            href="https://www.linkedin.com/in/joelhickey"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 transition-colors hover:text-white"

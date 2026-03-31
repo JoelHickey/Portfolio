@@ -1,11 +1,6 @@
 import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
-
-const gradientStyle = {
-  background: 'linear-gradient(90deg, #0891b2 0%, #0d9488 25%, #4f46e5 50%, #7c3aed 75%, #c026d3 100%)',
-  WebkitBackgroundClip: 'text',
-  backgroundClip: 'text',
-}
+import CaseStudyNav from '../components/CaseStudyNav'
 
 function HelioPlatform() {
   useEffect(() => {
@@ -15,31 +10,35 @@ function HelioPlatform() {
 
   return (
     <section className="flex flex-col" aria-label="Helio Platform case study">
+      <CaseStudyNav sections={[
+        { id: 'hp-problem', label: 'Problem' },
+        { id: 'hp-tours', label: 'Tours' },
+        { id: 'hp-payments', label: 'Payments' },
+        { id: 'hp-grab', label: 'Grab PNR' },
+        { id: 'hp-reflection', label: 'Reflection' },
+      ]} />
 
       {/* ════════════════════════════════════════════════════════════════
           HERO
           ════════════════════════════════════════════════════════════════ */}
       <div className="w-full -mt-12">
         <div className="relative w-full h-[400px] sm:h-[480px] md:h-[560px] lg:h-[600px] overflow-hidden bg-slate-950">
-          <div
-            className="absolute inset-0"
-            style={{
-              background:
-                'radial-gradient(circle at 30% 40%, rgba(34, 211, 238, 0.18), transparent 35%), radial-gradient(circle at 70% 30%, rgba(129, 140, 248, 0.22), transparent 35%), radial-gradient(circle at 50% 80%, rgba(192, 38, 211, 0.12), transparent 30%), linear-gradient(135deg, #020617 0%, #0f172a 38%, #111827 72%, #000000 100%)'
-            }}
-            aria-hidden
+          <img
+            src="/images/helio-platform-hero.png"
+            alt="Laptop displaying a dark-themed platform dashboard"
+            className="h-full w-full object-cover object-center"
           />
           <div
-            className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/15 via-black/25 to-black/70"
-            aria-hidden
+            className="pointer-events-none absolute inset-0 bg-linear-to-b from-black/25 via-black/35 to-black/80"
+            aria-hidden="true"
           />
-          <div className="absolute left-0 right-0 top-0 pt-12">
+          <div className="absolute left-0 right-0 top-0 pt-20">
             <div className="mx-auto w-full max-w-6xl px-6">
               <Link
                 to="/stories"
                 className="inline-flex items-center gap-1.5 rounded-full bg-black/30 px-3.5 py-1.5 text-sm font-medium text-white/90 backdrop-blur-sm transition hover:bg-black/45 hover:text-white"
               >
-                <span aria-hidden>←</span>
+                <span aria-hidden="true">←</span>
                 Back to Stories
               </Link>
             </div>
@@ -82,12 +81,22 @@ function HelioPlatform() {
         </div>
       </div>
 
-      {/* TL;DR */}
-      <div className="w-full bg-white border-b border-slate-100">
-        <div className="mx-auto w-full max-w-6xl px-6 py-6">
-          <div className="max-w-3xl space-y-2 text-sm text-slate-600">
-            <p className="font-semibold uppercase tracking-widest text-slate-500 text-xs">Summary</p>
-            <p className="leading-relaxed">Helio is the booking platform used by 3,000+ Flight Centre consultants daily. As the UX designer embedded in the platform team, I worked across multiple features — Tours Search & Book, Payment Schedules, and Grab PNR — within the constraints of a vendor-managed front-end, using FullStory analytics to diagnose friction and measure improvement.</p>
+      {/* Key context */}
+      <div className="w-full bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-10">
+          <div className="grid gap-8 sm:grid-cols-3">
+            <div>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">3,000+</p>
+              <p className="mt-2 text-sm text-slate-500">Consultants using Helio daily</p>
+            </div>
+            <div>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">3</p>
+              <p className="mt-2 text-sm text-slate-500">Features shipped within vendor constraints</p>
+            </div>
+            <div>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">Vendor</p>
+              <p className="mt-2 text-sm text-slate-500">Managed front-end (Codegen / Travelbox)</p>
+            </div>
           </div>
         </div>
       </div>
@@ -97,15 +106,11 @@ function HelioPlatform() {
           PROBLEM
           ════════════════════════════════════════════════════════════════ */}
 
-      <div className="w-full bg-white">
+      <div id="hp-problem" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Problem</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Helio is the primary booking and servicing platform for Flight Centre and Travel Associates consultants across Australia. Built on Codegen's Travelbox engine, it handles everything from search and quoting to booking management, amendments, and post-sale servicing. It's the tool consultants live in all day.
-          </p>
-
-          <p className="mt-6 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            The challenge is that Helio's front-end is vendor-managed — meaning the UX team can influence but not directly control the interface. Extending the UI with new features, rewriting interaction patterns, or shipping rapid experiments all require navigating the constraints of a platform built for configurability, not design agility.
+            Helio is the primary booking platform for Flight Centre and Travel Associates consultants. Built on Codegen's Travelbox engine, it handles search, quoting, booking management, amendments, and servicing. The front-end is vendor-managed — meaning the UX team can influence but not directly control the interface.
           </p>
 
           <blockquote className="mt-10 border-l-2 border-slate-300 pl-6">
@@ -115,44 +120,24 @@ function HelioPlatform() {
             <footer className="mt-3 text-sm font-medium text-slate-500">— Internal UX strategy framing</footer>
           </blockquote>
 
-          <div className="mt-12 grid gap-8 sm:grid-cols-3">
-            <div>
-              <p className="text-5xl font-semibold text-slate-900 md:text-6xl">3,000+</p>
-              <p className="mt-2 text-sm text-slate-500">consultants using Helio daily</p>
-            </div>
-            <div>
-              <p className="text-5xl font-semibold text-slate-900 md:text-6xl">FC + TA</p>
-              <p className="mt-2 text-sm text-slate-500">Flight Centre & Travel Associates brands</p>
-            </div>
-            <div>
-              <p className="text-5xl font-semibold text-slate-900 md:text-6xl">Vendor</p>
-              <p className="mt-2 text-sm text-slate-500">managed front-end (Codegen / Travelbox)</p>
-            </div>
-          </div>
-
-          <div className="mt-16 max-w-2xl space-y-4">
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-              My role has been to improve the consultant experience within these constraints — through feature design, workflow optimisation, usability testing, and analytics-driven validation. Some work extends Helio directly. Other work builds adjacent experiences (like Travel Connect) that integrate back into the platform.
-            </p>
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-              This case study covers three examples of that work: using Fullstory analytics to validate a Tours Search & Book POC, redesigning payment schedule controls to eliminate manual workarounds, and fixing the Grab PNR flight import flow that was blocking agents from completing bookings.
-            </p>
-          </div>
+          <p className="mt-10 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            My role: improve the consultant experience within these constraints — through feature design, workflow optimisation, usability testing, and analytics-driven validation. This case study covers three examples: validating a Tours Search & Book POC with Fullstory, redesigning payment schedule controls, and fixing the Grab PNR import flow.
+          </p>
 
           {/* Design approach */}
           <div className="mt-12">
             <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Approach within a constrained platform</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 rounded-xl border border-slate-200 overflow-hidden">
-              <div className="sm:border-r border-b border-slate-200 bg-slate-50 p-5">
+              <div className="sm:border-r border-b border-slate-200 bg-white p-5">
                 <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">What we can do</p>
                 <div className="flex flex-wrap gap-1.5">
-                  {['Configure workflows', 'Design within existing patterns', 'Build adjacent platforms (Travel Connect)', 'Run analytics & usability testing'].map((item) => (
+                  {['Configure workflows', 'Design within existing patterns', 'Build adjacent platforms', 'Run analytics & usability testing'].map((item) => (
                     <span key={item} className="rounded-md bg-emerald-600 px-2 py-1 text-xs font-medium text-white">{item}</span>
                   ))}
                 </div>
               </div>
 
-              <div className="border-b border-slate-200 bg-slate-50 p-5">
+              <div className="border-b border-slate-200 bg-white p-5">
                 <p className="text-xs font-semibold uppercase tracking-widest text-slate-500 mb-3">What we can't</p>
                 <div className="flex flex-wrap gap-1.5">
                   {['Rewrite the front-end', 'Ship custom UI components', 'Control release cadence', 'Bypass vendor architecture'].map((item) => (
@@ -180,21 +165,16 @@ function HelioPlatform() {
           TOURS SEARCH & BOOK
           ════════════════════════════════════════════════════════════════ */}
 
-      <div className="w-full bg-slate-50">
+      <div id="hp-tours" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Tours Search & Book</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Using Fullstory to validate a proof of concept — and uncover exactly where consultants were succeeding and where the funnel broke down.
+            Using Fullstory to validate a proof of concept — and uncover exactly where the funnel broke down.
           </p>
 
-          <div className="mt-12 max-w-2xl space-y-4">
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-              Codegen started development on Tours Search and Book in 2020, but it never progressed past initial builds into a proper proof of concept. Without it, consultants reverted to two workarounds: using the Tours Grab feature (which required manual data entry) or adding the tour as a Manual Product Item (MPI) — both slower, error-prone, and disconnected from the booking workflow.
-            </p>
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-              When the POC finally launched to a small pool of stores, we needed a way to understand how consultants were actually using it — not through surveys or assumptions, but through observed behaviour. I set up Fullstory to capture quantitative interaction data across the entire Tours Search and Book flow.
-            </p>
-          </div>
+          <p className="mt-6 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            Codegen started development on Tours Search & Book in 2020, but it never progressed past initial builds. Without it, consultants used two workarounds — Tours Grab (manual data entry) or Manual Product Items — both slower and error-prone. When the POC finally launched to a pilot pool, I set up Fullstory to capture quantitative interaction data across the entire flow.
+          </p>
 
           {/* Methodology card */}
           <div className="mt-10 rounded-xl border border-slate-200 bg-white p-6 max-w-2xl">
@@ -237,29 +217,26 @@ function HelioPlatform() {
 
 
       {/* ── Funnel analysis ── */}
-      <div className="w-full bg-white">
+      <div className="w-full bg-slate-50">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">The funnel</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Fullstory session data across the pilot pool revealed a clear pattern: consultants who made it past the results page converted well, but significant drop-off happened in the middle of the funnel — between search and results, and between results and selection.
+            Consultants who made it past results converted well, but significant drop-off happened mid-funnel — between search and results, and between results and selection.
           </p>
 
           {/* Drop-off stats */}
           <div className="mt-12 grid gap-8 sm:grid-cols-3">
             <div>
-              <p className="text-5xl font-semibold text-transparent md:text-6xl lg:text-7xl" style={gradientStyle}>28%</p>
-              <p className="mt-1 text-sm font-medium tracking-wider text-slate-900">Chose Grab over Search</p>
-              <p className="mt-1 text-xs text-slate-500">Preferred the manual route despite the POC being available</p>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">28%</p>
+              <p className="mt-2 text-sm text-slate-500">Chose Grab over Search — preferred the manual route despite the POC</p>
             </div>
             <div>
-              <p className="text-5xl font-semibold text-transparent md:text-6xl lg:text-7xl" style={gradientStyle}>50%</p>
-              <p className="mt-1 text-sm font-medium tracking-wider text-slate-900">Drop-off: search → results</p>
-              <p className="mt-1 text-xs text-slate-500">Consultants couldn't find their preferred supplier in the search form</p>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">50%</p>
+              <p className="mt-2 text-sm text-slate-500">Drop-off: search → results — couldn't find preferred supplier</p>
             </div>
             <div>
-              <p className="text-5xl font-semibold text-transparent md:text-6xl lg:text-7xl" style={gradientStyle}>30%</p>
-              <p className="mt-1 text-sm font-medium tracking-wider text-slate-900">Drop-off: results → selection</p>
-              <p className="mt-1 text-xs text-slate-500">Couldn't find the specific tour within the results page</p>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">30%</p>
+              <p className="mt-2 text-sm text-slate-500">Drop-off: results → selection — couldn't find the specific tour</p>
             </div>
           </div>
 
@@ -286,7 +263,7 @@ function HelioPlatform() {
                   }`}>
                     {item.step}
                   </div>
-                  {i < 6 && <span className="text-slate-400 text-xs">→</span>}
+                  {i < 6 && <span className="text-slate-400 text-xs" aria-hidden="true">→</span>}
                 </div>
               ))}
             </div>
@@ -353,21 +330,16 @@ function HelioPlatform() {
           PAYMENT SCHEDULES — FEATURE DEEP DIVE
           ════════════════════════════════════════════════════════════════ */}
 
-      <div className="w-full bg-slate-50">
+      <div id="hp-payments" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Payment Schedules</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Giving consultants per-component control over payment timing — replacing a manual, error-prone process that had no flexibility built into the platform.
+            Giving consultants per-component control over payment timing — replacing a manual, error-prone process with no platform support.
           </p>
 
-          <div className="mt-12 max-w-2xl space-y-4">
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-              A typical booking in Helio contains multiple components — flights, hotels, tours, transfers — each with different suppliers, deposit requirements, and final payment deadlines. But Helio had no ability to adjust the payment schedule at the component level. Consultants were stuck with a single, blanket payment schedule applied across the entire itinerary regardless of what each supplier actually required.
-            </p>
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-              The result was inaccurate payment timelines, manual workarounds to track what was actually due and when, and a constant risk of missed deadlines or incorrect amounts. Consultants were managing payment complexity outside the system — in spreadsheets, sticky notes, and memory — because the system couldn't represent the reality of a multi-component booking.
-            </p>
-          </div>
+          <p className="mt-6 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            A typical booking contains multiple components — flights, hotels, tours, transfers — each with different suppliers, deposit requirements, and payment deadlines. But Helio applied a single blanket schedule across the entire itinerary. Consultants managed the gap in spreadsheets and sticky notes because the system couldn't represent reality.
+          </p>
 
           {/* Before / after */}
           <div className="mt-12">
@@ -403,11 +375,6 @@ function HelioPlatform() {
             </div>
           </div>
 
-          <div className="mt-10 max-w-2xl">
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-              The solution enabled consultants to view and adjust the payment schedule for each component individually within the itinerary. Deposit amounts, payment due dates, and final balance deadlines could now reflect what each supplier actually required — not a one-size-fits-all approximation. This brought the source of truth back into Helio and eliminated the parallel manual tracking that had become standard practice.
-            </p>
-          </div>
         </div>
       </div>
 
@@ -416,21 +383,16 @@ function HelioPlatform() {
           GRAB PNR
           ════════════════════════════════════════════════════════════════ */}
 
-      <div className="w-full bg-white">
+      <div id="hp-grab" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Grab PNR</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             Redesigning a blocking modal into an inline resolution flow — turning one of the most common daily frustrations into a fixable moment.
           </p>
 
-          <div className="mt-12 max-w-2xl space-y-4">
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-              When consultants imported flight details into Helio via PNR (Passenger Name Record), the system would validate the incoming data against the booking's traveller records. Travelbox enforces strict name matching at the booking level — not per component, but across the entire booking. If there was any inconsistency between the PNR and the booking's travellers — a name spelled differently, a middle name missing, a suffix mismatch — Helio would throw a generic error modal and block the import entirely.
-            </p>
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-              This was one of the most common blockers consultants hit daily. The strictness of Travelbox's booking-level traveller name validation meant that even minor discrepancies — an airline abbreviating a middle name, or a suffix formatted differently — would prevent the import. The existing modal gave consultants no visibility into what was wrong or any way to resolve it. They'd close the modal, leave the flow, manually investigate the mismatch across traveller records, fix it separately, and retry. A task that should take seconds routinely turned into minutes of detective work, repeated multiple times a day.
-            </p>
-          </div>
+          <p className="mt-6 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            When consultants imported flight details via PNR, Travelbox validated names at the booking level — not per component, but across the entire booking. Any mismatch (a middle name abbreviated, a suffix formatted differently) threw a generic error modal and blocked the import. No visibility into what was wrong, no way to fix it inline. Consultants would close, investigate, fix separately, and retry — a task that should take seconds became minutes of detective work, repeated multiple times daily.
+          </p>
 
           {/* Core constraint callout */}
           <div className="mt-10 rounded-xl border border-amber-200 bg-amber-50 px-4 py-3 text-sm text-amber-800 max-w-2xl">
@@ -438,7 +400,7 @@ function HelioPlatform() {
           </div>
 
           {/* Problem → solution flow */}
-          <div className="mt-12 space-y-8">
+          <div className="mt-12 space-y-8" role="group" aria-label="Before and after flow comparison. Before: 9-step flow blocked by generic error modal. After: 6-step flow with inline resolution.">
             <div>
               <p className="mb-3 text-xs font-semibold uppercase tracking-widest text-slate-500">Before — generic error modal, blocked import</p>
               <div className="flex flex-wrap items-center gap-1.5">
@@ -451,7 +413,7 @@ function HelioPlatform() {
                     }`}>
                       {step}
                     </div>
-                    {i < 8 && <span className="text-slate-400 text-xs">→</span>}
+                    {i < 8 && <span className="text-slate-400 text-xs" aria-hidden="true">→</span>}
                   </div>
                 ))}
               </div>
@@ -464,21 +426,16 @@ function HelioPlatform() {
                     <div className="rounded-md border border-emerald-200 bg-emerald-50 px-2.5 py-1.5 text-xs text-emerald-800">
                       {step}
                     </div>
-                    {i < 5 && <span className="text-emerald-400 text-xs">→</span>}
+                    {i < 5 && <span className="text-emerald-400 text-xs" aria-hidden="true">→</span>}
                   </div>
                 ))}
               </div>
             </div>
           </div>
 
-          <div className="mt-12 max-w-2xl space-y-4">
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-              The redesigned modal replaced the generic error with a clear view of the discrepancies — showing the PNR traveller data alongside the booking's traveller records so the consultant could see exactly what didn't match. From within the same modal, they could adjust the traveller allocation, reassigning or correcting names so the data aligned without ever leaving the import flow.
-            </p>
-            <p className="text-lg tracking-wide text-slate-600 leading-relaxed">
-              The shift was from a dead-end modal (error, close, leave, fix elsewhere, retry) to a resolution modal (see the problem, fix it here, continue). The validation still caught every mismatch — but now it helped consultants resolve them instead of just blocking them. For a pain point that was hitting consultants multiple times daily, the compound time savings were significant.
-            </p>
-          </div>
+          <p className="mt-12 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            The redesigned modal showed PNR data alongside booking traveller records — making mismatches visible and resolvable inline. Same validation, same strictness — but now the modal helped consultants fix the problem instead of just blocking them. Dead-end became resolution flow.
+          </p>
 
           {/* Key design decisions */}
           <div className="mt-10">
@@ -501,7 +458,7 @@ function HelioPlatform() {
 
 
       {/* ── Reflection ── */}
-      <div className="w-full bg-slate-50">
+      <div id="hp-reflection" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Reflection</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
@@ -530,7 +487,7 @@ function HelioPlatform() {
       </div>
 
       {/* ── Footer navigation ── */}
-      <div className="w-full bg-white">
+      <div className="w-full bg-slate-50">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <Link to="/stories" className="text-sm text-slate-500 transition hover:text-slate-900">
             ← All stories

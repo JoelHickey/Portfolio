@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FC RETURN // ROUTE MAP</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --surface-2: #1a1a1a;
+  --border: #222222;
+  --green: #00ff88;
+  --green-dim: #00cc6a;
+  --green-dark: #004d29;
+  --amber: #ffaa00;
+  --amber-dark: #4d3300;
+  --red: #ff3355;
+  --red-dark: #4d0f1a;
+  --cyan: #00ddff;
+  --text: #e0e0e0;
+  --text-dim: #888888;
+  --text-muted: #444444;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,0.05) 2px, rgba(0,0,0,0.05) 4px);
+  z-index: 9999;
+}
+
+.header {
+  padding: 20px 32px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 8px var(--green);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.header-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--green);
+}
+
+.header-sub {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.header-right {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+/* MAP CONTAINER */
+.map-container {
+  width: 100%;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 40px 32px 32px;
+}
+
+.map-svg {
+  display: block;
+  margin: 0 auto;
+}
+
+/* TRACK STYLES */
+.track-complete {
+  stroke: var(--green-dim);
+  stroke-width: 4;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.track-bottleneck {
+  stroke: var(--red);
+  stroke-width: 4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 8 6;
+  animation: dash-move 1s linear infinite;
+}
+
+@keyframes dash-move {
+  to { stroke-dashoffset: -14; }
+}
+
+.track-active {
+  stroke: var(--amber);
+  stroke-width: 4;
+  fill: none;
+  stroke-linecap: round;
+}
+
+.track-upcoming {
+  stroke: var(--text-muted);
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 4 8;
+}
+
+.track-branch-green {
+  stroke: var(--green-dim);
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 4 8;
+  opacity: 0.5;
+}
+
+.track-branch-amber {
+  stroke: var(--amber);
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 4 8;
+  opacity: 0.5;
+}
+
+.track-branch-grey {
+  stroke: var(--text-muted);
+  stroke-width: 3;
+  fill: none;
+  stroke-linecap: round;
+  stroke-dasharray: 4 8;
+  opacity: 0.35;
+}
+
+/* STATION STYLES */
+.station-complete {
+  fill: var(--bg);
+  stroke: var(--green-dim);
+  stroke-width: 3;
+}
+
+.station-active {
+  fill: var(--bg);
+  stroke: var(--amber);
+  stroke-width: 3;
+}
+
+.station-bottleneck {
+  fill: var(--bg);
+  stroke: var(--red);
+  stroke-width: 3;
+}
+
+.station-upcoming {
+  fill: var(--bg);
+  stroke: var(--text-muted);
+  stroke-width: 2;
+}
+
+.station-branch {
+  fill: var(--bg);
+  stroke-width: 2;
+}
+
+/* STATION INNER DOT */
+.inner-complete {
+  fill: var(--green);
+}
+
+.inner-active {
+  fill: var(--amber);
+}
+
+.inner-bottleneck {
+  fill: var(--red);
+  animation: pulse-red 2s ease-in-out infinite;
+}
+
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+/* LABELS */
+.label-name {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  fill: var(--text);
+}
+
+.label-name-dim {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  fill: var(--text-muted);
+}
+
+.label-detail {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  fill: var(--text-dim);
+  letter-spacing: 0.5px;
+}
+
+.label-status {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  letter-spacing: 1.5px;
+}
+
+.label-status-green { fill: var(--green-dim); }
+.label-status-amber { fill: var(--amber); }
+.label-status-red { fill: var(--red); }
+.label-status-muted { fill: var(--text-muted); }
+
+.label-branch {
+  font-family: 'Space Grotesk', sans-serif;
+  font-size: 10px;
+  font-weight: 500;
+}
+
+.label-branch-detail {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 8px;
+  fill: var(--text-dim);
+  letter-spacing: 0.5px;
+}
+
+/* TRAIN */
+.train {
+  filter: drop-shadow(0 0 10px var(--amber)) drop-shadow(0 0 20px rgba(255,170,0,0.3));
+}
+
+.train-body {
+  fill: var(--amber);
+}
+
+.train-stripe {
+  fill: var(--bg);
+}
+
+/* ZONE LABELS */
+.zone-label {
+  font-family: 'IBM Plex Mono', monospace;
+  font-size: 9px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+}
+
+/* BOTTLENECK ZONE */
+.bottleneck-zone {
+  fill: rgba(255,51,85,0.04);
+  stroke: rgba(255,51,85,0.15);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+  rx: 8;
+}
+
+/* ACCESS ZONE */
+.access-zone {
+  fill: rgba(0,255,136,0.03);
+  stroke: rgba(0,255,136,0.1);
+  stroke-width: 1;
+  stroke-dasharray: 4 4;
+  rx: 8;
+}
+
+/* LEGEND */
+.legend {
+  padding: 16px 32px 32px;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+}
+
+.legend-line {
+  width: 24px;
+  height: 4px;
+  border-radius: 2px;
+}
+
+.legend-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  border: 2px solid;
+}
+
+/* INSIGHT */
+.insight-bar {
+  max-width: 800px;
+  margin: 0 auto 32px;
+  padding: 16px 24px;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.insight-tag {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--amber);
+  padding: 3px 8px;
+  border: 1px solid rgba(255,170,0,0.3);
+  flex-shrink: 0;
+}
+
+.insight-text {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+
+.insight-text strong {
+  color: var(--text);
+}
+
+.today-bar {
+  max-width: 800px;
+  margin: 0 auto 40px;
+  padding: 16px 24px;
+  border: 1px solid rgba(0,255,136,0.15);
+  background: rgba(0,255,136,0.04);
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.today-tag {
+  font-size: 9px;
+  letter-spacing: 2px;
+  color: var(--bg);
+  background: var(--green);
+  padding: 3px 8px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.today-text {
+  font-size: 11px;
+  line-height: 1.6;
+  color: var(--text-dim);
+}
+
+.today-text strong {
+  color: var(--green);
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="header-left">
+    <div class="header-dot"></div>
+    <span class="header-title">FC Return // Route Map</span>
+    <span class="header-sub">CAMPAIGN TRANSIT SYSTEM</span>
+  </div>
+  <div class="header-right">JOEL HICKEY — MAR 2026</div>
+</div>
+
+<div class="map-container">
+<svg class="map-svg" viewBox="0 0 1200 480" xmlns="http://www.w3.org/2000/svg">
+
+  <!-- ZONES -->
+  <rect class="access-zone" x="28" y="130" width="340" height="150"/>
+  <text class="zone-label" fill="rgba(0,255,136,0.25)" x="48" y="152">Access — Solved</text>
+
+  <rect class="bottleneck-zone" x="422" y="76" width="200" height="200"/>
+  <text class="zone-label" fill="rgba(255,51,85,0.25)" x="530" y="268" text-anchor="middle">Bottleneck</text>
+
+  <!-- ============ MAIN LINE ============ -->
+
+  <!-- Track: Met Lui → Presented -->
+  <line class="track-complete" x1="100" y1="200" x2="250" y2="200"/>
+
+  <!-- Track: Presented → Portfolio -->
+  <line class="track-complete" x1="250" y1="200" x2="420" y2="200"/>
+
+  <!-- Track: Portfolio → Proof Kit (bottleneck) -->
+  <line class="track-bottleneck" x1="420" y1="200" x2="560" y2="200"/>
+
+  <!-- Track: Proof Kit → Channel Seeding -->
+  <line class="track-upcoming" x1="560" y1="200" x2="720" y2="200"/>
+
+  <!-- Track: Channel Seeding → Follow Up -->
+  <line class="track-upcoming" x1="720" y1="200" x2="880" y2="200"/>
+
+  <!-- Track: Follow Up → The Ask -->
+  <line class="track-upcoming" x1="880" y1="200" x2="1020" y2="200"/>
+
+  <!-- ============ BRANCH LINES FROM "THE ASK" ============ -->
+
+  <!-- Branch: FT Offered (green, curves up) -->
+  <path class="track-branch-green" d="M 1020 200 C 1050 200, 1060 140, 1100 140"/>
+  <line class="track-branch-green" x1="1100" y1="140" x2="1170" y2="140"/>
+
+  <!-- Branch: FT Hard (amber, continues straight) -->
+  <line class="track-branch-amber" x1="1020" y1="200" x2="1170" y2="200"/>
+
+  <!-- Branch: No Interest (grey, curves down) -->
+  <path class="track-branch-grey" d="M 1020 200 C 1050 200, 1060 260, 1100 260"/>
+  <line class="track-branch-grey" x1="1100" y1="260" x2="1170" y2="260"/>
+
+  <!-- ============ LOADING YARD — PROOF PICKUPS ============ -->
+
+  <!-- Loading platform -->
+  <rect x="430" y="85" width="180" height="90" rx="4" fill="var(--surface-2)" stroke="var(--border)" stroke-width="1"/>
+  <text font-family="IBM Plex Mono" font-size="8" fill="var(--text-muted)" letter-spacing="2" x="520" y="100" text-anchor="middle">LOADING YARD</text>
+
+  <!-- Crane 1 — Crisis Intel App (LOADED) -->
+  <!-- Vertical arm -->
+  <line x1="465" y1="175" x2="465" y2="150" stroke="var(--green-dim)" stroke-width="2.5"/>
+  <!-- Horizontal boom -->
+  <line x1="455" y1="150" x2="475" y2="150" stroke="var(--green-dim)" stroke-width="2.5"/>
+  <!-- Cable -->
+  <line x1="465" y1="150" x2="465" y2="132" stroke="var(--green-dim)" stroke-width="1.5" stroke-dasharray="3 2"/>
+  <!-- Cargo container — filled (loaded) -->
+  <rect x="452" y="118" width="26" height="16" rx="2" fill="var(--green-dark)" stroke="var(--green-dim)" stroke-width="2"/>
+  <text font-family="IBM Plex Mono" font-size="9" fill="var(--green)" x="465" y="130" text-anchor="middle">✓</text>
+
+  <!-- Crane 2 — Agentic Case Study (WAITING) -->
+  <line x1="520" y1="175" x2="520" y2="150" stroke="var(--red)" stroke-width="2.5"/>
+  <line x1="510" y1="150" x2="530" y2="150" stroke="var(--red)" stroke-width="2.5"/>
+  <line x1="520" y1="150" x2="520" y2="132" stroke="var(--red)" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.6"/>
+  <!-- Cargo container — empty (pulsing outline) -->
+  <rect x="507" y="118" width="26" height="16" rx="2" fill="var(--red-dark)" stroke="var(--red)" stroke-width="2" stroke-dasharray="4 3">
+    <animate attributeName="opacity" values="1;0.3;1" dur="2s" repeatCount="indefinite"/>
+  </rect>
+  <text font-family="IBM Plex Mono" font-size="8" fill="var(--red)" x="520" y="130" text-anchor="middle" opacity="0.7">?</text>
+
+  <!-- Crane 3 — Process Doc (EMPTY) -->
+  <line x1="575" y1="175" x2="575" y2="150" stroke="var(--text-muted)" stroke-width="2.5" opacity="0.4"/>
+  <line x1="565" y1="150" x2="585" y2="150" stroke="var(--text-muted)" stroke-width="2.5" opacity="0.4"/>
+  <line x1="575" y1="150" x2="575" y2="136" stroke="var(--text-muted)" stroke-width="1.5" stroke-dasharray="3 2" opacity="0.2"/>
+  <!-- Cargo container — ghost (not ready) -->
+  <rect x="562" y="118" width="26" height="16" rx="2" fill="none" stroke="var(--text-muted)" stroke-width="1.5" opacity="0.2"/>
+
+  <!-- ============ STATIONS — MAIN LINE ============ -->
+
+  <!-- Station: Met Lui -->
+  <circle class="station-complete" cx="100" cy="200" r="10"/>
+  <circle class="inner-complete" cx="100" cy="200" r="4"/>
+  <text class="label-name" x="100" y="175" text-anchor="middle">Met Lui</text>
+  <text class="label-detail" x="100" y="230" text-anchor="middle">January 2026</text>
+  <text class="label-status label-status-green" x="100" y="244" text-anchor="middle">COMPLETE</text>
+
+  <!-- Station: Presented to Team -->
+  <circle class="station-complete" cx="250" cy="200" r="10"/>
+  <circle class="inner-complete" cx="250" cy="200" r="4"/>
+  <text class="label-name" x="250" y="175" text-anchor="middle">Presented to Team</text>
+  <text class="label-detail" x="250" y="230" text-anchor="middle">FC design team · last week</text>
+  <text class="label-status label-status-green" x="250" y="244" text-anchor="middle">COMPLETE</text>
+
+  <!-- Station: Portfolio -->
+  <circle class="station-active" cx="420" cy="200" r="10"/>
+  <circle class="inner-active" cx="420" cy="200" r="4"/>
+  <text class="label-name" x="420" y="175" text-anchor="middle">Portfolio</text>
+  <text class="label-detail" x="420" y="230" text-anchor="middle">Site + POV framing</text>
+  <text class="label-status label-status-amber" x="420" y="244" text-anchor="middle">IN PROGRESS</text>
+
+  <!-- Station: Proof Kit (BOTTLENECK) -->
+  <circle class="station-bottleneck" cx="560" cy="200" r="12"/>
+  <circle class="inner-bottleneck" cx="560" cy="200" r="5"/>
+  <text class="label-name" x="600" y="196" text-anchor="start" fill="#ff3355" style="font-size:11px">Proof Kit</text>
+  <text class="label-detail" x="560" y="232" text-anchor="middle">1 of 3 loaded</text>
+  <text class="label-status label-status-red" x="560" y="246" text-anchor="middle">BLOCKING</text>
+
+  <!-- Station: Channel Seeding -->
+  <circle class="station-upcoming" cx="720" cy="200" r="9"/>
+  <text class="label-name-dim" x="720" y="178" text-anchor="middle">Channel Seeding</text>
+  <text class="label-detail" x="720" y="230" text-anchor="middle">Slack · weekly posts</text>
+  <text class="label-status label-status-muted" x="720" y="244" text-anchor="middle">UPCOMING</text>
+
+  <!-- Station: Follow Up -->
+  <circle class="station-upcoming" cx="880" cy="200" r="9"/>
+  <text class="label-name-dim" x="880" y="178" text-anchor="middle">Follow Up</text>
+  <text class="label-detail" x="880" y="230" text-anchor="middle">Proof assets to Lui</text>
+  <text class="label-status label-status-muted" x="880" y="244" text-anchor="middle">UPCOMING</text>
+
+  <!-- Station: The Ask (junction) -->
+  <circle class="station-upcoming" cx="1020" cy="200" r="11"/>
+  <text class="label-name-dim" x="1020" y="175" text-anchor="middle">The Ask</text>
+  <text class="label-detail" x="1020" y="232" text-anchor="middle">Problem + proof pitch</text>
+  <text class="label-status label-status-muted" x="1020" y="246" text-anchor="middle">JUNCTION</text>
+
+  <!-- ============ BRANCH STATIONS ============ -->
+
+  <!-- Branch: FT Offered -->
+  <circle class="station-branch" cx="1170" cy="140" r="8" stroke="var(--green-dim)" style="opacity:0.6"/>
+  <text class="label-branch" x="1168" y="122" text-anchor="end" fill="var(--green-dim)" style="opacity:0.6">$150–180K FT</text>
+  <text class="label-branch-detail" x="1168" y="162" text-anchor="end">New capability role</text>
+
+  <!-- Branch: FT Hard → Embed -->
+  <circle class="station-branch" cx="1170" cy="200" r="8" stroke="var(--amber)" style="opacity:0.6"/>
+  <text class="label-branch" x="1168" y="182" text-anchor="end" fill="var(--amber)" style="opacity:0.6">2–3 Mo Embed</text>
+  <text class="label-branch-detail" x="1168" y="222" text-anchor="end">Prove → convert to FT</text>
+
+  <!-- Branch: No Interest -->
+  <circle class="station-branch" cx="1170" cy="260" r="8" stroke="var(--text-muted)" style="opacity:0.4"/>
+  <text class="label-branch" x="1168" y="242" text-anchor="end" fill="var(--text-muted)" style="opacity:0.4">Other Doors</text>
+  <text class="label-branch-detail" x="1168" y="282" text-anchor="end" style="opacity:0.5">Same playbook · any org</text>
+
+  <!-- ============ LOADING YARD LABELS ============ -->
+
+  <!-- Label: Crisis Intel App (LOADED) -->
+  <text class="label-name" x="465" y="112" text-anchor="middle" style="font-size:8px" fill="var(--green)">Crisis Intel</text>
+  <text class="label-status label-status-green" x="465" y="164" text-anchor="middle" style="font-size:7px">LOADED</text>
+
+  <!-- Label: Agentic Case Study (WAITING) -->
+  <text class="label-name" x="520" y="112" text-anchor="middle" style="font-size:8px" fill="var(--red)">Case Study</text>
+  <text class="label-status label-status-red" x="520" y="164" text-anchor="middle" style="font-size:7px">WAITING</text>
+
+  <!-- Label: Process Doc (NOT READY) -->
+  <text class="label-name-dim" x="575" y="112" text-anchor="middle" style="font-size:8px">Process Doc</text>
+  <text class="label-status label-status-muted" x="575" y="164" text-anchor="middle" style="font-size:7px">EMPTY</text>
+
+  <!-- ============ TRAIN ============ -->
+  <g class="train" transform="translate(475, 188)">
+    <rect class="train-body" x="0" y="0" width="28" height="12" rx="3"/>
+    <rect class="train-body" x="-6" y="2" width="8" height="8" rx="2"/>
+    <rect class="train-stripe" x="4" y="4" width="3" height="4" rx="1"/>
+    <rect class="train-stripe" x="10" y="4" width="3" height="4" rx="1"/>
+    <rect class="train-stripe" x="16" y="4" width="3" height="4" rx="1"/>
+    <circle fill="var(--amber)" cx="-2" cy="14" r="2.5"/>
+    <circle fill="var(--amber)" cx="8" cy="14" r="2.5"/>
+    <circle fill="var(--amber)" cx="20" cy="14" r="2.5"/>
+  </g>
+
+  <!-- ============ DISTANCE MARKERS ============ -->
+  <text font-family="IBM Plex Mono" font-size="8" fill="var(--text-muted)" x="170" y="280" text-anchor="middle" letter-spacing="1">JAN</text>
+  <text font-family="IBM Plex Mono" font-size="8" fill="var(--text-muted)" x="335" y="280" text-anchor="middle" letter-spacing="1">MAR W3</text>
+  <text font-family="IBM Plex Mono" font-size="8" fill="var(--text-muted)" x="490" y="280" text-anchor="middle" letter-spacing="1">NOW</text>
+  <text font-family="IBM Plex Mono" font-size="8" fill="var(--text-muted)" x="640" y="280" text-anchor="middle" letter-spacing="1">APR</text>
+  <text font-family="IBM Plex Mono" font-size="8" fill="var(--text-muted)" x="800" y="280" text-anchor="middle" letter-spacing="1">APR–MAY</text>
+  <text font-family="IBM Plex Mono" font-size="8" fill="var(--text-muted)" x="950" y="280" text-anchor="middle" letter-spacing="1">MAY–JUN</text>
+
+  <!-- Arrow hint on train -->
+  <text font-family="IBM Plex Mono" font-size="20" fill="var(--amber)" x="508" y="200" opacity="0.4">›</text>
+
+</svg>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-item">
+    <div class="legend-line" style="background:var(--green-dim)"></div>
+    Completed
+  </div>
+  <div class="legend-item">
+    <div class="legend-line" style="background:var(--amber)"></div>
+    In Progress
+  </div>
+  <div class="legend-item">
+    <div class="legend-line" style="background:var(--red);background-image:repeating-linear-gradient(90deg,var(--red) 0 8px,transparent 8px 14px)"></div>
+    Bottleneck
+  </div>
+  <div class="legend-item">
+    <div class="legend-line" style="background:var(--text-muted);opacity:0.5"></div>
+    Upcoming
+  </div>
+  <div class="legend-item">
+    <div class="legend-dot" style="border-color:var(--amber);background:var(--amber)"></div>
+    You Are Here
+  </div>
+</div>
+
+<!-- INSIGHT -->
+<div class="insight-bar">
+  <div class="insight-tag">SIGNAL</div>
+  <div class="insight-text">
+    <strong>The first two stations are behind you.</strong> Access is solved — Lui knows you, the team has seen you present. The train needs to pick up proof assets from the branch lines before it can clear through to the junction. One collected, two to go.
+  </div>
+</div>
+
+<div class="today-bar">
+  <div class="today-tag">TODAY</div>
+  <div class="today-text">
+    <strong>First Slack post — channel seeding starts now.</strong> Share the Crisis Intel App — it's already on the train. Use it while the presentation is still fresh.
+  </div>
+</div>
+
+</body>
+</html>

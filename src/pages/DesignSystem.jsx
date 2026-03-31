@@ -334,7 +334,7 @@ const TOKEN_GROUPS = [
       { name: 'text-white', note: 'Primary text on dark surfaces' },
       { name: 'text-slate-300', note: 'Supporting body copy' },
       { name: 'bg-black/55', note: 'Inner fill for the secondary CTA treatment' },
-      { name: 'text-7xl md:text-8xl lg:text-9xl', note: 'Hero display scale used in the heading examples' }
+      { name: 'text-[2.75rem] sm:text-6xl md:text-8xl lg:text-9xl', note: 'Hero display scale — mobile-first, ramping through breakpoints' }
     ]
   }
 ]
@@ -962,7 +962,7 @@ export default function DesignSystem() {
               <SampleCard>
                 <TokenCaption>Hero</TokenCaption>
                 <p
-                  className="text-center text-7xl font-semibold leading-[1.1] tracking-normal md:text-8xl lg:text-9xl"
+                  className="text-center text-[2.75rem] font-semibold leading-[1.1] tracking-normal sm:text-6xl md:text-8xl lg:text-9xl"
                   style={homeHeroNameGradientTextStyle}
                 >
                   Joel Hickey
@@ -970,27 +970,27 @@ export default function DesignSystem() {
                 <ElementSpec>
                   <code>homeHeroNameGradientTextStyle</code> from <code className={code}>src/design-system/home.js</code>{' '}
                   (inline style) +{' '}
-                  <code>text-7xl md:text-8xl lg:text-9xl font-semibold leading-[1.1] tracking-normal</code>
+                  <code>text-[2.75rem] sm:text-6xl md:text-8xl lg:text-9xl font-semibold leading-[1.1] tracking-normal</code>
                 </ElementSpec>
               </SampleCard>
               <SampleCard>
                 <TokenCaption>Stories section heading</TokenCaption>
-                <p className="w-full bg-home-h2-stories bg-clip-text text-center text-6xl font-bold tracking-wide text-transparent md:text-7xl lg:text-8xl">
+                <p className="w-full bg-home-h2-stories bg-clip-text text-center text-4xl font-bold tracking-wide text-transparent sm:text-6xl md:text-7xl lg:text-8xl">
                   Stories
                 </p>
                 <ElementSpec>
                   <code className={tokenLabel}>bg-home-h2-stories</code> + <code>bg-clip-text text-transparent</code> +{' '}
-                  <code>text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide</code>
+                  <code>text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide</code>
                 </ElementSpec>
               </SampleCard>
               <SampleCard>
                 <TokenCaption>Value section heading</TokenCaption>
-                <p className="w-full bg-home-h2-value bg-clip-text text-center text-6xl font-bold tracking-wide text-transparent md:text-7xl lg:text-8xl">
+                <p className="w-full bg-home-h2-value bg-clip-text text-center text-4xl font-bold tracking-wide text-transparent sm:text-6xl md:text-7xl lg:text-8xl">
                   How I create value
                 </p>
                 <ElementSpec>
                   <code className={tokenLabel}>bg-home-h2-value</code> + <code>bg-clip-text text-transparent</code> +{' '}
-                  <code>text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide</code>
+                  <code>text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-wide</code>
                 </ElementSpec>
               </SampleCard>
             </DarkPanel>
@@ -1079,10 +1079,10 @@ export default function DesignSystem() {
               </SampleCard>
               <SampleCard>
                 <TokenCaption>White · card title</TokenCaption>
-                <p className="text-4xl font-semibold tracking-wide text-white md:text-5xl lg:text-6xl">Insurance</p>
+                <p className="text-2xl font-semibold tracking-wide text-white sm:text-4xl md:text-5xl lg:text-6xl">Insurance</p>
                 <ElementSpec>
                   <code>text-white</code> +{' '}
-                  <code>text-4xl md:text-5xl lg:text-6xl font-semibold tracking-wide</code> (e.g. Agentic AI card)
+                  <code>text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold tracking-wide</code> (e.g. Insurance card)
                 </ElementSpec>
               </SampleCard>
             </DarkPanel>

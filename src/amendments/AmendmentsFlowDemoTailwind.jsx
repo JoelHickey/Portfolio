@@ -1,6 +1,20 @@
 import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import { JoelAvatar } from '../components/JoelAvatar'
+import {
+  DEMO_TRIP_DEFAULT_ITINERARY,
+  DEMO_TRIP_HERO,
+  demoTripPackageTotalFormatted,
+} from './demoTripConstants'
 
 const TAB_LABELS = ['itinerary', 'travellers', 'documents', 'payments', 'notes', 'history']
+
+const TRIP_HERO = {
+  title: DEMO_TRIP_HERO.title,
+  dateRange: DEMO_TRIP_HERO.dateRange,
+  travellersLabel: DEMO_TRIP_HERO.travellersLabel,
+  packageTotalFormatted: demoTripPackageTotalFormatted(),
+}
+const TRIP_DEFAULT_ITINERARY_CARD = DEMO_TRIP_DEFAULT_ITINERARY
 
 const newFlowSteps = ['Search & Travellers', 'Results', 'Review']
 const oldFlowSteps = ['Results', 'Cart', 'Travellers', 'Payment']
@@ -594,10 +608,15 @@ const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwin
       </div>
         <div className="absolute inset-x-0 bottom-0 flex items-center justify-between gap-2 px-4 pb-3 pt-8">
           <div className="min-w-0 flex-1 text-sm text-white drop-shadow-sm">
-            <span className="font-medium">Hawaii Family Vacation</span>
-            <span className="text-white/90"> · May 15–20, 2024 · 1 traveller</span>
+            <span className="font-medium">{TRIP_HERO.title}</span>
+            <span className="text-white/90">
+              {' '}
+              · {TRIP_HERO.dateRange} · {TRIP_HERO.travellersLabel}
+            </span>
               </div>
-          <span className="text-sm font-semibold text-white drop-shadow-sm">$4,805</span>
+          <span className="text-sm font-semibold text-white drop-shadow-sm">
+            {TRIP_HERO.packageTotalFormatted}
+          </span>
           <div className="relative -mr-1">
                 <button
                   type="button"
@@ -678,7 +697,7 @@ const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwin
                           highlight: true
                         }
                       })()
-                    : { id: 'hotel', title: 'Hilton Hawaiian Village', datesStr: 'May 15–20, 2024 · 5 nights', roomStr: 'Standard Room', price: '$2,890', highlight: false }
+                    : TRIP_DEFAULT_ITINERARY_CARD
                   return (
                     <div
                       key={card.id}
@@ -1281,7 +1300,7 @@ const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwin
                   <p className="text-sm font-medium text-slate-800">Select travellers</p>
               <div className="rounded-xl border border-slate-200 bg-white px-4 py-3">
                 <div className="flex items-center gap-3">
-                  <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100 text-xs font-semibold text-slate-600">JH</div>
+                  <JoelAvatar sizeClass="h-8 w-8" className="ring-1 ring-slate-200/80" alt="" />
                   <div>
                     <p className="text-sm font-medium text-slate-900">Joel Hickey</p>
                     <p className="text-xs text-slate-500">Adult</p>

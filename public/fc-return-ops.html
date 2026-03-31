@@ -1,0 +1,1410 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FC RETURN // STRATEGIC OPS BOARD</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #0a0a0a;
+  --surface: #111111;
+  --surface-2: #1a1a1a;
+  --border: #222222;
+  --border-active: #333333;
+  --green: #00ff88;
+  --green-dim: #00cc6a;
+  --green-muted: rgba(0,255,136,0.08);
+  --green-glow: rgba(0,255,136,0.15);
+  --amber: #ffaa00;
+  --amber-dim: #cc8800;
+  --amber-muted: rgba(255,170,0,0.08);
+  --red: #ff3355;
+  --red-muted: rgba(255,51,85,0.08);
+  --cyan: #00ddff;
+  --cyan-muted: rgba(0,221,255,0.08);
+  --text: #e0e0e0;
+  --text-dim: #888888;
+  --text-muted: #555555;
+  --mono: 'IBM Plex Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--mono);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* CRT scanline overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.08) 2px,
+    rgba(0,0,0,0.08) 4px
+  );
+  z-index: 9999;
+}
+
+/* HEADER */
+.header {
+  border-bottom: 1px solid var(--border);
+  padding: 16px 24px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: var(--surface);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.header-flag {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.pulse-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--green);
+  animation: pulse 2s ease-in-out infinite;
+  box-shadow: 0 0 8px var(--green);
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.header-title {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: var(--green);
+  text-transform: uppercase;
+}
+
+.header-sub {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 1px;
+}
+
+.header-clock {
+  font-variant-numeric: tabular-nums;
+  color: var(--green-dim);
+}
+
+/* THREAT BANNER */
+.threat-banner {
+  background: linear-gradient(90deg, var(--amber-muted), transparent 60%);
+  border-bottom: 1px solid rgba(255,170,0,0.2);
+  padding: 10px 24px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+}
+
+.threat-level {
+  background: var(--amber);
+  color: var(--bg);
+  padding: 2px 10px;
+  font-weight: 700;
+  font-size: 10px;
+  letter-spacing: 2px;
+}
+
+.threat-text {
+  color: var(--amber);
+  letter-spacing: 0.5px;
+}
+
+/* MAIN LAYOUT */
+.main {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+/* OVERVIEW ROW */
+.overview-row {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.overview-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 16px 20px;
+  position: relative;
+  transition: border-color 0.3s;
+}
+
+.overview-card:hover {
+  border-color: var(--border-active);
+}
+
+.overview-label {
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin-bottom: 8px;
+}
+
+.overview-value {
+  font-family: var(--sans);
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.overview-detail {
+  font-size: 10px;
+  color: var(--text-dim);
+}
+
+.overview-card .indicator-bar {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 2px;
+  transition: width 0.6s ease;
+}
+
+/* SECTION HEADERS */
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 16px;
+  margin-top: 8px;
+}
+
+.section-header h2 {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: var(--text);
+}
+
+.section-line {
+  flex: 1;
+  height: 1px;
+  background: var(--border);
+}
+
+.section-tag {
+  font-size: 9px;
+  letter-spacing: 1px;
+  color: var(--text-muted);
+  padding: 2px 8px;
+  border: 1px solid var(--border);
+}
+
+/* PHASE TIMELINE */
+.phase-timeline {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 2px;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.phase-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 20px;
+  cursor: pointer;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.phase-card::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%;
+  height: 2px;
+  transition: background 0.3s;
+}
+
+.phase-card.active {
+  border-color: var(--green);
+  background: linear-gradient(180deg, var(--green-muted), var(--surface) 60%);
+}
+
+.phase-card.active::before {
+  background: var(--green);
+  box-shadow: 0 0 12px var(--green-glow);
+}
+
+.phase-card.upcoming {
+  opacity: 0.5;
+}
+
+.phase-card.upcoming:hover {
+  opacity: 0.75;
+}
+
+.phase-card.completed::before {
+  background: var(--green-dim);
+}
+
+.phase-card.completed .phase-status {
+  color: var(--green-dim);
+}
+
+.phase-number {
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 2px;
+  margin-bottom: 10px;
+}
+
+.phase-name {
+  font-family: var(--sans);
+  font-size: 15px;
+  font-weight: 600;
+  margin-bottom: 6px;
+  line-height: 1.3;
+}
+
+.phase-status {
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.phase-status.active {
+  color: var(--green);
+}
+
+.phase-status.pending {
+  color: var(--text-muted);
+}
+
+.phase-status.done {
+  color: var(--green-dim);
+}
+
+.phase-tasks {
+  list-style: none;
+  font-size: 11px;
+  line-height: 1.8;
+}
+
+.phase-tasks li {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  color: var(--text-dim);
+}
+
+.phase-tasks li .check {
+  flex-shrink: 0;
+  width: 14px;
+  height: 14px;
+  border: 1px solid var(--border-active);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 8px;
+  margin-top: 3px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.phase-tasks li .check.checked {
+  background: var(--green);
+  border-color: var(--green);
+  color: var(--bg);
+}
+
+.phase-tasks li .check:hover {
+  border-color: var(--green);
+}
+
+/* TWO-COL LAYOUT */
+.two-col {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+/* STAKEHOLDER MAP */
+.stakeholder-map {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 20px;
+}
+
+.stakeholder-item {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.stakeholder-item:last-child {
+  border-bottom: none;
+}
+
+.stakeholder-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+
+.stakeholder-info {
+  flex: 1;
+}
+
+.stakeholder-name {
+  font-family: var(--sans);
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 2px;
+}
+
+.stakeholder-role {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+}
+
+.stakeholder-signal {
+  font-size: 10px;
+  padding: 3px 10px;
+  border: 1px solid;
+  letter-spacing: 0.5px;
+}
+
+.signal-warm {
+  color: var(--green);
+  border-color: rgba(0,255,136,0.3);
+  background: var(--green-muted);
+}
+
+.signal-neutral {
+  color: var(--amber);
+  border-color: rgba(255,170,0,0.3);
+  background: var(--amber-muted);
+}
+
+.signal-unknown {
+  color: var(--text-muted);
+  border-color: var(--border);
+}
+
+/* PROOF KIT */
+.proof-kit {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 20px;
+}
+
+.proof-item {
+  padding: 14px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.proof-item:last-child {
+  border-bottom: none;
+}
+
+.proof-item-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.proof-item-name {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+}
+
+.proof-item-status {
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  padding: 2px 8px;
+}
+
+.proof-item-desc {
+  font-size: 11px;
+  color: var(--text-dim);
+  line-height: 1.5;
+}
+
+.progress-bar {
+  height: 3px;
+  background: var(--border);
+  margin-top: 8px;
+  position: relative;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  transition: width 0.8s ease;
+}
+
+/* STRATEGY PANEL */
+.strategy-panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 24px;
+  margin-bottom: 28px;
+}
+
+.strategy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px;
+}
+
+.strategy-block h3 {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid var(--border);
+}
+
+.strategy-block p {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text-dim);
+}
+
+.strategy-block .highlight {
+  color: var(--text);
+  font-weight: 500;
+}
+
+.strategy-block ul {
+  list-style: none;
+  font-size: 11px;
+  line-height: 1.9;
+  color: var(--text-dim);
+}
+
+.strategy-block ul li::before {
+  content: '→ ';
+  color: var(--cyan);
+}
+
+/* COMP NARRATIVE */
+.comp-section {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.comp-visual {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.comp-range {
+  width: 100%;
+  position: relative;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.comp-marker {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 11px;
+}
+
+.comp-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+.comp-label {
+  color: var(--text-dim);
+}
+
+.comp-amount {
+  font-family: var(--sans);
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.comp-connector {
+  position: absolute;
+  left: 4px;
+  top: 14px;
+  bottom: 14px;
+  width: 2px;
+  background: linear-gradient(to bottom, var(--text-muted), var(--green));
+}
+
+.comp-detail {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 24px;
+}
+
+.comp-detail h3 {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--amber);
+  margin-bottom: 16px;
+}
+
+.comp-detail-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+
+.comp-card {
+  padding: 14px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+}
+
+.comp-card-label {
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+}
+
+.comp-card-value {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* TICKER BAR */
+.ticker-bar {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: var(--surface);
+  border-top: 1px solid var(--border);
+  padding: 8px 0;
+  overflow: hidden;
+  z-index: 100;
+}
+
+.ticker-track {
+  display: flex;
+  animation: scroll 40s linear infinite;
+  white-space: nowrap;
+}
+
+@keyframes scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+.ticker-item {
+  font-size: 10px;
+  color: var(--text-dim);
+  letter-spacing: 0.5px;
+  padding: 0 24px;
+  flex-shrink: 0;
+}
+
+.ticker-item .label {
+  color: var(--text-muted);
+  margin-right: 6px;
+}
+
+.ticker-item .value {
+  color: var(--green-dim);
+}
+
+.ticker-item .value.amber {
+  color: var(--amber);
+}
+
+.ticker-item .value.red {
+  color: var(--red);
+}
+
+/* VIEW TOGGLE */
+.view-toggle {
+  display: flex;
+  gap: 2px;
+  margin-bottom: 20px;
+}
+
+.view-btn {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  color: var(--text-dim);
+  padding: 8px 16px;
+  font-family: var(--mono);
+  font-size: 10px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.view-btn:hover {
+  border-color: var(--border-active);
+  color: var(--text);
+}
+
+.view-btn.active {
+  background: var(--green-muted);
+  border-color: var(--green);
+  color: var(--green);
+}
+
+/* VIEW SWITCHING */
+.above-view {
+  display: none;
+}
+
+.above-view.visible {
+  display: block;
+}
+
+.ops-view.hidden {
+  display: none !important;
+}
+
+/* ELEVATION MAP */
+.elevation-map {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 32px;
+  margin-bottom: 28px;
+  position: relative;
+}
+
+.elevation-title {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--cyan);
+  margin-bottom: 24px;
+}
+
+.elevation-grid {
+  display: grid;
+  grid-template-rows: auto auto auto;
+  gap: 0;
+}
+
+.elevation-level {
+  display: grid;
+  grid-template-columns: 140px 1fr;
+  gap: 20px;
+  padding: 20px 0;
+  border-bottom: 1px solid var(--border);
+  align-items: start;
+}
+
+.elevation-level:last-child {
+  border-bottom: none;
+}
+
+.elevation-altitude {
+  font-family: var(--sans);
+  font-size: 13px;
+  font-weight: 600;
+  padding-top: 4px;
+}
+
+.elevation-altitude span {
+  display: block;
+  font-family: var(--mono);
+  font-size: 9px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  margin-top: 4px;
+  font-weight: 400;
+}
+
+.elevation-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 12px;
+}
+
+.elevation-pill {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  background: var(--surface-2);
+  font-size: 12px;
+  line-height: 1.5;
+  color: var(--text-dim);
+  transition: all 0.3s;
+}
+
+.elevation-pill:hover {
+  border-color: var(--border-active);
+  color: var(--text);
+}
+
+.elevation-pill strong {
+  display: block;
+  font-family: var(--sans);
+  font-size: 12px;
+  color: var(--text);
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+/* MANTRAS */
+.mantra-strip {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 16px;
+  margin-bottom: 28px;
+}
+
+.mantra-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  padding: 24px;
+  text-align: center;
+}
+
+.mantra-card blockquote {
+  font-family: var(--sans);
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.mantra-card cite {
+  font-size: 10px;
+  color: var(--text-muted);
+  letter-spacing: 1px;
+  font-style: normal;
+}
+
+/* FADE IN */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in {
+  animation: fadeUp 0.6s ease forwards;
+}
+
+.fade-in:nth-child(1) { animation-delay: 0.05s; }
+.fade-in:nth-child(2) { animation-delay: 0.1s; }
+.fade-in:nth-child(3) { animation-delay: 0.15s; }
+.fade-in:nth-child(4) { animation-delay: 0.2s; }
+.fade-in:nth-child(5) { animation-delay: 0.25s; }
+
+/* BOTTOM PADDING */
+.main { padding-bottom: 60px; }
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .overview-row { grid-template-columns: repeat(2, 1fr); }
+  .phase-timeline { grid-template-columns: 1fr; }
+  .two-col { grid-template-columns: 1fr; }
+  .strategy-grid { grid-template-columns: 1fr; }
+  .comp-section { grid-template-columns: 1fr; }
+  .mantra-strip { grid-template-columns: 1fr; }
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-left">
+    <div class="header-flag">
+      <div class="pulse-dot"></div>
+      <span class="header-title">FC Return // Strategic Ops Board</span>
+    </div>
+    <span class="header-sub">JOEL HICKEY — CAREER CAMPAIGN INTELLIGENCE</span>
+  </div>
+  <div class="header-right">
+    <span>5 PHASES</span>
+    <span>3 STAKEHOLDERS</span>
+    <span>4 PROOF ASSETS</span>
+    <span class="header-clock" id="clock"></span>
+  </div>
+</div>
+
+<!-- THREAT BANNER -->
+<div class="threat-banner">
+  <span class="threat-level">READINESS 2</span>
+  <span class="threat-text">LUI ENGAGED — PRESENTED TO TEAM — PROOF KIT + CHANNEL SEEDING NEEDED TO CLOSE</span>
+</div>
+
+<div class="main">
+
+  <!-- VIEW TOGGLE -->
+  <div class="view-toggle">
+    <button class="view-btn active" data-view="ops">OPS BOARD</button>
+    <button class="view-btn" data-view="above">LOOK ABOVE</button>
+  </div>
+
+  <!-- ===== OPS VIEW ===== -->
+  <div class="ops-view" id="ops-view">
+
+    <!-- OVERVIEW CARDS -->
+    <div class="overview-row">
+      <div class="overview-card fade-in">
+        <div class="indicator-bar" style="width:40%;background:var(--amber)"></div>
+        <div class="overview-label">Campaign Phase</div>
+        <div class="overview-value" style="color:var(--amber)">2+4</div>
+        <div class="overview-detail">PROOF BUILDING + WARM CONTACT — parallel</div>
+      </div>
+      <div class="overview-card fade-in">
+        <div class="indicator-bar" style="width:25%;background:var(--amber)"></div>
+        <div class="overview-label">Proof Kit</div>
+        <div class="overview-value" style="color:var(--amber)">1/4</div>
+        <div class="overview-detail">Crisis Intel App complete</div>
+      </div>
+      <div class="overview-card fade-in">
+        <div class="indicator-bar" style="width:0%;background:var(--text-muted)"></div>
+        <div class="overview-label">Channel Seeds</div>
+        <div class="overview-value" style="color:var(--text-muted)">0/4</div>
+        <div class="overview-detail">Slack posts — not started</div>
+      </div>
+      <div class="overview-card fade-in">
+        <div class="indicator-bar" style="width:0%;background:var(--text-muted)"></div>
+        <div class="overview-label">Stakeholder Temp</div>
+        <div class="overview-value" style="color:var(--green)">HOT</div>
+        <div class="overview-detail">Lui engaged — presented to team last week</div>
+      </div>
+    </div>
+
+    <!-- PHASE TIMELINE -->
+    <div class="section-header">
+      <h2>Campaign Phases</h2>
+      <div class="section-line"></div>
+      <span class="section-tag">SEQUENCED OPS</span>
+    </div>
+
+    <div class="phase-timeline">
+      <div class="phase-card completed fade-in" data-phase="1">
+        <div class="phase-number">PHASE 01</div>
+        <div class="phase-name">Portfolio Polish</div>
+        <div class="phase-status done">● NEAR COMPLETE</div>
+        <ul class="phase-tasks">
+          <li><span class="check checked">✓</span>Core site structure</li>
+          <li><span class="check checked">✓</span>Case study layout</li>
+          <li><span class="check">·</span>Value proposition hero</li>
+          <li><span class="check">·</span>Final visual polish</li>
+        </ul>
+      </div>
+
+      <div class="phase-card active fade-in" data-phase="2">
+        <div class="phase-number">PHASE 02</div>
+        <div class="phase-name">Proof Building</div>
+        <div class="phase-status active">● ACTIVE NOW</div>
+        <ul class="phase-tasks">
+          <li><span class="check checked">✓</span>Crisis Intel App</li>
+          <li><span class="check">·</span>Agentic workflow case study</li>
+          <li><span class="check">·</span>Process doc / video</li>
+          <li><span class="check">·</span>Before/after metrics</li>
+        </ul>
+      </div>
+
+      <div class="phase-card upcoming fade-in" data-phase="3">
+        <div class="phase-number">PHASE 03</div>
+        <div class="phase-name">Channel Seeding</div>
+        <div class="phase-status pending">○ UPCOMING</div>
+        <ul class="phase-tasks">
+          <li><span class="check">·</span>Week 1: opinionated take</li>
+          <li><span class="check">·</span>Week 2: screenshot + result</li>
+          <li><span class="check">·</span>Week 3: workflow demo</li>
+          <li><span class="check">·</span>Week 4: numbers + POV</li>
+        </ul>
+      </div>
+
+      <div class="phase-card active fade-in" data-phase="4">
+        <div class="phase-number">PHASE 04</div>
+        <div class="phase-name">Warm Contact</div>
+        <div class="phase-status active">● IN MOTION</div>
+        <ul class="phase-tasks">
+          <li><span class="check checked">✓</span>Lui — met January '26</li>
+          <li><span class="check checked">✓</span>Presented to FC design team</li>
+          <li><span class="check">·</span>Follow up with proof assets</li>
+          <li><span class="check">·</span>The ask — problem + proof pitch</li>
+        </ul>
+      </div>
+
+      <div class="phase-card upcoming fade-in" data-phase="5">
+        <div class="phase-number">PHASE 05</div>
+        <div class="phase-name">The Negotiation</div>
+        <div class="phase-status pending">○ UPCOMING</div>
+        <ul class="phase-tasks">
+          <li><span class="check">·</span>Lead with new capability</li>
+          <li><span class="check">·</span>2-3 month embed offer</li>
+          <li><span class="check">·</span>Measurable results</li>
+          <li><span class="check">·</span>$150-180k FT conversion</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- STAKEHOLDER MAP + PROOF KIT -->
+    <div class="two-col">
+      <div>
+        <div class="section-header">
+          <h2>Stakeholder Map</h2>
+          <div class="section-line"></div>
+          <span class="section-tag">SEQUENCE</span>
+        </div>
+        <div class="stakeholder-map">
+          <div class="stakeholder-item">
+            <div class="stakeholder-avatar" style="background:var(--green-muted);color:var(--green);border:1px solid rgba(0,255,136,0.3)">T</div>
+            <div class="stakeholder-info">
+              <div class="stakeholder-name">Tals</div>
+              <div class="stakeholder-role">Former design manager — direct boss at FC — Slack creator space</div>
+            </div>
+            <span class="stakeholder-signal signal-warm">WARM</span>
+          </div>
+          <div class="stakeholder-item">
+            <div class="stakeholder-avatar" style="background:var(--cyan-muted);color:var(--cyan);border:1px solid rgba(0,221,255,0.3)">H</div>
+            <div class="stakeholder-info">
+              <div class="stakeholder-name">Hans</div>
+              <div class="stakeholder-role">Peer-level at FC — not direct boss — warm relationship</div>
+            </div>
+            <span class="stakeholder-signal signal-warm">WARM</span>
+          </div>
+          <div class="stakeholder-item">
+            <div class="stakeholder-avatar" style="background:var(--green-muted);color:var(--green);border:1px solid rgba(0,255,136,0.3)">L</div>
+            <div class="stakeholder-info">
+              <div class="stakeholder-name">Lui</div>
+              <div class="stakeholder-role">Decision maker — met Jan '26 — presented to FC design team last week</div>
+            </div>
+            <span class="stakeholder-signal signal-warm">ENGAGED</span>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="section-header">
+          <h2>Proof Kit</h2>
+          <div class="section-line"></div>
+          <span class="section-tag">EVIDENCE</span>
+        </div>
+        <div class="proof-kit">
+          <div class="proof-item">
+            <div class="proof-item-header">
+              <span class="proof-item-name">Portfolio Site</span>
+              <span class="proof-item-status" style="color:var(--amber);border:1px solid rgba(255,170,0,0.3);background:var(--amber-muted)">IN PROGRESS</span>
+            </div>
+            <div class="proof-item-desc">POV-led framing. Not just history — what you believe about design + AI and how you ship it.</div>
+            <div class="progress-bar"><div class="progress-fill" style="width:65%;background:var(--amber)"></div></div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-item-header">
+              <span class="proof-item-name">Crisis Intel App</span>
+              <span class="proof-item-status" style="color:var(--green);border:1px solid rgba(0,255,136,0.3);background:var(--green-muted)">COMPLETE</span>
+            </div>
+            <div class="proof-item-desc">Terminal-style OSINT dashboard. Demonstrates ability to ship functional, designed products with AI.</div>
+            <div class="progress-bar"><div class="progress-fill" style="width:100%;background:var(--green)"></div></div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-item-header">
+              <span class="proof-item-name">Agentic Workflow Case Study</span>
+              <span class="proof-item-status" style="color:var(--text-muted);border:1px solid var(--border)">NOT STARTED</span>
+            </div>
+            <div class="proof-item-desc">Documented real process of designing with AI agents — before/after, speed gains, quality evidence.</div>
+            <div class="progress-bar"><div class="progress-fill" style="width:0%;background:var(--text-muted)"></div></div>
+          </div>
+          <div class="proof-item">
+            <div class="proof-item-header">
+              <span class="proof-item-name">Process Video / Doc</span>
+              <span class="proof-item-status" style="color:var(--text-muted);border:1px solid var(--border)">NOT STARTED</span>
+            </div>
+            <div class="proof-item-desc">Short walkthrough of actual agentic design session. Shows, not tells. Shareable in Slack channel.</div>
+            <div class="progress-bar"><div class="progress-fill" style="width:0%;background:var(--text-muted)"></div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- STRATEGY PANEL -->
+    <div class="section-header">
+      <h2>Core Strategy</h2>
+      <div class="section-line"></div>
+      <span class="section-tag">PRINCIPLES</span>
+    </div>
+
+    <div class="strategy-panel">
+      <div class="strategy-grid">
+        <div class="strategy-block">
+          <h3>Positioning</h3>
+          <ul>
+            <li><span class="highlight">Problem + proof</span>, never title + ask</li>
+            <li>"Here's what I've been building" not "Would there be a role?"</li>
+            <li>Sell a <span class="highlight">capability they don't have</span>, not an old job + raise</li>
+            <li>Agentic layer <span class="highlight">on top of</span> senior PD fundamentals</li>
+          </ul>
+        </div>
+        <div class="strategy-block">
+          <h3>Channel Tactics</h3>
+          <ul>
+            <li>Slack: <span class="highlight">weekly substantive posts</span>, not link dumps</li>
+            <li>Share takes, screenshots, <span class="highlight">before/after</span>, specific numbers</li>
+            <li>Goal: be seen <span class="highlight">doing this</span>, not following AI news</li>
+            <li>Low-pressure stage → natural intro to <span class="highlight">bigger conversation</span></li>
+          </ul>
+        </div>
+        <div class="strategy-block">
+          <h3>De-Risking</h3>
+          <ul>
+            <li>Offer <span class="highlight">2-3 month embed</span> if FT is hard sell</li>
+            <li>One team → <span class="highlight">measurable results</span> → FT conversation</li>
+            <li>De-risks for them, supports <span class="highlight">higher comp</span> after proof</li>
+            <li>Trial lets you <span class="highlight">demonstrate</span> before they commit</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <!-- COMP NARRATIVE -->
+    <div class="section-header">
+      <h2>Compensation Narrative</h2>
+      <div class="section-line"></div>
+      <span class="section-tag">$120K → $150-180K</span>
+    </div>
+
+    <div class="comp-section">
+      <div class="comp-visual">
+        <div class="comp-range">
+          <div class="comp-marker">
+            <div class="comp-dot" style="background:var(--green)"></div>
+            <div>
+              <div class="comp-amount" style="color:var(--green)">$150–180K</div>
+              <div class="comp-label">Target — new capability / lead</div>
+            </div>
+          </div>
+          <div class="comp-connector"></div>
+          <div class="comp-marker">
+            <div class="comp-dot" style="background:var(--text-muted)"></div>
+            <div>
+              <div class="comp-amount" style="color:var(--text-dim)">~$120K</div>
+              <div class="comp-label">Previous FC — IC rate</div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="comp-detail">
+        <h3>Why the jump is justified</h3>
+        <div class="comp-detail-grid">
+          <div class="comp-card">
+            <div class="comp-card-label">COMMODITY PATH</div>
+            <div class="comp-card-value" style="color:var(--text-dim)">"Senior PD" alone → many candidates at this range → harder to justify from $120k</div>
+          </div>
+          <div class="comp-card">
+            <div class="comp-card-label">YOUR PATH</div>
+            <div class="comp-card-value" style="color:var(--green)">New capability they don't have → not old job + raise → role that didn't exist before</div>
+          </div>
+          <div class="comp-card">
+            <div class="comp-card-label">MARKET REALITY</div>
+            <div class="comp-card-value">Leaders under headcount pressure, AI reshaping workflows, teams dabbling without results</div>
+          </div>
+          <div class="comp-card">
+            <div class="comp-card-label">YOUR EDGE</div>
+            <div class="comp-card-value" style="color:var(--cyan)">Proof-of-work vs people who only talk about agentic design — execution is scarce</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end ops-view -->
+
+  <!-- ===== ABOVE VIEW ===== -->
+  <div class="above-view" id="above-view">
+
+    <!-- ELEVATION MAP -->
+    <div class="elevation-map">
+      <div class="elevation-title">ALTITUDE MAP — SEE THE FULL TERRAIN</div>
+
+      <div class="elevation-grid">
+        <div class="elevation-level">
+          <div class="elevation-altitude" style="color:var(--cyan)">
+            30,000 ft
+            <span>THE LANDSCAPE</span>
+          </div>
+          <div class="elevation-content">
+            <div class="elevation-pill">
+              <strong>AI is restructuring design</strong>
+              Design teams are shrinking. Leaders need people who can make remaining designers faster, not just be another IC.
+            </div>
+            <div class="elevation-pill">
+              <strong>Talk vs execution gap</strong>
+              Everyone's talking about AI in design. Almost no one has proof of actually shipping with it. That gap is your runway.
+            </div>
+            <div class="elevation-pill">
+              <strong>The market is tightening</strong>
+              People who can actually do agentic work — not just evangelise — are getting scarce. Timing is good, but proof converts interest.
+            </div>
+          </div>
+        </div>
+
+        <div class="elevation-level">
+          <div class="elevation-altitude" style="color:var(--green)">
+            10,000 ft
+            <span>YOUR POSITION</span>
+          </div>
+          <div class="elevation-content">
+            <div class="elevation-pill">
+              <strong>Intersection of design + AI agents</strong>
+              You sit where few people credibly can. The portfolio is proof-of-work — not claims.
+            </div>
+            <div class="elevation-pill">
+              <strong>Create demand, don't queue</strong>
+              "Here's what I've built and what it means for your team" creates pull. "Would there be a role?" creates a wait.
+            </div>
+            <div class="elevation-pill">
+              <strong>Blend, don't replace</strong>
+              Senior PD who ships AND has cracked agentic workflows = indispensable in 2026. Neither angle alone is enough.
+            </div>
+          </div>
+        </div>
+
+        <div class="elevation-level">
+          <div class="elevation-altitude" style="color:var(--amber)">
+            Ground
+            <span>THE PLAY</span>
+          </div>
+          <div class="elevation-content">
+            <div class="elevation-pill">
+              <strong>Polish → Prove → Seed → Contact</strong>
+              Sequenced. Each phase loads ammunition for the next. Don't skip ahead.
+            </div>
+            <div class="elevation-pill">
+              <strong>Lui is already in play</strong>
+              You've met, you've presented to the team. The door is open — now load it with proof. Follow up with assets, not asks.
+            </div>
+            <div class="elevation-pill">
+              <strong>Embed to convert</strong>
+              2-3 months with one team. Measurable output. Then the FT conversation happens from strength, not hope.
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- MANTRAS -->
+    <div class="section-header">
+      <h2>Operating Principles</h2>
+      <div class="section-line"></div>
+      <span class="section-tag">HOLD THESE</span>
+    </div>
+
+    <div class="mantra-strip">
+      <div class="mantra-card">
+        <blockquote>"Position, don't beg."</blockquote>
+        <cite>CREATE DEMAND — DON'T QUEUE</cite>
+      </div>
+      <div class="mantra-card">
+        <blockquote>"Pitch a problem you solve, not a title you want."</blockquote>
+        <cite>OUTCOME LANGUAGE — NOT ABSTRACTIONS</cite>
+      </div>
+      <div class="mantra-card">
+        <blockquote>"Show the work. The market rewards execution."</blockquote>
+        <cite>PROOF-OF-WORK — NOT THEATRE</cite>
+      </div>
+    </div>
+
+    <!-- DECISION TREE -->
+    <div class="section-header">
+      <h2>Decision Logic</h2>
+      <div class="section-line"></div>
+      <span class="section-tag">IF/THEN</span>
+    </div>
+
+    <div class="strategy-panel">
+      <div class="strategy-grid">
+        <div class="strategy-block">
+          <h3>If They Offer FT</h3>
+          <ul>
+            <li>Negotiate from <span class="highlight">new capability</span> framing</li>
+            <li>$150-180k justified by <span class="highlight">role that didn't exist</span></li>
+            <li>You're not asking for a raise — you're selling a <span class="highlight">new function</span></li>
+          </ul>
+        </div>
+        <div class="strategy-block">
+          <h3>If FT Is Hard</h3>
+          <ul>
+            <li>Offer the <span class="highlight">2-3 month embed</span></li>
+            <li>One team, one measurable outcome</li>
+            <li>Results → leverage → <span class="highlight">FT conversion</span></li>
+          </ul>
+        </div>
+        <div class="strategy-block">
+          <h3>If No Interest</h3>
+          <ul>
+            <li>Portfolio + proof kit = <span class="highlight">assets for other doors</span></li>
+            <li>Same playbook works at <span class="highlight">any org</span> under AI pressure</li>
+            <li>You've built the toolkit — <span class="highlight">FC isn't the only path</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+  </div><!-- end above-view -->
+
+</div><!-- end main -->
+
+<!-- TICKER -->
+<div class="ticker-bar">
+  <div class="ticker-track" id="ticker-track">
+    <span class="ticker-item"><span class="label">PHASE:</span><span class="value amber">2 + 4 PARALLEL — PROOF BUILDING + WARM CONTACT</span></span>
+    <span class="ticker-item"><span class="label">PROOF KIT:</span><span class="value amber">1/4 ASSETS COMPLETE</span></span>
+    <span class="ticker-item"><span class="label">NEXT ACTION:</span><span class="value">AGENTIC WORKFLOW CASE STUDY</span></span>
+    <span class="ticker-item"><span class="label">CHANNEL:</span><span class="value" style="color:var(--text-muted)">SLACK SEEDING — NOT STARTED</span></span>
+    <span class="ticker-item"><span class="label">STAKEHOLDER:</span><span class="value">LUI ENGAGED — PRESENTED TO TEAM — FOLLOW UP WITH PROOF</span></span>
+    <span class="ticker-item"><span class="label">TARGET COMP:</span><span class="value">$150-180K — NEW CAPABILITY FRAMING</span></span>
+    <span class="ticker-item"><span class="label">MARKET:</span><span class="value">EXECUTION SCARCE — TIMING GOOD</span></span>
+    <span class="ticker-item"><span class="label">PORTFOLIO STRATEGY:</span><span class="value">HYBRID — SENIOR PD + AGENTIC PROOF</span></span>
+
+    <span class="ticker-item"><span class="label">PHASE:</span><span class="value amber">2 + 4 PARALLEL — PROOF BUILDING + WARM CONTACT</span></span>
+    <span class="ticker-item"><span class="label">PROOF KIT:</span><span class="value amber">1/4 ASSETS COMPLETE</span></span>
+    <span class="ticker-item"><span class="label">NEXT ACTION:</span><span class="value">AGENTIC WORKFLOW CASE STUDY</span></span>
+    <span class="ticker-item"><span class="label">CHANNEL:</span><span class="value" style="color:var(--text-muted)">SLACK SEEDING — NOT STARTED</span></span>
+    <span class="ticker-item"><span class="label">STAKEHOLDER:</span><span class="value">LUI ENGAGED — PRESENTED TO TEAM — FOLLOW UP WITH PROOF</span></span>
+    <span class="ticker-item"><span class="label">TARGET COMP:</span><span class="value">$150-180K — NEW CAPABILITY FRAMING</span></span>
+    <span class="ticker-item"><span class="label">MARKET:</span><span class="value">EXECUTION SCARCE — TIMING GOOD</span></span>
+    <span class="ticker-item"><span class="label">PORTFOLIO STRATEGY:</span><span class="value">HYBRID — SENIOR PD + AGENTIC PROOF</span></span>
+  </div>
+</div>
+
+<script>
+// Clock
+function updateClock() {
+  const now = new Date();
+  const h = String(now.getHours()).padStart(2, '0');
+  const m = String(now.getMinutes()).padStart(2, '0');
+  const s = String(now.getSeconds()).padStart(2, '0');
+  document.getElementById('clock').textContent = `${h}:${m}:${s} AEST`;
+}
+updateClock();
+setInterval(updateClock, 1000);
+
+// View toggle
+const viewBtns = document.querySelectorAll('.view-btn');
+const opsView = document.getElementById('ops-view');
+const aboveView = document.getElementById('above-view');
+
+viewBtns.forEach(btn => {
+  btn.addEventListener('click', () => {
+    viewBtns.forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const view = btn.dataset.view;
+    if (view === 'ops') {
+      opsView.classList.remove('hidden');
+      aboveView.classList.remove('visible');
+    } else {
+      opsView.classList.add('hidden');
+      aboveView.classList.add('visible');
+    }
+  });
+});
+
+// Interactive checkboxes
+document.querySelectorAll('.phase-tasks .check').forEach(check => {
+  check.addEventListener('click', () => {
+    check.classList.toggle('checked');
+    if (check.classList.contains('checked')) {
+      check.textContent = '✓';
+    } else {
+      check.textContent = '·';
+    }
+    updateOverview();
+  });
+});
+
+function updateOverview() {
+  // Count total and checked across all phases
+  const allChecks = document.querySelectorAll('.phase-tasks .check');
+  const checked = document.querySelectorAll('.phase-tasks .check.checked');
+  // Update readiness in threat banner based on progress
+  const pct = Math.round((checked.length / allChecks.length) * 100);
+  const banner = document.querySelector('.threat-level');
+  const bannerText = document.querySelector('.threat-text');
+  if (pct >= 80) {
+    banner.textContent = 'READINESS 1';
+    banner.style.background = 'var(--green)';
+    bannerText.style.color = 'var(--green)';
+    bannerText.textContent = 'CAMPAIGN READY — ALL PROOF ASSETS ASSEMBLED — STAKEHOLDER ENGAGEMENT CLEAR';
+  } else if (pct >= 50) {
+    banner.textContent = 'READINESS 2';
+    banner.style.background = 'var(--amber)';
+    bannerText.textContent = 'BUILDING MOMENTUM — PROOF KIT GROWING — MAINTAIN CADENCE';
+  }
+}
+</script>
+
+</body>
+</html>

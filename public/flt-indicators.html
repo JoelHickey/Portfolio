@@ -1,0 +1,2491 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crisis Intelligence Briefing — Portfolio Dashboard</title>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #000000;
+    --surface: #101014;
+    --surface-alt: #151519;
+    --border: #2a2a32;
+    --border-bright: #3a3a44;
+    --text: #d0d0d0;
+    --text-muted: #9e9eaa;
+    --text-dim: #6e6e7a;
+    --accent-red: #ff3333;
+    --accent-amber: #ff9900;
+    --accent-green: #00ff66;
+    --accent-blue: #4488ff;
+    --accent-purple: #aa77ff;
+    --glow-red: rgba(255, 51, 51, 0.12);
+    --glow-amber: rgba(255, 153, 0, 0.12);
+    --glow-green: rgba(0, 255, 102, 0.12);
+    --glow-blue: rgba(68, 136, 255, 0.12);
+    --mono: 'IBM Plex Mono', 'Courier New', monospace;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: var(--mono);
+    font-size: 0.82rem;
+    line-height: 1.5;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    z-index: 9998;
+    pointer-events: none;
+    background: repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 2px,
+      rgba(0, 0, 0, 0.13) 2px,
+      rgba(0, 0, 0, 0.13) 4px
+    );
+  }
+
+  /* ─── INTRO SCAN ─── */
+  .scan-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: #000;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 16px;
+    transition: opacity 0.6s ease, visibility 0.6s ease;
+  }
+
+  .scan-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  .scan-radar {
+    width: 48px;
+    height: 48px;
+    border: 1px solid var(--accent-green);
+    border-radius: 50%;
+    position: relative;
+    animation: radar-pulse 1.5s ease-out infinite;
+  }
+
+  .scan-radar::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 4px;
+    height: 4px;
+    background: var(--accent-green);
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  .scan-radar::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 1px;
+    height: 50%;
+    background: var(--accent-green);
+    transform-origin: bottom center;
+    transform: translate(-50%, -100%);
+    animation: radar-sweep 1.5s linear infinite;
+  }
+
+  @keyframes radar-pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 255, 102, 0.3); }
+    100% { box-shadow: 0 0 0 20px rgba(0, 255, 102, 0); }
+  }
+
+  @keyframes radar-sweep {
+    from { transform: translate(-50%, -100%) rotate(0deg); }
+    to { transform: translate(-50%, -100%) rotate(360deg); }
+  }
+
+  .scan-text {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    color: var(--accent-green);
+  }
+
+  .scan-sub {
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .scan-progress {
+    width: 180px;
+    height: 1px;
+    background: var(--border);
+    overflow: hidden;
+    margin-top: 6px;
+  }
+
+  .scan-progress-bar {
+    height: 100%;
+    background: var(--accent-green);
+    width: 0%;
+    animation: scan-load 2.4s ease-in-out forwards;
+  }
+
+  @keyframes scan-load {
+    0% { width: 0%; }
+    30% { width: 45%; }
+    60% { width: 72%; }
+    85% { width: 90%; }
+    100% { width: 100%; }
+  }
+
+  /* ─── MAIN ─── */
+  .dashboard {
+    padding: 24px 24px 72px;
+    max-width: 1100px;
+    margin: 0 auto;
+    opacity: 0;
+    transition: opacity 0.8s ease 0.2s;
+  }
+
+  .dashboard.visible { opacity: 1; }
+
+  /* ─── HEADER BAR ─── */
+  .header-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+    margin-bottom: 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.6rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .header-bar .hb-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .header-bar .hb-live {
+    color: var(--accent-green);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  /* ─── LIVE FEED BAR ─── */
+  .live-feed-bar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.52rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+
+  .lfb-status {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .lfb-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--text-dim);
+    flex-shrink: 0;
+  }
+
+  .lfb-dot.live {
+    background: var(--accent-green);
+    box-shadow: 0 0 6px var(--accent-green);
+    animation: lfb-pulse 2s ease-in-out infinite;
+  }
+
+  .lfb-dot.error {
+    background: var(--accent-red);
+    box-shadow: 0 0 6px var(--accent-red);
+  }
+
+  @keyframes lfb-pulse {
+    0%, 100% { opacity: 1; box-shadow: 0 0 6px var(--accent-green); }
+    50% { opacity: 0.5; box-shadow: 0 0 2px var(--accent-green); }
+  }
+
+  .lfb-label {
+    color: var(--text-dim);
+  }
+
+  .lfb-label.live { color: var(--accent-green); }
+  .lfb-label.error { color: var(--accent-red); }
+
+  .lfb-meta {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    color: var(--text-dim);
+  }
+
+  .lfb-source {
+    color: var(--text-dim);
+  }
+
+  .lfb-countdown {
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .lfb-time {
+    color: var(--text-muted);
+    font-variant-numeric: tabular-nums;
+  }
+
+  @keyframes price-flash {
+    0% { background: rgba(0, 255, 102, 0.2); }
+    100% { background: transparent; }
+  }
+
+  .price-updated {
+    animation: price-flash 1.2s ease-out;
+  }
+
+  /* ─── TAB BAR ─── */
+  .tab-bar {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+    gap: 0;
+  }
+
+  .tab-btn {
+    background: none;
+    border: none;
+    border-bottom: 2px solid transparent;
+    font-family: var(--mono);
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text-muted);
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: color 0.2s, border-color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    white-space: nowrap;
+  }
+
+  .tab-btn:hover {
+    color: var(--text-muted);
+  }
+
+  .tab-btn.active {
+    color: var(--text);
+    border-bottom-color: var(--accent-red);
+  }
+
+  .tab-btn .tab-price {
+    font-size: 0.55rem;
+    font-weight: 600;
+  }
+
+  .tab-btn.active .tab-price {
+    color: var(--accent-red);
+  }
+
+  .tab-panel {
+    display: none;
+  }
+
+  .tab-panel.active {
+    display: block;
+  }
+
+  /* ─── THREAT LEVEL ─── */
+  .threat-level {
+    border: 1px solid var(--accent-red);
+    background: var(--surface);
+    padding: 16px 20px;
+    margin-bottom: 24px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .threat-level.threat-5 {
+    border-color: var(--accent-red);
+    animation: threat-glow-red 3s ease-in-out infinite;
+  }
+
+  .threat-level.threat-3 {
+    border-color: var(--accent-amber);
+    animation: threat-glow-amber 3s ease-in-out infinite;
+  }
+
+  .threat-level.threat-2 {
+    border-color: var(--accent-amber);
+    animation: threat-glow-amber 3s ease-in-out infinite;
+  }
+
+  @keyframes threat-glow-red {
+    0%, 100% { box-shadow: 0 0 20px var(--glow-red); }
+    50% { box-shadow: 0 0 40px var(--glow-red); }
+  }
+
+  @keyframes threat-glow-amber {
+    0%, 100% { box-shadow: 0 0 20px var(--glow-amber); }
+    50% { box-shadow: 0 0 40px var(--glow-amber); }
+  }
+
+  .threat-level::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 51, 51, 0.04), transparent);
+    animation: threat-scan 4s linear infinite;
+  }
+
+  .threat-level.threat-3::before,
+  .threat-level.threat-2::before {
+    background: linear-gradient(90deg, transparent, rgba(255, 153, 0, 0.04), transparent);
+  }
+
+  @keyframes threat-scan {
+    from { left: -100%; }
+    to { left: 100%; }
+  }
+
+  .threat-badge {
+    flex-shrink: 0;
+    width: 56px;
+    height: 56px;
+    border: 1px solid var(--accent-red);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .threat-level.threat-3 .threat-badge,
+  .threat-level.threat-2 .threat-badge {
+    border-color: var(--accent-amber);
+  }
+
+  .threat-num {
+    font-size: 1.6rem;
+    font-weight: 700;
+    line-height: 1;
+    color: var(--accent-red);
+  }
+
+  .threat-level.threat-3 .threat-num,
+  .threat-level.threat-2 .threat-num {
+    color: var(--accent-amber);
+  }
+
+  .threat-of {
+    font-size: 0.45rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .threat-info { flex: 1; position: relative; z-index: 1; }
+
+  .threat-label {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+    margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .threat-title {
+    font-size: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    text-shadow: 0 0 10px rgba(255, 51, 51, 0.4);
+  }
+
+  .threat-title.red { color: var(--accent-red); }
+  .threat-title.amber { color: var(--accent-amber); text-shadow: 0 0 10px rgba(255, 153, 0, 0.4); }
+
+  .threat-desc {
+    font-size: 0.7rem;
+    color: var(--text);
+    margin-top: 2px;
+  }
+
+  .threat-gauge {
+    flex-shrink: 0;
+    display: flex;
+    gap: 2px;
+    height: 48px;
+    align-items: flex-end;
+    position: relative;
+    z-index: 1;
+  }
+
+  .tg-seg {
+    width: 4px;
+  }
+
+  .tg-seg.g { background: var(--accent-green); }
+  .tg-seg.a { background: var(--accent-amber); }
+  .tg-seg.r { background: var(--accent-red); }
+  .tg-seg.off { background: var(--border); }
+
+  /* ─── TITLE ─── */
+  .page-title {
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .page-title h1 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .page-title .sub {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* ─── DATA STRIP ─── */
+  .data-strip {
+    display: flex;
+    justify-content: center;
+    gap: 32px;
+    margin-bottom: 28px;
+    flex-wrap: wrap;
+    padding: 12px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .ds-item { text-align: center; }
+
+  .ds-label {
+    font-size: 0.5rem;
+    color: var(--text);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2px;
+  }
+
+  .ds-value {
+    font-size: 1.1rem;
+    font-weight: 600;
+  }
+
+  .ds-value.red { color: var(--accent-red); }
+  .ds-value.amber { color: var(--accent-amber); }
+  .ds-value.green { color: var(--accent-green); }
+  .ds-value.blue { color: var(--accent-blue); }
+
+  .sparkline-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+    margin-top: 2px;
+  }
+
+  .sparkline-label {
+    font-size: 0.5rem;
+    color: var(--text-dim);
+  }
+
+  /* ─── PRIMARY TARGET ─── */
+  .primary-target {
+    border: 1px solid var(--accent-red);
+    background: var(--surface);
+    padding: 20px;
+    text-align: center;
+    margin-bottom: 28px;
+    position: relative;
+  }
+
+  .primary-target.glow-red { animation: pulse-glow-red 3s ease-in-out infinite; }
+  .primary-target.glow-amber { border-color: var(--accent-amber); animation: pulse-glow-amber 3s ease-in-out infinite; }
+
+  @keyframes pulse-glow-red {
+    0%, 100% { box-shadow: 0 0 20px var(--glow-red); }
+    50% { box-shadow: 0 0 40px var(--glow-red); }
+  }
+
+  @keyframes pulse-glow-amber {
+    0%, 100% { box-shadow: 0 0 20px var(--glow-amber); }
+    50% { box-shadow: 0 0 40px var(--glow-amber); }
+  }
+
+  .primary-target .pt-tag {
+    font-size: 0.55rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--accent-red);
+    margin-bottom: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+  }
+
+  .primary-target.glow-amber .pt-tag { color: var(--accent-amber); }
+
+  .primary-target h2 {
+    font-size: 1.2rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 8px;
+  }
+
+  .primary-target p {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  /* ─── STATUS DOT ─── */
+  .dot {
+    display: inline-block;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    animation: blink 2s ease-in-out infinite;
+  }
+
+  .dot.red { background: var(--accent-red); }
+  .dot.amber { background: var(--accent-amber); }
+  .dot.green { background: var(--accent-green); }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+  }
+
+  /* ─── INTEL SECTIONS ─── */
+  .intel-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 16px;
+    margin-bottom: 28px;
+  }
+
+  .intel-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px;
+    transition: border-color 0.3s;
+  }
+
+  .intel-section:hover { border-color: var(--border-bright); }
+
+  .intel-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    border-bottom: 1px solid var(--border);
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text);
+  }
+
+  .intel-header .ih-icon {
+    font-size: 0.9rem;
+  }
+
+  .item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .item:last-child { border-bottom: none; }
+
+  .item-idx {
+    font-size: 0.6rem;
+    color: var(--text-dim);
+    min-width: 18px;
+    padding-top: 1px;
+  }
+
+  .item-body { flex: 1; }
+
+  .item-name {
+    font-size: 0.78rem;
+    font-weight: 600;
+    margin-bottom: 3px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+  }
+
+  .item-desc {
+    font-size: 0.68rem;
+    color: var(--text);
+    line-height: 1.5;
+  }
+
+  .tag {
+    font-size: 0.5rem;
+    padding: 1px 6px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    white-space: nowrap;
+    border: 1px solid;
+  }
+
+  .tag-crit { color: var(--accent-red); border-color: rgba(255, 51, 51, 0.4); background: rgba(255, 51, 51, 0.08); }
+  .tag-warn { color: var(--accent-amber); border-color: rgba(255, 153, 0, 0.4); background: rgba(255, 153, 0, 0.08); }
+  .tag-watch { color: var(--accent-blue); border-color: rgba(68, 136, 255, 0.4); background: rgba(68, 136, 255, 0.08); }
+  .tag-none { color: var(--text-muted); border-color: rgba(120, 120, 130, 0.4); background: rgba(120, 120, 130, 0.08); }
+
+  .mini-spark {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    margin-top: 3px;
+  }
+
+  .mini-spark span {
+    font-size: 0.5rem;
+    color: var(--text-dim);
+  }
+
+  /* ─── IMPACT CHAIN ─── */
+  .impact-chain {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px 20px;
+    margin-bottom: 16px;
+  }
+
+  .impact-chain h3 {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text);
+    margin-bottom: 14px;
+    text-align: center;
+  }
+
+  .chain-flow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  .chain-node {
+    padding: 6px 14px;
+    font-size: 0.68rem;
+    font-weight: 600;
+    text-align: center;
+    min-width: 110px;
+    border: 1px solid;
+  }
+
+  .chain-node.cr { color: var(--accent-red); border-color: rgba(255, 51, 51, 0.35); background: rgba(255, 51, 51, 0.06); }
+  .chain-node.ca { color: var(--accent-amber); border-color: rgba(255, 153, 0, 0.35); background: rgba(255, 153, 0, 0.06); }
+  .chain-node.cb { color: var(--accent-blue); border-color: rgba(68, 136, 255, 0.35); background: rgba(68, 136, 255, 0.06); }
+  .chain-node.cp { color: var(--accent-purple); border-color: rgba(170, 119, 255, 0.35); background: rgba(170, 119, 255, 0.06); }
+  .chain-node.cg { color: var(--accent-green); border-color: rgba(0, 255, 102, 0.35); background: rgba(0, 255, 102, 0.06); }
+
+  .chain-arrow {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    padding: 0 4px;
+  }
+
+  /* ─── REVERSAL ─── */
+  .reversal {
+    border: 1px dashed var(--accent-green);
+    background: var(--surface);
+    padding: 16px 20px;
+    text-align: center;
+    margin-bottom: 28px;
+  }
+
+  .reversal h3 {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-green);
+    margin-bottom: 8px;
+  }
+
+  .reversal p {
+    font-size: 0.72rem;
+    color: var(--text-muted);
+    line-height: 1.6;
+  }
+
+  .reversal strong { color: var(--accent-green); }
+
+  /* ─── CLASSIFIED FOOTER ─── */
+  .classified-footer {
+    text-align: center;
+    padding: 16px 0;
+    border-top: 1px solid var(--border);
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    color: var(--text-muted);
+  }
+
+  /* ─── STICKY TICKER ─── */
+  .ticker {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: #050505;
+    border-top: 1px solid var(--accent-red);
+    height: 32px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+  }
+
+  .ticker.visible { opacity: 1; }
+
+  .ticker-tag {
+    flex-shrink: 0;
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--accent-red);
+    padding: 0 12px;
+    border-right: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    height: 100%;
+  }
+
+  .ticker-scroll {
+    flex: 1;
+    overflow: hidden;
+    height: 100%;
+  }
+
+  .ticker-track {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    animation: ticker-slide 40s linear infinite;
+    width: max-content;
+  }
+
+  @keyframes ticker-slide {
+    from { transform: translateX(0); }
+    to { transform: translateX(-50%); }
+  }
+
+  .ti {
+    flex-shrink: 0;
+    font-size: 0.6rem;
+    padding: 0 16px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    white-space: nowrap;
+    color: var(--text);
+  }
+
+  .ti .tv { font-weight: 600; }
+  .ti .tv.red { color: var(--accent-red); }
+  .ti .tv.amber { color: var(--accent-amber); }
+  .ti .tv.green { color: var(--accent-green); }
+
+  .ts {
+    flex-shrink: 0;
+    color: var(--border-bright);
+    font-size: 0.4rem;
+    padding: 0 2px;
+  }
+
+  /* ─── OVERVIEW DASHBOARD ─── */
+  .overview-header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+
+  .overview-header h1 {
+    font-size: 1.4rem;
+    font-weight: 600;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    color: var(--text);
+    margin-bottom: 4px;
+  }
+
+  .overview-header .sub {
+    font-size: 0.6rem;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .portfolio-summary {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 24px;
+    padding: 14px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    flex-wrap: wrap;
+  }
+
+  .ps-item { text-align: center; }
+
+  .ps-label {
+    font-size: 0.5rem;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 2px;
+  }
+
+  .ps-value {
+    font-size: 1.2rem;
+    font-weight: 700;
+  }
+
+  .ps-value.red { color: var(--accent-red); }
+  .ps-value.amber { color: var(--accent-amber); }
+  .ps-value.green { color: var(--accent-green); }
+
+  .heatmap {
+    display: flex;
+    gap: 2px;
+    margin-bottom: 28px;
+    height: 6px;
+  }
+
+  .heatmap-seg {
+    flex: 1;
+    position: relative;
+  }
+
+  .heatmap-seg.critical { background: var(--accent-red); }
+  .heatmap-seg.elevated { background: var(--accent-amber); }
+  .heatmap-seg.moderate { background: #886600; }
+
+  .heatmap-labels {
+    display: flex;
+    gap: 2px;
+    margin-top: 4px;
+    margin-bottom: 24px;
+  }
+
+  .heatmap-labels span {
+    flex: 1;
+    text-align: center;
+    font-size: 0.5rem;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  .stock-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .stock-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 16px;
+    cursor: pointer;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stock-card:hover {
+    border-color: var(--border-bright);
+  }
+
+  .stock-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 3px;
+    height: 100%;
+  }
+
+  .stock-card.risk-critical::before { background: var(--accent-red); }
+  .stock-card.risk-elevated::before { background: var(--accent-amber); }
+  .stock-card.risk-moderate::before { background: #886600; }
+
+  .stock-card:hover.risk-critical { box-shadow: 0 0 20px var(--glow-red); }
+  .stock-card:hover.risk-elevated { box-shadow: 0 0 20px var(--glow-amber); }
+  .stock-card:hover.risk-moderate { box-shadow: 0 0 20px rgba(136, 102, 0, 0.12); }
+
+  .sc-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 10px;
+  }
+
+  .sc-ticker {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+  }
+
+  .sc-exchange {
+    font-size: 0.48rem;
+    color: var(--text-muted);
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    margin-top: 1px;
+  }
+
+  .sc-threat {
+    text-align: right;
+  }
+
+  .sc-threat-num {
+    font-size: 1.2rem;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  .sc-threat-num.red { color: var(--accent-red); }
+  .sc-threat-num.amber { color: var(--accent-amber); }
+
+  .sc-threat-label {
+    font-size: 0.45rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+  }
+
+  .sc-price-row {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    margin-bottom: 8px;
+  }
+
+  .sc-price {
+    font-size: 1.3rem;
+    font-weight: 600;
+  }
+
+  .sc-price.red { color: var(--accent-red); }
+  .sc-price.amber { color: var(--accent-amber); }
+  .sc-price.green { color: var(--accent-green); }
+
+  .sc-change {
+    font-size: 0.65rem;
+    font-weight: 500;
+  }
+
+  .sc-change.red { color: var(--accent-red); }
+  .sc-change.amber { color: var(--accent-amber); }
+  .sc-change.green { color: var(--accent-green); }
+
+  .sc-status {
+    font-size: 0.62rem;
+    color: var(--text-muted);
+    line-height: 1.5;
+    margin-bottom: 10px;
+    min-height: 2.8em;
+  }
+
+  .sc-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 8px;
+    border-top: 1px solid var(--border);
+  }
+
+  .sc-indicators {
+    font-size: 0.48rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--text-muted);
+  }
+
+  .sc-drill {
+    font-size: 0.5rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-red);
+    display: flex;
+    align-items: center;
+    gap: 4px;
+  }
+
+  .stock-card.risk-elevated .sc-drill,
+  .stock-card.risk-moderate .sc-drill { color: var(--accent-amber); }
+
+  .sc-mini-gauge {
+    display: flex;
+    gap: 2px;
+    height: 16px;
+    align-items: flex-end;
+    margin-left: auto;
+    margin-right: 12px;
+  }
+
+  .sc-mini-gauge .mg {
+    width: 3px;
+  }
+
+  .mg.g { background: var(--accent-green); }
+  .mg.a { background: var(--accent-amber); }
+  .mg.r { background: var(--accent-red); }
+  .mg.off { background: var(--border); }
+
+  .cascade-section {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    padding: 20px;
+    margin-bottom: 28px;
+  }
+
+  .cascade-title {
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: var(--text);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .cascade-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .cascade-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+  }
+
+  .cascade-source {
+    flex-shrink: 0;
+    width: 130px;
+    padding: 6px 10px;
+    font-size: 0.62rem;
+    font-weight: 600;
+    text-align: center;
+    border: 1px solid rgba(255, 51, 51, 0.35);
+    color: var(--accent-red);
+    background: rgba(255, 51, 51, 0.06);
+  }
+
+  .cascade-arrow {
+    color: var(--text-dim);
+    font-size: 0.8rem;
+    padding: 0 6px;
+    flex-shrink: 0;
+  }
+
+  .cascade-targets {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    flex: 1;
+  }
+
+  .cascade-target {
+    padding: 5px 10px;
+    font-size: 0.58rem;
+    font-weight: 500;
+    border: 1px solid;
+    white-space: nowrap;
+  }
+
+  .cascade-target.cr { color: var(--accent-red); border-color: rgba(255, 51, 51, 0.3); background: rgba(255, 51, 51, 0.05); }
+  .cascade-target.ca { color: var(--accent-amber); border-color: rgba(255, 153, 0, 0.3); background: rgba(255, 153, 0, 0.05); }
+  .cascade-target.cb { color: var(--accent-blue); border-color: rgba(68, 136, 255, 0.3); background: rgba(68, 136, 255, 0.05); }
+  .cascade-target.cg { color: var(--accent-green); border-color: rgba(0, 255, 102, 0.3); background: rgba(0, 255, 102, 0.05); }
+
+  @media (max-width: 768px) {
+    .dashboard { padding: 16px 12px 72px; }
+    .page-title h1 { font-size: 1rem; letter-spacing: 2px; }
+    .intel-grid { grid-template-columns: 1fr; }
+    .chain-flow { flex-direction: column; }
+    .chain-arrow { transform: rotate(90deg); }
+    .data-strip { gap: 16px; }
+    .threat-level { flex-direction: column; text-align: center; }
+    .threat-gauge { justify-content: center; }
+    .tab-bar { overflow-x: auto; }
+    .tab-btn { padding: 10px 12px; font-size: 0.58rem; }
+    .stock-grid { grid-template-columns: 1fr; }
+    .portfolio-summary { gap: 20px; }
+    .cascade-row { flex-direction: column; align-items: stretch; }
+    .cascade-source { width: 100%; }
+    .cascade-arrow { transform: rotate(90deg); text-align: center; padding: 2px 0; }
+  }
+</style>
+</head>
+<body>
+
+<!-- SCANNING INTRO -->
+<div class="scan-overlay" id="scanOverlay">
+  <div class="scan-radar"></div>
+  <div class="scan-text">Scanning Geopolitical Signals...</div>
+  <div class="scan-sub">Monitoring crisis indicators across portfolio</div>
+  <div class="scan-progress">
+    <div class="scan-progress-bar"></div>
+  </div>
+</div>
+
+<!-- DASHBOARD -->
+<div class="dashboard" id="dashboard">
+
+<!-- HEADER BAR -->
+<div class="header-bar">
+  <div class="hb-left">
+    <span id="clock"></span>
+    <span class="hb-live"><span class="dot green"></span> <span id="indicatorCount">16</span> INDICATORS</span>
+  </div>
+  <div>CRISIS INTEL BRIEFING</div>
+</div>
+
+<!-- LIVE FEED BAR -->
+<div class="live-feed-bar" id="liveFeedBar">
+  <div class="lfb-status">
+    <div class="lfb-dot" id="lfbDot"></div>
+    <span class="lfb-label" id="lfbLabel">CONNECTING...</span>
+  </div>
+  <div class="lfb-meta">
+    <span class="lfb-source">SRC: YAHOO FINANCE</span>
+    <span class="lfb-time" id="lfbTime">—</span>
+    <span class="lfb-countdown" id="lfbCountdown">—</span>
+  </div>
+</div>
+
+<!-- TAB BAR -->
+<div class="tab-bar" id="tabBar">
+  <button class="tab-btn active" data-tab="overview" onclick="switchTab('overview')">
+    Overview
+  </button>
+  <button class="tab-btn" data-tab="flt" onclick="switchTab('flt')">
+    FLT <span class="tab-price">$11.30</span>
+  </button>
+  <button class="tab-btn" data-tab="tsla" onclick="switchTab('tsla')">
+    TSLA <span class="tab-price">$385.95</span>
+  </button>
+  <button class="tab-btn" data-tab="nvda" onclick="switchTab('nvda')">
+    NVDA <span class="tab-price">$178.68</span>
+  </button>
+  <button class="tab-btn" data-tab="adbe" onclick="switchTab('adbe')">
+    ADBE <span class="tab-price">$237.25</span>
+  </button>
+</div>
+
+<!-- ════════════════════════════════════════════════════════════════════
+     OVERVIEW TAB
+     ════════════════════════════════════════════════════════════════════ -->
+<div class="tab-panel active" id="panel-overview">
+
+<div class="overview-header">
+  <h1>Portfolio Crisis Dashboard</h1>
+  <div class="sub">4 Positions &bull; Middle East Crisis Exposure &bull; March 2026</div>
+</div>
+
+<!-- PORTFOLIO SUMMARY -->
+<div class="portfolio-summary">
+  <div class="ps-item">
+    <div class="ps-label">Positions Tracked</div>
+    <div class="ps-value">4</div>
+  </div>
+  <div class="ps-item">
+    <div class="ps-label">Highest Threat</div>
+    <div class="ps-value red">5/5</div>
+  </div>
+  <div class="ps-item">
+    <div class="ps-label">Avg Threat Level</div>
+    <div class="ps-value amber">3.25</div>
+  </div>
+  <div class="ps-item">
+    <div class="ps-label">Total Indicators</div>
+    <div class="ps-value">33</div>
+  </div>
+  <div class="ps-item">
+    <div class="ps-label">Hormuz Status</div>
+    <div class="ps-value red">CLOSED</div>
+  </div>
+  <div class="ps-item">
+    <div class="ps-label">Brent Crude</div>
+    <div class="ps-value red">$110</div>
+  </div>
+</div>
+
+<!-- HEATMAP -->
+<div class="heatmap">
+  <div class="heatmap-seg critical"></div>
+  <div class="heatmap-seg elevated"></div>
+  <div class="heatmap-seg elevated"></div>
+  <div class="heatmap-seg moderate"></div>
+</div>
+<div class="heatmap-labels">
+  <span>FLT — 5/5 Critical</span>
+  <span>TSLA — 3/5 Elevated</span>
+  <span>NVDA — 3/5 Elevated</span>
+  <span>ADBE — 2/5 Moderate</span>
+</div>
+
+<!-- STOCK CARDS -->
+<div class="stock-grid">
+
+  <div class="stock-card risk-critical" onclick="switchTab('flt')">
+    <div class="sc-top">
+      <div>
+        <div class="sc-ticker">FLT</div>
+        <div class="sc-exchange">ASX &bull; Flight Centre Travel Group</div>
+      </div>
+      <div class="sc-threat">
+        <div class="sc-threat-num red">5/5</div>
+        <div class="sc-threat-label">Critical</div>
+      </div>
+    </div>
+    <div class="sc-price-row">
+      <div class="sc-price red">$11.30</div>
+      <div class="sc-change red">▼ Near 52-wk low</div>
+    </div>
+    <div class="sc-status">Direct casualty. Strait closure → oil spike → jet fuel doubles → surcharges kill demand → FLT revenue craters.</div>
+    <div class="sc-footer">
+      <div class="sc-indicators">16 indicators</div>
+      <div class="sc-mini-gauge">
+        <div class="mg g" style="height:3px"></div>
+        <div class="mg g" style="height:5px"></div>
+        <div class="mg a" style="height:7px"></div>
+        <div class="mg a" style="height:9px"></div>
+        <div class="mg a" style="height:11px"></div>
+        <div class="mg r" style="height:12px"></div>
+        <div class="mg r" style="height:13px"></div>
+        <div class="mg r" style="height:14px"></div>
+        <div class="mg r" style="height:15px"></div>
+        <div class="mg r" style="height:16px"></div>
+      </div>
+      <div class="sc-drill">DRILL IN →</div>
+    </div>
+  </div>
+
+  <div class="stock-card risk-elevated" onclick="switchTab('tsla')">
+    <div class="sc-top">
+      <div>
+        <div class="sc-ticker">TSLA</div>
+        <div class="sc-exchange">NASDAQ &bull; Tesla Inc</div>
+      </div>
+      <div class="sc-threat">
+        <div class="sc-threat-num amber">3/5</div>
+        <div class="sc-threat-label">Elevated</div>
+      </div>
+    </div>
+    <div class="sc-price-row">
+      <div class="sc-price amber">$385.95</div>
+      <div class="sc-change amber">▲ Mixed signals</div>
+    </div>
+    <div class="sc-status">Oil spike boosts EV demand, but inflation compresses growth valuations. Two forces pulling opposite directions.</div>
+    <div class="sc-footer">
+      <div class="sc-indicators">6 indicators</div>
+      <div class="sc-mini-gauge">
+        <div class="mg g" style="height:3px"></div>
+        <div class="mg g" style="height:5px"></div>
+        <div class="mg g" style="height:7px"></div>
+        <div class="mg a" style="height:9px"></div>
+        <div class="mg a" style="height:11px"></div>
+        <div class="mg a" style="height:13px"></div>
+        <div class="mg off" style="height:14px"></div>
+        <div class="mg off" style="height:15px"></div>
+        <div class="mg off" style="height:16px"></div>
+        <div class="mg off" style="height:16px"></div>
+      </div>
+      <div class="sc-drill">DRILL IN →</div>
+    </div>
+  </div>
+
+  <div class="stock-card risk-elevated" onclick="switchTab('nvda')">
+    <div class="sc-top">
+      <div>
+        <div class="sc-ticker">NVDA</div>
+        <div class="sc-exchange">NASDAQ &bull; Nvidia Corporation</div>
+      </div>
+      <div class="sc-threat">
+        <div class="sc-threat-num amber">3/5</div>
+        <div class="sc-threat-label">Elevated</div>
+      </div>
+    </div>
+    <div class="sc-price-row">
+      <div class="sc-price amber">$178.68</div>
+      <div class="sc-change amber">▼ Under pressure</div>
+    </div>
+    <div class="sc-status">Energy costs hit data centers. Export ban risk on China. AI momentum intact but macro headwinds building.</div>
+    <div class="sc-footer">
+      <div class="sc-indicators">6 indicators</div>
+      <div class="sc-mini-gauge">
+        <div class="mg g" style="height:3px"></div>
+        <div class="mg g" style="height:5px"></div>
+        <div class="mg g" style="height:7px"></div>
+        <div class="mg a" style="height:9px"></div>
+        <div class="mg a" style="height:11px"></div>
+        <div class="mg a" style="height:13px"></div>
+        <div class="mg off" style="height:14px"></div>
+        <div class="mg off" style="height:15px"></div>
+        <div class="mg off" style="height:16px"></div>
+        <div class="mg off" style="height:16px"></div>
+      </div>
+      <div class="sc-drill">DRILL IN →</div>
+    </div>
+  </div>
+
+  <div class="stock-card risk-moderate" onclick="switchTab('adbe')">
+    <div class="sc-top">
+      <div>
+        <div class="sc-ticker">ADBE</div>
+        <div class="sc-exchange">NASDAQ &bull; Adobe Inc</div>
+      </div>
+      <div class="sc-threat">
+        <div class="sc-threat-num amber">2/5</div>
+        <div class="sc-threat-label">Moderate</div>
+      </div>
+    </div>
+    <div class="sc-price-row">
+      <div class="sc-price red">$237.25</div>
+      <div class="sc-change red">▼ Near 52-wk low</div>
+    </div>
+    <div class="sc-status">SaaS model insulates revenue. Earnings beat ignored in macro repricing. CEO succession is the bigger risk.</div>
+    <div class="sc-footer">
+      <div class="sc-indicators">5 indicators</div>
+      <div class="sc-mini-gauge">
+        <div class="mg g" style="height:3px"></div>
+        <div class="mg g" style="height:5px"></div>
+        <div class="mg g" style="height:7px"></div>
+        <div class="mg g" style="height:9px"></div>
+        <div class="mg a" style="height:11px"></div>
+        <div class="mg a" style="height:13px"></div>
+        <div class="mg off" style="height:14px"></div>
+        <div class="mg off" style="height:15px"></div>
+        <div class="mg off" style="height:16px"></div>
+        <div class="mg off" style="height:16px"></div>
+      </div>
+      <div class="sc-drill">DRILL IN →</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- CROSS-PORTFOLIO CASCADE -->
+<div class="cascade-section">
+  <div class="cascade-title">Cross-Portfolio Crisis Cascade</div>
+  <div class="cascade-rows">
+    <div class="cascade-row">
+      <div class="cascade-source">Strait Closed</div>
+      <div class="cascade-arrow">→</div>
+      <div class="cascade-targets">
+        <div class="cascade-target cr">Oil $110+</div>
+        <div class="cascade-target cr">Shipping Halted</div>
+        <div class="cascade-target ca">Insurance Cancelled</div>
+      </div>
+    </div>
+    <div class="cascade-row">
+      <div class="cascade-source">Oil $110+</div>
+      <div class="cascade-arrow">→</div>
+      <div class="cascade-targets">
+        <div class="cascade-target cr">FLT: Jet Fuel 2×</div>
+        <div class="cascade-target cg">TSLA: EV Demand ↑</div>
+        <div class="cascade-target ca">NVDA: DC Energy ↑</div>
+        <div class="cascade-target ca">ADBE: Macro Repriced</div>
+      </div>
+    </div>
+    <div class="cascade-row">
+      <div class="cascade-source">Inflation Surge</div>
+      <div class="cascade-arrow">→</div>
+      <div class="cascade-targets">
+        <div class="cascade-target ca">10Y Yields ↑</div>
+        <div class="cascade-target cr">TSLA: PE Compressed</div>
+        <div class="cascade-target ca">NVDA: Sector Rotation</div>
+        <div class="cascade-target cb">ADBE: SaaS Insulated</div>
+      </div>
+    </div>
+    <div class="cascade-row">
+      <div class="cascade-source">Resolution</div>
+      <div class="cascade-arrow">→</div>
+      <div class="cascade-targets">
+        <div class="cascade-target cg">FLT: Strongest Bounce</div>
+        <div class="cascade-target cg">TSLA: EV + Macro Relief</div>
+        <div class="cascade-target cg">NVDA: Margins Recover</div>
+        <div class="cascade-target cg">ADBE: Fundamentals Reprice</div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- REVERSAL -->
+<div class="reversal">
+  <h3>Portfolio-Wide Reversal Signal</h3>
+  <p><strong>Strait of Hormuz reopens</strong> → Oil normalises below $80 → Inflation pressure eases → Rate expectations fall → All four positions benefit, with <strong>FLT showing strongest recovery</strong> as direct beneficiary, and <strong>ADBE most undervalued</strong> on fundamentals at PE 13.8 vs historical ~30x.</p>
+</div>
+
+</div><!-- end panel-overview -->
+
+
+<!-- ════════════════════════════════════════════════════════════════════
+     FLT TAB
+     ════════════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-flt">
+
+<div class="threat-level threat-5">
+  <div class="threat-badge">
+    <div class="threat-num">5</div>
+    <div class="threat-of">of 5</div>
+  </div>
+  <div class="threat-info">
+    <div class="threat-label"><span class="dot red"></span> Threat Assessment</div>
+    <div class="threat-title red">Critical — Maximum Risk</div>
+    <div class="threat-desc">Strait closed · Oil spiking · Proxy fronts active · No diplomatic track · All sectors elevated or critical</div>
+  </div>
+  <div class="threat-gauge">
+    <div class="tg-seg g" style="height: 8px;"></div>
+    <div class="tg-seg g" style="height: 14px;"></div>
+    <div class="tg-seg a" style="height: 20px;"></div>
+    <div class="tg-seg a" style="height: 26px;"></div>
+    <div class="tg-seg a" style="height: 32px;"></div>
+    <div class="tg-seg r" style="height: 36px;"></div>
+    <div class="tg-seg r" style="height: 40px;"></div>
+    <div class="tg-seg r" style="height: 44px;"></div>
+    <div class="tg-seg r" style="height: 48px;"></div>
+    <div class="tg-seg r" style="height: 48px;"></div>
+  </div>
+</div>
+
+<div class="page-title">
+  <h1>FLT Crisis Intelligence</h1>
+  <div class="sub">Flight Centre Travel Group &bull; ASX:FLT &bull; $11.30 AUD &bull; March 2026</div>
+</div>
+
+<div class="data-strip">
+  <div class="ds-item">
+    <div class="ds-label">FLT Price</div>
+    <div class="ds-value red">$11.30</div>
+    <div class="sparkline-row">
+      <svg width="50" height="14" viewBox="0 0 50 14"><polyline fill="none" stroke="#ff3333" stroke-width="1" stroke-linecap="round" points="2,2 7,3 12,4 17,5 22,6 27,5 32,8 37,10 42,12 47,13" /><circle cx="47" cy="13" r="1.5" fill="#ff3333"/></svg>
+      <span class="sparkline-label">30d</span>
+    </div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">52-Wk Low</div>
+    <div class="ds-value amber">$11.03</div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">Brent Crude</div>
+    <div class="ds-value red">~$110</div>
+    <div class="sparkline-row">
+      <svg width="50" height="14" viewBox="0 0 50 14"><polyline fill="none" stroke="#ff3333" stroke-width="1" stroke-linecap="round" points="2,12 7,11 12,10 17,10 22,7 27,5 32,3 37,2 42,2 47,1" /><circle cx="47" cy="1" r="1.5" fill="#ff3333"/></svg>
+      <span class="sparkline-label">30d</span>
+    </div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">Jet Fuel</div>
+    <div class="ds-value red">$3.99/gal</div>
+    <div class="sparkline-row">
+      <svg width="50" height="14" viewBox="0 0 50 14"><polyline fill="none" stroke="#ff9900" stroke-width="1" stroke-linecap="round" points="2,13 7,12 12,11 17,10 22,7 27,5 32,4 37,3 42,2 47,1" /><circle cx="47" cy="1" r="1.5" fill="#ff9900"/></svg>
+      <span class="sparkline-label">30d</span>
+    </div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">Strait of Hormuz</div>
+    <div class="ds-value red">CLOSED</div>
+  </div>
+</div>
+
+<div class="primary-target glow-red">
+  <div class="pt-tag"><span class="dot red"></span> Primary Intelligence Target</div>
+  <h2>Strait of Hormuz</h2>
+  <p>Currently closed to commercial tanker traffic. Single most important variable — all downstream indicators (oil, fuel, margins, demand, FLT price) cascade from whether and when it reopens.</p>
+</div>
+
+<div class="intel-grid">
+
+  <div class="intel-section">
+    <div class="intel-header"><span class="ih-icon">🛢</span> Energy &amp; Supply</div>
+    <div class="item">
+      <div class="item-idx">01</div>
+      <div class="item-body">
+        <div class="item-name">Strait of Hormuz Status <span class="tag tag-crit">Critical</span></div>
+        <div class="item-desc">Fully closed. 20% of global oil transits through here. Reopening = immediate relief.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">02</div>
+      <div class="item-body">
+        <div class="item-name">Brent Crude Price <span class="tag tag-crit">Critical</span></div>
+        <div class="item-desc">~$110/bbl. Below $80 = travel relief. Above $100 = continued pain. JP Morgan sees $60s if resolved.</div>
+        <div class="mini-spark">
+          <svg width="60" height="12" viewBox="0 0 60 12"><polyline fill="none" stroke="#ff3333" stroke-width="1" opacity="0.6" stroke-linecap="round" points="2,10 8,9 14,8 20,8 26,6 32,4 38,3 44,2 50,1 56,1" /></svg>
+          <span>$70 → $110</span>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">03</div>
+      <div class="item-body">
+        <div class="item-name">Marine War-Risk Insurance <span class="tag tag-crit">Cancelled</span></div>
+        <div class="item-desc">Currently cancelled for Gulf voyages. Resumption signals market confidence returning.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">04</div>
+      <div class="item-body">
+        <div class="item-name">IEA Strategic Reserves <span class="tag tag-warn">Depleting</span></div>
+        <div class="item-desc">Record 400M barrels released. Watch for increased releases (= they expect prolonged disruption).</div>
+        <div class="mini-spark">
+          <svg width="60" height="12" viewBox="0 0 60 12"><polyline fill="none" stroke="#ff9900" stroke-width="1" opacity="0.6" stroke-linecap="round" points="2,1 8,2 14,2 20,3 26,4 32,5 38,7 44,8 50,10 56,11" /></svg>
+          <span>Reserves depleting</span>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="intel-section">
+    <div class="intel-header"><span class="ih-icon">⚔</span> Military &amp; Geopolitical</div>
+    <div class="item">
+      <div class="item-idx">05</div>
+      <div class="item-body">
+        <div class="item-name">US Troop Deployments <span class="tag tag-warn">Escalating</span></div>
+        <div class="item-desc">~50K+ troops. 82nd Airborne deploying. More troops = deeper commitment = longer conflict.</div>
+        <div class="mini-spark">
+          <svg width="60" height="12" viewBox="0 0 60 12"><polyline fill="none" stroke="#ff9900" stroke-width="1" opacity="0.6" stroke-linecap="round" points="2,10 8,10 14,9 20,8 26,7 32,5 38,4 44,3 50,2 56,1" /></svg>
+          <span>~30K → 55K+</span>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">06</div>
+      <div class="item-body">
+        <div class="item-name">Proxy Front Activity <span class="tag tag-crit">Active</span></div>
+        <div class="item-desc">Hezbollah, Houthis, Iraqi militias all activated. Houthi Red Sea attacks widen disruption beyond Gulf.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">07</div>
+      <div class="item-body">
+        <div class="item-name">Ceasefire / Diplomacy <span class="tag tag-none">None</span></div>
+        <div class="item-desc">UN voted on two resolutions Mar 11. No credible diplomatic track yet.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">08</div>
+      <div class="item-body">
+        <div class="item-name">Trump Signals <span class="tag tag-warn">Mixed</span></div>
+        <div class="item-desc">"Not putting troops anywhere" vs "whatever is necessary." Watch for clear pivot.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">09</div>
+      <div class="item-body">
+        <div class="item-name">Iran Leadership Vacuum <span class="tag tag-watch">Uncertain</span></div>
+        <div class="item-desc">Khamenei killed. Hardliner successor = prolonged war. Pragmatist = potential off-ramp.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="intel-section">
+    <div class="intel-header"><span class="ih-icon">✈</span> Travel Sector</div>
+    <div class="item">
+      <div class="item-idx">10</div>
+      <div class="item-body">
+        <div class="item-name">Airline Fuel Surcharges <span class="tag tag-crit">+35%</span></div>
+        <div class="item-desc">Jet fuel nearly doubled ($2.50 → $4.00). Surcharges kill demand, especially leisure.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">11</div>
+      <div class="item-body">
+        <div class="item-name">Route Cancellations <span class="tag tag-warn">Increasing</span></div>
+        <div class="item-desc">Europe &amp; Asia routes rerouted away from ME airspace. More disruption = higher costs = fewer bookings.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">12</div>
+      <div class="item-body">
+        <div class="item-name">Forward Booking Data <span class="tag tag-watch">Watch</span></div>
+        <div class="item-desc">Leading indicator for FLT revenue. If 3–6 month bookings drop, revenue craters even after oil normalises.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">13</div>
+      <div class="item-body">
+        <div class="item-name">Corporate Travel Volume <span class="tag tag-watch">Watch</span></div>
+        <div class="item-desc">More resilient than leisure. If corporate holds = FLT has a floor. If it drops too = bigger problem.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="intel-section">
+    <div class="intel-header"><span class="ih-icon">📊</span> Macro &amp; Sentiment</div>
+    <div class="item">
+      <div class="item-idx">14</div>
+      <div class="item-body">
+        <div class="item-name">Consumer Confidence <span class="tag tag-warn">Declining</span></div>
+        <div class="item-desc">AU, UK, US indices — sustained drop signals reduced discretionary spend on travel.</div>
+        <div class="mini-spark">
+          <svg width="60" height="12" viewBox="0 0 60 12"><polyline fill="none" stroke="#ff9900" stroke-width="1" opacity="0.6" stroke-linecap="round" points="2,2 8,2 14,3 20,3 26,5 32,6 38,7 44,9 50,10 56,11" /></svg>
+          <span>Falling</span>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">15</div>
+      <div class="item-body">
+        <div class="item-name">AUD/USD Rate <span class="tag tag-watch">Watch</span></div>
+        <div class="item-desc">Weaker AUD makes outbound travel more expensive for FLT's core Australian customer base.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">16</div>
+      <div class="item-body">
+        <div class="item-name">Analyst Target Revisions <span class="tag tag-warn">Stale</span></div>
+        <div class="item-desc">Consensus ~$17 is pre-war. Watch for downgrades. When last bull capitulates, often near the bottom.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="impact-chain">
+  <h3>Impact Chain Analysis</h3>
+  <div class="chain-flow">
+    <div class="chain-node cr">Strait Closed</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node cr">Oil $110+</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node ca">Jet Fuel 2×</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node ca">+35% Surcharges</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node cb">Demand Falls</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node cp">FLT ↓</div>
+  </div>
+</div>
+
+<div class="reversal">
+  <h3>Reversal Signal — What Flips the Trade</h3>
+  <p><strong>Strait of Hormuz reopens</strong> → Oil drops below $80 → Fuel costs normalise → Surcharges removed → Booking demand recovers → FLT bounces<br>
+  Secondary: <strong>Credible ceasefire</strong> or <strong>Iran pragmatist leadership</strong> emerging would front-run the energy recovery.</p>
+</div>
+
+</div><!-- end panel-flt -->
+
+
+<!-- ════════════════════════════════════════════════════════════════════
+     TSLA TAB
+     ════════════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-tsla">
+
+<div class="threat-level threat-3">
+  <div class="threat-badge">
+    <div class="threat-num">3</div>
+    <div class="threat-of">of 5</div>
+  </div>
+  <div class="threat-info">
+    <div class="threat-label"><span class="dot amber"></span> Threat Assessment</div>
+    <div class="threat-title amber">Elevated — Mixed Exposure</div>
+    <div class="threat-desc">Mixed exposure. Oil spike boosts EV demand but inflation compresses growth valuations.</div>
+  </div>
+  <div class="threat-gauge">
+    <div class="tg-seg g" style="height: 8px;"></div>
+    <div class="tg-seg g" style="height: 14px;"></div>
+    <div class="tg-seg g" style="height: 20px;"></div>
+    <div class="tg-seg a" style="height: 26px;"></div>
+    <div class="tg-seg a" style="height: 32px;"></div>
+    <div class="tg-seg a" style="height: 36px;"></div>
+    <div class="tg-seg off" style="height: 40px;"></div>
+    <div class="tg-seg off" style="height: 44px;"></div>
+    <div class="tg-seg off" style="height: 48px;"></div>
+    <div class="tg-seg off" style="height: 48px;"></div>
+  </div>
+</div>
+
+<div class="page-title">
+  <h1>TSLA Crisis Intelligence</h1>
+  <div class="sub">Tesla Inc &bull; NASDAQ:TSLA &bull; $385.95 USD &bull; March 2026</div>
+</div>
+
+<div class="data-strip">
+  <div class="ds-item">
+    <div class="ds-label">TSLA Price</div>
+    <div class="ds-value amber">$385.95</div>
+    <div class="sparkline-row">
+      <svg width="50" height="14" viewBox="0 0 50 14"><polyline fill="none" stroke="#ff9900" stroke-width="1" stroke-linecap="round" points="2,8 7,7 12,6 17,5 22,4 27,5 32,6 37,4 42,3 47,2" /><circle cx="47" cy="2" r="1.5" fill="#ff9900"/></svg>
+      <span class="sparkline-label">30d</span>
+    </div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">Brent Crude</div>
+    <div class="ds-value red">~$110</div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">Gas at Pump</div>
+    <div class="ds-value red">~$5.80</div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">10Y Treasury</div>
+    <div class="ds-value amber">4.8%</div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">PE Ratio</div>
+    <div class="ds-value amber">55.2</div>
+  </div>
+</div>
+
+<div class="primary-target glow-amber">
+  <div class="pt-tag"><span class="dot amber"></span> Primary Intelligence Target</div>
+  <h2>Oil-to-EV Demand Pivot</h2>
+  <p>Rising fuel costs drive consumer interest in EVs, but macro headwinds from inflation and rate expectations cap valuation upside.</p>
+</div>
+
+<div class="intel-grid">
+
+  <div class="intel-section">
+    <div class="intel-header"><span class="ih-icon">⚡</span> Tailwinds</div>
+    <div class="item">
+      <div class="item-idx">01</div>
+      <div class="item-body">
+        <div class="item-name">Gas Price Surge <span class="tag tag-watch">Positive</span></div>
+        <div class="item-desc">National avg ~$5.80/gal. Every $1 increase drives ~15% more EV consideration. Tesla best positioned as volume EV leader.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">02</div>
+      <div class="item-body">
+        <div class="item-name">EV Demand Acceleration <span class="tag tag-watch">Positive</span></div>
+        <div class="item-desc">Oil volatility reshapes auto outlook. Goldman sees sustained >$100 oil as structural EV catalyst.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">03</div>
+      <div class="item-body">
+        <div class="item-name">Energy Independence Narrative <span class="tag tag-watch">Positive</span></div>
+        <div class="item-desc">Geopolitical instability strengthens case for domestic energy/EV transition. Policy tailwinds likely.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="intel-section">
+    <div class="intel-header"><span class="ih-icon">🌊</span> Headwinds</div>
+    <div class="item">
+      <div class="item-idx">04</div>
+      <div class="item-body">
+        <div class="item-name">Inflation / Bond Yields <span class="tag tag-warn">Elevated</span></div>
+        <div class="item-desc">10Y at 4.8%. Rising yields compress long-duration growth stock valuations. Tesla PE of 55x vulnerable.</div>
+        <div class="mini-spark">
+          <svg width="60" height="12" viewBox="0 0 60 12"><polyline fill="none" stroke="#ff9900" stroke-width="1" opacity="0.6" stroke-linecap="round" points="2,10 8,9 14,8 20,7 26,6 32,5 38,4 44,3 50,2 56,1" /></svg>
+          <span>Yield rising</span>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">05</div>
+      <div class="item-body">
+        <div class="item-name">Consumer Spending Squeeze <span class="tag tag-warn">Warning</span></div>
+        <div class="item-desc">Higher fuel + energy costs erode discretionary budgets. EV purchases may be deferred despite interest.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">06</div>
+      <div class="item-body">
+        <div class="item-name">Supply Chain Disruption <span class="tag tag-watch">Watch</span></div>
+        <div class="item-desc">Shipping route disruptions affect raw material costs. Lithium and battery component logistics impacted.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="impact-chain">
+  <h3>Impact Chain Analysis</h3>
+  <div class="chain-flow">
+    <div class="chain-node cr">Oil Spike</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node ca">Gas $5.80</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node cg">EV Interest ↑</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node ca">BUT</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node cr">Inflation ↑</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node cr">Rates ↑</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node cp">TSLA Valuation ↓</div>
+  </div>
+</div>
+
+<div class="reversal">
+  <h3>Reversal Signal — What Flips the Trade</h3>
+  <p><strong>Strait reopens</strong> → Oil normalises → Inflation eases → Rates drop → Growth stocks re-rate upward → <strong>TSLA benefits from both macro relief and retained EV momentum</strong></p>
+</div>
+
+</div><!-- end panel-tsla -->
+
+
+<!-- ════════════════════════════════════════════════════════════════════
+     NVDA TAB
+     ════════════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-nvda">
+
+<div class="threat-level threat-3">
+  <div class="threat-badge">
+    <div class="threat-num">3</div>
+    <div class="threat-of">of 5</div>
+  </div>
+  <div class="threat-info">
+    <div class="threat-label"><span class="dot amber"></span> Threat Assessment</div>
+    <div class="threat-title amber">Elevated — Indirect Exposure</div>
+    <div class="threat-desc">Indirect exposure via energy costs and sector rotation. AI momentum intact but macro headwinds building.</div>
+  </div>
+  <div class="threat-gauge">
+    <div class="tg-seg g" style="height: 8px;"></div>
+    <div class="tg-seg g" style="height: 14px;"></div>
+    <div class="tg-seg g" style="height: 20px;"></div>
+    <div class="tg-seg a" style="height: 26px;"></div>
+    <div class="tg-seg a" style="height: 32px;"></div>
+    <div class="tg-seg a" style="height: 36px;"></div>
+    <div class="tg-seg off" style="height: 40px;"></div>
+    <div class="tg-seg off" style="height: 44px;"></div>
+    <div class="tg-seg off" style="height: 48px;"></div>
+    <div class="tg-seg off" style="height: 48px;"></div>
+  </div>
+</div>
+
+<div class="page-title">
+  <h1>NVDA Crisis Intelligence</h1>
+  <div class="sub">Nvidia Corporation &bull; NASDAQ:NVDA &bull; $178.68 USD &bull; March 2026</div>
+</div>
+
+<div class="data-strip">
+  <div class="ds-item">
+    <div class="ds-label">NVDA Price</div>
+    <div class="ds-value amber">$178.68</div>
+    <div class="sparkline-row">
+      <svg width="50" height="14" viewBox="0 0 50 14"><polyline fill="none" stroke="#ff9900" stroke-width="1" stroke-linecap="round" points="2,4 7,3 12,2 17,3 22,4 27,5 32,6 37,5 42,4 47,3" /><circle cx="47" cy="3" r="1.5" fill="#ff9900"/></svg>
+      <span class="sparkline-label">30d</span>
+    </div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">Brent Crude</div>
+    <div class="ds-value red">~$110</div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">Semis Sector</div>
+    <div class="ds-value red">-3.5%</div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">Data Center Energy</div>
+    <div class="ds-value amber">+22%</div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">PE Ratio</div>
+    <div class="ds-value amber">36.5</div>
+  </div>
+</div>
+
+<div class="primary-target glow-amber">
+  <div class="pt-tag"><span class="dot amber"></span> Primary Intelligence Target</div>
+  <h2>Energy Cost → AI Infrastructure</h2>
+  <p>Rising energy costs from oil shock directly impact data center operating expenses, the backbone of Nvidia's growth story.</p>
+</div>
+
+<div class="intel-grid">
+
+  <div class="intel-section">
+    <div class="intel-header"><span class="ih-icon">🧠</span> AI &amp; Demand</div>
+    <div class="item">
+      <div class="item-idx">01</div>
+      <div class="item-body">
+        <div class="item-name">AI Spending Momentum <span class="tag tag-watch">Strong</span></div>
+        <div class="item-desc">$68B quarterly revenue, 73% YoY growth. Enterprise AI buildout continues regardless of geopolitics.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">02</div>
+      <div class="item-body">
+        <div class="item-name">Blackwell/Next-Gen Demand <span class="tag tag-watch">Intact</span></div>
+        <div class="item-desc">Jensen Huang's $1T infrastructure prediction. Hyperscaler capex commitments remain firm.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">03</div>
+      <div class="item-body">
+        <div class="item-name">Valuation vs Energy Stocks <span class="tag tag-warn">Rotating</span></div>
+        <div class="item-desc">Investors ditching tech for energy. NVDA stock "cheaper than Exxon" on forward PE basis.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="intel-section">
+    <div class="intel-header"><span class="ih-icon">⚠</span> Risk Factors</div>
+    <div class="item">
+      <div class="item-idx">04</div>
+      <div class="item-body">
+        <div class="item-name">Data Center Energy Costs <span class="tag tag-warn">Rising</span></div>
+        <div class="item-desc">Oil-driven electricity costs up ~22%. AI data centers are massive energy consumers. Margin pressure.</div>
+        <div class="mini-spark">
+          <svg width="60" height="12" viewBox="0 0 60 12"><polyline fill="none" stroke="#ff9900" stroke-width="1" opacity="0.6" stroke-linecap="round" points="2,10 8,9 14,8 20,7 26,6 32,5 38,4 44,3 50,2 56,1" /></svg>
+          <span>Energy costs rising</span>
+        </div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">05</div>
+      <div class="item-body">
+        <div class="item-name">Export Restrictions / China <span class="tag tag-crit">Critical</span></div>
+        <div class="item-desc">US senators demand suspension of AI chip export licenses to China. Investigation into CEO statements. Major revenue risk.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">06</div>
+      <div class="item-body">
+        <div class="item-name">Semiconductor Supply Chain <span class="tag tag-warn">Disrupted</span></div>
+        <div class="item-desc">Helium, bromine transport routes affected by Hormuz closure. Critical for chip manufacturing processes.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="impact-chain">
+  <h3>Impact Chain Analysis</h3>
+  <div class="chain-flow">
+    <div class="chain-node cr">Oil Spike</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node ca">Energy Costs ↑</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node ca">DC Margins ↓</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node cr">PLUS</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node cr">Export Risk</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node cr">China Rev ↓</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node cp">NVDA Under Pressure</div>
+  </div>
+</div>
+
+<div class="reversal">
+  <h3>Reversal Signal — What Flips the Trade</h3>
+  <p><strong>Strait reopens</strong> → Energy costs normalise → Data center margins recover. <strong>Export restriction clarity</strong> would remove biggest overhang.</p>
+</div>
+
+</div><!-- end panel-nvda -->
+
+
+<!-- ════════════════════════════════════════════════════════════════════
+     ADBE TAB
+     ════════════════════════════════════════════════════════════════════ -->
+<div class="tab-panel" id="panel-adbe">
+
+<div class="threat-level threat-2">
+  <div class="threat-badge">
+    <div class="threat-num">2</div>
+    <div class="threat-of">of 5</div>
+  </div>
+  <div class="threat-info">
+    <div class="threat-label"><span class="dot amber"></span> Threat Assessment</div>
+    <div class="threat-title amber">Moderate — Limited Exposure</div>
+    <div class="threat-desc">Minimal direct exposure. SaaS model provides revenue insulation. CEO transition is the bigger risk.</div>
+  </div>
+  <div class="threat-gauge">
+    <div class="tg-seg g" style="height: 8px;"></div>
+    <div class="tg-seg g" style="height: 14px;"></div>
+    <div class="tg-seg g" style="height: 20px;"></div>
+    <div class="tg-seg g" style="height: 26px;"></div>
+    <div class="tg-seg a" style="height: 32px;"></div>
+    <div class="tg-seg a" style="height: 36px;"></div>
+    <div class="tg-seg off" style="height: 40px;"></div>
+    <div class="tg-seg off" style="height: 44px;"></div>
+    <div class="tg-seg off" style="height: 48px;"></div>
+    <div class="tg-seg off" style="height: 48px;"></div>
+  </div>
+</div>
+
+<div class="page-title">
+  <h1>ADBE Crisis Intelligence</h1>
+  <div class="sub">Adobe Inc &bull; NASDAQ:ADBE &bull; $237.25 USD &bull; March 2026</div>
+</div>
+
+<div class="data-strip">
+  <div class="ds-item">
+    <div class="ds-label">ADBE Price</div>
+    <div class="ds-value red">$237.25</div>
+    <div class="sparkline-row">
+      <svg width="50" height="14" viewBox="0 0 50 14"><polyline fill="none" stroke="#ff3333" stroke-width="1" stroke-linecap="round" points="2,2 7,3 12,4 17,5 22,6 27,7 32,8 37,9 42,11 47,13" /><circle cx="47" cy="13" r="1.5" fill="#ff3333"/></svg>
+      <span class="sparkline-label">30d</span>
+    </div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">52-Wk Low</div>
+    <div class="ds-value red">$233.79</div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">Revenue</div>
+    <div class="ds-value green">$6.4B</div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">PE Ratio</div>
+    <div class="ds-value green">13.8</div>
+  </div>
+  <div class="ds-item">
+    <div class="ds-label">ARR</div>
+    <div class="ds-value green">$26.1B</div>
+  </div>
+</div>
+
+<div class="primary-target glow-amber">
+  <div class="pt-tag"><span class="dot amber"></span> Primary Intelligence Target</div>
+  <h2>CEO Transition + Macro Reset</h2>
+  <p>Strong earnings beat ignored as market reprices around geopolitical macro reset. CEO departure adds uncertainty.</p>
+</div>
+
+<div class="intel-grid">
+
+  <div class="intel-section">
+    <div class="intel-header"><span class="ih-icon">💎</span> Fundamentals</div>
+    <div class="item">
+      <div class="item-idx">01</div>
+      <div class="item-body">
+        <div class="item-name">SaaS Revenue Resilience <span class="tag tag-watch">Strong</span></div>
+        <div class="item-desc">Recurring subscription model ($26.1B ARR, +11% CC). Revenue largely insulated from oil shock.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">02</div>
+      <div class="item-body">
+        <div class="item-name">Earnings Beat Ignored <span class="tag tag-warn">Repriced</span></div>
+        <div class="item-desc">$6.06 EPS beat by 3%. But stock fell 8.15% as market shifted focus from earnings to macro.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">03</div>
+      <div class="item-body">
+        <div class="item-name">AI Integration (Firefly) <span class="tag tag-watch">Positive</span></div>
+        <div class="item-desc">Generative AI features driving engagement. CFO turned finance dept into "AI lab". Differentiation intact.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="intel-section">
+    <div class="intel-header"><span class="ih-icon">⚠</span> Risk Factors</div>
+    <div class="item">
+      <div class="item-idx">04</div>
+      <div class="item-body">
+        <div class="item-name">CEO Succession <span class="tag tag-warn">Uncertain</span></div>
+        <div class="item-desc">Shantanu Narayen stepping down after 18 years. No successor announced. Leadership vacuum adds risk premium.</div>
+      </div>
+    </div>
+    <div class="item">
+      <div class="item-idx">05</div>
+      <div class="item-body">
+        <div class="item-name">Enterprise Spending Outlook <span class="tag tag-watch">Watch</span></div>
+        <div class="item-desc">Prolonged crisis could tighten enterprise software budgets. SaaS usually last to be cut, but not immune.</div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<div class="impact-chain">
+  <h3>Impact Chain Analysis</h3>
+  <div class="chain-flow">
+    <div class="chain-node cr">Geopolitical Reset</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node ca">Inflation Fears</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node ca">Growth Repriced</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node cb">ADBE Sold Despite Beat</div>
+    <div class="chain-arrow">→</div>
+    <div class="chain-node cp">CEO Exit Amplifies</div>
+  </div>
+</div>
+
+<div class="reversal">
+  <h3>Reversal Signal — What Flips the Trade</h3>
+  <p><strong>Crisis de-escalation</strong> → Market returns to fundamentals → ADBE PE at 13.8 looks deeply undervalued vs history (~30x). <strong>Named successor</strong> would remove biggest specific risk.</p>
+</div>
+
+</div><!-- end panel-adbe -->
+
+
+<!-- CLASSIFIED FOOTER -->
+<div class="classified-footer">
+  Classified // Crisis Intel Div &bull; Not Financial Advice &bull; For Informational Purposes Only &bull; March 2026
+</div>
+
+</div><!-- end .dashboard -->
+
+<!-- STICKY TICKER -->
+<div class="ticker" id="tickerBar">
+  <div class="ticker-tag"><span class="dot red"></span> LIVE</div>
+  <div class="ticker-scroll">
+    <div class="ticker-track">
+      <div class="ti"><span>FLT</span> <span class="tv red">$11.30 ↓</span></div><div class="ts">•</div>
+      <div class="ti"><span>TSLA</span> <span class="tv amber">$385.95 ↑</span></div><div class="ts">•</div>
+      <div class="ti"><span>NVDA</span> <span class="tv amber">$178.68 ↑</span></div><div class="ts">•</div>
+      <div class="ti"><span>ADBE</span> <span class="tv red">$237.25 ↓</span></div><div class="ts">•</div>
+      <div class="ti"><span>BRENT</span> <span class="tv red">$110.42 ↑</span></div><div class="ts">•</div>
+      <div class="ti"><span>HORMUZ</span> <span class="tv red">CLOSED</span></div><div class="ts">•</div>
+      <div class="ti"><span>THREAT</span> <span class="tv red">5/5 CRITICAL</span></div><div class="ts">•</div>
+      <div class="ti"><span>10Y YIELD</span> <span class="tv amber">4.8% ↑</span></div><div class="ts">•</div>
+      <div class="ti"><span>CEASEFIRE</span> <span class="tv" style="color:var(--text-dim)">NONE</span></div><div class="ts">•</div>
+      <div class="ti"><span>WAR INSURANCE</span> <span class="tv red">CANCELLED</span></div><div class="ts">•</div>
+      <!-- DUPLICATE FOR SEAMLESS SCROLL -->
+      <div class="ti"><span>FLT</span> <span class="tv red">$11.30 ↓</span></div><div class="ts">•</div>
+      <div class="ti"><span>TSLA</span> <span class="tv amber">$385.95 ↑</span></div><div class="ts">•</div>
+      <div class="ti"><span>NVDA</span> <span class="tv amber">$178.68 ↑</span></div><div class="ts">•</div>
+      <div class="ti"><span>ADBE</span> <span class="tv red">$237.25 ↓</span></div><div class="ts">•</div>
+      <div class="ti"><span>BRENT</span> <span class="tv red">$110.42 ↑</span></div><div class="ts">•</div>
+      <div class="ti"><span>HORMUZ</span> <span class="tv red">CLOSED</span></div><div class="ts">•</div>
+      <div class="ti"><span>THREAT</span> <span class="tv red">5/5 CRITICAL</span></div><div class="ts">•</div>
+      <div class="ti"><span>10Y YIELD</span> <span class="tv amber">4.8% ↑</span></div><div class="ts">•</div>
+      <div class="ti"><span>CEASEFIRE</span> <span class="tv" style="color:var(--text-dim)">NONE</span></div><div class="ts">•</div>
+      <div class="ti"><span>WAR INSURANCE</span> <span class="tv red">CANCELLED</span></div><div class="ts">•</div>
+    </div>
+  </div>
+</div>
+
+<script>
+  const overlay = document.getElementById('scanOverlay');
+  const dashboard = document.getElementById('dashboard');
+  const ticker = document.getElementById('tickerBar');
+
+  const indicatorCounts = {
+    overview: 33,
+    flt: 16,
+    tsla: 6,
+    nvda: 6,
+    adbe: 5
+  };
+
+  setTimeout(() => {
+    overlay.classList.add('hidden');
+    dashboard.classList.add('visible');
+    ticker.classList.add('visible');
+  }, 2500);
+
+  function switchTab(tabId) {
+    document.querySelectorAll('.tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.tab-panel').forEach(panel => panel.classList.remove('active'));
+
+    document.querySelector('[data-tab="' + tabId + '"]').classList.add('active');
+    document.getElementById('panel-' + tabId).classList.add('active');
+
+    document.getElementById('indicatorCount').textContent = indicatorCounts[tabId];
+    window.scrollTo(0, 0);
+  }
+
+  function updateClock() {
+    const now = new Date();
+    const h = String(now.getHours()).padStart(2, '0');
+    const m = String(now.getMinutes()).padStart(2, '0');
+    const s = String(now.getSeconds()).padStart(2, '0');
+    document.getElementById('clock').textContent = h + ':' + m + ':' + s + ' LOCAL';
+  }
+  updateClock();
+  setInterval(updateClock, 1000);
+
+  // ─── LIVE PRICE DATA ───
+  const PROXY = 'https://corsproxy.io/?';
+  const SYMBOLS = {
+    'FLT.AX': { tab: 'flt', label: 'FLT' },
+    'TSLA':   { tab: 'tsla', label: 'TSLA' },
+    'NVDA':   { tab: 'nvda', label: 'NVDA' },
+    'ADBE':   { tab: 'adbe', label: 'ADBE' },
+    'BZ=F':   { tab: null,   label: 'BRENT' }
+  };
+
+  function buildSparkSVG(closes, color, w, h) {
+    const valid = closes.filter(c => c != null);
+    if (valid.length < 2) return null;
+    const min = Math.min(...valid), max = Math.max(...valid);
+    const range = max - min || 1;
+    const step = w / (valid.length - 1);
+    const pts = valid.map((c, i) =>
+      `${(i * step).toFixed(1)},${(h - ((c - min) / range) * (h - 2) - 1).toFixed(1)}`
+    ).join(' ');
+    const lx = ((valid.length - 1) * step).toFixed(1);
+    const ly = (h - ((valid[valid.length - 1] - min) / range) * (h - 2) - 1).toFixed(1);
+    return `<svg width="${w}" height="${h}" viewBox="0 0 ${w} ${h}"><polyline fill="none" stroke="${color}" stroke-width="1" stroke-linecap="round" points="${pts}"/><circle cx="${lx}" cy="${ly}" r="1.5" fill="${color}"/></svg>`;
+  }
+
+  async function fetchChart(symbol) {
+    const url = PROXY + encodeURIComponent(
+      'https://query1.finance.yahoo.com/v8/finance/chart/' + symbol + '?interval=1d&range=1mo'
+    );
+    const res = await fetch(url);
+    if (!res.ok) throw new Error(res.status);
+    const json = await res.json();
+    const r = json.chart.result[0];
+    const price = r.meta.regularMarketPrice;
+    const prev = r.meta.chartPreviousClose || r.meta.previousClose;
+    const closes = r.indicators.quote[0].close;
+    const change = price - prev;
+    const changePct = (change / prev) * 100;
+    return { price, change, changePct, closes };
+  }
+
+  function fmtPrice(p, isBrent) {
+    return isBrent ? '~$' + Math.round(p) : '$' + p.toFixed(2);
+  }
+
+  function updateDOM(config, data) {
+    const { tab, label } = config;
+    const { price, changePct, closes } = data;
+    const up = changePct >= 0;
+    const arrow = up ? '↑' : '↓';
+    const tri = up ? '▲' : '▼';
+    const cls = up ? 'green' : 'red';
+    const isBrent = label === 'BRENT';
+    const displayPrice = fmtPrice(price, isBrent);
+
+    // Tab button
+    if (tab) {
+      const tp = document.querySelector('[data-tab="' + tab + '"] .tab-price');
+      if (tp) tp.textContent = displayPrice;
+    }
+
+    // Overview card
+    if (tab) {
+      document.querySelectorAll('.stock-card').forEach(card => {
+        const tk = card.querySelector('.sc-ticker');
+        if (tk && tk.textContent.trim() === label) {
+          const pe = card.querySelector('.sc-price');
+          const ce = card.querySelector('.sc-change');
+          if (pe) pe.textContent = displayPrice;
+          if (ce) {
+            ce.textContent = tri + ' ' + Math.abs(changePct).toFixed(1) + '% today';
+            ce.className = 'sc-change ' + cls;
+          }
+        }
+      });
+    }
+
+    // Data strip — stock's own price (first item in its tab)
+    if (tab) {
+      const panel = document.getElementById('panel-' + tab);
+      if (panel) {
+        const firstVal = panel.querySelector('.data-strip .ds-item:first-child .ds-value');
+        if (firstVal) {
+          firstVal.textContent = displayPrice;
+          firstVal.className = 'ds-value ' + cls;
+        }
+        // Sparkline in data strip
+        const sparkRow = panel.querySelector('.data-strip .sparkline-row');
+        if (sparkRow && closes) {
+          const color = up ? '#00ff66' : '#ff3333';
+          const svg = buildSparkSVG(closes, color, 50, 14);
+          if (svg) {
+            const old = sparkRow.querySelector('svg');
+            if (old) old.outerHTML = svg;
+          }
+        }
+      }
+    }
+
+    // Brent crude — update in all data strips and overview summary
+    if (isBrent) {
+      document.querySelectorAll('.ds-item').forEach(item => {
+        const lbl = item.querySelector('.ds-label');
+        if (lbl && lbl.textContent.trim().toUpperCase().includes('BRENT')) {
+          const val = item.querySelector('.ds-value');
+          if (val) val.textContent = displayPrice;
+        }
+      });
+      document.querySelectorAll('.ps-item').forEach(item => {
+        const lbl = item.querySelector('.ps-label');
+        if (lbl && lbl.textContent.trim().toUpperCase().includes('BRENT')) {
+          const val = item.querySelector('.ps-value');
+          if (val) val.textContent = '$' + Math.round(price);
+        }
+      });
+    }
+
+    // Ticker bar — find by label text, update both copies (for seamless scroll)
+    document.querySelectorAll('.ti').forEach(ti => {
+      const spans = ti.querySelectorAll('span');
+      if (spans.length >= 2 && spans[0].textContent.trim() === label) {
+        spans[1].textContent = displayPrice + ' ' + arrow;
+        spans[1].className = 'tv ' + cls;
+      }
+    });
+  }
+
+  function flashElement(el) {
+    if (!el) return;
+    el.classList.remove('price-updated');
+    void el.offsetWidth;
+    el.classList.add('price-updated');
+  }
+
+  const REFRESH_INTERVAL = 300;
+  let lastRefreshTime = null;
+  let countdownSeconds = 0;
+  let isLive = false;
+
+  function setFeedStatus(state, msg) {
+    const dot = document.getElementById('lfbDot');
+    const label = document.getElementById('lfbLabel');
+    if (!dot || !label) return;
+
+    dot.className = 'lfb-dot';
+    label.className = 'lfb-label';
+
+    if (state === 'live') {
+      dot.classList.add('live');
+      label.classList.add('live');
+      label.textContent = msg || 'LIVE FEED ACTIVE';
+      isLive = true;
+    } else if (state === 'updating') {
+      dot.classList.add('live');
+      label.classList.add('live');
+      label.textContent = 'FETCHING PRICES...';
+    } else if (state === 'error') {
+      dot.classList.add('error');
+      label.classList.add('error');
+      label.textContent = msg || 'FEED OFFLINE — STATIC DATA';
+      isLive = false;
+    } else {
+      label.textContent = msg || 'CONNECTING...';
+    }
+  }
+
+  function updateCountdown() {
+    const el = document.getElementById('lfbCountdown');
+    const timeEl = document.getElementById('lfbTime');
+    if (!el) return;
+
+    if (isLive && countdownSeconds > 0) {
+      countdownSeconds--;
+      const m = Math.floor(countdownSeconds / 60);
+      const s = countdownSeconds % 60;
+      el.textContent = 'NEXT REFRESH: ' + m + ':' + String(s).padStart(2, '0');
+    } else if (!isLive) {
+      el.textContent = '';
+    }
+
+    if (timeEl && lastRefreshTime) {
+      const ago = Math.floor((Date.now() - lastRefreshTime) / 1000);
+      if (ago < 60) {
+        timeEl.textContent = 'UPDATED ' + ago + 's AGO';
+      } else {
+        timeEl.textContent = 'UPDATED ' + Math.floor(ago / 60) + 'm AGO';
+      }
+    }
+  }
+
+  // Update the ticker bar LIVE badge when data is flowing
+  function updateTickerBadge(live) {
+    const tag = document.querySelector('.ticker-tag');
+    if (!tag) return;
+    const dot = tag.querySelector('.dot');
+    if (dot) {
+      dot.className = live ? 'dot green' : 'dot red';
+    }
+  }
+
+  async function refreshAllPrices() {
+    setFeedStatus('updating');
+    let success = 0;
+
+    for (const [symbol, config] of Object.entries(SYMBOLS)) {
+      try {
+        const data = await fetchChart(symbol);
+        updateDOM(config, data);
+        success++;
+      } catch (err) {
+        console.warn('Fetch failed for ' + symbol + ':', err);
+      }
+    }
+
+    if (success > 0) {
+      lastRefreshTime = Date.now();
+      countdownSeconds = REFRESH_INTERVAL;
+      setFeedStatus('live', 'LIVE FEED — ' + success + '/' + Object.keys(SYMBOLS).length + ' SOURCES');
+      updateTickerBadge(true);
+
+      // Flash all price elements
+      document.querySelectorAll('.sc-price, .ds-value, .tab-price, .ps-value').forEach(flashElement);
+    } else {
+      setFeedStatus('error');
+      updateTickerBadge(false);
+    }
+  }
+
+  setInterval(updateCountdown, 1000);
+  setTimeout(refreshAllPrices, 3500);
+  setInterval(refreshAllPrices, REFRESH_INTERVAL * 1000);
+</script>
+
+</body>
+</html>

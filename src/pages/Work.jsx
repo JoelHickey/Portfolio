@@ -14,22 +14,22 @@ const caseStudies = [
   },
   {
     title: 'Insurance',
-    summary: 'Redesigned travel insurance buying experience \u2014 +45% more customers added cover.',
+    summary: 'Redesigned the travel insurance buying experience. +45% more customers added cover.',
     path: '/stories/insurance'
   },
   {
     title: 'Amendments',
-    summary: 'Simplified post-booking changes \u2014 75% faster for staff, 67% fewer steps.',
+    summary: 'Simplified post-booking changes. 75% faster for staff, 67% fewer steps.',
     path: '/stories/amendments'
   },
   {
     title: 'CRM Deep Linking',
-    summary: 'Made it one click to find a customer\u2019s booking \u2014 3,000+ staff use it daily.',
+    summary: 'Made it one click to find a customer\u2019s booking. 3,000+ staff use it daily.',
     path: '/stories/helio-deep-linking'
   },
   {
     title: 'Helio Platform',
-    summary: '3,000+ daily users \u2014 improving the tools travel staff rely on every day.',
+    summary: '3,000+ daily users. Improving the tools travel staff rely on every day.',
     path: '/stories/helio-platform'
   },
   {
@@ -86,10 +86,6 @@ function Work() {
               </li>
             ))}
           </ul>
-
-          <p className="mt-12 text-center text-sm text-slate-500">
-            Also designed for Compono, Temando, and others.
-          </p>
         </div>
       </div>
     </section>
