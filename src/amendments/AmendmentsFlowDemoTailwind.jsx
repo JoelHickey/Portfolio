@@ -759,7 +759,7 @@ const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwin
                           onClick={() => setOpenKebabId(openKebabId === card.id ? null : card.id)}
                           disabled={spotlightTourActive}
                           data-amendments-demo-tour="card-actions"
-                          className="rounded p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+                          className="rounded p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 disabled:pointer-events-none disabled:cursor-not-allowed"
                           aria-label="Actions"
                           aria-expanded={openKebabId === card.id}
                         >

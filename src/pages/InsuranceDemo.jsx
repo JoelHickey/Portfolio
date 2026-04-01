@@ -7,25 +7,22 @@ import { DemoCoachTour } from '../components/DemoCoachTour'
 /** Spotlight tour — `rememberDismiss={false}` + remount on replay so it shows every visit / on demand. */
 const INSURANCE_SPOTLIGHT_TOUR_STEPS = [
   {
-    title: 'Two flows',
-    body: 'Hi — here are two flows to show how insurance-on-booking evolved: Before is legacy (Helio manual line, Cover-More tab, re-keying, then checkout before coverage lands — the friction the redesign removed). After is Travel Connect. Click Add insurance on the Legacy card to try Before.',
+    title: 'Old path',
+    body: 'The fragmented workflow the redesign replaced.',
     selector: '[data-insurance-demo-tour="legacy-flow"]',
   },
   {
     title: 'Travel Connect',
-    body: 'Hi — After is this side: linked tab, search and tiers in Travel Connect, a success beat, then Helio with the quote on the booking. Click Add insurance on the Travel Connect card to try it — or Before if you want the contrast.',
+    body: 'The streamlined path on the same booking.',
     selector: '[data-insurance-demo-tour="travel-connect-flow"]',
   },
 ]
 
-const WELCOME_MESSAGE =
-  'Hi — here are two flows: Before (legacy Helio + Cover-More) and After (Travel Connect). Click Add insurance on either card to start.'
+const WELCOME_MESSAGE = 'Same booking — two paths to compare.'
 
 const FLOW_MESSAGES = {
-  before:
-    "That was the legacy path — modal, Cover-More, re-keying, then checkout before coverage shows. Try After next for Travel Connect if you haven't; the contrast is the point.",
-  after:
-    "That was Travel Connect — search, tiers, confirmation, then Helio with coverage on the booking. Try Before if you'd like to compare.",
+  before: 'Travel Connect is the other card.',
+  after: 'Legacy is the other card.',
 }
 
 const NO_COMPLETED_FLOWS = new Set()
@@ -100,6 +97,7 @@ function InsuranceDemo() {
       steps={INSURANCE_SPOTLIGHT_TOUR_STEPS}
       rememberDismiss={false}
       showAvatar
+      showTargetPointer
       zClass="z-[500]"
       targetsClickableDuringTour={false}
       onDismiss={hideSpotlight}

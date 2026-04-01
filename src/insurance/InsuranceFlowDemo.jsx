@@ -773,7 +773,7 @@ const InsuranceFlowDemo = forwardRef(function InsuranceFlowDemo(
               disabled={spotlightTourActive}
               aria-label="Try the legacy path: Helio modal and Cover-More tab"
               data-insurance-demo-tour="legacy-flow"
-              className="rounded-xl border border-amber-200 bg-amber-50/80 p-4 text-left shadow-sm transition hover:border-amber-300 hover:bg-amber-50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-xl border border-amber-200 bg-amber-50/80 p-4 text-left shadow-sm transition hover:border-amber-300 hover:bg-amber-50 disabled:pointer-events-none disabled:cursor-not-allowed"
             >
               <p className="text-base font-semibold text-amber-950">
                 <span className="text-amber-600" aria-hidden>
@@ -781,7 +781,7 @@ const InsuranceFlowDemo = forwardRef(function InsuranceFlowDemo(
                 </span>
                 Add insurance
               </p>
-              <p className="mt-1 text-xs font-medium text-amber-800/80">Legacy</p>
+              <p className="mt-1 text-xs font-medium text-amber-900">Legacy</p>
             </button>
             <button
               type="button"
@@ -789,7 +789,7 @@ const InsuranceFlowDemo = forwardRef(function InsuranceFlowDemo(
               disabled={spotlightTourActive}
               aria-label="Try adding insurance with Travel Connect"
               data-insurance-demo-tour="travel-connect-flow"
-              className="rounded-xl border border-emerald-200 bg-emerald-50/80 p-4 text-left shadow-sm transition hover:border-emerald-300 hover:bg-emerald-50 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
+              className="rounded-xl border border-emerald-200 bg-emerald-50/80 p-4 text-left shadow-sm transition hover:border-emerald-300 hover:bg-emerald-50 disabled:pointer-events-none disabled:cursor-not-allowed"
             >
               <p className="text-base font-semibold text-emerald-950">
                 <span className="text-emerald-600" aria-hidden>
@@ -797,7 +797,7 @@ const InsuranceFlowDemo = forwardRef(function InsuranceFlowDemo(
                 </span>
                 Add insurance
               </p>
-              <p className="mt-1 text-xs font-medium text-emerald-800/80">Travel Connect</p>
+              <p className="mt-1 text-xs font-medium text-emerald-900">Travel Connect</p>
             </button>
           </div>
         </InsuranceBookingShell>

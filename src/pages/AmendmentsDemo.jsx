@@ -8,18 +8,17 @@ import { DemoCoachTour } from '../components/DemoCoachTour'
 const AMENDMENTS_SPOTLIGHT_TOUR_STEPS = [
   {
     title: 'Three flows',
-    body: 'Hi — here are three flows to show how the amend experience evolved: Turtle (legacy screens), Rabbit (the shipped redesign), and Dream (AI concept). Click the ⋮ on the hotel card to pick one.',
+    body: 'Turtle, Rabbit, and Dream — legacy, shipped, and concept on this hotel card.',
     selector: '[data-amendments-demo-tour="card-actions"]',
   },
 ]
 
-const WELCOME_MESSAGE =
-  'Hi — here are three flows to show how the amend experience evolved. Use the ⋮ on the hotel card to try Turtle, Rabbit, or Dream.'
+const WELCOME_MESSAGE = 'Same hotel card — three flows to compare.'
 
 const FLOW_MESSAGES = {
-  turtle: "That was the legacy flow — 9 screens, 13+ clicks. Now try Rabbit to see what shipped.",
-  rabbit: "That's the redesigned flow — 3 screens, 6 clicks. Try Dream to see where it could go next.",
-  dream: "That's the AI concept — no screens, just conversation. Try Turtle to feel the original pain.",
+  turtle: 'Try Rabbit or Dream next.',
+  rabbit: 'Try Turtle or Dream next.',
+  dream: 'Try Turtle or Rabbit next.',
 }
 
 const NO_COMPLETED_FLOWS = new Set()
@@ -94,6 +93,7 @@ function AmendmentsDemo() {
         steps={AMENDMENTS_SPOTLIGHT_TOUR_STEPS}
         rememberDismiss={false}
         showAvatar
+        showTargetPointer
         zClass="z-[500]"
         targetsClickableDuringTour={false}
         onDismiss={hideSpotlight}

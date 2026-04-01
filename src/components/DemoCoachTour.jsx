@@ -2,6 +2,76 @@ import { useCallback, useEffect, useId, useLayoutEffect, useState } from 'react'
 import { createPortal } from 'react-dom'
 import { JoelAvatar } from './JoelAvatar'
 
+/** Coach card width; wider copy wraps less and stays shorter vertically. */
+const COACH_CARD_MAX_W = 400
+
+/**
+ * Dim over everything except the current target. Kept light so UI that stays under the overlay
+ * (e.g. the adjacent card in a pair) remains readable — only the punched hole reads as “spotlight”.
+ */
+const SPOTLIGHT_DIM_CLASS = 'bg-slate-900/30'
+const SPOTLIGHT_DIM_FILL = 'rgba(15, 23, 42, 0.28)'
+/** Matches `rounded-xl` on common tour targets. */
+const SPOTLIGHT_HOLE_RX = 12
+/** Gap between 👇 and the spotlight top edge (viewport px). */
+const POINTER_ABOVE_TARGET_PX = 6
+
+/** Horizontally centered, just above the target’s top — 👇 points down onto the card/control. */
+function spotlightPointerAnchor(rect) {
+  const { left, top, width } = rect
+  return {
+    left: left + width / 2,
+    top: top - POINTER_ABOVE_TARGET_PX,
+  }
+}
+
+/** One clear hole via SVG mask — nothing is drawn on top of the target; sibling controls stay dimmed. */
+function SpotlightSvgDim({ hole, innerW, innerH, maskId, reduceMotion }) {
+  if (hole == null) return null
+  const tr = reduceMotion ? 'none' : 'opacity 0.2s ease'
+  const { left, top, width, height } = hole
+  return (
+    <svg
+      aria-hidden
+      className="pointer-events-none fixed inset-0 z-0"
+      width={innerW}
+      height={innerH}
+      style={{ transition: tr }}
+    >
+      <defs>
+        <mask
+          id={maskId}
+          maskUnits="userSpaceOnUse"
+          maskContentUnits="userSpaceOnUse"
+          x="0"
+          y="0"
+          width={innerW}
+          height={innerH}
+        >
+          <rect x="0" y="0" width={innerW} height={innerH} fill="white" />
+          <rect
+            x={left}
+            y={top}
+            width={width}
+            height={height}
+            rx={SPOTLIGHT_HOLE_RX}
+            ry={SPOTLIGHT_HOLE_RX}
+            fill="black"
+          />
+        </mask>
+      </defs>
+      <rect
+        x="0"
+        y="0"
+        width={innerW}
+        height={innerH}
+        fill={SPOTLIGHT_DIM_FILL}
+        mask={`url(#${maskId})`}
+      />
+    </svg>
+  )
+}
+
 function usePrefersReducedMotion() {
   const [reduce, setReduce] = useState(false)
   useEffect(() => {
@@ -17,9 +87,9 @@ function usePrefersReducedMotion() {
 /** Keep tooltip box fully outside target + generous height so it never covers the CTA cards. */
 function pickTooltipPosition(rect, innerW, innerH) {
   const edge = 16
-  const tw = Math.min(320, innerW - edge * 2)
-  // Real panel is ~200–260px tall with buttons; overestimate to avoid overlap when placing “above”.
-  const th = 300
+  const tw = Math.min(COACH_CARD_MAX_W, innerW - edge * 2)
+  // Estimated full card height for placement; keep realistic so “below/above” aren’t rejected on laptop viewports.
+  const th = 420
   const gap = 20
 
   const hot = {
@@ -41,6 +111,8 @@ function pickTooltipPosition(rect, innerW, innerH) {
 
   const clampX = (x) => Math.max(edge, Math.min(x, innerW - tw - edge))
   const cx = clampX(rect.left + rect.width / 2 - tw / 2)
+  /** Keep side tooltips in the viewport when the target sits low (avoids rejecting tryRight / forcing tryLeft into the corner). */
+  const sideTop = Math.max(edge, Math.min(rect.top, innerH - th - edge))
 
   const tryBelow = { left: cx, top: rect.top + rect.height + gap }
   if (!boxIntersectsHot(tryBelow.left, tryBelow.top) && inViewport(tryBelow.left, tryBelow.top)) {
@@ -52,8 +124,9 @@ function pickTooltipPosition(rect, innerW, innerH) {
     return { ...tryAbove, width: tw, variant: 'anchored' }
   }
 
-  // Side (legacy vs Travel Connect sit side-by-side — avoid spilling onto the neighbour card).
-  const tryRight = { left: rect.left + rect.width + gap, top: rect.top }
+  // Side-by-side targets (e.g. Legacy | Travel Connect): prefer right, then bottom-center — not
+  // tryLeft before bottom, or the card docks on the viewport edge far from the highlight.
+  const tryRight = { left: rect.left + rect.width + gap, top: sideTop }
   if (
     tryRight.left + tw <= innerW - edge &&
     !boxIntersectsHot(tryRight.left, tryRight.top) &&
@@ -62,7 +135,14 @@ function pickTooltipPosition(rect, innerW, innerH) {
     return { ...tryRight, width: tw, variant: 'anchored' }
   }
 
-  const tryLeft = { left: rect.left - tw - gap, top: rect.top }
+  const bottomTop = Math.max(edge, innerH - th - edge)
+  const bottomLeft = Math.max(edge, (innerW - tw) / 2)
+  const tryBottom = { left: bottomLeft, top: bottomTop, width: tw, variant: 'bottom' }
+  if (!boxIntersectsHot(tryBottom.left, tryBottom.top) && inViewport(tryBottom.left, tryBottom.top)) {
+    return tryBottom
+  }
+
+  const tryLeft = { left: rect.left - tw - gap, top: sideTop }
   if (
     tryLeft.left >= edge &&
     !boxIntersectsHot(tryLeft.left, tryLeft.top) &&
@@ -71,17 +151,15 @@ function pickTooltipPosition(rect, innerW, innerH) {
     return { ...tryLeft, width: tw, variant: 'anchored' }
   }
 
-  // Bottom strip — never covers the mock booking UI.
-  const bw = innerW - edge * 2
-  const bottomTop = innerH - th - edge
-  return { left: edge, top: Math.max(edge, bottomTop), width: bw, variant: 'bottom' }
+  // Last resort: bottom-center even if it overlaps hot (better than a corner card).
+  return tryBottom
 }
 
 /** Fixed horizontal-center card anchored to top or bottom edge (no spotlight rect). */
 function pickDockedCoachCard(innerW, opts = {}) {
   const edge = typeof opts.edge === 'number' ? opts.edge : 16
   const anchor = opts.anchor === 'top' ? 'top' : 'bottom'
-  const tw = Math.min(320, innerW - edge * 2)
+  const tw = Math.min(COACH_CARD_MAX_W, innerW - edge * 2)
   const left = (innerW - tw) / 2
   if (anchor === 'top') {
     return { left, top: edge, width: tw, variant: 'docked-top' }
@@ -92,8 +170,20 @@ function pickDockedCoachCard(innerW, opts = {}) {
 /** Fixed viewport center; spotlight still tracks targets when used with `tooltipPlacement="center"`. */
 function pickCenteredCoachCard(innerW) {
   const edge = 16
-  const tw = Math.min(320, innerW - edge * 2)
+  const tw = Math.min(COACH_CARD_MAX_W, innerW - edge * 2)
   return { width: tw, variant: 'centered' }
+}
+
+/** One string or several short lines for easier scanning in the coach card. */
+function StepBody({ body }) {
+  const parts = Array.isArray(body) ? body : [body]
+  return (
+    <div className="mt-2 space-y-2 text-sm leading-relaxed text-slate-700">
+      {parts.map((text, i) => (
+        <p key={i}>{text}</p>
+      ))}
+    </div>
+  )
 }
 
 /**
@@ -118,6 +208,10 @@ export function DemoCoachTour({
   tooltipPlacement = 'auto',
   /** When false, step footer does not suggest clicking highlighted targets (e.g. targets are disabled during tour). */
   targetsClickableDuringTour = true,
+  /**
+   * When true, shows 👇 centered above the target’s top edge, pointing down onto it.
+   */
+  showTargetPointer = false,
 }) {
   const persistKey = storageKey && rememberDismiss ? storageKey : null
 
@@ -130,9 +224,12 @@ export function DemoCoachTour({
     }
   })
   const [step, setStep] = useState(0)
-  const [rect, setRect] = useState(null)
+  /** Current step target in viewport coords — single spotlight hole + tooltip placement. */
+  const [targetRect, setTargetRect] = useState(null)
   const reduceMotion = usePrefersReducedMotion()
-  const titleId = useId()
+  const tourUid = useId().replace(/:/g, '')
+  const titleId = `coach-title-${tourUid}`
+  const spotlightMaskId = `coach-spotlight-${tourUid}`
 
   const persistDismiss = useCallback(() => {
     if (persistKey) {
@@ -149,48 +246,86 @@ export function DemoCoachTour({
   useEffect(() => {
     if (!active) {
       setStep(0)
-      setRect(null)
+      setTargetRect(null)
     }
   }, [active])
 
   useLayoutEffect(() => {
     if (!active || dismissed || !steps.length) {
-      setRect(null)
+      setTargetRect(null)
       return
     }
 
     const sel = steps[step]?.selector
     if (sel == null || sel === '') {
-      setRect(null)
+      setTargetRect(null)
       return
     }
 
-    const el = document.querySelector(sel)
-    if (!el || !(el instanceof HTMLElement)) {
-      setRect(null)
-      return
+    let cancelled = false
+    let ro = null
+    let rafId = 0
+    let scrollResizeUpdate = null
+
+    const cleanup = () => {
+      cancelled = true
+      cancelAnimationFrame(rafId)
+      if (ro) {
+        ro.disconnect()
+        ro = null
+      }
+      if (scrollResizeUpdate) {
+        window.removeEventListener('resize', scrollResizeUpdate)
+        window.removeEventListener('scroll', scrollResizeUpdate, true)
+        scrollResizeUpdate = null
+      }
     }
 
-    const update = () => {
-      const r = el.getBoundingClientRect()
-      setRect({
-        left: r.left,
-        top: r.top,
-        width: r.width,
-        height: r.height,
-      })
+    const bind = (el) => {
+      const update = () => {
+        if (cancelled || !el.isConnected) return
+        const r = el.getBoundingClientRect()
+        setTargetRect({
+          left: r.left,
+          top: r.top,
+          width: r.width,
+          height: r.height,
+        })
+      }
+      update()
+      ro = new ResizeObserver(update)
+      ro.observe(el)
+      window.addEventListener('resize', update)
+      window.addEventListener('scroll', update, true)
+      return update
     }
 
-    update()
-    const ro = new ResizeObserver(update)
-    ro.observe(el)
-    window.addEventListener('resize', update)
-    window.addEventListener('scroll', update, true)
-    return () => {
-      ro.disconnect()
-      window.removeEventListener('resize', update)
-      window.removeEventListener('scroll', update, true)
+    const tryAttach = () => {
+      const el = document.querySelector(sel)
+      if (el instanceof HTMLElement) {
+        scrollResizeUpdate = bind(el)
+        return true
+      }
+      return false
     }
+
+    if (tryAttach()) {
+      return cleanup
+    }
+
+    let attempts = 0
+    const maxAttempts = 90
+    const tick = () => {
+      if (cancelled) return
+      if (tryAttach()) return
+      attempts += 1
+      if (attempts < maxAttempts) {
+        rafId = requestAnimationFrame(tick)
+      }
+    }
+    rafId = requestAnimationFrame(tick)
+
+    return cleanup
   }, [active, dismissed, step, steps])
 
   if (!active || dismissed || !steps.length) return null
@@ -198,7 +333,7 @@ export function DemoCoachTour({
   const current = steps[step]
   const last = step >= steps.length - 1
   const noTarget = Boolean(current && (current.selector == null || current.selector === ''))
-  const showTooltip = Boolean(current && (noTarget || rect != null))
+  const showTooltip = Boolean(current && (noTarget || targetRect != null))
   /** Next → Done is enough for very short tours; Skip is redundant noise. */
   const showSkipTour = steps.length > 2
 
@@ -219,8 +354,8 @@ export function DemoCoachTour({
           ? pickCenteredCoachCard(iw)
           : noTarget
             ? pickDockedCoachCard(iw, dockOpts)
-            : rect != null
-              ? pickTooltipPosition(rect, iw, ih)
+            : targetRect != null
+              ? pickTooltipPosition(targetRect, iw, ih)
               : pickDockedCoachCard(iw)
 
   const tooltipMotion =
@@ -233,37 +368,31 @@ export function DemoCoachTour({
         ? 'none'
         : 'top 0.28s ease, left 0.28s ease'
 
-  const cutoutStyle =
-    rect != null
-      ? {
-          left: rect.left,
-          top: rect.top,
-          width: rect.width,
-          height: rect.height,
-          boxShadow: '0 0 0 9999px rgba(15, 23, 42, 0.52)',
-          transition: reduceMotion
-            ? 'none'
-            : 'left 0.35s ease, top 0.35s ease, width 0.35s ease, height 0.35s ease, box-shadow 0.2s ease',
-        }
-      : null
+  const pointerAnchor =
+    showTargetPointer && targetRect != null && !noTarget ? spotlightPointerAnchor(targetRect) : null
 
   const portal = (
     <div className={`pointer-events-none fixed inset-0 ${zClass} isolate`}>
-      {/* Dimmed backdrop with a clear “hole” over the target; no white ring */}
-      {cutoutStyle && (
-        <div
-          className="pointer-events-none absolute rounded-xl"
-          style={{ ...cutoutStyle, zIndex: 0 }}
-          aria-hidden
+      {targetRect != null && (
+        <SpotlightSvgDim
+          hole={targetRect}
+          innerW={iw}
+          innerH={ih}
+          maskId={spotlightMaskId}
+          reduceMotion={reduceMotion}
         />
       )}
-      {rect != null && !noTarget && (
+      {noTarget && !targetRect && (
+        <div className={`pointer-events-none absolute inset-0 z-0 ${SPOTLIGHT_DIM_CLASS}`} aria-hidden />
+      )}
+
+      {pointerAnchor != null && (
         <div
           aria-hidden
-          className="pointer-events-none absolute z-[5] select-none text-2xl leading-none"
+          className="pointer-events-none fixed z-[5] select-none text-2xl leading-none"
           style={{
-            left: rect.left + rect.width / 2,
-            top: rect.top - 6,
+            left: pointerAnchor.left,
+            top: pointerAnchor.top,
             transform: 'translate(-50%, -100%)',
             transition: reduceMotion
               ? 'none'
@@ -279,9 +408,6 @@ export function DemoCoachTour({
           </span>
         </div>
       )}
-      {noTarget && !rect && (
-        <div className="pointer-events-none absolute inset-0 z-0 bg-slate-900/50" aria-hidden />
-      )}
 
       {showTooltip && current && (
         <div
@@ -294,7 +420,7 @@ export function DemoCoachTour({
             tooltipLayout.variant === 'centered' ||
             tooltipLayout.variant === 'bottom' ||
             tooltipLayout.variant === 'anchored'
-              ? 'max-h-[min(320px,42vh)] overflow-y-auto'
+              ? 'max-h-[calc(100svh-2rem)] overflow-y-auto'
               : ''
           }`}
           style={
@@ -330,8 +456,9 @@ export function DemoCoachTour({
                       bottom: 'auto',
                       transition: tooltipMotion,
                       maxWidth:
-                        tooltipLayout.variant === 'anchored'
-                          ? 'min(320px, calc(100vw - 32px))'
+                        tooltipLayout.variant === 'anchored' ||
+                        tooltipLayout.variant === 'bottom'
+                          ? `min(${COACH_CARD_MAX_W}px, calc(100vw - 32px))`
                           : undefined,
                     }
           }
@@ -348,7 +475,7 @@ export function DemoCoachTour({
                     {current.title}
                   </h2>
                 </header>
-                <p className="mt-2 text-sm leading-relaxed text-slate-700">{current.body}</p>
+                <StepBody body={current.body} />
               </div>
             </div>
           ) : (
@@ -361,7 +488,7 @@ export function DemoCoachTour({
                   {current.title}
                 </h2>
               </header>
-              <p className="mt-2 text-sm leading-relaxed text-slate-700">{current.body}</p>
+              <StepBody body={current.body} />
             </>
           )}
           <footer className="mt-4 border-t border-slate-100 pt-4">
