@@ -13,12 +13,12 @@ function FCTGAITalk() {
   return (
     <section className="flex flex-col" aria-label="Agentic AI case study">
       <CaseStudyNav sections={[
-        { id: 'ai-brief', label: 'Brief' },
-        { id: 'ai-approach', label: 'Approach' },
-        { id: 'ai-process', label: 'Process' },
-        { id: 'ai-steering', label: 'Where I steered' },
-        { id: 'ai-delivery', label: 'Delivery' },
-        { id: 'ai-reflection', label: 'Reflection' },
+        { id: 'fctg-opportunity', label: 'Opportunity' },
+        { id: 'fctg-strategy', label: 'Strategy' },
+        { id: 'fctg-prototyping', label: 'Design' },
+        { id: 'fctg-delivery', label: 'Delivery' },
+        { id: 'fctg-outcome', label: 'Outcome' },
+        { id: 'fctg-reflection', label: 'Reflection' },
       ]} />
 
       {/* ════════════════════════════════════════════════════════════════
@@ -60,84 +60,89 @@ function FCTGAITalk() {
         </div>
       </div>
 
-      {/* Metadata bar */}
+      {/* Metadata bar — single row; scrolls horizontally on narrow viewports */}
       <div className="w-full bg-slate-50 border-b border-slate-200">
         <div className="mx-auto w-full max-w-6xl px-6 py-5">
-          <div className="flex flex-wrap gap-x-8 gap-y-3 text-xs">
-            <div>
+          <div className="flex flex-nowrap gap-x-8 overflow-x-auto pb-0.5 text-xs [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden">
+            <div className="shrink-0">
               <p className="font-semibold uppercase tracking-widest text-slate-500">Role</p>
-              <p className="mt-0.5 font-medium text-slate-700">Senior Product Designer</p>
+              <p className="mt-0.5 whitespace-nowrap font-medium text-slate-700">Senior Product Designer</p>
             </div>
-            <div>
+            <div className="shrink-0">
               <p className="font-semibold uppercase tracking-widest text-slate-500">Context</p>
-              <p className="mt-0.5 font-medium text-slate-700">Invited internal talk — presented live to 15+ designers (FCTG product &amp; brand)</p>
+              <p
+                className="mt-0.5 whitespace-nowrap font-medium text-slate-700"
+                title="Invited internal talk — presented live to 15+ designers (FCTG product &amp; brand)"
+              >
+                FCTG design · live · 15+ (product &amp; brand)
+              </p>
             </div>
-            <div>
+            <div className="shrink-0">
               <p className="font-semibold uppercase tracking-widest text-slate-500">Duration</p>
-              <p className="mt-0.5 font-medium text-slate-700">4 weeks, solo, 2025</p>
+              <p className="mt-0.5 whitespace-nowrap font-medium text-slate-700">4 weeks · solo · 2025</p>
+            </div>
+            <div className="shrink-0">
+              <p className="font-semibold uppercase tracking-widest text-slate-500">Tools</p>
+              <p
+                className="mt-0.5 whitespace-nowrap font-medium text-slate-700"
+                title="Cursor Agent (multiple models), React, Vite, Tailwind"
+              >
+                Cursor · React · Vite · Tailwind
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Session snapshot — scale only; not revenue-style outcomes */}
+      <div className="w-full bg-white">
+        <div className="mx-auto w-full max-w-6xl px-6 py-10">
+          <p className="mb-6 text-[11px] font-semibold uppercase tracking-widest text-slate-400">Session snapshot</p>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
+            <div>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">15+</p>
+              <p className="mt-2 text-sm text-slate-500">Designers in the room</p>
             </div>
             <div>
-              <p className="font-semibold uppercase tracking-widest text-slate-500">Tools</p>
-              <p className="mt-0.5 font-medium text-slate-700">Cursor Agent (multiple models), React, Vite, Tailwind</p>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">7</p>
+              <p className="mt-2 text-sm text-slate-500">Chapters in the deck</p>
+            </div>
+            <div>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">~54</p>
+              <p className="mt-2 text-sm text-slate-500">Composed slide views</p>
+            </div>
+            <div>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">3</p>
+              <p className="mt-2 text-sm text-slate-500">Workshop rounds</p>
             </div>
           </div>
         </div>
       </div>
 
       {/* ════════════════════════════════════════════════════════════════
-          BRIEF
+          OPPORTUNITY
           ════════════════════════════════════════════════════════════════ */}
 
-      <div id="ai-brief" className="w-full bg-slate-50 scroll-mt-20">
+      <div id="fctg-opportunity" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Brief</h2>
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Opportunity</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             Flight Centre&apos;s design leadership wanted a practical talk: which tools matter, how to think about them, and what the work actually looks like — not theory.
           </p>
           <p className="mt-6 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             I owned research through delivery — solo, four weeks, no template deck. The centerpiece was a <span className="font-medium text-slate-800">React presentation app</span> built with the same agentic workflows I was teaching, plus a hands-on workshop.
           </p>
-
-          <div
-            className="mt-10 max-w-3xl rounded-xl border border-emerald-200 bg-white p-6 shadow-sm sm:p-8"
-            role="region"
-            aria-labelledby="fctg-time-shift-heading"
-          >
-            <TimeWithAISplitChart variant="light" titleId="fctg-time-shift-heading" />
-            <div className="mt-8 border-t border-slate-200 pt-6">
-              <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-500">
-                At a glance
-              </p>
-              <div
-                className="mt-3 flex flex-wrap items-center gap-2 sm:gap-3"
-                aria-label="Scope: React presentation app, seven chapters, more than five diagrams, three-round workshop"
-              >
-                <span className="rounded-md border border-emerald-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-800">
-                  React presentation
-                </span>
-                <span className="rounded-md border border-emerald-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-800">
-                  7 chapters
-                </span>
-                <span className="rounded-md border border-emerald-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-800">
-                  5+ diagrams
-                </span>
-                <span className="rounded-md border border-emerald-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-800">
-                  3-round workshop
-                </span>
-              </div>
-            </div>
-          </div>
         </div>
       </div>
 
 
       {/* ════════════════════════════════════════════════════════════════
-          APPROACH
+          STRATEGY
           ════════════════════════════════════════════════════════════════ */}
 
-      <div id="ai-approach" className="w-full bg-white scroll-mt-20">
+      <div id="fctg-strategy" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Approach</h2>
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Strategy</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             Most AI talks are abstract — slides about what tools <em>could</em> do, not evidence of what they <em>did</em>. I used the presentation itself as the proof: the deck was built with agentic workflows, and the composed views, transitions, and diagrams were iterated the same way I was asking the room to work.
           </p>
@@ -181,15 +186,23 @@ function FCTGAITalk() {
 
 
       {/* ════════════════════════════════════════════════════════════════
-          PROCESS
+          DESIGN
           ════════════════════════════════════════════════════════════════ */}
 
-      <div id="ai-process" className="w-full bg-slate-50 scroll-mt-20">
+      <div id="fctg-prototyping" className="w-full bg-slate-50 scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Process</h2>
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Design</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
             Two workstreams, all run through Cursor Agent with multiple models in the loop. Each required a different balance of agent autonomy and human steering.
           </p>
+
+          <div
+            className="mt-10 max-w-3xl rounded-xl border border-emerald-200 bg-white p-6 shadow-sm sm:p-8"
+            role="region"
+            aria-labelledby="fctg-time-shift-heading"
+          >
+            <TimeWithAISplitChart variant="light" titleId="fctg-time-shift-heading" />
+          </div>
 
           {/* ── Workstream 1: Content & structure ── */}
           <div className="mt-16">
@@ -212,33 +225,26 @@ function FCTGAITalk() {
               Every visual — AI pipeline diagrams, multi-agent architecture maps, the animated energy battery — is a custom React component, not a static image. Describing a diagram&apos;s structure in a single brief, then iterating through 3–4 rounds of refinement, was much faster than building each SVG by hand.
             </p>
           </div>
-        </div>
-      </div>
 
+          <div className="mt-20 border-t border-slate-200 pt-16">
+            <h3 className="text-2xl font-semibold text-slate-900 md:text-3xl">Where I had to steer</h3>
+            <p className="mt-6 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+              Working with AI agents isn&apos;t autopilot. The value of the human in the loop is knowing when and how to intervene. Three failure modes came up repeatedly — each required a different correction strategy.
+            </p>
 
-      {/* ════════════════════════════════════════════════════════════════
-          INTERVENTION — WHERE I HAD TO STEER
-          ════════════════════════════════════════════════════════════════ */}
-
-      <div id="ai-steering" className="w-full bg-white scroll-mt-20">
-        <div className="mx-auto w-full max-w-6xl px-6 py-20">
-          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Where I had to steer</h2>
-          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Working with AI agents isn't autopilot. The value of the human in the loop is knowing when and how to intervene. Three failure modes came up repeatedly — each required a different correction strategy.
-          </p>
-
-          <div className="mt-10 max-w-2xl space-y-6 text-sm text-slate-600">
-            <div className="border-l-2 border-amber-300 pl-4 py-1.5 leading-relaxed">
-              <p className="font-semibold text-slate-800">Overcomplicate → Constrain the brief</p>
-              <p className="mt-1">The agent over-engineered transitions and animations. Asking it to simplify didn't work — rewriting the brief with explicit constraints did: "No more than 2 animation properties. One entrance, done."</p>
-            </div>
-            <div className="border-l-2 border-amber-300 pl-4 py-1.5 leading-relaxed">
-              <p className="font-semibold text-slate-800">Loop → Reframe, don't retry</p>
-              <p className="mt-1">When the agent looped on a layout approach — trying the same CSS strategy with minor variations — retrying was useless. Reframing the problem from scratch usually cleared it faster than another nudge in the same direction.</p>
-            </div>
-            <div className="border-l-2 border-amber-300 pl-4 py-1.5 leading-relaxed">
-              <p className="font-semibold text-slate-800">Drift → Persistent rules</p>
-              <p className="mt-1">Across long sessions, the agent drifted from established patterns — forgetting tokens, ignoring conventions. Cursor rules files solved this: codified constraints that persisted across every turn.</p>
+            <div className="mt-10 max-w-2xl space-y-6 text-sm text-slate-600">
+              <div className="border-l-2 border-amber-300 pl-4 py-1.5 leading-relaxed">
+                <p className="font-semibold text-slate-800">Overcomplicate → Constrain the brief</p>
+                <p className="mt-1">The agent over-engineered transitions and animations. Asking it to simplify didn&apos;t work — rewriting the brief with explicit constraints did: &ldquo;No more than 2 animation properties. One entrance, done.&rdquo;</p>
+              </div>
+              <div className="border-l-2 border-amber-300 pl-4 py-1.5 leading-relaxed">
+                <p className="font-semibold text-slate-800">Loop → Reframe, don&apos;t retry</p>
+                <p className="mt-1">When the agent looped on a layout approach — trying the same CSS strategy with minor variations — retrying was useless. Reframing the problem from scratch usually cleared it faster than another nudge in the same direction.</p>
+              </div>
+              <div className="border-l-2 border-amber-300 pl-4 py-1.5 leading-relaxed">
+                <p className="font-semibold text-slate-800">Drift → Persistent rules</p>
+                <p className="mt-1">Across long sessions, the agent drifted from established patterns — forgetting tokens, ignoring conventions. Cursor rules files solved this: codified constraints that persisted across every turn.</p>
+              </div>
             </div>
           </div>
         </div>
@@ -249,11 +255,14 @@ function FCTGAITalk() {
           DELIVERY
           ════════════════════════════════════════════════════════════════ */}
 
-      <div id="ai-delivery" className="w-full bg-slate-50 scroll-mt-20">
+      <div id="fctg-delivery" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Delivery</h2>
+          <p className="mt-4 max-w-2xl text-sm text-slate-500 leading-relaxed">
+            What ran in the room, how the work shipped in code, and how AI supported prep and day-of — in that order.
+          </p>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Presented live to 15+ designers across product and brand. The session ran through the 7-chapter deck, followed by a 3-round hands-on workshop where participants experienced both modes of AI-assisted design and compared the results.
+            Presented live to FCTG product and brand designers (scale in the snapshot above). The session combined the full deck with a hands-on workshop where people tried both exploratory and structured AI workflows side by side.
           </p>
 
           {/* What was shipped */}
@@ -303,9 +312,70 @@ function FCTGAITalk() {
             </div>
           </div>
 
-          <p className="mt-12 max-w-2xl text-sm leading-relaxed text-slate-600">
-            In the room, debate centred on when exploratory prompting stops being enough and a clear mission helps — which was the intent. Several designers asked for the deck and activity prompts afterward. I didn&apos;t run a formal survey; that pickup is the signal I&apos;d build on for a follow-up session.
-          </p>
+          <div className="mt-16 border-t border-slate-200 pt-16">
+            <h3 className="text-2xl font-semibold text-slate-900 md:text-3xl">How it was built</h3>
+            <p className="mt-4 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+              This is the actual stack and workflow: a real app in this repo, automated tests, and a shipped session — not slide screenshots pretending to be a product.
+            </p>
+            <p className="mt-4 max-w-2xl text-sm text-slate-600 leading-relaxed">
+              The same principle as the talk itself: useful AI work is not just prompts — it is code, tests, review, and delivery.
+            </p>
+
+            <div className="mt-10">
+              <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Stack</p>
+              <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 max-w-4xl">
+                {[
+                  { title: 'Cursor', body: 'AI-assisted development workflow — agent runs, rules, and multi-step tasks in the repo.' },
+                  { title: 'React', body: 'UI and slide components; composed views, diagrams, and navigation for the deck app.' },
+                  { title: 'Vite', body: 'Dev server and production build for the portfolio and the standalone preso bundle.' },
+                  { title: 'Vitest', body: 'Unit and logic tests across the codebase — same project, same standards.' },
+                  { title: 'React Testing Library', body: 'Component behaviour and states where UI logic needs regression safety.' },
+                  { title: 'Playwright', body: 'Browser journeys — including smoke checks on this case study route and critical flows.' },
+                ].map(({ title, body }) => (
+                  <div key={title} className="rounded-xl border border-slate-200 bg-slate-50 p-5 shadow-sm">
+                    <p className="text-sm font-semibold text-slate-900">{title}</p>
+                    <p className="mt-2 text-xs text-slate-600 leading-relaxed">{body}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="mt-16 max-w-3xl">
+              <h3 className="text-2xl font-semibold text-slate-900 md:text-3xl">Using AI to plan and run the session</h3>
+              <p className="mt-4 text-sm text-slate-600 leading-relaxed">
+                Beyond building the deck, models helped with structure, editing, and day-of support — so prep had more depth without stretching the calendar.
+              </p>
+              <div className="mt-8 grid gap-8 sm:grid-cols-2">
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-indigo-600">Before the room</p>
+                  <ul className="mt-3 space-y-2 text-sm text-slate-600 leading-relaxed list-disc pl-4">
+                    <li><span className="font-medium text-slate-800">Planning</span> — arc, flow, what to cover</li>
+                    <li><span className="font-medium text-slate-800">Trimming &amp; combining</span> — what to cut or merge for a clearer story</li>
+                    <li><span className="font-medium text-slate-800">Prep materials</span> — run-of-show, timings, slide list, Q&amp;A prep</li>
+                  </ul>
+                </div>
+                <div>
+                  <p className="text-xs font-semibold uppercase tracking-wider text-violet-600">Day-of</p>
+                  <ul className="mt-3 space-y-2 text-sm text-slate-600 leading-relaxed list-disc pl-4">
+                    <li><span className="font-medium text-slate-800">Cheat sheet &amp; transitions</span> — pacing and handoffs</li>
+                    <li><span className="font-medium text-slate-800">Backup paths</span> — &ldquo;what if&rdquo; if time or tech shifts</li>
+                    <li><span className="font-medium text-slate-800">Live support</span> — second screen: timing, answers, tight one-liners</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="mt-10 rounded-xl border border-emerald-200 bg-slate-50 p-6 shadow-sm">
+                <p className="text-xs font-semibold uppercase tracking-wider text-emerald-800">What that bought</p>
+                <ul className="mt-3 grid gap-2 text-sm text-slate-700 sm:grid-cols-2 leading-relaxed">
+                  <li>Faster draft and iteration on scripts and notes</li>
+                  <li>Coverage on prep that often gets skipped (Q&amp;A depth, run-of-show)</li>
+                  <li>Domain framing, structure, and gap-filling</li>
+                  <li>Parallel work — deck, copy, and prep docs at once</li>
+                  <li>More directions tried in the same window</li>
+                  <li>Higher floor on first drafts; energy spent on refinement</li>
+                </ul>
+              </div>
+            </div>
+          </div>
 
           <div className="mt-10">
             <a
@@ -322,10 +392,31 @@ function FCTGAITalk() {
 
 
       {/* ════════════════════════════════════════════════════════════════
+          OUTCOME
+          ════════════════════════════════════════════════════════════════ */}
+
+      <div id="fctg-outcome" className="w-full bg-slate-50 scroll-mt-20">
+        <div className="mx-auto w-full max-w-6xl px-6 py-20">
+          <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Outcome</h2>
+          <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
+            In the room, debate centred on when exploratory prompting stops being enough and a clear mission helps — which was the intent. Several designers asked for the deck and activity prompts afterward. I didn&apos;t run a formal survey; that pickup is the signal I&apos;d build on for a follow-up session.
+          </p>
+
+          <h3 className="mt-10 text-2xl font-semibold text-slate-900 md:text-3xl">How I&apos;m reading results</h3>
+          <div className="mt-4 max-w-2xl text-xs text-slate-500 space-y-1">
+            <p>• Qualitative: discussion quality, requests for materials, energy in the workshop rounds</p>
+            <p>• Limit: no post-session survey or attendance metrics captured in a dashboard</p>
+            <p>• Proof of rigor: repo, tests, and prep workflow are in Delivery — they show how it shipped, not a separate scorecard.</p>
+          </div>
+        </div>
+      </div>
+
+
+      {/* ════════════════════════════════════════════════════════════════
           REFLECTION
           ════════════════════════════════════════════════════════════════ */}
 
-      <div id="ai-reflection" className="w-full bg-white scroll-mt-20">
+      <div id="fctg-reflection" className="w-full bg-white scroll-mt-20">
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Reflection</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
@@ -343,7 +434,7 @@ function FCTGAITalk() {
             </div>
             <div className="border-l-2 border-indigo-400 pl-4 py-1.5 leading-relaxed">
               <p className="font-semibold text-slate-800">Steering AI is a design skill</p>
-              <p className="mt-1">Knowing when to constrain a brief, when to reframe a problem, when to let the agent run and when to take the wheel — this is closer to directing a team than writing code. It's a skill that compounds with every project.</p>
+              <p className="mt-1">Knowing when to constrain a brief, when to reframe a problem, when to let the agent run and when to take the wheel — this is closer to directing a team than writing code. It&apos;s a skill that compounds with every project.</p>
             </div>
           </div>
         </div>
@@ -351,7 +442,7 @@ function FCTGAITalk() {
 
 
       {/* ── Footer navigation ── */}
-      <div className="w-full bg-slate-50">
+      <div className="w-full border-t border-slate-200 bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <Link to="/stories" className="text-sm text-slate-500 transition hover:text-slate-900">
             ← All stories
