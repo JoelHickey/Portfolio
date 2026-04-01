@@ -364,18 +364,30 @@ function Home() {
   return (
     <div className="relative z-10 flex w-full flex-col items-center">
       <div className="home-hero relative flex min-h-[calc(100vh-64px)] w-full items-center justify-center overflow-hidden">
-        <div className="relative z-10 mx-auto w-full max-w-6xl space-y-16 px-4 sm:px-6 text-center -mt-8 sm:-mt-16">
+        <div className="relative z-10 mx-auto w-full min-w-0 max-w-6xl space-y-16 px-4 sm:px-6 text-center -mt-8 sm:-mt-16">
           <div className="hero-stack">
             <h1 className="hero-line text-[2.75rem] font-semibold leading-[1.1] tracking-normal sm:text-6xl md:text-8xl lg:text-9xl">
               <span className="inline-block w-fit" style={homeHeroNameGradientTextStyle}>
                 Joel Hickey
               </span>
             </h1>
-            <p className="hero-line mt-4 text-base font-light leading-snug tracking-wider text-slate-300 sm:text-xl md:text-2xl lg:text-3xl [animation-delay:120ms]">
-              Senior Product Designer<span className="mx-2 sm:mx-3 text-slate-500" aria-hidden>·</span>AI Workflows
+            <p className="hero-line mt-4 flex flex-col items-center gap-0.5 text-base font-light leading-snug tracking-wider text-slate-300 sm:flex-row sm:gap-0 sm:text-xl md:text-2xl lg:text-3xl [animation-delay:120ms]">
+              <span>Senior Product Designer</span>
+              <span className="hidden text-slate-500 sm:inline sm:mx-3" aria-hidden>
+                ·
+              </span>
+              <span>AI Workflows</span>
             </p>
-            <p className="hero-line mt-5 flex flex-wrap items-center justify-center gap-y-1 text-center text-[11px] font-medium tracking-wider text-slate-400 sm:text-sm [animation-delay:180ms]">
-              <span className="whitespace-nowrap">$2.4M revenue impact</span><span className="mx-1.5 sm:mx-2 text-slate-500" aria-hidden>·</span><span className="whitespace-nowrap">+45% customers buying</span><span className="mx-1.5 sm:mx-2 text-slate-500" aria-hidden>·</span><span className="whitespace-nowrap">75% time saved</span>
+            <p className="hero-line mt-5 flex w-full min-w-0 max-w-full flex-col items-center gap-1 text-center text-[11px] font-medium tracking-wider text-slate-400 sm:flex-row sm:flex-wrap sm:justify-center sm:gap-x-0 sm:gap-y-1 sm:text-sm [animation-delay:180ms]">
+              <span className="sm:whitespace-nowrap">$2.4M revenue impact</span>
+              <span className="hidden text-slate-500 sm:inline sm:mx-2" aria-hidden>
+                ·
+              </span>
+              <span className="sm:whitespace-nowrap">+45% customers buying</span>
+              <span className="hidden text-slate-500 sm:inline sm:mx-2" aria-hidden>
+                ·
+              </span>
+              <span className="sm:whitespace-nowrap">75% time saved</span>
             </p>
             <div className="hero-line flex justify-center mt-6" style={{ animationDelay: '220ms' }}>
             <a

@@ -396,20 +396,23 @@ header {
 }
 
 
-.hero-stack {
-  display: grid;
-  gap: 16px;
-}
+/* Below utilities layer so `flex` / `flex-col` on the same node always win over inline-block */
+@layer components {
+  .hero-stack {
+    display: grid;
+    gap: 16px;
+    justify-items: center;
+    width: 100%;
+    max-width: 100%;
+    min-width: 0;
+  }
 
-.hero-line {
-  display: inline-block;
-  animation: hero-line 1.8s ease-out forwards;
-  will-change: transform, opacity;
-}
-
-/* Tailwind `flex` on the same node must win; otherwise metrics row can't wrap and clips in .home-hero overflow-hidden */
-.hero-line.flex {
-  display: flex;
+  .hero-line {
+    display: inline-block;
+    max-width: 100%;
+    animation: hero-line 1.8s ease-out forwards;
+    will-change: transform, opacity;
+  }
 }
 
 @keyframes hero-line {
