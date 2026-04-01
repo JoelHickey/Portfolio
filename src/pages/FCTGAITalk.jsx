@@ -69,7 +69,7 @@ function FCTGAITalk() {
             </div>
             <div>
               <p className="font-semibold uppercase tracking-widest text-slate-500">Context</p>
-              <p className="mt-0.5 font-medium text-slate-700">Invited talk — FCTG design team, 15+ designers</p>
+              <p className="mt-0.5 font-medium text-slate-700">Invited internal talk — FCTG design team</p>
             </div>
             <div>
               <p className="font-semibold uppercase tracking-widest text-slate-500">Duration</p>
@@ -83,21 +83,21 @@ function FCTGAITalk() {
         </div>
       </div>
 
-      {/* Key results */}
+      {/* What shipped (artifact metrics — not adoption claims) */}
       <div className="w-full bg-white">
         <div className="mx-auto w-full max-w-6xl px-6 py-10">
           <div className="grid gap-8 sm:grid-cols-3">
             <div>
-              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">15+</p>
-              <p className="mt-2 text-sm text-slate-500">Designers trained in agentic workflows</p>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">7</p>
+              <p className="mt-2 text-sm text-slate-500">Chapters from concepts through hands-on activity</p>
             </div>
             <div>
               <p className="text-4xl font-semibold text-slate-900 md:text-5xl">3</p>
-              <p className="mt-2 text-sm text-slate-500">Teams adopted Cursor Agent post-talk</p>
+              <p className="mt-2 text-sm text-slate-500">Workshop rounds (vibe → agentic → compare)</p>
             </div>
             <div>
-              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">2nd</p>
-              <p className="mt-2 text-sm text-slate-500">Session requested by design leadership</p>
+              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">5+</p>
+              <p className="mt-2 text-sm text-slate-500">Custom SVG diagrams built for the deck</p>
             </div>
           </div>
         </div>
@@ -283,7 +283,7 @@ function FCTGAITalk() {
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Delivery</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Presented live to the FCTG design team — 15+ designers across product and brand. The session ran through the 7-chapter deck, followed by a 3-round hands-on workshop where participants experienced both modes of AI-assisted design and compared the results.
+            Presented live to the FCTG design team — product and brand designers in the room. The session ran through the 7-chapter deck, followed by a 3-round hands-on workshop where participants experienced both modes of AI-assisted design and compared the results.
           </p>
 
           {/* What was shipped */}

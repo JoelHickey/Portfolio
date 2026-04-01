@@ -64,7 +64,7 @@ export function useCaseStudyDemoGuide({ welcomeMessage, flowMessages, totalFlows
   }
 }
 
-/** Page chrome for interactive story demos: back link, guide card, flow launcher buttons (Amendments pattern). */
+/** Page chrome for interactive story demos: back link, optional guide card + flow launchers, demo content. */
 export function CaseStudyDemoShell({
   backTo,
   displayed,
@@ -78,20 +78,31 @@ export function CaseStudyDemoShell({
   allDoneFooter,
   /** When true, skip the avatar + typewriter card (e.g. insurance uses in-demo coach instead). */
   hideGuideCard = false,
+  /** When true, back link is non-interactive (e.g. spotlight tour overlay does not block pointer events). */
+  backLinkDisabled = false,
   children,
 }) {
   const showFlowButtons = flows.length > 0
+  const backLinkClass =
+    'inline-flex items-center gap-1.5 text-sm font-medium transition ' +
+    (backLinkDisabled
+      ? 'cursor-not-allowed text-slate-400'
+      : 'text-slate-600 hover:text-slate-900')
   return (
     <section className="relative z-20 -mt-12 min-h-screen bg-slate-50" style={{ isolation: 'isolate' }}>
       <div className="relative z-10 pb-6 pt-12">
         <div className="mx-auto w-full max-w-6xl px-6">
-          <Link
-            to={backTo}
-            className="inline-flex items-center gap-1.5 text-sm font-medium text-slate-600 transition hover:text-slate-900"
-          >
-            <span aria-hidden>←</span>
-            Back to story
-          </Link>
+          {backLinkDisabled ? (
+            <span className={backLinkClass} aria-disabled="true">
+              <span aria-hidden>←</span>
+              Back to story
+            </span>
+          ) : (
+            <Link to={backTo} className={backLinkClass}>
+              <span aria-hidden>←</span>
+              Back to story
+            </Link>
+          )}
         </div>
       </div>
       <div className="relative z-10 mx-auto w-full max-w-6xl px-6 pb-16">

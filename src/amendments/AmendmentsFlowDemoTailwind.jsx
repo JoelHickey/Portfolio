@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle } from 'react'
+import React, { useState, useEffect, useRef, forwardRef, useImperativeHandle, useCallback } from 'react'
 import { JoelAvatar } from '../components/JoelAvatar'
 import {
   DEMO_TRIP_DEFAULT_ITINERARY,
@@ -210,7 +210,18 @@ const DREAM_ALTERNATIVE_HOTELS = [
   { name: 'Sheraton Waikiki', price: '$315', available: true }
 ]
 
-const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwind({ embedded = false, onBackToCaseStudy, onClose, onFlowComplete }, ref) {
+const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwind(
+  {
+    embedded = false,
+    onBackToCaseStudy,
+    onClose,
+    onFlowComplete,
+    onFlowBegin,
+    /** When true (spotlight tour open), ⋮ Actions entry points are non-interactive. */
+    spotlightTourActive = false,
+  },
+  ref
+) {
   const [activeTab, setActiveTab] = useState('itinerary')
   const [showNewFlow, setShowNewFlow] = useState(false)
   const [newFlowLoadingMessage, setNewFlowLoadingMessage] = useState(null)
@@ -219,6 +230,10 @@ const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwin
   const [newFlowSelectedHotel, setNewFlowSelectedHotel] = useState(null)
   const [newFlowExpandedHotelName, setNewFlowExpandedHotelName] = useState(null)
   const [openKebabId, setOpenKebabId] = useState(null)
+
+  useEffect(() => {
+    if (spotlightTourActive) setOpenKebabId(null)
+  }, [spotlightTourActive])
 
   const [showOldFlow, setShowOldFlow] = useState(false)
   const [, setOldFlowStep] = useState(1)
@@ -291,7 +306,8 @@ const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwin
     return () => clearInterval(interval)
   }, [showDreamFlow, dreamConfirmed])
 
-  const startAmendmentFlow = () => {
+  const startAmendmentFlow = useCallback(() => {
+    onFlowBegin?.()
     setOpenKebabId(null)
     setSuccessToast(null)
     setShowNewFlow(false)
@@ -302,7 +318,7 @@ const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwin
       setNewFlowLoadingMessage(null)
       setShowNewFlow(true)
     }, LOADING_DURATION)
-  }
+  }, [onFlowBegin])
 
   useEffect(() => {
     if (!successToast) return
@@ -316,7 +332,8 @@ const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwin
     return () => clearTimeout(t)
   }, [showAmendedSuccessCheckmark])
 
-  const startOldFlow = () => {
+  const startOldFlow = useCallback(() => {
+    onFlowBegin?.()
     setOpenKebabId(null)
     setSuccessToast(null)
     setShowNewFlow(false)
@@ -335,9 +352,10 @@ const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwin
       setOldFlowLoadingMessage(null)
       setOldFlowAmendModalOpen(true)
     }, LOADING_DURATION)
-  }
+  }, [onFlowBegin])
 
-  const startDreamFlow = () => {
+  const startDreamFlow = useCallback(() => {
+    onFlowBegin?.()
     setOpenKebabId(null)
     setSuccessToast(null)
     setShowNewFlow(false)
@@ -369,7 +387,7 @@ const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwin
       roomId: 'standard',
       hotelName: 'Royal Hawaiian Resort'
     }
-  }
+  }, [onFlowBegin])
 
   const closeOldFlow = () => {
     setShowOldFlow(false)
@@ -415,11 +433,15 @@ const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwin
     setDreamConfirmLoading(false)
   }
 
-  useImperativeHandle(ref, () => ({
-    startOldFlow,
-    startAmendmentFlow,
-    startDreamFlow
-  }), [])
+  useImperativeHandle(
+    ref,
+    () => ({
+      startOldFlow,
+      startAmendmentFlow,
+      startDreamFlow,
+    }),
+    [startOldFlow, startAmendmentFlow, startDreamFlow]
+  )
 
   const confirmDreamAndCollapse = () => {
     const hotel = DREAM_HOTELS.find((h) => h.name === dreamSelectedHotelName) || DREAM_HOTELS[0]
@@ -614,48 +636,9 @@ const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwin
               · {TRIP_HERO.dateRange} · {TRIP_HERO.travellersLabel}
             </span>
               </div>
-          <span className="text-sm font-semibold text-white drop-shadow-sm">
+          <span className="shrink-0 text-sm font-semibold text-white drop-shadow-sm">
             {TRIP_HERO.packageTotalFormatted}
           </span>
-          <div className="relative -mr-1">
-                <button
-                  type="button"
-              onClick={() => setOpenKebabId(openKebabId === 'hero' ? null : 'hero')}
-              className="rounded p-1.5 text-white/90 hover:bg-white/20 hover:text-white"
-                  aria-label="Actions"
-              aria-expanded={openKebabId === 'hero'}
-                >
-                  <span className="flex h-5 w-5 items-center justify-center text-lg leading-none">⋮</span>
-                </button>
-            {openKebabId === 'hero' && (
-                  <>
-                    <div className="fixed inset-0 z-10" aria-hidden onClick={() => setOpenKebabId(null)} />
-                <div className="absolute right-0 bottom-full z-20 mb-1 w-52 rounded-lg border border-slate-200 bg-white py-1 shadow-lg">
-                      <button
-                        type="button"
-                    onClick={startOldFlow}
-                        className="w-full px-4 py-2 text-left text-sm text-slate-700 hover:bg-slate-50"
-                      >
-                    <span aria-hidden>🐢</span> Turtle flow
-                      </button>
-                      <button
-                        type="button"
-                    onClick={startAmendmentFlow}
-                        className="w-full px-4 py-2 text-left text-sm text-slate-700 hover:bg-slate-50"
-                      >
-                    <span aria-hidden>🐰</span> Rabbit flow
-                      </button>
-                      <button
-                        type="button"
-                        onClick={startDreamFlow}
-                        className="w-full px-4 py-2 text-left text-sm text-slate-700 hover:bg-slate-50"
-                      >
-                    <span aria-hidden>🚀</span> Dream flow
-                      </button>
-                    </div>
-                  </>
-                )}
-              </div>
             </div>
           </div>
 
@@ -774,7 +757,9 @@ const AmendmentsFlowDemoTailwind = forwardRef(function AmendmentsFlowDemoTailwin
                         <button
                           type="button"
                           onClick={() => setOpenKebabId(openKebabId === card.id ? null : card.id)}
-                          className="rounded p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600"
+                          disabled={spotlightTourActive}
+                          data-amendments-demo-tour="card-actions"
+                          className="rounded p-1.5 text-slate-400 hover:bg-slate-100 hover:text-slate-600 disabled:pointer-events-none disabled:cursor-not-allowed disabled:opacity-50"
                           aria-label="Actions"
                           aria-expanded={openKebabId === card.id}
                         >

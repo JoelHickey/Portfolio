@@ -11,8 +11,8 @@ describe('Amendments page', () => {
       </MemoryRouter>
     )
 
-    expect(screen.getByRole('heading', { level: 1, name: /Streamlining Amendments/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Try interactive demo/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 1, name: /Fewer steps, more presence/i })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Try the interactive demo/i })).toBeInTheDocument()
   })
 
   it('demo link navigates to amendments demo route', () => {
@@ -22,7 +22,7 @@ describe('Amendments page', () => {
       </MemoryRouter>
     )
 
-    const demoLink = screen.getByRole('link', { name: /Try interactive demo/i })
+    const demoLink = screen.getByRole('link', { name: /Try the interactive demo/i })
     expect(demoLink).toHaveAttribute('href', '/stories/amendments/demo')
   })
 

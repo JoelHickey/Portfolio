@@ -65,6 +65,8 @@
   tbody tr:hover { background: rgba(30, 41, 59, 0.4); }
   tbody tr.expired { opacity: 0.35; }
   tbody tr.expired:hover { opacity: 0.55; }
+  tbody tr.offpage { opacity: 0.5; }
+  tbody tr.offpage:hover { opacity: 0.7; }
   .role-name { font-weight: 600; color: #f1f5f9; font-size: 12px; }
   .role-name a { color: inherit; text-decoration: none; border-bottom: 1px solid transparent; transition: border-color 0.2s; }
   .role-name a:hover { border-bottom-color: #64748b; }
@@ -82,6 +84,7 @@
   .badge.live { background: #064e3b; color: #6ee7b7; font-size: 8px; letter-spacing: 0.6px; }
   .badge.gone { background: #1e293b; color: #475569; font-size: 8px; letter-spacing: 0.6px; }
   .badge.new { background: #7c2d12; color: #fb923c; font-size: 8px; letter-spacing: 0.6px; }
+  .badge.rechk { background: #422006; color: #ca8a04; font-size: 8px; letter-spacing: 0.6px; }
   .m { font-family: 'JetBrains Mono', monospace; font-weight: 500; font-size: 12px; }
   .m.gross { color: #94a3b8; }
   .m.green { color: #34d399; }
@@ -145,8 +148,8 @@
 <body>
   <div class="header">
     <h1>Role Shortlist — Take-Home Comparison</h1>
-    <p>Senior Product Designer &middot; Brisbane-based &middot; March 2026</p>
-    <p class="updated">Last refreshed from <span>SEEK</span> &middot; 30 Mar 2026</p>
+    <p>Senior Product Designer &middot; Brisbane-based &middot; April 2026</p>
+    <p class="updated">Last refreshed from <a href="https://www.seek.com.au/senior-product-designer-jobs" style="color:#34d399;text-decoration:none;border-bottom:1px solid #334155;">SEEK</a> senior product designer &middot; 1 Apr 2026 &middot; ~1,175 listings AU</p>
   </div>
 
   <div class="assumptions">
@@ -159,7 +162,7 @@
   </div>
 
   <!-- ───── CONTRACT / FTC — STILL LIVE ───── -->
-  <div class="section-label contract">Contract &amp; FTC — Live on SEEK today <span class="count">(3 roles)</span></div>
+  <div class="section-label contract">Contract &amp; FTC — On first page of SEEK crawl <span class="count">(3 roles)</span></div>
   <div class="table-wrap">
     <table>
       <thead>
@@ -179,7 +182,7 @@
         </tr>
       </thead>
       <tbody>
-        <!-- Bluefin — still live on SEEK 30 Mar -->
+        <!-- Bluefin — latest crawl -->
         <tr>
           <td><span class="tier t1">T1</span> <span class="badge live">LIVE</span></td>
           <td><div class="role-name">Sr Product Designer, Payments</div><div class="company">Bluefin Resources / Digital Bank</div></td>
@@ -194,7 +197,7 @@
           <td class="vs section-start">+$25k–36k</td>
           <td class="fit">Contract. Complex payments workflows. Amendments case study maps directly.</td>
         </tr>
-        <!-- SEEK Selection — still live on SEEK 30 Mar -->
+        <!-- SEEK Selection — latest crawl -->
         <tr>
           <td><span class="tier t1">T1</span> <span class="badge live">LIVE</span></td>
           <td><div class="role-name">Sr Product Designer, Selection</div><div class="company">SEEK</div></td>
@@ -209,7 +212,7 @@
           <td class="vs section-start">+~$19k</td>
           <td class="fit">10mo fixed-term. Strong brand. Flexible hybrid. *Rate estimated from FTC pkg.</td>
         </tr>
-        <!-- Expertech — still live on SEEK 30 Mar -->
+        <!-- Expertech — latest crawl -->
         <tr>
           <td><span class="tier t1">T1</span> <span class="badge live">LIVE</span></td>
           <td><div class="role-name">Senior UX/UI Designer | Digital</div><div class="company">Expertech</div></td>
@@ -228,8 +231,8 @@
     </table>
   </div>
 
-  <!-- ───── FULL-TIME — NEW FROM TODAY'S SEARCH ───── -->
-  <div class="section-label ft">Full-Time — New from today's SEEK search <span class="count">(5 roles)</span></div>
+  <!-- ───── FULL-TIME — PAGE 1 OF SEEK CRAWL ───── -->
+  <div class="section-label ft">Full-Time — Prominent on first page (latest crawl) <span class="count">(6 roles)</span></div>
   <div class="table-wrap">
     <table>
       <thead>
@@ -249,24 +252,9 @@
         </tr>
       </thead>
       <tbody>
-        <!-- eHealth NSW — Product Design Manager AI — salary listed -->
+        <!-- AutoGuru — still top of crawl -->
         <tr>
-          <td><span class="tier ft">FT</span> <span class="badge new">NEW</span></td>
-          <td><div class="role-name">Product Design Manager — AI</div><div class="company">eHealth NSW</div></td>
-          <td><span class="loc">Syd</span> <span class="badge hybrid">HYB</span></td>
-          <td class="m violet">$176k + 12%</td>
-          <td class="m violet">~$176k</td>
-          <td class="m dim section-start">~$48k</td>
-          <td class="m dim">~$21k (employer)</td>
-          <td class="m violet section-start">~$128k</td>
-          <td class="m violet">~$10.6k</td>
-          <td class="m violet">~$4,900</td>
-          <td class="vs violet section-start">+~$39k</td>
-          <td class="fit">Listed salary: up to $175,917 + 12% super + 17.5% leave loading. AI focus. Govt benefits.</td>
-        </tr>
-        <!-- AutoGuru — Sr Product Designer — Gold Coast (close to BNE!) -->
-        <tr>
-          <td><span class="tier ft">FT</span> <span class="badge new">NEW</span></td>
+          <td><span class="tier ft">FT</span> <span class="badge live">LIVE</span></td>
           <td><div class="role-name">Senior Product Designer</div><div class="company">AutoGuru</div></td>
           <td><span class="loc">Gold Coast</span> <span class="badge hybrid">HYB</span></td>
           <td class="m violet">~$140–160k*</td>
@@ -277,26 +265,11 @@
           <td class="m violet">~$8.0k–8.9k</td>
           <td class="m violet">~$3,690–4,120</td>
           <td class="vs violet section-start">+~$7k–19k</td>
-          <td class="fit">Broadbeach — closest to BNE. No relocation. Hybrid. *Salary estimated.</td>
+          <td class="fit">Broadbeach. Nearest to BNE without moving to Sydney/Mel. *Est.</td>
         </tr>
-        <!-- SEEK — Sr Product Designer, Role Insights -->
+        <!-- SEEK Hiring Automation — AI angle -->
         <tr>
-          <td><span class="tier ft">FT</span> <span class="badge new">NEW</span></td>
-          <td><div class="role-name">Sr Product Designer, Role Insights</div><div class="company">SEEK</div></td>
-          <td><span class="loc">Mel</span> <span class="badge hybrid">HYB</span></td>
-          <td class="m violet">~$150–170k*</td>
-          <td class="m violet">~$134–152k*</td>
-          <td class="m dim section-start">~$33–39k</td>
-          <td class="m dim">~$17–20k (employer)</td>
-          <td class="m violet section-start">~$101k–113k*</td>
-          <td class="m violet">~$8.4k–9.4k</td>
-          <td class="m violet">~$3,880–4,350</td>
-          <td class="vs violet section-start">+~$13k–25k</td>
-          <td class="fit">FT perm. Strong brand + annual bonus. Flexible hybrid. *Salary estimated.</td>
-        </tr>
-        <!-- SEEK — Sr Product Designer, Hiring Automation -->
-        <tr>
-          <td><span class="tier ft">FT</span> <span class="badge new">NEW</span></td>
+          <td><span class="tier ft">FT</span> <span class="badge live">LIVE</span></td>
           <td><div class="role-name">Sr Product Designer, Hiring Automation</div><div class="company">SEEK</div></td>
           <td><span class="loc">Mel</span> <span class="badge hybrid">HYB</span></td>
           <td class="m violet">~$150–170k*</td>
@@ -307,11 +280,109 @@
           <td class="m violet">~$8.4k–9.4k</td>
           <td class="m violet">~$3,880–4,350</td>
           <td class="vs violet section-start">+~$13k–25k</td>
-          <td class="fit">FT perm. AI/automation focus — strong agentic angle. Annual bonus. *Salary estimated.</td>
+          <td class="fit">Listed perks: hybrid, bonus, design team. Automation / AI-adjacent brief. *Est.</td>
         </tr>
-        <!-- Munro Footwear — Sr Product Designer UI/UX -->
+        <!-- Qantas — new on page 1 -->
         <tr>
           <td><span class="tier ft">FT</span> <span class="badge new">NEW</span></td>
+          <td><div class="role-name">Senior Product Designer</div><div class="company">Qantas Airways</div></td>
+          <td><span class="loc">Adelaide</span> <span class="badge hybrid">HYB</span></td>
+          <td class="m violet">~$130–155k*</td>
+          <td class="m violet">~$117–139k*</td>
+          <td class="m dim section-start">~$28–35k</td>
+          <td class="m dim">~$15–18k (employer)</td>
+          <td class="m violet section-start">~$92k–108k*</td>
+          <td class="m violet">~$7.7k–9.0k</td>
+          <td class="m violet">~$3,540–4,150</td>
+          <td class="vs violet section-start">+~$4k–20k</td>
+          <td class="fit">Travel brand scale. SA base — weigh vs east-coast contract rates. *Est.</td>
+        </tr>
+        <!-- Slater & Gordon — new on page 1 -->
+        <tr>
+          <td><span class="tier ft">FT</span> <span class="badge new">NEW</span></td>
+          <td><div class="role-name">Senior Product Designer</div><div class="company">Slater &amp; Gordon Lawyers</div></td>
+          <td><span class="loc">Mel</span> <span class="badge hybrid">HYB</span></td>
+          <td class="m violet">~$125–150k*</td>
+          <td class="m violet">~$112–134k*</td>
+          <td class="m dim section-start">~$26–33k</td>
+          <td class="m dim">~$14–17k (employer)</td>
+          <td class="m violet section-start">~$88k–104k*</td>
+          <td class="m violet">~$7.3k–8.7k</td>
+          <td class="m violet">~$3,380–4,000</td>
+          <td class="vs violet section-start">~$0k–16k</td>
+          <td class="fit">Professional services / digital products. Melbourne. *Est.</td>
+        </tr>
+        <!-- Breville — Senior UX (page 1) -->
+        <tr>
+          <td><span class="tier ft">FT</span> <span class="badge new">NEW</span></td>
+          <td><div class="role-name">Senior UX Designer</div><div class="company">Breville Group</div></td>
+          <td><span class="loc">Syd</span> <span class="badge hybrid">HYB</span></td>
+          <td class="m violet">~$120–145k*</td>
+          <td class="m violet">~$108–130k*</td>
+          <td class="m dim section-start">~$25–31k</td>
+          <td class="m dim">~$14–16k (employer)</td>
+          <td class="m violet section-start">~$84k–99k*</td>
+          <td class="m violet">~$7.0k–8.2k</td>
+          <td class="m violet">~$3,230–3,800</td>
+          <td class="vs violet section-start">-~$4k / +~$11k</td>
+          <td class="fit">Alexandria. Consumer hardware brand. UX-heavy vs pure PD title. *Est.</td>
+        </tr>
+        <!-- LimeHub — Brisbane CBD adj (page 1) -->
+        <tr>
+          <td><span class="tier ft">FT</span> <span class="badge new">NEW</span></td>
+          <td><div class="role-name">Mid–Senior Designer</div><div class="company">LimeHub</div></td>
+          <td><span class="loc">Brisbane</span> <span class="badge hybrid">HYB</span></td>
+          <td class="m violet">~$95–120k*</td>
+          <td class="m violet">~$85–108k*</td>
+          <td class="m dim section-start">~$19–26k</td>
+          <td class="m dim">~$11–14k (employer)</td>
+          <td class="m violet section-start">~$68k–82k*</td>
+          <td class="m violet">~$5.7k–6.8k</td>
+          <td class="m violet">~$2,620–3,150</td>
+          <td class="vs violet section-start">-~$6k–20k</td>
+          <td class="fit">Fortitude Valley. Agency + SaaS (Brander). Only explicit Brisbane listing on p1. *Est.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- ───── OFF PAGE 1 — STILL WORTH RE-CHECKING ───── -->
+  <div class="section-label expired">Not on first page this crawl — may still be live <span class="count">(3 roles)</span></div>
+  <div class="table-wrap">
+    <table>
+      <thead>
+        <tr>
+          <th></th>
+          <th>Role / Company</th>
+          <th>Location</th>
+          <th>Salary (pkg)</th>
+          <th>Base (est.)</th>
+          <th class="section-start">Tax + Medicare</th>
+          <th>Super (employer)</th>
+          <th class="section-start" style="color:#818cf8">Take-Home / yr</th>
+          <th style="color:#818cf8">Take-Home / mo</th>
+          <th style="color:#818cf8">Take-Home / fn</th>
+          <th class="section-start">vs FC Perm</th>
+          <th>Angle</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="offpage">
+          <td><span class="badge rechk">RECHK</span></td>
+          <td><div class="role-name">Product Design Manager — AI</div><div class="company">eHealth NSW</div></td>
+          <td><span class="loc">Syd</span> <span class="badge hybrid">HYB</span></td>
+          <td class="m violet">$176k + 12%</td>
+          <td class="m violet">~$176k*</td>
+          <td class="m dim section-start">~$48k</td>
+          <td class="m dim">~$21k (employer)</td>
+          <td class="m violet section-start">~$128k</td>
+          <td class="m violet">~$10.6k</td>
+          <td class="m violet">~$4,900</td>
+          <td class="vs violet section-start">+~$39k</td>
+          <td class="fit">Listed pkg (prior crawl). Govt + AI focus. Filter SEEK — may be p2+ or closed.</td>
+        </tr>
+        <tr class="offpage">
+          <td><span class="badge rechk">RECHK</span></td>
           <td><div class="role-name">Senior Product Designer | UI/UX</div><div class="company">Munro Footwear Group</div></td>
           <td><span class="loc">Mel</span> <span class="badge hybrid">HYB</span></td>
           <td class="m violet">~$130–150k*</td>
@@ -322,7 +393,21 @@
           <td class="m violet">~$7.5k–8.4k</td>
           <td class="m violet">~$3,460–3,880</td>
           <td class="vs violet section-start">+~$2k–13k</td>
-          <td class="fit">FT. E-commerce. Web + mobile at scale. Cross-functional PD+eng. *Salary estimated.</td>
+          <td class="fit">E-com at scale. *Est. Not on p1 this crawl.</td>
+        </tr>
+        <tr class="offpage">
+          <td><span class="badge rechk">RECHK</span></td>
+          <td><div class="role-name">Sr Product Designer, Role Insights</div><div class="company">SEEK</div></td>
+          <td><span class="loc">Mel</span> <span class="badge hybrid">HYB</span></td>
+          <td class="m violet">~$150–170k*</td>
+          <td class="m violet">~$134–152k*</td>
+          <td class="m dim section-start">~$33–39k</td>
+          <td class="m dim">~$17–20k (employer)</td>
+          <td class="m violet section-start">~$101k–113k*</td>
+          <td class="m violet">~$8.4k–9.4k</td>
+          <td class="m violet">~$3,880–4,350</td>
+          <td class="vs violet section-start">+~$13k–25k</td>
+          <td class="fit">SEEK perm; bonus + hybrid. *Est. Duplicate Hiring Automation also surfaced on p1.</td>
         </tr>
       </tbody>
     </table>
@@ -449,16 +534,15 @@
   </div>
 
   <div class="footer">
-    <strong>Key insight — 30 Mar:</strong> 3 of your original 6 contract shortlist roles appear to have expired. <strong>Bluefin</strong> ($800–890/day) remains the strongest live contract.
-    <strong>Expertech</strong> is still the best Brisbane-remote option. The SEEK FTC is solid mid-range.
+    <strong>Key insight — 1 Apr:</strong> The same <strong>three contract/FTC picks</strong> (Bluefin, Expertech UX/UI, SEEK Selection) still sit on the first page of the senior PD search. <strong>Bluefin</strong> remains the strongest day-rate play; <strong>Expertech</strong> the best <strong>Brisbane-friendly contract</strong> (remote) on this list; <strong>SEEK FTC</strong> the fixed-term middle ground.
     <br><br>
-    <strong>New today:</strong> <strong>eHealth NSW</strong> (Product Design Manager — AI, $176k + 12% super) is the highest-paying listed role and has an AI focus.
-    <strong>AutoGuru</strong> in Broadbeach is the only role near Brisbane — no relocation needed.
-    SEEK has <strong>3 Sr PD roles open</strong> (Selection FTC, Role Insights FT, Hiring Automation FT) — the Hiring Automation role aligns with your agentic AI angle.
+    <strong>FT board refresh:</strong> First page now highlights <strong>Qantas</strong> (Adelaide), <strong>Slater &amp; Gordon</strong> (Melbourne), <strong>Breville</strong> (Senior UX, Alexandria), and <strong>LimeHub</strong> (Fortitude Valley — the clearest Brisbane CBD-adjacent listing on p1). <strong>AutoGuru</strong> (Gold Coast) and <strong>SEEK Hiring Automation</strong> (Melbourne) are still prominent; Hiring Automation still maps best to automation/AI-adjacent craft.
     <br><br>
-    <strong>Priority moves:</strong> Apply to <strong>Bluefin</strong> (highest contract take-home, still live). <strong>Expertech</strong> if remote from BNE matters most.
-    <strong>eHealth NSW</strong> if FT + AI positioning appeals. <strong>SEEK Hiring Automation</strong> as a strong FT brand play with AI overlap.
-    <strong>AutoGuru</strong> for proximity — only Gold Coast/BNE option on the board.
+    <strong>Re-check, not gone:</strong> <strong>eHealth</strong> (listed AI design mgr pkg), <strong>Munro</strong>, and <strong>SEEK Role Insights</strong> did not appear on page 1 this crawl — filter SEEK or search by company before assuming they closed.
+    <br><br>
+    <strong>Apply first (Brisbane-first, skipping Melbourne hybrid):</strong> <strong>Expertech — Senior UX/UI Designer | Digital</strong> (contract). Remote-from-Brisbane is the best fit on this board when you are not pursuing Melbourne roles such as SEEK Hiring Automation. Lead with <strong>Helio-scale B2B product</strong>, <strong>end-to-end delivery</strong>, and <strong>measurable flow outcomes</strong> (amendments, insurance, CRM deep linking).
+    <br><br>
+    <strong>Then:</strong> <strong>Bluefin</strong> if Sydney hybrid is acceptable and you want max contract take-home. <strong>SEEK FTC Selection</strong> for fixed-term brand. <strong>LimeHub</strong> or <strong>AutoGuru</strong> for strongest local geography. Re-run <a href="https://www.seek.com.au/senior-product-designer-jobs" style="color:#64748b;">the same SEEK query</a> before applying — ordering changes daily.
   </div>
 </body>
 </html>

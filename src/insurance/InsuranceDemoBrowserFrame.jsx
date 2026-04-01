@@ -104,8 +104,9 @@ export function InsuranceDemoBrowserFrame({
         </div>
       </div>
       <div className="flex h-[560px] flex-col overflow-hidden bg-white">
-        <div className="min-h-0 flex-1 overflow-y-auto">
-          <div className="min-h-full">{children}</div>
+        {/* `relative` so in-flow modals can use `absolute inset-0` for a dim layer without covering tabs + URL bar */}
+        <div className="relative min-h-0 flex-1 overflow-y-auto">
+          {children}
         </div>
       </div>
     </div>

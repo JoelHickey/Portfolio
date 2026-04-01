@@ -338,6 +338,9 @@ function Amendments() {
             >
               Try the interactive demo →
             </Link>
+            <p className="mt-3 max-w-2xl text-sm text-slate-600 leading-relaxed">
+              Opens with a short coach tour, then use the ⋮ on the hotel itinerary card to run Turtle (legacy), Rabbit (shipped redesign), or Dream (AI concept). Replay the tour from the button in the corner anytime.
+            </p>
           </div>
         </div>
       </div>

@@ -11,57 +11,59 @@ describe('App routing', () => {
       </MemoryRouter>
     )
 
-    expect(screen.getAllByText(/Amendments|Invigoration, innovation and impact/i).length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/Amendments|Invigoration/i).length).toBeGreaterThan(0)
   })
 
-  it('renders Work at /stories', () => {
+  it('renders Work at /stories', async () => {
     render(
       <MemoryRouter initialEntries={['/stories']}>
         <App />
       </MemoryRouter>
     )
 
-    expect(screen.getAllByText(/Amendments|Insurance/i).length).toBeGreaterThan(0)
+    expect((await screen.findAllByText(/Amendments|Insurance/i)).length).toBeGreaterThan(0)
   })
 
-  it('renders Amendments case study at /stories/amendments', () => {
+  it('renders Amendments case study at /stories/amendments', async () => {
     render(
       <MemoryRouter initialEntries={['/stories/amendments']}>
         <App />
       </MemoryRouter>
     )
 
-    expect(screen.getByRole('heading', { level: 1, name: /Streamlining Amendments/i })).toBeInTheDocument()
-    expect(screen.getByRole('link', { name: /Try interactive demo/i })).toBeInTheDocument()
+    expect(
+      await screen.findByRole('heading', { level: 1, name: /Fewer steps, more presence/i })
+    ).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: /Try the interactive demo/i })).toBeInTheDocument()
   })
 
-  it('renders Amendments demo at /stories/amendments/demo', () => {
+  it('renders Amendments demo at /stories/amendments/demo', async () => {
     render(
       <MemoryRouter initialEntries={['/stories/amendments/demo']}>
         <App />
       </MemoryRouter>
     )
 
-    expect(screen.getByRole('region', { name: /Amendments demo/i })).toBeInTheDocument()
+    expect(await screen.findByRole('region', { name: /Amendments demo/i })).toBeInTheDocument()
   })
 
-  it('renders Contact at /contact', () => {
+  it('renders Contact at /contact', async () => {
     render(
       <MemoryRouter initialEntries={['/contact']}>
         <App />
       </MemoryRouter>
     )
 
-    expect(screen.getByRole('heading', { name: /Contact/i })).toBeInTheDocument()
+    expect(await screen.findByRole('heading', { name: /Contact/i })).toBeInTheDocument()
   })
 
-  it('renders About at /about', () => {
+  it('renders About at /about', async () => {
     render(
       <MemoryRouter initialEntries={['/about']}>
         <App />
       </MemoryRouter>
     )
 
-    expect(screen.getByText(/Joel Hickey/i)).toBeInTheDocument()
+    expect(await screen.findByText(/Joel Hickey/i)).toBeInTheDocument()
   })
 })

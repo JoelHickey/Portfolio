@@ -116,6 +116,8 @@ export function DemoCoachTour({
    * `center` — fixed viewport center (cutout still follows the target).
    */
   tooltipPlacement = 'auto',
+  /** When false, step footer does not suggest clicking highlighted targets (e.g. targets are disabled during tour). */
+  targetsClickableDuringTour = true,
 }) {
   const persistKey = storageKey && rememberDismiss ? storageKey : null
 
@@ -197,6 +199,8 @@ export function DemoCoachTour({
   const last = step >= steps.length - 1
   const noTarget = Boolean(current && (current.selector == null || current.selector === ''))
   const showTooltip = Boolean(current && (noTarget || rect != null))
+  /** Next → Done is enough for very short tours; Skip is redundant noise. */
+  const showSkipTour = steps.length > 2
 
   const iw = typeof window !== 'undefined' ? window.innerWidth : 1024
   const ih = typeof window !== 'undefined' ? window.innerHeight : 800
@@ -390,17 +394,19 @@ export function DemoCoachTour({
                   </button>
                 )}
               </div>
-              <button
-                type="button"
-                onClick={persistDismiss}
-                className="self-start text-sm font-medium text-slate-500 underline-offset-2 hover:text-slate-800 hover:underline sm:self-center"
-              >
-                Skip tour
-              </button>
+              {showSkipTour && (
+                <button
+                  type="button"
+                  onClick={persistDismiss}
+                  className="self-start text-sm font-medium text-slate-500 underline-offset-2 hover:text-slate-800 hover:underline sm:self-center"
+                >
+                  Skip tour
+                </button>
+              )}
             </div>
             <p className="mt-3 text-[10px] leading-snug text-slate-400">
               Step {step + 1} of {steps.length}
-              {current.selector ? ' · you can still click the cards anytime' : ''}
+              {current.selector && targetsClickableDuringTour ? ' · you can still click the cards anytime' : ''}
             </p>
           </footer>
         </div>
