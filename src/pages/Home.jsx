@@ -673,7 +673,7 @@ function Home() {
               Email me
             </a>
             <a
-              href="https://www.linkedin.com/in/joelhickey"
+              href="https://www.linkedin.com/in/joel-hickey-493757138/"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="LinkedIn (opens in a new tab)"

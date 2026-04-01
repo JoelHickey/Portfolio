@@ -1,6 +1,10 @@
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import ParticleBackground from '../components/ParticleBackground'
 
+/** Set VITE_SHOW_DESIGN_SYSTEM_NAV=true in .env to show System in the main nav (default: hidden). */
+const showDesignSystemInMainNav =
+  typeof import.meta !== 'undefined' && import.meta.env?.VITE_SHOW_DESIGN_SYSTEM_NAV === 'true'
+
 function Layout() {
   const { pathname } = useLocation()
   const designSystemPage = pathname === '/design-system'
@@ -26,10 +30,10 @@ function Layout() {
       )}
       <header className="relative z-20 bg-black">
         <div className="mx-auto flex min-w-0 max-w-6xl items-center justify-center p-2">
-            <nav
-              aria-label="Main"
-              className="flex w-full min-w-0 max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-2 text-[11px] font-light tracking-wider text-slate-200 sm:gap-x-8 sm:gap-y-0 sm:text-xs md:gap-x-12"
-            >
+          <nav
+            aria-label="Main"
+            className="flex w-full min-w-0 max-w-full flex-wrap items-center justify-center gap-x-2 gap-y-2 text-[11px] font-light tracking-wider text-slate-200 sm:gap-x-8 sm:gap-y-0 sm:text-xs md:gap-x-12"
+          >
             <NavLink to="/" className={navLinkClass} end>
               Home
             </NavLink>
@@ -42,9 +46,11 @@ function Layout() {
             <NavLink to="/contact" className={navLinkClass}>
               Contact
             </NavLink>
-            <NavLink to="/design-system" className={navLinkClass}>
-              System
-            </NavLink>
+            {showDesignSystemInMainNav ? (
+              <NavLink to="/design-system" className={navLinkClass}>
+                System
+              </NavLink>
+            ) : null}
           </nav>
         </div>
       </header>

@@ -22,7 +22,7 @@ function Contact() {
         <p className="mt-2 text-sm text-slate-500">
           Brisbane, AU · remote friendly · talks &amp; workshops welcome
         </p>
-        <div className="mt-10 flex flex-wrap justify-center gap-4">
+        <div className="mt-10 flex flex-wrap justify-center gap-6">
           <a
             href="mailto:joelhickeydesigns@gmail.com"
             className="inline-flex items-center gap-2 rounded-full bg-home-cta px-6 py-3 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[44px]"
@@ -31,22 +31,23 @@ function Contact() {
             Email me
           </a>
           <a
-            href="tel:0421366486"
+            href="https://www.linkedin.com/in/joel-hickey-493757138/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LinkedIn (opens in a new tab)"
             className="inline-flex items-center gap-2 rounded-full bg-home-cta px-6 py-3 text-base font-normal tracking-wider text-white shadow-lg shadow-violet-500/25 transition hover:shadow-violet-500/40 hover:brightness-110 outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-offset-2 focus-visible:ring-offset-transparent min-h-[44px]"
           >
-            <HiOutlinePhone className="shrink-0" size={20} aria-hidden="true" />
-            Call me
+            <SiLinkedin className="shrink-0" size={20} aria-hidden="true" />
+            LinkedIn
           </a>
         </div>
         <div className="mt-6 flex flex-wrap justify-center gap-6 text-sm text-slate-400">
           <a
-            href="https://www.linkedin.com/in/joelhickey"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="tel:0421366486"
             className="inline-flex items-center gap-2 transition-colors hover:text-white"
           >
-            <SiLinkedin size={14} aria-hidden="true" />
-            <span>LinkedIn</span>
+            <HiOutlinePhone size={14} aria-hidden="true" />
+            <span>Call me</span>
           </a>
           <a
             href="https://dribbble.com/joelhickey"
