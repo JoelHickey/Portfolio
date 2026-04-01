@@ -136,6 +136,27 @@ function About() {
                 <h3 className="text-xs font-semibold uppercase tracking-widest bg-clip-text text-transparent" style={{ background: 'linear-gradient(90deg, #0891b2, #7c3aed)', WebkitBackgroundClip: 'text', backgroundClip: 'text' }}>Location</h3>
                 <p className="mt-3 text-sm font-light tracking-wide text-slate-300">Brisbane, AU · available for contract · open to remote</p>
               </div>
+              <div>
+                <h3 className="text-xs font-semibold uppercase tracking-widest bg-clip-text text-transparent" style={{ background: 'linear-gradient(90deg, #0891b2, #7c3aed)', WebkitBackgroundClip: 'text', backgroundClip: 'text' }}>CV</h3>
+                <p className="mt-3 text-sm font-light tracking-wide text-slate-300">
+                  <a
+                    href="/joel-hickey-cv.pdf"
+                    download="Joel-Hickey-CV.pdf"
+                    className="text-cyan-400/90 underline decoration-cyan-500/40 underline-offset-2 transition hover:text-cyan-300 hover:decoration-cyan-400/60"
+                  >
+                    Download CV (PDF)
+                  </a>
+                  <span className="text-slate-500"> · </span>
+                  <a
+                    href="/cv.html"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-slate-400 underline decoration-slate-600/50 underline-offset-2 transition hover:text-slate-300"
+                  >
+                    HTML version
+                  </a>
+                </p>
+              </div>
             </div>
           </div>
         </div>
