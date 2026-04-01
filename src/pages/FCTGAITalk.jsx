@@ -74,7 +74,7 @@ function FCTGAITalk() {
                 className="mt-0.5 whitespace-nowrap font-medium text-slate-700"
                 title="Invited internal talk — presented live to 15+ designers (FCTG product &amp; brand)"
               >
-                FCTG design · live · 15+ (product &amp; brand)
+                FCTG design · live · 15+ designers (product &amp; brand)
               </p>
             </div>
             <div className="shrink-0">
@@ -89,31 +89,6 @@ function FCTGAITalk() {
               >
                 Cursor · React · Vite · Tailwind
               </p>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Session snapshot — scale only; not revenue-style outcomes */}
-      <div className="w-full bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-10">
-          <p className="mb-6 text-[11px] font-semibold uppercase tracking-widest text-slate-400">Session snapshot</p>
-          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <div>
-              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">15+</p>
-              <p className="mt-2 text-sm text-slate-500">Designers in the room</p>
-            </div>
-            <div>
-              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">7</p>
-              <p className="mt-2 text-sm text-slate-500">Chapters in the deck</p>
-            </div>
-            <div>
-              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">~54</p>
-              <p className="mt-2 text-sm text-slate-500">Composed slide views</p>
-            </div>
-            <div>
-              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">3</p>
-              <p className="mt-2 text-sm text-slate-500">Workshop rounds</p>
             </div>
           </div>
         </div>
@@ -262,7 +237,7 @@ function FCTGAITalk() {
             What ran in the room, how the work shipped in code, and how AI supported prep and day-of — in that order.
           </p>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Presented live to FCTG product and brand designers (scale in the snapshot above). The session combined the full deck with a hands-on workshop where people tried both exploratory and structured AI workflows side by side.
+            Presented live to 15+ designers across FCTG product and brand. The session combined the seven-chapter deck with a three-round hands-on workshop where people tried both exploratory and structured AI workflows side by side.
           </p>
 
           {/* What was shipped */}

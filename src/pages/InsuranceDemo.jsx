@@ -7,25 +7,25 @@ import { DemoCoachTour } from '../components/DemoCoachTour'
 /** Spotlight tour — `rememberDismiss={false}` + remount on replay so it shows every visit / on demand. */
 const INSURANCE_SPOTLIGHT_TOUR_STEPS = [
   {
-    title: 'Legacy path',
-    body: 'Helio manual line, Cover-More tab, re-keying, then Helio checkout before coverage lands — the friction the redesign removed.',
+    title: 'Two flows',
+    body: 'Hi — here are two flows to show how insurance-on-booking evolved: Before is legacy (Helio manual line, Cover-More tab, re-keying, then checkout before coverage lands — the friction the redesign removed). After is Travel Connect. Click Add insurance on the Legacy card to try Before.',
     selector: '[data-insurance-demo-tour="legacy-flow"]',
   },
   {
     title: 'Travel Connect',
-    body: 'Linked tab, search and tiers in Travel Connect, success state, then Helio with the quote on the booking. Try both and compare.',
+    body: 'Hi — After is this side: linked tab, search and tiers in Travel Connect, a success beat, then Helio with the quote on the booking. Click Add insurance on the Travel Connect card to try it — or Before if you want the contrast.',
     selector: '[data-insurance-demo-tour="travel-connect-flow"]',
   },
 ]
 
 const WELCOME_MESSAGE =
-  'Two flows — Before is the legacy Helio + Cover-More path with checkout; After is Travel Connect with loading, search, tiers, and a success beat before Helio. Pick one to start.'
+  'Hi — here are two flows: Before (legacy Helio + Cover-More) and After (Travel Connect). Click Add insurance on either card to start.'
 
 const FLOW_MESSAGES = {
   before:
-    "Legacy path: Helio modal, Cover-More, re-keying, Add to cart, then cart → travellers → payment before insurance shows on the itinerary. Now try After for Travel Connect (linked data, in-tab success, then Helio).",
+    "That was the legacy path — modal, Cover-More, re-keying, then checkout before coverage shows. Try After next for Travel Connect if you haven't; the contrast is the point.",
   after:
-    "Travel Connect: pre-filled search, tier comparison, Add to HELIO and the confirmation screen, then switch to Helio to see coverage on the booking. Try Before if you haven't — the contrast is the point.",
+    "That was Travel Connect — search, tiers, confirmation, then Helio with coverage on the booking. Try Before if you'd like to compare.",
 }
 
 const NO_COMPLETED_FLOWS = new Set()
