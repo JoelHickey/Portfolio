@@ -12,6 +12,7 @@ import FCTGHeading from './design-system/fctg/FCTGHeading'
 import FCTGAIFlowDiagram, { FCTGAIFlowCaption } from './FCTGAIFlowDiagram'
 import FCTGMultiAgentDiagram, { FCTGMultiAgentCaption } from './FCTGMultiAgentDiagram'
 import FCTGBodyAnalogyDiagram from './FCTGBodyAnalogyDiagram'
+import TimeWithAISplitChart from './TimeWithAISplitChart'
 
 const SLIDE_COUNT = 54
 
@@ -3569,37 +3570,7 @@ function FCTGAITalkSlides() {
       {slideIndex === 50 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-3xl mx-auto px-4 py-4 md:px-8 md:py-6">
-<div className="text-center mb-6">
-              <h2 className="fctg-heading !text-[2rem] md:!text-[2.5rem] inline-block whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Time with AI</h2>
-              <p className="mt-2 text-sm text-slate-300 whitespace-nowrap overflow-x-auto">Less friction, more space to think clearly about what matters.</p>
-            </div>
-            <div className="space-y-4">
-              <div>
-                <p className="text-xs text-slate-400 mb-1">Without AI</p>
-                <div className="flex h-4 w-full rounded overflow-hidden">
-                  <div style={{ width: '85%' }} className="bg-amber-500/60" />
-                  <div style={{ width: '6%' }} className="bg-emerald-500/60" />
-                  <div style={{ width: '5%' }} className="bg-cyan-500/60" />
-                  <div style={{ width: '4%' }} className="bg-violet-500/60" />
-                </div>
-              </div>
-              <div>
-                <p className="text-xs text-slate-400 mb-1">With Cursor</p>
-                <div className="flex h-4 w-full rounded overflow-hidden">
-                  <div style={{ width: '52%' }} className="bg-amber-500/60" />
-                  <div style={{ width: '18%' }} className="bg-emerald-500/60" />
-                  <div style={{ width: '16%' }} className="bg-cyan-500/60" />
-                  <div style={{ width: '14%' }} className="bg-violet-500/60" />
-                </div>
-              </div>
-              <div className="flex flex-wrap gap-4 justify-center pt-2 text-xs text-slate-500">
-                <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded-sm bg-amber-500/60" />Execution</span>
-                <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded-sm bg-emerald-500/60" />Judgment</span>
-                <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded-sm bg-cyan-500/60" />Direction</span>
-                <span className="flex items-center gap-1.5"><span className="w-3 h-2 rounded-sm bg-violet-500/60" />Decisions</span>
-              </div>
-              <p className="mt-3 text-center text-xs text-slate-500">Rough split from building and prepping this deck.</p>
-            </div>
+            <TimeWithAISplitChart variant="dark" />
           </div>
         </Slide>
       )}

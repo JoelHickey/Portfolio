@@ -2,6 +2,7 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 import CaseStudyNav from '../components/CaseStudyNav'
 import { FCTG_PRESO_URL } from '../constants/preso'
+import TimeWithAISplitChart from '../components/TimeWithAISplitChart'
 
 function FCTGAITalk() {
   useEffect(() => {
@@ -15,7 +16,7 @@ function FCTGAITalk() {
         { id: 'ai-brief', label: 'Brief' },
         { id: 'ai-approach', label: 'Approach' },
         { id: 'ai-process', label: 'Process' },
-        { id: 'ai-steering', label: 'Steering' },
+        { id: 'ai-steering', label: 'Where I steered' },
         { id: 'ai-delivery', label: 'Delivery' },
         { id: 'ai-reflection', label: 'Reflection' },
       ]} />
@@ -52,7 +53,7 @@ function FCTGAITalk() {
                 Built with the tools it teaches.
               </h1>
               <p className="mt-3 max-w-2xl font-extralight tracking-wider text-white/90 text-xl md:text-2xl">
-                An interactive presentation on agentic design — created entirely with agentic workflows.
+                An interactive presentation and hands-on workshop for FCTG design — built end-to-end with agentic workflows.
               </p>
             </div>
           </div>
@@ -69,7 +70,7 @@ function FCTGAITalk() {
             </div>
             <div>
               <p className="font-semibold uppercase tracking-widest text-slate-500">Context</p>
-              <p className="mt-0.5 font-medium text-slate-700">Invited internal talk — FCTG design team</p>
+              <p className="mt-0.5 font-medium text-slate-700">Invited internal talk — presented live to 15+ designers (FCTG product &amp; brand)</p>
             </div>
             <div>
               <p className="font-semibold uppercase tracking-widest text-slate-500">Duration</p>
@@ -77,32 +78,11 @@ function FCTGAITalk() {
             </div>
             <div>
               <p className="font-semibold uppercase tracking-widest text-slate-500">Tools</p>
-              <p className="mt-0.5 font-medium text-slate-700">Cursor Agent, Claude, React, Vite, Tailwind</p>
+              <p className="mt-0.5 font-medium text-slate-700">Cursor Agent (multiple models), React, Vite, Tailwind</p>
             </div>
           </div>
         </div>
       </div>
-
-      {/* What shipped (artifact metrics — not adoption claims) */}
-      <div className="w-full bg-white">
-        <div className="mx-auto w-full max-w-6xl px-6 py-10">
-          <div className="grid gap-8 sm:grid-cols-3">
-            <div>
-              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">7</p>
-              <p className="mt-2 text-sm text-slate-500">Chapters from concepts through hands-on activity</p>
-            </div>
-            <div>
-              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">3</p>
-              <p className="mt-2 text-sm text-slate-500">Workshop rounds (vibe → agentic → compare)</p>
-            </div>
-            <div>
-              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">5+</p>
-              <p className="mt-2 text-sm text-slate-500">Custom SVG diagrams built for the deck</p>
-            </div>
-          </div>
-        </div>
-      </div>
-
 
       {/* ════════════════════════════════════════════════════════════════
           BRIEF
@@ -112,24 +92,39 @@ function FCTGAITalk() {
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Brief</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Flight Centre's design leadership asked me to present on how AI is changing design practice — not theoretically, but practically. What tools exist, how designers should think about them, and what it looks like to actually work this way.
+            Flight Centre&apos;s design leadership wanted a practical talk: which tools matter, how to think about them, and what the work actually looks like — not theory.
           </p>
           <p className="mt-6 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Full ownership — research, content, build, and delivery. Solo, 4 weeks, no templates. I built a 54-slide interactive presentation with 2 working React prototypes, 5+ custom SVG diagrams, and a 3-round hands-on workshop — entirely using the agentic workflows I was teaching.
+            I owned research through delivery — solo, four weeks, no template deck. The centerpiece was a <span className="font-medium text-slate-800">React presentation app</span> built with the same agentic workflows I was teaching, plus a hands-on workshop.
           </p>
 
-          <div className="mt-12 grid gap-8 sm:grid-cols-3">
-            <div>
-              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">54</p>
-              <p className="mt-2 text-sm text-slate-500">interactive slides across 7 chapters</p>
-            </div>
-            <div>
-              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">2</p>
-              <p className="mt-2 text-sm text-slate-500">working React prototypes embedded live</p>
-            </div>
-            <div>
-              <p className="text-4xl font-semibold text-slate-900 md:text-5xl">4 wk</p>
-              <p className="mt-2 text-sm text-slate-500">from blank page to live presentation</p>
+          <div
+            className="mt-10 max-w-3xl rounded-xl border border-emerald-200 bg-white p-6 shadow-sm sm:p-8"
+            role="region"
+            aria-labelledby="fctg-time-shift-heading"
+          >
+            <TimeWithAISplitChart variant="light" titleId="fctg-time-shift-heading" />
+            <div className="mt-8 border-t border-slate-200 pt-6">
+              <p className="text-[11px] font-semibold uppercase tracking-widest text-slate-500">
+                At a glance
+              </p>
+              <div
+                className="mt-3 flex flex-wrap items-center gap-2 sm:gap-3"
+                aria-label="Scope: React presentation app, seven chapters, more than five diagrams, three-round workshop"
+              >
+                <span className="rounded-md border border-emerald-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-800">
+                  React presentation
+                </span>
+                <span className="rounded-md border border-emerald-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-800">
+                  7 chapters
+                </span>
+                <span className="rounded-md border border-emerald-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-800">
+                  5+ diagrams
+                </span>
+                <span className="rounded-md border border-emerald-200 bg-white px-2.5 py-1 text-xs font-medium text-slate-800">
+                  3-round workshop
+                </span>
+              </div>
             </div>
           </div>
         </div>
@@ -144,21 +139,21 @@ function FCTGAITalk() {
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Approach</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Most AI talks are abstract — slides about what tools <em>could</em> do, not evidence of what they <em>did</em>. I decided to use the presentation itself as the proof: build the entire thing with agentic workflows, so every slide, demo, and diagram was a real artifact of the process I was teaching.
+            Most AI talks are abstract — slides about what tools <em>could</em> do, not evidence of what they <em>did</em>. I used the presentation itself as the proof: the deck was built with agentic workflows, and the composed views, transitions, and diagrams were iterated the same way I was asking the room to work.
           </p>
 
-          <blockquote className="mt-10">
+          <div className="mt-10 border-l-2 border-slate-300 pl-5">
             <p className="text-base italic text-slate-700 md:text-lg leading-relaxed">
-              "If the thing about agentic workflows isn't built with agentic workflows, it's just another deck."
+              If the thing about agentic workflows isn&apos;t built with agentic workflows, it&apos;s just another deck.
             </p>
-          </blockquote>
+          </div>
 
-          <p className="mt-10 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Not single-shot prompting — structured, multi-step workflows with clear goals, context carried across sessions, and deliberate human intervention when the agent drifted.
+          <p className="mt-10 max-w-2xl text-sm text-slate-600 leading-relaxed">
+            <span className="font-medium text-slate-800">Agentic</span> here means multi-step, goal-driven work with context carried across sessions — as opposed to single-shot &ldquo;vibe&rdquo; prompting. The contrast below is how I framed it live.
           </p>
 
           {/* Vibe vs Agentic comparison */}
-          <div className="mt-12">
+          <div className="mt-10">
             <p className="mb-4 text-xs font-semibold uppercase tracking-widest text-slate-500">Two modes of AI-assisted design</p>
             <div className="grid gap-6 sm:grid-cols-2 max-w-3xl">
               <div className="rounded-xl border border-slate-200 bg-slate-50 p-6">
@@ -193,7 +188,7 @@ function FCTGAITalk() {
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Process</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Three workstreams, all run through Cursor Agent with Claude. Each required a different balance of agent autonomy and human steering.
+            Two workstreams, all run through Cursor Agent with multiple models in the loop. Each required a different balance of agent autonomy and human steering.
           </p>
 
           {/* ── Workstream 1: Content & structure ── */}
@@ -207,39 +202,14 @@ function FCTGAITalk() {
             </p>
           </div>
 
-          {/* ── Workstream 2: Interactive demos ── */}
+          {/* ── Workstream 2: Custom diagrams & visualizations ── */}
           <div className="mt-16">
             <div className="flex items-center gap-3 mb-6">
               <span className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">2</span>
-              <h3 className="text-2xl font-semibold text-slate-900">Interactive product demos</h3>
-            </div>
-            <p className="max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-              Rather than static mockups, I built working React prototypes — a travel amendments flow and an insurance quoting flow — with state management, transitions, and realistic data. The agent handled component scaffolding and iteration; I directed the interaction patterns and validated against real product flows.
-            </p>
-            <div className="mt-8 flex flex-wrap gap-4">
-              <Link
-                to="/stories/amendments/demo"
-                className="inline-flex rounded-full bg-slate-900 px-5 py-2.5 text-sm font-semibold text-white transition hover:bg-slate-800"
-              >
-                Try amendments demo →
-              </Link>
-              <Link
-                to="/stories/insurance/demo"
-                className="inline-flex rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-semibold text-slate-700 transition hover:bg-slate-50"
-              >
-                Try insurance demo →
-              </Link>
-            </div>
-          </div>
-
-          {/* ── Workstream 3: Custom diagrams & visualizations ── */}
-          <div className="mt-16">
-            <div className="flex items-center gap-3 mb-6">
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-900 text-xs font-bold text-white">3</span>
               <h3 className="text-2xl font-semibold text-slate-900">Custom diagrams & visualizations</h3>
             </div>
             <p className="max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-              Every visual — AI pipeline diagrams, multi-agent architecture maps, the animated energy battery — is a custom React component, not a static image. Describing a diagram's structure in a single brief, then iterating through 3–4 rounds of refinement, was dramatically faster than building each SVG by hand.
+              Every visual — AI pipeline diagrams, multi-agent architecture maps, the animated energy battery — is a custom React component, not a static image. Describing a diagram&apos;s structure in a single brief, then iterating through 3–4 rounds of refinement, was much faster than building each SVG by hand.
             </p>
           </div>
         </div>
@@ -264,7 +234,7 @@ function FCTGAITalk() {
             </div>
             <div className="border-l-2 border-amber-300 pl-4 py-1.5 leading-relaxed">
               <p className="font-semibold text-slate-800">Loop → Reframe, don't retry</p>
-              <p className="mt-1">When the agent looped on a layout approach — trying the same CSS strategy with minor variations — retrying was useless. Describing the problem from scratch with a different framing broke the loop in one pass.</p>
+              <p className="mt-1">When the agent looped on a layout approach — trying the same CSS strategy with minor variations — retrying was useless. Reframing the problem from scratch usually cleared it faster than another nudge in the same direction.</p>
             </div>
             <div className="border-l-2 border-amber-300 pl-4 py-1.5 leading-relaxed">
               <p className="font-semibold text-slate-800">Drift → Persistent rules</p>
@@ -283,7 +253,7 @@ function FCTGAITalk() {
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Delivery</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Presented live to the FCTG design team — product and brand designers in the room. The session ran through the 7-chapter deck, followed by a 3-round hands-on workshop where participants experienced both modes of AI-assisted design and compared the results.
+            Presented live to 15+ designers across product and brand. The session ran through the 7-chapter deck, followed by a 3-round hands-on workshop where participants experienced both modes of AI-assisted design and compared the results.
           </p>
 
           {/* What was shipped */}
@@ -292,18 +262,14 @@ function FCTGAITalk() {
             <div className="max-w-2xl space-y-3 text-sm text-slate-600">
               <div className="flex gap-3 items-start">
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-900 text-[10px] font-bold text-white">1</span>
-                <p><span className="font-semibold text-slate-800">54-slide interactive deck</span> — React app with custom animations, chapter navigation, and embedded diagrams</p>
+                <p><span className="font-semibold text-slate-800">Interactive React deck</span> — ~54 composed views across 7 chapters; custom animations, navigation shell, and diagram components</p>
               </div>
               <div className="flex gap-3 items-start">
                 <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-900 text-[10px] font-bold text-white">2</span>
-                <p><span className="font-semibold text-slate-800">2 working product demos</span> — amendments and insurance flows with real state, transitions, and mock data</p>
-              </div>
-              <div className="flex gap-3 items-start">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-900 text-[10px] font-bold text-white">3</span>
                 <p><span className="font-semibold text-slate-800">5+ custom SVG diagrams</span> — AI pipelines, multi-agent architecture, body analogy — all React components</p>
               </div>
               <div className="flex gap-3 items-start">
-                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-900 text-[10px] font-bold text-white">4</span>
+                <span className="mt-0.5 flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-slate-900 text-[10px] font-bold text-white">3</span>
                 <p><span className="font-semibold text-slate-800">3-round hands-on workshop</span> — vibe coding → agentic workflow → compare and discuss</p>
               </div>
             </div>
@@ -337,7 +303,11 @@ function FCTGAITalk() {
             </div>
           </div>
 
-          <div className="mt-12">
+          <p className="mt-12 max-w-2xl text-sm leading-relaxed text-slate-600">
+            In the room, debate centred on when exploratory prompting stops being enough and a clear mission helps — which was the intent. Several designers asked for the deck and activity prompts afterward. I didn&apos;t run a formal survey; that pickup is the signal I&apos;d build on for a follow-up session.
+          </p>
+
+          <div className="mt-10">
             <a
               href={FCTG_PRESO_URL}
               target="_blank"
@@ -359,17 +329,17 @@ function FCTGAITalk() {
         <div className="mx-auto w-full max-w-6xl px-6 py-20">
           <h2 className="text-4xl font-semibold text-slate-900 md:text-5xl">Reflection</h2>
           <p className="mt-8 max-w-2xl text-lg tracking-wide text-slate-600 leading-relaxed">
-            Building the presentation with agentic tools changed what was possible in the time I had. But it wasn't magic — the lessons apply to any team considering this way of working.
+            Agentic tools changed what I could cover solo in four weeks — not by magic, but by tightening the loop between intent and execution. The lessons transfer anywhere teams are weighing when to delegate to an agent and when to hold the line on taste.
           </p>
 
           <div className="mt-10 max-w-2xl space-y-6 text-sm text-slate-600">
             <div className="border-l-2 border-emerald-400 pl-4 py-1.5 leading-relaxed">
-              <p className="font-semibold text-slate-800">Agentic tooling compressed a team's worth of work into solo output</p>
-              <p className="mt-1">Interactive diagrams, slide animations, demo prototypes — a scope that would typically need a designer, a front-end developer, and a content strategist. Not because the agent wrote perfect code, but because the iteration cycle went from hours to minutes.</p>
+              <p className="font-semibold text-slate-800">Breadth I&apos;d usually split across roles, compressed into one timeline</p>
+              <p className="mt-1">Interactive diagrams, slide animations, and a full presentation shell — work that often spans design, front-end implementation, and content. The agent didn&apos;t ship perfect code; it made iteration cheap enough that I could wear those hats in sequence without losing weeks per artifact.</p>
             </div>
             <div className="border-l-2 border-amber-400 pl-4 py-1.5 leading-relaxed">
-              <p className="font-semibold text-slate-800">Judgment and taste can't be delegated</p>
-              <p className="mt-1">The agent is fast but undiscriminating. Narrative structure, editorial pacing, knowing what to cut — these stayed entirely human decisions. The agent accelerated execution; it didn't replace direction.</p>
+              <p className="font-semibold text-slate-800">Judgment and taste can&apos;t be delegated</p>
+              <p className="mt-1">The agent is fast but undiscriminating. Narrative structure, editorial pacing, knowing what to cut — those stayed human calls. The agent accelerated execution; it didn&apos;t replace direction.</p>
             </div>
             <div className="border-l-2 border-indigo-400 pl-4 py-1.5 leading-relaxed">
               <p className="font-semibold text-slate-800">Steering AI is a design skill</p>
@@ -382,18 +352,10 @@ function FCTGAITalk() {
 
       {/* ── Footer navigation ── */}
       <div className="w-full bg-slate-50">
-        <div className="mx-auto w-full max-w-6xl px-6 py-16 flex flex-wrap items-center justify-between gap-4">
+        <div className="mx-auto w-full max-w-6xl px-6 py-16">
           <Link to="/stories" className="text-sm text-slate-500 transition hover:text-slate-900">
             ← All stories
           </Link>
-          <a
-            href={FCTG_PRESO_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-sm text-slate-500 transition hover:text-slate-900"
-          >
-            View the full presentation →
-          </a>
         </div>
       </div>
     </section>

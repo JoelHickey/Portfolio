@@ -407,6 +407,11 @@ header {
   will-change: transform, opacity;
 }
 
+/* Tailwind `flex` on the same node must win; otherwise metrics row can't wrap and clips in .home-hero overflow-hidden */
+.hero-line.flex {
+  display: flex;
+}
+
 @keyframes hero-line {
   0% {
     transform: translateY(10px);
