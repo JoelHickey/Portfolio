@@ -1738,7 +1738,7 @@ function FCTGAITalkSlides() {
             <div className="absolute inset-0 flex flex-col items-center justify-center pointer-events-none">
               <div className="relative z-10 max-w-2xl px-8 text-center">
                 <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block drop-shadow-[0_0_30px_rgba(0,0,0,0.8)]" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Iteration</h2>
-                <p className="fctg-subtitle mt-1 text-lg drop-shadow-[0_0_20px_rgba(0,0,0,0.6)] whitespace-nowrap overflow-x-auto">Trust the process. Steer the direction. Embrace ambiguity.</p>
+                <p className="fctg-subtitle mt-1 text-lg drop-shadow-[0_0_20px_rgba(0,0,0,0.6)]">Trust the process. Steer the direction. Embrace ambiguity.</p>
                 <div className="mt-10 flex justify-center" aria-hidden>
                   <div className="relative">
                     <div className="absolute inset-0 blur-2xl bg-cyan-500/20 rounded-full scale-150" />
@@ -1844,7 +1844,7 @@ function FCTGAITalkSlides() {
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl">
             <div className="max-w-md mx-auto text-center">
               <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Calmness</h2>
-              <p className="fctg-subtitle mt-1 whitespace-nowrap overflow-x-auto">Less friction, more space to think clearly about what matters.</p>
+              <p className="fctg-subtitle mt-1">Less friction, more space to think clearly about what matters.</p>
             </div>
             <div className="w-full max-w-5xl mt-10 text-center">
               <SlideQuote slideIndex={13} />
@@ -1877,7 +1877,7 @@ function FCTGAITalkSlides() {
                 <span className="fctg-mystical-heading-a absolute inset-0 flex items-center justify-center" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Mystical Code</span>
                 <span className="fctg-mystical-heading-b absolute inset-0 flex items-center justify-center font-mono text-2xl tracking-widest" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>{'{ } </> ( )'}</span>
               </h2>
-              <p className="fctg-subtitle mt-1 whitespace-nowrap overflow-x-auto">AI bridges the gap between design intent and technical implementation.</p>
+              <p className="fctg-subtitle mt-1">AI bridges the gap between design intent and technical implementation.</p>
             </div>
           </div>
         </Slide>
@@ -2244,7 +2244,7 @@ function FCTGAITalkSlides() {
               <div className="w-full max-w-5xl">
                 <div className="mx-auto flex max-w-md flex-col items-center text-center">
                   <h2 className="fctg-heading !text-[2.25rem] md:!text-[2.75rem] whitespace-nowrap" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Context carries forward</h2>
-                  <p className="fctg-subtitle mt-1 text-sm md:text-base whitespace-nowrap">Sessions end. Shared context keeps progress continuous.</p>
+                  <p className="fctg-subtitle mt-1 text-sm md:text-base">Sessions end. Shared context keeps progress continuous.</p>
                 </div>
                 {/* Diagram: shared context bridges sessions — CSS-based, elegant flow */}
                 <div className="mt-3 md:mt-8 w-full max-w-2xl mx-auto min-w-0 overflow-visible px-1" aria-hidden>

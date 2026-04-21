@@ -83,7 +83,7 @@ export default function TimeWithAISplitChart({ variant = 'light', className = ''
         WebkitTextFillColor: 'transparent',
       }
   const darkSubtitleClass =
-    'mt-2 max-w-xl text-sm text-slate-300 sm:whitespace-nowrap sm:overflow-x-auto'
+    'mt-2 max-w-xl text-sm text-slate-300'
 
   const barRow = (rowLabel, segments) => (
     <div className="grid grid-cols-[minmax(0,5.5rem)_1fr] items-center gap-3 sm:grid-cols-[6.5rem_1fr] sm:gap-4">
