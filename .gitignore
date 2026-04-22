@@ -39,3 +39,6 @@ docs/AGENT-LINEAGE-SUMMARY.md
 /playwright-report/
 /blob-report/
 /playwright/.cache/
+
+# Regenerate with: python3 cad/rhodes_bender_estimated.py
+cad/out/

@@ -21,12 +21,12 @@ const CIRCLES = [
   }
 })
 
-// One style for all diagram text — the caption look: light weight, uppercase, spaced
-const DIAGRAM_LABEL_STYLE = {
+// Outer ring labels — room legibility (slightly larger / medium vs centre Design)
+const OUTER_LABEL_STYLE = {
   fontFamily: 'system-ui, -apple-system, sans-serif',
-  fontSize: 10,
-  fontWeight: 400,
-  letterSpacing: '0.2em',
+  fontSize: 11,
+  fontWeight: 500,
+  letterSpacing: '0.12em',
   textTransform: 'uppercase',
 }
 
@@ -42,7 +42,7 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560, var
         viewBox={`0 0 ${VIEW} ${VIEW}`}
         preserveAspectRatio="xMidYMid meet"
         role="img"
-        aria-label="Product, Business, and Technology overlapping"
+        aria-label="Product, Business, and Technology as overlapping domains, with Design called out at the centre where tradeoffs meet"
         style={{ overflow: 'visible', display: 'block' }}
       >
       <defs>
@@ -57,36 +57,28 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560, var
           <stop offset="100%" stopColor="rgba(167, 139, 250, 0.06)" />
         </linearGradient>
       </defs>
-      <style>{`
-        @keyframes wider-env-dash-rotate {
-          to { stroke-dashoffset: ${2 * Math.PI * VENN_R}; }
-        }
-        .wider-env-circle { animation: wider-env-dash-rotate 12s linear infinite; }
-      `}</style>
 
       <g fill="none" style={{ fontFamily: 'system-ui, -apple-system, sans-serif' }}>
-        {/* Three overlapping circles — dashed, rotating stroke */}
+        {/* Three overlapping circles — solid stroke */}
         {CIRCLES.map((c) => (
           <circle
             key={c.label}
-            className="wider-env-circle"
             cx={c.x}
             cy={c.y}
             r={VENN_R}
             fill="none"
             stroke={isCyan ? `url(#${id}-stroke)` : 'rgba(0,0,0,0.4)'}
             strokeWidth={1.5}
-            strokeDasharray={`${(2 * Math.PI * VENN_R) / 72} ${(2 * Math.PI * VENN_R) / 24}`}
             opacity={0.95}
           />
         ))}
-        {/* Circle labels — same caption style: 10px, 400, uppercase, 0.2em spacing */}
+        {/* Circle labels — outer domains */}
         <g
           fill={isCyan ? '#e2e8f0' : '#0f172a'}
-          fontFamily={DIAGRAM_LABEL_STYLE.fontFamily}
-          fontSize={DIAGRAM_LABEL_STYLE.fontSize}
-          fontWeight={DIAGRAM_LABEL_STYLE.fontWeight}
-          style={{ letterSpacing: DIAGRAM_LABEL_STYLE.letterSpacing, textTransform: DIAGRAM_LABEL_STYLE.textTransform }}
+          fontFamily={OUTER_LABEL_STYLE.fontFamily}
+          fontSize={OUTER_LABEL_STYLE.fontSize}
+          fontWeight={OUTER_LABEL_STYLE.fontWeight}
+          style={{ letterSpacing: OUTER_LABEL_STYLE.letterSpacing, textTransform: OUTER_LABEL_STYLE.textTransform }}
           textAnchor="middle"
           dominantBaseline="middle"
         >
@@ -95,6 +87,30 @@ function WiderEnvironmentCanvas({ className = '', width = 560, height = 560, var
               {c.label}
             </text>
           ))}
+        </g>
+        {/* Centre focal — tradeoffs meet here; rings support this, not the headline */}
+        <g textAnchor="middle" dominantBaseline="middle" pointerEvents="none">
+          <circle
+            cx={CX}
+            cy={CY}
+            r={22}
+            fill={isCyan ? 'rgba(34, 211, 238, 0.14)' : 'rgba(15, 23, 42, 0.08)'}
+            stroke={isCyan ? `url(#${id}-stroke)` : 'rgba(0,0,0,0.35)'}
+            strokeWidth={1.35}
+            opacity={0.95}
+          />
+          <text
+            x={CX}
+            y={CY}
+            fill={isCyan ? '#f8fafc' : '#0f172a'}
+            fontFamily={OUTER_LABEL_STYLE.fontFamily}
+            fontSize={12}
+            fontWeight={700}
+            letterSpacing="0.1em"
+            style={{ textTransform: 'uppercase' }}
+          >
+            Design
+          </text>
         </g>
       </g>
     </svg>
