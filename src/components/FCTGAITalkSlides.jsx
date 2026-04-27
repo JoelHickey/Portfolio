@@ -1357,6 +1357,9 @@ function FCTGAITalkSlides() {
               <h2 className="fctg-heading text-[2.25rem]! md:text-[2.75rem]! md:whitespace-nowrap inline-block" style={{ background: 'linear-gradient(90deg, #22d3ee 0%, #2dd4bf 25%, #818cf8 50%, #a78bfa 75%, #e879f9 100%)', WebkitBackgroundClip: 'text', backgroundClip: 'text', color: 'transparent', WebkitTextFillColor: 'transparent' }}>Confidence</h2>
               <p className="fctg-subtitle mt-1">Pressure-test before you commit.</p>
             </div>
+            <p className="mt-6 max-w-xl text-base text-slate-300/80 leading-relaxed">
+              You can de-risk a direction before you make the call — without needing a specialist on retainer. Validate the structure, stress-test the edge cases, and arrive at the conversation already knowing where it holds and where it doesn't.
+            </p>
           </div>
         </Slide>
         )}
