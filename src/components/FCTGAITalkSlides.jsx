@@ -1269,7 +1269,7 @@ function FCTGAITalkSlides() {
             <img
               src="/images/AI talk/design-of-everyday-things.png"
               alt="The Design of Everyday Things by Don Norman, 1988"
-              className="mt-10 h-auto w-[200px] rounded-sm shadow-[0_18px_60px_rgba(2,6,23,0.85)] md:mt-12 md:w-[240px]"
+              className="mt-10 h-auto w-[140px] rounded-sm shadow-[0_18px_60px_rgba(2,6,23,0.85)] md:mt-12 md:w-[160px]"
             />
           </div>
         </Slide>
@@ -1386,7 +1386,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Slide 26: AI models */}
-        {slideIndex === 43 && (
+        {slideIndex === 44 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl px-4 py-4 md:px-10 md:py-8 -mt-8 md:-mt-12">
             <div className="flex flex-col items-center text-center mb-4 md:mb-6">
@@ -1403,7 +1403,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Slide 27: AI Agents — same aesthetic as Multi-agent, body analogy (human) diagram */}
-        {slideIndex === 44 && (
+        {slideIndex === 45 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl mx-auto flex flex-col items-center gap-4 px-6 py-4">
             <div className="flex flex-col items-center text-center">
@@ -1418,7 +1418,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Slide 28: Multi-agent systems */}
-        {slideIndex === 45 && (
+        {slideIndex === 46 && (
         <Slide transparent className="items-center justify-center overflow-hidden" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-4xl mx-auto flex flex-col items-center gap-4 px-6 py-4">
             <div className="flex flex-col items-center text-center">
@@ -1435,7 +1435,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Slide 29: Model, agent, agentic workflow */}
-        {slideIndex === 46 && (
+        {slideIndex === 47 && (
         <Slide transparent wide className="items-center justify-center overflow-hidden">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-6xl px-4 py-6 md:px-8 md:py-8">
             <div className="flex flex-col items-center text-center mb-5 md:mb-6">
@@ -2040,7 +2040,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Slide 16: Execution compresses */}
-        {slideIndex === 50 && (
+        {slideIndex === 48 && (
         <Slide transparent className="items-center justify-center overflow-hidden">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-6xl px-4 py-4 md:px-6 md:py-6 mx-auto">
             <div className="text-center mb-4 md:mb-6">
@@ -2781,7 +2781,7 @@ function FCTGAITalkSlides() {
       )}
 
       {/* Slide 48: How this was built */}
-      {slideIndex === 47 && (
+      {slideIndex === 49 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl mx-auto px-4 py-4 md:px-8 md:py-6">
             <div className="text-center mb-4 md:mb-6">
@@ -2809,7 +2809,7 @@ function FCTGAITalkSlides() {
       )}
 
       {/* Slide 49: How AI was used to plan and run this session */}
-      {slideIndex === 48 && (
+      {slideIndex === 50 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-5xl mx-auto px-4 py-4 md:px-8 md:py-6">
             <div className="text-center mb-4 md:mb-6">
@@ -2850,7 +2850,7 @@ function FCTGAITalkSlides() {
       )}
 
       {/* Slide 50: Productivity metrics — building this session */}
-      {slideIndex === 49 && (
+      {slideIndex === 51 && (
         <Slide transparent className="items-center justify-center">
           <div key={slideIndex} className="fctg-text-transition w-full max-w-3xl mx-auto px-4 py-4 md:px-8 md:py-6">
             <TimeWithAISplitChart variant="dark" />
@@ -2912,7 +2912,7 @@ function FCTGAITalkSlides() {
         )}
 
         {/* Appendix: Anatomy of a session (moved from Ch3) */}
-        {slideIndex === 51 && (
+        {slideIndex === 43 && (
         <Slide transparent className="items-center justify-center overflow-y-auto" wide>
           <div key={slideIndex} className="fctg-text-transition w-full max-w-3xl mx-auto px-4 py-6 md:py-8">
             <div className="flex flex-col items-center text-center mb-6">
